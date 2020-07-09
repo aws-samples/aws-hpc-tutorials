@@ -1,6 +1,5 @@
 ---
-title: "Download, compile and run the OSU Benchmark"
-pre: "<b>e ⁃ </b>"
+title: "e. Download, compile and run the OSU Benchmark"
 date: 2020-05-12T13:27:03Z
 weight : 40
 tags : ["tutorial", "EFA", "ec2", "OSU", "MPI", "Benchmark", "compile"]
@@ -21,10 +20,10 @@ cd /shared
 cat > compile-osu.sh << EOF
 #!/bin/bash
 
-module load intelmpi 
+module load intelmpi
 
-wget http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-5.6.2.tar.gz 
-tar zxvf ./osu-micro-benchmarks-5.6.2.tar.gz 
+wget http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-5.6.2.tar.gz
+tar zxvf ./osu-micro-benchmarks-5.6.2.tar.gz
 cd osu-micro-benchmarks-5.6.2/
 ./configure CC=mpicc CXX=mpicxx
  make -j 4
@@ -33,7 +32,7 @@ EOF
 sh ./compile-osu.sh
 ```
 
-Verify that the OSU-Benchmark is installed correctly 
+Verify that the OSU-Benchmark is installed correctly
 
 ```bash
 ll /shared/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
@@ -46,8 +45,8 @@ Create your job submission script for *OSU Latency* and use **sbatch** to submit
 ```bash
 cat > c5n_osu_latency.sbatch << EOF
 #!/bin/bash
-#SBATCH --job-name=osu-latency-job 
-#SBATCH --ntasks=2 --nodes=2 
+#SBATCH --job-name=osu-latency-job
+#SBATCH --ntasks=2 --nodes=2
 #SBATCH --output=osu_latency.out
 
 module load intelmpi
@@ -75,8 +74,8 @@ Another benchmark you might want to run is the *OSU Bandwidth*.
 ```bash
 cat > c5n_osu_bw.sbatch << EOF
 #!/bin/bash
-#SBATCH --job-name=osu-bw-job 
-#SBATCH --ntasks=72 --nodes=2 
+#SBATCH --job-name=osu-bw-job
+#SBATCH --ntasks=72 --nodes=2
 #SBATCH --output=osu_bw.out
 
 module load intelmpi
