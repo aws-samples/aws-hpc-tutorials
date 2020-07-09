@@ -12,6 +12,7 @@ googleAnalytics = "UA-148357634-1"
 hrefTargetBlank = true
 
 [params]
+editURL = "https://github.com/aws-samples/aws-hpc-tutorials/tree/master/content/"
 themeVariant = "mine"
 showVisitedLinks = true
 description = "AWS HPC Workshops"
@@ -48,6 +49,10 @@ page = [ "HTML", "AMP"]
     disable = false
     privacyEnhanced = false
 
+[[menu.shortcuts]]
+name = "<i class='fab fa-github'></i> Github"
+url = "https://github.com/aws-samples/aws-hpc-tutorials"
+weight = 10
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-bookmark'></i> AWS - HPC"

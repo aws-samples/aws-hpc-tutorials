@@ -9,7 +9,7 @@ The AWS HPC Workshops website has been developed by:
 
 - **Pierre-Yves Aquilanti, Ph.D.** - Labs & content
 - **Anh Tran** - Website, format and tech review
-- **Nicola Venuti, Ph.D.** - EFA content
+- **Nicola Venuti** - EFA content
 - **Karthik Raman** - DCV content
 
 #### Additional Authors
