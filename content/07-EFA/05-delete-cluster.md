@@ -1,6 +1,5 @@
 ---
-title: "Delete Your EFA Cluster"
-pre: "<b>f ⁃ </b>"
+title: "f. Delete Your EFA Cluster"
 date: 2020-05-13T09:52:23Z
 weight : 50
 tags : ["tutorial", "delete", "ParallelCluster"]
@@ -17,7 +16,7 @@ Now that you are done with your EFA cluster, you can delete it.
 Disconnect from your Master node first, just type **exit**.
 
 ```
-exit 
+exit
 ```
 
 And then, from a terminal running on your Cloud9 Instance, run the following command.
