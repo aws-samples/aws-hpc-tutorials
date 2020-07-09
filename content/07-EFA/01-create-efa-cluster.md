@@ -1,6 +1,5 @@
 ---
-title : "Create an HPC Cluster with EFA"
-pre: "<b>b ⁃ </b>"
+title : "b. Create an HPC Cluster with EFA"
 date: 2020-05-12T10:00:58Z
 weight : 10
 tags : ["configuration", "EFA", "ParallelCluster", "create"]
@@ -66,7 +65,7 @@ placement_group = DYNAMIC
 placement = compute
 max_queue_size = 4
 initial_queue_size = 0
-maintain_initial_size = true 
+maintain_initial_size = true
 disable_hyperthreading = true
 scheduler = slurm
 enable_efa = compute

@@ -1,6 +1,5 @@
 ---
-title: "Work With Intel MPI"
-pre: "<b>d ⁃ </b>"
+title: "d. Work With Intel MPI"
 date: 2020-05-12T12:57:20Z
 weight : 30
 tags : ["tutorial", "EFA", "ec2", "IntelMPI", "MPI", "intel", "module"]
@@ -11,13 +10,13 @@ In this section, Learn how to work with [Intel MPI](https://software.intel.com/c
 
 #### Enable Intel MPI
 
-Intel MPI is available on the AWS ParallelCluster AMIs for alinux, alinux2, centos7, ubuntu1604, and ubuntu1804 values for the [**base_os**](https://docs.aws.amazon.com/parallelcluster/latest/ug/cluster-definition.html#base-os) setting. 
+Intel MPI is available on the AWS ParallelCluster AMIs for alinux, alinux2, centos7, ubuntu1604, and ubuntu1804 values for the [**base_os**](https://docs.aws.amazon.com/parallelcluster/latest/ug/cluster-definition.html#base-os) setting.
 
 {{% notice info %}}
-Using Intel MPI indicates that you accept the Intel Simplified Software License. 
+Using Intel MPI indicates that you accept the Intel Simplified Software License.
 {{% /notice %}}
 
-[Open MPI](https://www.open-mpi.org/) is placed on the path by default. To enable Intel MPI instead of Open MPI, the Intel MPI module must be loaded first. The exact name of the module changes with every update. 
+[Open MPI](https://www.open-mpi.org/) is placed on the path by default. To enable Intel MPI instead of Open MPI, the Intel MPI module must be loaded first. The exact name of the module changes with every update.
 To see which modules are available, run **module avail**,
 ```bash
 module avail

@@ -1,6 +1,5 @@
 ---
-title : "Examine an EFA enabled instance"
-pre: "<b>c ⁃ </b>"
+title : "c. Examine an EFA enabled instance"
 date: 2020-05-12T10:00:58Z
 weight : 20
 tags : ["tutorial", "EFA", "ec2", "fi_info", "mpi"]
@@ -38,7 +37,7 @@ sbatch sleep.sbatch
 
 #### Check the job status
 
-Starting up a new node will take about 2 minutes. In the meantime you can check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). 
+Starting up a new node will take about 2 minutes. In the meantime you can check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state).
 If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up. When ready the nodes will be added automatically to your SLURM cluster, then your job will be processed and you will see a similar status as below.
 
 ```bash
@@ -87,7 +86,7 @@ The output of **fi_info** should be similar to this below:
 Now you can disconnect from the compute node, just type **exit**.
 
 ```
-exit 
+exit
 ```
 
 Next, compile and install a simple HPC benchmark.
