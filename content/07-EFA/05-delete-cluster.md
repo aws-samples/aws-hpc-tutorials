@@ -12,6 +12,8 @@ tags : ["tutorial", "delete", "ParallelCluster"]
 Note: If you are keep working on the workshops or moving to the next section, then you will want to clean up the ParallelCluster configuration you just created. The Cloud9 IDE will stop (not terminate) 30 minutes after the web tab is closed and can be started again, through the console, when needed.
 {{% /notice %}}
 
+some changes here, nothing special
+
 Now that you are done with your EFA cluster, you can delete it.
 Disconnect from your Master node first, just type **exit**.
 
