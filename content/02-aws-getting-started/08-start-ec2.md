@@ -8,7 +8,7 @@ In this section, you create an SSH key-pair on your AWS Cloud9 instance, create 
 
 #### Generate an SSH Key-pair
 
-SSH is [commonly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) used to connect to Amazon EC2 instances. To allow you to connect to your instances, you can generate a key-pair using the AWS CLI in your AWS Cloud9 instance. This example uses the key name **mykey** but you can change the name of your key.
+SSH is [commonly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) used to connect to Amazon EC2 instances. To allow you to connect to your instances, you can generate a key-pair using the AWS CLI in your AWS Cloud9 instance. This example uses the key name **lab-2-your-key** but you can change the name of your key.
 Enter the following command to generate a key pair:
 
 ```bash
