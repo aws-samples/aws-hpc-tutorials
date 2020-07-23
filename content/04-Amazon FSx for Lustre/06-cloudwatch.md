@@ -18,6 +18,6 @@ To produce a similar graph, follow these steps:
 2. **Take note** of your file system ID, it should be similar to *fs-0a5444e4841233*.
 3. In the AWS Management Console, in the search field, search for and choose **CloudWatch**. Choose [**Metrics**](https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#cw:dashboard=Home), then **FSx**.
 4. Select the following metrics for the file system with the same ID as noted above: **FreeDataStorageCapacity**, **DataWriteOperations**, and **DataReadOperations**.
-5. Set the **FreeDataStorageCapacity** to be displayed based on the **left Y Axis**.
+5. Set the **FreeDataStorageCapacity** to be displayed based on the **right Y Axis**.
 
 If you want, you can add this graph to a dashboard or build additional metrics as discussed [here](https://docs.aws.amazon.com/fsx/latest/LustreGuide/how_to_use_metrics.html). In addition, you can [set alarms](https://docs.aws.amazon.com/fsx/latest/LustreGuide/creating_alarms.html) to send notifications on events, such as low storage capacity or high bandwidth utilization. Those notifications can be used to trigger a Lambda function to create and attach a larger file system to your EC2 instances using [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) or to send you an email with information about your environment status.
