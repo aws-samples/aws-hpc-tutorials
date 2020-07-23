@@ -6,7 +6,7 @@ tags = ["tutorial", "HSM", "FSx", "Laxy Load"]
 +++
 
 {{% notice note %}}
-This section reuses content from the [Amazon FSx for Lustre Lazy Load Workshop](https://github.com/aws-samples/amazon-fsx-workshop/tree/master/fsx-lustre/workshop/6-lazy-load). If you want to dive deeper into lazy file loading, check out the workshop.
+This section reuses content from the [Amazon FSx for Lustre Lazy Load Workshop](https://github.com/aws-samples/amazon-fsx-workshop/tree/master/lustre/03-load-data). If you want to dive deeper into lazy file loading, check out the workshop.
 {{% /notice %}}
 
 As you saw in the previous section, the file content is not yet retrieved on the file system. However, nothing prevents you from accessing your files as you would on any other POSIX compliant file system. When accessing the file, the actual content is retrieved. The file access latency is slightly higher for the first access, but once the content has been retrieved, file access latency drops to a [sub-millisecond latency](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#storage-layout) because it is served by the file system on subsequent accesses. In addition, releasing a file from the file system does not delete the file but removes its actual content. The metadata is still be stored on the file system.
