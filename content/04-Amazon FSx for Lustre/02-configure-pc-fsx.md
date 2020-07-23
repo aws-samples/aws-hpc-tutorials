@@ -48,8 +48,9 @@ Generate a new key-pair and new default AWS ParallelCluster configuration.
 
 The cluster configuration that you generate for Amazon FSx for Lustre includes the following settings:
 
-- Lustre partition of 3.6 TB; use the Amazon S3 bucket created previously as the import and export path.
-- Set head node and compute nodes as [c4.xlarge instances](https://aws.amazon.com/ec2/instance-types/). You can change the instance type if you like, but you may run into EC2 limits that may prevent you from creating instance or create too many instances.
+- Scratch Lustre partition of 1.2 TB; using the Amazon S3 bucket created previously as the import and export path.
+  - There are two primary deployment options for Lustre, scratch or persistent. Scratch is best for temporary storage and shorter-term processing of data. There are two deployment options for Scratch, SCRATCH_1 and SCRATCH_2. SCRATCH_1 is the default deployment type. SCRATCH_2 is the latest generation scratch filesystem, and offers higher burst throughput over baseline throughput and also in-transit encryption of data.
+- Set head node and compute nodes as [c5 instances](https://aws.amazon.com/ec2/instance-types/c5/). **C5** is the latest generation of compute-optimized instances. The head node has 4 vcpus and 8 GB of memory, perfect for scheduling jobs and compiling code. The compute instances have 72 vcpus and 144 GB of memory, perfect for compute intensive applications.
 - A [placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) to maximize the bandwidth between instances and reduce the latency.
 - Set the cluster to 0 compute nodes when starting, the minimum size to 0, and maximum size to 8 instances. The cluster uses [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) that will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - A [GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) volume will be attached to the head node then shared through NFS to be mounted by the compute nodes on */shared*. It is generally a good location to store applications or scripts. Keep in mind that the */home* directory is shared on NFS as well.
@@ -94,8 +95,8 @@ vpc_settings = public
 base_os = alinux2
 ebs_settings = myebs
 fsx_settings = myfsx
-compute_instance_type = c4.xlarge
-master_instance_type = c4.xlarge
+compute_instance_type = c5.18xlarge
+master_instance_type = c5.xlarge
 cluster_type = ondemand
 placement_group = DYNAMIC
 placement = compute
@@ -115,8 +116,9 @@ volume_size = 20
 
 [fsx myfsx]
 shared_dir = /lustre
-storage_capacity = 3600
+storage_capacity = 1200
 import_path =  s3://mybucket-${BUCKET_POSTFIX}
+deployment_type = SCRATCH_2
 
 [aliases]
 ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
