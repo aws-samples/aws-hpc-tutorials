@@ -40,7 +40,7 @@ In the current version of ParallelCluster, the DCV Test GL application that we w
 If you have the application, run it. You should see this:
 ![DCV Connect](/images/nice-dcv/Connect-DCV-ViewGL.png)
 
-If the application is not available, go back to your Cloud9 environment and paste the following command in your terminal:
+If the application is not available, go back to your Cloud9 environment and paste the following command in your terminal to connect to the master of your cluster:
 
 ```bash
 pcluster ssh my-dcv-cluster -i ~/.ssh/lab-dcv-key
