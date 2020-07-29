@@ -54,7 +54,7 @@ The cluster configuration that you generate for Amazon FSx for Lustre includes t
 - A [placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) to maximize the bandwidth between instances and reduce the latency.
 - Set the cluster to 0 compute nodes when starting, the minimum size to 0, and maximum size to 8 instances. The cluster uses [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) that will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - A [GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) volume will be attached to the head node then shared through NFS to be mounted by the compute nodes on */shared*. It is generally a good location to store applications or scripts. Keep in mind that the */home* directory is shared on NFS as well.
-- The job scheduler is SLURM, but you can use other options, such as SGE.
+- The job scheduler is [SLURM](https://slurm.schedmd.com/overview.html)
 
 {{% notice tip %}}
 For more details about the configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) and the [fsx parameters section](https://docs.aws.amazon.com/parallelcluster/latest/ug/fsx-section.html#fsx-kms-key-id) of the AWS ParallelCluster User Guide.
