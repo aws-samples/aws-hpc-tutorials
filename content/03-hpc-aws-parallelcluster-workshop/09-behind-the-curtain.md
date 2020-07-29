@@ -34,7 +34,7 @@ EOF
 sbatch sleep_script.sbatch
 ```
 4. Go back to the **EC2 Dashboard** and **Auto Scaling Groups**.
-5. If necessary, click the refresh button (circling arrows). You should see that an instance just appeared on the desired field instead of 0. It corresponds to the 2 physical cores or c4.xlarge equivalent that you just requested.
+5. If necessary, click the refresh button (circling arrows). You should see that an instance just appeared on the desired field instead of 0. It corresponds to the 2 physical cores or c5.xlarge equivalent that you just requested.
 ![ParallelCluster Create](/images/hpc-aws-parallelcluster-workshop/pc-auto-scaling-2.png)
 6. On the **EC2 Dashboard**, in the left pane, choose [**Instances**](https://console.aws.amazon.com/ec2/v2). You should see your compute instances labeled as *Compute*.
 ![ParallelCluster Create](/images/hpc-aws-parallelcluster-workshop/pc-ec2-compute.png)
