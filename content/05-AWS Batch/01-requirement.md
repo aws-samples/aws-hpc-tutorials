@@ -14,7 +14,7 @@ The main account owner must complete the following steps for initial setup:
 The steps described above are completed using an AWS CloudFormation script and executed through the following commands. These commands must be executed on the main account using admin credentials in a terminal on Linux, OSX or WSL:
 
 ```bash
-curl https://s3.amazonaws.com/av-workshop/carla_0.9.5_ami_generation.zip \
+curl https://s3.amazonaws.com/av-workshop/carla_0.9.5_ami_generation_g2.zip \
      -o carla_0.9.5_ami_generation.zip
 unzip carla_0.9.5_ami_generation.zip
 pushd carla_0.9.5_ami_generation/utils

@@ -14,7 +14,7 @@ The following script builds an Amazon Elastic Container Service (Amazon ECS) com
 ```bash
 INSTANCE_ROLE=$(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `S3RoleARN`].OutputValue')
 pushd carla_0.9.5_ami_generation
-bash build.sh $INSTANCE_ROLE
+bash build_g2.sh $INSTANCE_ROLE
 ```
 
-The building process is handled by [Packer](https://www.packer.io/) from HashiCorp. The process involves multiple reboots to update to the latest driver and kernel modules. We recommend that you to check the content of the file *image.json* while the AMI is building.
+The building process is handled by [Packer](https://www.packer.io/) from HashiCorp. The process involves multiple reboots to update to the latest driver and kernel modules. We recommend that you to check the content of the files *build_g2.sh* and *image_g2.json* while the AMI is building.
