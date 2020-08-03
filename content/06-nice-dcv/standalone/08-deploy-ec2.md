@@ -22,6 +22,31 @@ Optionally, use the following command to see previously registered keys:
 aws ec2 describe-key-pairs
 ```
 
+#### Create an Instance Profile for NICE DCV Licensing
+
+The following steps use a CloudFormation template to create an instance profile, allowing the EC2 instance to access the NICE DCV licensing buckets:
+```bash
+curl https://www.hpcworkshops.com/scripts/dcv_license.zip -o dcv_license.zip
+unzip dcv_license.zip
+cd dcv_license
+bash cfn_dcv_role.sh
+cd ..
+```
+
+While waiting for the instance profile to be created, you can review the content in **cfn_dcv_role.sh** and **cfn_dcv_policy.yaml** to understand what the the behavior of the CloudFormation template. In short, the above-mentioned steps creates an instance profile, with the following access policy:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::dcv-license.<region>/*"
+        }
+    ]
+}
+```
+
 #### Create an Amazon EC2 Instance with NICE DCV AMI
 
 1. In the AWS Management Console search bar type **EC2** or click on the **EC2** tab in **Compute** section. This will take you to the EC2 dashboard
@@ -40,7 +65,7 @@ aws ec2 describe-key-pairs
 
 ![NICE DCV EC2Launch](/images/nice-dcv/Launch-EC2-InstanceType.png)
 
-5. Configure Instance: In the Network section, select the same VPC ID and same Subnet ID from your AWS Cloud9 Instance.
+5. Configure Instance: In the Network section, select the same VPC ID and same Subnet ID from your AWS Cloud9 Instance. In the IAM role section, select the instance profile we created a moment ago.
 
 Use the following command to find the Subnet ID and VPC ID of the Cloud9 instance
 ```bash
@@ -53,7 +78,12 @@ VPC ID = $(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/ma
 EOF
 ```
 
-![NICE DCV EC2Launch](/images/nice-dcv/Launch-EC2-VPC.png)
+Use the following command to find out the name of the instance profile:
+```bash
+aws cloudformation describe-stacks --stack-name DCVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `InstanceProfileARN`].OutputValue'
+```
+
+![NICE DCV EC2Launch](/images/nice-dcv/Launch-EC2-VPC-v2.png)
 
 6. Add Storage: Choose **Next: Add Storage** and leave the Storage section with default settings.
 
