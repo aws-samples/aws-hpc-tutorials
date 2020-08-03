@@ -20,7 +20,7 @@ echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWork
 ```
 7. For **Container image**, choose the **repositoryUri** generated when you created the ECR repository. If you do not know the URI, use the following commmand in your terminal.
 ```bash
-$(aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]')
+aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]'
 ```
 8. For **vCPUs** type **8**.
 9. For **Memory (MiB)** type **2000**.
