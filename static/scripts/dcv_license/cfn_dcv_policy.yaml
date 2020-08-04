@@ -1,6 +1,6 @@
 # Use as follow:
-#   aws cloudformation create-stack --stack-name 'S3InstanceRoleNvidiaDriversBucket' \
-#                                   --template-body file://s3policy.yaml \
+#   aws cloudformation create-stack --stack-name 'DCVInstanceProfile' \
+#                                   --template-body file://cfn_dcv_policy.yaml \
 #                                   --capabilities "CAPABILITY_IAM"
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Create instance profile for an EC2 Instance to access NICE DCV licensing S3 buckets'
