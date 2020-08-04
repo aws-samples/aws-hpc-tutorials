@@ -33,7 +33,7 @@ bash cfn_dcv_role.sh
 cd ..
 ```
 
-While waiting for the instance profile to be created, you can review the content in **cfn_dcv_role.sh** and **cfn_dcv_policy.yaml** to understand what the the behavior of the CloudFormation template. In short, the above-mentioned steps creates an instance profile, with the following access policy:
+While waiting for the instance profile to be created, you can review the content in **cfn_dcv_role.sh** and **cfn_dcv_policy.yaml** to understand what the the behavior of the CloudFormation template. As described in [Licensing the NICE DCV Server](https://docs.aws.amazon.com/dcv/latest/adminguide/setting-up-license.html), the EC2 instance running the NICE DCV server must be able to reach the Amazon S3 endpoint and has permission to access the required S3 objects for NICE DCV licensing. The above-mentioned steps creates an instance profile, with the following access policy:
 ```json
 {
     "Version": "2012-10-17",
@@ -80,7 +80,7 @@ EOF
 
 Use the following command to find out the name of the instance profile:
 ```bash
-aws cloudformation describe-stacks --stack-name DCVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `InstanceProfileARN`].OutputValue'
+aws cloudformation describe-stacks --stack-name DCVInstanceProfile --output text --query 'Stacks[0].Outputs[?OutputKey == `InstanceProfileARN`].OutputValue'
 ```
 
 ![NICE DCV EC2Launch](/images/nice-dcv/Launch-EC2-VPC-v2.png)
