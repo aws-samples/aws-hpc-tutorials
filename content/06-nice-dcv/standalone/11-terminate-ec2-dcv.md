@@ -15,7 +15,7 @@ Confirm by clicking, **Yes, Terminate**.
 
 Now that you are done with your NICE DCV EC2 workshop. We can delete the instance profile created in previous steps, with the following command:
 ```bash
-aws cloudformation delete-stack --stack-name DCVWorkshop
+aws cloudformation delete-stack --stack-name DCVInstanceProfile
 ```
 
 With this, we clean up all the AWS resources related to this NICE DCV workshop.
