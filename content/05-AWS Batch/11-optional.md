@@ -129,3 +129,10 @@ EOF
 bash remove-ce.sh
 ```
 6. Navigate to the [ECR](https://console.aws.amazon.com/ecr/repositories) Dashboard of the AWS Management Console and delete the repository you created earlier.
+
+7. Either delete the previously created PrepAVWorkshop stack using the CLI or the AWS Management Console:
+- CLI: use the following command in your Cloud9 Environment:
+```bash
+aws cloudformation delete-stack --stack-name PrepAVWorkshop
+```
+- Console: go to [CloudFormation](https://console.aws.amazon.com/cloudformation/), select the right region and the PrepAVWorkshop stack and click on *Delete*
