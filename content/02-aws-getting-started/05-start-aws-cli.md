@@ -1,6 +1,6 @@
 +++
-title = "d. Work with the AWS CLI"
-weight = 80
+title = "c. Work with the AWS CLI"
+weight = 70
 tags = ["tutorial", "cloud9", "aws cli", "s3"]
 +++
 

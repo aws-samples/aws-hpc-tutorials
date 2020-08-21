@@ -1,6 +1,6 @@
 +++
-title = "b. Launch the EC2 Dashboard"
-weight = 60
+title = "e. Launch the EC2 Dashboard"
+weight = 90
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
