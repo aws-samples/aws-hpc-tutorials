@@ -11,7 +11,7 @@ Although instances are generally launched through scripts, they can also be laun
 
 Spend a few minutes familiarizing yourself with the layout of the dashboard:
 
-- Left pane: Tools and features, such as the saved Amazon Machine Images (AMIs), storage volumes, and ssh keys.
+- Left pane: Tools and features, such as the saved Amazon Machine Images (AMIs), storage volumes, and ssh keys (Key Pairs).
 - Center: Resource listings and the ability to launch an instance. 
 - Right pane: General information, such as documentation and pricing.
 
