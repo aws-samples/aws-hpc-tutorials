@@ -28,7 +28,7 @@ Use the copy button in each of the following code samples to quickly copy the co
 {{% /notice %}}
 
 
-Open a Terminal window and paste the following command. The AWS CLI updates the version, if necessary. 
+Open a Terminal window and paste the following command to install the AWS CLI . Pip updates the version, if necessary. 
 ```bash
 pip-3.6 install awscli -U --user
 ```
