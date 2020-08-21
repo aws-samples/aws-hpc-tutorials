@@ -48,15 +48,16 @@ Use the following commands to display:
 ```bash
 aws help
 ```
+Type **q** to exit the help pages.
 ```bash
 aws ec2 help
 ```
+Type **q** to exit the help pages.
 ```bash
 aws ec2 describe-instances
 ```
 ```bash
 aws ec2 describe-key-pairs
 ```
-Type **q** to exit the help pages.
 
 Next, you use the AWS CLI to interact with Amazon S3.
