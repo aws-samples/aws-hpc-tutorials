@@ -30,4 +30,6 @@ After an optional introduction and setup, you can walk through the following lab
 
 - AWS Batch teaches to you run a driving simulation with [CARLA](http://carla.org/).
 
+- Distributed ML explores how to leverage cloud HPC infrastructure to run data parallel training at scale.
+
 We recommend you take these labs in the order presented as some dependencies exists between them, but feel free to change the order based on your comfort level.
