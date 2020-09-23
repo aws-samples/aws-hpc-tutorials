@@ -106,7 +106,7 @@ fi
 chown -R ec2-user:ec2-user /lustre
 chown -R ec2-user:ec2-user /shared
 
-sudo -u ec2-user shared/.conda/bin/conda init bash
+sudo -u ec2-user /shared/.conda/bin/conda init bash
 
 EOF
 
