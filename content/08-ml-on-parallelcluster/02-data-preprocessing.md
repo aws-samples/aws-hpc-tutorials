@@ -1,6 +1,5 @@
 ---
-title : "Run single node data preprocessing with Slurm"
-pre: "<b>c ⁃ </b>"
+title : "c. Run single node data preprocessing with Slurm"
 date: 2020-09-04T15:58:58Z
 weight : 20
 tags : ["preprocessing", "data", "ML", "srun", "slurm"]
