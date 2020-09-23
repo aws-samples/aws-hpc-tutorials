@@ -1,6 +1,5 @@
 ---
-title : "Create a distributed ML cluster"
-pre: "<b>b ⁃ </b>"
+title : "b. Create a distributed ML cluster"
 date: 2020-09-04T15:58:58Z
 weight : 10
 tags : ["configuration", "ML", "ParallelCluster", "create", "cluster"]
