@@ -29,10 +29,6 @@ AWS Batch is natively integrated with the AWS platform, allowing you to leverage
 **Cost optimized resource provisioning**
 AWS Batch provisions compute resources and optimizes the job distribution based on the volume and resource requirements of the submitted batch jobs. AWS Batch dynamically scales compute resources to any quantity required to run your batch jobs, freeing you from the constraints of fixed-capacity clusters. AWS Batch will utilize Spot Instances on your behalf, reducing the cost of running your batch jobs further. -->
 
-{{% notice info %}}
-This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop.
-{{% /notice %}}
-
 In this workshop, you learn how to run a driving simulation with [CARLA](http://carla.org/) that outputs sensor data used in later stages of a workflow. CARLA is an interactive driving simulator used to support development, training, and validation of autonomous driving systems.
 
 <video width="640" height="240" controls>
