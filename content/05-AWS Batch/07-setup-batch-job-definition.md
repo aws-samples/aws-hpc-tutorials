@@ -1,5 +1,5 @@
 +++
-title = "f. Set up a Job Definition"
+title = "g. Set up a Job Definition"
 date = 2019-09-18T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
@@ -20,7 +20,7 @@ echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWork
 ```
 7. For **Container image**, choose the **repositoryUri** generated when you created the ECR repository. If you do not know the URI, use the following commmand in your terminal.
 ```bash
-$(aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]')
+aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]'
 ```
 8. For **vCPUs** type **8**.
 9. For **Memory (MiB)** type **2000**.
