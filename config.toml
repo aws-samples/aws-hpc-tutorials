@@ -5,8 +5,6 @@ theme = "hugo-theme-learn"
 uglyurls = true
 sectionPagesMenu = "main"
 pygmentsCodeFences = true
-googleAnalytics = "UA-148357634-1"
-
 
 [blackfriday]
 hrefTargetBlank = true
@@ -30,11 +28,6 @@ page = [ "HTML", "AMP"]
 [privacy]
   [privacy.disqus]
     disable = false
-  [privacy.googleAnalytics]
-    anonymizeIP = false
-    disable = false
-    respectDoNotTrack = true
-    useSessionStorage = false
   [privacy.instagram]
     disable = false
     simple = false
