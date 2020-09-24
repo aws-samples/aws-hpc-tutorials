@@ -22,7 +22,7 @@ echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWork
 ```bash
 aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]'
 ```
-8. For **vCPUs** type **8**.
+8. For **vCPUs** type **4**.
 9. For **Memory (MiB)** type **2000**.
 ![AWS Batch](/images/aws-batch/batch12.png)
 10. Skip to the **Environment variables** section.
