@@ -1,5 +1,5 @@
 +++
-title = "d. Set up a Job Queue"
+title = "f. Set up a Job Queue"
 date = 2019-09-18T10:46:30-04:00
 weight = 70
 tags = ["tutorial", "install", "AWS", "batch", "packer"]

@@ -136,7 +136,3 @@ bash remove-ce.sh
 aws cloudformation delete-stack --stack-name PrepAVWorkshop
 ```
 - Console: go to [CloudFormation](https://console.aws.amazon.com/cloudformation/), select the right region and the PrepAVWorkshop stack and click on *Delete*
-
-8. Navigate to the [IAM](https://console.aws.amazon.com/iam/home?#/roles) Dashboard and delete the IAM role **hpcworkshop-admin**.
-
-9. Navigate to the [EC2](https://console.aws.amazon.com/ec2/v2/home) Dashboard and terminate the EC2 instance for this lab. 

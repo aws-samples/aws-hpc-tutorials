@@ -25,7 +25,7 @@ Compute environments can be seen as computational clusters. They can consist of 
 10. For **Allowed instance type**, remove **optimal** and choose **g3s.xlarge**.
 11. For **Maximum vCPUs** type **16** (which allows you to use up to 4 instances).
 12. Skip the other vCPU settings.
-![AWS Batch](/images/aws-batch/batch5_g3.png)
+![AWS Batch](/images/aws-batch/batch5.png)
 13. Select the **Enable user-specified Ami ID** check box, then type the ID of the AMI generated with Packer. Choose **Validate AMI** and you should see a similar result to the following image.
 ![AWS Batch](/images/aws-batch/batch6.png)
 14. For **VPI Id**, choose the default VPC.
