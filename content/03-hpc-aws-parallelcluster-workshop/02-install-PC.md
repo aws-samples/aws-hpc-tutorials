@@ -16,4 +16,10 @@ tags = ["tutorial", "install", "ParallelCluster"]
 pip-3.6 install aws-parallelcluster -U --user
 ```
 
+Then upgrade the AWS CLI to get the latest version:
+
+```bash
+pip-3.6 install awscli -U --user
+```
+
 Next, you configure AWS ParallelCluster.
