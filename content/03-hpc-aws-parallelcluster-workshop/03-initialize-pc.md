@@ -13,8 +13,13 @@ The following commands generate a new keypair, query the EC2 metadata to get the
 ```bash
 # generate a new key-pair
 aws ec2 create-key-pair --key-name lab-3-your-key --query KeyMaterial --output text > ~/.ssh/lab-3-key
-chmod 600 ~/.ssh/lab-3-key
+```
 
+```bash
+chmod 600 ~/.ssh/lab-3-key
+```
+
+```bash
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
 VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
@@ -23,6 +28,9 @@ REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availab
 
 ```bash
 mkdir -p ~/.parallelcluster
+```
+
+```bash
 cat > ~/.parallelcluster/config << EOF
 [aws]
 aws_region_name = ${REGION}
