@@ -20,7 +20,7 @@ pcluster list
 pcluster stop hpclab-yourname
 ```
 
-Edit your original config file and change your `instance_type = c4.large`
+Edit your original config file and change `instance_type = c4.large`
 
 ```bash
 vi my-cluster-config.ini 
@@ -59,7 +59,8 @@ Updating: hpclab-anh2
 Calling update_stack
 Status: parallelcluster-hpclab-anh2 - UPDATE_COMPLETE
 ```
-Start your cluster again after update completed.
+Start your cluster again after update process is completed.
+
 ```bash
 pcluster start hpclab-yourname
 ```
