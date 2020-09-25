@@ -18,7 +18,7 @@ Generate the cluster with the following settings:
 - We disable Intel Hyper-threading by setting `disable_hyperthreading = true` in the configuration file.
 
 {{% notice tip %}}
-For more details about the AWS ParallelCluster configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html).
+For more details about the AWS ParallelCluster configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html).
 {{% /notice %}}
 
 
@@ -33,6 +33,7 @@ REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availab
 ```bash
 cd ~/environment
 ```
+
 ```bash
 cat > my-cluster-config.ini << EOF
 [aws]
