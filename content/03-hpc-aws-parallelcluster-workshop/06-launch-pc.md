@@ -24,7 +24,7 @@ Your cluster will take a few minutes to build. The creation status displays in y
 Test:~/environment $ pcluster create hpclab-yourname -c my-cluster-config.ini
 Beginning cluster creation for cluster: hpclab-yourname
 Creating stack named: parallelcluster-hpclab-yourname
-Status: parallelcluster-hpclab-anh - CREATE_COMPLETE
+Status: parallelcluster-hpclab-yourname - CREATE_COMPLETE
 MasterPublicIP: 35.172.73.100
 ClusterUser: ec2-user
 MasterPrivateIP: 172.31.38.100
