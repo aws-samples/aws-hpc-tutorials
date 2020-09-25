@@ -91,8 +91,8 @@ sbatch submission_script.sbatch
 Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up. When ready and registered, your job will be processed and you will see a similar status as below.
 
 ```bash
-JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-    2   compute hello-wo ec2-user  R       0:05      1 ip-10-0-1-154
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+  3   compute hello-wo ec2-user  R       0:03      4 compute-dy-c5large-[1-4] 
 ```
 
 You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 1 min to appear. The following example shows one node.
@@ -100,22 +100,31 @@ You can also check the number of nodes available in your cluster using the comma
 ```bash
 
 sinfo
-PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
-compute*     up   infinite      1  alloc ip-10-0-1-154
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST 
+compute*     up   infinite      4 alloc# compute-dy-c5large-[1-4] 
+compute*     up   infinite      4  idle~ compute-dy-c5large-[5-8] 
 ```
 
 Once the job has been processed, you should see similar results as follows in the *.out* file:
 
 ```text
-Hello World from Step 1 on Node 1 (ip-10-0-1-154)
-Hello World from Step 1 on Node 2 (ip-10-0-1-154)
-Hello World from Step 1 on Node 3 (ip-10-0-1-154)
-Hello World from Step 1 on Node 0 (ip-10-0-1-154)
-...
-Hello World from Step 4 on Node 1 (ip-10-0-1-154)
-Hello World from Step 4 on Node 2 (ip-10-0-1-154)
-Hello World from Step 4 on Node 0 (ip-10-0-1-154)
-Hello World from Step 4 on Node 3 (ip-10-0-1-154)
+[ec2-user@ip-172-31-37-31 ~]$ more hello-world-job_3.out 
+Hello World from Step 1 on Node 3, (compute-dy-c5large-4)
+Hello World from Step 1 on Node 2, (compute-dy-c5large-3)
+Hello World from Step 1 on Node 1, (compute-dy-c5large-2)
+Hello World from Step 1 on Node 0, (compute-dy-c5large-1)
+Hello World from Step 2 on Node 3, (compute-dy-c5large-4)
+Hello World from Step 2 on Node 2, (compute-dy-c5large-3)
+Hello World from Step 2 on Node 1, (compute-dy-c5large-2)
+Hello World from Step 2 on Node 0, (compute-dy-c5large-1)
+Hello World from Step 3 on Node 3, (compute-dy-c5large-4)
+Hello World from Step 3 on Node 2, (compute-dy-c5large-3)
+Hello World from Step 3 on Node 1, (compute-dy-c5large-2)
+Hello World from Step 3 on Node 0, (compute-dy-c5large-1)
+Hello World from Step 4 on Node 3, (compute-dy-c5large-4)
+Hello World from Step 4 on Node 2, (compute-dy-c5large-3)
+Hello World from Step 4 on Node 1, (compute-dy-c5large-2)
+Hello World from Step 4 on Node 0, (compute-dy-c5large-1)
 ```
 
 Done!
