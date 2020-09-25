@@ -1,5 +1,5 @@
 +++
-title = "h. Update a cluster"
+title = "h. Update your cluster"
 date = 2019-09-18T10:46:30-04:00
 weight = 100
 tags = ["tutorial", "create", "ParallelCluster"]
@@ -7,16 +7,20 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 We have sucessfully built your cluster and ran your first MPI job.
 
-Let's say you want to change your instance type to a different instance type in your compute fleet for example c4.xlarge . In this lab, we will learn how to update your cluster with new instance type.
+Let's say you want to change your instance type to a different instance type in your compute fleet for example **c4.large** . In this lab, we will learn how to update your cluster with new instance type.
 
 
 Go back to your AWS Cloud9 environment, and stop the cluster
 
 ```bash
+pcluster list
+```
+
+```bash
 pcluster stop hpclab-yourname
 ```
 
-Edit your original config file and change your compute fleet to c4.xlarge
+Edit your original config file and change your `instance_type = c4.large`
 
 ```bash
 vi my-cluster-config.ini 
@@ -29,13 +33,14 @@ min_count = 0
 max_count = 8
 ```
 
-Then run a pcluster update
+Then run a **pcluster update** command
 
 ```bash
 pcluster update hpclab-yourname -c my-cluster-config.ini
 ```
 
-The output will be similar to this
+The output will be similar to this. Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field.
+
 ```bash
 Test:~/environment $ pcluster update hpclab-yourname -c my-cluster-config.ini
 Retrieving configuration from CloudFormation for cluster hpclab-anh2...
@@ -45,7 +50,7 @@ Found Configuration Changes:
 #    parameter                   old value    new value
 ---  --------------------------  -----------  -----------
      [compute_resource default]
-01   instance_type               c5.large     c4.large
+01   instance_type                c5.large     c4.large
 
 Validating configuration update...
 Congratulations! The new configuration can be safely applied to your cluster.
@@ -61,7 +66,7 @@ pcluster start hpclab-yourname
 
 You can now login to your cluster and run your helloworld job again
 
-you can see that the cluster compute node has changed to c4.xlarge
+you can see that the cluster compute node has changed to c4.large
 
 ```bash
 [ec2-user@ip-172-31-39-157 ~]$ sinfo
