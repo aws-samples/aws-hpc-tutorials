@@ -10,11 +10,22 @@ Typically, to configure AWS ParallelCluster, you use the command [**pcluster con
 
 The following commands generate a new keypair, query the EC2 metadata to get the Subnet ID, VPC ID, and finally write a config to `~/.parallelcluster/config`. You can always edit this config file to add and change [configuration options](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html).
 
-```bash
-# generate a new key-pair
-aws ec2 create-key-pair --key-name lab-3-your-key --query KeyMaterial --output text > ~/.ssh/lab-3-key
-chmod 600 ~/.ssh/lab-3-key
+{{% notice info %}}Don't skip this step, creating key-pair step is very important for the later steps, please follow instruction bellow.
+{{% /notice %}}
 
+Generate a new key-pair
+
+```bash
+aws ec2 create-key-pair --key-name lab-3-your-key --query KeyMaterial --output text > ~/.ssh/lab-3-key
+```
+
+```bash
+chmod 600 ~/.ssh/lab-3-key
+```
+
+Getting your AWS networking information
+
+```bash
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
 VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
@@ -23,6 +34,11 @@ REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availab
 
 ```bash
 mkdir -p ~/.parallelcluster
+```
+
+Creating an initial AWS ParallelCluster config file
+
+```bash
 cat > ~/.parallelcluster/config << EOF
 [aws]
 aws_region_name = ${REGION}
