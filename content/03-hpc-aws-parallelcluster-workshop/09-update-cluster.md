@@ -20,11 +20,7 @@ pcluster list
 pcluster stop hpclab-yourname
 ```
 
-<<<<<<< HEAD
 Edit your original config file and change `instance_type = c4.large`
-=======
-Edit your original config file and change your `instance_type = c4.large`
->>>>>>> Add new step to validate the update fields
 
 ```bash
 vi my-cluster-config.ini 
