@@ -9,7 +9,7 @@ In this step, you create an HPC cluster configuration that includes parameters f
 
 {{% notice note %}}
 If you are not familiar with AWS ParallelCluster, we recommend that you first complete the [AWS ParallelCluster lab](../03-hpc-aws-parallelcluster-workshop.html) before proceeding.
-In particular, you need to follow the instructions to install AWS ParallelCluster: ```pip-3.6 install aws-parallelcluster -U --user```
+In particular, you need to follow the instructions to install AWS ParallelCluster: ```pip-3.6 install aws-parallelcluster -U --user && pip-3.6 install awscli -U --user```
 {{% /notice %}}
 
 #### Create a Cluster Configuration File for EFA
@@ -29,7 +29,7 @@ The cluster configuration that you generate for EFA includes the following:
 - Set the compute nodes in a [Cluster Placement Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) to maximize the bandwidth and reduce the latency between instances.
 - Set the compute nodes as [c5n.18xlarge instances](https://aws.amazon.com/ec2/instance-types/). You can change the instance type if you like, but you need to make sure you use one of the [EFA supported instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types) .
 - Set the cluster initial size to 0 compute nodes and maximum size to 8 instances. The cluster uses [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) that will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
-- The selected job scheduler for this example is SLURM. You are free to choose other options, such as SGE or Torque.
+- The selected job scheduler for this example is [SLURM](https://slurm.schedmd.com/overview.html)
 
 {{% notice tip %}}
 For more details about the configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) and the [EFA parameters section](https://docs.aws.amazon.com/parallelcluster/latest/ug/efa.html) of the AWS ParallelCluster User Guide.
