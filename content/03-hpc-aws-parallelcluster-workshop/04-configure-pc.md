@@ -37,7 +37,7 @@ cd ~/environment
 ```bash
 cat > my-cluster-config.ini << EOF
 [aws]
-aws_region_name = us-east-1
+aws_region_name = ${REGION}
 
 [global]
 cluster_template = default
@@ -45,8 +45,8 @@ update_check = false
 sanity_check = true
 
 [vpc public]
-vpc_id = vpc-aff37ad7
-master_subnet_id = subnet-828142df
+vpc_id = ${VPC_ID}
+master_subnet_id = ${SUBNET_ID}
 
 [cluster default]
 key_name = lab-3-your-key
