@@ -103,23 +103,32 @@ def execute_command(command,instance_id):
 
 ```
 
-7. In the **Environment variables** section, add the name of the S3 Bucket you created earlier. 
+7. Click **Deploy** in top right to save the function
+
+8. In the **Environment variables** section, add the name of the S3 Bucket you created earlier. 
 
    Note: Do not modify the Key as it is used in the AWS Lambda function created above. Modify only the **Value** field with your S3 bucket name
 ![Lambda Env](/images/serverless/lambda-env.png)
 
 
-8. In the **Basic settings** section, set 20 seconds as Timeout. Default is 3 seconds. 
-
-9. Click **Deploy** in top right to save the function
+9. In the **Basic settings** section, set 20 seconds as Timeout. Default is 3 seconds. 
+![Lambda Basic Settings](/images/serverless/lambda-basic-set1.png)
 
 10. In the **Execution role** section of **Basic settings**, choose **View the join-domain-function-role role on the IAM console**  as shown in the image below
 
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set.png)
 
-11. In the newly-opened IAM tab, choose **Attach Policy** and then **Create Policy**. This will open a new tab in your Browser. In this new tab, choose **Create policy** and then **Json**
+11. In the newly-opened IAM tab, choose **Attach policies** and then **Create policy**. This will open a new tab in your Browser. In this new tab, choose **Create policy** and then **JSON**
 
-12. Paste the below policy, modify the **<REGION>** and **<your-s3-bucket>** accordingly
+![Lambda IAM ](/images/serverless/lambda-iam1.png)
+
+![Lambda IAM ](/images/serverless/lambda-iam2.png)
+
+![Lambda IAM ](/images/serverless/lambda-iam3.png)
+
+
+12. Paste the below policy, modify the **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** accordingly
+    Note: This policy enables the the Lambda function to execute the scheduler command using AWS Systems Manager
 
 ```bash
 {
@@ -133,7 +142,7 @@ def execute_command(command,instance_id):
             "Resource": [
                 "arn:aws:ec2:<REGION>:*:instance/*",
                 "arn:aws:ssm:<REGION>::document/AWS-RunShellScript",
-                "arn:aws:s3:::pcluster-data/ssm"
+                "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>/ssm"
             ]
         },
         {
@@ -151,23 +160,31 @@ def execute_command(command,instance_id):
                 "s3:*"
             ],
             "Resource": [
-                "arn:aws:s3:::<your-s3-bucket>",
-                "arn:aws:s3:::<your-s3-bucket>/*"
+                "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>",
+                "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>/*"
             ]
         }
     ]
 }
+
 ```
 
-13. In the next section, give a **Name** to the policy (e.g. ExecuteSlurmCommandsPolicy) and select **Create policy**
+13. In the next section, give a **Name** to the policy (e.g. lambda-slurm-exec) and select **Create policy**
+
+![Lambda IAM ](/images/serverless/lambda-iam4.png)
 
 14. In the previous tab, refresh the list, select the policy you created above and **Attach policy** as shown
 
+![Lambda IAM ](/images/serverless/lambda-iam5.png)
+
+![Lambda IAM ](/images/serverless/lambda-iam6.png)
+
 15. **Save** changes to Lambda **Basic settings** 
 
+![Lambda Basic Settings](/images/serverless/lambda-basic-set-save.png)
 
  
 {{% notice tip %}}
-To learn more about the ParallelCluster Update Policies see [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/using-pcluster-update.html)
+To learn more about AWS Lambda and features see [here](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 {{% /notice %}}
 
