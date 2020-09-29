@@ -24,9 +24,9 @@ In this section, we will create the the AWS Lambda function from the AWS Console
 
 The Designer shows an overview of your function and its upstream and downstream resources. You can use it to configure triggers, layers, and destinations.
 
-6. The code below should be pasted into the Function code section. The Lambda function uses AWS Systems Manager to execute the scheduler commands, preventing any SSH access to the node. Please modify <REGION> appropriately, and update the S3 bucket name to the name you chose earlier.
+6. The code below should be pasted into the Function code section. The Lambda function uses AWS Systems Manager to execute the scheduler commands, preventing any SSH access to the node.
 
-```bash
+```python
 import boto3
 import time
 import json
@@ -115,7 +115,6 @@ def execute_command(command,instance_id):
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set1.png)
 
 10. In the **Execution role** section of **Basic settings**, choose **View the join-domain-function-role role on the IAM console**  as shown in the image below
-
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set.png)
 
 11. In the newly-opened IAM tab, choose **Attach policies** and then **Create policy**. This will open a new tab in your Browser. In this new tab, choose **Create policy** and then **JSON**
@@ -130,7 +129,7 @@ def execute_command(command,instance_id):
 12. Paste the below policy, modify the **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** accordingly
     Note: This policy enables the the Lambda function to execute the scheduler command using AWS Systems Manager
 
-```bash
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -183,6 +182,12 @@ def execute_command(command,instance_id):
 
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set-save.png)
 
+You have successfully created the AWS Lambda function for Slurm commands execution. Next, you will execute this AWS Lambda function with Amazon API Gateway
+
+
+{{% notice note %}}
+As an exercise you can trying creating the above AWS Lambda function using Cloudformation
+{{% /notice %}}
  
 {{% notice tip %}}
 To learn more about AWS Lambda and features see [here](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
