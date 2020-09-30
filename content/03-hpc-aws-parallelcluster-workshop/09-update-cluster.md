@@ -39,26 +39,12 @@ Then run a **pcluster update** command
 pcluster update hpclab-yourname -c my-cluster-config.ini
 ```
 
-The output will be similar to this. Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field.
+Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this. 
 
-```bash
-Test:~/environment $ pcluster update hpclab-yourname -c my-cluster-config.ini
-Retrieving configuration from CloudFormation for cluster hpclab-yourname...
-Validating configuration file my-cluster-config.ini...
-Found Configuration Changes:
 
-#    parameter                   old value    new value
----  --------------------------  -----------  -----------
-     [compute_resource default]
-01   instance_type                c5.large     c4.large
+![ParallelCluster Update](/images/hpc-aws-parallelcluster-workshop/pc-update.png)
 
-Validating configuration update...
-Congratulations! The new configuration can be safely applied to your cluster.
-Do you want to proceed with the update? - Y/N: Y
-Updating: hpclab-anh2
-Calling update_stack
-Status: parallelcluster-hpclab-anh2 - UPDATE_COMPLETE
-```
+
 Start your cluster again after update process is completed.
 
 ```bash
