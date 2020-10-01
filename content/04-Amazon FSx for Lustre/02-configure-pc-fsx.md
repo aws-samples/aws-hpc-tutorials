@@ -78,9 +78,7 @@ VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interface
 AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
 REGION=${AZ::-1}
 
-
-mkdir -p ~/.parallelcluster
-cat > ~/.parallelcluster/config << EOF
+cat > my-fsx-cluster.ini << EOF
 [aws]
 aws_region_name = ${REGION}
 
@@ -104,6 +102,9 @@ max_queue_size = 8
 initial_queue_size = 0
 disable_hyperthreading = true
 scheduler = slurm
+post_install = https://aws-hpc-workshops.s3.amazonaws.com/spack.sh
+post_install_args = "/shared/spack releases/v0.15"
+s3_read_resource = arn:aws:s3:::*
 
 [vpc public]
 vpc_id = ${VPC_ID}
@@ -128,7 +129,7 @@ EOF
 If you want to check the content of your configuration file, use the following command:
 
 ```bash
-cat ~/.parallelcluster/config
+cat my-fsx-cluster.ini
 ```
 
 
@@ -139,7 +140,7 @@ Now, you are ready to create a cluster.
 Create the cluster using the following command.
 
 ```bash
-pcluster create my-fsx-cluster
+pcluster create my-fsx-cluster -c my-fsx-cluster.ini
 ```
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
