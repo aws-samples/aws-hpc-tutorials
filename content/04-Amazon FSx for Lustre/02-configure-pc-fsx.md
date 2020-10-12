@@ -87,7 +87,7 @@ aws_region_name = ${REGION}
 [global]
 cluster_template = default
 update_check = false
-sanity_check = true
+sanity_check = false
 
 [cluster default]
 key_name = lab-4-your-key
