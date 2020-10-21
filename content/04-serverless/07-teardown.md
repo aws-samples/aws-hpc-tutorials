@@ -9,7 +9,7 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gat
 1. Delete the cluster created using ParallelCluster
 
    ```bash
-   pcluster deleter <your-cluster-name>
+   pcluster delete <your-cluster-name>
    ```
 
 2. Delete the API in API Gateway

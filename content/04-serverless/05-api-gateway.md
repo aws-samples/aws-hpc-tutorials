@@ -6,13 +6,13 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gat
 +++
 
 
-The [Amazon API Gateway](https://aws.amazon.com/api-gateway/) allows the creation of REST and WebSocket APIs that act as a front door for applications to access data, business logic or functionality from your backend services like [AWS Lambda](https://aws.amazon.com/lambda/)
+The [Amazon API Gateway](https://aws.amazon.com/api-gateway/) allows the creation of REST and WebSocket APIs that act as a front door for applications to access data, business logic or functionality from your additional backend services like [AWS Lambda](https://aws.amazon.com/lambda/)
 
 In this section, we will execute the the AWS Lambda function created in the previous section with a REST API created using Amazon API Gateway. The REST API refers to a collection of resources and methods that can be invoked through HTTPS endpoints
 
-1. Open the AWS Management Console and go to Services -> API Gateway
+1. Open the AWS Management Console and go to **Services** -> **API Gateway**
 
-2. Choose an API type, scroll down to **REST API** and click on Build
+2. Choose an API type, scroll down to **REST API** and click on Build. In this case we will choose the non-private **REST API**
    ![Choose API](/images/serverless/api-gateway-1.png)
 
 3. Create new API, click on New API. For API name, say **slurmAPI**. You can leave the Description field blank or provide a short description for your API. Select **Regional** for **Endpoint Type** and then click on **Create API**

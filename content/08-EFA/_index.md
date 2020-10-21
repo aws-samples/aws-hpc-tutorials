@@ -1,8 +1,8 @@
 ---
 title: "Elastic Fabric Adapter (EFA)"
 date: 2020-04-24T7:05:54Z
-weight: 500
-pre: "<b>VII ⁃ </b>"
+weight: 600
+pre: "<b>VIII ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 

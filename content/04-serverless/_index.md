@@ -1,8 +1,8 @@
 ---
 title: "Serverless Computing"
 date: 2019-01-24T09:05:54Z
-weight: 400
-pre: "<b>IX ⁃ </b>"
+weight: 200
+pre: "<b>IV ⁃ </b>"
 tags: ["HPC", "Serverless", "Lambda", "API Gateway", "AWS ParallelCluster", "AWS Systems Manger"]
 ---
 
@@ -10,9 +10,9 @@ A [serverless](https://aws.amazon.com/serverless/) architecture is a way to buil
 
 By using a serverless architecture, you can focus on the core product instead of worrying about managing and operating servers or runtimes, either in the cloud or on-premises. This reduced overhead lets you reclaim time and energy that can be spent on developing great products which scale and that are reliable.
 
-In this lab we combine [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and [Amazon API Gateway](https://aws.amazon.com/api-gateway/) to allow an HTTP interaction with the scheduler running on your cluster. You can submit, monitor, and terminate jobs using the API, instead of connecting to the head node of your cluster via SSH. This makes it possible to integrate AWS ParallelCluster programmatically with other applications running on premises or on AWS.
+In this lab we combine [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/), [AWS Lambda](https://aws.amazon.com/lambda/), [AWS Systems Manager](https://aws.amazon.com/systems-manager/) and [Amazon API Gateway](https://aws.amazon.com/api-gateway/) to allow an HTTP interaction with the scheduler running on your cluster. You can submit, monitor, and terminate jobs using the API, instead of connecting to the head node of your cluster via SSH. This makes it possible to integrate AWS ParallelCluster programmatically with other applications running on premises or on AWS.
 
-The API uses [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Systems Manager](https://aws.amazon.com/lambda/) to execute the user commands without granting direct SSH access to the nodes, thus enhancing the security of whole cluster.
+The API uses [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Systems Manager](https://aws.amazon.com/systems-manager/) to execute the user commands without granting direct SSH access to the nodes, thus enhancing the security of whole cluster.
 
 Key topics covered in this lab:
 
@@ -21,7 +21,7 @@ Key topics covered in this lab:
  - Using AWS ParallelCluster with serverless API
 
 Below is the serverless architecture which shows the components required to create the cluster and interact with the solution
-![Serverless Architecture](/images/serverless/serverless-arch.png)
+![Serverless Architecture](/images/serverless/serverless-arch2.png)
 
 This workshop includes the following steps:
 

@@ -8,21 +8,23 @@ tags = ["tutorial", "serverless", "ParallelCluster", "IAM"]
 {{% notice info %}}AWS ParallelCluster is an open source cluster management tool to deploy and manage HPC clusters in the AWS cloud. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further 
 {{% /notice %}}
 
-In order to add the custom IAM policy in your cluster, the ParallelCluster config file created earlier needs to be updated. There's a complete config file included below with key changes:
+In order to add the custom IAM policy (created in the previous section) in your cluster, the AWS ParallelCluster config file created earlier needs to be updated. There's a complete config file included below with key changes:
 
 1. To enable additional IAM policies 
 
- - Add a line `additional_iam_policies=arn:aws:iam::<your-account-ID>:policy/pclusterSSM` to the [cluster default] section of the config file.
- - The ARN (Amazon Resource Name) for the Policy can be obtained from the IAM Console as shown below
-   ![IAM Policy ARN](/images/serverless/iam-policy-arn.png) 
- 
+ - Add a line `additional_iam_policies=<policy-arn>` to the [cluster default] section of the config file.
+ - The ARN (Amazon Resource Name) for the Policy (**policy-arn**) can be obtained using the AWS CLI as shown below
+
+   ```bash
+   aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text
+   ```
 
 {{% notice tip %}}
-For adding new IAM policies in AWS ParallelCluster it is recommended to use **additional_iam_policies** instead of the **ec2_iam_role**. This is because **additional_iam_policies** are added to the permissions that AWS ParallelCluster requires, and the **ec2_iam_role** must include all permissions required. The permissions required often change from release to release as features are added.
+For adding new IAM policies in AWS ParallelCluster it is recommended to use **additional_iam_policies** option instead of the **ec2_iam_role**. This is because **additional_iam_policies** are added (appended) to the permissions that AWS ParallelCluster requires, and the **ec2_iam_role** must include all permissions required.
 {{% /notice %}}
 
 
-2. Modify the ParallelCluster config file created earlier. Note the modified items are highlighted:
+2. Modify the AWS ParallelCluster config file created earlier. Note the modified items are highlighted:
 
    {{< highlight go "linenos=false,hl_lines=18" >}}
    [aws]
@@ -42,7 +44,7 @@ For adding new IAM policies in AWS ParallelCluster it is recommended to use **ad
    queue_settings = ondemand
    s3_read_write_resource = *
    scheduler = slurm
-   additional_iam_policies=arn:aws:iam::<your-account-id>:policy/pclusterSSM
+   additional_iam_policies=<policy-arn-from-cli-command>
 
    [queue ondemand]
    compute_resource_settings = ondemand_c5_l
@@ -75,6 +77,6 @@ For adding new IAM policies in AWS ParallelCluster it is recommended to use **ad
 
  
 {{% notice tip %}}
-To learn more about the ParallelCluster Update Policies see [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/using-pcluster-update.html)
+To learn more about the AWS ParallelCluster Update Policies see [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/using-pcluster-update.html)
 {{% /notice %}}
 

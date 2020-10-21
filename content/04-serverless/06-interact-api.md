@@ -22,26 +22,30 @@ The Slurm API created in the previous steps requires some parameters:
    ```bash
    aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]| [0].Value,InstanceId,InstanceType, PrivateIpAddress, PublicIpAddress]' --filters Name=instance-state-name,Values=running --output table
    ```
-3. Examples of interation with the API. Execute these commands from the Cloud9 console, without logging into your cluster
+3. Examples of interaction with the API. Execute these commands from the Cloud9 console, without logging into your cluster
+
+   - We will set a few variables to invoke the API using the curl commands below
+
+     ```bash
+     SLURM_REST_API_ID=`aws apigateway get-rest-apis --query 'items[?name==slurmAPI].id' --output text`
+
+     AWS_REGION=`aws configure get region`
+
+     INVOKE_URL=https://${SLURM_REST_API_ID}.execute-api.{AWS_REGION}.amazonaws.com/slurm
+
+     INSTANCE_ID=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 above
+     ```
 
    - To **list the nodes** in your cluster
     
      ```bash
-     invoke_url=https://<your-unique-api-id>.execute-api.us-east-1.amazonaws.com/slurm # This is the Invoke URL from the API Gateway 
-
-     instance_id=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 above
-
-     curl -s POST "${invoke_url}/slurm?instanceid=${instance_id}&function=list_nodes" # Note the function name "list_nodes"
+        curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=list_nodes" # Note the function name "list_nodes"
      ```
 
    - To **list the partition** in your cluster
 
      ```bash
-     invoke_url=https://<your-unique-api-id>.execute-api.us-east-1.amazonaws.com/slurm # This is the Invoke URL from the API Gateway 
-
-     instance_id=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 above
-
-     curl -s POST "${invoke_url}/slurm?instanceid=${instance_id}&function=list_partitions" # Note the function name "list_partitions"
+     curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=list_partitions" # Note the function name "list_partitions"
      ```
 
 4. (Optional) Submit a HPCG job
@@ -49,14 +53,12 @@ The Slurm API created in the previous steps requires some parameters:
    As an example we will run the High Performance Conjguate Gradient (HPCG) Benchmark without logging into the cluster head node. 
 
    - We will submit the job using the Slurm API we created  and point to the job runscript in a S3 bucket
+     **Note**: The **run-hpcg.sh** script passed in the command below downloads the open-source HPCG benchmark, compiles it and submits a Slurm job to run. 
 
    
      ```bash
-     invoke_url=https://<your-unique-api-id>.execute-api.us-east-1.amazonaws.com/slurm # This is the Invoke URL from the API Gateway 
 
-     instance_id=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 in this section
-
-     curl -s POST "${invoke_url}/slurm?instanceid=${instance_id}&function=submit_job&jobscript_location=aws-hpc-workshops/run-hpcg.sh" -H 'submitopts: --job-name=HPCG --partition=ondemand'
+     curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=submit_job&jobscript_location=aws-hpc-workshops/run-hpcg.sh" -H 'submitopts: --job-name=HPCG --partition=ondemand'
      ```
 
    - Once you submit the job, you should see a message of the Slurm job submitted and the corresponding Job ID
@@ -64,11 +66,7 @@ The Slurm API created in the previous steps requires some parameters:
    - List your jobs using the **list_jobs** function 
 
      ```bash
-     invoke_url=https://<your-unique-api-id>.execute-api.us-east-1.amazonaws.com/slurm # This is the Invoke URL from the API Gateway 
-
-     instance_id=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 in this section
-
-     curl -s POST "${invoke_url}/slurm?instanceid=${instance_id}&function=list_jobs"
+     curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=list_jobs"
      ```
      
    - Note that the job script (run-hpcg.sh) submitted above downloads and compiles the HPCG benchmark and then submits another batch job to run it. When you list jobs after a few mins as above you will notice another job submitted for the HPCG run (check the different Job ID) 
@@ -76,11 +74,7 @@ The Slurm API created in the previous steps requires some parameters:
    -  You can get the job details of your JobId
 
       ```bash
-      invoke_url=https://<your-unique-api-id>.execute-api.us-east-1.amazonaws.com/slurm # This is the Invoke URL from the API Gateway 
-
-      instance_id=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 in this section
-
-      curl -s POST "${invoke_url}/slurm?instanceid=${instance_id}&function=job_details&jobid=<JOB-ID>" # Specify the JobId in the <JOB-ID> field
+      curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=job_details&jobid=<JOB-ID>" # Specify the JobId in the <JOB-ID> field
       ```
      ![SLURM JOB](/images/serverless/slurm-job-1.png)
 
