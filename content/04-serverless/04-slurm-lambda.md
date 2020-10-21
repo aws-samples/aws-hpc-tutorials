@@ -16,11 +16,11 @@ In this section, we will create the the AWS Lambda function from the AWS Console
 
 3. For **Function name**, enter **slurmAPI**
 
-4. For **Runtime**, enter **Python 2.7**
+4. For **Runtime**, enter **Python 3.8**
 
 5. Choose **Create function** to create it. 
 
-![Lambda Create Function](/images/serverless/lambda-create-fn.png)
+![Lambda Create Function](/images/serverless/lambda-create-fn2.png)
 
 The Designer shows an overview of your function and its upstream and downstream resources. You can use it to configure triggers, layers, and destinations.
 
@@ -50,7 +50,7 @@ def lambda_handler(event, context):
     elif selected_function == 'submit_job':
         script_name = ''.join([
             random.choice(string.ascii_letters + string.digits)
-            for n in xrange(10)
+            for n in range(10)
         ])
         jobscript_location = event["queryStringParameters"][
             "jobscript_location"]
@@ -110,7 +110,7 @@ def execute_command(command, instance_id):
             (command_id, instance_id)))
     for obj in files:
         key = obj.key
-        body += obj.get()['Body'].read()
+        body += obj.get()['Body'].read().decode("utf-8", 'backslashreplace')
     return body
 ```
 
@@ -129,7 +129,7 @@ def execute_command(command, instance_id):
 
 **Note**: By default, Lambda will create an execution role with permissions to upload logs to [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) Logs. You can customize this default role later when adding triggers. In this case we will add an additional Policy to this role for the Lambda function to execute the scheduler (Slurm) commands using AWS Systems Manager (SSM).
 
-![Lambda Basic Settings](/images/serverless/lambda-basic-set.png)
+![Lambda Basic Settings](/images/serverless/lambda-basic-set2.png)
 
 11. In the newly-opened IAM tab, choose **Attach policies** and then **Create policy**. This will open a new tab in your Browser. In this new tab, choose **Create policy** and then **JSON**
 

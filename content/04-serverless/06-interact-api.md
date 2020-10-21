@@ -27,11 +27,11 @@ The Slurm API created in the previous steps requires some parameters:
    - We will set a few variables to invoke the API using the curl commands below
 
      ```bash
-     SLURM_REST_API_ID=`aws apigateway get-rest-apis --query 'items[?name==slurmAPI].id' --output text`
+     SLURM_REST_API_ID=`aws apigateway get-rest-apis --query 'items[?name==\`slurmAPI\`].id' --output text`
 
      AWS_REGION=`aws configure get region`
 
-     INVOKE_URL=https://${SLURM_REST_API_ID}.execute-api.{AWS_REGION}.amazonaws.com/slurm
+     INVOKE_URL=https://${SLURM_REST_API_ID}.execute-api.${AWS_REGION}.amazonaws.com/slurm
 
      INSTANCE_ID=<cluster-head-node-instance-id> # This is the instance ID from the head node obtained from step 2 above
      ```
