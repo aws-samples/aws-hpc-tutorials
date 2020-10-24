@@ -20,7 +20,7 @@ pcluster create hpclab-yourname -c my-cluster-config.ini
 
 Your cluster will take a few minutes to build. The creation status displays in your terminal. Once the cluster is ready, you should see a result similar to the one shown in the following image.
 
-![ParallelCluster creation output](/images/hpc-aws-parallelcluster-workshop/pc-create-output.png)
+![ParallelCluster creation output](/images/hpc-aws-parallelcluster-workshop/pc-create-output-new.png)
 
 
 {{% notice tip %}}
