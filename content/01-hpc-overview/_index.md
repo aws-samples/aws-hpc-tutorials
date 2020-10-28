@@ -1,7 +1,7 @@
 ---
 title: ""
-date: 2019-01-24T09:05:54Z
 weight: 10
+date: 2019-01-24T09:05:54Z
 pre: "<b>SC20 Tutorial Resources</b>"
 ---
 
