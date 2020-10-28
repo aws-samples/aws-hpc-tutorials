@@ -12,4 +12,4 @@ Here is short reminder of the important links of this section:
 - [Slides](/01-hpc-overview/02-slides.html) will be accessible here in addition to the conference website.
 - [Lab account](/01-hpc-overview/03-access-aws.md) on how to access your lab account.
 
-Links to the labs will be added on this page starting 11/9.
+Links to the labs will be added on this page starting November 9th 2020.

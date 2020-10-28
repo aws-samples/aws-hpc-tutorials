@@ -6,5 +6,5 @@ weight: 30
 ---
 
 {{% notice info  %}}
-The last version of the slides will be accessible on this page during the tutorial starting 11/9. You can also get them through the SC20 website.
+The last version of the slides will be accessible on this page during the tutorial starting November 9th 2020. You can also get them through the SC20 website.
 {{% /notice %}}

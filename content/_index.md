@@ -6,9 +6,9 @@ draft: false
 
 # SC20 Tutorial Overview
 
-Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC 20 that will be delivered on 11/9 and 11/10. We are excited to virtually meet you, and look forward to answering your questions!
+Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC 20 that will be delivered on November 9th 2020 and November 11th 2020. We are excited to virtually meet you, and look forward to answering your questions!
 
-{{% notice warning %}} **This website will be locked between 11/8 and 11/10 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
+{{% notice warning %}} **This website will be locked between November 8th 2020 and November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
 {{% /notice %}}
 
 {{% notice info %}}
