@@ -29,7 +29,7 @@ Once you get your credentials during the tutorial, access your account through h
 You can contact us directly before, during and after the conference through this email: sc20tutorial@amazon.com
 {{% /notice %}}
 
-<center>{{% button href="https://github.com/aws-samples/aws-hpc-tutorials" icon="fas fa-bug" style="align-items: center;" %}}Report an issue on GitHub{{% /button %}}</center>
+{% button href="https://github.com/aws-samples/aws-hpc-tutorials" icon="fas fa-bug" %}}Report an issue on GitHub{{% /button %}}
 {{% button href="mailto:aws-hpc-workshops@amazon.com" icon="fas fa-envelope" %}}Contact AWS HPC Team{{% /button %}}
 {{% button href="https://aws.amazon.com/hpc/" icon="fas fa-graduation-cap" %}}Learn more{{% /button %}}
 
