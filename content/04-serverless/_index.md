@@ -2,7 +2,7 @@
 title: "Serverless Computing"
 date: 2019-01-24T09:05:54Z
 weight: 200
-pre: "<b>IV ⁃ </b>"
+pre: "<b>Lab II ⁃ </b>"
 tags: ["HPC", "Serverless", "Lambda", "API Gateway", "AWS ParallelCluster", "AWS Systems Manger"]
 ---
 

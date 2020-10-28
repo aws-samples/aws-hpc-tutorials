@@ -18,12 +18,12 @@ In order to allow ParallelCluster instances to call Lambda and SSM endpoints, it
 	AWS Systems Manager is an AWS service that you can use to view and control your infrastructure on AWS. Using the Systems Manager console, you can view operational data from multiple AWS services and automate operational tasks across your AWS resources
 	{{% /expand%}}
 
-	```bash     
+	```bash
 	# generate a unique postfix
      	export BUCKET_POSTFIX=$(uuidgen --random | cut -d'-' -f1)
      	echo "Your bucket name will be serverless-${BUCKET_POSTFIX}"
      	aws s3 mb s3://serverless-${BUCKET_POSTFIX}
-	
+
 3. Create a custom IAM policy using AWS Cloudformation
 
    - Download the CloudFormation template for the custom policy from the AWS HPC Workshops S3 bucket
@@ -90,7 +90,7 @@ In order to allow ParallelCluster instances to call Lambda and SSM endpoints, it
 	       PclusterPolicy:
 		Description: PclusterPolicy
 		Value: !Sub ${pclusterSSM}
-	    
+
    - Deploy the cloudformation template and create the policy
 
      **Note**: The policy enables access to the S3 bucket created to store the job data and SSM commands. This is provided as ParameterValue below. Make sure to provide the correct S3 bucket name
@@ -101,13 +101,13 @@ In order to allow ParallelCluster instances to call Lambda and SSM endpoints, it
 	    {{%expand "What does this command do ?" %}}
 	    This command creates a stack as specified in the "policy.yaml" template body. The policy name is specified in the template file. The "stack-name" is the unique name that is associated with the stack. The "parameters" option is a list of Parameter structures that specify input parameters for the stack (here we pass the S3Bucket as the key and name of the S3 Bucket as the Value). When creating certain Identity and Access Management (IAM) resources you must explicitly acknowledge that your stack template contains "capabilities" in order for AWS CloudFormation to create the stack.
 
-	    {{% /expand%}} 
-	   
+	    {{% /expand%}}
+
 4. Once the AWS CloudFormation stack creation completes, you can confirm the IAM Policy is created by using the AWS CLI as shown below
 
    **Note**: You are querying the name of the Policy (**pclusterSSM**) in the below command
 
- 
+
    ```bash
    aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`]'
    ```

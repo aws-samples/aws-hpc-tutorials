@@ -1,5 +1,5 @@
 ---
-title: "Agenda"
+title: "Tutorial Agenda"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 weight: 10
@@ -11,12 +11,12 @@ You will find here the agenda for the tutorial. An update will be made on Novemb
 
 | Session Kind | Time             | Topic                                           | Speakers              |
 |--------------|------------------|-------------------------------------------------|-----------------------|
-| Talk         | 10:00 AM - 11:30 AM    | Welcome and Introductions                       | Pierre-Yves Aquilanti |
+| Talk         | 10:00 AM - 11:30 AM | Welcome and Introductions                       | Pierre-Yves Aquilanti |
 | Talk         |      | Modern Cloud Architectures         | Matt Koop             |
 | *Lab + Q&A*         |  | Build your HPC System in the Cloud   | Anh Tran              |
 | 30 Min Break | --------------   | -----------------------------------             | --------------------- |
 | Talk         |  12:00 - 1:30 PM  | Deep Dive I: Compute, Hypervisor, Orchestration | Pierre-Yves Aquilanti |
-| *Lab + Q&A*  |      | Serverless Computing)                            | Karthik Raman         |
+| *Lab + Q&A*  |      | Serverless Computing                            | Karthik Raman         |
 | Closing      |   | Summary and Q&A                                 | Pierre-Yves Aquilanti |
 
 
