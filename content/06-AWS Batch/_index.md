@@ -1,5 +1,5 @@
 ---
-title: "Serverless Simulations"
+title: "Simulations on AWS Batch"
 date: 2019-01-24T09:05:54Z
 weight: 400
 pre: "<b>Opt I ⁃ </b>"
