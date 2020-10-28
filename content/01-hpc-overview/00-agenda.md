@@ -5,7 +5,7 @@ draft: false
 weight: 10
 ---
 
-You will find here the agenda for the tutorial. An update will be made on 11/9 with references to the different workshops.
+You will find here the agenda for the tutorial. An update will be made on November 9th 2020 with references to the different workshops.
 
 ### Monday November 9th 2020
 
@@ -20,7 +20,7 @@ You will find here the agenda for the tutorial. An update will be made on 11/9 w
 | Closing      |   | Summary and Q&A                                 | Pierre-Yves Aquilanti |
 
 
-### Tuesday November 9th 2020
+### Tuesday November 10th 2020
 
 | Session Kind | Time              | Topic                                                               | Speakers              |
 |--------------|-------------------|---------------------------------------------------------------------|-----------------------|
