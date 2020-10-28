@@ -1,8 +1,8 @@
 ---
-title: "Elastic Fabric Adapter (EFA)"
+title: "Low Latency Network"
 date: 2020-04-24T7:05:54Z
 weight: 600
-pre: "<b>VIII ⁃ </b>"
+pre: "<b>Opt III ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
@@ -18,6 +18,6 @@ EFA is available as an optional EC2 networking feature that you can enable on an
 In this workshop, you will learn how to use [ EFA ](https://aws.amazon.com/hpc/efa/) with [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and complete the following steps:
 
 - Create a new HPC cluster with AWS ParallelCluster and EFA enabled.
-- Complile a common MPI benchmarks from [Ohio State University (OSU) ](http://mvapich.cse.ohio-state.edu/benchmarks/) 
+- Complile a common MPI benchmarks from [Ohio State University (OSU) ](http://mvapich.cse.ohio-state.edu/benchmarks/)
 - Run the OSU Benchmark for bandwidth and latency.
 - Delete the cluster.

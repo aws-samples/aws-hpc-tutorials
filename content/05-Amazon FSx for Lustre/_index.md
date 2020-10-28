@@ -1,8 +1,8 @@
 ---
-title: "Build a High-Performance File System"
+title: "Storage Lab"
 date: 2019-01-24T09:05:54Z
 weight: 300
-pre: "<b>V ⁃ </b>"
+pre: "<b>Lab III ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
 

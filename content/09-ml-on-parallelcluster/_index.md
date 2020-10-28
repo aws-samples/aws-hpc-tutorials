@@ -1,8 +1,8 @@
 ---
-title: "Distributed Machine Learning"
+title: "Distributed ML"
 date: 2020-09-04T15:58:58Z
 weight: 700
-pre: "<b>IX ⁃ </b>"
+pre: "<b>Opt IV ⁃ </b>"
 tags: ["Machine Learning", "ML", "ParallelCluster", "EFA", "FSx", "Slurm"]
 ---
 

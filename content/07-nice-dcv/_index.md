@@ -1,8 +1,8 @@
 ---
-title: "Remote Visualization using NICE DCV"
+title: "Remote Visualization"
 date: 2019-01-24T09:05:54Z
 weight: 500
-pre: "<b>VII ⁃ </b>"
+pre: "<b>Opt II ⁃ </b>"
 tags: ["HPC", "NICE", "Visualization", "Remote Desktop"]
 ---
 
