@@ -103,21 +103,20 @@ Now we will create our policy. We will download it for didactic purposes but it 
     ```bash
     aws cloudformation create-stack --stack-name pc-serverless-policy --parameters ParameterKey=S3Bucket,ParameterValue=serverless-${BUCKET_POSTFIX} --template-body file://serverless-template.yaml --capabilities CAPABILITY_NAMED_IAM
     ```
+{{% notice info %}}
+The command above creates a Cloudformationstack as based on the template`serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since we are creating IAM resources we must explicitly acknowledge that our stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
+{{% /notice %}}
 
-    This command creates a stack as specified in the `serverless-template.yaml` template body. The policy name is specified in the template file. The *stack-name* is the unique name that is associated with the stack. The *parameters* option is a list of Parameter structures that specify input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). When creating IAM resources you must explicitly acknowledge that your stack template contains *capabilities* in order for AWS CloudFormation to create the stack.
-
-
-3. Once the AWS CloudFormation stack creation completes, you can confirm the IAM Policy is created by using the AWS CLI as shown below
-
-   **Note**: You are querying the name of the Policy (**pclusterSSM**) in the below command
-
+3. Once the AWS CloudFormation stack creation completes, you can confirm the IAM Policy is created by running the command below in your Cloud9 Terminal to query the policy `pclusterSSM` you just created
 
    ```bash
    aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`]'
    ```
 
+   You should see a similar image as this one:
+![Lambda Basic Settings](/images/serverless/iam-policy-result.png)
 
-Next, we will update the policy in AWS ParallelCluster and re-deploy the cluster
+In the next section, we will modify our AWS ParallelCluster configuration and update the cluster to apply our newly created policy.
 
 
 {{% notice tip %}}
