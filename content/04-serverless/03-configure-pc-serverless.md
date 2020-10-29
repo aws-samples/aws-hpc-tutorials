@@ -5,78 +5,68 @@ weight = 100
 tags = ["tutorial", "serverless", "ParallelCluster", "IAM"]
 +++
 
-{{% notice info %}}AWS ParallelCluster is an open source cluster management tool to deploy and manage HPC clusters in the AWS cloud. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further
+{{% notice info %}}AWS ParallelCluster is an open source cluster management tool to deploy and manage HPC clusters with AWS. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further
 {{% /notice %}}
 
-In order to add the custom IAM policy (created in the previous section) in your cluster, the AWS ParallelCluster config file created earlier needs to be updated. There's a complete config file included below with key changes:
+Now that we have deployed a policy to enable our instances to register with AWS Systems Manager (SSM), we need to attach this policy to our instances. Let's start by reusing the the cluster you created during the previous lab. The first step will be to modify the the AWS ParallelCluster config file created earlier to add one setting, then we will reuse this config to update our existing cluster.
 
-1. To enable additional IAM policies
-
- - Add a line `additional_iam_policies=<policy-arn>` to the [cluster default] section of the config file.
- - The ARN (Amazon Resource Name) for the Policy (**policy-arn**) can be obtained using the AWS CLI as shown below
+1. We begin by querying the Amazon Resource Name (ARN) of our newly created policy. This a unique name for each resources residing on your account that can be used as a reference. In our case, the ARN is what we will use to reference the policy in the cluster config.
 
    ```bash
    aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text
    ```
-
-{{% notice tip %}}
-For adding new IAM policies in AWS ParallelCluster it is recommended to use **additional_iam_policies** option instead of the **ec2_iam_role**. This is because **additional_iam_policies** are added (appended) to the permissions that AWS ParallelCluster requires, and the **ec2_iam_role** must include all permissions required.
-{{% /notice %}}
-
-
-2. Modify the AWS ParallelCluster config file created earlier. Note the modified items are highlighted:
+ <!-- - Add a line `additional_iam_policies=<policy-arn>` to the [cluster default] section of the config file.
+ - The ARN (Amazon Resource Name) for the Policy (**policy-arn**) can be obtained using the AWS CLI as shown below -->
+2. Modify the AWS ParallelCluster configuration file created in the previous lab and add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter (just replace `AddThePolicyArnFromCLICommand` here)
 
    ```toml
    [aws]
-   aws_region_name = ${REGION_NAME}
+   # your AWS region is already set here
 
    [global]
-   cluster_template = default
-   update_check = false
-   sanity_check = true
+   # global config lines
 
    [cluster default]
-   key_name = lab-3-your-key
-   base_os = alinux2
-   vpc_settings = public
-   ebs_settings = myebs
-   master_instance_type = c4.xlarge
-   queue_settings = ondemand
-   s3_read_write_resource = *
-   scheduler = slurm
-   additional_iam_policies=<policy-arn-from-cli-command>
+   #...
+   # your cluster section lines
+   # just add the new line below
+   additional_iam_policies=AddThePolicyArnFromCLICommand
 
    [queue ondemand]
-   compute_resource_settings = ondemand_c5_l
+   # queue config
 
    [compute_resource ondemand_c5_l]
-   instance_type = c5.large
-   min_count = 0
-   max_count = 8
-   initial_count = 0
-
+   # queue resources config
 
    [vpc public]
-   vpc_id = vpc-****
-   master_subnet_id = subnet-****
+   # your vpc config
 
    [ebs myebs]
-   shared_dir = /shared
-   volume_type = gp2
-   volume_size = 20
+   # ebs config
 
    [aliases]
-   ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
+   # aliases config
+   ```
+   {{%expand "Quick shortcut to help you (click to expand)" %}}
+   To generate the full line to add in your config file just run this command and copy it to the cluster section
+   ```
+   echo "additional_iam_policies=$(aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text)"
+   ```
+   {{% /expand%}}
+
+3. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal.
+
+   ```bash
+   pcluster update <your-cluster-name> -c <your-cluster-config>.ini
    ```
 
-3. Update the cluster. Note that you are updating your cluster with the additional IAM policy and not re-creating it
-
-  ```bash
-   pcluster update <your-cluster-name> -c <your-cluster-config>.ini
-  ```
+Now we should be done with the preparatory work. In the next section, we will enter the realm of serverless functions.
 
 
 {{% notice tip %}}
 To learn more about the AWS ParallelCluster Update Policies see [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/using-pcluster-update.html)
 {{% /notice %}}
 
+{{% notice info %}}
+For adding new IAM policies in AWS ParallelCluster it is recommended to use **additional_iam_policies** option instead of the **ec2_iam_role**. This is because **additional_iam_policies** are added (appended) to the permissions that AWS ParallelCluster requires, and the **ec2_iam_role** must include [all permissions](https://docs.aws.amazon.com/parallelcluster/latest/ug/iam.html) required for cluster to be created. Typically this last point is used in advanced setups.
+{{% /notice %}}
