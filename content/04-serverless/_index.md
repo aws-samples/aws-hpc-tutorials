@@ -6,34 +6,40 @@ pre: "<b>Lab II ⁃ </b>"
 tags: ["HPC", "Serverless", "Lambda", "API Gateway", "AWS ParallelCluster", "AWS Systems Manger"]
 ---
 
-A [serverless](https://aws.amazon.com/serverless/) architecture is a way to build and run applications and services without having to manage infrastructure. Your application still runs on servers, but all the server management is done by AWS. You no longer have to provision, scale, and maintain servers to run your applications, databases, and storage systems.
+{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop. This lab will use the cluster created using AWS ParallelCluster. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further.
+{{% /notice %}}
 
-By using a serverless architecture, you can focus on the core product instead of worrying about managing and operating servers or runtimes, either in the cloud or on-premises. This reduced overhead lets you reclaim time and energy that can be spent on developing great products which scale and that are reliable.
+A [serverless](https://aws.amazon.com/serverless/) architecture enables you to build and run applications and services without having to manage an infrastructure. Your application still runs on servers, but all the heavy lifting is done by AWS on your behalf. This means that you can focus on the core product and no longer need to explicitly to provision, scale, and maintain servers to run your applications, databases, and storage systems. This reduced overhead lets you reclaim time and energy that can be spent on developing, operate at scale and on a reliable infrastructure.
 
-In this lab we combine [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/), [AWS Lambda](https://aws.amazon.com/lambda/), [AWS Systems Manager](https://aws.amazon.com/systems-manager/) and [Amazon API Gateway](https://aws.amazon.com/api-gateway/) to allow an HTTP interaction with the scheduler running on your cluster. You can submit, monitor, and terminate jobs using the API, instead of connecting to the head node of your cluster via SSH. This makes it possible to integrate AWS ParallelCluster programmatically with other applications running on premises or on AWS.
+In this lab you will be lead to build an HTTP front-end to the Slurm scheduler. This front-end will be composed of an HTTP API and a serverless function that will translate the HTTP requests to Slurm commands and run them through a secure channel. This lab provides you with the opportunity to use serverless functions (called AWS Lambda). If you want to evaluate serverless computing with containers, you can go through the lab [Simulations on AWS Batch](/06-aws-batch.html).
+
+#### Services used during this lab
+
+In this lab we combine the following services:
+
+- [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) enables you to create an HPC system in AWS.
+- [AWS Lambda](https://aws.amazon.com/lambda/) are serverless functions in AWS.
+- [AWS Systems Manager](https://aws.amazon.com/systems-manager/) provides the secure channel interface to communicate with your instance.
+- [Amazon API Gateway](https://aws.amazon.com/api-gateway/) provides the API interface to your Lambda Function.
+
+<!-- to allow an HTTP interaction with the scheduler running on your cluster. You can submit, monitor, and terminate jobs using the API, instead of connecting to the head node of your cluster via SSH. This makes it possible to integrate AWS ParallelCluster programmatically with other applications running on premises or on AWS. -->
 
 The API uses [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Systems Manager](https://aws.amazon.com/systems-manager/) to execute the user commands without granting direct SSH access to the nodes, thus enhancing the security of whole cluster.
 
-Key topics covered in this lab:
 
- - How to use serverless architectures for HPC applications
- - Using AWS Lambda, Amazon API Gateway, and AWS Systems Manager to implement the serverless architecture
- - Using AWS ParallelCluster with serverless API
+#### Key topics covered in this lab
 
-Below is the serverless architecture which shows the components required to create the cluster and interact with the solution
-![Serverless Architecture](/images/serverless/serverless-arch2.png)
+During this lab you will learn to:
 
-This workshop includes the following steps:
+ - Understand what are serverless functions.
+ - Implement a serverless architecture.
+ - Build an API using a gateway.
 
-- Create a sample S3 bucket
-- Create custom IAM policy to call AWS Lambda and AWS Systems Manager endpoints.
-- Update the policy in AWS ParallelCluster and re-deploy the cluster.
-- Create AWS Lambda function to execute scheduler (Slurm) commands in the cluster head node.
-- Execute the AWS Lambda function with the Amazon API Gateway.
-- Interact with the cluster from outside the head node.
-- Delete the cluster.
+#### Why not using the Slurm REST API?
+
+Slurm provides its own [REST](https://slurm.schedmd.com/rest.html) interface with it's own API semantics. If you are exclusively using Slurm , this is a great option to look at. If you target portability, then this lab will be of interest as it enables you to host different schedulers and container orchestrators under the same common interface.
+
+Furthermore, the infrastructure you will deploy here provides you with additional functionalities such as linear scaling or security features such as throttling of the API calls to protect your backend. There's much more you could do as well!
 
 
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop. This lab will use the cluster created using AWS ParallelCluster. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further.
-{{% /notice %}}
 
