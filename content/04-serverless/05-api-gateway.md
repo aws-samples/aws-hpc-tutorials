@@ -1,7 +1,7 @@
 +++
-title = "d. Execute the Lambda Function with API Gateway"
+title = "e. Execute the Lambda Function with API Gateway"
 date = 2019-09-18T10:46:30-04:00
-weight = 200 
+weight = 200
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
@@ -33,7 +33,7 @@ In this section, we will execute the the AWS Lambda function created in the prev
 
    ![API Resource](/images/serverless/api-gateway-4.png)
 
-6. In the Resource list, choose **/slurm** and then select **Create Method** from the **Actions** dropdown menu as shown 
+6. In the Resource list, choose **/slurm** and then select **Create Method** from the **Actions** dropdown menu as shown
    ![API Resource](/images/serverless/api-gateway-5.png)
 
 7. Choose **ANY** from the dropdown menu and click on the checkmark icon as shown. This is basically setting the **ANY** method for HTTP which allows you to use a single API method setup for all the supported HTTP methods
@@ -62,13 +62,13 @@ In this section, we will execute the the AWS Lambda function created in the prev
 
     ![API Resource](/images/serverless/api-gateway-9.png)
 
-11. Take note of the API's Invoke URL, it is required for the APIs interaction. 
+11. Take note of the API's Invoke URL, it is required for the APIs interaction.
 
     Example URL
     ![API Resource](/images/serverless/api-gateway-10.png)
 
 
-You have successfully created the Slurm API which will execute the Slurm Lamda function. Next, you will interact with your cluster using this Slurm API. 
+You have successfully created the Slurm API which will execute the Slurm Lamda function. Next, you will interact with your cluster using this Slurm API.
 
 
 {{% notice tip %}}

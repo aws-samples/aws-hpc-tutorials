@@ -1,24 +1,24 @@
 +++
-title = "c. Create Lambda Function for Slurm execution"
+title = "d. Create Lambda Function for Slurm execution"
 date = 2019-09-18T10:46:30-04:00
 weight = 150
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm"]
 +++
 
 
-AWS Lambda allows you to run your code without provisioning or managing servers. Lambda is used, in this solution, to execute the Slurm commands in the Head node. The Lambda function uses AWS Systems Manager (SSM) to execute the scheduler commands without logging into the head node. This further enhances the security of the cluster as you can avoid port exposure as well.  
+AWS Lambda allows you to run your code without provisioning or managing servers. Lambda is used, in this solution, to execute the Slurm commands in the Head node. The Lambda function uses AWS Systems Manager (SSM) to execute the scheduler commands without logging into the head node. This further enhances the security of the cluster as you can avoid port exposure as well.
 
 In this section, we will create the the AWS Lambda function from the AWS Console
 
 1. Open the AWS Management Console and go to Services -> Lambda.
 
-2. Choose **Create a function** 
+2. Choose **Create a function**
 
 3. For **Function name**, enter **slurmAPI**
 
 4. For **Runtime**, enter **Python 3.8**
 
-5. Choose **Create function** to create it. 
+5. Choose **Create function** to create it.
 
 ![Lambda Create Function](/images/serverless/lambda-create-fn2.png)
 
@@ -104,16 +104,16 @@ def execute_command(command,instance_id):
 
 7. Click **Deploy** in top right to save the function
 
-8. In the **Environment variables** section, add the name of the S3 Bucket you created earlier. 
+8. In the **Environment variables** section, add the name of the S3 Bucket you created earlier.
 
    Note: Do not modify the Key as it is used in the AWS Lambda function created above. Modify only the **Value** field with your S3 bucket name
 ![Lambda Env](/images/serverless/lambda-env.png)
 
 
-9. In the **Basic settings** section, set 20 seconds as Timeout. Default is 3 seconds. 
+9. In the **Basic settings** section, set 20 seconds as Timeout. Default is 3 seconds.
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set1.png)
 
-10. In the **Execution role** section of **Basic settings**, choose **View the join-domain-function-role role on the IAM console**  as shown in the image below. 
+10. In the **Execution role** section of **Basic settings**, choose **View the join-domain-function-role role on the IAM console**  as shown in the image below.
 
 **Note**: By default, Lambda will create an execution role with permissions to upload logs to [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) Logs. You can customize this default role later when adding triggers. In this case we will add an additional Policy to this role for the Lambda function to execute the scheduler (Slurm) commands using AWS Systems Manager (SSM).
 
@@ -197,7 +197,7 @@ To list your S3 buckets:
 
 ![Lambda IAM ](/images/serverless/lambda-iam6.png)
 
-15. **Save** changes to Lambda **Basic settings** 
+15. **Save** changes to Lambda **Basic settings**
 
 ![Lambda Basic Settings](/images/serverless/lambda-basic-set-save.png)
 
@@ -207,7 +207,7 @@ You have successfully created the AWS Lambda function for Slurm commands executi
 {{% notice note %}}
 As an exercise you can trying creating the above AWS Lambda function using AWS Cloudformation
 {{% /notice %}}
- 
+
 {{% notice tip %}}
 To learn more about AWS Lambda and features see [here](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 {{% /notice %}}
