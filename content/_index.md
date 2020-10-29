@@ -11,7 +11,7 @@ The website will be maintained after SC20, labs will also be available on https:
 
 ### Important Information & Updates
 
-{{% notice warning %}} **This website will be locked between November 8th 2020 and November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
+{{% notice warning %}} **This website will be locked between November 8th 2020 through November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
 {{% /notice %}}
 
 {{% notice tip  %}}
@@ -49,7 +49,7 @@ If you are interested to run additional labs don't hesitate to run one of these:
 
 - [**Optional 1: Running Serverless Simulations**](/06-aws-batch.html): You will be introduced to AWS Batch which provides scheduling and orchestration functionalities to run jobs at scale in the cloud.
 - [**Optional 2: Remote Visualization**](/07-nice-dcv.html): In this part we will introduce you to NICE DCV in order to visualize data residing in the cloud.
-- [**Optional 3: Low Latency Network**](/08-efa.html): This part drives your through Elastic Fabric Adapter (EFA), a low latency network interface which can be used to run your tightly coupled workloads in the cloud. You may want to run the benchmark [GPCNET](https://github.com/netbench/GPCNET) as a stretch goal to collect the tail latency on EFA.
+- [**Optional 3: Low Latency Network**](/08-efa.html): This part drives your through Elastic Fabric Adapter (EFA), a low latency network interface which can be used to run your tightly coupled workloads in the cloud. You may want to run the benchmark [GPCNET](https://github.com/netbench/GPCNET) as a stretch goal to collect the tail latency on EFA. *This lab cannot be tested during SC20 with your Event Engine Account due to the limited resources that these accounts provide*
 - [**Optional 4: Distributed Machine Learning**](/09-ml-on-parallelcluster.html): This lab will enable you to run a Machine Learning distributed workload using the [PyTorch DistributedDataParallel](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) API.
 
 #### Accessing Your Lab Account
