@@ -12,6 +12,10 @@ tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 
 EFA is available as an optional EC2 networking feature that you can enable on any supported EC2 instance at no additional cost. Plus, it works with the most commonly used interfaces, APIs, and libraries for inter-node communications, so you can migrate your HPC applications to AWS with little or no modifications.
 
+{{% notice warning %}} This lab cannot be executed during SC20 on your EE account due to limited resources. We recommend to use your organization's account to test it.
+{{% /notice %}}
+
+
 {{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.
 {{% /notice %}}
 
