@@ -1,5 +1,5 @@
 +++
-title = "c. Update the cluster with custom IAM Policy"
+title = "c. Apply the policy to your cluster"
 date = 2019-09-18T10:46:30-04:00
 weight = 100
 tags = ["tutorial", "serverless", "ParallelCluster", "IAM"]

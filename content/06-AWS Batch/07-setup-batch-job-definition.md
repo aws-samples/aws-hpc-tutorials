@@ -22,16 +22,15 @@ echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWork
 ```bash
 aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]'
 ```
-8. For **vCPUs** type **4**.
-9. For **Memory (MiB)** type **2000**.
+8. For **vCPUs** use **4** and set **Memory (MiB)** to **2000**.
 ![AWS Batch](/images/aws-batch/batch12.png)
-10. Skip to the **Environment variables** section.
-11. Choose **Add**. This environmental variable will tell the application running in your container where to export data.
-12. For **Key**, type **EXPORT_S3_BUCKET_URL**. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
+9. Skip to the **Environment variables** section.
+10. Choose **Add**. This environmental variable will tell the application running in your container where to export data.
+11. For **Key**, type **EXPORT_S3_BUCKET_URL**. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
 ```bash
 echo "S3 Output Bucket: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `OutputBucket`].OutputValue')"
 ```
 ![AWS Batch](/images/aws-batch/batch13.png)
-13. Choose **Create**.
+12. Choose **Create**.
 
 Next, take a closer look at the compute environment, job queue, and job definition you created.

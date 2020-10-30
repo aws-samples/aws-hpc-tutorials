@@ -1,5 +1,5 @@
 +++
-title = "b. Create IAM policy for SSM endpoints"
+title = "b. Define a new IAM policy"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
@@ -30,6 +30,10 @@ Let's start by creating a new bucket.
     echo "Your bucket name will be serverless-${BUCKET_POSTFIX}"
     aws s3 mb s3://serverless-${BUCKET_POSTFIX}
     ```
+{{% notice note %}}
+Please keep track of your bucket name as we will use it later.
+{{% /notice %}}
+
 
 #### Create the IAM Policy through AWS Cloudformation
 
@@ -94,6 +98,9 @@ Now we will create our policy. We will download it for didactic purposes but it 
       PclusterPolicy:
         Description: PclusterPolicy
         Value: !Sub ${pclusterSSM}
+      S3Bucket:
+        Description: S3 Bucket name
+        Value: !Sub ${S3Bucket}
     {{% /expand%}}
 
 2. Deploy the cloudformation template and create the policy
