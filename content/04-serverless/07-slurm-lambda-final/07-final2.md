@@ -47,8 +47,6 @@ We will now add a new policy by adding in the JSON format. You could use the vis
     ```
 
 4. When you are done with your changes click **Review policy**.
-
 ![Lambda IAM ](/images/serverless/lambda-iamrole4.png)
-
 5. You will be asked to provide a **Name** to your policy, pick the one you like such as (e.g. lambda-slurm-exec) and click on **Create policy**. This will validate the policy then redirect your to the *Policies* page, close this tab for now.
 ![Lambda IAM ](/images/serverless/lambda-iamrole5.png)
