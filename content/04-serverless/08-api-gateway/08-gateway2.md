@@ -1,54 +1,19 @@
 +++
-title = "- Bind the REST API to your Lambda function"
+title = "- List instances and partitions"
 date = 2019-09-18T10:46:30-04:00
-weight = 203
+weight = 255
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
-We will now add a new policy by adding in the JSON format. You could use the visual editor as well but let's  stick with JSON for now. Before you begin you will need to have the ID of the current AWS region and the name of the bucket previously created. If you don't remember those you can run the commands below in your AWS Cloud9 terminal.
+To interact wit your API you will be using [cURL](https://en.wikipedia.org/wiki/CURL), it is a tool commonly used to interact with HTTP(s) servers. cURL is already installed on your Cloud9 instance.
 
-1. Retrieve the current AWS region ID:
+1. Without logging into your cluster, start by running the following command in the Cloud9 terminal to **list the compute nodes** attached to your Slurm cluster.
 
-    ```bash
-    aws configure get region
-    ```
+      ```bash
+         curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=list_nodes" # Note the function name  "list_nodes"
+      ```
+2. Initiate a second cURL call to **list the partitions** in your cluster
 
-2. List your Amazon S3 buckets and pick the one you just created:
-
-    ```bash
-    aws s3 list-buckets --query "Buckets[].Name"
-    ```
-
-3. Paste the policy below in the JSON editor and do not forget to replace **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** with the values you retrieved earlier. This policy enables you Lambda function to access the AWS Systems Manager (SSM).
-
-
-    ```json
-    {
-        "Version": "2012-10-17",
-        "Statement": [{
-            "Effect": "Allow",
-            "Action": ["ssm:SendCommand"],
-            "Resource": [
-              "arn:aws:ec2:<REGION>:*:instance/*",
-              "arn:aws:ssm:<REGION>::document/AWS-RunShellScript",
-              "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>/ssm"]
-        }, {
-            "Effect": "Allow",
-            "Action": ["ssm:GetCommandInvocation"],
-            "Resource": ["arn:aws:ssm:<REGION>:*:*"]
-        }, {
-            "Effect": "Allow",
-            "Action": ["s3:*"],
-            "Resource": [
-              "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>",
-              "arn:aws:s3:::<YOUR-S3-BUCKET-NAME>/*"]
-        }]
-    }
-    ```
-
-4. When you are done with your changes click **Review policy**.
-
-![Lambda IAM ](/images/serverless/lambda-iamrole4.png)
-
-5. You will be asked to provide a **Name** to your policy, pick the one you like such as (e.g. lambda-slurm-exec) and click on **Create policy**. This will validate the policy then redirect your to the *Policies* page, close this tab for now.
-![Lambda IAM ](/images/serverless/lambda-iamrole5.png)
+      ```bash
+      curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=list_partitions" # Note the function name "list_partitions"
+      ```

@@ -1,7 +1,7 @@
 +++
 title = "j. Summary & cleanup"
 date = 2019-09-18T10:46:30-04:00
-weight = 250
+weight = 300
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
