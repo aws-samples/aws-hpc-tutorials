@@ -18,14 +18,14 @@ pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 
 ```bash
 cat > job1.sh << EOF
-> #!/bin/bash
-> 
-> #SBATCH --output=slurm-%j.out
-> #SBATCH --nodes=2
-> #SBATCH --time=10:00
-> srun hostname
-> srun sleep 60
-> EOF
+ #!/bin/bash
+ 
+ #SBATCH --output=slurm-%j.out
+ #SBATCH --nodes=2
+ #SBATCH --time=10:00
+ srun hostname
+ srun sleep 60
+ EOF
 
 ```
 
