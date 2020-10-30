@@ -17,22 +17,22 @@ pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 
 ```bash
 cat > job2.sh << EOF
-> #!/bin/bash
-> #SBATCH --output=slurm-%j.out
-> #SBATCH --nodes=2
-> #SBATCH --time=10:00
+#!/bin/bash
+#SBATCH --output=slurm-%j.out
+#SBATCH --nodes=2
+#SBATCH --time=10:00
 
-> module load intelmpi
-> export I_MPI_DEBUG=5
+ module load intelmpi
+ export I_MPI_DEBUG=5
 
-> nodes=2
-> ppn=2
-> procs=$(( ppn * nodes ))
+ nodes=2
+ ppn=2
+ procs=$(( ppn * nodes ))
  
-> echo "ppn = $ppn, Procs = $procs"
+ echo "ppn = $ppn, Procs = $procs"
  
-> mpirun -np $procs -ppn $ppn IMB-MPI1 Uniband -npmin $procs 
-> EOF
+ mpirun -np $procs -ppn $ppn IMB-MPI1 Uniband -npmin $procs 
+EOF
 ```
 
 - Submit the script to SLURM using the SBATCH command as follows:
