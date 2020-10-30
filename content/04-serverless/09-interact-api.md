@@ -95,20 +95,6 @@ You began interacting with the API to list jobs and partitions. Let's take this 
 ![SLURM JOB](/images/serverless/slurm-job-1.png)
 
 
-Congratulations on finishing
-
 {{% notice info %}}
 Now that you know how to submit jobs and check their details. Would you take the challenge of building a new submission script starting from `job`? Use the following command to upload your job script to one of your buckets when ready : `aws s3 cp <path-to-local-file> s3://<YOUR_BUCKET>/<NAME_OF_YOUR_FILE> --acl public-read`
 {{% /notice %}}
-
-
-
-
-In this lab you learnt how to interact with your cluster with slurm scheduler using the Amazon API Gateway. You created this by using Amazon API Gateway, AWS Lambda and AWS Systems Manager to simplify interation with the cluster without granting access to the Head node, thus improving overall security. You can extend the API by adding additional schedulers or interaction workflows and can be integrated with external applications.
-
-Using a similar approach, you can also create a serverless API of the AWS ParallelCluster command line interface. You can create, monitor and teardown your cluster using an API. This makes it possible to integrate AWS ParallelCluster programatically with other applications running on-prem or in the AWS Cloud.
-
-Next, we will teardown the cluster and the created resources in this lab.
-
-
-

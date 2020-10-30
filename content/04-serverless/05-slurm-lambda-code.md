@@ -88,6 +88,4 @@ Now that you have created the Lambda function, we will add code to transform the
       return body
     ```
 
-3. Click **Deploy** in top right to save the function. When done, you will be informed that it has been successfully deployed.
-
-Now that we have deployed our function we need to add an environment variable and increase the timeout.
+3. Click **Deploy** in top right to save the function. When done, you will be informed that it has been successfully deployed. Now that we have deployed our function we need to add an environment variable and increase the timeout.
