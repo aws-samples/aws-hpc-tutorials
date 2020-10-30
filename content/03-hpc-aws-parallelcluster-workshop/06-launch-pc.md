@@ -18,10 +18,9 @@ In your AWS Cloud9 terminal, run the following to create a cluster. Make sure th
 pcluster create hpclab-yourname -c my-cluster-config.ini
 ```
 
-Your cluster will take a few minutes to build. The creation status displays in your terminal. Once the cluster is ready, you should see a result similar to the one shown in the following image.
+Your cluster will take a few minutes to build. The creation status displays in your terminal. Once the cluster is ready, you should see a result similar to the one shown in the following image:
 
 ![ParallelCluster creation output](/images/hpc-aws-parallelcluster-workshop/pc-create-output-new.png)
-
 
 {{% notice tip %}}
 There can be only one cluster of a given name at any time on your account.

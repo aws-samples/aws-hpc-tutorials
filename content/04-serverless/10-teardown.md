@@ -1,5 +1,5 @@
 +++
-title = "g. Teardown the cluster and resources"
+title = "j. Teardown the cluster and resources"
 date = 2019-09-18T10:46:30-04:00
 weight = 250
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]

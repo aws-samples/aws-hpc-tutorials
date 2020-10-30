@@ -91,7 +91,7 @@ sbatch submission_script.sbatch
 Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
 
 ```bash
-squeue 
+squeue
 ```
 When ready and registered, your job will be processed and you will see a similar status as below.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/squeue-output.png)
@@ -99,21 +99,14 @@ When ready and registered, your job will be processed and you will see a similar
 You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 5 min to appear.
 
 ```bash
-
 sinfo
-
 
 ```
  The following example shows 4 nodes.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
-Once the job has been processed, you should see similar results as follows in the *.out* file:
-
-The output is similar bellow:
+Once the job has been processed, you should see similar results as follows in the *.out* file. The output should be similar to the one below:
 
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
-
-
-Done!
 
 After a few minutes, your cluster will scale down unless there are more job to process. Next, learn about what is happening in the background.
