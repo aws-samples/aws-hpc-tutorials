@@ -7,7 +7,7 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gat
 
 You began interacting with the API to list jobs and partitions. Let's take this exercise a bit further and submit a job by running the High Performance Conjugate Gradient (HPCG) Benchmark. Again without logging into the cluster head node. The job runscript that you will provide to `sbatch` is already stored on an S3 bucket. You can download it if you like to view its contents.
 
-1. Run the following command to submit, compile and run HPCCG.
+1. Run the following command to submit, compile and run HPCG.
 
      ```bash
      curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=submit_job&jobscript_location=aws-hpc-workshops/run-hpcg.sh" -H 'submitopts: --job-name=HPCG --partition=ondemand'

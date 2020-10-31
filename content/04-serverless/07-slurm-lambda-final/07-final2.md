@@ -1,5 +1,5 @@
 +++
-title = "- Configure the function timeout"
+title = "- Add the lambda IAM policy"
 date = 2019-09-18T10:46:30-04:00
 weight = 185
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
@@ -19,7 +19,7 @@ We will now add a new policy by adding in the JSON format. You could use the vis
     aws s3 list-buckets --query "Buckets[].Name"
     ```
 
-3. Paste the policy below in the JSON editor and do not forget to replace **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** with the values you retrieved earlier. This policy enables you Lambda function to access the AWS Systems Manager (SSM).
+3. Paste the policy below in the JSON editor and do not forget to replace **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** with the values you retrieved earlier. This policy enables your Lambda function to access AWS Systems Manager (SSM).
 
 
     ```json
