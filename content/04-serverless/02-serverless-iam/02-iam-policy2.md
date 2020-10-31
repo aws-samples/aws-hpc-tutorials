@@ -5,7 +5,7 @@ weight = 57
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-Now we will create our policy. We will download it for didactic purposes but it is not required.
+Now we will create our policy. Let's start by downloading it. This step is not required but allows us to look at what new rights are being granted to our cluster.
 
 1. Download the CloudFormation template containing the custom policy from the bucket `s3://aws-hpc-workshops` using the following command
     ```bash
@@ -95,5 +95,5 @@ In the next section, we will modify our AWS ParallelCluster configuration and up
 
 
 {{% notice tip %}}
-You don't actually need to download the Cloudformation template to your Cloud9 instance. Indeed, it is possible to run Cloudformation templates that are already stored on S3. For that matter you could replace the `--template file file://serverless-template.yaml` by the argument `--template-url https://aws-hpc-workshops.s3.amazonaws.com/serverless-template.yaml` and it will work as well.
+You don't actually need to download the Cloudformation template to your Cloud9 instance. Indeed, it is possible to run Cloudformation templates that are already stored on S3. For that matter you could replace the `--template-file file://serverless-template.yaml` by the argument `--template-url https://aws-hpc-workshops.s3.amazonaws.com/serverless-template.yaml` and it will work as well.
 {{% /notice %}}

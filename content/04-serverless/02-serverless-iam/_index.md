@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-IAM controls who or what can conduct actions on resources. For example, an instance can be allowed to access the APIs to create new instances. In the present case, we will enable the nodes of your cluster to access the AWS Systems Manager (SSM) endpoints so commands triggered by our Lambda function can be executed on them using SSM.
+[Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) (IAM) controls who or what can conduct actions on resources. For example, an instance can be allowed to access the APIs to create new instances. In the present case, we will enable the nodes of your cluster to access the AWS Systems Manager (SSM) endpoints so commands triggered by our Lambda function can be executed on them using SSM.
 
 In this section we will :
 

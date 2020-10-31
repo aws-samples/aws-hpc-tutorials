@@ -7,15 +7,11 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gat
 
 The steps to deploy your API are relatively straightforward.
 
-1. Click once more on the **Actions** dropdown menu, and select **Deploy API**.
+1. Click on the **Actions** dropdown menu, and select **Deploy API**.
 ![API Resource](/images/serverless/api-gateway-8.png)
-
 2. On the hovering window, on **Deployment stage** select **[New Stage]**, then for **Stage name** use `production` and, click **Deploy**.
-
 ![API Resource](/images/serverless/api-gateway-9.png)
-
-11. Now your API is deployed! Please take note of the API's **Invoke URL**. You will be using this URL to interact with your API.
-
+3. Now your API is deployed! Please take note of the API's **Invoke URL**. You will be using this URL to interact with your API.
 ![API Resource](/images/serverless/api-gateway-10.png)
 
 

@@ -119,7 +119,7 @@ volume_size = 20
 shared_dir = /lustre
 storage_capacity = 1200
 import_path =  s3://mybucket-${BUCKET_POSTFIX}
-deployment_type = SCRATCH_2
+deployment_type = SCRATCH_2f
 
 [aliases]
 ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
