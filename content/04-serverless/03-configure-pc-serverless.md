@@ -15,8 +15,7 @@ Now that we have deployed a policy to enable our instances to register with AWS 
    ```bash
    aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text
    ```
- <!-- - Add a line `additional_iam_policies=<policy-arn>` to the [cluster default] section of the config file.
- - The ARN (Amazon Resource Name) for the Policy (**policy-arn**) can be obtained using the AWS CLI as shown below -->
+
 2. Modify the AWS ParallelCluster configuration file `my-cluster-config.ini` created in the previous lab, it should be located in `~/environment`. Then add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter (just replace `AddThePolicyArnFromCLICommand` here)
 
    ```toml
