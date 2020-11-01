@@ -15,7 +15,7 @@ In this lab you will be lead to build an HTTP front-end to the Slurm scheduler. 
 
 #### Services used during this lab
 
-In this lab we combine the following services:
+In this lab you will combine the following services:
 
 - [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) enables you to create an HPC system in AWS.
 - [AWS Lambda](https://aws.amazon.com/lambda/) are serverless functions in AWS.

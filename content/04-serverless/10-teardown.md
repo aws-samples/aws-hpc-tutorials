@@ -10,7 +10,7 @@ In this lab you learned how to use serverless functions on AWS Lambda and make t
 
 Using a similar approach, you can also create a serverless API of the AWS ParallelCluster command line interface. You can create, monitor and teardown your cluster using an API. This makes it possible to integrate AWS ParallelCluster programmatically with other applications running on-prem or in the AWS Cloud.
 
-Next, we will teardown the cluster and the resources you created in this lab.
+Next, you will teardown the cluster and the resources you created in this lab.
 
 
 #### Cleaning up your resources

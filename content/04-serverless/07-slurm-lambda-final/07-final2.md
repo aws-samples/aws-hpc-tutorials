@@ -5,7 +5,7 @@ weight = 185
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-We will now add a new policy by adding in the JSON format. You could use the visual editor as well but let's  stick with JSON for now. Before you begin you will need to have the ID of the current AWS region and the name of the bucket previously created. If you don't remember those you can run the commands below in your AWS Cloud9 terminal.
+You will now add a new policy by adding in the JSON format. You could use the visual editor as well but let's  stick with JSON for now. Before you begin you will need to have the ID of the current AWS region and the name of the bucket previously created. If you don't remember those you can run the commands below in your AWS Cloud9 terminal.
 
 1. Retrieve the current AWS region ID:
 

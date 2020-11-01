@@ -17,7 +17,7 @@ The list of parameters below are the ones that our Serverless function will be i
 
 #### Retrieve a few parameters
 
-Before interacting with your API you will need to gather some information such as the instance ID of your head-node and the API Gateway address we created in the previous section. For that you will need to **open** a terminal on your Cloud9 instance and use the following commands.
+Before interacting with your API you will need to gather some information such as the instance ID of your head-node and the API Gateway address you created in the previous section. For that you will need to **open** a terminal on your Cloud9 instance and use the following commands.
 
 
 - **Head-node instance ID**: you will describe the instances using the command below. In the second column you will see a list of IDs, please pick the one corresponding to your head node.
