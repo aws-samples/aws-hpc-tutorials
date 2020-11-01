@@ -103,10 +103,10 @@ sinfo
 
 ```
  The following example shows 4 nodes.
-![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
+![sinfo output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
 Once the job has been processed, you should see similar results as follows in the *.out* file. The output should be similar to the one below:
 
-![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
+![sinfo output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
 
 After a few minutes, your cluster will scale down unless there are more job to process. Next, learn about what is happening in the background.
