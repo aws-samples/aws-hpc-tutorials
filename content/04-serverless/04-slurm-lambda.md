@@ -6,9 +6,9 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm"]
 +++
 
 
-Serverless functions, such as AWS Lambda, allow you to run code without provisioning or managing servers. It can be particularly useful to automate tasks or an infrastructure. In the present case you will use our Lambda function to interpret the HTTP requests received by API gateway into Slurm command and execute them on our cluster through a secure channel provided by AWS Systems Manager (SSM). This avoids the need for our cluster to be exposed to the end users. If you were to add a new cluster or use a different scheduler, users could connect with the same interface with all the logic being managed through Lambda.
+Serverless functions, such as AWS Lambda, allow you to run code without provisioning or managing servers. It can be particularly useful to automate tasks or an infrastructure. In the present case you will use our Lambda function to interpret the HTTPS requests received by API gateway into Slurm command and execute them on our cluster through a secure channel provided by AWS Systems Manager (SSM). This avoids the need for our cluster to be exposed to the end users. If you were to add a new cluster or use a different scheduler, users could connect with the same interface with all the logic being managed through Lambda.
 
-In this section you will create our first Serverless function, in the next section you will add the code of our function, then you will create an IAM Role and attach it to our function to allow it to connect to the cluster and access the bucket you created earlier.
+In this section you will create our first serverless function, in the next section you will add the code of our function, then you will create an IAM Role and attach it to our function to allow it to connect to the cluster and access the bucket you created earlier.
 
 1. First open the AWS Management Console, in **Services**, select **Lambda**. You can use the **Search** field as well.
 
