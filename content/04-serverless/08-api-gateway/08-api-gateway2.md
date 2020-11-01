@@ -5,7 +5,7 @@ weight = 203
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
-We will first define to which [HTTP methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) our REST API will respond. You can bind different methods to different Lambda functions or other services.
+You will first define to which [HTTP methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) our REST API will respond. You can bind different methods to different Lambda functions or other services.
 
 1. In the Resource list, choose **/slurm** if not already selected. Click on the **Actions** dropdown menu then select u**Create Method**.
 

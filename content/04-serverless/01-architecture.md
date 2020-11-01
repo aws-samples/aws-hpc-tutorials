@@ -10,7 +10,7 @@ Here are a few more details on what you will be deploying and the services you w
 
 #### Services used during this lab
 
-In this lab we combine the following services:
+In this lab you will combine the following services:
 
 - [AWS ParallelCluster](https://docs.aws.amazon.com/parallelcluster/index.html) enables you to create an HPC system in AWS.
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html) are serverless functions in AWS.

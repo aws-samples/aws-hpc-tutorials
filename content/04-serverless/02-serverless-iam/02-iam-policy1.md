@@ -19,6 +19,6 @@ Let's start by creating a new bucket.
     aws s3 mb s3://serverless-${BUCKET_POSTFIX}
     ```
 {{% notice note %}}
-Please keep track of your bucket name as we will use it later.
+Please keep track of your bucket name as you will use it later.
 {{% /notice %}}
 

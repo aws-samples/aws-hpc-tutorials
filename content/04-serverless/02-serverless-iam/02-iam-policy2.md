@@ -5,7 +5,7 @@ weight = 57
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-Now we will create our policy. Let's start by downloading it. This step is not required but allows us to look at what new rights are being granted to our cluster.
+Now you will create our policy. Let's start by downloading it. This step is not required but allows us to look at what new rights are being granted to our cluster.
 
 1. Download the CloudFormation template containing the custom policy from the bucket `s3://aws-hpc-workshops` using the following command
     ```bash
@@ -79,7 +79,7 @@ Now we will create our policy. Let's start by downloading it. This step is not r
     aws cloudformation create-stack --stack-name pc-serverless-policy --parameters ParameterKey=S3Bucket,ParameterValue=serverless-${BUCKET_POSTFIX} --template-body file://serverless-template.yaml --capabilities CAPABILITY_NAMED_IAM
     ```
 {{% notice info %}}
-The command above creates a Cloudformationstack as based on the template`serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since we are creating IAM resources we must explicitly acknowledge that our stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
+The command above creates a Cloudformationstack as based on the template`serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since you are creating IAM resources you must explicitly acknowledge that our stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
 {{% /notice %}}
 
 3. Once the AWS CloudFormation stack creation completes, you can confirm the IAM Policy is created by running the command below in your Cloud9 Terminal to query the policy `pclusterSSM` you just created
@@ -91,7 +91,7 @@ The command above creates a Cloudformationstack as based on the template`serverl
    You should see a similar image as this one:
 ![Lambda Basic Settings](/images/serverless/iam-policy-result.png)
 
-In the next section, we will modify our AWS ParallelCluster configuration and update the cluster to apply our newly created policy.
+In the next section, you will modify our AWS ParallelCluster configuration and update the cluster to apply our newly created policy.
 
 
 {{% notice tip %}}
