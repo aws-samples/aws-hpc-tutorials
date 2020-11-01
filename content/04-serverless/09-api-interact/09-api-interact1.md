@@ -5,7 +5,7 @@ weight = 252
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
-The list of parameters below are the ones that our Serverless function will be interpreting. The API will just forward the HTTP calls content as an JSON object to our function.
+The list of parameters below are the ones that our Serverless function will be interpreting. The API will just forward the HTTPS calls content as an JSON object to our function.
 
 | Argument     | Description |
 |--------------|---------------------------------------------------------------------------------------------------------------------|

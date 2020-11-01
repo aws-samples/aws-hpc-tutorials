@@ -11,7 +11,7 @@ tags: ["HPC", "Serverless", "Lambda", "API Gateway", "AWS ParallelCluster", "AWS
 
 A [serverless](https://aws.amazon.com/serverless/) architecture enables you to build and run applications and services without having to manage an infrastructure. Your application still runs on servers, but all the heavy lifting is done by AWS on your behalf. This means that you can focus on the core product and no longer need to explicitly to provision, scale, and maintain servers to run your applications, databases, and storage systems. This reduced overhead lets you reclaim time and energy that can be spent on developing, operate at scale and on a reliable infrastructure.
 
-In this lab you will be lead to build an HTTP front-end to the Slurm scheduler. This front-end will be composed of an HTTP API and a serverless function that will translate the HTTP requests to Slurm commands and run them through a secure channel. This lab provides you with the opportunity to use serverless functions (called AWS Lambda). If you want to evaluate serverless computing with containers, you can go through the lab [Simulations on AWS Batch](/06-aws-batch.html).
+In this lab you will be lead to build an HTTPS front-end to the Slurm scheduler. This front-end will be composed of an HTTPS API and a serverless function that will translate the HTTPS requests to Slurm commands and run them through a secure channel. This lab provides you with the opportunity to use serverless functions (called AWS Lambda). If you want to evaluate serverless computing with containers, you can go through the lab [Simulations on AWS Batch](/06-aws-batch.html).
 
 #### Services used during this lab
 
