@@ -100,7 +100,6 @@ You can also check the number of nodes available in your cluster using the comma
 
 ```bash
 sinfo
-
 ```
  The following example shows 4 nodes.
 ![sinfo output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
