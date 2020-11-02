@@ -1,4 +1,0 @@
-pushd themes/hugo-theme-learn
-git submodule init
-git submodule update --checkout --recursive
-popd

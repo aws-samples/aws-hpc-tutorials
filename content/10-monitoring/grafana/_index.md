@@ -21,7 +21,7 @@ This lab is build with the following components:
 
 * [Prometheus-Slurm-Exporter](https://github.com/vpenso/prometheus-slurm-exporter/) is a Prometheus collector and exporter for metrics extracted from the [Slurm](https://slurm.schedmd.com/overview.html) resource scheduling system.
 
-* [Node_exporter](https://github.com/prometheus/node_exporter) is a Prometheus exporter for hardware and OS metrics exposed by Linux kernels, written in Go with pluggable metric collectors.
+* [Node_exporter](https://github.com/prometheus/node_exporter) is a Prometheus exporter for hardware and OS metrics exposed by Linux kernels, written in Golang with pluggable metric collectors.
 
 This workshop includes the following steps:
 

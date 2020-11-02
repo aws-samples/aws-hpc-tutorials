@@ -16,7 +16,7 @@ pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 
 ### To set up an SNS topic
 
-- Configure your email address and AWS region
+2. Configure your email address and AWS region
 
   - Enter your email address where you would like to receive the SNS notifications
 
@@ -30,7 +30,7 @@ MY_EMAIL_ADDRESS=<your-email-address>
 REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
 ```
 
-- Create the topic using the create-topic command as follows. 
+3. Create the topic using the create-topic command as follows. 
 
 ```bash
 MY_SNS_TOPIC=$(aws sns create-topic --name slurm-job-completion --region $REGION --output text)
@@ -39,7 +39,7 @@ echo $MY_SNS_TOPIC
 
 ### Subscribe to your created SNS topic
 
-- Subscribe your email address to the topic using the subscribe command. If the subscription request succeeds, you receive a confirmation email message.  
+4. Subscribe your email address to the topic using the subscribe command. If the subscription request succeeds, you receive a confirmation email message.  
 
 ```bash
 aws sns subscribe --topic-arn $MY_SNS_TOPIC --protocol email --notification-endpoint $MY_EMAIL_ADDRESS --region $REGION
@@ -49,13 +49,13 @@ aws sns subscribe --topic-arn $MY_SNS_TOPIC --protocol email --notification-endp
 
    ![SNS TOPIC](/images/monitoring/sns-topic-subscribe.png)
 
-- From your email application, open the message from AWS Notifications and confirm your subscription. 
+5. From your email application, open the message from AWS Notifications and confirm your subscription. 
 
 ![SNS TOPIC](/images/monitoring/sns-topic-email.png)
 
-- Your web browser displays a confirmation response from Amazon Simple Notification Service.
+6. Your web browser displays a confirmation response from Amazon Simple Notification Service.
 
 ![SNS TOPIC](/images/monitoring/sns-topic-email-confirm.png)
 
 
-Next, we will check the subscription and publish a test message to the topic
+Next, we will check the subscription and publish a test message to the topic.
