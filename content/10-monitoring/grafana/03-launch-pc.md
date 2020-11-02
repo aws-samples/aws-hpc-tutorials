@@ -1,7 +1,7 @@
 +++
 title = "b. Build a monitoring enabled HPC Cluster"
 date = 2019-09-18T10:46:30-04:00
-weight = 70
+weight = 20
 tags = ["tutorial", "create", "ParallelCluster", "Monitoring"]
 +++
 
@@ -21,7 +21,6 @@ pcluster create perflab-yourname -c my-perf-cluster-config.ini
 Your cluster will take a few minutes to build. The creation status displays in your terminal. Once the cluster is ready, you should see a result similar to the one shown in the following image.
 
 ![ParallelCluster creation output](/images/monitoring/pc-create-output.png)
-
 
 {{% notice tip %}}
 There can be only one cluster of a given name at any time on your account.

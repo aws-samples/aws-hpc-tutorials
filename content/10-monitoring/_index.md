@@ -16,7 +16,7 @@ The lab is divided in two sections.
 - In the second section, you will setup a simple job notification service using Amazon Simple Notification Service (SNS)
 
 Architecture Overview:
-![Monitoring Architecture](/images/monitoring/monitoring-arch.png)
+![Monitoring Architecture](/images/monitoring/performance_monitoring_architecture.png)
 
 
 {{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.

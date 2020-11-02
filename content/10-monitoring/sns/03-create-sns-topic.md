@@ -6,15 +6,15 @@ tags = ["tutorial", "Monitoring", "ParallelCluster", "SNS", "Topic"]
 +++
 
 
-First, you create an SNS topic, and then you publish a message directly to the topic to test that you have properly configured it
+First, create an SNS topic, then you publish a message directly to the topic to test that you have properly configured it
 
-- In the AWS Cloud9 terminal login to the head node of your cluster as below:
+1. In the AWS Cloud9 terminal login to the head node of your cluster as below:
 
 ```bash
 pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 ```
 
-**To set up an SNS topic**
+### To set up an SNS topic
 
 - Configure your email address and AWS region
 
@@ -37,7 +37,7 @@ MY_SNS_TOPIC=$(aws sns create-topic --name slurm-job-completion --region $REGION
 echo $MY_SNS_TOPIC
 ```
 
-**Subscribe to your created SNS topic**
+### Subscribe to your created SNS topic
 
 - Subscribe your email address to the topic using the subscribe command. If the subscription request succeeds, you receive a confirmation email message.  
 

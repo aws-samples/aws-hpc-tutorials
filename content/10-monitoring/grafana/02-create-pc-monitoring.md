@@ -1,30 +1,23 @@
 +++
 title = "a. Cluster Config with Monitoring setup"
 date = 2019-09-18T10:46:30-04:00
-weight = 50
+weight = 10
 tags = ["tutorial", "Monitoring", "ParallelCluster"]
 +++
 
-In [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop you learnt how to create a HPC Cluster using AWS ParallelCluster. In this section you will follow similar steps to create a cluster but also enable performance monitoring and dashboard visualization. 
+In [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop you learned how to create a HPC Cluster using AWS ParallelCluster. In this section you will follow similar steps to create a cluster with performance monitoring and dashboard visualization. 
 
-But before creating the cluster you want to generate a new keypair for this lab and also query the network settings required for the cluster creation. 
-
-The following commands generate a new keypair, query the EC2 metadata to get the Subnet ID, VPC ID.
+Generate a new key-pair:
 
 {{% notice info %}}Don't skip this step, creating key-pair step is very important for the later steps, please follow instruction bellow.
 {{% /notice %}}
 
-Generate a new key-pair
-
 ```bash
 aws ec2 create-key-pair --key-name lab-4-your-key --query KeyMaterial --output text > ~/.ssh/lab-4-key
-```
-
-```bash
 chmod 600 ~/.ssh/lab-4-key
 ```
 
-Getting your AWS networking information
+Get your AWS networking information:
 
 ```bash
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
@@ -33,11 +26,11 @@ VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interface
 REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
 ```
 
-**Additional Security Group**
+### Additional Security Group
 
-To visualize your Grafana dashboards from your browser you need to make sure that port 80 and port 443 of your head node are accessible from the internet (or form your network). You can achieve this by creating the appropriate security group via [AWS Management Console](https://aws.amazon.com/console/) or via [CLI](https://docs.aws.amazon.com/cli/index.html)
+To visualize your Grafana dashboards from your browser we need to ensure port `80` and port `443` on the head node are accessible from the internet.
 
-Create additonal security group and enable ports 80 and 443
+To do so we're going to create a security group and open those ports up:
 
 ```bash
 GRAFANA_SG=$(aws ec2 create-security-group --group-name my-grafana-sg --description "Open Grafana dashboard ports" --vpc-id $VPC_ID --output text)
@@ -45,32 +38,20 @@ aws ec2 authorize-security-group-ingress --group-id $GRAFANA_SG --protocol tcp -
 aws ec2 authorize-security-group-ingress --group-id $GRAFANA_SG --protocol tcp --port 80 --cidr 0.0.0.0/0
 ```
 
-**AWS ParallelCluster - Custom Bootstrap Actions**
+### AWS ParallelCluster - Custom Bootstrap Actions
 
-AWS ParallelCluster can run arbitrary code either before (pre_install) or after (post_install) the main bootstrap action during cluster creation. In most cases, this code is stored in Amazon Simple Storage Service (Amazon S3) and accessed through an HTTPS connection. The code is executed as root and can be in any scripting language that is supported by the cluster OS. Often the code is in bash or python.
-
-Post_install actions are called after the cluster bootstrap processes are complete. Post_install actions serve the last actions to occur before an instance is considered fully configured and complete. Some post_install actions include changing scheduler settings, modifying storage, and modifying packages.
-
-You can pass argument to scripts by specifying them during configuration. For this, you pass them double-quoted to the post_install actions. 
+AWS ParallelCluster can run setup code either before (**pre_install**) or after (**post_install**) bootstrap during cluster creation. In most cases, this script is stored on Amazon S3 and downloaded through an HTTPS connection. The code is executed as root and can be in any scripting language that is supported by the cluster's OS. You can pass arguments to script by specifying them during configuration as **pre_install_args** or **post_install_args**.
 
 {{% notice tip %}}
 For more details about the AWS ParallelCluster configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html).
 {{% /notice %}}
 
-To setup monitoring and dashboard visualization using Prometheus and Grafana for your cluster you simply use a post_install script (**grafana-post-install.sh**) that is provided in the **aws-hpc-workshops** S3 bucket.
- 
-You can use this post_install script in the repo as it is, or customize it as you need. For instance, you might want to change your Grafana password to something more secure and meaningful for you, or you might want to customize some dashboards by adding additional components to monitor.
+To setup monitoring and dashboard visualization using Prometheus and Grafana for your cluster we will use a **post_install** script (**grafana-post-install.sh**) that is provided in the **aws-hpc-workshops** S3 bucket. To examine this script, download it from here: https://aws-hpc-workshops.s3.amazonaws.com/grafana-post-install.sh
 
-The proposed post_install script will take care of installing and configuring the different performance monitoring and dashboard visualization  components required for your cluster. Though, few additional parameters are needed in the AWS ParallelCluster config file: the post_install_args, additional IAM policies, security group.
+The following cluster configuration includes a **post_install** script that takes care of installing and configuring the performance monitoring and dashboard visualization components, in addition to the **post_install** script there's **additional_iam_policies**, **post_install_args** and the **security_group** created above. 
 
-For now, paste the following commands in your terminal:
-
-```bash
-cd ~/environment
-```
-
-```bash
-cat > my-perf-cluster-config.ini << EOF
+```ini
+cat > ~/environment/my-perf-cluster-config.ini << EOF
 [aws]
 aws_region_name = ${REGION}
 
@@ -122,5 +103,9 @@ deployment_type = SCRATCH_2
 ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
 EOF
 ```
+
+{{% notice tip %}}
+You can use this **post_install** script in the repo as it is, or customize it as you need. For instance, you might want to change your Grafana password to something more secure and meaningful for you, or you might want to customize some dashboards by adding additional components to monitor.
+{{% /notice %}}
 
 Now, you are ready to launch a cluster with performance monitoring and dashboard visualization enabled! Proceed to the next section.

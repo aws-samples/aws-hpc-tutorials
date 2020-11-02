@@ -1,15 +1,15 @@
 +++
 title = "c. Review the Grafana Dashboards"
 date = 2019-09-18T10:46:30-04:00
-weight = 100
+weight = 30
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards"]
 +++
 
-In this section, you will review the sample Grafana Monitoring Dashboards that are created as part of your cluster
+In this section, you will review the Grafana Monitoring Dashboard that's created as part of your cluster.
 
-After your cluster is created, you can just open a web-browser and connect to head node of your cluster using its public ip (https://your_public_ip/). A landing page will be presented to you with links to the Prometheus database service and the Grafana dashboards.
+After your cluster is created, you can just open a web-browser and connect to head node of your cluster using its public ip. A landing page will be presented to you with links to the Prometheus database service and the Grafana dashboards.
 
-You can obtain the public ip of the head node of your cluster using the **pcluster status** command as follows:
+To get the public ip of the head node of your cluster using the **pcluster status** command as follows:
 
 ```bash
 pcluster status perflab-yourname
@@ -20,7 +20,7 @@ You should see an output similar to the one shown below
 ![ParallelCluster Status](/images/monitoring/pc-head-ip.png)
 
 
-Open a browser (e.g. Chrome or Firefox) and and connect to the head node of your cluster using the public ip address. Click on **GRAFANA DASHBOARDS** on the landing page as shown below
+Open a browser (e.g. Chrome or Firefox) and connect to the head node of your cluster using the public ip address `https://PUBLIC_IP`. Click on **GRAFANA DASHBOARDS** on the landing page as shown below:
 
 ![Grafana Landing](/images/monitoring/grafana-db-landing.png)
 
