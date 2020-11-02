@@ -17,4 +17,4 @@ Now you will configure the timeout for your function, it is the time after which
 4. A new tab will open in your web-browser and point to IAM. You can go back to the previous tab with the Lambda Basic settings and click on **Save**. Then go back to the newly opened tab. We'll work on this one during the next section.
 ![Lambda Create Function](/images/serverless/lambda-create10.png)
 
-Now you will focus on IAM to modify the role for your lambda function in order to add the access rights required it needs to operate.
+Now you will focus on IAM to modify the role for your lambda function in order to add the access rights it needs to operate.

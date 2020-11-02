@@ -16,7 +16,7 @@ In this lab you will combine the following services:
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html) are serverless functions in AWS.
 - [AWS Systems Manager (SSM)](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) to execute the user commands through a secure channel without granting direct SSH access nor exposing the nodes.
 - [Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) provides the API interface to your Lambda Function.
-- [AWS Identity and Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) provide tools to view and control your infrastructure. In the context of this lab, SSM will be used to execute command through a secure channel without exposing the instance to the outside world.
+- [AWS Identity and Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) provides a secure access management of AWS services and resources. You can also manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
 
 
 #### Architecture Diagram

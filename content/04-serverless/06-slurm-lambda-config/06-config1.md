@@ -10,5 +10,5 @@ Environment variables are one way to provide parameters to a Lambda function. Ac
 1. Start by scrolling to the **Environment variables** section of your Lambda Panel, it is located below the *Function code* section.
 2. Click on **Manage environment variables**, then click on **Add environment variables**
 ![Lambda Create Function](/images/serverless/lambda-create5.png)
-3. In the **Key** text box, enter the text `MY_S3_BUCKET`, in the **Value** field add the name of the S3 bucket that as created during [the very first step](/04-serverless/02-serverless-iam/02-iam-policy1.html).
+3. In the **Key** text box, enter the text `MY_S3_BUCKET`, in the **Value** field add the name of the S3 bucket that was created during [the very first step](/04-serverless/02-serverless-iam/02-iam-policy1.html).
 ![Lambda Create Function](/images/serverless/lambda-create6.png)

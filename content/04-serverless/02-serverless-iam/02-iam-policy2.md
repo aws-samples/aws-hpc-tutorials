@@ -5,7 +5,7 @@ weight = 57
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-Now you will create our policy. Let's start by downloading it. This step is not required but allows us to look at what new rights are being granted to our cluster.
+Now you will create your policy. Let's start by downloading it to look at what new rights are being granted to your cluster.
 
 1. Download the CloudFormation template containing the custom policy from the S3 bucket **aws-hpc-workshops** using the command `aws s3` as follows:
     ```bash
@@ -73,7 +73,7 @@ Now you will create our policy. Let's start by downloading it. This step is not 
 
 2. Deploy the CloudFormation template and create the IAM policy
     {{% notice info %}}
-The command above creates a Cloudformation stack as based on the template `serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since you are creating IAM resources you must explicitly acknowledge that our stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
+The command above creates a CloudFormation stack as based on the template `serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since you are creating IAM resources you must explicitly acknowledge that your stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
 {{% /notice %}}
 
     ```bash
@@ -92,7 +92,7 @@ The IAM policy enables access to the S3 bucket created to store the job data and
    The expected command line output should look like:
 ![Lambda Basic Settings](/images/serverless/iam-policy-result.png)
 
-In the next section, you will change your AWS ParallelCluster configuration to add the `pclusterSSM` IAM policy and will apply the modified configuration to your cluster.
+In the next section, you will change your AWS ParallelCluster configuration file to add the `pclusterSSM` IAM policy and will apply the modified configuration to your cluster.
 
 
 <!-- {{% notice tip %}}
