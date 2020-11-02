@@ -13,7 +13,7 @@ You just need to update the **additional_iam_policies** section in the cluster c
 additional_iam_policies=...,arn:aws:iam::aws:policy/AmazonSNSFullAccess
 ```
 
-1. First install a simple utility (**crudini**) to modify/update ini files:
+1. On the Cloud9 instance, install a simple utility (**crudini**) to modify/update ini files:
 
 ```bash
 sudo pip3 install iniparse

@@ -27,7 +27,7 @@ MY_EMAIL_ADDRESS=<your-email-address>
   - Identify your AWS Region using the command below
 
 ```bash
-REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
+REGION=`curl --silent http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
 ```
 
 3. Create the topic using the create-topic command as follows. 

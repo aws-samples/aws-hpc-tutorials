@@ -17,12 +17,12 @@ pcluster status perflab-yourname
 
 You should see an output similar to the one shown below
 
-![ParallelCluster Status](/images/monitoring/pc-head-ip.png)
+![ParallelCluster Status](/images/monitoring/pcluster_status.png)
 
 
 Open a browser (e.g. Chrome or Firefox) and connect to the head node of your cluster using the public ip address `https://PUBLIC_IP`. Click on **GRAFANA DASHBOARDS** on the landing page as shown below:
 
-![Grafana Landing](/images/monitoring/grafana-db-landing.png)
+![Grafana Landing](/images/monitoring/grafana_login.png)
 
 
 Login to the Grafana dashboards using the below username and password

@@ -41,7 +41,7 @@ stress-ng --cpu 4 --timeout 120s --metrics-brief
 
 ### MEMORY STRESS TEST
 
-1. Now, let's stress the memory. Use *mmap N bytes* per VM worker. *mmap* is a utility to create a memory allocation in the process address space. You can specify the size as % of total available memory or in units on *Bytes*, *KBytes*, *MBytes* and *GBytes* using the suffix b, k, m or g:
+1. Now, let's stress the memory. Use *mmap N bytes* per VM worker. *mmap* is a utility to create a memory allocation in the process address space. You can specify the size as % of total available memory or units on *Bytes*, *KBytes*, *MBytes* and *GBytes* using the suffix b, k, m or g:
 
 ```bash
 stress-ng --vm 4 --vm-bytes 1G --timeout 120s --metrics-brief
@@ -49,12 +49,12 @@ stress-ng --vm 4 --vm-bytes 1G --timeout 120s --metrics-brief
 
 2. The `--vm 4` will start 4 workers continuosly calling mmap/munmap and writing to the allocated memory. 
 
-3. The **Memory Basic** in the dashboard should show the utilization of 4GB of physical memory for 2mins (120 secs.) as below:
+3. The **Memory Basic** in the dashboard should show the utilization of 4 GB of physical memory for 2 minutes as below:
 
 ![Grafana Stress Memory](/images/monitoring/grafana-master-stress-memory.png)
 
 
-### DISK I/O STRESS TEST**
+### DISK I/O STRESS TEST
 
 1. Run a simple directory thrashing stress test as below:
 
@@ -75,3 +75,5 @@ stress-ng --cpu 2 --dir 1 --vm 1 --vm-bytes 1G --timeout 120 --metrics-brief
 ```
 
 ![Grafana Stress Disk](/images/monitoring/grafana-master-stress-all.png)
+
+In the next section, you will monitor the performance of the compute nodes in your cluster.

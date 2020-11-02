@@ -1,5 +1,5 @@
 ---
-title: "Performance Monitoring at Scale"
+title: "Performance Monitoring"
 date: 2019-01-24T09:05:54Z
 weight: 400
 pre: "<b>Lab IV ⁃ </b>"
@@ -12,8 +12,8 @@ This lab gives an overview of different methods and tools that can be used to as
 
 The lab is divided in two sections.
 
-- In the first section, you will monitor your HPC Cluster with Prometheus and Grafana using AWS ParallelCluster. 
-- In the second section, you will setup a job notification that informs you when your job completes
+1. In the first section, you will monitor your HPC Cluster with [Prometheus](https://github.com/prometheus/prometheus/), an open-source systems monitoring toolkit, and [Grafana](https://github.com/grafana/grafana), a tool to query and visualize data, using AWS ParallelCluster. 
+2. In the second section, you will setup a job notification that informs you when your job completes.
 
 Architecture Overview:
 ![Monitoring Architecture](/images/monitoring/performance_monitoring_architecture.png)

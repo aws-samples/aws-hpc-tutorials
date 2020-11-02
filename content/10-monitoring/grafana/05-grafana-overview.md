@@ -11,19 +11,19 @@ In this section, you will review the Grafana Monitoring Dashboard that's created
 
 In the welcome page, click on the **Dashboards** button then select **Manage** as shown below
 
-![Grafana Landing](/images/monitoring/grafana-db-db.png)
+![Grafana Landing](/images/monitoring/grafana_manage.png)
 
 In the Dashboards page, you can see 6 different dashboards which can be further customized or used as is:
 
-![Grafana Landing](/images/monitoring/grafana-db-db2.png)
+![Grafana Landing](/images/monitoring/dashboards.png)
 
-Click on each of them to see the detailed monitoring information. Note that some of the dashboards (e.g. Compute Node List, Compute Node Details) will not show any information until a job is launched (since we start with zero compute nodes in our cluster to save costs). 
+Click on each of them to see the detailed monitoring information. Note that some of the dashboards (e.g. Compute Node List, Compute Node Details) will not show any information until a job is launched (since we start with zero compute nodes in our cluster to save costs).
 
 - **ParallelCluster Stats**: This is the main dashboard that shows general monitoring info and metrics for the whole cluster. It includes Slurm metrics and Storage performance metrics.
-![Grafana Landing](/images/monitoring/grafana-db-pc-stats.png)
+![Grafana Landing](/images/monitoring/pcluster_dashboard.png)
 
 - **Master Node Details**: This dashboard shows detailed metric for the Master node, including CPU, Memory, Network and Storage usage.
-![Grafana Landing](/images/monitoring/grafana-db-master.png)
+![Grafana Landing](/images/monitoring/master_details_dashboard.png)
 
 - **Compute Node List**: This dashboard show the list of the available compute nodes. Each entry is a link to a more detailed page.
 
@@ -31,5 +31,5 @@ Click on each of them to see the detailed monitoring information. Note that some
 
 - **Cluster Logs**: This dashboard shows the logs of your HPC Cluster. The logs are pushed by AWS ParallelCluster to AWS ClowdWatch Logs and finally reported here.
 
-- **Cluster Costs**: This dashboard shows the cost associated to every AWS Service utilized by your Cluster. It includes: EC2, EBS, FSx, S3, EFS. This is currently in beta
-![Grafana Landing](/images/monitoring/grafana-db-cluster-cost.png)
+- **Cluster Costs**: This dashboard shows the cost associated to every AWS Service utilized by your Cluster. It includes: EC2, EBS, FSx, S3, EFS.
+![Grafana Landing](/images/monitoring/cost_dashboard.png)

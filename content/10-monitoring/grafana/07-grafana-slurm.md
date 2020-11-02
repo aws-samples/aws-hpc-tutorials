@@ -1,7 +1,7 @@
 +++
-title = "g. Slurm Job Monitoring"
+title = "f. Slurm Job Monitoring"
 date = 2019-09-18T10:46:30-04:00
-weight = 70
+weight = 60
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards", "Slurm"]
 +++
 
@@ -20,10 +20,10 @@ pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 ```bash
 cat > job1.sh << EOF
  #!/bin/bash
- 
  #SBATCH --output=slurm-%j.out
  #SBATCH --nodes=2
  #SBATCH --time=10:00
+
  srun hostname
  srun sleep 60
  EOF
