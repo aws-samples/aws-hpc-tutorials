@@ -29,7 +29,7 @@ git clone https://github.com/pixelb/crudini.git
 4. Update the cluster:
 
 ```bash
-pcluster update perflab-yourname -c my-perf-cluster-config.ini
+pcluster update perflab-yourname -c ~/environment/my-perf-cluster-config.ini
 ```
 
 AWS ParallelCluster will validate the configuration update and ask for confirmation. Type "Y". You should see an output as shown below:

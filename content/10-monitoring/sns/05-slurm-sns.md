@@ -11,7 +11,7 @@ tags = ["tutorial", "Monitoring", "ParallelCluster", "SNS", "Slurm", "Job Notifi
 pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 ```
 
-- Confirm if the **REGION** and **MY_SNS_TOPIC** variables are set. If not please set as follows:
+- Confirm if the `REGION` and `MY_SNS_TOPIC` variables are set. If not please set as follows:
 
 ```bash
 REGION=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}')
@@ -28,7 +28,7 @@ cat > job-sns.sh << EOF
 #SBATCH --time=10:00
 
 srun hostname
-srun sleep 60
+srun sleep 5
 aws sns publish --message "Your ${SLURM_JOB_NAME} with Job ID ${SLURM_JOB_ID} is complete" --topic $MY_SNS_TOPIC --region $REGION
 EOF
 ```
