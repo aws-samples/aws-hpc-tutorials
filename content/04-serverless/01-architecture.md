@@ -5,7 +5,7 @@ weight = 40
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-Here are a few more details on what you will be deploying and the services you will be using.
+A description of the services that will be used in this lab is provided below.
 
 
 #### Services used during this lab
