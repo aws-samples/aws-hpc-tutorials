@@ -5,7 +5,7 @@ weight = 160
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm"]
 +++
 
-Now that you have created the Lambda function, you will add code to transform the HTTP requests to our cluster head - node through the channel offered by AWS Systems Manager(SSM). Let's add the code of the function by following this series of steps:
+Now that you have created the Lambda function, you will add code to transform the HTTP requests to your cluster head node through the channel offered by AWS Systems Manager(SSM). Let's add the code of the function by following this series of steps:
 
 1. On the Lambda Function panel, scroll until you reach the section **Function code**
 ![Lambda Create Function](/images/serverless/lambda-create4.png)

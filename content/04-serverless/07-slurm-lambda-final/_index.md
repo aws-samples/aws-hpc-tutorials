@@ -6,7 +6,7 @@ tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm"]
 +++
 
 {{% notice info %}}
-The IAM changes you are conducting here with the AWS Console can also be using Cloudformation like in [*section b*](/04-serverless/02-iam-policy-serverless.html) or with the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html). There are always multiple options for you to interest with services in the cloud. Feel free to explore them.
+The IAM changes you are conducting here with the AWS Console can also be using AWS CloudFormation like in [*section b*](/04-serverless/02-serverless-iam/02-iam-policy2.html) or with the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html). There are always multiple options for you to interest with services in the cloud. Feel free to explore them.
 {{% /notice %}}
 
 {{% notice warning %}}

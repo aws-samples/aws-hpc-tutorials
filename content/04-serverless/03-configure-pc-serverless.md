@@ -5,12 +5,12 @@ weight = 100
 tags = ["tutorial", "serverless", "ParallelCluster", "IAM"]
 +++
 
-{{% notice info %}}AWS ParallelCluster is an open source cluster management tool to deploy and manage HPC clusters with AWS. If you have not created a cluster, complete the [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further
+{{% notice info %}}AWS ParallelCluster is an open-source cluster management service you can use to deploy and manage HPC clusters in AWS. If you have not created a cluster, complete the section [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) before proceeding further
 {{% /notice %}}
 
-Now that you have deployed a policy to enable our instances to register with AWS Systems Manager (SSM), you need to attach this policy to our instances. Let's start by reusing the the cluster you created during the previous lab. The first step will be to modify the the AWS ParallelCluster config file created earlier to add one setting, then you will reuse this config to update our existing cluster.
+Now that you have deployed a custom IAM policy to enable your instances to register with AWS Systems Manager (SSM), you need to attach this policy to your instances. Let's start by reusing the cluster you created during the previous lab. The first step will be to modify the the AWS ParallelCluster config file created earlier to add one setting, then you will reuse this configuraton file to update your existing cluster.
 
-1. Begin by querying the Amazon Resource Name (ARN) of our newly created policy. This a unique name for each resources residing on your account that can be used as a reference. In our case, the ARN is what you will use to reference the policy in the cluster config.
+1. Begin by querying the Amazon Resource Name (ARN) of your newly created policy. This a unique name for each resources residing on your account that can be used as a reference. In this lab, the ARN is what you will use to reference the IAM policy in the cluster configuration file.
 
    ```bash
    aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text

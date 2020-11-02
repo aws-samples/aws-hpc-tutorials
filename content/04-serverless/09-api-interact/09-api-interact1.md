@@ -5,13 +5,13 @@ weight = 252
 tags = ["tutorial", "serverless", "ParallelCluster", "Lambda", "Slurm", "API Gateway"]
 +++
 
-The list of parameters below are the ones that our Serverless function will be interpreting. The API will just forward the HTTPS calls content as an JSON object to our function.
+The list of parameters below are the ones that your serverless function will be interpreting. The API will just forward the HTTPS calls content as an JSON object to your function.
 
 | Argument     | Description |
 |--------------|---------------------------------------------------------------------------------------------------------------------|
 | `instanceid` | Instance id of the head-node of your cluster.
 | `function` | API function to execute, these are defined in your Lambda function. Accepted values are `list_jobs`, `list_nodes`, `list_partitions`, `job_details` and `submit_job`.
-| `jobscript_location` | Location of a job script to execute, it must be stored on Amazon S3 in our case. It required only when `function=submit_job`.
+| `jobscript_location` | Location of a job script to execute, it must be stored on Amazon S3 in your case. It is required only when `function=submit_job`.
 | `submitopts` | Submission parameters passed to the scheduler. They are optional and can be used when `function=submit_job`.
 
 
@@ -25,7 +25,7 @@ Before interacting with your API you will need to gather some information such a
     ```bash
     aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]| [0].Value,InstanceId,InstanceType, PrivateIpAddress, PublicIpAddress]' --filters Name=instance-state-name,Values=running --output table
     ```
-    Now `export` the environment variable `HEAD_NODE_ID` with the value corresponding to your head-node. This will simplify our future interactions with the API.
+    Now `export` the environment variable `HEAD_NODE_ID` with the value corresponding to your head-node. This will simplify your future interactions with the API.
 
 
 
