@@ -5,7 +5,7 @@ weight = 100
 tags = ["tutorial", "serverless", "ParallelCluster", "IAM"]
 +++
 
-{{% notice info %}}AWS ParallelCluster is an open-source cluster management service you can use to deploy and manage HPC clusters in AWS. If you have not created a cluster, complete the section [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) before proceeding further
+{{% notice info %}}AWS ParallelCluster is an open-source cluster management tool you can use to deploy and manage HPC clusters in AWS. If you have not created a cluster, complete the section [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) before proceeding further
 {{% /notice %}}
 
 Now that you have deployed a custom IAM policy to enable your instances to register with AWS Systems Manager (SSM), you need to attach this policy to your instances. Let's start by reusing the cluster you created during the previous lab. The first step will be to modify the the AWS ParallelCluster config file created earlier to add one setting, then you will reuse this configuraton file to update your existing cluster.
