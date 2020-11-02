@@ -1,5 +1,5 @@
 +++
-title = "b. Build a monitoring enabled HPC Cluster"
+title = "b. Build your HPC cluster"
 date = 2019-09-18T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "create", "ParallelCluster", "Monitoring"]

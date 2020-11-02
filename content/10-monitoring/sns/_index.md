@@ -1,5 +1,5 @@
 ---
-title: "Amazon SNS Notification"
+title: "Optional - Amazon SNS Notification"
 date: 2019-01-24T09:05:54Z
 weight: 270
 tags: ["HPC", "Performance", "Monitoring", "Notification", "SNS"]
