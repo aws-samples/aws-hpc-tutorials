@@ -5,9 +5,9 @@ weight = 57
 tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 +++
 
-Now you will create your policy. Let's start by downloading it to look at what new rights are being granted to your cluster.
+Now you will create your custom IAM policy. To facilitate its creation, a CloudFormation template has been prepared for download and you will examine the different permissions that will be granted to your HPC cluster.
 
-1. Download the CloudFormation template containing the custom policy from the S3 bucket **aws-hpc-workshops** using the command `aws s3` as follows:
+1. Download the CloudFormation template containing the custom IAM policy from the S3 bucket **aws-hpc-workshops** using the command `aws s3` as follows:
     ```bash
     aws s3 cp s3://aws-hpc-workshops/serverless-template.yaml .
     ```
