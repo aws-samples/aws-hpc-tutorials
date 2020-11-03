@@ -1,5 +1,5 @@
 +++
-title = "c. Work with the AWS CLI"
+title = "c. Opt - Work with the AWS CLI"
 weight = 70
 tags = ["tutorial", "cloud9", "aws cli", "s3"]
 +++
@@ -60,4 +60,6 @@ aws ec2 describe-instances
 aws ec2 describe-key-pairs
 ```
 
-Next, you use the AWS CLI to interact with Amazon S3.
+{{% notice warning %}}
+**Please complete Lab I before going through the optional steps.**
+{{% /notice %}}
