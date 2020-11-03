@@ -20,14 +20,12 @@ The list of parameters below are the ones that your serverless function will be 
 Before interacting with your API you will need to gather some information such as the instance ID of your head-node and the API Gateway address you created in the previous section. For that you will need to **open** a terminal on your Cloud9 instance and use the following commands.
 
 
-- **Head-node instance ID**: you will describe the instances using the command below. In the second column you will see a list of IDs, please pick the one corresponding to your head node.
+- **Head-node instance ID**: you will describe the instances using the command below. It will retrieve the ID of instances called Master which corresponds to your head-node.
 
     ```bash
-    aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]| [0].Value,InstanceId,InstanceType, PrivateIpAddress, PublicIpAddress]' --filters Name=instance-state-name,Values=running --output table
+    export HEAD_NODE_ID=$(aws ec2 describe-instances  --query 'Reservations[*].Instances[*].InstanceId' --filters Name=instance-state-name,Values=running Name=tag:Name,Values=Master --output text)
+    echo "Your head-node ID is: ${HEAD_NODE_ID}"
     ```
-    Now `export` the environment variable `HEAD_NODE_ID` with the value corresponding to your head-node. This will simplify your future interactions with the API.
-
-
 
 - **API Gateway address**: to get this information you can run the command below.
 
