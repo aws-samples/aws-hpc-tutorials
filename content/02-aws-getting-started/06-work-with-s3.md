@@ -1,21 +1,21 @@
 +++
-title = "d. Create an S3 Bucket"
+title = "d. Opt - Create an S3 Bucket"
 weight = 80
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
 Now that you have access to the AWS CLI, you can use it to create an S3 bucket, then upload a file to this bucket. You can later use this bucket to load files into Lustre. For more information Amazon S3, see [Amazon Simple Storage Service Documentation](https://docs.aws.amazon.com/s3/index.html).
-Alternatively, you can also perform these steps in the AWS Management Console, but this workshop uses AWS CLI.  
+Alternatively, you can also perform these steps in the AWS Management Console, but this workshop uses AWS CLI.
 
 1. Open a Cloud9 terminal and enter the following command to list existing buckets. (This command may return several or no buckets.)
 ```bash
 aws s3 ls
 ```
-2. Create an S3 bucket with a unique name using the following command. 
+2. Create an S3 bucket with a unique name using the following command.
 
 {{% notice info %}}
 The bucket name must start with **s3://**.
-Choose a random prefix, postfix, or append your name. 
+Choose a random prefix, postfix, or append your name.
 {{% /notice %}}
 
 ```bash
