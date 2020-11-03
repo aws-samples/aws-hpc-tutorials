@@ -14,10 +14,10 @@ The website will be maintained after SC20, labs will also be available on https:
 {{% notice warning %}} **This website will be locked between November 8th 2020 through November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
 {{% /notice %}}
 
-{{% notice tip  %}}
-You can contact us directly before, during and after the conference through this email: sc20tutorial@amazon.com
-{{% /notice %}}
+### Need help?
 
+- **Email**: you can contact us directly before, during and after the conference through this email: sc20tutorial@amazon.com
+- **Gitter**: a Gitter room can be access for the duration of the tutorial which you can use to contact us for advice or help: https://gitter.im/aws-sc20/general
 
 ### Tutorial Content & Resources
 
