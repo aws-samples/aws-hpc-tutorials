@@ -40,8 +40,8 @@ Throughout the tutorial we will be going through the following labs:
 1. [**Lab 0: Environment Prep**](/01-hpc-overview/00-agenda.html): It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system.
 2. [**Lab 1: Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html): You will be lead to create your first HPC system in the Cloud.
 3. [**Lab 2: Serverless Computing**](/04-serverless.html): We will see how to build an API interface and submit jobs on Slurm using a serverless (Lambda) function.
-4. [**Lab 3: Storage Lab**](/04-serverless.html): In this lab you will learn how to build a Lustre file system in the Cloud.
-5. **Lab 4: Performance Monitoring at Scale**: *To be added*
+4. [**Lab 3: Storage Lab**](/04-serverless.html): In this lab you will learn how to build a Lustre file system in the Cloud, no need to hold a PhD in storage for that.
+5. [**Lab 4: Performance Monitoring at Scale**](/10-monitoring.html): This lab gives an overview of different methods and tools that can be used to assess application and infrastructure performance of your HPC cluster in the cloud.
 
 #### Optional Labs
 
