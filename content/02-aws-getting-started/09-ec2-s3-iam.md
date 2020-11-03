@@ -1,5 +1,5 @@
 +++
-title = "g. Create an IAM Role"
+title = "g. Opt - Create an IAM Role"
 weight = 110
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 +++
@@ -32,7 +32,7 @@ Create a role so that your Amazon EC2 instance can access your S3 bucket.
 ![IAM Dashboard](/images/introductory-steps/iam-dashboard.png)
 3. For **Select type of trusted entity**, choose **AWS Service**.
 4. For **Choose the service that will use this role**, choose **EC2**, and then choose **Next: Permissions**.
-5. In the search field, type **S3** and choose the **AmazonS3FullAccess** policy to provide full Amazon S3 access for your Amazon EC2 instance. 
+5. In the search field, type **S3** and choose the **AmazonS3FullAccess** policy to provide full Amazon S3 access for your Amazon EC2 instance.
 6. Choose **Next: Tags** and leave the default settings.
 7. Choose **Next: Review**.
 8. Type a **Role Name**, such as **S3FullAccessForEC2**, then choose **Create Role**.

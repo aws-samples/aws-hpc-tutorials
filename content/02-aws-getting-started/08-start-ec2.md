@@ -1,5 +1,5 @@
 +++
-title = "f. Create an EC2 Instance"
+title = "f. Opt - Create an EC2 Instance"
 weight = 100
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "s3"]
 +++
