@@ -144,6 +144,10 @@ pcluster create my-fsx-cluster -c my-fsx-cluster.ini
 ```
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
+{{% notice info %}}
+Creating your Lustre file-system will some time to provision. In the meantime you can look at the resources being created on your behalf on the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/) page of your AWS Console.
+{{% /notice %}}
+
 #### Connect to Your Cluster
 
 Once created, connect to your cluster.
