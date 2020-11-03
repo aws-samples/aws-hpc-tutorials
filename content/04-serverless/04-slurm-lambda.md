@@ -13,17 +13,11 @@ In this section you will create your first serverless function, in the next sect
 1. First open the AWS Management Console, in **Services**, select **Lambda**. You can use the **Search** field as well.
 
 2. Click on **Create function**.
-
 ![Lambda Create Function](/images/serverless/lambda-create.png)
-
 3. Leave all default settings except for the field **Function name** where you can enter **SlurmFrontEnd** and the field **Runtime**, choose **Python 3.8**.
-
 4. Once done click on **Create function** to create it.
-
 ![Lambda Create Function](/images/serverless/lambda-create2.png)
-
 5. In this panel, you will be presented with an overview of your function and its different settings. In this panel. You can use it to configure which services or API call can trigger your function, layers to embed 3rd party libraries that your function may call, and destinations which in your case will be SSM.
-
 ![Lambda Create Function](/images/serverless/lambda-create3.png)
 
 Let's now go to the next section and add some code to your function.
