@@ -68,8 +68,8 @@ Paste the following commands into your terminal:
 
 ```bash
 # generate a new keypair, remove those lines if you want to use the previous one
-aws ec2 create-key-pair --key-name lab-4-your-key --query KeyMaterial --output text > ~/.ssh/lab-4-key
-chmod 600 ~/.ssh/lab-4-key
+aws ec2 create-key-pair --key-name lab-3-key --query KeyMaterial --output text > ~/.ssh/lab-3-key
+chmod 600 ~/.ssh/lab-3-key
 
 # create the cluster configuration
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
@@ -88,7 +88,7 @@ update_check = false
 sanity_check = true
 
 [cluster default]
-key_name = lab-4-your-key
+key_name = lab-3-key
 vpc_settings = public
 base_os = alinux2
 ebs_settings = myebs
@@ -119,7 +119,7 @@ volume_size = 20
 shared_dir = /lustre
 storage_capacity = 1200
 import_path =  s3://mybucket-${BUCKET_POSTFIX}
-deployment_type = SCRATCH_2f
+deployment_type = SCRATCH_2
 
 [aliases]
 ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
@@ -149,7 +149,7 @@ This cluster generates additional resources for Amazon FSx for Lustre which will
 Once created, connect to your cluster.
 
 ```bash
-pcluster ssh my-fsx-cluster -i ~/.ssh/lab-4-key
+pcluster ssh my-fsx-cluster -i ~/.ssh/lab-3-key
 ```
 
 Next, take a deeper look at the Lustre file system.
