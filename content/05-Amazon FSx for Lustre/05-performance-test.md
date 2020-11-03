@@ -14,16 +14,16 @@ For this test, you use the options listed in the following table.
 
 Option        | Description
 ------------- | -------------
-**-w**        | Benchmark write performances.
-**-r**        | Benchmark read performances.
-**-B**        | Use O_DIRECT to bypass the glibc caching layer and reach the OS and file system directly.
-**-o**        | Benchmark file output path.
-**-a**        | Method to use, POSIX is selected for raw perfs. MPI-IO has data caching and skew the results.
-**-F**        | One file per process if present, shared file if not present. One file per process is the most intense.
-**-Z**        | Changes task ordering to random ordering for readback.
-**-z**        | Access is to random, not sequential, offsets within a file.
-**-i**        | Number of repetitions (use 5 as a good test, stdev should be minimal).
-**-C**        | Reorder tasks: change the task ordering to N+1 ordering for readback. Clients will not read the data they just wrote.
+`-w`          | Benchmark write performances.
+`-r`          | Benchmark read performances.
+`-B`          | Use O_DIRECT to bypass the glibc caching layer and reach the OS and file system directly.
+`-o`          | Benchmark file output path.
+`-a`          | Method to use, POSIX is selected for raw perfs. MPI-IO has data caching and skew the results.
+`-F`          | One file per process if present, shared file if not present. One file per process is the most intense.
+`-Z`          | Changes task ordering to random ordering for readback.
+`-z`          | Access is to random, not sequential, offsets within a file.
+`-i`          | Number of repetitions (use 5 as a good test, stdev should be minimal).
+`-C`          | Reorder tasks: change the task ordering to N+1 ordering for readback. Clients will not read the data they just wrote.
 
 {{% notice tip %}}
 You can find the full list of options for IOR in the [IOR documentation](https://ior.readthedocs.io/en/latest/userDoc/options.html). Do not hesitate to experiment with different parameters.
@@ -89,14 +89,14 @@ We're going to use **mdtest** to evaluate the metadata performance of the Lustre
 
 Option        | Description
 ------------- | -------------
-**-i 5**        | number of iterations the test will run
-**-b 3**        | branching factor of hierarchical directory structure
-**-z 3**        | depth of hierarchical directory structure
-**-I 10**        | number of items per tree node
-**-w 1024**        | number of bytes to write to each file
-**-y**        | sync file after write completion
-**-u**        | unique working directory for each task
-**-d**        | the directory in which the tests will run
+`-i 5`        | number of iterations the test will run
+`-b 3`        | branching factor of hierarchical directory structure
+`-z 3`        | depth of hierarchical directory structure
+`-I 10`       | number of items per tree node
+`-w 1024`     | number of bytes to write to each file
+`-y`          | sync file after write completion
+`-u`          | unique working directory for each task
+`-d`          | the directory in which the tests will run
 
 First create a submission file:
 ```bash
@@ -121,7 +121,7 @@ You'll see the results look like the following:
 
 ```
 -- started at 10/01/2020 04:40:42 --
-  
+
 mdtest-1.9.3 was launched with 72 total task(s) on 2 node(s)
 Command line used: mdtest "-i" "5" "-b" "3" "-z" "3" "-I" "10" "-w" "1024" "-y" "-u" "-d" "/lustre/testdir"
 Path: /lustre
