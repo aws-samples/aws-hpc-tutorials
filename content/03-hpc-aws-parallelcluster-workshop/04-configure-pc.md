@@ -25,10 +25,10 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 For now, paste the following commands in your terminal:
 
 ```bash
-IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
-SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
+export IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
+export SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
+export VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
+export REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
 ```
 ```bash
 cd ~/environment
@@ -49,7 +49,7 @@ vpc_id = ${VPC_ID}
 master_subnet_id = ${SUBNET_ID}
 
 [cluster default]
-key_name = lab-3-your-key
+key_name = pc-intro-key
 base_os = alinux2
 scheduler = slurm
 master_instance_type = c5.xlarge
