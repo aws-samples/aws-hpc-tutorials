@@ -13,10 +13,10 @@ You will now add a new policy by adding in the JSON format. You could use the vi
     aws configure get region
     ```
 
-2. List your Amazon S3 buckets and pick the one you just created:
+2. List your Amazon S3 buckets and pick the one you just created. It should be called `serverless-XYZ` where `XYZ` is a random string.
 
     ```bash
-    aws s3 list-buckets --query "Buckets[].Name"
+    aws s3api list-buckets --query "Buckets[].Name" --output table
     ```
 
 3. Paste the policy below in the JSON editor and do not forget to replace **\<REGION\>** and **\<YOUR-S3-BUCKET-NAME\>** with the values you retrieved earlier. This policy enables your Lambda function to access AWS Systems Manager (SSM).
