@@ -6,4 +6,4 @@ tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
 
-Now you should be familiar with running an HPC system in the Cloud. In the next lab, we will reuse what you have created to build a Serverless API for your cluster.
+Now you should be familiar with running an HPC system in the Cloud.  Do not modify your environment otherwise you will have to rebuild it for the next lab. You will reuse what you have created to build a Serverless API for your cluster.
