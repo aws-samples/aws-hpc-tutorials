@@ -13,38 +13,20 @@ Now that you have deployed a custom IAM policy to enable your instances to regis
 1. Begin by querying the Amazon Resource Name (ARN) of your newly created policy. This a unique name for each resources residing on your account that can be used as a reference. In this lab, the ARN is what you will use to reference the IAM policy in the cluster configuration file.
 
    ```bash
-   aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text
+   CLUSTER_IAM_POLICY=`aws iam list-policies --query 'Policies[?PolicyName==\`pclusterSSM\`].Arn' --output text`
+   echo $CLUSTER_IAM_POLICY
    ```
 
-2. Modify the AWS ParallelCluster configuration file `my-cluster-config.ini` created in the previous lab, it should be located in `~/environment`. Then add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter (just replace `AddThePolicyArnFromCLICommand` here)
+2. Modify the AWS ParallelCluster configuration file `my-cluster-config.ini` created in the previous lab, it should be located in `~/environment`. Then add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter (just replace `AddThePolicyArnFromCLICommand` here). To ease the configuration file editing, you will download and use a python utility named **crudini**.
 
-   ```toml
-   [aws]
-   # your AWS region is already set here
+   ```bash
+   #Clont crudini repository
+   git clone https://github.com/pixelb/crudini
+   #Install dependencies
+   sudo pip install iniparse
 
-   [global]
-   # global config lines
-
-   [cluster default]
-   #...
-   # your cluster section lines
-   # just add the new line below
-   additional_iam_policies=AddThePolicyArnFromCLICommand
-
-   [queue ondemand]
-   # queue config
-
-   [compute_resource ondemand_c5_l]
-   # queue resources config
-
-   [vpc public]
-   # your vpc config
-
-   [ebs myebs]
-   # ebs config
-
-   [aliases]
-   # aliases config
+   #Change the cluster configuration file
+   crudini/crudini --set ~/environment/my-cluster-config.ini "cluster default" additional_iam_policies "$CLUSTER_IAM_POLICY" 
    ```
    {{%expand "Quick shortcut to help you (click to expand)" %}}
    To generate the full line to add in your config file just run this command and copy it to the cluster section
