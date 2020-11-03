@@ -8,7 +8,7 @@ tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards", "B
 In this section, you will run a tool called **stress-ng** on the Cluster Head node and monitor the different metrics in the **Master Node Details** Dashboard.
 
 
-In the AWS Cloud9 terminal login to the head node of your cluster as below:
+In the AWS Cloud9 terminal login to the head node of your cluster as below. Type **yes** when prompted.
 
 ```bash
 pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
@@ -47,7 +47,7 @@ stress-ng --cpu 4 --timeout 120s --metrics-brief
 stress-ng --vm 4 --vm-bytes 1G --timeout 120s --metrics-brief
 ```
 
-2. The `--vm 4` will start 4 workers continuosly calling mmap/munmap and writing to the allocated memory. 
+2. The `--vm 4` will start 4 workers continuosly calling mmap/munmap and writing to the allocated memory.
 
 3. The **Memory Basic** in the dashboard should show the utilization of 4 GB of physical memory for 2 minutes as below:
 
