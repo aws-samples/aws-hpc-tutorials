@@ -30,9 +30,9 @@ Before interacting with your API you will need to gather some information such a
 - **API Gateway address**: to get this information you can run the command below.
 
     ```bash
-    aws apigateway get-rest-apis --query 'items[?name==\`SlurmFrontEndAPI\`].id' --output text
     # let's set an environment variable to help us
-    export API_GATEWAY_ID=$(aws apigateway get-rest-apis --query 'items[?name==\`SlurmFrontEndAPI\`].id' --output text)
+    export API_GATEWAY_ID=$(aws apigateway get-rest-apis --query 'items[?name==`SlurmFrontEndAPI`].id' --output text)
+    echo "Your API Gateway ID is: ${API_GATEWAY_ID}"
     ```
 
 - Now set the `INVOKE_URL` environment variable in your terminal. This will allow you to avoid repeating this URL every time you initiate a command.
