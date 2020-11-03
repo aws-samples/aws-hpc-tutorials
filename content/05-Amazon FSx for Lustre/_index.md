@@ -13,7 +13,7 @@ Amazon FSx for Lustre allows you to build a Lustre file system based with an Ama
 One key advantage of Amazon FSx for Lustre is that you can create a Lustre partition based on the required size or throughput you need. If linked to an Amazon S3 bucket, the size of the Lustre partition can be lesser than the total size of the Amazon S3 bucket. Amazon FSx for Lustre copies the metadata from the objects stored in the bucket, but the actual content or bytes of the files are not retrieved until needed. For more details, see [Using Data Repositories with Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-data-repositories.html).
 
 {{% notice info %}}
-This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop.
+This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections [a. Sign in to the Console](/02-aws-getting-started/03-aws-console-login.html) through [d. Work with the AWS CLI](/02-aws-getting-started/05-start-aws-cli.html) in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop.
 This workshop also requires familiarity with AWS ParallelCluster. If you are not familiar with AWS ParallelCluster, first complete the [AWS ParallelCluster](/03-hpc-aws-parallelcluster-workshop.html) workshop.
 {{% /notice %}}
 
