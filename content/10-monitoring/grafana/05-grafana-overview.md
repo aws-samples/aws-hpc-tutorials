@@ -5,7 +5,7 @@ weight = 40
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards"]
 +++
 
-In this section, you will review the Grafana Monitoring Dashboard that's created as part of your cluster. 
+In this section, you will review the Grafana Monitoring Dashboard that's created as part of your cluster.
 
 ### Grafana Dashboards
 
@@ -17,11 +17,10 @@ In the Dashboards page, you can see 6 different dashboards which can be further 
 
 ![Grafana Landing](/images/monitoring/dashboards.png)
 
-Click on each of them to see the detailed monitoring information. Note that some of the dashboards (e.g. Compute Node List, Compute Node Details) will not show any information until a job is launched (since we start with zero compute nodes in our cluster to save costs). 
+Click on each of them to see the detailed monitoring information. Note that some of the dashboards (e.g. Compute Node List, Compute Node Details) will not show any information until a job is launched (since we start with zero compute nodes in our cluster to save costs).
 
 | Dashboard| Description |
 |--------------------------|-----------------------------|
-| **ParallelCluster Stats** | This is the main dashboard that shows general monitoring info and metrics for the whole cluster. It includes Slurm metrics and Storage performance metrics. |
 | **ParallelCluster Stats** | This is the main dashboard that shows general monitoring info and metrics for the whole cluster. It includes Slurm metrics and Storage performance metrics. |
 | **Master Node Details** | This dashboard shows detailed metric for the Master node, including CPU, Memory, Network and Storage usage. |
 | **Compute Node List** | This dashboard show the list of the available compute nodes. Each entry is a link to a more detailed page. |
