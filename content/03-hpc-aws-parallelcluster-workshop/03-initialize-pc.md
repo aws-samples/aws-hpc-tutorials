@@ -5,10 +5,7 @@ weight = 40
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-
-Typically, to configure AWS ParallelCluster, you use the command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) and then provide the requested information, such as the AWS Region, Scheduler, and EC2 Instance Type.
-
-The following commands generate a new keypair, query the EC2 metadata to get the Subnet ID, VPC ID. These will be used in the next section.
+The following commands generate a new key pair, query the EC2 metadata to get the Subnet ID, VPC ID. These will be used in the next section.
 
 {{% notice info %}}Don't skip this step, creating key-pair step is very important for the later steps, please follow instruction bellow.
 {{% /notice %}}
