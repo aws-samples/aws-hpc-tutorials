@@ -16,7 +16,7 @@ pcluster ssh perflab-yourname -i ~/.ssh/lab-4-key
 
 ### Install the stress-ng tool
 
-**stress-ng** is a stress test tool which is designed to exercise various physical subsystems of a computer system as well as various operating system kernel interfaces. It provides over 240 stress tests including CPU, virtual memory and I/O specific stress tests.
+[**stress-ng**](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) is a stress test tool which is designed to exercise various physical subsystems of a computer system as well as various operating system kernel interfaces. It provides over 240 stress tests including CPU, virtual memory and I/O specific stress tests.
 
 Install the **stress-ng** tool on the head node of your cluster as follows:
 
