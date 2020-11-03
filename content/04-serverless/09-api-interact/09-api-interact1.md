@@ -41,6 +41,6 @@ Before interacting with your API you will need to gather some information such a
     # get the region first
     AWS_REGION=$(aws configure get region)
     # then do an export of INVOKE_URL
-    export INVOKE_URL=https://${API_GATEWAY_ID}.execute-api.${AWS_REGION}.amazonaws.com/slurm
+    export INVOKE_URL=https://${API_GATEWAY_ID}.execute-api.${AWS_REGION}.amazonaws.com/production
     echo "The URL to your API Gateway is ${INVOKE_URL}"
     ```
