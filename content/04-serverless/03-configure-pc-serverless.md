@@ -47,7 +47,7 @@ Now that you have deployed a custom IAM policy to enable your instances to regis
    # aliases config
    ```
 
-3. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal.
+3. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal. You can proceed to the next section, while the cluster is being updated.
 
    ```bash
    pcluster update <your-cluster-name> -c <your-cluster-config>.ini
