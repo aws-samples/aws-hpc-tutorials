@@ -28,12 +28,6 @@ Now that you have deployed a custom IAM policy to enable your instances to regis
    #Change the cluster configuration file
    crudini/crudini --set ~/environment/my-cluster-config.ini "cluster default" additional_iam_policies "$CLUSTER_IAM_POLICY" 
    ```
-   {{%expand "Quick shortcut to help you (click to expand)" %}}
-   To generate the full line to add in your config file just run this command and copy it to the cluster section
-   ```
-   echo "additional_iam_policies=$(aws iam list-policies --query 'Policies[?PolicyName==`pclusterSSM`].Arn' --output text)"
-   ```
-   {{% /expand%}}
 
 3. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal.
 
@@ -49,5 +43,5 @@ To learn more about the AWS ParallelCluster Update Policies see [here](https://d
 {{% /notice %}}
 
 {{% notice info %}}
-For adding new IAM policies in AWS ParallelCluster it is recommended to use **additional_iam_policies** option instead of the **ec2_iam_role**. This is because **additional_iam_policies** are added (appended) to the permissions that AWS ParallelCluster requires, and the **ec2_iam_role** must include [all permissions](https://docs.aws.amazon.com/parallelcluster/latest/ug/iam.html) required for cluster to be created. Typically this last point is used in advanced setups.
+For adding new IAM policies in AWS ParallelCluster it is recommended to use `additional_iam_policies` option instead of the `ec2_iam_role`. This is because `additional_iam_policies` are added (appended) to the permissions that AWS ParallelCluster requires, and the `ec2_iam_role` must include [all permissions](https://docs.aws.amazon.com/parallelcluster/latest/ug/iam.html) required for cluster to be created. Typically this last point is used in advanced setups.
 {{% /notice %}}
