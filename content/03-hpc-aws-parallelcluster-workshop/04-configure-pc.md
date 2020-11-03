@@ -25,16 +25,6 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 For now, paste the following commands in your terminal:
 
 ```bash
-export IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
-export SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-export VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-export REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
-```
-```bash
-cd ~/environment
-```
-
-```bash
 cat > my-cluster-config.ini << EOF
 [aws]
 aws_region_name = ${REGION}
