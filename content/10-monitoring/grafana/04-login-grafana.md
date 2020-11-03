@@ -27,13 +27,13 @@ Open a browser (e.g. Chrome or Firefox) and connect to the head node of your clu
 
 Login to the Grafana dashboards using the below username and password
 
-|               |             |
-|---------------|-------------|
-| **username**: | admin       |
-| **Password**: | Grafana4PC! |
+|   Field       |  Value       |
+|---------------|--------------|
+| **username**: | `admin`      |
+| **Password**: | `Grafana4PC!`|
 
 {{% notice note %}}
-If you modified the username or password in the post_install script when deploying the cluster, use the updated credentials. 
+If you modified the username or password in the post_install script when deploying the cluster, use the updated credentials.
 {{% /notice %}}
 
 ![Grafana Landing](/images/monitoring/grafana-db-login.png)
