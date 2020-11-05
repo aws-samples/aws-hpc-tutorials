@@ -20,13 +20,13 @@ Now you will attach the policy you have created to the role that your Lambda fun
    echo $LAMBDA_IAM_POLICY
    ```
 
-3. Apply the policy to the role. Remember to replace the **slurmAPI-role-XYZ** to your exact name of the role
+3. Apply the policy to the role. Remember to replace the **slurmAPI-role-XYZ** to the exact name of your role
 
    ```bash
    aws iam attach-role-policy --role-name slurmAPI-role-XYZ --policy-arn $LAMBDA_IAM_POLICY
    ```
 
-4. You can confirm the policy attached to the role as shown below. Replace the role name **slurmAPI-role-XYZ** to your exact name of the role. 
+4. You can confirm the policy attached to the role as shown below. Replace the role name **slurmAPI-role-XYZ** to the exact name of your role. 
 
    ```bash
    aws iam list-attached-role-policies --role-name slurmAPI-role-XYZ
