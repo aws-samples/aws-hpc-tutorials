@@ -28,6 +28,3 @@ This workshop includes the following steps:
 1. Create a HPC cluster with performance monitoring dashboards setup using AWS ParallelCluster
 2. Login and review the different dashboards
 3. Interactively monitor different performance metrics with a sample application run
-
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.
-{{% /notice %}}

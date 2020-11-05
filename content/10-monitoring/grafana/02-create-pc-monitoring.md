@@ -7,7 +7,17 @@ tags = ["tutorial", "Monitoring", "ParallelCluster"]
 
 In [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop you learned how to create a HPC Cluster in the Cloud using AWS ParallelCluster. In this section, you will create a HPC cluster with system telemetry that will provide system monitoring and performance dashboard in Grafana.
 
-On your Cloud9 instance, run the following to generate a new key-pair:
+{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Lab Prep**](/02-aws-getting-started.html) workshop.
+{{% /notice %}}
+
+First, let's upgrade the AWS CLI and install AWS ParallelCluster:
+
+```bash
+pip-3.6 install awscli -U --user
+pip-3.6 install aws-parallelcluster -U --user
+```
+
+Then on your Cloud9 instance, run the following to generate a new key-pair:
 
 {{% notice warning %}}Don't skip this step, creating key-pair step is very important for the later steps, please follow instruction below.
 {{% /notice %}}
@@ -52,7 +62,7 @@ For more details about the AWS ParallelCluster pre-install and post-install scri
 
 To setup monitoring and dashboard visualization using Prometheus and Grafana for your cluster we will use a `post_install` script (`grafana-post-install.sh`) that is provided in the **aws-hpc-workshops** S3 bucket. This script sets up custom dashboards and metrics on the cluster. To examine this script, download it from here: https://aws-hpc-workshops.s3.amazonaws.com/grafana-post-install.sh
 
-The following cluster configuration includes a `post_install` script that takes care of installing and configuring the system monitoring and performance dashboard, in addition to the `post_install` script there's `additional_iam_policies`, `post_install_args` and the `security_group` created above. 
+The following cluster configuration includes a *post_install* script that takes care of installing and configuring the system monitoring and performance dashboard, in addition to the *post_install* script there's *additional_iam_policies*, *post_install_args* and the *security_group* created above. 
 
 ```ini
 cat > ~/environment/my-perf-cluster-config.ini << EOF
@@ -89,7 +99,7 @@ disable_hyperthreading = true
 placement_group = DYNAMIC
 
 [compute_resource default]
-instance_type = c5.large
+instance_type = c5.xlarge
 min_count = 0
 max_count = 8
 

@@ -32,6 +32,11 @@ Login to the Grafana dashboards using the below username and password
 | **username**: | `admin`      |
 | **Password**: | `Grafana4PC!`|
 
+{{% notice warning %}}
+If you cannot connect to the Grafana dashboard with an error like **Your connection is not private** switch to firefox and follow [the instructions here](/10-monitoring/grafana/08-grafana-errors.html#self-signed-certificate-warning)
+{{% /notice %}}
+
+
 {{% notice note %}}
 If you modified the username or password in the post_install script when deploying the cluster, use the updated credentials.
 {{% /notice %}}

@@ -9,9 +9,11 @@ During this lab you may encounter warnings and errors, solutions to the most com
 
 #### Self-signed certificate warning
 
-The connection to the dashboards will go through HTTPs using a self-signed certificate. The warning below is displayed in Firefox. Click **Advanced...**, then **Accept the Risk and Continue**.
+If you cannot connect to the Grafana dashboard with an error like **Your connection is not private** switch to firefox and follow the instructions below.
 
-![self-signed warning](/images/monitoring/self-signed-warning.png)
+The connection to the dashboards will go through HTTPs using a self-signed certificate. There's nothing inherently unsafe about this, all it's saying is use caution since the keypair that was used to sign the certificate isn't in the browser's root trust store. For the purposes of the demo we can click **Advanced...**, then **Accept the Risk and Continue**:
+
+![self-signed warning](/images/monitoring/self-signed-certificate.png)
 
 #### Grafana produces an error 502
 
