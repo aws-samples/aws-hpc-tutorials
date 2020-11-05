@@ -5,7 +5,7 @@ weight = 20
 tags = ["tutorial", "create", "ParallelCluster", "Monitoring"]
 +++
 
-In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command [`pcluster create`](https://docs.aws.amazon.com/parallelcluster/latest/ug/pluster.create.html) and the [`--config`](https://docs.aws.amazon.com/parallelcluster/latest/ug/pluster.create.html#pluster.create.namedarg) (or `-c`) option to use another configuration file other than the default one.
+In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command [pcluster create](https://docs.aws.amazon.com/parallelcluster/latest/ug/pluster.create.html) and the [--config](https://docs.aws.amazon.com/parallelcluster/latest/ug/pluster.create.html#pluster.create.namedarg) (or `-c`) option to use another configuration file other than the default one.
 
 {{% notice tip %}}
 If you create your cluster without using the `--config` (or `-c`) option, then AWS ParallelCluster uses the default configuration with the minimum requirements to get a cluster running. For example, the default configuration for head and compute nodes is *t2.micro* instances instead of *c5.xlarge*.
