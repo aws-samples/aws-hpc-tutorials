@@ -7,7 +7,7 @@ tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 
 Go back to your AWS Cloud9 terminal as you will update the AWS Lambda created execution role using the AWS CLI
 
-You will first create a new policy document with the required permissions and apply that to the role. Before you do that you will need to have the ID of the current AWS region and the name of the S3 bucket previously created. If you don't remember those you can run the commands below in your AWS Cloud9 terminal.
+You will first create a new IAM policy document with the required permissions and apply that to the role. Before you do that you will need to have the ID of the current AWS region and the name of the S3 bucket previously created. If you don't remember those you can run the commands below in your AWS Cloud9 terminal.
 
 1. Retrieve the current AWS region ID:
 
@@ -23,7 +23,7 @@ You will first create a new policy document with the required permissions and ap
     aws s3api list-buckets --query "Buckets[].Name" --output table
     ```
 
-3. Set the following variable with your S3 bucket name
+3. Set the following variable with your S3 bucket name. Remember to replace the **\<your-s3-bucket-name\>** with the exact name of your bucket.
 
    ```bash
    export MY_S3_BUCKET=<your-s3-bucket-name>
