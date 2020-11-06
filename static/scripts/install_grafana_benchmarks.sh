@@ -9,14 +9,13 @@ wget https://github.com/hpcg-benchmark/hpcg/archive/master.zip
 unzip master.zip
 hpcg-master/configure Linux_MPI
 module load openmpi/4.0.3
-make -j 2
+make -j
 
 # get IOR
 cd $HOME
 mkdir -p /shared/ior
-git clone https://github.com/hpc/ior.git
+git clone -b io500-sc19 https://github.com/hpc/ior.git
 cd ior
-git checkout io500-sc19
 
 # load intelmpi
 module load intelmpi
@@ -24,7 +23,7 @@ module load intelmpi
 # install
 ./bootstrap
 ./configure --with-mpiio --prefix=/shared/ior
-make -j 2
+make -j
 sudo make install
 
 # set the environment
