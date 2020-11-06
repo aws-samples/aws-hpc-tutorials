@@ -10,7 +10,7 @@ Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC 20 that wi
 The website will be maintained after SC20, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference. No pre-work is necessary before the start of the tutorial.
 
 {{% notice tip %}}
-**Your feedback is important for us to improve this tutorial. Please rate us here: https://bit.ly/sc20cloud.**
+**Your feedback is important to make this tutorial even better. Please rate us here: https://bit.ly/sc20cloud.**
 {{% /notice %}}
 
 
