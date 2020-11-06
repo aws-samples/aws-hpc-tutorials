@@ -22,7 +22,6 @@ Next, create a submit file. You run over 8 nodes with a single core on each node
 cat > hpcg.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=hpcg-job
-#SBATCH --ntasks-per-node=1
 #SBATCH --nodes=8
 #SBATCH --output=hpcg-run.out
 
@@ -69,7 +68,6 @@ cd $HOME
 cat > ior.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=ior-job
-#SBATCH --ntasks-per-node=1
 #SBATCH --nodes=8
 #SBATCH --output=ior-run.out
 
@@ -93,10 +91,20 @@ Final Summary::Reference version of ComputeDotProduct used=Performance results a
 Final Summary::Reference version of ComputeSPMV used=Performance results are most likely suboptimal
 Final Summary::Reference version of ComputeMG used=Performance results are most likely suboptimal
 Final Summary::Reference version of ComputeWAXPBY used=Performance results are most likely suboptimal
-Final Summary::Results are valid but execution time (sec) is=240.78
+Final Summary::Results are valid but execution time (sec) is=156.78
 Final Summary::Official results execution time (sec) must be at least=1800
 ```
 
 You'll notice run time is longer. To diagnose the cause, take a look at the **Compute Node Details** Dashboard. 
 
-![Compute Node Details](/images/monitoring/hpcg-load.png)
+Now navigate to the **Compute Node Details**, you'll see **IOR** stressed the network with spikes looking like:
+
+![IOR Network](/images/monitoring/ior-network-traffic.png)
+
+But did not stress the CPU:
+
+![IOR Network](/images/monitoring/ior-cpu-basic.png)
+
+Now if we take a look at **HPCG**, we see it's a more of a constant load on the network with less spikiness. 
+
+![IOR Network](/images/monitoring/hpcg-bandwidth.png)
