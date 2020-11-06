@@ -5,7 +5,7 @@ weight = 80
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards"]
 +++
 
-In this section you run [High Performance Conjugate Gradients](https://www.hpcg-benchmark.org/) (HPCG) Benchmark, a benchmark that stresses CPU and memory access patterns of the cluster. The first run will be used to establish a baseline performance target, then on the second run you add in another benchmark that stresses a different part of the system and review the monitoring dashboard to find the bottleneck.
+In this section you run [High Performance Conjugate Gradients](https://www.hpcg-benchmark.org/) (HPCG) Benchmark, a benchmark that stresses memory access patterns and interconnect of the cluster. The first run will be used to establish a baseline performance target, then on the second run you add in another benchmark that stresses a different part of the system and review the monitoring dashboard to find the bottleneck.
 
 ### Install HPCG
 
@@ -16,7 +16,7 @@ wget https://aws-hpc-workshops.s3.amazonaws.com/install_grafana_benchmarks.sh
 bash install_grafana_benchmarks.sh
 ```
 
-Next, we'll create a submit file. You run over 8 nodes with a single core on each node. This establishes our baseline run:
+Next, create a submit file. You run over 8 nodes with a single core on each node. This establishes your baseline run:
 
 ```bash
 cat > hpcg.sbatch << EOF
@@ -38,11 +38,12 @@ sbatch hpcg.sbatch
 squeue -i 2
 ```
 
-First it'll go into **CF**, configuring, state. After about 3 minutes it'll go into **R**, running, state.
+Once the job submitted it will be placed in a configuring state, noted **CF** in the `squeue` output. After a couple of minutes, the job will change to a running state, noted **R**.
 
 ![HPCG Submit](/images/monitoring/hpcg.png)
 
-After it completes review the timing information in `HPCG-Benchmark_3.1_2020-[date].txt`. It'll look like this:
+
+After the job completes, the HPCG output is stored in the `HPCG-Benchmark_3.1_2020-[date].txt` file that contains the timing information, scroll to the bottom and you'll see:
 
 ```txt
 Final Summary::HPCG result is VALID with a GFLOP/s rating of=9.48102
@@ -55,13 +56,13 @@ Final Summary::Results are valid but execution time (sec) is=160.038
 Final Summary::Official results execution time (sec) must be at least=1800
 ```
 
-Take note of `execution time (sec) is=160.038`.
+Take note of `execution time (sec) is=160.038`, that will be your baseline performance.
 
 ### Test with IOR
 
-In the previous script we installed two benchmarks, HPCG to stress the compute and network, and also IOR to stress the filesystem. What happens when we run them both?
+In the previous script we installed two benchmarks, HPCG to stress the memory and network, and also IOR to stress the filesystem. What happens when we run them both at the same time?
 
-To test that, first create a submit script:
+Let's create a Slurm submit script to run IOR:
 
 ```bash
 cd $HOME
