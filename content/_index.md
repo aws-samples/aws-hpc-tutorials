@@ -9,9 +9,21 @@ draft: false
 Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC 20 that will be delivered on November 9th 2020 and November 11th 2020. We are excited to virtually meet you, and look forward to answering your questions!
 The website will be maintained after SC20, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference. No pre-work is necessary before the start of the tutorial.
 
+{{% notice tip %}}
+**Your feedback is important for us to improve this tutorial. Please rate us here: https://bit.ly/sc20cloud.**
+{{% /notice %}}
+
+
 ### Important Information & Updates
 
 {{% notice warning %}} **This website will be locked between November 8th 2020 through November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
+{{% /notice %}}
+
+{{% notice note %}} For the tutorial recordings delivered on the **APJ timezone**, please use [**Gitter**](https://gitter.im/aws-sc20/general) to for questions or support during the tutorial
+{{% /notice %}}
+
+{{% notice tip %}}
+**Lab accounts** credentials can be requested by contacting us at sc20tutorial@amazon.com.
 {{% /notice %}}
 
 ### Need help?
