@@ -5,15 +5,17 @@ draft: false
 weight: 40
 ---
 
-{{% notice info %}}
+{{% notice warning %}}
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 {{% /notice %}}
 
-The AWS SC20 Tutorial team can access your account to troubleshoot you if you encounter any issue when going through the labs. Do not hesitate to ask questions if you need any help.
+The AWS SC20 Tutorial team can access your account to troubleshoot you if you encounter any issue when going through the labs. Do not hesitate to ask questions on [**Gitter**](https://gitter.im/aws-sc20/general) if you need any help.
 
 ##### Step 1
 
-We will communicate how you can get your credentials during the tutorial as well as in the intro slides and **on this page during the tutorial**.
+{{% notice tip %}}
+Credentials for you lab can be requested by contacting us at sc20tutorial@amazon.com.
+{{% /notice %}}
 
 ##### Step 2
 
@@ -31,3 +33,6 @@ Click **AWS Console Login**, then on the following popup click on the link **Ope
 
 ![Event Engine AWS Console](/images/sc20/event-engine-aws-console.png)
 
+{{% notice warning %}}
+Do not forget to run in the Nothern Virginia region (us-east-1). We can connect into your account if you need help during the tutorial.
+{{% /notice %}}
