@@ -1,5 +1,5 @@
 +++
-title = "d. Review the Grafana Dashboards"
+title = "d. Review the grafana dashboards"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards"]
