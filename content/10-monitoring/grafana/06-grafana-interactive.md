@@ -1,5 +1,5 @@
 +++
-title = "e. Interactive Dashboard Monitoring"
+title = "e. Interactive dashboard monitoring"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "Grafana", "ParallelCluster", "Monitoring", "Dashboards", "Benchmark"]
