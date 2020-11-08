@@ -5,12 +5,12 @@ weight = 100
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-We have sucessfully built your cluster and ran your first MPI job.
+We have successfully built your cluster and ran your first MPI job.
 
-Let's say you want to change your instance type to a different instance type in your compute fleet for example **c4.large** . In this lab, we will learn how to update your cluster with new instance type.
+Let's say you want to change your instance type to a different instance type in your compute fleet for example **c5.large** . In this lab, we will learn how to update your cluster with new instance type.
 
 
-Go back to your AWS Cloud9 environment, and stop the cluster
+Go back to your AWS Cloud9 environment by typing `exit` in your terminal, and stop the cluster.
 
 ```bash
 pcluster list
@@ -23,7 +23,7 @@ pcluster stop hpclab-yourname
 Edit your original config file and change `instance_type = c4.large`
 
 ```bash
-vi my-cluster-config.ini 
+vi my-cluster-config.ini
 ```
 
 ```bash
@@ -39,7 +39,7 @@ Then run a **pcluster update** command
 pcluster update hpclab-yourname -c my-cluster-config.ini
 ```
 
-Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this. 
+Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this.
 
 
 ![ParallelCluster Update](/images/hpc-aws-parallelcluster-workshop/pc-update.png)
@@ -57,8 +57,8 @@ you can see that the cluster compute node has changed to c4.large
 
 ```bash
 [ec2-user@ip-172-31-39-157 ~]$ sinfo
-PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST 
-compute*     up   infinite      8  idle~ compute-dy-c4large-[1-8] 
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+compute*     up   infinite      8  idle~ compute-dy-c4large-[1-8]
 ```
 
 Now you have a better understanding on how AWS ParallelCluster operates. For more information, see the [Configuration](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html) section of the *AWS ParallelCluster User Guide*.
