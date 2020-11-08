@@ -10,13 +10,13 @@ You began interacting with the API to list jobs and partitions. Let's take this 
 1. Run the following command to submit, compile and run HPCG.
 
      ```bash
-     curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=submit_job&jobscript_location=aws-hpc-workshops/run-hpcg.sh" -H 'submitopts: --job-name=HPCG --partition=ondemand'
+     curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=submit_job&jobscript_location=aws-hpc-workshops/run-hpcg.sh" -H 'submitopts: --job-name=HPCG --partition=compute'
      ```
 
 2. Once the job is submitted, you should see a message indicating that it has been submitted to Slurm and with its corresponding Job ID. List the jobs using the `list_jobs` function to check its status.
 
       ```bash
-      curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=list_jobs"
+      curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=list_jobs"
       ```
    {{% notice info %}}
    The job script `run-hpcg.sh`  downloads and compiles the HPCG benchmark and then submits another batch job to run it. When you list jobs after a few mins as above you will notice another job submitted for the HPCG run (check the Job IDs)
@@ -26,7 +26,7 @@ You began interacting with the API to list jobs and partitions. Let's take this 
 3. To get more details about your job, use the function `job_details` while replacing the `<JOB-ID>` string with the ID of your HPCG job.
 
       ```bash
-      curl -s POST "${INVOKE_URL}/slurm?instanceid=${INSTANCE_ID}&function=job_details&jobid=<JOB-ID>" # Specify the JobId in the <JOB-ID> field
+      curl -s POST "${INVOKE_URL}/slurm?instanceid=${HEAD_NODE_ID}&function=job_details&jobid=<JOB-ID>" # Specify the JobId in the <JOB-ID> field
       ```
 
 4. You should see a result similar to the one below
