@@ -81,7 +81,7 @@ Now, submit your fist job!
 
 Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist.
 
-However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached, no additional instances will be created.
+However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached (8 in this lab), no additional instances will be created.
 
 Submit your first job using the following command on the head node:
 
@@ -89,7 +89,7 @@ Submit your first job using the following command on the head node:
 sbatch submission_script.sbatch
 ```
 
-Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
+Check the status of the queue using the command **squeue**. The job will be first marked as Configuring (*CF* state) because resources are being created. If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
 
 ```bash
 squeue
