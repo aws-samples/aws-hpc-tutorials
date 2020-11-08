@@ -91,7 +91,7 @@ In the previous script we installed both **IOR** and **HPCG**. You will run both
     Final Summary::Official results execution time (sec) must be at least=1800
     ```
 
-4. You will notice run time is longer which is expected. Take a look at the **Compute Node Details** dashboard and you will see **IOR** stressed the network with spikes looking like.
+4. What did you notice about the performance of both benchmarks? Take a look at the **Compute Node Details** dashboard and you will see **IOR** stressed the network with spikes looking like.
 ![IOR Network](/images/monitoring/ior-network-traffic.png)
 
 5. But did not stress the CPU:
