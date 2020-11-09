@@ -4,6 +4,10 @@ weight = 100
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "s3"]
 +++
 
+{{% notice warning %}}
+These steps are optional and if you have extra time. Please consider moving to Lab I.
+{{% /notice %}}
+
 In this section, you create an SSH key-pair on your AWS Cloud9 instance, create an Amazon EC2 instance, then access it.
 
 #### Generate an SSH Key-pair
@@ -84,6 +88,10 @@ ping www.wikipedia.org
 You now have an functional instance that can communicate with the outside world! Continue to the next section to see what else you can do.
 
 ![EC2 SSH](/images/introductory-steps/ec2-ssh.png)
+
+{{% notice warning %}}
+Don't forget to log out of your instance using ctrl-D or `exit`.
+{{% /notice %}}
 
 #### Troubleshooting Instance Connections
 

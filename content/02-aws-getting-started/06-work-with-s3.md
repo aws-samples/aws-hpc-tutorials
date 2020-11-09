@@ -4,6 +4,10 @@ weight = 80
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
+{{% notice warning %}}
+These steps are optional and if you have extra time. Please consider moving to Lab I.
+{{% /notice %}}
+
 Now that you have access to the AWS CLI, you can use it to create an S3 bucket, then upload a file to this bucket. You can later use this bucket to load files into Lustre. For more information Amazon S3, see [Amazon Simple Storage Service Documentation](https://docs.aws.amazon.com/s3/index.html).
 Alternatively, you can also perform these steps in the AWS Management Console, but this workshop uses AWS CLI.
 
