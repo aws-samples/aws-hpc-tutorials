@@ -4,6 +4,10 @@ weight = 70
 tags = ["tutorial", "cloud9", "aws cli", "s3"]
 +++
 
+{{% notice warning %}}
+These steps are optional and if you have extra time. Please consider moving to Lab I.
+{{% /notice %}}
+
 Your AWS Cloud9 Environment should be ready. Now, you can become familiar with the environment, learn about the AWS CLI, and then create an Amazon S3 bucket with the AWS CLI. This S3 bucket is used in the next module.
 
 #### AWS Cloud9 IDE Layout
