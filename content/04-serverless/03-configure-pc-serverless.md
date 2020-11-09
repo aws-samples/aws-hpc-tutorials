@@ -17,7 +17,7 @@ Now that you have deployed a custom IAM policy to enable your instances to regis
    echo $CLUSTER_IAM_POLICY
    ```
 
-2. Modify the AWS ParallelCluster configuration file `my-cluster-config.ini` created in the previous lab, it should be located in `~/environment`. Then add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter (just replace `AddThePolicyArnFromCLICommand` here). To ease the configuration file editing, you will download and use a python utility named **crudini**.
+2. Modify the AWS ParallelCluster configuration file `my-cluster-config.ini` created in the previous lab, it should be located in `~/environment`. Then add the line `additional_iam_policies` in the cluster section of the config file, don't forget to set the ARN of the new IAM as a parameter. To ease the configuration file editing, you will download and use a python utility named **crudini** as shown below.
 
    ```bash
    #Clont crudini repository
@@ -29,7 +29,10 @@ Now that you have deployed a custom IAM policy to enable your instances to regis
    crudini/crudini --set ~/environment/my-cluster-config.ini "cluster default" additional_iam_policies "$CLUSTER_IAM_POLICY"
    ```
 
-3. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal. You can proceed to the next section, while the cluster is being updated. Don't forget to replace **hpclab-yourname** by your cluster name and **my-cluster-config.ini** by the name of your configuration file.
+3. If you `cat my-cluster-config.ini`, the updated configuration file should look like as shown below
+![Serverless IAM Policy Update](/images/serverless/iam-policy-update-config.png)
+
+4. Update your existing cluster and apply the new policy by running the command below in your Cloud9 terminal. You can proceed to the next section, while the cluster is being updated. Don't forget to replace **hpclab-yourname** by your cluster name and **my-cluster-config.ini** by the name of your configuration file.
 
    ```bash
    pcluster update hpclab-yourname -c my-cluster-config.ini

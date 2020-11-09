@@ -7,7 +7,7 @@ tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 Now you will attach the policy you have created to the role that your Lambda function assumes.
 
 
-1. You will need the name of the default execution role created by AWS Lambda shown in [**section f**](/04-serverless/06-slurm-lambda-config/06-config2.html). You can get the name of this role using the AWS CLI as shown below. It should be called slurmAPI-role-XYZ where XYZ is a random string
+1. You will need the name of the default execution role created by AWS Lambda shown in [**section f**](/04-serverless/06-slurm-lambda-config/06-config2.html). You can get the name of this role using the AWS CLI as shown below. It should be called SlurmFrontEnd-role-XYZ where XYZ is a random string
 
    ```bash
    aws iam list-roles --query "Roles[*].[RoleName]" --output=text | grep "SlurmFrontEnd-role"
@@ -20,11 +20,23 @@ Now you will attach the policy you have created to the role that your Lambda fun
    echo $LAMBDA_IAM_POLICY
    ```
 
-3. Apply the policy to the role. Remember to replace the **slurmAPI-role-XYZ** to the exact name of your role
+3. Apply the policy to the role. Remember to replace the **SlurmFrontEnd-role-XYZ** to the exact name of your role
 
    ```bash
    aws iam attach-role-policy --role-name SlurmFrontEnd-role-XYZ --policy-arn $LAMBDA_IAM_POLICY
    ```
+
+     {{%expand "If you run into a security token error, expand the below to see how to fix it" %}}
+
+   Copy the AWS credentials information from Event Engine AWS Console login page as shown below
+
+   ![Event Engine](/images/serverless/event-engine-creds.png)
+    
+   Paste the credentials information copied above in your AWS Cloud9 Terminal. 
+
+   Once done re-try the above step of applying the LAMBDA_IAM_POLICY to the LAMBDA IAM role.
+
+    {{% /expand%}}
 
 4. You can confirm the policy attached to the role as shown below. Replace the role name **SlurmFrontEnd-role-XYZ** to the exact name of your role.
 
