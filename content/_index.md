@@ -46,8 +46,8 @@ Before and during the tutorial you may be interested in going through the follow
 The last version of the Tutorial slides can be found below:
 
 - [**Presentations**](https://sc20slides.s3.amazonaws.com/SC20Tutorial-AWS-BestPracticesForHPCInTheCloud.pdf)
-- [**Lab I**](https://sc20slides.s3.amazonaws.com/SC20-HPConCloud-lab1.pdf)
-- [**Lab II**](https://sc20slides.s3.amazonaws.com/SC20-serverless-lab2.pdf)
+- [**Lab 1**](https://sc20slides.s3.amazonaws.com/SC20-HPConCloud-lab1.pdf)
+- [**Lab 2**](https://sc20slides.s3.amazonaws.com/SC20-serverless-lab2.pdf)
 
 #### SC20 Hands-on Labs
 
