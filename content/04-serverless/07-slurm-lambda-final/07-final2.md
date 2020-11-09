@@ -40,8 +40,8 @@ You will first create a new IAM policy document with the required permissions an
         "Effect": "Allow",
         "Action": ["ssm:SendCommand"],
         "Resource": [
-          "arn:aws:ec2:$REGION:*:instance/*",
-          "arn:aws:ssm:$REGION::document/AWS-RunShellScript",
+          "arn:aws:ec2:$AWS_REGION:*:instance/*",
+          "arn:aws:ssm:$AWS_REGION::document/AWS-RunShellScript",
           "arn:aws:s3:::$MY_S3_BUCKET/ssm"]
     }, {
         "Effect": "Allow",
