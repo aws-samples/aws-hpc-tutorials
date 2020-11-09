@@ -49,7 +49,7 @@ sbatch job2.sh
 - Now, navigate to the **Compute Node Details** Dashboard. Since we ran a network bandwidth test on 2 compute nodes, we monitor the network traffic on both compute nodes.
 
   {{% notice note %}}
-  We are running on *c5.large* compute nodes which can deliver a network bandwidth of upto 10 Gbps. you can see this from the
+  We are running on *c5.large* compute nodes which can deliver a network bandwidth of upto 10 Gbps. you can see this in the **Network Traffic** stats in the **Compute Node Details** dashboard
   {{% /notice %}}
 
 ![Grafana Compute Stats](/images/monitoring/grafana-compute-node-details-1.png)

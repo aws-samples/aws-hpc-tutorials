@@ -33,7 +33,7 @@ Login to the Grafana dashboards using the below username and password
 | **Password**: | `Grafana4PC!`|
 
 {{% notice warning %}}
-If you cannot connect to the Grafana dashboard with an error like **Your connection is not private** switch to firefox and follow [the instructions here](/10-monitoring/grafana/08-grafana-errors.html#self-signed-certificate-warning)
+If you cannot connect to the Grafana dashboard with an error like **Your connection is not private** switch to firefox and follow [the instructions here](/10-monitoring/grafana/10-grafana-errors.html#self-signed-certificate-warning)
 {{% /notice %}}
 
 
