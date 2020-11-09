@@ -3,7 +3,7 @@
 
 Collection of workshops to demonstrate best practices in using Amazon Web Service High Perfomance Computing (HPC) components.
 
-### https://hpcworkshops.com
+### https://sc20.hpcworkshops.com
 
 ## Building the Workshop site
 

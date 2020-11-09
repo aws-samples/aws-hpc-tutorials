@@ -39,7 +39,9 @@ Then run a **pcluster update** command
 pcluster update hpclab-yourname -c my-cluster-config.ini
 ```
 
-Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this.
+Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this. 
+
+Type **Y** to accept and proceed with the update
 
 
 ![ParallelCluster Update](/images/hpc-aws-parallelcluster-workshop/pc-update.png)

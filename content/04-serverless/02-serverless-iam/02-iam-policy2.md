@@ -73,7 +73,7 @@ Now you will create your custom IAM policy. To facilitate its creation, a CloudF
 
 2. Deploy the CloudFormation template and create the IAM policy
     {{% notice info %}}
-The command above creates a CloudFormation stack as based on the template `serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since you are creating IAM resources you must explicitly acknowledge that your stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
+The command below creates a CloudFormation stack as based on the template `serverless-template.yaml`. The policy name is specified in the template file. The `--stack-name` argument takes a unique name that will be associated with the stack on your account. The `--parameters` option specify the input parameters for the stack (here we pass `S3Bucket` as the key and name of the S3 Bucket as the Value). Furthermore, since you are creating IAM resources you must explicitly acknowledge that your stack template contains `--capabilities`. You could use the *AWS Console* to create this stack too.
 {{% /notice %}}
 
     ```bash

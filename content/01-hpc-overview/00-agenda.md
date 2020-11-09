@@ -29,5 +29,5 @@ You will find here the agenda for the tutorial. An update will be made on Novemb
 | *Lab + Q&A*    |  | Storage Lab                                           | Sean Smith            |
 | 30 Min Break | --------------    | -----------------------------------                                 | --------------------- |
 | Talk         | 12:00 - 1:30 PM | Deep Dive III: Performance Optimization and Monitoring in the Cloud | Stephen Sachs         |
-| *Lab + Q&A*   |   | Performance Monitoring at Scale            | Karthik Raman         |
+| *Lab + Q&A*   |   | Performance Monitoring at Scale            | Sean Smith         |
 | Closing      |   | Summary and Q&A                                                     | Pierre-Yves Aquilanti |
