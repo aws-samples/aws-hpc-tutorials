@@ -7,6 +7,12 @@ tags = ["tutorial", "IAM", "ParallelCluster", "Serverless"]
 
 Let's start by creating a new S3 bucket.
 
+To make sure you're on the **Cloud9** instance and not the cluster we created earlier, run:
+
+```bash
+if [ -d /etc/parallelcluster/ ]; then exit; fi
+```
+
 1. As for the previous lab, in the AWS Management Console search bar, type and select **Cloud9**.
 2. Choose **open IDE** for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
 3. If you have a terminal readily available on your Cloud9 IDE, use it. Otherwise, click on the menu **Window** in Cloud9's top bar then select **New Terminal**
