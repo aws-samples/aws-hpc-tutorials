@@ -103,7 +103,7 @@ First create a submission file:
 cd ~
 cat > mdtest_submission.sbatch << EOF
 #!/bin/bash
-#SBATCH -n 72
+#SBATCH -n 16
 
 module load intelmpi ior-3.2.1-gcc-7.3.1-67itedc
 mpirun mdtest  -i 5 -b 3 -z 3 -I 10 -w 1024 -y -u -d /lustre/testdir
@@ -112,10 +112,10 @@ EOF
 
 Then submit the job:
 ```bash
-sbatch ior_submission.sbatch
+sbatch mdtest_submission.sbatch
 ```
 
-You can monitor the job's progress by running `squeue`. Once it's completed, gone into `C` state. The ouput will be written to a file: `mdtest_submission.sbatch.o[job_id]`
+You can monitor the job's progress by running `squeue`. Once it's completed the ouput will be written to a file: `mdtest_[job_id].out`
 
 You'll see the results look like the following:
 

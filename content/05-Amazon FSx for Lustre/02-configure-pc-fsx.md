@@ -107,7 +107,6 @@ s3_read_resource = arn:aws:s3:::*
 
 [queue compute]
 compute_resource_settings = default
-disable_hyperthreading = true
 placement_group = DYNAMIC
 
 [compute_resource default]
