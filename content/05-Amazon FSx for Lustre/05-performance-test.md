@@ -32,7 +32,7 @@ You can find the full list of options for IOR in the [IOR documentation](https:/
 Verify that IOR is installed correctly by running the command `ior` in your terminal. First you'll need to load the `intel-mpi` and `ior` modules:
 
 ```bash
-module load intelmpi ior-3.2.1-gcc-7.3.1-67itedc
+module load intelmpi
 ior
 ```
 
@@ -57,7 +57,7 @@ cat > ior_submission.sbatch << EOF
 #SBATCH --ntasks=16
 #SBATCH --output=%x_%j.out
 
-module load intelmpi ior-3.2.1-gcc-7.3.1-67itedc
+module load intelmpi 
 mpirun ior -w -r -o=/lustre/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
 EOF
 ```
@@ -70,7 +70,7 @@ cd ~
 sbatch ior_submission.sbatch
 ```
 
-The IOR output is written to an **.out** file. If you want, you can use **tail -f** to view the file as it is written. However, remember that since you have 0 compute nodes present on your cluster, it may take up to 1 minute  for instances to be created then register with the cluster. You can check the status of the instances on the [EC2 Dashboard](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:sort=instanceState) in the AWS Management Console. After the instances are created and registered, the IOR job will be processed.
+The IOR output is written to an **.out** file. If you want, you can use **tail -f** to view the file as it is written. However, remember that since you have 0 compute nodes present on your cluster, it may take a few minutes for instances to be created then register with the cluster. You can check the status of the instances on the [EC2 Dashboard](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:sort=instanceState) in the AWS Management Console. After the instances are created and registered, the IOR job will be processed.
 
 You should see a result similar to the following image. In this example, you see 1 GB/s performance, which is not too far from the [720 MB/s](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) offered by Amazon FSx for Lustre.
 

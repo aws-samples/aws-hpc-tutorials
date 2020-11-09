@@ -50,7 +50,8 @@ The cluster configuration that you generate for Amazon FSx for Lustre includes t
 
 - Scratch Lustre partition of 1.2 TB; using the Amazon S3 bucket created previously as the import and export path.
   - There are two primary deployment options for Lustre, scratch or persistent. Scratch is best for temporary storage and shorter-term processing of data. There are two deployment options for Scratch, SCRATCH_1 and SCRATCH_2. SCRATCH_1 is the default deployment type. SCRATCH_2 is the latest generation scratch filesystem, and offers higher burst throughput over baseline throughput and also in-transit encryption of data.
-- Set head node and compute nodes as [c5 instances](https://aws.amazon.com/ec2/instance-types/c5/). **C5** is the latest generation of compute-optimized instances. The head node has 4 vcpus and 8 GB of memory, perfect for scheduling jobs and compiling code. The compute instances have 72 vcpus and 144 GB of memory, perfect for compute intensive applications.
+- Set head node and compute nodes as [c5 instances](https://aws.amazon.com/ec2/instance-types/c5/). **c5** is the latest generation of compute-optimized instances. For this lab we will use c5.xlarge instance type for both head node and compute node which has 4 vcpus and 8 GB of memory. In production, you will want to use a smaller instance type (e.g. c5.xlarge) for your head node and a larger instance type (e.g. c5.18xlarge or c5.24xlarge) for your compute nodes. 
+
 - A [placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) to maximize the bandwidth between instances and reduce the latency.
 - Set the cluster to 0 compute nodes when starting, the minimum size to 0, and maximum size to 8 instances. The cluster uses [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) that will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - A [GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) volume will be attached to the head node then shared through NFS to be mounted by the compute nodes on */shared*. It is generally a good location to store applications or scripts. Keep in mind that the */home* directory is shared on NFS as well.
@@ -87,28 +88,32 @@ cluster_template = default
 update_check = false
 sanity_check = true
 
+[vpc public]
+vpc_id = ${VPC_ID}
+master_subnet_id = ${SUBNET_ID}
+
 [cluster default]
 key_name = lab-3-key
 vpc_settings = public
 base_os = alinux2
+master_instance_type = c5.xlarge
 ebs_settings = myebs
 fsx_settings = myfsx
-compute_instance_type = c5.18xlarge
-master_instance_type = c5.xlarge
-cluster_type = ondemand
-placement_group = DYNAMIC
-placement = compute
-max_queue_size = 8
-initial_queue_size = 0
-disable_hyperthreading = true
+queue_settings = compute
 scheduler = slurm
 post_install = https://aws-hpc-workshops.s3.amazonaws.com/spack.sh
 post_install_args = "/shared/spack releases/v0.15"
 s3_read_resource = arn:aws:s3:::*
 
-[vpc public]
-vpc_id = ${VPC_ID}
-master_subnet_id = ${SUBNET_ID}
+[queue compute]
+compute_resource_settings = default
+disable_hyperthreading = true
+placement_group = DYNAMIC
+
+[compute_resource default]
+instance_type = c5.xlarge
+min_count = 0
+max_count = 8
 
 [ebs myebs]
 shared_dir = /shared
@@ -118,7 +123,7 @@ volume_size = 20
 [fsx myfsx]
 shared_dir = /lustre
 storage_capacity = 1200
-import_path =  s3://mybucket-${BUCKET_POSTFIX}
+import_path =  s3://mybucket-66202680
 deployment_type = SCRATCH_2
 
 [aliases]
@@ -145,7 +150,7 @@ pcluster create my-fsx-cluster -c my-fsx-cluster.ini
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
 {{% notice info %}}
-Creating your Lustre file-system will some time to provision. In the meantime you can look at the resources being created on your behalf on the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/) page of your AWS Console.
+Creating your Lustre file-system will take some time to provision. In the meantime you can look at the resources being created on your behalf on the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/) page of your AWS Console.
 {{% /notice %}}
 
 #### Connect to Your Cluster

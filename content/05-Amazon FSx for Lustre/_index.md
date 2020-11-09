@@ -21,7 +21,7 @@ In this workshop, you learn how to use [Amazon FSx for Lustre](https://aws.amazo
 
 - Upload files from an AWS Cloud9 instance to an Amazon S3 bucket.
 - Create a new cluster with AWS ParallelCluster and Amazon FSx for Lustre.
-- Run an IO intensive application to test Lustre performances.
+- Run an IO intensive application to test Lustre performance.
 - Push and get files using Lustre HSM.
 - Delete the cluster and the Lustre partition.
 
