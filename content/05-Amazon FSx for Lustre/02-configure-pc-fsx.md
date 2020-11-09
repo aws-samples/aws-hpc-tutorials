@@ -123,7 +123,7 @@ volume_size = 20
 [fsx myfsx]
 shared_dir = /lustre
 storage_capacity = 1200
-import_path =  s3://mybucket-66202680
+import_path =  s3://mybucket-${BUCKET_POSTFIX}
 deployment_type = SCRATCH_2
 
 [aliases]
