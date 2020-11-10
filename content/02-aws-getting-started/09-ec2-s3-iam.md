@@ -4,6 +4,10 @@ weight = 110
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 +++
 
+{{% notice warning %}}
+These steps are optional and if you have extra time. Please consider moving to Lab I.
+{{% /notice %}}
+
 {{% notice info %}}
 **You will encounter an issue with permissions now!** But, that's normal this section explains why.
 {{% /notice %}}

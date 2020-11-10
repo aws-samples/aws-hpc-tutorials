@@ -4,6 +4,10 @@ weight = 90
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
+{{% notice warning %}}
+These steps are optional and if you have extra time. Please consider moving to Lab I.
+{{% /notice %}}
+
 1. In the AWS Management Console search bar, type **EC2**.
 2. Choose **EC2** to open the **EC2 Dashboard**.
 

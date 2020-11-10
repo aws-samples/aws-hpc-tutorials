@@ -5,19 +5,9 @@ weight = 60
 tags = ["tutorial", "install", "FSx", "Performances"]
 +++
 
-You can conduct performance tests on your Lustre partition to evaluate the [throughput](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) it provides. To do so, you must first install [IOR](https://github.com/hpc/ior), an IO parallel benchmark tool used to test the performance of a parallel file system. We're going to use [Spack](https://spack.io/) for the install, Spack is a package manager built for scientific and HPC codes. To speedup the install, we've included a binary mirror with pre-built packages.
+You can conduct performance tests on your Lustre partition to evaluate the [throughput](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) it provides. To do so, you must first install [IOR](https://github.com/hpc/ior), an IO parallel benchmark tool used to test the performance of a parallel file system.
 
-```bash
-module load intelmpi
-spack install --no-check-signature ior
-```
-
-This takes about a minute to complete.
-
-![Install IOR with Spack](/images/fsx-for-lustre/spack_install_ior.png)
-
-{{%expand "Install without Spack (click to expand)" %}}
-To install from source, use the following commands. For this installation, we use the *io500-sc19* branch of the repository on the cluster head node.
+To install IOR from source, use the following commands. For this installation, we use the *io500-sc19* branch of the repository on the cluster head node.
 
 ```bash
 # get IOR
@@ -43,4 +33,3 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/shared/ior/lib' >> ~/.bashrc
 ```
 
 Now, you are ready to do some performance testing.
-{{% /expand%}}

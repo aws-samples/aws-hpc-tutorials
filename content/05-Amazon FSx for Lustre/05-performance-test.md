@@ -29,10 +29,13 @@ Option        | Description
 You can find the full list of options for IOR in the [IOR documentation](https://ior.readthedocs.io/en/latest/userDoc/options.html). Do not hesitate to experiment with different parameters.
 {{% /notice %}}
 
-Verify that IOR is installed correctly by running the command `ior` in your terminal. First you'll need to load the `intel-mpi` and `ior` modules:
+Verify that IOR is installed correctly by running the command `ior` in your terminal.
 
 ```bash
+<<<<<<< HEAD
 module load intelmpi
+=======
+>>>>>>> sc20
 ior
 ```
 
@@ -57,7 +60,11 @@ cat > ior_submission.sbatch << EOF
 #SBATCH --ntasks=16
 #SBATCH --output=%x_%j.out
 
+<<<<<<< HEAD
 module load intelmpi 
+=======
+module load intelmpi
+>>>>>>> sc20
 mpirun ior -w -r -o=/lustre/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
 EOF
 ```
@@ -105,7 +112,7 @@ cat > mdtest_submission.sbatch << EOF
 #!/bin/bash
 #SBATCH -n 16
 
-module load intelmpi ior-3.2.1-gcc-7.3.1-67itedc
+module load intelmpi
 mpirun mdtest  -i 5 -b 3 -z 3 -I 10 -w 1024 -y -u -d /lustre/testdir
 EOF
 ```
@@ -144,7 +151,3 @@ SUMMARY rate: (of 5 iterations)
 
 -- finished at 10/01/2020 04:42:35 --
 ```
-
-<!-- Or picture -->
-
-<!-- ![IOR Result](/images/fsx-for-lustre/mdtest-result.png) -->

@@ -77,10 +77,10 @@ The command below creates a CloudFormation stack as based on the template `serve
 {{% /notice %}}
 
     ```bash
-    aws cloudformation create-stack --stack-name pc-serverless-policy --parameters ParameterKey=S3Bucket,ParameterValue=serverless-${BUCKET_POSTFIX} --template-body file://serverless-template.yaml --capabilities CAPABILITY_NAMED_IAM
+    aws cloudformation create-stack --stack-name pc-serverless-policy --parameters ParameterKey=S3Bucket,ParameterValue=serverless-${BUCKET_POSTFIX} --template-body file://serverless-template.yaml --capabilities CAPABILITY_NAMED_IAM --region us-east-1
     ```
     {{% notice note %}}
-The IAM policy enables access to the S3 bucket created to store the job data and SSM commands. This is provided as `ParameterValue`. Make sure to provide the correct S3 bucket name
+The IAM policy enables access to the S3 bucket created to store the job data and SSM commands. This is provided as `ParameterValue`. Make sure to provide the correct S3 bucket name.
 {{% /notice %}}
 
 3. Once the AWS CloudFormation stack creation completes, you can confirm the IAM Policy is created by running the command below in your Cloud9 Terminal to query the policy `pclusterSSM` you just created
