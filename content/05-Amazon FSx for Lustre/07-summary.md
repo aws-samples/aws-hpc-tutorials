@@ -8,7 +8,7 @@ tags = ["tutorial", "FSx", "summary"]
 
 In this workshop, you learned how to create an Amazon FSx for Lustre partition with AWS ParallelCluster. Then, you learned how lazy file loading worked and conducted performance tests on the Lustre partition using IOR. Finally, you looked at the Lustre partition metrics and visualized these using Amazon CloudWatch.
 
-Before moving to the next workshop, make sure to delete your cluster using the following command:
+Before moving to the next workshop, exit out of the cluster and from your AWS Cloud9 terminal delete your cluster using the following command:
 
 ```bash
 pcluster delete my-fsx-cluster
