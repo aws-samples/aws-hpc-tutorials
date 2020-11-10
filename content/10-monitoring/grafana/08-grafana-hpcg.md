@@ -68,7 +68,7 @@ In the previous script we installed both **IOR** and **HPCG**. You will run both
     #SBATCH --output=ior-run.out
 
     module load intelmpi
-    mpirun ior -w -r -o=/shared/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
+    mpirun /shared/ior/bin/ior -w -r -o=/shared/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
     EOF
     ```
 
