@@ -102,7 +102,7 @@ First create a submission file:
 cd ~
 cat > mdtest_submission.sbatch << EOF
 #!/bin/bash
-#SBATCH -n 72
+#SBATCH -n 16
 
 module load intelmpi
 mpirun mdtest  -i 5 -b 3 -z 3 -I 10 -w 1024 -y -u -d /lustre/testdir
