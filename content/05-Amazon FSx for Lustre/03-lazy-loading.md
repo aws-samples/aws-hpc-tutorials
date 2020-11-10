@@ -47,17 +47,13 @@ Use the following command to retrieve the file:
 time cat /lustre/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
 ```
 
-It took about 4 seconds to retrieve the file.
-
-![Lustre ls lah](/images/fsx-for-lustre/cat-file.png)
-
-Run the command again and see the access time.
+It took about 5 seconds to perform the initial retrieve of the file. If you run the command again, you'll see this time drops down to .23 seconds:
 
 ```bash
 time cat /lustre/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
 ```
 
-![Lustre ls lah](/images/fsx-for-lustre/cat-file2.png)
+![Lustre ls lah](/images/fsx-for-lustre/cat-file.png)
 
 The new access time is a bit too fast because the data has been cached on the instance. Now, drop the caches and repeat the command again.
 
@@ -111,7 +107,7 @@ Then, run this command to see again how much data is stored on your file system.
 time lfs df -h
 ```
 
-You are back to 13.5 MB of stored data.
+You are back to 4.5 MB of stored data.
 
 ![Lustre lfs release](/images/fsx-for-lustre/lfs-dh3.png)
 

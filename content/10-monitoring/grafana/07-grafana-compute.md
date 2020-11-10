@@ -25,13 +25,7 @@ cat > job2.sh << EOF
  module load intelmpi
  export I_MPI_DEBUG=5
 
- nodes=2
- ppn=2
- procs=$(( ppn * nodes ))
-
- echo "ppn = $ppn, Procs = $procs"
-
- mpirun -np $procs -ppn $ppn IMB-MPI1 Uniband -npmin $procs
+ mpirun -np 4 -ppn 2 IMB-MPI1 Uniband -npmin 4
 EOF
 ```
 

@@ -39,6 +39,6 @@ The result should be comparable to the one shown below.
 Notice that there is a discrepancy between
 
 - The size of the files **~ 468 MB**
-- The data actually stored on the Lustre partition: **~ 13.5 MB** of content and 5.8 MB of metadata.
+- The data actually stored on the Lustre partition: **~ 4.5 MB** of content and 5.4 MB of metadata.
 
 This discrepancy is due to the lazy loading functionality of Amazon FSx for Lustre when it is linked to an Amazon S3 bucket. Only the metadata of the objects is retrieved on the MDT, the actual bytes or content of the files is copied at first read.
