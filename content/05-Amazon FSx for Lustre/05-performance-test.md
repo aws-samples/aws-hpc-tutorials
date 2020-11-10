@@ -102,7 +102,9 @@ First create a submission file:
 cd ~
 cat > mdtest_submission.sbatch << EOF
 #!/bin/bash
-#SBATCH -n 16
+#SBATCH --job-name=mdtest
+#SBATCH --ntasks=16
+#SBATCH --output=%x_%j.out
 
 module load intelmpi
 mpirun mdtest  -i 5 -b 3 -z 3 -I 10 -w 1024 -y -u -d /lustre/testdir
@@ -111,17 +113,17 @@ EOF
 
 Then submit the job:
 ```bash
-sbatch ior_submission.sbatch
+sbatch mdtest_submission.sbatch
 ```
 
-You can monitor the job's progress by running `squeue`. Once it's completed, gone into `C` state. The ouput will be written to a file: `mdtest_submission.sbatch.o[job_id]`
+You can monitor the job's progress by running `squeue`. Once it's completed the ouput will be written to a file: `mdtest_[job_id].out`
 
 You'll see the results look like the following:
 
 ```
 -- started at 10/01/2020 04:40:42 --
 
-mdtest-1.9.3 was launched with 72 total task(s) on 2 node(s)
+mdtest-1.9.3 was launched with 16 total task(s) on 2 node(s)
 Command line used: mdtest "-i" "5" "-b" "3" "-z" "3" "-I" "10" "-w" "1024" "-y" "-u" "-d" "/lustre/testdir"
 Path: /lustre
 FS: 1.1 TiB   Used FS: 0.0%   Inodes: 5.7 Mi   Used Inodes: 0.0%
