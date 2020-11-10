@@ -37,7 +37,7 @@ ior
 
 You should see a result similar to below. Don't be alarmed by the numbers as there's a lot of caching involved.
 
-![IOR](/images/fsx-for-lustre/ior.png)
+![IOR](/images/fsx-for-lustre/ior2.png)
 
 #### Run a Performance Test with IOR
 
