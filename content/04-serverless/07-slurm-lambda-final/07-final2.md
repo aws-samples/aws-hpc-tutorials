@@ -46,7 +46,7 @@ You will first create a new IAM policy document with the required permissions an
     }, {
         "Effect": "Allow",
         "Action": ["ssm:GetCommandInvocation"],
-        "Resource": ["arn:aws:ssm:$REGION:*:*"]
+        "Resource": ["arn:aws:ssm:$AWS_REGION:*:*"]
     }, {
         "Effect": "Allow",
         "Action": ["s3:*"],
