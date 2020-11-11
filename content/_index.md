@@ -7,23 +7,21 @@ draft: false
 # SC20 Tutorial
 
 Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC 20 that will be delivered on November 9th 2020 and November 11th 2020. We are excited to virtually meet you, and look forward to answering your questions!
-The website will be maintained after SC20, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference. No pre-work is necessary before the start of the tutorial.
+The website will be maintained after SC20, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
 {{% notice tip %}}
 **We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/sc20cloud.**
 {{% /notice %}}
 
 
+{{% notice warning %}}
+Sandbox were available between Nov 9th to 10th for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc20tutorial@amazon.com so we can follow-up with you.
+{{% /notice %}}
+
+
 ### Important Information & Updates
 
-{{% notice warning %}} **This website will be locked between November 8th 2020 through November 11th 2020 for the duration of the Tutorial**. Credentials to access this website will be communicated during the tutorial and on the tutorial slides. During the tutorial we will also communicate how you can get your credentials to log into your temporary AWS account to run the the hands-on labs.
-{{% /notice %}}
-
 {{% notice note %}} For the tutorial recordings delivered on the **APJ timezone**, please use [**Gitter**](https://gitter.im/aws-sc20/general) to for questions or support during the tutorial
-{{% /notice %}}
-
-{{% notice tip %}}
-**Lab accounts** credentials can be requested by contacting us at sc20tutorial@amazon.com.
 {{% /notice %}}
 
 ### Need help?
@@ -43,13 +41,7 @@ Before and during the tutorial you may be interested in going through the follow
 
 #### Presentations Slides
 
-The last version of the Tutorial slides can be found below:
-
-- [**Presentations**](https://sc20slides.s3.amazonaws.com/SC20Tutorial-AWS-BestPracticesForHPCInTheCloud.pdf)
-- [**Lab 1**](https://sc20slides.s3.amazonaws.com/SC20-HPConCloud-lab1.pdf)
-- [**Lab 2**](https://sc20slides.s3.amazonaws.com/SC20-serverless-lab2.pdf)
-- [**Lab 3**](https://sc20slides.s3.amazonaws.com/SC20-Storage-Lab.pdf)
-- [**Lab 4**](https://sc20slides.s3.amazonaws.com/SC20-Performance-Monitoring.pdf)
+The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at sc20tutorial@amazon.com.
 
 #### SC20 Hands-on Labs
 

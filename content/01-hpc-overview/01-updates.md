@@ -11,7 +11,7 @@ Frequently asked questions will be addressed on this page during the tutorial. D
 
 #### Accounts access
 
-Accounts took some time to be delivered and we are sorry that some of the attendees received them late in the tutorial. We will find a better mechanism next time to deliver the credentials in a timely manner. If you're still waiting for credentials please email us again at sc20tutorial@amazon.com.
+Sandbox were available between Nov 9th to 10th for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc20tutorial@amazon.com so we can follow-up with you.
 
 
 #### You must specify a region issue

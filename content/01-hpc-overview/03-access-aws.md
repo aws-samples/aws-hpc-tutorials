@@ -9,12 +9,12 @@ weight: 40
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 {{% /notice %}}
 
-The AWS SC20 Tutorial team can access your account to troubleshoot you if you encounter any issue when going through the labs. Do not hesitate to ask questions on [**Gitter**](https://gitter.im/aws-sc20/general) if you need any help.
+Do not hesitate to ask questions on [**Gitter**](https://gitter.im/aws-sc20/general) or sc20tutorial@amazon.com if you need any help.
 
 ##### Step 1
 
-{{% notice tip %}}
-Credentials for you lab can be requested by contacting us at sc20tutorial@amazon.com.
+{{% notice warning %}}
+Sandbox were available between Nov 9th to 10th for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc20tutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
 ##### Step 2
