@@ -13,11 +13,11 @@ In this step, you set up a job queue. This job queue is where you submit your jo
 3. Choose a **Priority** (1-500). You can pick any value for this workshop. This option defines the priority of a job queue when a compute environment is shared across job queues. Job queues with a higher priority (or a higher integer value for the priority parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of 10 is given scheduling preference over a job queue with a priority value of 1.
 4. Expand the **Additional configuration** section and validate that **State** is selected as **Enabled**.
 ![AWS Batch](/images/aws-batch/job-queue/job_queue_config.png)
-5. For **Tags *optional***, enter the values as shown. This is optional but is considered a good practice to tag your resources.
-6. Under **Connected compute environments**, from *Select a compute environment* drop down, choose the environment you created previously.
+5. For **Tags *optional***, enter the values for your tags. This is optional but is considered a good practice to tag your resources.
+6. Under **Connected compute environments**, select a compute environment that you created previously.
 7. Choose **Create**.
 ![AWS Batch](/images/aws-batch/job-queue/job_queue_tags_compute_env.png)
-8. Once the job queue is ready, it will be visible under **Joq queues** section. Make sure *State* is **ENABLED** and *Status* is **VALID**.
+8. Once the job queue is ready, it will be visible under **Job queues** section. Make sure *State* is **ENABLED** and *Status* is **VALID**.
 ![AWS Batch](/images/aws-batch/job-queue/job_queue_display.png)
 
 Continue to set up a job definition.
