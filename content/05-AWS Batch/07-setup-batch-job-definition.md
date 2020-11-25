@@ -41,4 +41,4 @@ echo "S3 Output Bucket: $(aws cloudformation describe-stacks --stack-name PrepAV
 16. Once the Job definition is ready, it will be visible under **Job definitions** grid. Make sure *Status* is **ACTIVE**.
 ![AWS Batch](/images/aws-batch/job-def/job_def_display.png)
 
-Next, take a closer look at *compute environment*, *job queue*, and *job definition* you created.
+Next, take a closer look at **compute environment**, **job queue**, and **job definition** you created.
