@@ -7,31 +7,38 @@ tags = ["tutorial", "install", "AWS", "batch", "packer"]
 
 In this step, you set up a template used for your jobs, known as a job definition. A job definition is not required, but a good practice to use so that you can version how your jobs are launched. For more information about job definitions, see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
 
-1. In the **AWS Batch Dashboard**, choose **Job definitions**, then **Create**.
-![AWS Batch](/images/aws-batch/batch10.png)
+1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**. Ignore the *Loading resources* message in the grid as this is a known bug.
+![AWS Batch](/images/aws-batch/job-def/job_def_create.png)
 2. Type a **Job definition name**.
 3. For **Job attempts**, type **5**. This option specifies the number of attempts before declaring a job as failed.
 4. For **Execution timeout**, type **500**. This option specifies the time between attempts in seconds.
-![AWS Batch](/images/aws-batch/batch11.png)
-5. Skip to the **Environment** section.
-6. For **Job role**, choose the role previously defined for ECS tasks to access the output S3 bucket on your behalf. If you do not know the name of the job role, use the following command in your terminal.
-```bash
-echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `ECSTaskPolicytoS3`].OutputValue')"
-```
-7. For **Container image**, choose the **repositoryUri** generated when you created the ECR repository. If you do not know the URI, use the following commmand in your terminal.
+![AWS Batch](/images/aws-batch/job-def/job_def_create_2.png)
+5. For **Container Image**, enter the **repositoryUri** generated when you created the ECR repository. If you do not know the URI, use the following command in your terminal.
 ```bash
 aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]'
 ```
-8. For **vCPUs** type **4**.
-9. For **Memory (MiB)** type **2000**.
-![AWS Batch](/images/aws-batch/batch12.png)
-10. Skip to the **Environment variables** section.
-11. Choose **Add**. This environmental variable will tell the application running in your container where to export data.
-12. For **Key**, type **EXPORT_S3_BUCKET_URL**. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
+6. Clear out the contents of the **Command** text box, as we don't want to run any command when your job runs.
+6. For **vCPUs** type **4**.
+7. For **Memory (MiB)** type **2048**.
+8. Leave the value as blank for **Number of GPUs** field.
+![AWS Batch](/images/aws-batch/job-def/job_def_container.png)
+9. Expand the **Additional configuration** section.
+10. For **Job role** and **Execution role**, choose the role previously defined for ECS tasks to access the output S3 bucket on your behalf. If you do not know the name of the job role, use the following command in your terminal to validate.
+```bash
+echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `ECSTaskPolicytoS3`].OutputValue')"
+```
+11. Do not select any values for **Volumes**, **Mount points**, and **Ulimits**.
+![AWS Batch](/images/aws-batch/job-def/job_def_additional_config.png)
+12. Skip to the **Environment variables** section.
+13. Choose **Add environment variable**. This environmental variable will tell the application running in your container where to export data.
+14. For **Name**, type **EXPORT_S3_BUCKET_URL**. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
 ```bash
 echo "S3 Output Bucket: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `OutputBucket`].OutputValue')"
 ```
-![AWS Batch](/images/aws-batch/batch13.png)
-13. Choose **Create**.
+![AWS Batch](/images/aws-batch/job-def/job_def_env_variable.png)
+15. Scroll towards the bottom of the page and Choose **Create**.
+![AWS Batch](/images/aws-batch/job-def/job_def_create_3.png)
+16. Once the Job definition is ready, it will be visible under **Job definitions** grid. Make sure *Status* is **ACTIVE**.
+![AWS Batch](/images/aws-batch/job-def/job_def_display.png)
 
-Next, take a closer look at the compute environment, job queue, and job definition you created.
+Next, take a closer look at *compute environment*, *job queue*, and *job definition* you created.
