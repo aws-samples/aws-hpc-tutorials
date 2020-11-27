@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STACK_NAME='PrepAVWorkshop2'
+STACK_NAME='PrepAVWorkshop'
 
 # create the stack
 echo "1/3 - Create Stack $STACK_NAME"
