@@ -1,0 +1,118 @@
+# Use as follow:
+#   aws cloudformation create-stack --stack-name 'S3InstanceRoleNvidiaDriversBucket' \
+#                                   --template-body file://s3policy.yaml \
+#                                   --capabilities "CAPABILITY_IAM"
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create role for an EC2 Instance to build an AMI with CARLA.
+  Creates also an S3 bucket and an ECS Task Role to access this bucket
+  in order to push output data.'
+
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+    - Label:
+        default: 'Parent Stacks'
+      Parameters:
+      - BucketName
+Parameters:
+    BucketName:
+      Description: 'Optional name of the bucket.'
+      Type: String
+      Default: ''
+Conditions:
+  HasBucketName: !Not [!Equals [!Ref BucketName, '']]
+
+Resources:
+  # For the packer build to access the nvidia drivers
+  S3BucketsInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref 'S3ReadAccessOnlyRole'
+  S3ReadAccessOnlyPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: S3ReadAccessOnlyPolicy
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:Get*
+              - s3:List*
+            Resource:
+              - arn:aws:s3:::ec2-linux-nvidia-drivers
+              - arn:aws:s3:::ec2-linux-nvidia-drivers/*
+      Roles:
+        - !Ref 'S3ReadAccessOnlyRole'
+  S3ReadAccessOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+
+  # AV Sim setup for tasks to write in the output bucket
+  AVSimOutputBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !If [HasBucketName, !Ref BucketName, !Ref 'AWS::NoValue']
+  AVSimOutputBucketRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+            Action:
+              - sts:AssumeRole
+  AVSimOutputBucketPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: AVSimOutputBucketPolicy
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:*
+            Resource:
+              - !Join [ "", [ "arn:aws:s3:::", !Ref 'AVSimOutputBucket' , "/*" ] ]
+      Roles:
+        - !Ref 'AVSimOutputBucketRole'
+  AVSimJobExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+Outputs:
+  S3RoleARN:
+    Description: S3 Role ARN to access Nvidia drivers
+    Value: !Ref S3BucketsInstanceProfile
+  ECSTaskPolicytoS3:
+    Description: ECS Task Policy for S3 Access to Output Bucket
+    Value: !Ref AVSimOutputBucketRole
+  ECSJobExecutionRole:
+    Description: ECS Task Execution Role for AWS Batch Job Definition
+    Value: !Ref AVSimJobExecutionRole
+  OutputBucket:
+    Description: Bucket in which outputs will be written
+    Value: !Ref AVSimOutputBucket

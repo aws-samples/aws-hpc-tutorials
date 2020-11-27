@@ -25,5 +25,5 @@ popd
 The script waits until the base infrastructure is ready, then outputs the EC2 instance role needed to access the Nvidia drivers on Amazon S3.
 
 {{% notice info %}}
-Keep note of the following information for the next steps of the lab: **EC2 Role ID**, **ECS Task Role ID**, and **S3 Bucket**.
+Keep note of the following information for the next steps of the lab: **EC2 Role ID**, **ECS Task Role ID**, **ECS Job Execution Role ID**, and **S3 Bucket**.
 {{% /notice %}}
