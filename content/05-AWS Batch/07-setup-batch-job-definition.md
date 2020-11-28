@@ -23,9 +23,11 @@ aws ecr describe-repositories --repository-names carla-av-demo --output text --q
 8. Leave the value as blank for **Number of GPUs** field.
 ![AWS Batch](/images/aws-batch/job-def/job_def_container.png)
 9. Expand the **Additional configuration** section.
-10. For **Job role** and **Execution role**, choose the role previously defined for ECS tasks to access the output S3 bucket on your behalf. If you do not know the name of the job role, use the following command in your terminal to validate.
+10. For **Job role** and **Execution role**, choose the role previously defined for ECS tasks in **b. Workshop Initial Setup**. If you do not know the name of the job role, use the following command in your terminal to validate.
 ```bash
 echo "ECS Job Role: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `ECSTaskPolicytoS3`].OutputValue')"
+
+echo "ECS Job Exceution Role: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `ECSJobExecutionRole`].OutputValue')"
 ```
 11. Do not select any values for **Volumes**, **Mount points**, and **Ulimits**.
 ![AWS Batch](/images/aws-batch/job-def/job_def_additional_config.png)
