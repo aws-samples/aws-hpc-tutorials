@@ -16,8 +16,8 @@ Compute environments can be seen as computational clusters. They can consist of 
 4. Type a **Compute environment name**.
 5. Check **Enable compute environment**. This option enables the AWS Batch environment when it's ready.
 6. Expand **Additional settings: service role, instance role, EC2 key pair** section.
-7. For **Service role**, choose **AWSBatchServiceRole** so that AWS Batch can manage resources on your behalf.
-8. For **Instance role**, choose **Create a new role** to allow instances to call AWS APIs on your behalf.
+7. For **Service role**, choose **AWSBatchServiceRole**. The role allows the AWS Batch service to make calls to the required AWS API operations on your behalf. For more information, see [**AWS Batch Service IAM Role**](https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html).
+8. For **Instance role**, choose **Create a new role**. This instance profile allows the Amazon ECS container instances that are created for your compute environment to make calls to the required AWS API operations on your behalf. For more information, see [**Amazon ECS Instance Role**](https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html). If you choose to create a new instance profile, the required role (ecsInstanceRole) is created for you.
 9. Leave the **EC2 key pair** field as is, do not provide a key pair.
 ![AWS Batch](/images/aws-batch/compute-env/batch_compute_environment_configuration.png)
 10. Under **Instance configuration**, choose **On-demand** for **Provisioning model**. This option allows AWS Batch manage the automatic scaling of EC2 resources for you.
