@@ -33,7 +33,7 @@ echo "ECS Job Exceution Role: $(aws cloudformation describe-stacks --stack-name 
 ![AWS Batch](/images/aws-batch/job-def/job_def_additional_config.png)
 11. Skip to the **Environment variables** section.
 12. Choose **Add environment variable**. This environmental variable will tell the application running in your container where to export data.
-13. For **Name**, type **EXPORT_S3_BUCKET_URL**. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
+13. For **Name**, type **EXPORT_S3_BUCKET_URL** such as s3://BUCKET-NAME. For **Value**, choose the bucket you previously created. To find the name of the S3 bucket, run the following command in your terminal or view the S3 Dashboard in your account.
 ```bash
 echo "S3 Output Bucket: $(aws cloudformation describe-stacks --stack-name PrepAVWorkshop --output text --query 'Stacks[0].Outputs[?OutputKey == `OutputBucket`].OutputValue')"
 ```
