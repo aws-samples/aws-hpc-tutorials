@@ -14,7 +14,7 @@ In this step, you set up a job queue. This job queue is where you submit your jo
 4. Expand the **Additional configuration** section and validate that **State** is selected as **Enabled**.
 ![AWS Batch](/images/aws-batch/job-queue/job_queue_config.png)
 5. For **Tags *optional***, enter the values for your tags. This is optional but is considered a good practice to tag your resources.
-6. Under **Connected compute environments**, select a compute environment that you created previously.
+6. Under **Connected compute environments**, select a **compute environment** that you created previously.
 7. Choose **Create**.
 ![AWS Batch](/images/aws-batch/job-queue/job_queue_tags_compute_env.png)
 8. Once the job queue is ready, it will be visible under **Job queues** section. Make sure *State* is **ENABLED** and *Status* is **VALID**.
