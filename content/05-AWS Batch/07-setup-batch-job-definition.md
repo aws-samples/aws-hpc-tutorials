@@ -7,7 +7,7 @@ tags = ["tutorial", "install", "AWS", "batch", "packer"]
 
 In this step, you set up a template used for your jobs, known as a job definition. A job definition is not required, but a good practice to use so that you can version how your jobs are launched. For more information about job definitions, see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
 
-1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**. Ignore the *Loading resources* message in the grid as this is a known bug.
+1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**. Ignore the *Loading resources* message in the grid.
 ![AWS Batch](/images/aws-batch/job-def/job_def_create.png)
 2. Type a **Job definition name**.
 3. For **Job attempts**, type **5**. This option specifies the number of attempts before declaring a job as failed.
