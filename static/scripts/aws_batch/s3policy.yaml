@@ -1,5 +1,5 @@
 # Use as follow:
-#   aws cloudformation create-stack --stack-name 'S3InstanceRoleNvidiaDriversBucket' \
+#   aws cloudformation create-stack --stack-name 'S3InstanceRoleBatchWorkshop' \
 #                                   --template-body file://s3policy.yaml \
 #                                   --capabilities "CAPABILITY_IAM"
 AWSTemplateFormatVersion: '2010-09-09'
