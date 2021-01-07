@@ -15,13 +15,13 @@ tags = ["tutorial", "install", "ParallelCluster"]
 First, let's upgrade the AWS CLI to get the latest version:
 
 ```bash
-pip-3.6 install awscli -U --user
+pip3 install awscli -U --user
 ```
 
 Install AWS ParallelCluster
 
 ```bash
-pip-3.6 install aws-parallelcluster -U --user
+pip3 install aws-parallelcluster -U --user
 ```
 
 Next, you configure AWS ParallelCluster.
