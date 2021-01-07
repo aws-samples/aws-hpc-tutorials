@@ -30,7 +30,7 @@ Use the copy button in each of the following code samples to quickly copy the co
 
 Open a Terminal window and paste the following command to install the AWS CLI . Pip updates the version, if necessary. 
 ```bash
-pip-3.6 install awscli -U --user
+pip3 install awscli -U --user
 ```
 {{% notice info %}}
 If a warning message appears prompting you to upgrade PIP, ignore it.

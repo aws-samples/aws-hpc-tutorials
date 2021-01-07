@@ -9,7 +9,7 @@ In this step, you create an HPC cluster configuration that includes parameters f
 
 {{% notice note %}}
 If you are not familiar with AWS ParallelCluster, we recommend that you first complete the [AWS ParallelCluster lab](../03-hpc-aws-parallelcluster-workshop.html) before proceeding.
-In particular, you need to follow the instructions to install AWS ParallelCluster: ```pip-3.6 install aws-parallelcluster -U --user && pip-3.6 install awscli -U --user```
+In particular, you need to follow the instructions to install AWS ParallelCluster: ```pip3 install aws-parallelcluster -U --user && pip3 install awscli -U --user```
 {{% /notice %}}
 
 #### Create a Cluster Configuration File for EFA
