@@ -64,6 +64,8 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !If [HasBucketName, !Ref BucketName, !Ref 'AWS::NoValue']
+      VersioningConfiguration:
+        Status: Enabled
   AVSimOutputBucketRole:
     Type: AWS::IAM::Role
     Properties:
