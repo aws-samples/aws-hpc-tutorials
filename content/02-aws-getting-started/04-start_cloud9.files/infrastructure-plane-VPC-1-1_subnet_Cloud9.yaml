@@ -131,9 +131,28 @@ Resources:
       InstanceType: t2.micro
 
   # Create a bucket and build a role to read and write to this bucket
+  S3EncryptionKey:
+      Type: AWS::KMS::Key
+      Properties:
+        KeyPolicy:
+          Version: '2012-10-17'
+          Statement:
+            - Sid: Enable IAM User Permissions
+              Effect: Allow
+              Principal:
+                AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+              Action: 'kms:*'
+              Resource: '*'
+              
   WorkshopS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: !GetAtt S3EncryptionKey.Arn
+      DeletionPolicy: Delete
       BucketName:
         Fn::Join:
           - ''
