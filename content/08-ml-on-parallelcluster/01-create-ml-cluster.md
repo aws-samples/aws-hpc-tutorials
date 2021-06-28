@@ -123,7 +123,7 @@ Create the cluster using the following command. This process would take about 15
 pcluster create my-ml-cluster -c my-ml-cluster.ini
 ```
 
-The cluster creation continues even if the termional session you are on gets terminated. To check on the status of the creation, use the command: `pcluster status my-ml-cluster -c my-ml-cluster.ini`. If completed, the output would be something like this
+The cluster creation continues even if the terminal session you are on gets terminated. To check on the status of the creation, use the command: `pcluster status my-ml-cluster -c my-ml-cluster.ini`. If completed, the output would be something like this
 
 ![pcluster_create_output](/images/ml/pc_status.png)
 
