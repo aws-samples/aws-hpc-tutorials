@@ -19,7 +19,7 @@ AWS Cloud9 also includes the latest version of AWS CLI, but it is always a good 
 
 ![Cloud9 First Use](/images/introductory-steps/cloud9-first-use.png)
 
-### Update the AWS CLI
+### Install AWS CLI version 2 and some software utilities 
 
 The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using the command line and control services through scripts. Many users choose to conduct some level of automation using the AWS CLI.
 
@@ -27,14 +27,34 @@ The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using t
 Use the copy button in each of the following code samples to quickly copy the command to your clipboard.
 {{% /notice %}}
 
+In your cloud9 terminal window paste the following commands
 
-Open a Terminal window and paste the following command to install the AWS CLI . Pip updates the version, if necessary. 
+1. Clean-up any exsisting aws cli installation
+
 ```bash
-pip3 install awscli -U --user
+sudo pip uninstall -y awscli
 ```
-{{% notice info %}}
-If a warning message appears prompting you to upgrade PIP, ignore it.
-{{% /notice %}}
+
+2. Install AWS CLI 2.x
+
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+. ~/.bash_profile
+```
+
+3. Verify you have AWS CLI 2.x
+
+```bash
+aws --version
+```
+
+4. Install jq utility ( you will need this utility to work with JSON files in the labs that follow )
+
+```bash
+sudo yum install -y jq 
+```
 
 ### Check Existing Amazon EC2 Instances
 
