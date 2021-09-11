@@ -8,9 +8,9 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 
 Typically, to configure AWS ParallelCluster, you use the interactive command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) and then provide the requested information, such as the AWS Region, Scheduler, and EC2 Instance Type. However, for this workshop you can take a shortcut by creating a custom config file to include HPC specific options. 
 
-In this section we are going to set up network information as well as create an SSH access key required to build the configuration file in the next section 
+In this section we are going to set up base requirements to build the configuration file in the next section 
 
-{{% notice info %}}Don't skip these steps, it is important to follow each step sequentially
+{{% notice info %}}Don't skip these steps, it is important to follow each step sequentially, copy paste and run these commands
 {{% /notice %}}
 
 Retrive network information and set environment variables
@@ -130,6 +130,23 @@ aws secretsmanager create-secret --name $SSH_KEY_NAME \
 aws secretsmanager get-secret-value --secret-id $SSH_KEY_NAME \
                                     --query 'SecretString' \
                                     --output text | base64 --decode > $SSH_KEY_NAME
+```
+
+9. Set Operating System 
+
+
+```bash
+
+BASE_OS="alinux2"
+
+```
+
+10. Set the job scheduler
+
+```bash
+
+SCHEDULER="slurm"
+
 ```
 
 Next, you build a configuration to generate a cluster to run  HPC applications.
