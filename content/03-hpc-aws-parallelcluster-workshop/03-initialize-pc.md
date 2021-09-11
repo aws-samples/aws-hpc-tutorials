@@ -1,74 +1,135 @@
 +++
-title = "b. Configure ParallelCluster"
+title = "b. Set up ParallelCluster base requirements"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 
-Typically, to configure AWS ParallelCluster, you use the command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) and then provide the requested information, such as the AWS Region, Scheduler, and EC2 Instance Type. However, for this workshop you can take a shortcut by creating a basic configuration file, then customizing this file to include HPC specific options.
+Typically, to configure AWS ParallelCluster, you use the interactive command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) and then provide the requested information, such as the AWS Region, Scheduler, and EC2 Instance Type. However, for this workshop you can take a shortcut by creating a custom config file to include HPC specific options. 
 
-The following commands generate a new keypair, query the EC2 metadata to get the Subnet ID, VPC ID, and finally write a config to `~/.parallelcluster/config`. You can always edit this config file to add and change [configuration options](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html).
+In this section we are going to set up network information as well as create an SSH access key required to build the configuration file in the next section 
 
-{{% notice info %}}Don't skip this step, creating key-pair step is very important for the later steps, please follow instruction bellow.
+{{% notice info %}}Don't skip these steps, it is important to follow each step sequentially
 {{% /notice %}}
 
-Generate a new key-pair
+Retrive network information and set environment variables
+
+1. Set AWS Region
 
 ```bash
-aws ec2 create-key-pair --key-name lab-3-your-key --query KeyMaterial --output text > ~/.ssh/lab-3-key
+
+AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+
 ```
+2. Set VPC ID to default VPC
 
 ```bash
-chmod 600 ~/.ssh/lab-3-key
+
+VPC_ID=`aws ec2 describe-vpcs --output text \
+        --query 'Vpcs[*].VpcId' \
+        --filters Name=isDefault,Values=true \
+        --region ${AWS_REGION}`
+
 ```
 
-Getting your AWS networking information
+3. Set instance types required ( master , compute ) that will be used in the parallel cluster config in the next section
 
 ```bash
-IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
-SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
+
+INSTANCES=c5.xlarge,c5.large
+
 ```
+
+4. Find the AZ where the required instances are available 
 
 ```bash
-mkdir -p ~/.parallelcluster
+
+AZ_W_INSTANCES=`aws ec2 describe-instance-type-offerings --location-type "availability-zone" \
+    --filters Name=instance-type,Values=${INSTANCES} \
+    --query InstanceTypeOfferings[].Location \
+    --region ${AWS_REGION} | jq -r ".[]" | sort`
+
 ```
 
-Creating an initial AWS ParallelCluster config file
+5. Set subnet ID based on the AZ to subnet mapping in your account
 
 ```bash
-cat > ~/.parallelcluster/config << EOF
-[aws]
-aws_region_name = ${REGION}
 
-[cluster default]
-key_name = lab-3-your-key
-vpc_settings = public
-base_os = alinux2
-scheduler = slurm
+INSTANCE_TYPE_COUNT=`echo ${INSTANCES} | awk -F "," '{print NF-1}'`
 
-[vpc public]
-vpc_id = ${VPC_ID}
-master_subnet_id = ${SUBNET_ID}
+if [ ${INSTANCE_TYPE_COUNT} -gt 0 ]; then
+    AZ_W_INSTANCES=`echo ${AZ_W_INSTANCES} | tr ' ' '\n' | uniq -d`
+fi
+AZ_W_INSTANCES=`echo ${AZ_W_INSTANCES} | tr ' ' ',' | sed 's%,$%%g'`
 
-[global]
-cluster_template = default
-update_check = false
-sanity_check = true
 
-[aliases]
-ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
-EOF
+if [[ -z $AZ_W_INSTANCES ]]; then
+    echo "[ERROR] failed to retrieve availability zone"
+    exit 1
+fi
+
+AZ_COUNT=`echo $AZ_W_INSTANCES | tr -s ',' ' ' | wc -w`
+SUBNET_ID=`aws ec2 describe-subnets --query "Subnets[*].SubnetId" \
+    --filters Name=vpc-id,Values=${VPC_ID} \
+    Name=availability-zone,Values=${AZ_W_INSTANCES} \
+    --region ${AWS_REGION} \
+    | jq -r .[$(python3 -S -c "import random; print(random.randrange(${AZ_COUNT}))")]`
+
+if [[ ! -z $SUBNET_ID ]]; then
+    echo "[INFO] SUBNET_ID = ${SUBNET_ID}"
+else
+    echo "[ERROR] failed to retrieve SUBNET ID"
+    exit 1
+fi
+
 ```
 
-Now, check the content of this file using the following command:
+The following steps set up SSH Access Key required to access the cluster in later sections
+
+6. Create SSH Access Key "lab-3-key" if it does not exsist already 
 
 ```bash
-cat ~/.parallelcluster/config
+
+SSH_KEY_NAME="lab-3-key.pem" 
+
+[ ! -d ~/.ssh ] && mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+SSH_KEY_EXIST=`aws ec2 describe-key-pairs --query KeyPairs[*] --filters Name=key-name,Values=${SSH_KEY_NAME} --region ${AWS_REGION} | jq "select(length > 0)"`
+
+if [[ -z ${SSH_KEY_EXIST} ]]; then
+    aws ec2 create-key-pair --key-name ${SSH_KEY_NAME} \
+        --query KeyMaterial \
+        --region ${AWS_REGION} \
+        --output text > ~/.ssh/${SSH_KEY_NAME}
+
+    chmod 600 ~/.ssh/${SSH_KEY_NAME}
+else
+    echo "[WARNING] SSH_KEY_NAME ${SSH_KEY_NAME} already exist"
+fi
+
+echo "[INFO] SSH_KEY_NAME = ${SSH_KEY_NAME}"
+
 ```
 
-You now have a configuration file that allows you to create a simple cluster with the minimum required information. A default configuration file is good to have for testing purposes.
+7. Store the SSH key  in AWS Secrets Manager as a failsafe in the event that the Key is lost
 
-Next, you build a configuration to generate an optimized cluster to run typical "tightly coupled" HPC applications.
+```bash
+
+b64key=$(base64 ~/.ssh/${SSH_KEY_NAME})
+aws secretsmanager create-secret --name $SSH_KEY_NAME \
+                                 --description "Private key file" \
+                                  --secret-string "$b64key"
+
+```
+
+8. (This step is optional and only in case you lose your SSH key), with this command you will be able to retrive it from Secrets Manager
+
+```bash
+
+aws secretsmanager get-secret-value --secret-id $SSH_KEY_NAME \
+                                    --query 'SecretString' \
+                                    --output text | base64 --decode > $SSH_KEY_NAME
+```
+
+Next, you build a configuration to generate a cluster to run  HPC applications.
