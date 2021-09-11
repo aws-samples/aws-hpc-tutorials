@@ -9,19 +9,22 @@ tags = ["tutorial", "install", "ParallelCluster"]
 {{% /notice %}}
 
 1. In the AWS Management Console search bar, type and select **Cloud9**. 
-2. Choose **open IDE** for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
+2. Choose **open IDE** for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE. 
 3. Use the pip install command to install AWS ParallelCluster. Python and Python package management tool (PIP) are already installed in the Cloud9 environment.
+ 
 
-First, let's upgrade the AWS CLI to get the latest version:
+Verify AWS CLI version and  Install AWS ParallelCluster 
 
-```bash
-pip3 install awscli -U --user
-```
-
-Install AWS ParallelCluster
+1. Verify AWS CLI version and confirm it is 2.x
 
 ```bash
-pip3 install aws-parallelcluster -U --user
+aws --version
+```  
+
+2. Install AWS ParallelCluster version 2.11.x
+
+```bash
+pip3 install aws-parallelcluster==2.11.* -U --user
 ```
 
 Next, you configure AWS ParallelCluster.
