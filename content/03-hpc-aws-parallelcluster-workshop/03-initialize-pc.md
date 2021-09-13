@@ -104,7 +104,7 @@ if [[ -z ${SSH_KEY_EXIST} ]]; then
         --region ${AWS_REGION} \
         --output text > ~/.ssh/${SSH_KEY_NAME}
 
-    chmod 600 ~/.ssh/${SSH_KEY_NAME}
+    chmod 400 ~/.ssh/${SSH_KEY_NAME}
 else
     echo "[WARNING] SSH_KEY_NAME ${SSH_KEY_NAME} already exist"
 fi
