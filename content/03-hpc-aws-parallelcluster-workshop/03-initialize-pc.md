@@ -6,7 +6,8 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 
-Typically, to configure AWS ParallelCluster, you use the interactive command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) and then provide the requested information, such as the AWS Region, Scheduler, and EC2 Instance Type. However, for this workshop you can take a shortcut by creating a custom config file to include HPC specific options. 
+Typically, to configure AWS ParallelCluster, you use the interactive command [**pcluster configure**](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html) to provide the information, such as the AWS Region, Scheduler, and EC2 Instance Type.
+For this workshop, you will create a custom configuration file to include the HPC specific options for this lab. 
 
 In this section we are going to set up base requirements to build the configuration file in the next section 
 
