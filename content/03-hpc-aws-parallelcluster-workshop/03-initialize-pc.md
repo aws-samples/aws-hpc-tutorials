@@ -53,7 +53,7 @@ AZ_W_INSTANCES=`aws ec2 describe-instance-type-offerings --location-type "availa
 
 ```
 
-5. Set subnet ID based on the AZ to subnet mapping in your account
+5. Set subnet ID based on the Availability Zone in which the EC2 instances are available
 
 ```bash
 
