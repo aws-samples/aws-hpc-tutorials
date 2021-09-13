@@ -23,7 +23,7 @@ Retrive network information and set environment variables
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 
 ```
-2. Set VPC ID to default VPC
+2. Set VPC ID by retrieving the ID of the default VPC
 
 ```bash
 
