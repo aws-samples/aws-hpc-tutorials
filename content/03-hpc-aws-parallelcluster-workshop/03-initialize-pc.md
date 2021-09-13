@@ -113,7 +113,7 @@ echo "[INFO] SSH_KEY_NAME = ${SSH_KEY_NAME}"
 
 ```
 
-7. Store the SSH key  in AWS Secrets Manager as a failsafe in the event that the Key is lost
+7. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost
 
 ```bash
 
