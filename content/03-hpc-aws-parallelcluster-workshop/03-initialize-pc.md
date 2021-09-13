@@ -42,7 +42,7 @@ INSTANCES=c5.xlarge,c5.large
 
 ```
 
-4. Find the AZ where the required instances are available 
+4. Find the Availability Zone where the EC2 instances are available 
 
 ```bash
 
