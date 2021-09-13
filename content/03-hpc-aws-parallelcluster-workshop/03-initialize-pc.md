@@ -128,7 +128,7 @@ aws secretsmanager create-secret --name $SSH_KEY_NAME \
 
 ```bash
 
-aws secretsmanager get-secret-value --secret-id $SSH_KEY_NAME \
+aws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \
                                     --query 'SecretString' \
                                     --output text | base64 --decode > $SSH_KEY_NAME
 ```
