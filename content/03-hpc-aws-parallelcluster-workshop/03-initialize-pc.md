@@ -14,7 +14,7 @@ In this section, you will create an AWS ParallelCluster configuration file that 
 {{% notice info %}}Don't skip these steps, it is important to follow each step sequentially, copy paste and run these commands
 {{% /notice %}}
 
-Retrive network information and set environment variables
+Retrieve network information and set environment variables
 
 1. Set AWS Region
 
