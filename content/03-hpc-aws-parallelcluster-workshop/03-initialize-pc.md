@@ -81,7 +81,7 @@ if [[ ! -z $SUBNET_ID ]]; then
     echo "[INFO] SUBNET_ID = ${SUBNET_ID}"
 else
     echo "[ERROR] failed to retrieve SUBNET ID"
-    exit 1
+    return 1
 fi
 
 ```
