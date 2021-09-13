@@ -34,7 +34,7 @@ VPC_ID=`aws ec2 describe-vpcs --output text \
 
 ```
 
-3. Set instance types required ( master , compute ) that will be used in the parallel cluster config in the next section
+3. Set Amazon EC2 instance types that be will be used to define the head and compute node of AWS in the next section
 
 ```bash
 
