@@ -130,7 +130,7 @@ aws secretsmanager create-secret --name $SSH_KEY_NAME \
 
 aws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \
                                     --query 'SecretString' \
-                                    --output text | base64 --decode > $SSH_KEY_NAME
+                                    --output text | base64 --decode > ~/.ssh/${SSH_KEY_NAME}
 ```
 
 9. Set Operating System 
