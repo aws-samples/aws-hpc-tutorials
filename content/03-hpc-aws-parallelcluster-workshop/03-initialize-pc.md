@@ -67,7 +67,7 @@ AZ_W_INSTANCES=`echo ${AZ_W_INSTANCES} | tr ' ' ',' | sed 's%,$%%g'`
 
 if [[ -z $AZ_W_INSTANCES ]]; then
     echo "[ERROR] failed to retrieve availability zone"
-    exit 1
+    return 1
 fi
 
 AZ_COUNT=`echo $AZ_W_INSTANCES | tr -s ',' ' ' | wc -w`
