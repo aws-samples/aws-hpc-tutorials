@@ -21,7 +21,7 @@ Retrieve network information and set environment variables. In these steps you w
 ```bash
 
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-echo "export AWS_REGION=$AWS_REGION" >> env_vars.sh
+echo "export AWS_REGION=$AWS_REGION" >> env_vars
 
 ```
 2. Set VPC ID by retrieving the ID of the default VPC
