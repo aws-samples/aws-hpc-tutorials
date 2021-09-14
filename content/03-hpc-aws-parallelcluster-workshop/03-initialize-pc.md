@@ -80,12 +80,11 @@ SUBNET_ID=`aws ec2 describe-subnets --query "Subnets[*].SubnetId" \
 
 if [[ ! -z $SUBNET_ID ]]; then
     echo "[INFO] SUBNET_ID = ${SUBNET_ID}"
+    echo "export SUBNET_ID=$SUBNET_ID" >> env_vars
 else
     echo "[ERROR] failed to retrieve SUBNET ID"
     return 1
 fi
-
-echo "export SUBNET_ID=$SUBNET_ID" >> env_vars
 
 ```
 
