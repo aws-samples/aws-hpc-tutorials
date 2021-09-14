@@ -1,5 +1,5 @@
 +++
-title = "b. Set up ParallelCluster base requirements"
+title = "b. Set up AWS ParallelCluster foundation"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "initialize", "ParallelCluster"]
