@@ -14,13 +14,14 @@ In this section, you will create an AWS ParallelCluster configuration file that 
 {{% notice info %}}Don't skip these steps, it is important to follow each step sequentially, copy paste and run these commands
 {{% /notice %}}
 
-Retrieve network information and set environment variables
+Retrieve network information and set environment variables. In these steps you will also be writing these enviroment variables into a file in your working directory which can be sourced and set again in case you logout of the session.
 
 1. Set AWS Region
 
 ```bash
 
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+echo "export AWS_REGION=$AWS_REGION" >> env_vars.sh
 
 ```
 2. Set VPC ID by retrieving the ID of the default VPC
@@ -31,7 +32,7 @@ VPC_ID=`aws ec2 describe-vpcs --output text \
         --query 'Vpcs[*].VpcId' \
         --filters Name=isDefault,Values=true \
         --region ${AWS_REGION}`
-
+echo "export VPC_ID=$VPC_ID" >> env_vars
 ```
 
 3. Set Amazon EC2 instance types that be will be used to define the head and compute node of AWS in the next section
@@ -84,6 +85,8 @@ else
     return 1
 fi
 
+echo "export SUBNET_ID=$SUBNET_ID" >> env_vars
+
 ```
 
 The following steps set up SSH Access Key required to access the cluster in later sections
@@ -110,7 +113,7 @@ else
 fi
 
 echo "[INFO] SSH_KEY_NAME = ${SSH_KEY_NAME}"
-
+echo "export SSH_KEY_NAME=$SSH_KEY_NAME" >> env_vars
 ```
 
 7. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost
@@ -124,7 +127,7 @@ aws secretsmanager create-secret --name $SSH_KEY_NAME \
 
 ```
 
-8. (This step is optional and only in case you lose your SSH key), with this command you will be able to retrive it from Secrets Manager
+8. (OPTIONAL STEP )Please run this command ONLY in the event that you lose your SSH private key and need to retrieve it from the secrets manager
 
 ```bash
 
@@ -135,11 +138,10 @@ aws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \
 
 9. Set Operating System 
 
-
 ```bash
 
 BASE_OS="alinux2"
-
+echo "export BASE_OS=$BASE_OS" >> env_vars
 ```
 
 10. Set the job scheduler
@@ -147,7 +149,7 @@ BASE_OS="alinux2"
 ```bash
 
 SCHEDULER="slurm"
-
+echo "export SCHEDULER=$SCHEDULER" >> env_vars
 ```
 
 Next, you build a configuration to generate a cluster to run  HPC applications.
