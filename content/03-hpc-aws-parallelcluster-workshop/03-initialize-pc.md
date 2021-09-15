@@ -90,7 +90,7 @@ fi
 
 The following steps set up SSH Access Key required to access the cluster in later sections
 
-6. Create SSH Access Key "lab-key" if it does not exsist already 
+6. Create SSH Access Key "hpc-workshop-key" if it does not exsist already 
 
 ```bash
 
