@@ -14,7 +14,7 @@ In this section, you will set up the foundation ( for example network, Scheduler
 {{% notice info %}}Don't skip these steps, it is important to follow each step sequentially, copy paste and run these commands
 {{% /notice %}}
 
-Retrieve network information and set environment variables. In these steps you will also be writing these enviroment variables into a file in your working directory which can be sourced and set again in case you logout of the session.
+Retrieve network information and set environment variables. In these steps you will also be writing these environment variables into a file in your working directory which can be sourced and set again in case you logout of the session.
 
 1. Set AWS Region
 
