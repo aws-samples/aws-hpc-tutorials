@@ -94,7 +94,7 @@ The following steps set up SSH Access Key required to access the cluster in late
 
 ```bash
 
-SSH_KEY_NAME="lab-key.pem" 
+SSH_KEY_NAME="hpc-workshop-key.pem" 
 
 [ ! -d ~/.ssh ] && mkdir -p ~/.ssh && chmod 700 ~/.ssh
 
