@@ -35,11 +35,11 @@ VPC_ID=`aws ec2 describe-vpcs --output text \
 echo "export VPC_ID=${VPC_ID}" >> env_vars
 ```
 
-3. Set Amazon EC2 instance types that be will be used to define the head and compute node of AWS in the next section
+3. Set Amazon EC2 instance types that be will be used through this lab for head and compute nodes in the following sections (sections c and h )
 
 ```bash
 
-INSTANCES=c5.xlarge,c5.large
+INSTANCES=c5.xlarge,c5.large,c4.large
 
 ```
 
