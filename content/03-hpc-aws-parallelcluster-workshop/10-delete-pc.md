@@ -12,7 +12,7 @@ Note: If you are continuing on to the next workshops, then you will want to clea
 Now that you are done with your cluster, we can delete it using the following command in your AWS Cloud9 terminal.
 
 ```bash
-pcluster delete hpclab-yourname
+pcluster delete hpclab-yourname -r $AWS_REGION
 ```
 
 The cluster and all its resources will be deleted by CloudFormation. You can check the status in the [CloudFormation Dashboard](https://console.aws.amazon.com).
