@@ -22,7 +22,7 @@ pcluster stop hpclab-yourname -r $AWS_REGION
 Save your original config file, just in case you want to refer to any settings before the update
 
 ```bash
-mv my-cluster-config.ini my-cluster-config-org.ini
+mv my-cluster-config.ini orig-my-cluster-config.ini
 ```
 
 In this step you will be re-writing the original config file with the new updates. Please pay attention to the **queue_settings** with a new queue added and also corresponding **queue** and **compute_resource** settings which describe the new queue with c4.large instance type.
