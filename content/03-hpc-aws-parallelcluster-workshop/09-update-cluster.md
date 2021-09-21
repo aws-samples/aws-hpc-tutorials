@@ -81,7 +81,7 @@ EOF
 If you like you could run a **diff** command to notice the new changes made to the config file 
 
 ```bash
-vimdiff my-cluster-config-org.ini my-cluster-config.ini
+vimdiff orig-my-cluster-config.ini my-cluster-config.ini
 ```
 
 Then run a **pcluster update** command
