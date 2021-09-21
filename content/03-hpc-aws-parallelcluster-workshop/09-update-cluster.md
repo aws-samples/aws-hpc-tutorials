@@ -12,7 +12,7 @@ Let's say you want to add another queue to your cluster say for example with **c
 Go back to your AWS Cloud9 environment, and stop the cluster
 
 ```bash
-pcluster list -r $AWS_REGION
+pcluster list --color -r $AWS_REGION
 ```
 
 ```bash
