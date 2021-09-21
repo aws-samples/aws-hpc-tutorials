@@ -7,7 +7,7 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 We have sucessfully built your cluster and ran your first MPI job.
 
-Let's say you want to add another queue to your cluster say for example with **c4.large** . In this section, we will learn how to update your cluster with new queue. 
+Let's say you want to add another queue to your cluster say for example with **c4.large** . In this section, you will learn how to update your cluster with new queue. 
 
 Go back to your AWS Cloud9 environment, and stop the cluster
 
