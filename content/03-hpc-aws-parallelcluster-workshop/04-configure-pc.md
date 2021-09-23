@@ -44,34 +44,44 @@ source env_vars
 
 ```bash
 cat > my-cluster-config.ini << EOF
+[vpc public]
+vpc_id = {VPC_ID}
+master_subnet_id = {SUBNET_ID}
+
 [global]
 cluster_template = default
-update_check = false
+update_check = true
 sanity_check = true
-
-[vpc public]
-vpc_id = ${VPC_ID}
-master_subnet_id = ${SUBNET_ID}
 
 [cluster default]
 key_name = ${SSH_KEY_NAME}
 base_os = ${BASE_OS}
 scheduler = ${SCHEDULER}
+fsx_settings = myfsx
 master_instance_type = c5.xlarge
-s3_read_write_resource = *
+master_root_volume_size = 40
+compute_root_volume_size = 40
+additional_iam_policies = arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore, arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole
 vpc_settings = public
 ebs_settings = myebs
-queue_settings = compute
+queue_settings = c5n18large
+custom_ami = ${CUSTOM_AMI}
 
-[queue compute]
-compute_resource_settings = default
+[queue c5n18large]
+compute_resource_settings = c5n18large
 disable_hyperthreading = true
+enable_efa = true
 placement_group = DYNAMIC
 
-[compute_resource default]
-instance_type = c5.large
+[compute_resource c5n18large]
+instance_type = c5n.18xlarge
 min_count = 0
 max_count = 8
+
+[fsx myfsx]
+shared_dir = /fsx
+storage_capacity = 1200
+deployment_type = SCRATCH_2
 
 [ebs myebs]
 shared_dir = /shared
