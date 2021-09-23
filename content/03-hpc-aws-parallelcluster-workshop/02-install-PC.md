@@ -21,10 +21,10 @@ Verify AWS CLI version and  Install AWS ParallelCluster
 aws --version
 ```  
 
-2. Install AWS ParallelCluster version 2.11.x
+2. Install AWS ParallelCluster version 2.11.2
 
 ```bash
-pip3 install aws-parallelcluster==2.11.* -U --user
+pip3 install aws-parallelcluster==2.11.2 -U --user
 ```
 
 Next, you configure AWS ParallelCluster.
