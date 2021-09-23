@@ -1,6 +1,9 @@
-___
-
-## title: "Updates" date: 2019-09-18T10:50:17-04:00 draft: false weight: 20
+---
+title: "Updates"
+date: 2019-09-18T10:50:17-04:00
+draft: false
+weight: 20
+---
 
 {{% notice info  %}}
 Frequently asked questions will be addressed on this page during the tutorial. Do not hesitate to visit this page often during the tutorial!
@@ -21,7 +24,8 @@ aws cloudformation create-stack --stack-name pc-serverless-policy --parameters P
 You can use the following command to solve this issue:
 
 ```bash
-export AWS_REGION=$(aws configure get region)
+export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+aws configure set region $AWS_REGION
 ```
 
 #### Running from the head-node instead of the head node
