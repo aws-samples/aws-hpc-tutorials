@@ -34,13 +34,26 @@ echo $BASE_OS
 echo $SCHEDULER
 ```
 
-2. In case any of the above environment variables are not set, source it from the **env_vars** file generated in your working directory previously
+1. In case any of the above environment variables are not set, source it from the **env_vars** file generated in your working directory previously
 
 ```bash
 source env_vars
 ```
 
-3. Build the custom config file for ParallelCluster
+1. Retrieve NCAR WRF v4 AMI
+
+```bash
+CUSTOM_AMI=`aws ec2 describe-images --owners 346225319837 \
+    --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-2.11.2-wrf-4.2.2-*" \
+    --region ${AWS_REGION} \
+    | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
+
+echo "export CUSTOM_AMI=${CUSTOM_AMI}" >> env_vars
+```
+
+
+1. Build the custom config file for ParallelCluster
 
 ```bash
 cat > my-cluster-config.ini << EOF
