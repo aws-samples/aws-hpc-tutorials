@@ -39,7 +39,7 @@ echo "export VPC_ID=${VPC_ID}" >> env_vars
 
 ```bash
 
-INSTANCES=c5.xlarge,c5.large,c4.large
+INSTANCES=c5n.18xlarge,c5.large
 
 ```
 
