@@ -1,6 +1,9 @@
-___
-
-## title: "Tutorial Agenda" date: 2019-09-18T10:50:17-04:00 draft: false weight: 10
+---
+title: "Tutorial Agenda"
+date: 2019-09-18T10:50:17-04:00
+draft: false
+weight: 10
+---
 
 You will find here the agenda for the tutorial. An update will be made on November 14th 2021 with references to the different workshops.
 
