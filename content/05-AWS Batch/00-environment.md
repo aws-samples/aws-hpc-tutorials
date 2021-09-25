@@ -38,6 +38,7 @@ rm -vf ${HOME}/.aws/credentials
 11. Identify the AWS region with the following commands:
 
 ```bash
+sudo yum install jq
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 echo $AWS_REGION
 ```
