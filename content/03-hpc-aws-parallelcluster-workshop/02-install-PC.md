@@ -21,7 +21,7 @@ pip3 install awscli -U --user
 Install AWS ParallelCluster
 
 ```bash
-pip3 install aws-parallelcluster -U --user
+pip3 install "aws-parallelcluster<3.0" --upgrade --user
 ```
 
 Next, you configure AWS ParallelCluster.
