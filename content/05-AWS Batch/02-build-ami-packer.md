@@ -18,3 +18,7 @@ bash build.sh $INSTANCE_ROLE
 ```
 
 The building process is handled by [Packer](https://www.packer.io/) from HashiCorp. The process involves multiple reboots to update to the latest driver and kernel modules. We recommend that you to check the content of the files *build.sh* and *image.json* while the AMI is building.
+
+
+Note:
+The image.json used to build the packer image only works with default VPC. If there isn't a Default VPC in your account, you will need to pass in the vpc_id and subnet_id in the builder blocker of image.json
