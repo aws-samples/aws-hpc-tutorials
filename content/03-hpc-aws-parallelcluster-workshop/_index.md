@@ -2,7 +2,7 @@
 title: "Create an HPC Cluster"
 date: 2019-01-24T09:05:54Z
 weight: 30
-pre: "<b>III ⁃ </b>"
+pre: "<b>Lab I ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
 

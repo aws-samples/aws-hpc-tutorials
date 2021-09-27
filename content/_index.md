@@ -4,7 +4,7 @@ date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
 
-# SC20 Tutorial
+# SC21 Tutorial
 
 Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC21 that will be delivered on November 14th 2021. We are excited to virtually meet you, and look forward to answering your questions!
 The website will be maintained after SC21, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
