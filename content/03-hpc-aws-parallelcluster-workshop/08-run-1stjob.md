@@ -17,10 +17,16 @@ In this workshop, you run your first *"hello world"* job to introduce you to the
 Make sure that you have your AWS Cloud9 terminal open and that you are logged into the head node.
 {{% /notice %}}
 
+If you are not logged into the head node please run the below command 
+
+```bash
+pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+```
+
 ##### Create the Hello World Application
 
 First, build and compile your MPI *hello world* application.
-In your AWS Cloud9 terminal, run the following commands to create and build the *hello world* binary.
+Run the following commands on the head node to create and build the *hello world* binary.
 
 ```bash
 cat > mpi_hello_world.c << EOF
