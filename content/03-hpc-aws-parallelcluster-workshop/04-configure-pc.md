@@ -92,7 +92,7 @@ placement_group = DYNAMIC
 [compute_resource c5n18large]
 instance_type = c5n.18xlarge
 min_count = 0
-max_count = 8
+max_count = 2
 
 [fsx myfsx]
 shared_dir = /fsx
