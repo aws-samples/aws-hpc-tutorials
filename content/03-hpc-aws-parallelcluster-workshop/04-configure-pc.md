@@ -42,6 +42,9 @@ source env_vars
 
 1. Retrieve NCAR WRF v4 AMI
 
+NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
+You will leverage this AMI to run WRF on a test case in the next section of this lab.
+
 ```bash
 CUSTOM_AMI=`aws ec2 describe-images --owners 346225319837 \
     --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
