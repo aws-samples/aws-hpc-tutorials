@@ -9,7 +9,8 @@ In this section, you will create a Docker container for the application and a bu
 
 A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to run a build. We will learn more about AWS CodeBuild and setup in the next section. 
 
-1. Create a Docker container for the application in the CodeCommit repo
+1. Create a Docker container for the application in the CodeCommit repo. We're going to use the [Python 3.8 Lambda container](https://gallery.ecr.aws/lambda/python) from ECR. This container contains all the required components to run on AWS Lambda. You can find other runtime environments on the [ECR Lambda](https://gallery.ecr.aws/lambda) page.
+
 ```bash
 cat > Dockerfile << EOF
 FROM public.ecr.aws/lambda/python:3.8
@@ -31,35 +32,47 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
-      - echo IMAGE TAG $IMAGE_TAG
+      - \$(aws ecr get-login --region \$AWS_DEFAULT_REGION --no-include-email)
+      - IMAGE_TAG=\$(echo \$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
+      - echo IMAGE TAG \$IMAGE_TAG
 
   build:
     commands:
-      - echo Build started on `date`
+      - echo Build started at \$(date)
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t \$REPOSITORY_URI:latest .
+      - docker tag \$REPOSITORY_URI:latest \$REPOSITORY_URI:\$IMAGE_TAG
 
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Build completed at $(date)
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push \$REPOSITORY_URI:latest
+      - docker push \$REPOSITORY_URI:\$IMAGE_TAG
 
 EOF
 ```
 
-3. Commit & Push the created files to the CodeCommit repo
-```bash
-cd MyDemoRepo
-```
+3. Create a file `script.py` with a simple hello world:
 
 ```bash
-git add Dockerfile buildspec.yml
+cat > script.py << EOF
+# Hello World Python Script
+
+print('Hello World!')
+EOF
+```
+
+4. Commit & Push the created files to the CodeCommit repo
+
+```bash
+git add Dockerfile buildspec.yml script.py
 git commit -m "Created Dockerfile and buildspec file"
-git push
+git push origin main
 ```
 
+5. Now update the default Codecommit branch to `main`:
+
+```bash
+aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main
+```
