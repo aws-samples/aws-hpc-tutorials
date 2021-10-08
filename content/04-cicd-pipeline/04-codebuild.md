@@ -19,9 +19,9 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 
 ![AWS CodeBuild](/images/cicd/code-build-1.png)
 
-5. In the **Source** section, select **AWS CodeCommit** from the dropdown as the **Source provider**. In the **Repository**, enter the name of the codecommit repository **MyDemoRepo** created earlier. For the **Branch** select the **master** branch (which contains the code, in this case the Docker container to build)	
+5. In the **Source** section, select **AWS CodeCommit** from the dropdown as the **Source provider**. In the **Repository**, enter the name of the codecommit repository **MyDemoRepo** created earlier. For the **Branch** select the **main** branch (which contains the code, in this case the Docker container to build)
 
-![AWS CodeBuild](/images/cicd/code-build-2.png)
+![AWS CodeBuild](/images/cicd/code-build-2a.png)
 
 6. In the **Environment** section, select the settings as shown below
 	- Make sure to enable the **Privileged** flag required to build the Docker images
@@ -33,10 +33,11 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 7. In the **Environment** section, expand the **Additional configuration** section 
   	- Under the **Environment variables** enter the Name **REPOSITORY_URI** which should point to the Amazon ECR repository created in the Lab 3.
 	- In the **Value** provide the Amazon ECR repository URI. Keep the Type as default **Plaintext**
-	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9
+	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from [Lab 2]
  
 ```bash
- aws ecr describe-repositories --query "repositories[*].[repositoryUri]" --output text
+REPO_NAME=sc21-container
+aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] | grep "/${REPO_NAME}"
  ```
 ![AWS CodeBuild](/images/cicd/code-build-5.png)
 
