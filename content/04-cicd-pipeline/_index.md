@@ -2,7 +2,7 @@
 title: "Create a CI/CD pipeline"
 date: 2021-09-29
 weight: 50
-pre: "<b>IV ⁃ </b>"
+pre: "<b>III ⁃ </b>"
 tags: ["CI/CD", "AWS Developer Tools", "DevOps"]
 ---
 
