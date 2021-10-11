@@ -5,15 +5,22 @@ weight = 40
 tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 +++
 
-In this section, you will create a Docker container for the application and a buildspec file in the CodeCommit repo created in the previous section
+In this section, you will create a Docker container for the application and a buildspec file in the CodeCommit repository created in the previous section
 
-A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to run a build. We will learn more about AWS CodeBuild and setup in the next section. 
+A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
 
-1. Create a Docker container for the application in the CodeCommit repo. We're going to use the [Python 3.8 Lambda container](https://gallery.ecr.aws/lambda/python) from ECR. This container contains all the required components to run on AWS Lambda. You can find other runtime environments on the [ECR Lambda](https://gallery.ecr.aws/lambda) page.
+
+1. cd to the CodeCommit repository created in the previous section:
+
+```bash
+cd MyDemoRepo
+```
+
+2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html). Amazon Linux Docker container images contain a subset of the packages in the images for use on Amazon EC2 and as VMs in on-premises scenarios. To install additional packages, use yum.
 
 ```bash
 cat > Dockerfile << EOF
-FROM public.ecr.aws/lambda/python:3.8
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 
 ADD script.py /
 
@@ -21,7 +28,7 @@ CMD python /script.py
 EOF
 ```
 
-2. Create a buildspec file to build and push the Docker container to [Amazon ECR](https://aws.amazon.com/ecr/)
+3. Create a buildspec file to build and push the Docker container to [Amazon ECR](https://aws.amazon.com/ecr/)
 
 ```bash
 cat > buildspec.yml << EOF
@@ -53,7 +60,7 @@ phases:
 EOF
 ```
 
-3. Create a file `script.py` with a simple hello world:
+4. Create a file `script.py` with a simple hello world:
 
 ```bash
 cat > script.py << EOF
@@ -63,7 +70,7 @@ print('Hello World!')
 EOF
 ```
 
-4. Commit & Push the created files to the CodeCommit repo
+5. Commit and Push your local created files to the remore repository hosted in CodeCommit.
 
 ```bash
 git add Dockerfile buildspec.yml script.py
@@ -71,7 +78,7 @@ git commit -m "Created Dockerfile and buildspec file"
 git push origin main
 ```
 
-5. Now update the default Codecommit branch to `main`:
+6. Now update the default Codecommit branch to `main`:
 
 ```bash
 aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main
