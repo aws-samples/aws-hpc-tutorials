@@ -23,7 +23,7 @@ cd MyDemoRepo
 
 ```bash
 cat > Dockerfile << EOF
-FROM amazoncorretto:8
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:8
 
 RUN curl -s https://get.nextflow.io | bash \
  && mv nextflow /usr/local/bin/
@@ -32,18 +32,17 @@ RUN yum install -y git python-pip curl jq
 
 RUN pip install --upgrade awscli
 
-COPY nextflow.aws.sh /opt/bin/nextflow.aws.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN chmod +x /opt/bin/nextflow.aws.sh
+VOLUME ["/scratch"]
 
-WORKDIR /opt/work
-
-ENTRYPOINT ["/opt/bin/nextflow.aws.sh"]
+CMD ["/usr/local/bin/entrypoint.sh"]
 EOF
 ```
-3. Copy the entrypoint file (nextflow.aws.sh) from the S3 bucket
+
+3. Copy the entrypoint file (entrypoint.sh) from the S3 bucket
 ```bash
-aws s3 cp s3://<bucket-name>/nextflow.aws.sh .
+aws s3 cp s3://sc21-hpc-labs/entrypoint.sh .
 ```
 
 3. Now we will update and push this file to the created codecommit repository
