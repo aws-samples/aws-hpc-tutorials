@@ -38,4 +38,6 @@ In this lab, you are introduced to [AWS Developer Tools](https://aws.amazon.com/
 - Create a repository in AWS CodeCommit
 - Create a build environment using AWS CodeBuild
 - Create a pipeline using AWS CodePipeline
-- Automate the build process with repo update
+- Automate the build process with repository update
+
+

@@ -21,6 +21,10 @@ cd MyDemoRepo
 
 2. Update the Dockerfile to the following. This is an entrypoint script which can consume the link to an Amazon S3 bucket or a git repository from which to download the Nextflow pipeline and executes it.
 
+{{% notice info %}}
+The Nextflow command-line tool uses the JVM. Thus, we will install AWS open-source variant [Amazon Corretto](https://docs.aws.amazon.com/corretto/). Amazon Corretto is a no-cost, multiplatform, production-ready distribution of the Open Java Development Kit (OpenJDK). Corretto comes with long-term support that will include performance enhancements and security fixes. Amazon runs Corretto internally on thousands of production services and Corretto is certified as compatible with the Java SE standard. With Corretto, you can develop and run Java applications on popular operating systems, including Linux, Windows, and macOS.
+{{% /notice %}}
+
 ```bash
 cat > Dockerfile << EOF
 FROM public.ecr.aws/amazoncorretto/amazoncorretto:8
