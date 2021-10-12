@@ -61,8 +61,8 @@ echo "export CUSTOM_AMI=${CUSTOM_AMI}" >> env_vars
 ```bash
 cat > my-cluster-config.ini << EOF
 [vpc public]
-vpc_id = {VPC_ID}
-master_subnet_id = {SUBNET_ID}
+vpc_id = ${VPC_ID}
+master_subnet_id = ${SUBNET_ID}
 
 [global]
 cluster_template = default
