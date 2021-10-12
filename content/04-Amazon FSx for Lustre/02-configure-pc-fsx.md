@@ -135,7 +135,6 @@ Create the cluster using the following command.
 pcluster create hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
 ```
 
-
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
 #### Connect to Your Cluster

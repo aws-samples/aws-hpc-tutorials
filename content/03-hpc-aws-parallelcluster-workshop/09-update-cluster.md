@@ -125,7 +125,7 @@ mpirun ./mpi_hello_world
 EOF
 ```
 
-With this you can run an **squeue** command to see that the job you submitted is running on the new partition with c4.xlarge instance
+With this you can run an **squeue** command to see that the job you submitted is running on the new partition with c4.large instance
 
 ```bash
 [ec2-user@ip-172-31-46-11 ~]$ squeue -a
