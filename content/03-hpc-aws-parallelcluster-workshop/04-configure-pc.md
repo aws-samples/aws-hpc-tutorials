@@ -46,7 +46,7 @@ NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of 
 You will leverage this AMI to run WRF on a test case in the next section of this lab.
 
 ```bash
-CUSTOM_AMI=`aws ec2 describe-images --owners 346225319837 \
+CUSTOM_AMI=`aws ec2 describe-images --owners 111992169430 \
     --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
     --filters "Name=name,Values=*-amzn2-parallelcluster-2.11.2-wrf-4.2.2-*" \
     --region ${AWS_REGION} \
