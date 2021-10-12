@@ -129,29 +129,18 @@ Now, you are ready to create a cluster.
 
 #### Generate a Cluster for Amazon FSx for Lustre
 
-Stop the cluster using the following command.
+Create the cluster using the following command.
 
 ```bash
-pcluster stop hpclab-yourname -r $AWS_REGION
+pcluster create hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
 ```
 
-
-Update the cluster using the following command
-
-```bash
-pcluster update hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
-```
 
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
 #### Connect to Your Cluster
 
-Once updated, start and connect to your cluster.
-
-
-```bash
-pcluster start hpclab-yourname -r $AWS_REGION
-```
+Once created, connect to your cluster.
 
 ```bash
 pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
