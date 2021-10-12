@@ -89,6 +89,7 @@ s3_read_write_resource = *
 vpc_settings = public
 ebs_settings = myebs
 queue_settings = compute
+fsx_settings = myfsx
 s3_read_resource = arn:aws:s3:::*
 
 [queue compute]
