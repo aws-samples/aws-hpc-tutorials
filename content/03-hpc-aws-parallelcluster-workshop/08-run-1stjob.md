@@ -9,15 +9,15 @@ tags = ["tutorial", "create", "ParallelCluster"]
 The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.
 {{% /notice %}}
 
-In this lab, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/wrf/WG2/benchv3/#_Toc212961288) job to introduce you to the mechanisms of AWS ParallelCluster.
+In this lab, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/wrf/users/benchmark/benchdata_v422.html) job to introduce you to the mechanisms of AWS ParallelCluster.
 
 #### About WRF
 The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications.
-It features two dynamical cores, a data assimilation system, and a software architecture supporting parallel computation and system extensibility.
+It features a dynamical core, a data assimilation system, and a software architecture supporting parallel computation and system extensibility.
 The model serves a wide range of meteorological applications across scales from tens of meters to thousands of kilometers.
 The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (represented by the National Centers for Environmental Prediction (NCEP) and the Earth System Research Laboratory), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (FAA).
 
-WRF is a tightly coupled application that uses MPI and OpenMP.
+WRF is a tightly coupled application that uses MPI and/or OpenMP.
 In this lab, you will run WRF using only MPI.
 
 #### Preparatory Steps
@@ -33,23 +33,23 @@ These are used to run the WRF executable (wrf.exe) to simulate atmospheric event
 The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km.
 The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure). 
 
-On the HPC Cluster, you download the CONUS 12km test case from the [UCAR website](https://www.ucar.edu/) into the **/fsx** directory.
+On the HPC Cluster, download the CONUS 12km test case from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/) into the **/fsx** directory.
 **/fsx** is the mount point of the high performance file system, [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/).
 
 Here are the steps:
 
 ```bash
 cd /fsx
-curl -O https://www2.mmm.ucar.edu/wrf/src/non_compressed_12km.tar.gz
-tar -xzf non_compressed_12km.tar.gz
+curl -O https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz 
+tar -xzf wrf_simulation_CONUS12km.tar.gz 
 ```
 
 #### Prepare the data
-In this step, you copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code.
-A copy of the WRF source code is part of the AMI and located  to __/opt/wrf-omp/src__.
+Copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code.
+A copy of the WRF source code is part of the AMI and located  in __/opt/wrf-omp/src__.
 
 ```bash
-cd /fsx/non_compressed_12km
+cd /fsx/conus_12km
 
 cp /opt/wrf-omp/src/run/{\
 GENPARM.TBL,\
@@ -71,8 +71,8 @@ ozone_lat.formatted,\
 ozone_plev.formatted} .
 ```
 
-#### Run CONUS 12Km
-In this step, you create the SLURM batch script that will run the WRF CONUS 12km test case on 72 cores distributed over 2 x c5n.18xlarge EC2 instance.
+#### Run the CONUS 12Km simulation
+In this step, you create the SLURM batch script that will run the WRF CONUS 12km test case on 72 cores distributed over 2 x c5n.18xlarge EC2 instances.
 
 ```bash
 cat > slurm-c5n-wrf-conus12km.sh << EOF
@@ -97,16 +97,11 @@ mpirun wrf.exe
 EOF
 ```
 
-Change restart to .false. since the test case is not run from a checkpoint.
-```bash
-sed -i "s%restart[[:space:]]\+= .true.,%restart = .false.,%g" namelist.input  
-```
-
 #### Submit your First Job
 
 Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist.
 
-However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached, no additional instances will be created.
+If there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached, no additional instances will be created.
 
 Submit your first job using the following command on the head node:
 
@@ -130,9 +125,9 @@ sinfo
  The following example shows 4 nodes.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
-Once the job has been processed, you should see similar results as follows in the *.out* file:
+Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:
 
-The output is similar bellow:
+Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
 
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
 
