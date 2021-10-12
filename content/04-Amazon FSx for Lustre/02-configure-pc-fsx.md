@@ -89,6 +89,7 @@ s3_read_write_resource = *
 vpc_settings = public
 ebs_settings = myebs
 queue_settings = compute
+fsx_settings = myfsx
 s3_read_resource = arn:aws:s3:::*
 
 [queue compute]
@@ -128,29 +129,18 @@ Now, you are ready to create a cluster.
 
 #### Generate a Cluster for Amazon FSx for Lustre
 
-Stop the cluster using the following command.
+Create the cluster using the following command.
 
 ```bash
-pcluster stop hpclab-yourname -r $AWS_REGION
-```
-
-
-Update the cluster using the following command
-
-```bash
-pcluster update hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
+pcluster create hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
 ```
 
 This cluster generates additional resources for Amazon FSx for Lustre which will take a few minutes longer to create than the previous AWS ParallelCluster workshop.
 
 #### Connect to Your Cluster
 
-Once updated, start and connect to your cluster.
+Once updated,connect to your cluster.
 
-
-```bash
-pcluster start hpclab-yourname -r $AWS_REGION
-```
 
 ```bash
 pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
