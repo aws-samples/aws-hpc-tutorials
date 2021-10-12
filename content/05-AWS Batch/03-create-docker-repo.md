@@ -1,38 +1,54 @@
 +++
-title = "d. Create a Docker Repository"
+title = "d. Upload to Amazon ECR"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
-tags = ["tutorial", "install", "AWS", "batch", "packer"]
+tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 +++
 
-In this step, you create a Docker repository and upload a container image to this repository.
+In this step, you will create a private container repository in [Amazon Elastic Container Registry (Amazon ECR)](https://aws.amazon.com/ecr/) and upload your newly created container image for use with AWS Batch. The AWS Management Console is used here, however later in the workshop you will use AWS CLI commands for these tasks.
 
-#### Create the Docker Repository
+### Create an Amazon ECR Repository
+1. Navigate to [ Amazon ECR](https://console.aws.amazon.com/ecr/home).
+2. Click on the **Create repository** button in the top right.
+![AWS Batch](/images/aws-batch/create-repo-1.png)
+3. Name the new repository **stress-ng**. 
+![AWS Batch](/images/aws-batch/create-repo-2.png)
+4. Leave all the other options as the default and click the **Create repository** button at the bottom right.
 
-Use the AWS CLI create a Docker repository on Amazon ECR, the AWS managed container registry.
 
-```bash
-aws ecr create-repository --repository-name carla-av-demo
-```
+### Upload your Container to the Repository
 
-#### Fetch and Upload a Docker Image
+1. Select your new repository and click on the **View push commands** button.
+![AWS Batch](/images/aws-batch/create-repo-3.png)
 
-Fetch the image from the web, then import it to your newly created ECR repository.
+You should see a set of four commands similar to the following.
+![AWS Batch](/images/aws-batch/create-repo-4.png)
 
-1. Fetch the docker credentials.
-```bash
-REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
-$(aws ecr get-login --no-include-email --region ${REGION})
-```
-2. Import and tag the image.
-```bash
-# get the repository URI
-ECR_REPOSITORY_URI=$(aws ecr describe-repositories --repository-names carla-av-demo --output text --query 'repositories[0].[repositoryUri]')
-curl https://s3.amazonaws.com/av-workshop/carla-demo.tar -o carla-demo.tar
-docker load -i carla-demo.tar
-docker tag carla-demo:latest $ECR_REPOSITORY_URI
-```
-3. Push the image to the ECR repository.
-```bash
-docker push $ECR_REPOSITORY_URI:latest
-```
+2. Cut and paste each of the commands shown above into a teminal window on your Cloud9 instance and execute them. 
+{{% notice info %}}
+   You can safely skip the second command as you have previously built and tested our container image.
+{{% /notice %}}
+
+   The commands have the the following actions:
+
+- The first command obtains your credentials and logs into the repository.
+
+- The second command builds and tags the container image from the definition contained in the the file named Dockerfile in the current directory.
+
+- The third command tags the image in the reposiory.
+
+- The fourth command "pushes" (uploads) the image to the repository.
+
+3. After successfully executing those commands, if you click on your repository you will see the image stress-ng:latest image that you just pushed.
+![AWS Batch](/images/aws-batch/create-repo-5.png)
+
+4. Click on the icon next to "Copy URI" to copy the URI of your container image. 
+. 
+{{% notice info %}}
+This **Image URI** will be used when you create a Batch Job definition in the next stage of this workshop.
+{{% /notice %}}
+
+If you click on the "latest" image tag you will reveal the details of your image including this URI.
+![AWS Batch](/images/aws-batch/create-repo-6.png)
+
+

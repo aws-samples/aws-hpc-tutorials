@@ -5,46 +5,31 @@ weight = 20
 tags = ["tutorial", "install", "AWS", "Batch"]
 +++
 
-In this step, we will create an IAM role with Administrator access and configure Cloud9 to use the IAM role for the rest of this lab.
+This section modifies the Cloud9 environment that you created in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop in the following ways:
 
-1. Follow [this deep link to create an IAM role with Administrator access](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess).
+- Expand the root volume to at least 20GB in capacity to allow container images to be built.
+- Upgrade to [AWS Command Line Interface (AWS CLI) Version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html) in order to upload your container images to [Amazon Elastic Container Registry (ECR)](hhttps://aws.amazon.com/ecr/).
 
-2. Confirm that **AWS service** and **EC2** are selected, then click **Next: Permissions** to view permissions.
+### Expand Cloud9 Root Volume
+In this first step you will ensure the root volume of your Cloud9 instance has at least 20GB capacity in order for Docker images to be built locally.
 
-3. Confirm that **AdministratorAccess** is checked, then click **Next: Tags** to assign tags.
+1. Close any open Cloud9 browser sessions and follow this deep link to find [ your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime).
+2. Stop the instance if is running by selecting the instance and choosing **Instance state / Stop instance /**. ![Stop running instance](/images/aws-batch/root-volume-1.png)
+3. Click on the Instance ID to see the instance details and click on the storage tab. Click on the Volume ID for the root volume. ![Click on the Storage tab](/images/aws-batch/root-volume-2.png)
+4. Select the root volume for your Cloud9 instance and resize it to be at least 20GB in size by choosing **Actions / Modify volume /**. ![Modify the root volume](/images/aws-batch/root-volume-3.png)
+5. Return to your [ Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime) and start it up by selecting the instance and choosing **Instance state / Start instance /**.
 
-4. Take the defaults, and click **Next: Review** to review.
+### Upgrade to AWS CLI Version 2
 
-5. Enter **hpcworkshop-admin** for the Name, and click **Create role**. 
-![AWS Batch](/images/aws-batch/iam-role-1.png)
-
-6. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime).
-
-7. Select the instance, then choose **Actions / Instance Settings / Attach/Replace IAM Role**. 
-![AWS Batch](/images/aws-batch/iam-role-2.png)
-
-8. Choose **hpcworkshop-admin** from the IAM Role drop down, and select **Apply**.
-![AWS Batch](/images/aws-batch/iam-role-3.png)
-
-9. In Cloud9, click the gear icon (in top right corner), or click to open a new tab and choose “Open Preferences”. Select **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
-![AWS Batch](/images/aws-batch/c9disableiam.png)
-
-10. To ensure temporary credentials aren’t already in place we will also remove any existing credentials file:
-
+AWS CLI Version 2 is required to interact with [Amazon ECR](https://aws.amazon.com/ecr/).
+1.  Execute the following commands to upgrade to AWS CLI to Version 2. More information on this process is available at https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html. 
 ```bash
-rm -vf ${HOME}/.aws/credentials
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install -i /usr/local/aws-cli -b /usr/bin
+aws --version
 ```
-
-11. Identify the AWS region with the following commands:
-
-```bash
-export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-echo $AWS_REGION
-```
-
-12. Configure the AWS CLI to use this AWS region:
-
-```bash
-aws configure set default.region ${AWS_REGION}
-aws configure get default.region
+After executing ther commands above, confirm that you now have AWS CLI version 2 sucessfully installed by verfying output from the last command above results in output similar to the following:
+```text
+aws-cli/2.2.35 Python/3.8.8 Linux/4.14.243-185.433.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
 ```
