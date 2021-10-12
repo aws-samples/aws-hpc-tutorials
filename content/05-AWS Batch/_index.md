@@ -33,16 +33,13 @@ AWS Batch provisions compute resources and optimizes the job distribution based 
 This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop.
 {{% /notice %}}
 
-In this workshop, you learn how to run a driving simulation with [CARLA](http://carla.org/) that outputs sensor data used in later stages of a workflow. CARLA is an interactive driving simulator used to support development, training, and validation of autonomous driving systems.
+In this workshop you will learn how to create batch jobs that run a computationally intensive task ([stress-ng](https://kernel.ubuntu.com/~cking/stress-ng/)) in various ways. This includes running a single job, supplying different command line parameters to separate tasks of an array job, and defining a job dependency to simulate the flow control of a more complex workflow.
 
-<video width="640" height="240" controls>
-  <source src="/images/carla.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+This workshop includes the following major topics:
 
-This includes the following steps:
-
-- Set up the infrastructure for AWS Batch.
-- Upload a container with the simulation.
-- Build an Amazon Machine Image (AMI) containing CARLA and the Amazon ECS agent.
-- Run simulations on AWS Batch.
+- Set up the infrastructure for required for the workshop.
+- Define, build and upload a container to [Amazon Elastic Container Registry (ECR)](hhttps://aws.amazon.com/ecr/).
+- Run a compute intensive task using [AWS Batch](https://aws.amazon.com/batch/).
+- Run the compute intensive task in different ways by passing separate command line parameters member tasks of an array job.
+- Define a job dependency for conditional execution of related batch jobs.
+- Clean up the resources used by this workshop.
