@@ -10,7 +10,7 @@ In this step, you will create a simple "Dockerfile" with the specifications for 
 1. Open a new file in the Cloud9 editor named "Dockerfile" and cut and paste the following contents:
 
 ```bash
-FROM amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
