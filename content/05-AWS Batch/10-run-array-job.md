@@ -60,7 +60,7 @@ cd ~/array
 2. Copy and paste the following into a new file named Dockerfile in the array directory.
 
 ```text
-FROM amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
@@ -116,8 +116,7 @@ Let's take a closer look at what that new container does.
 Note that the following steps are all accomplished by the Dockerfile above and as such the following steps do not need to be directly executed, however feel free to copy and paste their contents and execute them on your Cloud9 instance to investigate how they work. 
 
 A script called /mktests.sh is generated inside your container with the following contents:
-
-```text
+```bash
 #!/bin/bash
 FILE=stress-tests.txt
 rm $FILE 2>/dev/null

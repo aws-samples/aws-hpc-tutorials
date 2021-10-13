@@ -153,7 +153,7 @@ cd ~/master
 
 2. Copy and paste the following into a new file named Dockerfile in the master directory.
 ```bash
-FROM amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
@@ -282,7 +282,7 @@ cd ~/worker
 2. Copy and paste the following into a new file named Dockerfile in the worker directory.
 
 ```bash
-FROM amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
