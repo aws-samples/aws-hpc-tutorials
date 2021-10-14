@@ -15,7 +15,7 @@ Sandbox are available on Novemver 14th 2021 for the duration of the tutorial. If
 
 #### You must specify a region issue
 
-Several attendees shared that they encountered the error below when creating the IAM policy for their cluster in [**Lab II**](</04-serverless/02-serverless-iam/02-iam-policy2.html>). This was caused by a recent update. The responsible party has been tasked in learning French and bake enough [Tarte au Framboises](<http://nathaliebakes.com/tartes/tarte-aux-framboises-lenotre/>) to feed the team after SC21.
+Several attendees shared that they encountered the error below when creating the IAM policy for their cluster in **[Lab II](</04-serverless/02-serverless-iam/02-iam-policy2.html>)**. This was caused by a recent update.
 
 ```
 aws cloudformation create-stack --stack-name pc-serverless-policy --parameters ParameterKey=S3Bucket,ParameterValue=serverless-${BUCKET_POSTFIX} --template-body file://serverless-template.yaml --capabilities CAPABILITY_NAMED_IAM, it replies : You must specify a region. You can also configure your region by running “aws configure”.
