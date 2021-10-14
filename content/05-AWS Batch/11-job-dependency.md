@@ -11,7 +11,7 @@ You will essentially split the work of from the previous array example into two 
 - A **Leader** job will define the work to be carried out and write this configuration to a specified S3 bucket. This is effectively accomplished by executing the previous mktests.sh script and uploading the resulting stress-tests.txt file to the specified S3 bucket.
 - Each member task of a **Follower** array job will then read the stress-tests.txt file from the S3 bucket to determine which test to carry out based on its array index in a similar manner to your previous array job. Each Worker task will now write their output to a file in the specified S3 bucket.
 
-You will implement a job dependency such that the Master job runs first and the Worker array job will only start on successful completion of the Master job.
+You will implement a job dependency such that the Leader job runs first and the Follower array job will only start on successful completion of the Leader job.
 
 
 ### Create an S3 Bucket and IAM Role 
