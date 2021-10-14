@@ -9,7 +9,7 @@ weight: 40
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>).
 {{% /notice %}}
 
-Do not hesitate to ask questions on [**Gitter**](<https://gitter.im/aws-sc20/general>) or sc21tutorial@amazon.com if you need any help.
+Do not hesitate to ask questions at sc21tutorial@amazon.com if you need any help.
 
 ##### Step 1
 
