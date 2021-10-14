@@ -27,7 +27,7 @@ In this step, you will create an IAM role with Administrator access and configur
 ![Getting Started](/images/introductory-steps/iam-role-3.png)
 
 9. In Cloud9, click the gear icon (in top right corner), or click to open a new tab and choose “Open Preferences”. Select **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
-![Getting Started](/images/introductory-steps/c9disableiam.png)
+![Getting Started](/images/introductory-steps/cloud9-credentials.png)
 
 10. To ensure temporary credentials aren’t already in place we will also remove any existing credentials file:
 
