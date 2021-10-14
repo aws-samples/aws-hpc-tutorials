@@ -37,7 +37,15 @@ HPC resources have complex and dynamic software needs that are challenging to ma
 {{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.
 {{% /notice %}}
 
-In this lab, you are introduced to [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) and how to use services like AWS CodeCommit, AWS CodeBuild and AWS CodePipeline to automate application deployment with containers, CI/CD pipelines and container orchestrators . This workshop includes the following steps:
+In this lab, you are introduced to [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) and how to use services like AWS CodeCommit, AWS CodeBuild and AWS CodePipeline to automate application deployment with containers, CI/CD pipelines and container orchestrators. 
+
+You will be deploying the below architecture as part of this lab:
+
+![AWS CICD](/images/cicd/cicd-pipeline-arch.png)
+
+
+
+This lab includes the following steps:
 
 1. Create a repository in AWS CodeCommit
 2. Create a build environment using AWS CodeBuild

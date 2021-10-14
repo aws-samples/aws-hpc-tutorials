@@ -31,14 +31,16 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 ![AWS CodeBuild](/images/cicd/code-build-3.png)
 
 7. In the **Environment** section, expand the **Additional configuration** section. Keep all settings as default except the following:
-  	- Under the **Environment variables** enter the Name **REPOSITORY_URI** which should point to the Amazon ECR repository created in the Lab 2.
-	- In the **Value** provide the Amazon ECR repository URI. Keep the Type as default **Plaintext**
+  	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
+	- In the **Value** field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
+	- The output should look as **"<account-id>.dkr.ecr.<region>.amazonaws.com/sc21-container"**. Copy without the quotes and paste in the **Value** field.
  
 ```bash
 REPO_NAME=sc21-container
-aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] | grep "/${REPO_NAME}"
+aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep "/${REPO_NAME}"
  ```
+
 ![AWS CodeBuild](/images/cicd/code-build-5.png)
 
 7. In the **Buildspec** section, select **Use a buildspec file** option. By default CodeBuild looks for a file named buildspec.yml in the source code root directory. Since we named our buildspec file as **buildspec.yml** and put it in the root directory of the CodeCommit repo, you can skip providing a name or absolute path

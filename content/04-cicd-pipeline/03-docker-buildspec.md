@@ -60,7 +60,7 @@ phases:
 EOF
 ```
 
-4. Create a file `script.py` with a simple hello world:
+4. Create a file **script.py** with a simple hello world:
 
 ```bash
 cat > script.py << EOF
@@ -81,5 +81,5 @@ git push origin main
 6. Now update the default Codecommit branch to `main`:
 
 ```bash
-aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main
+aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_REGION
 ```

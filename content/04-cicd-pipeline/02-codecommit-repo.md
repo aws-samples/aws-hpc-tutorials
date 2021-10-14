@@ -36,15 +36,12 @@ REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query rep
 echo $REPOURL
 ```
 
-Verify `echo $REPOURL` outputs a repo url like: `https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo`
+Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo**
 
 7. Clone the repository in your Cloud9 terminal and cd into it:
 
 ```bash
 $ git clone $REPOURL
-Cloning into 'MyDemoRepo'...
-remote: Counting objects: 4, done.
-Unpacking objects: 100% (4/4), 681 bytes | 227.00 KiB/s, done.
 $ cd MyDemoRepo/
 ```
 
