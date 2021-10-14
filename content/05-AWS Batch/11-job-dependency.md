@@ -5,7 +5,7 @@ weight = 110
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
-In this step you will implement a more realistic workflow scenario that employs multiple jobs, shared data, and implements job dependencies as an example of a common Master/Worker pattern.
+In this step you will implement a more realistic workflow scenario that employs multiple jobs, shared data, and implements job dependencies as an example of a common Leader/Follower pattern.
 
 You will essentially split the work of from the previous array example into two separate jobs:
 - A **Master** job will define the work to be carried out and write this configuration to a specified S3 bucket. This is effectively accomplished by executing the previous mktests.sh script and uploading the resulting stress-tests.txt file to the specified S3 bucket.
