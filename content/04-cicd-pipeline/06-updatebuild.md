@@ -44,29 +44,30 @@ CMD ["/usr/local/bin/entrypoint.sh"]
 EOF
 ```
 
-3. Copy the entrypoint file (entrypoint.sh) from the S3 bucket
+3. Copy the entrypoint file (**entrypoint.sh**) from the S3 bucket and make it an executable
 ```bash
 aws s3 cp s3://sc21-hpc-labs/entrypoint.sh .
+chmod +x entrypoint.sh
 ```
 
-3. Now we will update and push this file to the created codecommit repository
+4. Now we will update and push this file to the created codecommit repository
 ```bash
-git add Dockerfile
+git add Dockerfile entrypoint.sh
 git commit -m "Updated the Dockerfile to trigger Genomics workflow using Nextflow" 
-git push
+git push origin main
 ```
 
-4. In the AWS Management Console search bar, type and select **CodePipeline**. Click on the **MyDemoPipeline** that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically. 
+5. In the AWS Management Console search bar, type and select **CodePipeline**. Click on the **MyDemoPipeline** that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically. 
 ![AWS CodePipeline](/images/cicd/codepipeline-6.png)
 
-5. Click on the AWS CodeBuild deep link from the Build stage of the CodePipeline. This will take you to the CodeBuild project that you created and will display the Build logs.
+6. Click on the AWS CodeBuild deep link from the Build stage of the CodePipeline. This will take you to the CodeBuild project that you created and will display the Build logs.
 ![AWS CodePipeline](/images/cicd/codepipeline-7.png)
 
 
-6. Click on the **Tail logs** to see the on-going or completed build process. This is showcasing every step of the build process as provided in your **buildspec.yml** file.
+7. Click on the **Tail logs** to see the on-going or completed build process. This is showcasing every step of the build process as provided in your **buildspec.yml** file.
 ![AWS CodePipeline](/images/cicd/codepipeline-8.png)
 
-7. In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR. 
+8. In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR. 
 
 
 

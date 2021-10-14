@@ -30,10 +30,10 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 
 ![AWS CodeBuild](/images/cicd/code-build-3.png)
 
-7. In the **Environment** section, expand the **Additional configuration** section 
-  	- Under the **Environment variables** enter the Name **REPOSITORY_URI** which should point to the Amazon ECR repository created in the Lab 3.
+7. In the **Environment** section, expand the **Additional configuration** section. Keep all settings as default except the following:
+  	- Under the **Environment variables** enter the Name **REPOSITORY_URI** which should point to the Amazon ECR repository created in the Lab 2.
 	- In the **Value** provide the Amazon ECR repository URI. Keep the Type as default **Plaintext**
-	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from [Lab 2]
+	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
  
 ```bash
 REPO_NAME=sc21-container
