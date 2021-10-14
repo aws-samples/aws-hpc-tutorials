@@ -1,8 +1,8 @@
 ---
-title: "Create a CI/CD pipeline"
+title: "Container building automation"
 date: 2021-09-29
 weight: 50
-pre: "<b>III ⁃ </b>"
+pre: "<b>Lab III ⁃ </b>"
 tags: ["CI/CD", "AWS Developer Tools", "DevOps"]
 ---
 
