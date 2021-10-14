@@ -27,7 +27,7 @@ The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using t
 Use the copy button in each of the following code samples to quickly copy the command to your clipboard.
 {{% /notice %}}
 
-In your cloud9 terminal window paste the following commands
+In your AWS Cloud9 terminal window paste the following commands
 
 1. Clean-up any exsisting aws cli installation
 
@@ -55,29 +55,3 @@ aws --version
 ```bash
 sudo yum install -y jq 
 ```
-
-### Check Existing Amazon EC2 Instances
-
-Use the following commands to display:
-
-- the general AWS CLI help, 
-- the help related to Amazon EC2 commands, 
-- the list of your existing instances with their key characteristics and 
-- the list of your registered SSH key-pairs. 
-
-```bash
-aws help
-```
-Type **q** to exit the help pages.
-```bash
-aws ec2 help
-```
-Type **q** to exit the help pages.
-```bash
-aws ec2 describe-instances
-```
-```bash
-aws ec2 describe-key-pairs
-```
-
-Next, you use the AWS CLI to interact with Amazon S3.
