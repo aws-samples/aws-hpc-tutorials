@@ -8,7 +8,7 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 In this step, you will create a private container repository in [Amazon Elastic Container Registry (Amazon ECR)](https://aws.amazon.com/ecr/) and upload your newly created container image for use with AWS Batch. The AWS Management Console is used here, however later in the workshop you will use AWS CLI commands for these tasks.
 
 ### Create an Amazon ECR Repository
-1. Navigate to [ Amazon ECR](https://console.aws.amazon.com/ecr/home).
+1. Navigate to [Amazon ECR](https://console.aws.amazon.com/ecr/home).
 2. Click on the **Create repository** button in the top right.
 ![AWS Batch](/images/aws-batch/create-repo-1.png)
 3. Name the new repository **stress-ng**. 
