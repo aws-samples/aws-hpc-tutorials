@@ -7,16 +7,16 @@ tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 
 In this section, you will create a Docker container for the application and a buildspec file in the CodeCommit repository created in the previous section
 
-A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
+A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
 
 
-1. cd to the CodeCommit repository created in the previous section:
+1. Confirm you are in the **MyDemoRepo** repository, if not enter into it:
 
 ```bash
 cd MyDemoRepo
 ```
 
-2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html). Amazon Linux Docker container images contain a subset of the packages in the images for use on Amazon EC2 and as VMs in on-premises scenarios. To install additional packages, use yum.
+2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html). Amazon Linux Docker container images contain a subset of the packages in the images for use on Amazon EC2 and as VMs in on-premises scenarios.
 
 ```bash
 cat > Dockerfile << EOF
@@ -60,7 +60,7 @@ phases:
 EOF
 ```
 
-4. Create a file `script.py` with a simple hello world:
+4. Create a file **script.py** with a simple hello world:
 
 ```bash
 cat > script.py << EOF
@@ -81,5 +81,5 @@ git push origin main
 6. Now update the default Codecommit branch to `main`:
 
 ```bash
-aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main
+aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_REGION
 ```

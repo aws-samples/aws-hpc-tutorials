@@ -9,45 +9,43 @@ tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 {{% /notice %}}
 
 1. In the AWS Management Console search bar, type and select **Cloud9**.
-
+	
 2. Choose **open IDE** for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
 
-3. Next, we'll use the AWS CLI to create a Git repository in [AWS CodeCommit](https://aws.amazon.com/codecommit/) and clone the empty repo in your Cloud9 environment.
+3. Next, we'll use the AWS Command Line Interface (CLI) to create a Git repository in [AWS CodeCommit](https://aws.amazon.com/codecommit/) and clone the empty repo in your Cloud9 environment.
 
-1. First verify AWS CLI is installed:
+4. Set AWS Region
 
 ```bash
-aws --version
+AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+echo "export AWS_REGION=${AWS_REGION}"
 ```
 
-2. Next create your CodeCommit Repo:
+5. Next create your CodeCommit Repo:
 
-AWS CodeCommit is a secure, highly scalable, managed source control service that hosts private Git repositories.
+[AWS CodeCommit](https://aws.amazon.com/codecommit/) is a secure, highly scalable, managed source control service that hosts private Git repositories.
 
 ```bash
-aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=SC21
+aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=SC21 --region $AWS_REGION
 ```
 
-3. Get repository URL to clone:
+6. Get repository URL to clone:
 
 ```bash
-REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query repositoryMetadata.cloneUrlHttp --output text)
+REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query repositoryMetadata.cloneUrlHttp --output text --region $AWS_REGION)
 echo $REPOURL
 ```
 
-Verify `echo $REPOURL` outputs a repo url like: `https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo`
+Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo**
 
-4. Clone the repository in your Cloud9 terminal and cd into it:
+7. Clone the repository in your Cloud9 terminal and cd into it:
 
 ```bash
 $ git clone $REPOURL
-Cloning into 'MyDemoRepo'...
-remote: Counting objects: 4, done.
-Unpacking objects: 100% (4/4), 681 bytes | 227.00 KiB/s, done.
 $ cd MyDemoRepo/
 ```
 
-5. Now let's update the default branch from **master** to **main**:
+8. Now let's update the default branch from **master** to **main**:
 ```
 $ git branch -m master main
 ```

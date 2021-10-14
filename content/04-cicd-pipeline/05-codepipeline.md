@@ -17,10 +17,10 @@ In this section, you will create a pipeline with a source and build stage to aut
 
 2. Click on **Create pipeline**
 
-3. In Step 1 **Choose pipeline settings**, enter the Pipeline name as **MyDemoPipeline**. Allow AWS CodePipeline to create a service role to be used with this pipeline. The Role name will default to the following **AWSCodePipelineServiceRole-<region>-<pipelinename>**. Click **Next**
+3. In Step 1 **Choose pipeline settings**, enter the Pipeline name as **MyDemoPipeline**. Allow AWS CodePipeline to create a service role to be used with this pipeline. The Role name will default to the following **AWSCodePipelineServiceRole-\<region\>-\<pipelinename\>**. Click **Next**
 ![AWS CodePipeline](/images/cicd/codepipeline-1.png)
 
-4. In Step 2 **Add source stage**, select **AWS CodeCommit** as your Source provider. Choose **MyDemoRepo** as your repository name where you have pushed your source code. Choose **master** for Branch name. 
+4. In Step 2 **Add source stage**, select **AWS CodeCommit** as your Source provider. Choose **MyDemoRepo** as your repository name where you have pushed your source code. Choose **main** for Branch name. 
 
 5. Keep the default selection for the **Change detection options** and **Output artifact format**. Click **Next**
 ![AWS CodePipeline](/images/cicd/codepipeline-2.png)
@@ -33,6 +33,6 @@ In this section, you will create a pipeline with a source and build stage to aut
 
 8. Review your pipeline settings and select **Create pipeline**
  
-9. Your pipeline should execute and if successful should display a message as shown below
+9. Your pipeline should execute. It will take a few mins to execute the pipeline and and if successful should display a message as shown below
 ![AWS CodePipeline](/images/cicd/codepipeline-5.png)
 
