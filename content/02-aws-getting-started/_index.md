@@ -2,7 +2,7 @@
 title: "Before starting"
 date: 2019-01-24T09:05:54Z
 weight: 20
-pre: "<b>Lab Preparation ⁃ </b>"
+pre: "<b>Preparation ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
