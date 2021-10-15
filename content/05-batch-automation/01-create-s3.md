@@ -16,12 +16,13 @@ In this step, we will create a S3 bucket to store the results of your Nextflow s
 3. Create your unique S3 bucket using the following command
 
 ```bash
+BUCKET_NAME=nextflow-results
 BUCKET_POSTFIX=$(uuidgen --random | cut -d'-' -f1)
-aws s3 mb s3://sc21-lab4-${BUCKET_POSTFIX}
+aws s3 mb s3://${BUCKET_NAME}-${BUCKET_POSTFIX}
 
 cat << EOF 
 ***** Take Note of Your Bucket Name ********
-Bucket Name = sc21-lab4-${BUCKET_POSTFIX}
+Bucket Name = ${BUCKET_NAME}-${BUCKET_POSTFIX}
 ***************************************
 EOF
 
