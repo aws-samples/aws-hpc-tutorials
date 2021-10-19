@@ -2,7 +2,7 @@
 title: "Simulations with AWS Batch"
 date: 2021-10-08T09:05:54Z
 weight: 100
-pre: "<b>IV ⁃ </b>"
+pre: "<b>Lab IV ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
 
