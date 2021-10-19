@@ -25,7 +25,7 @@ Many containers runtime for HPC has been created like [Singularity](https://syla
 In addition, container enables to share with others the application easily and to deploy new version on existing EC2 instance without changing the machine image.
 
 
-In this lab, you will create a Docker container and run on your HPC cluster on AWS that you created in Lab I.
+In this lab, you will create a container using Docker and use Singularity to run the container on your HPC cluster on AWS that you created in Lab I.
 This lab includes the following steps:
 
 - Modify your HPC cluster configuration file for AWS ParallelCluster
