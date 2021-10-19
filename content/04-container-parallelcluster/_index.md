@@ -1,7 +1,7 @@
 ---
 title: "Container on AWS ParallelCluster"
 date: 2019-01-24T09:05:54Z
-weight: 30
+weight: 40
 pre: "<b>Lab II ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
