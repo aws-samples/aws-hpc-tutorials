@@ -13,7 +13,7 @@ tags: ["HPC", "Overview"]
 HPC Applications typically rely on several libraries and software components along with complex dependencies.
 Those applications tend to be deployed on a shared file system for on-premise HPC system.
 It can be challenging to share and deploy on a different HPC systems.
-In the cloud, there are various ways to deploy an application: on a shared file system or an Amazon Machine Image (AMI).
+In the cloud, there are various ways to deploy an application: on a shared file system or an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html).
 Shared file systems in the cloud tend to last for a short period of time, typically the length of job.
 A machine image is a basic unit of deployment for Amazon EC2 instances and is another mechanism to deploy your application across many Amazon EC2 instances.
 When the application will be modified with bug fixes or new features, you will need to create new machine with the new version of the application create a new EC2 instance using the new machine image.
