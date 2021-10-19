@@ -20,29 +20,33 @@ In this step, you will create an IAM role with Administrator access and configur
 
 6. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime).
 
-7. Select the instance, then choose **Actions / Instance Settings / Attach/Replace IAM Role**. 
+7. Select the Cloud9 instance.
+8. For **Actions**, choose **Security**, select **Modify IAM Role**.
+9. For **IAM Role**, choose **cloud9-admin**.
+10. Choose **Save**.
+
 ![Getting Started](/images/introductory-steps/iam-role-2.png)
 
-8. Choose **hpcworkshop-admin** from the IAM Role drop down, and select **Apply**.
+11. Choose **hpcworkshop-admin** from the IAM Role drop down, and select **Save**.
 ![Getting Started](/images/introductory-steps/iam-role-3.png)
 
-9. In Cloud9, click the gear icon (in top right corner), or click to open a new tab and choose “Open Preferences”. Select **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
+12. In Cloud9, click the gear icon (in top right corner), or click to open a new tab and choose “Open Preferences”. Select **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
 ![Getting Started](/images/introductory-steps/cloud9-credentials.png)
 
-10. To ensure temporary credentials aren’t already in place we will also remove any existing credentials file:
+13. To ensure temporary credentials aren’t already in place we will also remove any existing credentials file:
 
 ```bash
 rm -vf ${HOME}/.aws/credentials
 ```
 
-11. Identify the AWS region with the following commands:
+14. Identify the AWS region with the following commands:
 
 ```bash
 export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 echo $AWS_REGION
 ```
 
-12. Configure the AWS CLI to use this AWS region:
+15. Configure the AWS CLI to use this AWS region:
 
 ```bash
 aws configure set default.region ${AWS_REGION}
