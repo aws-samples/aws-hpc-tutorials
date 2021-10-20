@@ -30,12 +30,12 @@ pip3 install crudini -U --user
 
 #### 1. Create a post-install script
 
-In this step, you will create a post-install script that installs Docker and Singularity on the head and compute nodes.
+In this step, you will create a post-install script that installs Docker and Singularity on the compute nodes.
 
 ```bash
 cat > ~/environment/post_install.sh << EOF
 # Install Docker
-sudo amazon-linux-extras install docker
+sudo amazon-linux-extras install -y docker
 sudo usermod -a -G docker ec2-user
 sudo systemctl start docker
 sudo systemctl enable docker
@@ -58,7 +58,7 @@ aws s3 cp ~/environment/post_install.sh s3://${BUCKET_NAME_POSTINSTALL}/
 Now, you can add access to the `BUCKET_NAME_POSTINSTALL` bucket and specify the post install script path in the HPC cluster configuration file
 
 ```bash
-PARALLELCLUSTER_CONFIG="~/environment/my-cluster-config.ini"
+PARALLELCLUSTER_CONFIG=~/environment/my-cluster-config.ini
 crudini --set ${PARALLELCLUSTER_CONFIG} "cluster default" s3_read_resource "arn:aws:s3:::${BUCKET_NAME_POSTINSTALL}*"
 crudini --set ${PARALLELCLUSTER_CONFIG} "cluster default" post_install "s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh"
 ```
@@ -171,7 +171,8 @@ Let update the cluster by running the **pcluster update** command
 pcluster update hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
 ```
 
-Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this.
+Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this:
+![ParallelCluster Update](/images/container-pc/pcluster_update.png)
 
 
 Start your cluster again after update process is completed.
