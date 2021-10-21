@@ -12,7 +12,7 @@ In this step, you set up a template used for your jobs, known as a job definitio
 2. Type a **Job definition name**. For platform select **EC2**
 3. For **Job attempts**, type **3**. This option specifies the number of attempts before declaring a job as failed.
 ![AWS Batch](/images/aws-batch/sc21/jd-2.png)
-4. For **Execution timeout**, type **200**. This option specifies the time between attempts in seconds.
+4. For **Execution timeout**, type **2000**. This option specifies the time between attempts in seconds.
 5. For **Container Image**, enter the **REPOSITORY URI** generated when you created the ECR repository. If you do not know the URI, use the following command in your Cloud9 terminal.
 ```bash
 aws ecr describe-repositories --repository-names sc21-container --output text --query 'repositories[0].[repositoryUri]' --region $AWS_REGION
