@@ -5,7 +5,7 @@ weight = 30
 tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 +++
 
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.
+{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the **[Getting Started in the Cloud](/02-aws-getting-started.html)** workshop.
 {{% /notice %}}
 
 1. In the AWS Management Console search bar, type and select **Cloud9**.
