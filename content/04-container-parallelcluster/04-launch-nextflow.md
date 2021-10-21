@@ -26,6 +26,7 @@ RUN curl -s https://get.nextflow.io | bash \
  && mv nextflow /usr/local/bin/
 
 RUN pip3 install --upgrade awscli
+RUN chmod 755 /usr/local/bin/nextflow
 EOF
 ```
 
