@@ -127,7 +127,7 @@ aws secretsmanager create-secret --name ${SSH_KEY_NAME} \
 
 ```
 
-8. (OPTIONAL STEP )Please run this command ONLY in the event that you lose your SSH private key and need to retrieve it from the secrets manager
+8. **Optional Step**: Please run this command **ONLY** in the event that you lose your SSH private key and need to retrieve it from the secrets manager
 
 ```bash
 

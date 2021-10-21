@@ -34,13 +34,13 @@ echo $BASE_OS
 echo $SCHEDULER
 ```
 
-1. In case any of the above environment variables are not set, source it from the **env_vars** file generated in your working directory previously
+2. In case any of the above environment variables are not set, source it from the **env_vars** file generated in your working directory previously
 
 ```bash
 source env_vars
 ```
 
-1. Retrieve NCAR WRF v4 AMI
+3. Retrieve NCAR WRF v4 AMI
 
 NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
 You will leverage this AMI to run WRF on a test case in the next section of this lab.
@@ -56,7 +56,7 @@ echo "export CUSTOM_AMI=${CUSTOM_AMI}" >> env_vars
 ```
 
 
-1. Build the custom config file for ParallelCluster
+4. Build the custom config file for ParallelCluster
 
 ```bash
 cat > my-cluster-config.ini << EOF
