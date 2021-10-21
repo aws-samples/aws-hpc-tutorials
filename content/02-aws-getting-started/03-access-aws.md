@@ -1,8 +1,8 @@
 ---
-title: "Accessing Your Lab Account"
+title: "a. Event: Accessing Your Lab Account"
 date: 2019-09-18T10:50:17-04:00
 draft: false
-weight: 40
+weight: 50
 ---
 
 {{% notice warning %}}
