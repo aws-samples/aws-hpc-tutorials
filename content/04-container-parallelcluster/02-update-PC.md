@@ -168,7 +168,7 @@ compute_resource_settings = c5xlarge
 Let update the cluster by running the **pcluster update** command
 
 ```bash
-pcluster update hpclab-yourname -c my-cluster-config.ini -r $AWS_REGION
+pcluster update hpclab-yourname -c my-cluster-config.ini --yes -r $AWS_REGION
 ```
 
 Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this:
