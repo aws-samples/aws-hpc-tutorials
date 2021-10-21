@@ -6,7 +6,7 @@ pre: "<b>Preparation ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
-This workshop walks you through setting up your own AWS account to run your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
+This workshop walks you through setting up your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
 Specifically, you learn how to:
 
 - Sign in to the AWS Management Console and explore it.
