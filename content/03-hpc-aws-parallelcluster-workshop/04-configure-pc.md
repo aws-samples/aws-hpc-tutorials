@@ -73,7 +73,6 @@ sanity_check = true
 key_name = ${SSH_KEY_NAME}
 base_os = ${BASE_OS}
 scheduler = ${SCHEDULER}
-fsx_settings = myfsx
 master_instance_type = c5.xlarge
 master_root_volume_size = 40
 compute_root_volume_size = 40
@@ -93,11 +92,6 @@ placement_group = DYNAMIC
 instance_type = c5n.18xlarge
 min_count = 0
 max_count = 2
-
-[fsx myfsx]
-shared_dir = /fsx
-storage_capacity = 1200
-deployment_type = SCRATCH_2
 
 [ebs myebs]
 shared_dir = /shared

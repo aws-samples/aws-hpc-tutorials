@@ -9,16 +9,7 @@ tags = ["tutorial", "create", "ParallelCluster"]
 The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.
 {{% /notice %}}
 
-In this lab, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/wrf/users/benchmark/benchdata_v422.html) job to introduce you to the mechanisms of AWS ParallelCluster.
-
-#### About WRF
-The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications.
-It features a dynamical core, a data assimilation system, and a software architecture supporting parallel computation and system extensibility.
-The model serves a wide range of meteorological applications across scales from tens of meters to thousands of kilometers.
-The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (represented by the National Centers for Environmental Prediction (NCEP) and the Earth System Research Laboratory), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (FAA).
-
-WRF is a tightly coupled application that uses MPI and/or OpenMP.
-In this lab, you will run WRF using only MPI.
+In this step, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/wrf/users/benchmark/benchdata_v422.html) job to introduce you to the mechanisms of AWS ParallelCluster.
 
 #### Preparatory Steps
 
@@ -33,13 +24,13 @@ These are used to run the WRF executable (wrf.exe) to simulate atmospheric event
 The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km.
 The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure). 
 
-On the HPC Cluster, download the CONUS 12km test case from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/) into the **/fsx** directory.
-**/fsx** is the mount point of the high performance file system, [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/).
+On the HPC Cluster, download the CONUS 12km test case from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/) into the **/shared** directory.
+**/shared** is the mount point of NFS server hosted on the head node.
 
 Here are the steps:
 
 ```bash
-cd /fsx
+cd /shared
 curl -O https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz 
 tar -xzf wrf_simulation_CONUS12km.tar.gz 
 ```
@@ -49,7 +40,7 @@ Copy the necessary files for running the CONUS 12km test case from the run direc
 A copy of the WRF source code is part of the AMI and located  in __/opt/wrf-omp/src__.
 
 ```bash
-cd /fsx/conus_12km
+cd /shared/conus_12km
 
 cp /opt/wrf-omp/src/run/{\
 GENPARM.TBL,\

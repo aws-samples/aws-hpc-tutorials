@@ -5,6 +5,24 @@ weight: 30
 pre: "<b>Lab I ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
+In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and will run a Weather forecast model (WRF) on the HPC Cluster on AWS. This workshop includes the following steps:
+
+- Install and configure ParallelCluster on your AWS Cloud9 IDE.
+- Create your first cluster.
+- Submit a sample job and check what is happening in the background.
+- Delete the cluster.
+
+#### About Weather Research and Forecasting (WRF)
+The [Weather Research and Forecasting (WRF) Model](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications.
+It features a dynamical core, a data assimilation system, and a software architecture supporting parallel computation and system extensibility.
+The model serves a wide range of meteorological applications across scales from tens of meters to thousands of kilometers.
+
+The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (represented by the National Centers for Environmental Prediction (NCEP) and the Earth System Research Laboratory), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (FAA).
+
+WRF is a tightly coupled application that uses MPI and/or OpenMP.
+In this lab, you will run WRF using only MPI.
+
+### About AWS ParallelCluster
 
 ![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)
 
@@ -27,14 +45,6 @@ AWS ParallelCluster supports a wide variety of operating systems and batch sched
 
 ![pcluster-arch](/images/hpc-aws-parallelcluster-workshop/pc-how-it-works.png)
 
-{{< youtube LWTAbVU9rbc >}}
 
 {{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the **[Getting Started in the Cloud](/02-aws-getting-started.html)** workshop.
 {{% /notice %}}
-
-In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and how to run your HPC jobs in AWS as you would on-premises. This workshop includes the following steps:
-
-- Install and configure ParallelCluster on your AWS Cloud9 IDE.
-- Create your first cluster.
-- Submit a sample job and check what is happening in the background.
-- Delete the cluster.
