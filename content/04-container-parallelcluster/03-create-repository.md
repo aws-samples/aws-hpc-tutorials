@@ -99,7 +99,7 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum install -y python3
 ADD hello-world.py /
 
-CMD python3 hello-world.py
+CMD python3 /hello-world.py
 EOF
 ```
 

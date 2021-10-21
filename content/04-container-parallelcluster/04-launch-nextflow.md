@@ -27,7 +27,6 @@ RUN curl -s https://get.nextflow.io | bash \
 
 RUN pip3 install --upgrade awscli
 EOF
-EOF
 ```
 
 Remove container cached layer
