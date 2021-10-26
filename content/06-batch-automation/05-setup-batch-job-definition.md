@@ -15,7 +15,7 @@ In this step, you set up a template used for your jobs, known as a job definitio
 4. For **Execution timeout**, type **2000**. This option specifies the time between attempts in seconds.
 5. For **Container Image**, enter the **REPOSITORY URI** generated when you created the ECR repository. If you do not know the URI, use the following command in your Cloud9 terminal.
 ```bash
-aws ecr describe-repositories --repository-names sc21-container --output text --query 'repositories[0].[repositoryUri]' --region $AWS_REGION
+aws ecr describe-repositories --repository-names sc21-container --output text --query 'repositories[0].[repositoryUri]' --region $AWS_DEFAULT_REGION
 ```
 6. Update the contents of the **Command** text box to point to the **entrypoint.sh** script which will execute the Nextflow head job when your job runs.
 ![AWS Batch](/images/aws-batch/sc21/jd-3.png)

@@ -25,11 +25,10 @@ cat << EOF
 Bucket Name = ${BUCKET_NAME}-${BUCKET_POSTFIX}
 ***************************************
 EOF
-
 ```
 
 {{% notice info %}}
-Keep note of your bucket name. If you forget your bucket name, you can view it in the [Amazon S3 Dashboard](https://s3.console.aws.amazon.com/s3/home).
+An Amazon S3 bucket name is globally unique, and the namespace is shared by all AWS accounts. Keep note of your bucket name. If you forget your bucket name, you can view it in the [Amazon S3 Dashboard](https://s3.console.aws.amazon.com/s3/home).
 {{% /notice %}}
 
 

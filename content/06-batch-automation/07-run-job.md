@@ -10,14 +10,14 @@ In this step, you launch a job using the AWS CLI. (Note that you could also use 
 Since the Nextflow job is storing the results in Amazon S3 you also need to provide appropriate Amazon S3 access permissions to the **ecsInstanceRole** created as part of the Compute Environment setup. You can attach the **AmazonS3FullAccess** managed policy as below
 
 ```bash
-aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --role-name ecsInstanceRole --region $AWS_REGION
+aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --role-name ecsInstanceRole --region $AWS_DEFAULT_REGION
 ```
 
 Use the following commands in AWS CLI to run a [single job](https://docs.aws.amazon.com/batch/latest/userguide/submit_job.html). Make sure to **replace** *YOUR-JOB-QUEUE-NAME* and *YOUR-JOB-DEFINITION-NAME* with the values of the job queue and job definition you just created.
 
 
 ```
-aws batch submit-job --job-name nextflow-job --job-queue YOUR-JOB-QUEUE-NAME --job-definition YOUR-JOB-DEFINITION-NAME --region $AWS_REGION
+aws batch submit-job --job-name nextflow-job --job-queue YOUR-JOB-QUEUE-NAME --job-definition YOUR-JOB-DEFINITION-NAME --region $AWS_DEFAULT_REGION
 ```
 
 {{% notice info %}}

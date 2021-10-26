@@ -38,7 +38,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
  
 ```bash
 REPO_NAME=sc21-container
-aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep "/${REPO_NAME}"
+aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_DEFAULT_REGION | grep "/${REPO_NAME}"
  ```
 
 ![AWS CodeBuild](/images/cicd/code-build-5.png)

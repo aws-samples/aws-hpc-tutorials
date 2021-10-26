@@ -16,7 +16,7 @@ A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-
 cd MyDemoRepo
 ```
 
-2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html). Amazon Linux Docker container images contain a subset of the packages in the images for use on Amazon EC2 and as VMs in on-premises scenarios.
+2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html).
 
 ```bash
 cat > Dockerfile << EOF
@@ -81,5 +81,5 @@ git push origin main
 6. Now update the default Codecommit branch to `main`:
 
 ```bash
-aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_REGION
+aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_DEFAULT_REGION
 ```

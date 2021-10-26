@@ -22,14 +22,14 @@ cd ~
 cat > ~/kill-all-jobs.sh << EOF
 #!/bin/bash
 
-JQS=$(aws batch describe-job-queues --query "jobQueues[].[jobQueueName]" --output text --region $AWS_REGION)
+JQS=$(aws batch describe-job-queues --query "jobQueues[].[jobQueueName]" --output text --region $AWS_DEFAULT_REGION)
 
 echo \$JQS
 for jq in \$JQS
 do
     for state in SUBMITTED PENDING RUNNABLE STARTING RUNNING
     do
-        JOBS=$(aws batch list-jobs --job-queue ${jq} --job-status ${state} --query "jobSummaryList[].[jobId]" --output text --region \$AWS_REGION)
+        JOBS=$(aws batch list-jobs --job-queue ${jq} --job-status ${state} --query "jobSummaryList[].[jobId]" --output text --region \$AWS_DEFAULT_REGION)
         if [ ! -z "\$JOBS" ]
         then
             for job in \$JOBS
@@ -51,14 +51,14 @@ cat > ~/remove-jd.sh << EOF
 #!/bin/bash
 
 echo "Removing job definitions"
-AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-export AWS_REGION=${AWS_REGION}
+AWS_DEFAULT_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 declare -a JD_LIST
-JD_LIST+=($(aws batch describe-job-definitions --query "jobDefinitions[*].[jobDefinitionArn]" --output text --region $AWS_REGION))
+JD_LIST+=($(aws batch describe-job-definitions --query "jobDefinitions[*].[jobDefinitionArn]" --output text --region $AWS_DEFAULT_REGION))
 for jd in "\${JD_LIST[@]}"
 do
     echo "Removing \$jd"
-    aws batch deregister-job-definition --job-definition \$jd --region \$AWS_REGION
+    aws batch deregister-job-definition --job-definition \$jd --region \$AWS_DEFAULT_REGION
 done
 EOF
 
@@ -71,13 +71,13 @@ cat > ~/remove-jq.sh << EOF
 #!/bin/bash
 
 echo "Remove all job queues "
-AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-export AWS_REGION=${AWS_REGION}
+AWS_DEFAULT_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 declare -a JQ_LIST
-JQ_LIST+=($(aws batch describe-job-queues --query "jobQueues[*].jobQueueArn" --region $AWS_REGION | jq -r ".[]"))
+JQ_LIST+=($(aws batch describe-job-queues --query "jobQueues[*].jobQueueArn" --region $AWS_DEFAULT_REGION | jq -r ".[]"))
 for jq in "\${JQ_LIST[@]}"
 do
-  aws batch delete-job-queue --job-queue \$jq --region \$AWS_REGION
+  aws batch delete-job-queue --job-queue \$jq --region \$AWS_DEFAULT_REGION
 done
 EOF
 
@@ -89,14 +89,14 @@ cd ~
 cat > ~/remove-ce.sh << EOF
 #!/bin/bash
 
-echo "Remove all compute environments "
-AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-export AWS_REGION=${AWS_REGION}
+echo "Remove all compute environments"
+AWS_DEFAULT_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 declare -a CE_LIST
-CE_LIST+=($(aws batch describe-compute-environments --query "computeEnvironments[*].computeEnvironmentArn" --region $AWS_REGION | jq -r ".[]"))
+CE_LIST+=($(aws batch describe-compute-environments --query "computeEnvironments[*].computeEnvironmentArn" --region $AWS_DEFAULT_REGION | jq -r ".[]"))
 for ce in "\${CE_LIST[@]}"
 do
-  aws batch delete-compute-environment --compute-environment \$ce --region \$AWS_REGION
+  aws batch delete-compute-environment --compute-environment \$ce --region \$AWS_DEFAULT_REGION
 done
 EOF
 
@@ -105,30 +105,30 @@ bash remove-ce.sh
 6. Navigate to the [ECR](https://console.aws.amazon.com/ecr/repositories) service in the AWS Management Console and delete the repository you created earlier. Or, run the following CLI command on Cloud9.
 ```bash
 REPO_NAME=sc21-container
-aws ecr delete-repository --repository-name $REPO_NAME --force --region $AWS_REGION
+aws ecr delete-repository --repository-name $REPO_NAME --force --region $AWS_DEFAULT_REGION
 ```
 
 7. Navigate to [CodeCommit](https://console.aws.amazon.com/codesuite/codecommit/repositories) in the AWS Management Console and delete the repository you created in Lab 3. Or, run the following CLI command on Cloud9
 ```bash
 CODECOMMIT_REPO_NAME=MyDemoRepo
-aws codecommit delete-repository --repository-name $CODECOMMIT_REPO_NAME --region $AWS_REGION
+aws codecommit delete-repository --repository-name $CODECOMMIT_REPO_NAME --region $AWS_DEFAULT_REGION
 ```
 
 8. Navigate to [CodeBuild](https://console.aws.amazon.com/codesuite/codebuild/projects) in the AWS Management Console and delete the build project you created in Lab 3. Or, run the following CLI command on Cloud9
 
 ```bash
 CODEBUILD_PROJECT_NAME=MyDemoBuild
-aws codebuild delete-project --name $CODEBUILD_PROJECT_NAME --region $AWS_REGION
+aws codebuild delete-project --name $CODEBUILD_PROJECT_NAME --region $AWS_DEFAULT_REGION
 ```
 
 9. Navigate to [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines) in the AWS Management Console and delete the pipeline that you creared in Lab 3. Or, run the following CLI command on Cloud9
 
 ```bash
 CODEPIPELINE_NAME=MyDemoPipeline
-aws codepipeline delete-pipeline --name $CODEPIPELINE_NAME --region $AWS_REGION
+aws codepipeline delete-pipeline --name $CODEPIPELINE_NAME --region $AWS_DEFAULT_REGION
 ```
 
-10. Navigate to [IAM](https://console.aws.amazon.com/iamv2/home?#/roles) and delete the following roles created as part of the labs. 
+10. Navigate to [IAM](https://console.aws.amazon.com/iamv2/home?#/roles) and delete the following roles created as part of the labs.
 
 - **AWSCodePipelineServiceRole-\<region\>-\<codepipeline-name\>**
 - **codebuild-\<codebuild-project-name\>-service-role**

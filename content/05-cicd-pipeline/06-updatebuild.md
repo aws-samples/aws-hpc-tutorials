@@ -7,9 +7,7 @@ tags = ["tutorial", "DeveloperTools", "CodePipeline", "CodeBuild", "CI/CD"]
 
 In this section, we will update the sample Dockerfile created earlier to automatically trigger the container build and update to Amazon ECR as part of the CodePipeline we created earlier.
 
-We will modify the Dockerfile to run a Genomics workflow using [Nextflow](https://www.nextflow.io/index.html) 
-
-Nextflow is a workflow manager and [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) that enables scalable and reproducible scientific workflows using software containers. Workflow managers are software tools that make it easier to run complex bioinformatic analyses that involve multiple steps, each of which may invoke a different piece of software with different environmental dependencies or resource requirements
+We will modify the Dockerfile to run a Genomics workflow using [Nextflow](https://www.nextflow.io/index.html). 
 
 We will go over the Nextflow architecture and job execution/orchestration more in the next lab. For now, we will go ahead and update the repository and see how the CICD pipeline works for your build.
 

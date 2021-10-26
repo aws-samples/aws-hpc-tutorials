@@ -5,12 +5,12 @@ weight = 140
 tags = ["tutorial", "install", "AWS", "Batch"]
 +++
 
-In this step, we will create an IAM role for Amazon ECS Task Execution
+In this step, we will create an IAM role for Amazon ECS Task Execution.
 
-AWS Batch uses Amazon ECS to create the compute environment. The task execution role grants the Amazon ECS container permission to make AWS API calls on your behalf 
+AWS Batch uses Amazon ECS to create the compute environment. The task execution role grants the Amazon ECS container permission to make AWS API calls on your behalf.
 
 
-Run the following commands in your Cloud9 terminal to create a task execution IAM role
+Run the following commands in your Cloud9 terminal to create a task execution IAM role.
 
 1. Create a file named ```ecs-tasks-trust-policy.json``` that contains the trust policy to use for the IAM role. The file should contain the following: 
 

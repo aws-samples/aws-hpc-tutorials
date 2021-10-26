@@ -37,9 +37,6 @@ In this workshop, you will learn how to use container orchestrators like AWS Bat
 
 In this lab you will run a basic pipeline for quantification of genomic features from short read data implemented with [Nextflow](https://www.nextflow.io/index.html)
 
-Nextflow is a workflow manager and [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) that enables scalable and reproducible scientific workflows using software containers. Workflow managers are software tools that make it easier to run complex bioinformatic analyses that involve multiple steps, each of which may invoke a different piece of software with different environmental dependencies or resource requirements
-
-
 
 This includes the following steps:
 
