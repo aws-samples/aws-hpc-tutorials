@@ -61,6 +61,12 @@ cd nextflow-tutorial
 
 #### 3. Run the Genomics Pipeline
 
+A container contains the applications, libraries and system packages that you installed during the container image creation.
+At runtime, the container only its content and does not have access to files and directories outside.
+They can be made available inside the running container by binding the external directory to a directory inside the container.
+In the case of running Nextflow for this lab, the `/shared/nextflow-tutorial` directory contains the workflow description in `scripts7.nf` that will be executed by Nextflow.
+One the job will complete, results will be stored in the `--outdir=/mnt` of the container that is the `/shared/nextflow-tutorial` directory of the cluster where the results will be stored.
+
 ```bash
 srun singularity run --bind /shared/nextflow-tutorial:/mnt docker://`echo ${CONTAINER_REPOSITORY_URI}`:v2 nextflow run /mnt/script7.nf --reads '/mnt/data/ggal/*_{1,2}.fq' --outdir=/mnt
 ```
