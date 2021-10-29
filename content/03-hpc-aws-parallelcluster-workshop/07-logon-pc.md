@@ -18,7 +18,7 @@ pcluster list --color -r $AWS_REGION
 Now that your cluster has been created, log in to the head node using the following command in your AWS Cloud9 terminal:
 
 ```bash
-pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+pcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
 ```
 
 The EC2 instance asks for confirmation of the ssh login the first time you log in to the instance. Type **yes**.

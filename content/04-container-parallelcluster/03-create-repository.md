@@ -12,7 +12,7 @@ In this section, you will create a container repository on Amazon ECR and create
 In the AWS Cloud9 terminal, connect to the HPC Cluster
 
 ```bash
-pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+pcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
 ```
 
 Since the HPC Cluster existed prior to `post-install` script, you will need to manually install Docker and Singularity on the head node of the HPC Cluster.
@@ -37,7 +37,7 @@ exit
 Reconnect to the HPC Cluster
 
 ```bash
-pcluster ssh hpclab-yourname -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+pcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
 ```
 
 Configure the AWS Region on the head node of the HPC Cluster to be used by the AWS CLI.
