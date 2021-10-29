@@ -73,7 +73,7 @@ crudini --set --list ${PARALLELCLUSTER_CONFIG} "cluster default" additional_iam_
 
 #### 3. Add a compute queue
 
-In this step, you will a new compute queue that use **c5.xlarge** EC2 instances.
+In this step, you will add a new compute queue that use **c5.xlarge** EC2 instances.
 
 Let create a new compute resources named __c5xlarge__:
 ```bash
