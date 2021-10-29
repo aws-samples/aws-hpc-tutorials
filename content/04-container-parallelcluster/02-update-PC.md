@@ -99,7 +99,7 @@ In this step, you will update your HPC cluster with the configuration changes ma
 Prior to an update, the cluster should be a stopped state.
 
 ```bash
-pcluster stop hpclab-yourname -r $AWS_REGION
+pcluster stop hpc-cluster-lab -r $AWS_REGION
 ```
 
 Before proceeding to the cluster update, you can check the content of the configuration file that should look like this:
@@ -168,7 +168,7 @@ compute_resource_settings = c5xlarge
 Let update the cluster by running the **pcluster update** command
 
 ```bash
-pcluster update hpclab-yourname -c my-cluster-config.ini --yes -r $AWS_REGION
+pcluster update hpc-cluster-lab -c my-cluster-config.ini --yes -r $AWS_REGION
 ```
 
 Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this:
@@ -178,5 +178,5 @@ Pay attention to the **old value** and **new value** fields. You will see a new 
 Start your cluster again after update process is completed.
 
 ```bash
-pcluster start hpclab-yourname -r $AWS_REGION
+pcluster start hpc-cluster-lab -r $AWS_REGION
 ```
