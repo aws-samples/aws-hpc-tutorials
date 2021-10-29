@@ -5,7 +5,7 @@ weight = 40
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-Typically, to configure AWS ParallelCluster, you use the interactive command **[pcluster configure](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html)** to provide the information, such as the AWS Region, Scheduler, and EC2 Instance Type.
+Typically, to configure AWS ParallelCluster, you use the interactive command **[pcluster configure](https://docs.aws.amazon.com/parallelcluster/latest/ug/getting-started-configuring-parallelcluster.html)** to provide the information, such as the AWS Region, VPC, Subnet, and [Amazon EC2](https://aws.amazon.com/ec2/) Instance Type.
 For this workshop, you will create a custom configuration file to include the HPC specific options for this lab.
 
 In this section, you will set up the foundation (for example network, scheduler, ...) required to build the ParallelCluster config file in the next section.
@@ -23,7 +23,7 @@ echo "export AWS_REGION=${AWS_REGION}" >> env_vars
 
 ```
 
-2. Set Amazon EC2 instance types that be will be used through this lab for head and compute nodes in the following sections (sections c and h )
+2. Set [Amazon EC2](https://aws.amazon.com/ec2/) instance types that be will be used through this lab for head and compute nodes in the following sections (sections c)
 
 ```bash
 INSTANCES=c5n.18xlarge,c5.large
