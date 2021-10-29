@@ -27,11 +27,9 @@ For now, paste the following commands in your terminal:
 1. Let us first makes sure all the required environment vairables from the previous section are set (if any of these commands return a null please go to step 2 and set the variables from the env_vars file generated previously)
 
 ```bash
-echo $SSH_KEY_NAME
 echo $AWS_REGION
 echo $SUBNET_ID
-echo $BASE_OS
-echo $SCHEDULER
+echo $SSH_KEY_NAME
 ```
 
 2. In case any of the above environment variables are not set, source it from the **env_vars** file generated in your working directory previously
@@ -71,8 +69,8 @@ sanity_check = true
 
 [cluster default]
 key_name = ${SSH_KEY_NAME}
-base_os = ${BASE_OS}
-scheduler = ${SCHEDULER}
+base_os = alinux2
+scheduler = slurm
 master_instance_type = c5.xlarge
 master_root_volume_size = 40
 compute_root_volume_size = 40
