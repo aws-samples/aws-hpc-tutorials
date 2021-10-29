@@ -14,7 +14,7 @@ Generate the cluster with the following settings:
 - We use a [placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) in this lab. A placement group will sping up instances close together inside one physical data center in a single Availability Zone to maximize the bandwidth and reduce the latency between instances.
 - In this lab, the cluster has 0 compute nodes when starting and a maximum of 2 instances.  AWS ParallelCluster will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - A [GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) volume will be attached to the head-node then shared through NFS to be mounted by the compute nodes on `/shared`. It is generally a good location to store applications or scripts. Keep in mind that the `/home` directory is shared on NFS as well.
-- [SLURM](https://slurm.schedmd.com/overview.html) will be used as a job scheduler
+- [SLURM](https://slurm.schedmd.com/overview.html) is used as a job scheduler
 - We disable Intel Hyper-threading by setting `disable_hyperthreading = true` in the configuration file.
 
 {{% notice tip %}}
