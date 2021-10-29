@@ -118,7 +118,7 @@ docker push ${CONTAINER_REPOSITORY_URI}:latest
 ```
 
 
-#### 4. Run on the container on the head node
+#### 4. Run the container on the head node
 
 After bulding your container image, you check that it works correctly by running the container using singularity.
 
