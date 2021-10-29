@@ -31,6 +31,8 @@ In your AWS Cloud9 terminal window paste the following commands
 
 1. Clean-up any exsisting aws cli installation
 
+To make sure you have AWS CLI version 2.x. You will first uninstall any existing AWS CLI.
+
 ```bash
 sudo pip uninstall -y awscli
 ```
