@@ -20,7 +20,6 @@ Retrieve network information and set environment variables. In these steps you w
 ```bash
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 echo "export AWS_REGION=${AWS_REGION}" >> env_vars
-
 ```
 
 2. Set [Amazon EC2](https://aws.amazon.com/ec2/) instance types that be will be used through this lab for head and compute nodes in the following sections (sections c)
@@ -57,6 +56,7 @@ aws secretsmanager create-secret --name ${SSH_KEY_NAME} \
 
 Next, you build a configuration to generate a cluster to run  HPC applications.
 
+{{% notice info %}}
 **Optional Step**: Please run this command **ONLY** in the event that you lose your SSH private key and need to retrieve it from the secrets manager
 
 ```bash
@@ -65,3 +65,4 @@ aws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \
     --region ${AWS_REGION} \
     --output text | base64 --decode > ~/.ssh/${SSH_KEY_NAME}
 ```
+{{% /notice %}}
