@@ -30,13 +30,16 @@ AWS Batch is natively integrated with the AWS platform, allowing you to leverage
 AWS Batch provisions compute resources and optimizes the job distribution based on the volume and resource requirements of the submitted batch jobs. AWS Batch dynamically scales compute resources to any quantity required to run your batch jobs, freeing you from the constraints of fixed-capacity clusters. AWS Batch will utilize Spot Instances on your behalf, reducing the cost of running your batch jobs further. -->
 
 {{% notice info %}}
-This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop.
+This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop
 {{% /notice %}}
 
 In this workshop, you will learn how to use container orchestrators like AWS Batch and deploy an architecture for automated job submission in AWS Batch using serverless functions.
 
 In this lab you will run a basic pipeline for quantification of genomic features from short read data implemented with [Nextflow](https://www.nextflow.io/index.html)
 
+You will be deploying the below architecture as part of this lab:
+
+![AWS BATCH](/images/aws-batch/sc21/lab4-intro-arch.png)
 
 This includes the following steps:
 

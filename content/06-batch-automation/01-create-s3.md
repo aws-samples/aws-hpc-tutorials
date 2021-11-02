@@ -9,7 +9,7 @@ In this step, we will create a S3 bucket to store the results of your Nextflow s
 
 
 
-1. In the AWS Management Console search bar, type and select Cloud9.
+1. In the AWS Management Console search bar, type and select **Cloud9**.
 
 2. Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
 
@@ -19,12 +19,9 @@ In this step, we will create a S3 bucket to store the results of your Nextflow s
 BUCKET_NAME=nextflow-results
 BUCKET_POSTFIX=$(uuidgen --random | cut -d'-' -f1)
 aws s3 mb s3://${BUCKET_NAME}-${BUCKET_POSTFIX}
+export BUCKET_NAME_RESULTS=${BUCKET_NAME}-${BUCKET_POSTFIX}
 
-cat << EOF 
-***** Take Note of Your Bucket Name ********
-Bucket Name = ${BUCKET_NAME}-${BUCKET_POSTFIX}
-***************************************
-EOF
+echo "export BUCKET_NAME_RESULTS=${BUCKET_NAME_RESULTS}" >> s3_vars
 ```
 
 {{% notice info %}}

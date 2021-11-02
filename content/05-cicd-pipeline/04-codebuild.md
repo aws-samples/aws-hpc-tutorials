@@ -13,7 +13,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 
 1. In the AWS Management Console search bar, type and select **CodeBuild**.
 
-2. Click on **Create project**. This will open a **Create build project** section
+2. Click on **Create build project**.
 
 3. In the **Project configuration** section, enter **MyDemoBuild** as the **Project name**
 
@@ -38,7 +38,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
  
 ```bash
 REPO_NAME=sc21-container
-aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_DEFAULT_REGION | grep "/${REPO_NAME}"
+aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep "/${REPO_NAME}"
  ```
 
 ![AWS CodeBuild](/images/cicd/code-build-5.png)

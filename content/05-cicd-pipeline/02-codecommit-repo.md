@@ -18,7 +18,7 @@ tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 
 ```bash
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-echo "export AWS_DEFAULT_REGION=${AWS_REGION}"
+echo "export AWS_REGION=${AWS_REGION}"
 ```
 
 5. Next create your CodeCommit Repo:
@@ -26,13 +26,13 @@ echo "export AWS_DEFAULT_REGION=${AWS_REGION}"
 [AWS CodeCommit](https://aws.amazon.com/codecommit/) is a secure, highly scalable, managed source control service that hosts private Git repositories.
 
 ```bash
-aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=SC21 --region $AWS_DEFAULT_REGION
+aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=SC21 --region $AWS_REGION
 ```
 
 6. Get repository URL to clone:
 
 ```bash
-REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query repositoryMetadata.cloneUrlHttp --output text --region $AWS_DEFAULT_REGION)
+REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query repositoryMetadata.cloneUrlHttp --output text --region $AWS_REGION)
 echo $REPOURL
 ```
 

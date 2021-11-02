@@ -39,7 +39,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - \$(aws ecr get-login --region \$AWS_DEFAULT_REGION --no-include-email)
+      - \$(aws ecr get-login --region \$AWS_REGION --no-include-email)
       - IMAGE_TAG=\$(echo \$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
       - echo IMAGE TAG \$IMAGE_TAG
 
@@ -81,5 +81,5 @@ git push origin main
 6. Now update the default Codecommit branch to `main`:
 
 ```bash
-aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_DEFAULT_REGION
+aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_REGION
 ```

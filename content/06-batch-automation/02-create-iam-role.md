@@ -12,9 +12,10 @@ AWS Batch uses Amazon ECS to create the compute environment. The task execution 
 
 Run the following commands in your Cloud9 terminal to create a task execution IAM role.
 
-1. Create a file named ```ecs-tasks-trust-policy.json``` that contains the trust policy to use for the IAM role. The file should contain the following: 
+1. Create a file named ```ecs-tasks-trust-policy.json``` that contains the trust policy to use for the IAM role as below: 
 
 ```bash
+cat > ecs-tasks-trust-policy.json << EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -28,10 +29,10 @@ Run the following commands in your Cloud9 terminal to create a task execution IA
     }
   ]
 }
-
+EOF
 ```
 
-2. Create an IAM role named ecsTaskExecutionRole using the trust policy created in the previous step. 
+2. Create an IAM role named **ecsTaskExecutionRole** using the trust policy created in the previous step. 
 
 ```bash
 
@@ -39,22 +40,14 @@ aws iam create-role --role-name ecsTaskExecutionRole --assume-role-policy-docume
 
 ```
 
-3. Attach the AWS managed AmazonECSTaskExecutionRolePolicy policy to the ecsTaskExecutionRole role. This policy provides the permissions required to pull the container image from Amazon ECR private repository and to send the container logs to CloudWatch.
+3. Attach the AWS managed **AmazonECSTaskExecutionRolePolicy** policy to the **ecsTaskExecutionRole** role. This policy provides the permissions required to pull the container image from Amazon ECR private repository and to send the container logs to CloudWatch.
 
 ```bash
 aws iam attach-role-policy  --role-name ecsTaskExecutionRole  --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
 
 ```
 
-4. In addition, you also need to attach the AWS managed AmazonS3FullAccess and AWSBatchFullAccess policies to the ecsTaskExecutionRole role. These policies provide the permissions required for task to perform necessary Amazon S3 and AWS Batch operations.
-
-```bash
-aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --role-name ecsTaskExecutionRole
-```
-
-```bash
-aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AWSBatchFullAccess --role-name ecsTaskExecutionRole
-```
+You will be using this role when creating the AWS Batch Job definition later in this lab.
 
 {{% notice info %}}
 
