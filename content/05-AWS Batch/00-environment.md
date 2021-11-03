@@ -7,7 +7,7 @@ tags = ["tutorial", "install", "AWS", "Batch"]
 
 This section modifies the Cloud9 environment that you created in the [Getting Started in the Cloud](/02-aws-getting-started.html) workshop in the following ways:
 
-- Expand the root volume to at least 20GiB in capacity to allow container images to be built.
+- Expand the root volume to at least 20GiB in capacity to allow container images to be built locally.
 - Upgrade to [AWS Command Line Interface (AWS CLI) Version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html) in order to upload your container images to [Amazon Elastic Container Registry (ECR)](hhttps://aws.amazon.com/ecr/).
 
 ### Expand Cloud9 Root Volume
