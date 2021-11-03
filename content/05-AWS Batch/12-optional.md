@@ -146,7 +146,7 @@ do
     aws batch delete-compute-environment --compute-environment \$ce 
 done
 EOF
-bash remove-ce.sh
+bash ~/remove-ce.sh
 ```
 #### Delete ECR repositories
 6. Navigate to the [ECR](https://console.aws.amazon.com/ecr/repositories) Dashboard of the AWS Management Console and delete the container repositories you created earlier. 
