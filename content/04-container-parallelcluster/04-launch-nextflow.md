@@ -68,7 +68,17 @@ In the case of running Nextflow for this lab, the `/shared/nextflow-tutorial` di
 One the job will complete, results will be stored in the `--outdir=/mnt` of the container that is the `/shared/nextflow-tutorial` directory of the cluster where the results will be stored.
 
 ```bash
+cat > nextflow_sub.sh << EOF
+#!/bin/bash
+
+#SBATCH --job-name=nextflow
+#SBATCH --partition=c5xlarge
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --ntasks=1
+
 srun singularity run --bind /shared/nextflow-tutorial:/mnt docker://`echo ${CONTAINER_REPOSITORY_URI}`:v2 nextflow run /mnt/script7.nf --reads '/mnt/data/ggal/*_{1,2}.fq' --outdir=/mnt
+EOF
 ```
 
 The output will be similar to this:
