@@ -111,9 +111,10 @@ do
     aws batch delete-job-queue --job-queue \$queue
 done
 EOF
-bash remove-jq.sh
+
+bash ~/remove-jq.sh
+>>>>>>> Update content/05-AWS Batch/12-optional.md
 ```
-#### Delete compute environments
 5. Choose **Compute environments** and select the compute environment you created for this workshop and choose **Delete**. Note that job queues must be deleted or disassociated from compute environments before the compute environment can be deleted. 
 
 Or, use the following script to delete all Compute Environments with names that match "stress".
