@@ -115,7 +115,7 @@ You can also check the number of nodes available in your cluster using the comma
 ```bash
 sinfo
 ```
- The following example shows 4 nodes.
+ The following example shows 2 nodes.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
 Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:
