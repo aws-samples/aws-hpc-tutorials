@@ -119,8 +119,7 @@ bash remove-jq.sh
 
 Or, use the following script to delete all Compute Environments with names that match "stress".
 ```bash
-cd ~/environment/
-cat > remove-ce.sh << EOF
+cat > ~/remove-ce.sh << EOF
 #!/bin/bash
 MATCH=stress
 echo "Removing all compute environments that match \"\$MATCH\""
