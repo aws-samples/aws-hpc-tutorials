@@ -82,8 +82,7 @@ bash remove-jd.sh
 
 Or, use the following script to delete all job queues with names that match "stress".
 ```bash
-cd ~/environment/
-cat > remove-jq.sh << EOF
+cat > ~/remove-jq.sh << EOF
 #!/bin/bash
 MATCH=stress
 echo "Removing all job queues that match \"\$MATCH\""
