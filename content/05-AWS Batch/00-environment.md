@@ -16,7 +16,7 @@ In this first step you will ensure the root volume of your Cloud9 instance has a
 1. Close any open Cloud9 browser sessions and follow this deep link to find [ your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime).
 2. Stop the instance if is running by selecting the instance and choosing **Instance state / Stop instance /**. ![Stop running instance](/images/aws-batch/root-volume-1.png)
 3. Choose the storage tab and select the Volume ID for the root volume. ![Click on the Storage tab](/images/aws-batch/root-volume-2.png)
-4. Select the root volume for your Cloud9 instance and resize it to be at least 20GB in size by choosing **Actions / Modify volume /**. ![Modify the root volume](/images/aws-batch/root-volume-3.png)
+4. For actions, choose **Modify Volume** and for **Size** enter 20GiB. ![Modify the root volume](/images/aws-batch/root-volume-3.png)
 5. Return to your [ Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime) and start it up by selecting the instance and choosing **Instance state / Start instance /**.
 6. Open your [Cloud9 instance](https://console.aws.amazon.com/cloud9/home).
 
