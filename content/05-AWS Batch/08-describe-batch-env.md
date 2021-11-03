@@ -19,5 +19,5 @@ aws batch describe-job-queues
 aws batch describe-job-definitions
 ```
 
-You will see that the *JSON* documnets provided as output for each of these commands that contain the parameters you chose when you set up the **compute environment**, **job queue**, and **job definition**. Keep in mind that the steps you completed up to this point using the AWS management Console can also be completed with the AWS CLI, AWS SDK, or AWS CloudFormation.
+You will see that the *JSON* documents provided as output for each of these commands that contain the parameters you chose when you set up the **compute environment**, **job queue**, and **job definition**. Keep in mind that the steps you completed up to this point using the AWS management Console can also be completed with the AWS CLI, AWS SDK, or AWS CloudFormation.
 

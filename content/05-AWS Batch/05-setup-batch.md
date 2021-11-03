@@ -26,7 +26,7 @@ Compute environments can be thought of as computational clusters consisting of o
 9. For **Maximum vCPUs** type **256**. This is the upper bound for vCPUs across all concurrently running instances.
 10.  Leave the default value of **0** for **Desired vCPUs - *optional***.
 11.  For **Allowed instance types**, leave the selection as **optimal**.
-12.  Select **BEST_FIT_POGRESSIVE** for **Allocation strategy**
+12.  Select **BEST_FIT_PROGRESSIVE** for **Allocation strategy**
 ![AWS Batch](/images/aws-batch/compute-env-3.png)
 13. Under Networking, for **VPC ID**, choose the Default VPC.
 14. Select all the subnets.
@@ -38,7 +38,7 @@ Compute environments can be thought of as computational clusters consisting of o
 19. Once the environment is ready, it will be visible under **Compute environments** section. Make sure *Status* is **VALID** and *State* is **ENABLED**.
 ![AWS Batch](/images/aws-batch/compute-env-5.png)
 
-At this point, you have done the hard part! Continue to the next step toset up a job queue.
+At this point, you have done the hard part! Continue to the next step to set up a job queue.
 
 
 
