@@ -13,7 +13,7 @@ This section modifies the Cloud9 environment that you created in the [Getting St
 ### Expand Cloud9 Root Volume
 In this first step you will ensure the root volume of your Cloud9 instance has at least 20GiB capacity in order for Docker images to be built locally.
 
-1. Close any open Cloud9 browser sessions and follow this deep link to find [ your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime).
+1. Open the Amazon EC2 console [link](https://console.aws.amazon.com/ec2/v2/home?#Instances:search=cloud9;sort=desc:launchTime) to find your Cloud9 instance.
 2. Stop the instance if is running by selecting the instance and choosing **Instance state / Stop instance /**. ![Stop running instance](/images/aws-batch/root-volume-1.png)
 3. Choose the storage tab and select the Volume ID for the root volume. ![Click on the Storage tab](/images/aws-batch/root-volume-2.png)
 4. For actions, choose **Modify Volume** and for **Size** enter 20GiB. ![Modify the root volume](/images/aws-batch/root-volume-3.png)
