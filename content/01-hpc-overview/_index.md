@@ -1,8 +1,8 @@
 ---
-title: "AWS HPC Overview"
+title: "Workshop Overview"
 date: 2019-01-24T09:05:54Z
 weight: 10
-pre: "<b>I ⁃ </b>"
+pre: "<b>Welcome - </b>"
 ---
 
 
@@ -16,20 +16,14 @@ HPC on AWS removes the long wait times and lost productivity often associated wi
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 
-Select a workshop from the left panel or just click and explore the workshops highlighted below.
+This workshop is is designed to get you familiar with the concepts and best practices to understand AWS components that help to build an HPC cluster and run your HPC workloads on HPC efficiently.
 
-This series of workshops is designed to get you familiar with the concepts and best practices to understand AWS components that help to build an HPC cluster and run your HPC workloads on HPC efficiently.
+To achieve this you will go through the following stages:
 
-After an optional introduction and setup, you can walk through the following labs:
+1. Preparation and setup of your account.
+2. Configure, create your cluster and run a job.
+3. Install the AWS ParallelCluster API and interact with it.
 
-- Getting Started in the Cloud helps to familiarize you with the AWS Cloud.
+We will pause between each stage to remind you of key objectives. In addition, there are optional exercises for each stage that you can go through if you have enough time. There is always a stretch goal after stage 3 that we hope some of your will achieve.
 
-- AWS ParallelCluster introduces you to running HPC workloads in the cloud.
-
-- Amazon FSx for Lustre walks you through HPC focused services.
-
-- AWS Batch teaches to you run a driving simulation with [CARLA](http://carla.org/).
-
-- Distributed ML explores how to leverage cloud HPC infrastructure to run data parallel training at scale.
-
-We recommend you take these labs in the order presented as some dependencies exists between them, but feel free to change the order based on your comfort level.
+If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We'll be happy to assist you and hope that you are having a great experience learning about HPC on AWS with us.
