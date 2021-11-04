@@ -9,12 +9,11 @@ weight: 50
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>).
 {{% /notice %}}
 
-Do not hesitate to ask questions at sc21tutorial@amazon.com if you need any help.
 
 ##### Step 1
 
 {{% notice warning %}}
-Sandbox were available on November 14th 2021 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc21tutorial@amazon.com so we can follow-up with you.
+Sandbox accoutns  are available on the day of the workshop. The website will be maintained if you would like to run through the labs at a later stage on your own, with your company or institution.
 {{% /notice %}}
 
 ##### Step 2
@@ -34,5 +33,5 @@ Click **AWS Console Login**, then on the following popup click on the link **Ope
 ![Event Engine AWS Console](</images/sc21/event-engine-aws-console.png>)
 
 {{% notice warning %}}
-Do not forget to run in the North Virginia AWS Region (us-east-1). We can connect into your account if you need help during the tutorial.
+Do not forget to run in the North Virginia AWS Region (**us-east-1**). We can connect into your account if you need help during the tutorial.
 {{% /notice %}}
