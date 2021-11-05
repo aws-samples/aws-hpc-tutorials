@@ -27,7 +27,7 @@ This lab includes the following steps:
 
 
 
-[AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) provides a list of services to host code, build, test, and deploy your applications quickly and effectively.  AWS services offered as part of the AWS Developer Tools suite helps remove the undifferentiated heavy lifting associated with DevOps adaptation and software development. You can build a continuous integration and delivery capability without managing servers or build nodes, and leverage Infrastructure as Code to provision and manage your cloud resources in a consistent and repeatable manner.
+[AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) provides a list of services to host code, build, test, and deploy your applications quickly and effectively.  AWS services offered as part of the AWS Developer Tools suite helps remove the undifferentiated heavy lifting associated with DevOps adaptation and software development. You can build a continuous integration and delivery capability without managing servers or build nodes, and leverage Infrastructure as code (IaC) to provision and manage your cloud resources in a consistent and repeatable manner.
 
 ##### Benefits
 + **Minimize downtime**
@@ -48,9 +48,9 @@ This lab includes the following steps:
 
 + **Test and automate infrastructure**
 
-	Combine infrastructure as code (IaC) with version control and automated, continuous integration to bring scalability and consistency to provisioning and management.
+	Combine Infrastructure as code with version control and automated, continuous integration to bring scalability and consistency to provisioning and management.
 
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop.
+{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Preparation](/02-aws-getting-started.html)** section of the workshop.
 {{% /notice %}}
 
 

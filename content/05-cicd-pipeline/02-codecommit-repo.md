@@ -36,7 +36,7 @@ REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query rep
 echo $REPOURL
 ```
 
-Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo**
+Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.\<region\>.amazonaws.com/v1/repos/MyDemoRepo**
 
 7. Clone the repository in your Cloud9 terminal and cd into it:
 
@@ -44,6 +44,7 @@ Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.<regio
 $ git clone $REPOURL
 $ cd MyDemoRepo/
 ```
+You can ignore the warning shown [*warning: You appear to have cloned an empty repository*]
 
 8. Now let's update the default branch from **master** to **main**:
 ```

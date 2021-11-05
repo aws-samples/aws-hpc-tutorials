@@ -58,7 +58,7 @@ git push origin main
 5. In the AWS Management Console search bar, type and select **CodePipeline**. Click on the **MyDemoPipeline** that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically. 
 ![AWS CodePipeline](/images/cicd/codepipeline-6.png)
 
-6. Click on the AWS CodeBuild deep link from the Build stage of the CodePipeline. This will take you to the CodeBuild project that you created and will display the Build logs.
+6. Click on the AWS CodeBuild deep link from the Build stage of the CodePipeline. This will take you to the CodeBuild project that you created. Click on the latest build in **Build history** and examine the **Build logs**.
 ![AWS CodePipeline](/images/cicd/codepipeline-7.png)
 
 

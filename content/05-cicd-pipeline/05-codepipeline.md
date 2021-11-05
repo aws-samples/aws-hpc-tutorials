@@ -9,7 +9,7 @@ In this section, you will create a pipeline using [AWS CodePipeline](https://aws
 
 AWS CodePipeline is a fully managed [continuous delivery](https://aws.amazon.com/devops/continuous-delivery/) service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define
 
-In the first section of this lab you created a CodeCommit repo and created a Docker container and corresponding buildspec file to build the container. In the second section of this lab you created a project in CodeBuild and provided the necessary information to compile your created Docker container. 
+In the first section of this lab you created a CodeCommit repo and created a sample Docker container and corresponding buildspec file to build the container. In the second section of this lab you created a project in CodeBuild and provided the necessary information to compile your created Docker container. 
 
 In this section, you will create a pipeline with a source and build stage to automate the container build and push to Amazon ECR whenever there are any changes in the source CodeCommit repository.
 
@@ -30,9 +30,10 @@ In this section, you will create a pipeline with a source and build stage to aut
 
 7. In Step 4 **Add deploy stage**, click on  **Skip deploy stage** as we are building the pipeline in this lab for build automation only. We will focus on deploy/orchestration in the next lab. 
 ![AWS CodePipeline](/images/cicd/codepipeline-4.png)
+![AWS CodePipeline](/images/cicd/codepipeline-9.png)
 
 8. Review your pipeline settings and select **Create pipeline**
  
-9. Your pipeline should execute. It will take a few mins to execute the pipeline and and if successful should display a message as shown below
+9. Your pipeline should execute. It will **take a few mins** to execute the pipeline and and if successful should display a message as shown below
 ![AWS CodePipeline](/images/cicd/codepipeline-5.png)
 

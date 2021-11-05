@@ -5,6 +5,9 @@ weight = 40
 tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 +++
 
+{{% notice info %}}If you have not created the container repository as part Lab II, complete the **[Create container repository](/04-container-parallelcluster/03-create-repository.html)** section of Lab II before proceeding.
+{{% /notice %}}
+
 In this section, you will create a Docker container for the application and a buildspec file in the CodeCommit repository created in the previous section
 
 A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
@@ -70,7 +73,7 @@ print('Hello World!')
 EOF
 ```
 
-5. Commit and Push your local created files to the remore repository hosted in CodeCommit.
+5. Commit and Push your local created files to the remote repository hosted in CodeCommit.
 
 ```bash
 git add Dockerfile buildspec.yml script.py

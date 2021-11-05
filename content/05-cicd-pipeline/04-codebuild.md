@@ -11,11 +11,11 @@ AWS CodeBuild is a fully managed continuous integration service that compiles so
 
 With CodeBuild, you don’t need to provision, manage, and scale your own build servers
 
-1. In the AWS Management Console search bar, type and select **CodeBuild**.
+1. In the AWS Management Console search bar, type and select **CodeBuild**  Or click on [CodeBuild](https://console.aws.amazon.com/codesuite/codebuild/projects)
 
 2. Click on **Create build project**.
 
-3. In the **Project configuration** section, enter **MyDemoBuild** as the **Project name**
+3. In the **Project configuration** section, enter **MyDemoBuild** as the **Project name** and leave the rest as defaults in this section. 
 
 ![AWS CodeBuild](/images/cicd/code-build-1.png)
 
@@ -34,7 +34,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
   	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
 	- In the **Value** field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
-	- The output should look as **"<account-id>.dkr.ecr.<region>.amazonaws.com/sc21-container"**. Copy without the quotes and paste in the **Value** field.
+	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/sc21-container"**. Copy without the quotes and paste in the **Value** field.
  
 ```bash
 REPO_NAME=sc21-container
@@ -45,7 +45,9 @@ aws ecr describe-repositories --query repositories[].[repositoryName,repositoryU
 
 7. In the **Buildspec** section, select **Use a buildspec file** option. By default CodeBuild looks for a file named buildspec.yml in the source code root directory. Since we named our buildspec file as **buildspec.yml** and put it in the root directory of the CodeCommit repo, you can skip providing a name or absolute path
  
-8. Keep the defaults in **Batch configuration** and **Artifacts** section. 
+8. Keep the defaults in **Batch configuration** and **Artifacts** section.
+
+![AWS CodeBuild](/images/cicd/code-build-6.png)
 
 9. In the **Logs** section enable the **CloudWatch logs**. This option will upload the build output logs to [CloudWatch](https://aws.amazon.com/cloudwatch/)
 
@@ -59,6 +61,10 @@ aws ecr describe-repositories --query repositories[].[repositoryName,repositoryU
 aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess --role-name codebuild-MyDemoBuild-service-role
 ```
 
+When executing the above if you run into an error as shown below, it means you have not disabled AWS managed temporary credentials in Cloud9 as covered in the [Preparation](/02-aws-getting-started.html) section of the Lab. 
+Kindly fix that and re-do the above step.
+![AWS CodeBuild](/images/cicd/code-build-temp-cred-error.png)
+ 
 
 In the next section, you will build a CodePipeline which you will use to automate your container build process
 

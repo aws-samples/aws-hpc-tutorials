@@ -13,7 +13,13 @@ In this step, we will create a S3 bucket to store the results of your Nextflow s
 
 2. Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
 
-3. Create your unique S3 bucket using the following command
+3. Go to the **environment** space
+
+```bash
+cd ~/environment
+``` 
+
+4. Create your unique S3 bucket using the following command
 
 ```bash
 BUCKET_NAME=nextflow-results
