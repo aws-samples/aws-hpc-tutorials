@@ -25,7 +25,7 @@ echo "export AWS_REGION=${AWS_REGION}" >> env_vars
 2. Set [Amazon EC2](https://aws.amazon.com/ec2/) instance types that be will be used through this lab for head and compute nodes in the following sections (sections c)
 
 ```bash
-INSTANCES=c5n.18xlarge,c5.large
+INSTANCES=c5.xlarge,c5.large
 ```
 
 3. Retrieve network information

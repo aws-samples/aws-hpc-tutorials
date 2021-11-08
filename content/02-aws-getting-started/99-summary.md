@@ -11,7 +11,3 @@ During this part of the workshop, you learned how to build a basic infrastructur
 - Attach an IAM role to an AWS Cloud9 Instance
 
 In the next section, you learn how to build an HPC cluster using AWS ParallelCluster.
-
-
-
-

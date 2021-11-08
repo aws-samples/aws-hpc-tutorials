@@ -12,13 +12,17 @@ The **pcluster ssh** is a wrapper around SSH. Depending on the case, you can als
 You can list existing clusters using the following command. This is a convenient way to find the name of a cluster in case you forget it.
 
 ```bash
-pcluster list --color -r $AWS_REGION
+pcluster list-clusters -r $AWS_REGION
 ```
+
+You should see a result similar to the picture below.
+
+![ParallelCluster List Clusters](/images/hpc-aws-parallelcluster-workshop/pcluster-list.png)
 
 Now that your cluster has been created, log in to the head node using the following command in your AWS Cloud9 terminal:
 
 ```bash
-pcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+pcluster ssh hpc-cluster-lab -i ~/.ssh/${SSH_KEY_NAME} -r ${AWS_REGION}
 ```
 
 The EC2 instance asks for confirmation of the ssh login the first time you log in to the instance. Type **yes**.
@@ -45,7 +49,7 @@ squeue
 
 ##### Module Environment
 
-[Lmod](https://lmod.readthedocs.io/en/latest/) is a fairly standard tool used to dynamically change your environment.
+[Lmod](https://lmod.readthedocs.io/en/latest/) is a fairly standard tool in HPC that is used to dynamically change your environment (env vars, PATH).
 
 - **List available modules**
 ```bash

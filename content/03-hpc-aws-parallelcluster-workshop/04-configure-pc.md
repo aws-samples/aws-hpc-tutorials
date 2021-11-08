@@ -15,7 +15,6 @@ Generate the cluster with the following settings:
 - In this lab, the cluster has 0 compute nodes when starting and a maximum of 2 instances.  AWS ParallelCluster will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - A [GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) volume will be attached to the head-node then shared through NFS to be mounted by the compute nodes on `/shared`. It is generally a good location to store applications or scripts. Keep in mind that the `/home` directory is shared on NFS as well.
 - [SLURM](https://slurm.schedmd.com/overview.html) is used as a job scheduler
-- We disable Intel Hyper-threading by setting `disable_hyperthreading = true` in the configuration file.
 
 {{% notice tip %}}
 For more details about the AWS ParallelCluster configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/configuration.html).
@@ -38,66 +37,38 @@ echo $SSH_KEY_NAME
 source env_vars
 ```
 
-3. Retrieve NCAR WRF v4 AMI
-
-NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
-You will leverage this AMI to run WRF on a test case in the next section of this lab.
+3. Build the custom config file for ParallelCluster
 
 ```bash
-CUSTOM_AMI=`aws ec2 describe-images --owners 111992169430 \
-    --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
-    --filters "Name=name,Values=*-amzn2-parallelcluster-2.11.2-wrf-4.2.2-*" \
-    --region ${AWS_REGION} \
-    | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
-
-echo "export CUSTOM_AMI=${CUSTOM_AMI}" >> env_vars
-```
-
-
-4. Build the custom config file for ParallelCluster
-
-```bash
-cat > my-cluster-config.ini << EOF
-[vpc public]
-vpc_id = ${VPC_ID}
-master_subnet_id = ${SUBNET_ID}
-
-[global]
-cluster_template = default
-update_check = true
-sanity_check = true
-
-[cluster default]
-key_name = ${SSH_KEY_NAME}
-base_os = alinux2
-scheduler = slurm
-master_instance_type = c5.xlarge
-master_root_volume_size = 40
-compute_root_volume_size = 40
-additional_iam_policies = arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore, arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole
-vpc_settings = public
-ebs_settings = myebs
-queue_settings = c5n18large
-custom_ami = ${CUSTOM_AMI}
-
-[queue c5n18large]
-compute_resource_settings = c5n18large
-disable_hyperthreading = true
-enable_efa = true
-placement_group = DYNAMIC
-
-[compute_resource c5n18large]
-instance_type = c5n.18xlarge
-min_count = 0
-max_count = 2
-
-[ebs myebs]
-shared_dir = /shared
-volume_type = gp2
-volume_size = 20
-
-[aliases]
-ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
+cat > my-cluster-config.yaml << EOF
+Region: us-east-1
+Image:
+  Os: alinux2
+HeadNode:
+  InstanceType: c5.large
+  Networking:
+    SubnetId: ${SUBNET_ID}
+  Ssh:
+    KeyName: ${SSH_KEY_NAME}
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+  - Name: jobqueue
+    ComputeResources:
+    - Name: c5xlarge
+      InstanceType: c5.xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - ${SUBNET_ID}
+SharedStorage:
+  - MountDir: /shared
+    Name: NFS
+    StorageType: Ebs
+    EbsSettings:
+      VolumeType: gp2
+      Size: 50
 EOF
 ```
 
