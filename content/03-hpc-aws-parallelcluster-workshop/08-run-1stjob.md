@@ -35,7 +35,7 @@ curl -O https://sc21-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz
 
 tar -xzf wrf_simulation_CONUS12km.tar.gz 
 ```
-For the purpose of SC21, a copy of the data that can be bound on UCAR website through this [link](https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz) has been stored in a S3 bucket.
+For the purpose of SC21, a copy of the data that can be found on UCAR website through this [link](https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz) has been stored in a S3 bucket.
 
 #### Prepare the data
 Copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code.
