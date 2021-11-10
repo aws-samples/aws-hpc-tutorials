@@ -31,7 +31,7 @@ Before and during the tutorial you may be interested in going through the follow
 
 - **[Agenda](/01-hpc-overview/00-agenda.html)** of the tutorial.
 - **[FAQ](/01-hpc-overview/01-updates.md)** answers to common questions will be communicated here during the tutorial.
-- **[Lab account](/01-hpc-overview/03-access-aws.md)** on how to access your lab account.
+- **[Lab account](/02-aws-getting-started/03-access-aws.html)** on how to access your lab account.
 
 #### Presentations Slides
 
@@ -39,13 +39,13 @@ The last version of the tutorial slides are available in your Tutorial attendee 
 
 #### SC21 Hands-on Labs
 
-Throughout the tutorial we will be going through the following labs:
+Throughout the tutorial you will be going through the following labs:
 
-1. **[Lab 0: Environment Prep](/01-hpc-overview/00-agenda.html)**: It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system.
-2. **[Lab 1: Build your HPC System in the Cloud, Run WRF](/03-hpc-aws-parallelcluster-workshop.html)**:: You will be lead to create your first HPC system in the Cloud.
-3. **[Lab 2: Containers on your HPC System](/04-serverless.html))**:: We will see how to build an API interface and submit jobs on Slurm using a serverless (Lambda) function.
-4. **[Lab 3: Automation, CI/CD & container orchestrators](/04-serverless.html)**:: In this lab you will learn how to build a Lustre file system in the Cloud, no need to hold a PhD in storage for that.
-5. **[Lab 4: Serverless Computing Lab](/10-monitoring.html)**:: This lab gives an overview of different methods and tools that can be used to assess application and infrastructure performance of your HPC cluster in the cloud.
+1. **[Lab 0: Preparation](/01-hpc-overview/00-agenda.html)**: It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system.
+2. **[Lab 1: Create an HPC Cluster](/03-hpc-aws-parallelcluster-workshop.html)**: You will be lead to create your first HPC system in the Cloud and run a tightly coupled application, WRF.
+3. **[Lab 2: Containers on AWS ParallelCluster](/04-container-parallelcluster.html))**: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud.
+4. **[Lab 3: Container Building Automation](/05-cicd-pipeline.html)**: You will learn to create a pipeline to automatically build a container upcon code changes.
+5. **[Lab 4: Simulation on AWS Batch](/06-batch-automation.html)**: You will learn how to use container orchestrators like AWS Batch and deploy an architecture for automated job submission in AWS Batch using serverless functions..
 
 
 #### Accessing Your Lab Account
