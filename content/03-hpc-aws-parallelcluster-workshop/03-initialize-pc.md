@@ -64,5 +64,7 @@ aws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \
     --query 'SecretString' \
     --region ${AWS_REGION} \
     --output text | base64 --decode > ~/.ssh/${SSH_KEY_NAME}
+
+chmod 400 ~/.ssh/${SSH_KEY_NAME}
 ```
 {{% /notice %}}
