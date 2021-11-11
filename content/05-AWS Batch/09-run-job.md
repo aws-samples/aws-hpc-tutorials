@@ -5,22 +5,22 @@ weight = 100
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
-### Run a Batch Job using the Console.
+### Run a Batch Job from the AWS Management Console.
 
-1. Click on **Jobs** in the menu on the left side.
+1. In the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/home), choose **Jobs** in the menu on the left side.
 2. Click on **Submit new job** button at the top right.
 ![AWS Batch](/images/aws-batch/run-job-1.png)
-4. Name your job **stress-ng-job**.
-5. For Job definition select **stress-ng-job-definition:1**.
+4. For **Name** type **stress-ng-job**.
+5. For **Job definition** select **stress-ng-job-definition:1** (the ":1" suffix signifies version 1).
 6. Select **stress-ng-queue** as the **Job queue**.
 7. Enter **120** in **Execution timeout**.
-8. Leave the **Job attempts** as 3.
+8. Leave the **Job attempts** as **3**.
 ![AWS Batch](/images/aws-batch/run-job-2.png)
 10. Select **Single** as the **Job type**.
 ![AWS Batch](/images/aws-batch/run-job-3.png)
 11. Expand the **Additional configuration** section.
 12. Under **Environment variables**, click **Add**.
-13. Set **Name** to: STRESS_ARGS
+13. Set **Name** to: **STRESS_ARGS**
 14. Set **Value** to: 
     ```text
     --cpu 0 --cpu-method fft --timeout 1m --times
@@ -35,14 +35,14 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 1. You can click on any of the stages of the Job queues to view the jobs in that state and then click on individual jobs to view their detailed properties and status. 
 2. Click on the name of an individual job to view the detailed **Job information**.
 ![AWS Batch](/images/aws-batch/observe-job-2.png)
-3. Click on the link below **Log stream name**. This will take you to the AWS CloudWatch log for the job which contains all of the STDOUT and STDERR output from the job.
-4. If your job ran successfully you will see similar times and summary information to that which you saw when you ran the container locally on your Cloud9 instance.
+3. Click on the link below **Log stream name**. This will take you to the **AWS CloudWatch** log for the job which contains all of the output (STDOUT and STDERR) from the job.
+4. If your job ran successfully you will see similar output to that which you saw when you ran the container locally on your Cloud9 instance.
 ![AWS Batch](/images/aws-batch/observe-job-3.png)
 
 
 ### Run a Batch job from the AWS CLI.
 
-In this step, you will [submit a single job](https://docs.aws.amazon.com/batch/latest/userguide/submit_job.html) using the AWS CLI.
+In this step, you will [submit a job](https://docs.aws.amazon.com/cli/latest/reference/batch/submit-job.html) using the AWS CLI.
 
 1. Execute the following commands in a terminal window on your Cloud9 instance. 
 
@@ -66,18 +66,18 @@ EOF
 aws batch submit-job --cli-input-json file://job.json
 ```
 
-Note that you are using a structured JSON file to supply the required parameters of **jobName**, **jobQueue**, and **jobDefinition** as well as defining and passing the environment variable **STRESS_ARGS** that your container's docker-entrypoint.sh script uses to form the full stress-ng command-line. 
+Note that you are creating a structured JSON file to supply the required parameters of **jobName**, **jobQueue**, and **jobDefinition** as well as defining and passing the environment variable **STRESS_ARGS** used by your container's docker-entrypoint.sh script to form the full stress-ng command-line. 
 
 {{% notice info %}}
-If the job does not run, double-check that the job queue name and job definition are correct.
+If the job does not run, double-check that the job queue name, job definition name and version are correct.
 {{% /notice %}}
 
-Take note of the **Job Id** because you can use it to check the status of a job:
+Take note of the **jobId** returned when you sumbitted the job. You can use this to check the status of the job using the following command (replacing YOUR_JOB_ID with the jobId value returned previously):
 
 ```
 aws batch describe-jobs --jobs YOUR-JOB-ID
 ```
-The returned *JSON* output displays and describes the status of you job.
+The returned *JSON* output displays and describes the status of your job.
 
 #### JSON Output Processing
 
