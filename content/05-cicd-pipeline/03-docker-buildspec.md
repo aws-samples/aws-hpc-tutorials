@@ -13,10 +13,10 @@ In this section, you will create a Docker container for the application and a bu
 A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
 
 
-1. Confirm you are in the **MyDemoRepo** repository, if not enter into it:
+1. Confirm you are in the **MyDemoRepo** repository:
 
-```bash
-cd MyDemoRepo
+```
+pwd # should be MyDemoRepo
 ```
 
 2. Create a Docker container for the application. We're going to use the [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) from [Amazon Elastic Container Registry (ECR) Public Gallery](https://docs.aws.amazon.com/AmazonECR/latest/public/public-gallery.html).
