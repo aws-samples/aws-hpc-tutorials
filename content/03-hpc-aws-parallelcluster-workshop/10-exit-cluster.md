@@ -9,9 +9,9 @@ Congratulations, you have deployed a HPC Cluster on AWS !
 
 In this lab, you have:
 - Configured your HPC Cluster
-- Deployed a HPC Cluster in the cloud.
-- Run a sample application on your HPC Cluster.
+- Deployed a HPC Cluster in the cloud using AWS ParallelCluster's CLI.
+- Connected and executed a sample application on your HPC Cluster.
 
 In the next lab, you will learn how to interact with the new AWS ParallelCluster API using Python and through an open-source GUI called the *Pcluster Manager*.
 
-You can learn more about AWS ParallelCluster by visiting the [documentation](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html).
+You can learn more about AWS ParallelCluster by visiting the [documentation](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) page.

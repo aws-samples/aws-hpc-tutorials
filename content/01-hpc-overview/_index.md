@@ -24,6 +24,4 @@ To achieve this you will go through the following stages:
 2. Configure, create your cluster and run a job.
 3. Install the AWS ParallelCluster API and interact with it.
 
-We will pause between each stage to remind you of key objectives. In addition, there are optional exercises for each stage that you can go through if you have enough time. There is always a stretch goal after stage 3 that we hope some of your will achieve.
-
-If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We'll be happy to assist you and hope that you are having a great experience learning about HPC on AWS with us.
+We will pause between each stage to remind you about the key objectives. If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We'll be happy to assist you and hope that you are having a great experience learning about HPC on AWS with us.
