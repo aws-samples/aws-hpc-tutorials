@@ -14,10 +14,10 @@ In this step, you will create an IAM Role and assign it administrative access pe
 1. Open the IAM console [deep link](<https://console.aws.amazon.com/iam/home#/roles%24new?step=type&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess>) to create an IAM Role.
 2. Confirm that **AWS service** and **EC2** are selected, then click **Next: Permissions** to view permissions.
 ![AWS Batch](/images/aws-batch/iam-role-1.png)
-3. Confirm that **AdministratorAccess** is checked, then click **Next: Tags** to assign tags.
+1. Confirm that **AdministratorAccess** is checked, then click **Next: Tags**.
 ![AWS Batch](/images/aws-batch/iam-role-2.png)
 4. Keep the defaults, and click **Next: Review** to review.
-5. For **Name**, enter **cloud9-hpcworkshop-admin**
+5. For **Role name**, enter **cloud9-hpcworkshop-admin**
 ![AWS Batch](/images/aws-batch/iam-role-3.png)
 6. Choose  **Create role**. 
 

@@ -6,33 +6,33 @@ tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 
 
-In this step you will create a new container that generates a file with a set of different stress tests. You will run an array job with this container and each member task will perform a different test based on its array index. 
+In this step you will create a new container that generates a file with a set of different stress tests. You will then run an array job using this container image where each member task of the job array will perform a different test based on its array index. 
 
 
 ### Automation of the container build and push processes
 
-Since you are going to be building and pushing more container images, it's worth simplifying and automating the container build pipeline by creating some shell scripts that (a) create a new named ECR repository, and (b) build the container image based on the Dockerfile and push it to the named repository.
+Since you are going to be building and pushing more container images in this workshop, it's worth simplifying and automating the container build pipeline by creating some shell scripts.
 
-Create a directory for your new scripts.
+Create a directory for the scripts.
 
 ```bash
-mkdir ~/bin
+mkdir ~/environment/bin
 ```
 
 Execute the following commands to build the script that creates a named ECR repository.
 
 ```bash
-cat > ~/bin/create_repo.sh << EOF
+cat > ~/environment/bin/create_repo.sh << EOF
 #!/bin/bash
-echo ${1}
+echo \${1}
 aws ecr create-repository --repository-name \${1}
 EOF
-chmod +x ~/bin/create_repo.sh
+chmod +x ~/environment/bin/create_repo.sh
 ```
 
 Execute the following commands to create the script that builds a container based on the Dockerfile in the local directory and pushes it to the named ECR repository.
 ```bash
-cat > ~/bin/build_container.sh << EOF
+cat > ~/environment/bin/build_container.sh << EOF
 #!/bin/bash
 echo \${1}
 export AWS_REGION=\$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
@@ -42,22 +42,25 @@ docker build -t \${1} .
 docker tag \${1}:latest \${AWS_ACCOUNT}.dkr.ecr.\${AWS_REGION}.amazonaws.com/\${1}:latest
 docker push \${AWS_ACCOUNT}.dkr.ecr.\${AWS_REGION}.amazonaws.com/\${1}:latest
 EOF
-chmod +x ~/bin/build_container.sh
+chmod +x ~/environment/bin/build_container.sh
 ```
 
+A **bin** directory with two new scripts will now be visible in the file browser on the left side of your Cloud9 window. You can double click each of the scripts to open them a new editor to inspect their contents.
 
 
-### Build a new container for your array job
+### Create a new container for an array job
 
-
-1. Create a new subdirectory called array in which we will build a new container for our array job.
+1. Create a new subdirectory named **array** to store the configuration files for your array job.
 
 ```bash
-mkdir ~/array
-cd ~/array
+mkdir ~/environment/array
+cd ~/environment/array
 ```
+You should now see a new directory named **array** appear in the file navigation panel on the left side of the Cloud9 IDE.
 
-2. Copy and paste the following into a new file named Dockerfile in the array directory.
+2. Right click on the icon for this directory and select **New File** and name it **Dockerfile**. 
+3. Double click on the icon of the **Dockerfile** to open it in a new Cloud9 editor. 
+4. Copy and paste the following contents into **Dockerfile**:
 
 ```text
 FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -89,34 +92,29 @@ RUN chmod 0744 /docker-entrypoint.sh
 RUN cat /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 ```
+5. Save the file.
 
 Note some of the changes from the last Dockerfile:
-- This version generates a script called /mktests.sh container.
+- This version generates a script called /mktests.sh inside the container.
 - It calls this script from the docker-entrypoint.sh script when the container runs and generates a file called /stress-tests.txt inside the running container.
-- This file will be used by each array task to execute a different command by selecting the corresponding line based on its array index variable and setting their STRESS_ARGS environment variable accordingly.
+- This file will be used by each array task to execute a different command by selecting the corresponding line based on its array index variable, and setting their STRESS_ARGS environment variable accordingly.
 
-
-3. Create a new repository for your job array container in Amazon ECR. Note that you are using a new name here since this container has different purpose and functionality. A repository has a 1:1 relationship with a container, however each repository can have multiple versions (tags).
-
+6. Create a new repository for your job array container in Amazon ECR. 
 ```bash
-~/bin/create_repo.sh stress-ng-array
+~/environment/bin/create_repo.sh stress-ng-array
 ```
+Note that you are using a new name here since this container has different purpose and functionality. Note that an ECR repository has a 1:1 relationship with a container image, however each repository can have multiple versions (tags).
 
-4. Build and push an image of your new job array container.
-
+7. Build and push a new job array container image.
 ```bash
-~/bin/build_container.sh stress-ng-array
+~/environment/bin/build_container.sh stress-ng-array
 ```
+You just defined, built and pushed the new stress-ng-array container in three basic steps.
 
-You just defined, built and pushed the new stress-ng-array container in three simple steps.
+Let's take a closer look at how the new array container works.
 
-
-Let's take a closer look at what that new container does.
-
-Note that the following steps are all accomplished by the Dockerfile above and as such the following steps do not need to be directly executed, however feel free to copy and paste their contents and execute them on your Cloud9 instance to investigate how they work. 
-
-A script called /mktests.sh is generated inside your container with the following contents:
-```bash
+A script called /mktests.sh is generated **inside the running container** with the following contents:
+```text
 #!/bin/bash
 FILE=stress-tests.txt
 rm $FILE 2>/dev/null
@@ -131,7 +129,7 @@ do
 done
 ```
 
-When executed that script creates a file of different tests called /stress-tests.txt with contents similar to the following:
+When called by docker-entrypoint.sh that script creates a file of different tests called /stress-tests.txt **inside the running container** with contents similar to the following:
 ```text
 --cpu 0 -t 120s --metrics --cpu-method ackermann
 --cpu 0 -t 120s --metrics --cpu-method bitops
@@ -141,11 +139,14 @@ When executed that script creates a file of different tests called /stress-tests
 ...
 ```
 
-Each line of this file is a different test that can be passed to the stress-ng program via the STRESS_ARGS environment variable. Each member task of the array job will execute the stress-ng command with a different set of command line flags (i.e. a different line of this file) corresponding to the value of its array index variable plus one, i.e. $((AWS_BATCH_JOB_ARRAY_INDEX + 1)) since the array index starts a zero and file line numbers begin at one.
+Each line of this file contains a different test that can be passed to the stress-ng program via the STRESS_ARGS environment variable. Each member task of the array job will select a different line of this file corresponding to the value of its array index variable plus one, i.e. $((AWS_BATCH_JOB_ARRAY_INDEX + 1)) [since the array index starts a zero and file line numbers start at one].
+```text
+STRESS_ARGS=`sed -n $((AWS_BATCH_JOB_ARRAY_INDEX + 1))p /stress-tests.txt
+```
 
 
-### Create a job definition for your array job
-Execute the following commands to create and register a **jobDefinition** for your array job.
+### Create a job definition for an array job
+Execute the following commands to create and register a **jobDefinition** for an array job.
 ```bash
 ARRAY_REPO=$(aws ecr describe-repositories --repository-names stress-ng-array --output text --query 'repositories[0].[repositoryUri]')
 cat > stress-ng-array-job-definition.json << EOF
@@ -183,14 +184,14 @@ aws batch submit-job --cli-input-json file://stress-ng-array-job.json
 ```
 You can observe the status changes and execution of your job at the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/).
 
-Note that when you click on an individual array job and view its details you will see multiple entries for each **job index** which are the individual member tasks of the job array. 
+Note that when you click on an individual array job and view its details you will see multiple entries for each **job index** which correspond to the individual member tasks of the job array. 
 ![AWS Batch](/images/aws-batch/array-job-1.png)
 You can view the individual **CloudWatch** log streams for each member task.
 ![AWS Batch](/images/aws-batch/array-job-2.png)
 
 ### Submit an array job using command-line options.
 
-Alternatively you can provide all of the paremeters for a job on the command line.
+Alternatively you can provide all of the parameters for a job on the command line.
 ```bash
 aws batch submit-job --job-name job-array --job-queue stress-ng-queue --job-definition stress-ng-array-job-definition --array-properties size=6 
 ```
