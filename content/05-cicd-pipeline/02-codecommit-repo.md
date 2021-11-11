@@ -41,12 +41,12 @@ Verify **echo $REPOURL** outputs a repo url like **https://git-codecommit.\<regi
 7. Clone the repository in your Cloud9 terminal and cd into it:
 
 ```bash
-$ git clone $REPOURL
-$ cd MyDemoRepo/
+git clone $REPOURL
+cd MyDemoRepo/
 ```
 You can ignore the warning shown [*warning: You appear to have cloned an empty repository*]
 
 8. Now let's update the default branch from **master** to **main**:
 ```
-$ git branch -m master main
+git branch -m master main
 ```

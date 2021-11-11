@@ -12,9 +12,10 @@ We will modify the Dockerfile to run a Genomics workflow using [Nextflow](https:
 We will go over the Nextflow architecture and job execution/orchestration more in the next lab. For now, we will go ahead and update the repository and see how the CICD pipeline works for your build.
 
 
-1. Go to the CodeCommit repository created in your **Cloud9** environment
-```bash
-cd MyDemoRepo
+1. First confirm you are in the **MyDemoRepo** repository:
+
+```
+pwd # should be MyDemoRepo
 ```
 
 2. Update the Dockerfile to the following. This is an entrypoint script which can consume the link to an Amazon S3 bucket or a git repository from which to download the Nextflow pipeline and executes it.
@@ -58,12 +59,14 @@ git push origin main
 5. In the AWS Management Console search bar, type and select **CodePipeline**. Click on the **MyDemoPipeline** that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically. 
 ![AWS CodePipeline](/images/cicd/codepipeline-6.png)
 
-6. Click on the AWS CodeBuild deep link from the Build stage of the CodePipeline. This will take you to the CodeBuild project that you created. Click on the latest build in **Build history** and examine the **Build logs**.
+6. Click on the **Details** deep link from the Build stage of the CodePipeline. This will take you to build logs from the CodeBuild project that you created:
+
 ![AWS CodePipeline](/images/cicd/codepipeline-7.png)
+![AWS CodePipeline](/images/cicd/codepipeline-8.png)
 
 
 7. Click on the **Tail logs** to see the on-going or completed build process. This is showcasing every step of the build process as provided in your **buildspec.yml** file.
-![AWS CodePipeline](/images/cicd/codepipeline-8.png)
+![AWS CodePipeline](/images/cicd/codepipeline-9.png)
 
 8. In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR. 
 
