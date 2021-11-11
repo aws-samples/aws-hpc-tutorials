@@ -54,7 +54,7 @@ aws secretsmanager create-secret --name ${SSH_KEY_NAME} \
     --region ${AWS_REGION}
 ```
 
-Next, you build a configuration to generate a cluster to run  HPC applications.
+Next, you install the AWS ParallelCluster API and the Pcluster Manager GUI. Then you build a configuration to generate a cluster to run  HPC applications.
 
 {{% notice info %}}
 **Optional Step**: Please run this command **ONLY** in the event that you lose your SSH private key and need to retrieve it from the secrets manager

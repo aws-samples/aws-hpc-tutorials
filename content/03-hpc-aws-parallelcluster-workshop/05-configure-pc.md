@@ -1,5 +1,5 @@
 +++
-title = "c. Create a Cluster Config"
+title = "d. Create a Cluster Config"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "initialize", "ParallelCluster"]
