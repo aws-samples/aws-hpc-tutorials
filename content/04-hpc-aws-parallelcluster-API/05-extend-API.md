@@ -6,7 +6,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 
-In this section you will extend your code to list the instances attached to your clusters. For that you need to list the AWS ParallelCluster clusters on your account and use the [*list_clusters*](https://github.com/aws/aws-parallelcluster/blob/develop/api/client/src/docs/ClusterOperationsApi.md#list_clusters) function from the [Pcluster Client](https://github.com/aws/aws-parallelcluster/tree/develop/api/client/src).
+In this section you will extend your code to list the instances attached to your clusters. For that you need to list the AWS ParallelCluster clusters you created and use the [*list_clusters*](https://github.com/aws/aws-parallelcluster/blob/develop/api/client/src/docs/ClusterOperationsApi.md#list_clusters) function from the [Pcluster Client](https://github.com/aws/aws-parallelcluster/tree/develop/api/client/src).
 
 Compare the code used in the previous step to the one below. You will notice a few changes:
 
@@ -54,6 +54,7 @@ with pcluster_client.ApiClient(configuration) as api_client:
     except pcluster_client.ApiException as e:
         print("Exception when calling ClusterOperationsApi->list_clusters: %s\n" % e)
 
+    # list the instances for each cluster
     try:
         for cluster in clusters:
             api_response = api_instance_instances.describe_cluster_instances(cluster['cluster_name'])

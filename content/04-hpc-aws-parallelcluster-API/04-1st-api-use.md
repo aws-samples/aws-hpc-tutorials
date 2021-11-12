@@ -7,16 +7,15 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 
 Now that you have the API URL, you will start interacting with the API through its REST interface. This can be done directly through the [Python Requests](https://docs.python-requests.org/en/latest/) library or the [Pcluster Client](https://github.com/aws/aws-parallelcluster/tree/develop/api/client/src) library. You will use the latter for the reminder of this workshop.
 
-
 For this step you will install the Pcluster Client library and run a sample code to list your clusters programmatically.
 
 1. On AWS Cloud9, run the following command in a terminal to install the library.
 
-```bash
+```
 pip3 install git+https://github.com/aws/aws-parallelcluster.git#subdirectory=api/client/src --user
 ````
 
-2. Copy and paste the code below in a file on your AWS Cloud9 instance using the editor and save it under the name `list_clusters.py`
+2. Copy and paste the code below in a file on your AWS Cloud9 instance using the editor and save it under the name `list_clusters.py`.
 
 ```python
 #!/usr/bin/env python3
