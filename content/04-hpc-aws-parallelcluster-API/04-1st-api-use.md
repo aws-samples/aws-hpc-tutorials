@@ -11,8 +11,10 @@ For this step you will install the Pcluster Client library and run a sample code
 
 1. On AWS Cloud9, run the following command in a terminal to install the library.
 
-```
-pip3 install git+https://github.com/aws/aws-parallelcluster.git#subdirectory=api/client/src --user
+```bash
+git clone https://github.com/aws/aws-parallelcluster.git
+cd aws-parallelcluster && git checkout develop
+python setup.py install --user
 ````
 
 2. Copy and paste the code below in a file on your AWS Cloud9 instance using the editor and save it under the name `list_clusters.py`.
