@@ -52,11 +52,15 @@ with pcluster_client.ApiClient(configuration) as api_client:
         print("Exception when calling ClusterOperationsApi->list_clusters: %s\n" % e)
 ```
 
-3. In a terminal on AWS Cloud9, execute the file with Python. Ensure that you are running in the terminal where you retrieved the API url. If not, run the script from the [previous page](/04-hpc-aws-parallelcluster-api/03-retrieve-api-url.html) to retrieve it again.
+3. In a terminal on AWS Cloud9, execute the file with Python. Ensure that you are running in the terminal where you retrieved the API URL. If not, run the script from the [previous page](/04-hpc-aws-parallelcluster-api/03-retrieve-api-url.html) to retrieve it again.
 
 ```bash
 python list_clusters.py
 ```
 
 4. Check if the cluster you created in *Part I* of the lab is listed as in the image below.
+
 ![Pcluster API](/images/hpc-aws-parallelcluster-workshop/pcapi-list.png)
+
+
+You have been introduced to the AWS ParallelCluster API and the Pcluster Client. Next, you will extend your code to list the instances attached to your clusters.

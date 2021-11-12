@@ -11,4 +11,5 @@ You should see **CREATE_COMPLETE** for both stacks as shown in the image below. 
 
 ![Pcluster Manager Deployed](/images/hpc-aws-parallelcluster-workshop/pcmanager-deployed.png)
 
-If both stacks are successfully deployed, proceed to the next page. If the deployment was unsuccessful, select the **pcluster-manager** stack, click **Delete** and reinstall the stacks using the instructions provided in [Part I](/03-hpc-aws-parallelcluster-workshop/04-initialize-api.html).
+{{% notice warning %}}If both stacks are successfully deployed, proceed to the next page. If the deployment was unsuccessful, select the **pcluster-manager** stack, click **Delete** and reinstall the stacks using the instructions provided in [Part I](/03-hpc-aws-parallelcluster-workshop/04-initialize-api.html).
+{{% /notice %}}
