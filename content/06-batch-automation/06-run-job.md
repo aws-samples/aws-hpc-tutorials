@@ -21,7 +21,7 @@ If the job does not run, double-check that the job queue name and job definition
 Once your job is submitted successfully, note the **Job Id** because you can use it to show the status of a job:
 
 ```bash
-aws batch describe-jobs --jobs <your-job-id>
+aws batch describe-jobs --jobs <your-job-id> --region $AWS_REGION
 ```
 
 A *JSON* displays and describes the status of you job.

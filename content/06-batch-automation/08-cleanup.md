@@ -22,9 +22,18 @@ aws cloudformation delete-stack --stack-name nextflow-batch-ce-jq --region $AWS_
 aws cloudformation delete-stack --stack-name nextflow-batch-jd --region $AWS_REGION
 ```
 
+Note, it will take a few mins for the stacks to be deleted.
+
 2. Navigate to the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) Dashboard of the AWS Management Console and confirm that the stacks are deleted.
 
  
+3. Navigate to [Amazon S3](https://s3.console.aws.amazon.com/s3/home) Dashboard of the AWS Management Console and delete the S3 bucket you created in Lab 4. Or, run the following CLI command on Cloud9.
+
+```bash
+source s3_vars
+aws s3 rb s3://${BUCKET_NAME_RESULTS} --force
+``` 
+
 3. Navigate to the [ECR](https://console.aws.amazon.com/ecr/repositories) service in the AWS Management Console and delete the repository you created earlier. Or, run the following CLI command on Cloud9.
 ```bash
 REPO_NAME=sc21-container
@@ -61,7 +70,6 @@ aws codepipeline delete-pipeline --name $CODEPIPELINE_NAME --region $AWS_REGION
 - AWSCodePipelineServiceRole-**\<region\>-\<codepipeline-name\>**
 - codebuild-**\<codebuild-project-name\>**-service-role
 - ecsTaskExecutionRole
-
 
 
 
