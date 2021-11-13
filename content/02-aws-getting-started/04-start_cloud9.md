@@ -1,5 +1,5 @@
 +++
-title = "b. Create a Cloud9 Environment"
+title = "b. Open a Cloud9 Environment"
 weight = 60
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
