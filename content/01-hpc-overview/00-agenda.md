@@ -11,15 +11,16 @@ You will find here the agenda for the tutorial. An update will be made on Novemb
 
 | Session Kind | Time                                                                  | Topic                                                                | Speakers                                   |
 | ------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
-| Talk         | 08:00 AM - 11:30 AM                                                   | Welcome and Introductions                                            | Pierre-Yves Aquilanti                      |
-| Talk         |                                                                       | Modern Cloud Architectures                                           | Matt Koop                                  |
-| *Lab + Q&A*  |                                                                       | Build your HPC System in the Cloud                                   | Kelly Keene / Maxime Hugues                |
-| 30 Min Break | \-\-\-\-\-\-\-\-\-\-\-\---                                            | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| Talk         | 12:00 - 1:30 PM                                                       | Deep Dive Compute, Network, Storage                                  | Pierre-Yves Aquilanti                      |
-| Lecture 3    | 1.00PM - 1:45PM                                                       | Repeatability, Integration pipelines, monitoring                     | Maxime Hugues                              |
-| Talk         | 1.45PM - 2:30PM	Automation, CI/CD & container orchestrators           | Karthik Raman / Pierre-Yves Aquilanti                                |                                            |
-| 30 Min Break | \-\-\-\-\-\-\-\-\-\-\-\---                                            | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| Talk         | 3:00PM - 3:30PM	Building Scalable Architectures                       | Matt Koop                                                            |                                            |
-| Talk         | 3.30PM - 4:30PM	Serverless Computing Lab                              | Karthik Raman / Matt Koop                                            |                                            |
-| Talk         | 4:30PM - 4.55PM	Architecture considerations when optimizing for scale | Pierre-Yves Aquilanti                                                |                                            |
-| Closing      | 4:55PM - 5.00PM	Summary and Q&A                                       | Team                                                                 |                                            |
+| Talk         | 08:00AM - 08:10AM                                                     | Welcome and Introduction                                             | Pierre-Yves Aquilanti                      |
+| Talk         | 08:10AM - 09:00AM                                                     | Modern Cloud Architectures                                           | Matt Koop                                  |
+| *Lab 1*      | 09:00AM - 10:00AM                                                     | Create a HPC cluster in the Cloud                                    | Kelly Keene / Maxime Hugues                |
+| 30 Min Break | 10:00AM - 10:30AM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
+| Talk         | 10:30AM - 11:30AM                                                     | Deep Dive Compute, Network, Storage                                  | Pierre-Yves Aquilanti                      |
+| *Lab 2*      | 11:30AM - 12:00PM                                                     | Container on your HPC cluster                                        | Maxime Hugues                              |
+| 01h30 Break  | 12:00PM - 01:30PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
+| *Lab 2*      | 01:30AM - 01:45PM                                                     | Container on your HPC cluster (Cont'd)                               | Maxime Hugues                              |
+| Talk         | 01.45PM - 02:15PM                                                     | Repeatability in the Cloud                                           | Maxime Hugues                              |
+| *Lab 3*      | 02.15PM - 03:00PM	                                                   | Automation, CI/CD & container orchestrators                          | Karthik Raman                              |
+| 30 Min Break | 03.00PM - 03.30PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
+| *Lab 4*      | 03:30PM - 04.45PM	                                                   | Simulation on an container orchestrator                              | Karthik Raman                              |
+| Closing      | 04:45PM - 05.00PM	                                                   | Summary and Q&A                                                      | Team                                       |
