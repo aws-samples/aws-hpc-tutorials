@@ -33,7 +33,7 @@ AWS Batch provisions compute resources and optimizes the job distribution based 
 This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop
 {{% /notice %}}
 
-In this workshop, you will learn how to use container orchestrators like AWS Batch and deploy an architecture for automated job submission in AWS Batch using serverless functions.
+In this workshop, you will learn how to use container orchestrators like AWS Batch and deploy an architecture for genomics pipeline execution on AWS Batch.
 
 In this lab you will run a basic pipeline for quantification of genomic features from short read data implemented with [Nextflow](https://www.nextflow.io/index.html)
 
@@ -43,9 +43,10 @@ You will be deploying the below architecture as part of this lab:
 
 This includes the following steps:
 
+- Create an object store bucket in S3 to store your results.
 - Set up the infrastructure for AWS Batch.
 - Run a sample genomics pipeline on AWS Batch.
-- Setup automation of job submission using Amazon CloudWatch and Amazon S3. 
-- Run automated simulations on AWS Batch.
+- Monitor your jobs 
+- Cleanup
 
 
