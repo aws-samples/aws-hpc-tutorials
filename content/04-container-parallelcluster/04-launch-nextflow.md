@@ -67,6 +67,8 @@ They can be made available inside the running container by binding the external 
 In the case of running Nextflow for this lab, the `/shared/nextflow-tutorial` directory contains the workflow description in `scripts7.nf` that will be executed by Nextflow.
 One the job will complete, results will be stored in the `--outdir=/mnt` of the container that is the `/shared/nextflow-tutorial` directory of the cluster where the results will be stored.
 
+Let's create a slurm batch script with the following command:
+
 ```bash
 cat > nextflow_sub.sh << EOF
 #!/bin/bash
@@ -81,7 +83,13 @@ srun singularity run --bind /shared/nextflow-tutorial:/mnt docker://`echo ${CONT
 EOF
 ```
 
-The output will be similar to this:
+Submit the job to Slurm to run on 1 c5.xlarge instance the nextflow genomics pipeline composed of 4 steps with the following command:
+
+```bash
+sbatch nextflow_sub.sh 
+```
+
+The output of the job will be in the `nextflow_[SLURM_JOB_ID].out` file and similar to this:
 
 ![Singularity run](/images/container-pc/singularity_nextflow.png)
 
