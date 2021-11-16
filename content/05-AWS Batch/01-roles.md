@@ -5,7 +5,7 @@ weight = 20
 tags = ["tutorial", "install", "AWS", "Batch"]
 +++
 
-The main account owner must complete the following steps to create a Role with administrative access and assign that role to the Cloud9 instance.
+The main account owner must complete the following steps to create a Role with administrative access and assign that Role to the Cloud9 instance.
 
 ### Create IAM role with Administrator Access
 
@@ -30,11 +30,11 @@ In this step, you will create an IAM Role and assign it administrative access pe
 ![AWS Batch](/images/aws-batch/iam-role-4.png)
 4. For the new **IAM Role**, choose **cloud9-hpcworkshop-admin**
 ![AWS Batch](/images/aws-batch/iam-role-5.png)
-5. Select **Apply**. 
+5. Select **Save**. 
 
 
 ### Disable AWS Managed Temporary Credentials
-1. Open your Cloud9 environment, and click on the top edge of the content pane to show the Clour9 memnus if not visible.
+1. Open your Cloud9 environment, and click on the top edge of the content pane to show the Cloud9 menu if not visible.
 2. Choose the **gear icon** in top right corner to open the **Preferences** tab.
 3. In the **Prefereneces** tab, choose **AWS SETTINGS**. 
 4. Turn off **AWS managed temporary credentials**
