@@ -11,7 +11,7 @@ The main account owner must complete the following steps to create a Role with a
 
 In this step, you will create an IAM Role and assign it administrative access permissions (Policy), and then configure Cloud9 to use that Role for the remainder of this workshop.
 
-1. Open the IAM console [deep link](<https://console.aws.amazon.com/iam/home#/roles%24new?step=type&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess>) to create an IAM Role.
+1. Open the IAM console [link](<https://console.aws.amazon.com/iam/home#/roles%24new?step=type&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess>) to create an IAM Role.
 2. Confirm that **AWS service** and **EC2** are selected, then click **Next: Permissions** to view permissions.
 ![AWS Batch](/images/aws-batch/iam-role-1.png)
 1. Confirm that **AdministratorAccess** is checked, then click **Next: Tags**.
