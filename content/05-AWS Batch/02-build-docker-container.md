@@ -29,6 +29,7 @@ echo "Passing the following arguments to stress-ng: $STRESS_ARGS"\n\
 /usr/bin/stress-ng $STRESS_ARGS' \n\ >> /docker-entrypoint.sh 
 RUN chmod 0744 /docker-entrypoint.sh
 RUN cat /docker-entrypoint.sh
+EOF
 ENTRYPOINT ["/docker-entrypoint.sh"]
 ```
 
