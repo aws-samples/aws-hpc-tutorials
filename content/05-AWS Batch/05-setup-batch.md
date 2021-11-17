@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 
-In this step, you will set up an AWS Batch "Compute Environment" using the AWS Management Console.
+In this step, you will set up an AWS Batch **Compute Environment** using the AWS Management Console.
 
 Compute environments can be thought of as computational clusters consisting of one or more EC2 instance types, or simply as the number of cores you want to use to run your jobs. For more information on the compute environments, see [Compute Environments](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html).
 
