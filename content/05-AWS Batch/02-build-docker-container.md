@@ -5,7 +5,7 @@ weight = 30
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
-In this step, you will create a simple "Dockerfile" with the specifications for a container and then use Docker commands to build and test a container image on your Cloud9 instance. 
+In this step, you will create a **Dockerfile** file that contains the steps to build and test a container image on your Cloud9 instance. 
 
 1. Create a new working directory by executing the following commands in the Cloud9 terminal.
 ```bash
