@@ -13,7 +13,7 @@ Accounts are only accessible for the duration of the event. To continue using AW
 ##### Step 1
 
 {{% notice warning %}}
-Sandbox accoutns  are available on the day of the workshop. The website will be maintained if you would like to run through the labs at a later stage on your own, with your company or institution.
+Sandbox accounts are available on the day of the workshop. The website will be maintained if you would like to run through the labs at a later stage on your own, with your company or institution.
 {{% /notice %}}
 
 ##### Step 2

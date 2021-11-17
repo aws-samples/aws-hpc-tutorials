@@ -67,7 +67,7 @@ Create submission script as shown below. This script will launch the MPI *Hello 
 cat > submission_script.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=hello-world-job
-#SBATCH --ntasks=8
+#SBATCH --ntasks=4
 #SBATCH --output=%x_%j.out
 
 mpirun ./mpi_hello_world

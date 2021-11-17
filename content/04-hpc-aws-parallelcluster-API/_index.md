@@ -5,6 +5,7 @@ weight: 40
 pre: "<b>Part II ⁃ </b>"
 tags: ["HPC", "API", "ParallelCluster", "Pcluster"]
 ---
+
 In [Part I](/03-hpc-aws-parallelcluster-workshop.html) you created an HPC system in the cloud using the AWS ParallelCluster CLI and submitted a test MPI job. You also initiated the deployment of the AWS ParallelCluter API as part of [*step c*](/03-hpc-aws-parallelcluster-workshop/04-initialize-api.html) of the lab.
 
 In Part II, you will run through the following steps:

@@ -10,7 +10,8 @@ This workshop walks you through setting up your own HPC workloads. You learn how
 Specifically, you learn how to:
 
 - Sign in to the AWS Management Console and explore it.
-- Create AWS Cloud9, a cloud based IDE, this is your portal to the AWS Command Line Interface (AWS CLI).
-- Attach an IAM role to an AWS Cloud9 Instance
+- Deploy the AWS ParallelCluster API and the Pcluster Manager stacks.
+
+You can proceed to the next stage of the workshop once the preparation completed and the stacks deployed.
 
 <!-- Total cost to run this lab is expected to be less than **two dollars should you run it on your own or company account** if the guide is followed as discussed, in one sitting, and including the deletion of all resources outlined through the guide. -->

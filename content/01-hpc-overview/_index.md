@@ -20,8 +20,8 @@ This workshop is is designed to get you familiar with the concepts and best prac
 
 To achieve this you will go through the following stages:
 
-1. Preparation and setup of your account.
-2. Configure, create your cluster and run a job.
-3. Install the AWS ParallelCluster API and interact with it.
+1. Preparation stage to deploy the AWS ParallelCluster API and the Pcluster Manager stacks.
+2. Configure, create your cluster using Pcluster Manager and run a job.
+3. Build a management workflow with  AWS ParallelCluster API.
 
 We will pause between each stage to remind you about the key objectives. If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We'll be happy to assist you and hope that you are having a great experience learning about HPC on AWS with us.

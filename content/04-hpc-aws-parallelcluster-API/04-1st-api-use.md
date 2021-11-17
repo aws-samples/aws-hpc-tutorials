@@ -23,15 +23,11 @@ pip3 install git+https://github.com/aws/aws-parallelcluster.git#subdirectory=api
 # utility libraries
 import os
 from pprint import pprint
-# pcluster client and common exceptions
+
+# pcluster client
 import pcluster_client
 from pcluster_client.api import cluster_operations_api
-from pcluster_client.model.bad_request_exception_response_content import BadRequestExceptionResponseContent
-from pcluster_client.model.cluster_status_filtering_option import ClusterStatusFilteringOption
-from pcluster_client.model.unauthorized_client_error_response_content import UnauthorizedClientErrorResponseContent
-from pcluster_client.model.limit_exceeded_exception_response_content import LimitExceededExceptionResponseContent
-from pcluster_client.model.list_clusters_response_content import ListClustersResponseContent
-from pcluster_client.model.internal_service_exception_response_content import InternalServiceExceptionResponseContent
+
 
 # configure the client, use the API URL retrieved from the AWS ParallelCluster API sack output
 configuration = pcluster_client.Configuration(
@@ -61,5 +57,9 @@ python list_clusters.py
 
 ![Pcluster API](/images/hpc-aws-parallelcluster-workshop/pcapi-list.png)
 
+5. Try to run the command `pcluster list-clusters` in your AWS Cloud9 terminal . The result should be comparable to the one you got using the AWS ParallelCluster API.
 
-You have been introduced to the AWS ParallelCluster API and the Pcluster Client. Next, you will extend your code to list the instances attached to your clusters.
+![AWS ParallelCluster CLI](/images/hpc-aws-parallelcluster-workshop/pcapi-cli-list.png)
+
+You have been introduced to the AWS ParallelCluster API and the Pcluster Client. You also executed a command similar to the AWS ParallelCluster CLI to list your HPC clusters. Next, you will extend your Python code to identify clusters without compute instances and terminate them.
+
