@@ -5,7 +5,7 @@ weight = 80
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 
-In this step, you will set up a template for your jobs, known as a job definition. A job definition is not required, but is good practice so that you can keep track of how your jobs are launched. For more information about job definitions, see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
+In this step, you will set up a template for your jobs, known as a **Job Definition (JD)**. For more information about **Job Definitions**, see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
 
 1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**.
 ![AWS Batch](/images/aws-batch/create-job-def-0.png)
