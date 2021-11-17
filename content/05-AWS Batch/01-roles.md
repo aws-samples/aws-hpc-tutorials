@@ -24,7 +24,7 @@ In this step, you will create an IAM Role and assign it administrative access pe
 
 ### Associate the IAM Role with the Cloud9 Instance
 
-1. Open the Amazon EC2 [deep link](<https://console.aws.amazon.com/ec2/v2/home#Instances:tag:Name=aws-cloud9-myCloud9Env>) to find your Cloud9 instance.
+1. Open the Amazon EC2 [link](<https://console.aws.amazon.com/ec2/v2/home#Instances:tag:Name=aws-cloud9-myCloud9Env>) to find your Cloud9 instance.
 2. Select the Cloud9 instance.   
 3. For **Actions**, choose **Security**, select **Modify IAM Role**. 
 ![AWS Batch](/images/aws-batch/iam-role-4.png)
