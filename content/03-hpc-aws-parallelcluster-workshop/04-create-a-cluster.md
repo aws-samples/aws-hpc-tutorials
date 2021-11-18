@@ -38,6 +38,6 @@ In the previous steps you have created the Pcluster Manager stack and connected 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create7.png)
 
 
-It'll take about 5 to 7 minutes to create the resources of your cluster. You can check the *Stack Events* tab in Pcluster Manager to see the progress of your cluster creation. You can also connect to your AWS account sandbox and go to the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) page.
+It'll take about 5 to 7 minutes to create the resources of your cluster. You can check the *Stack Events* tab in Pcluster Manager to see the progress of your cluster creation. You can also connect to your AWS account sandbox and go to the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) page. Once your cluster is created, to go the next section.
 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create8.png)
