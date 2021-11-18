@@ -113,7 +113,6 @@ done
 EOF
 
 bash ~/remove-jq.sh
->>>>>>> Update content/05-AWS Batch/12-optional.md
 ```
 5. Choose **Compute environments** and select the compute environment you created for this workshop and choose **Delete**. Note that job queues must be deleted or disassociated from compute environments before the compute environment can be deleted. 
 
@@ -147,6 +146,7 @@ do
     aws batch delete-compute-environment --compute-environment \$ce 
 done
 EOF
+
 bash ~/remove-ce.sh
 ```
 #### Delete ECR repositories
