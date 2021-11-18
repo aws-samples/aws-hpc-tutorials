@@ -1,7 +1,7 @@
 +++
 title = "b. Check the stacks installation"
 date = 2019-09-18T10:46:30-04:00
-weight = 40
+weight = 30
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 

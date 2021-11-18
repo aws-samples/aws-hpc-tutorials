@@ -1,5 +1,5 @@
 +++
-title = "c. Install the AWS ParallelCluster API"
+title = "c. Create an HPC Cluster"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "initialize", "ParallelCluster"]
@@ -29,6 +29,15 @@ In the previous steps you have created the Pcluster Manager stack and connected 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create5.png)
 
 
-5. On the storage page of the Wizard, **select** Amazon Elastic Block Store as the value for *Storage Type*. Leave the rest as default and **click** on *Next*.
+5. When on the Queues page, **select** a *Subnet ID*, any will. Select **On-Demand** for the *Purchase Type* if not already selected. Then, set the field *Static Nodes* to **0** and *Dynamic Nodes* to **10**. This means that your cluster will have 0 compute instances but can scale up to 10 instances when jobs are submitted. For the *Instance Type*, select **c5.xlarge**, use the search field to make your selection easier.Finish by **clicking** on the *Next* button.
 
-![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create5.png)
+![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create6.png)
+
+6. The last Wizard page provides an overview of the AWS ParallelCluster configuration that will be deployed. Your configuration file will have similar fields as in the image below. **Click** on *Dry Run* to validate the configuration. If valid, the configuration will be validated. **Click** on *Create* to create your HPC cluster.
+
+![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create7.png)
+
+
+It'll take about 5 to 7 minutes to create the resources of your cluster. You can check the *Stack Events* tab in Pcluster Manager to see the progress of your cluster creation. You can also connect to your AWS account sandbox and go to the [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) page.
+
+![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create8.png)
