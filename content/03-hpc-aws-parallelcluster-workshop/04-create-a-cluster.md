@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-In the previous steps you have created the Pcluster Manager stack and connected to Pcluster Manager. You will now create a cluster using the Cluster Creation Wizard of Pcluster Manager. We will run through all stages progressively.
+In the previous steps you connected to **Pcluster Manager**. You will now create a cluster using the Cluster Creation Wizard:
 
 1. **Click** on one of the two *Create Cluster* button.
 
@@ -18,7 +18,6 @@ In the previous steps you have created the Pcluster Manager stack and connected 
 3. **Select** the region to be *us-east-1*, and **select** your default VPC.
 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create3.png)
-
 
 3. **Select** the *Head Node Instance Type* to be `c5.large`, then pick a *Subnet ID*. Then, **select** a *Keypair*. One is created with your temporary account on Event Engine, use that one. Once done, **enable** the *Virtual Console* as shown below and **click** on the *Next* button.
 

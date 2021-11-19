@@ -1,5 +1,5 @@
 ---
-title: "a. Event: Accessing Your Lab Account"
+title: "a. Accessing AWS (Lab)"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 weight: 50

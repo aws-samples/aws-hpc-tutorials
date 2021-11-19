@@ -1,9 +1,12 @@
 +++
-title = "b. Deploy AWS ParallelCluster API"
+title = "b. Deploy Pcluster Manager (Post-Event)"
 weight = 60
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 
+{{% notice warning %}}
+Skip this step if you are doing the labs during the re:Invent workshop.
+{{% /notice %}}
 
 
 The [AWS ParallelCluster API](https://docs.aws.amazon.com/parallelcluster/latest/ug/api-reference-v3.html) has been released with the version 3 of AWS ParallelCluster. It enables you to to manage clusters though an API hosted on AWS and build workflows to manage your cluster lifecycle with Python.

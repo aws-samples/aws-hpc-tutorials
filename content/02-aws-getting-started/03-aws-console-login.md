@@ -1,13 +1,14 @@
 +++
-title = "b. Post Event: Access AWS (Skip)"
+title = "b. Access AWS (Post-Event)"
 date = 2019-09-18T10:46:30-04:00
 draft = false
 weight = 60
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Skip this step if you are doing the labs during the re:Invent.
-
+{{% notice warning %}}
+Skip this step if you are doing the labs during the re:Invent workshop.
+{{% /notice %}}
 
 Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or as directed by your trainer. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
 
