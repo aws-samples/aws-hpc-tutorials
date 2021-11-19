@@ -1,6 +1,6 @@
 +++
 title = "c. Connect to Pcluster Manager"
-weight = 50
+weight = 14
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 

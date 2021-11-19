@@ -1,0 +1,44 @@
+HeadNode:
+  InstanceType: c5.xlarge
+  Ssh:
+    KeyName: your-key
+  Networking:
+    SubnetId: subnet-1234567
+  LocalStorage:
+    RootVolume:
+      Size: 40
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole
+  Dcv:
+    Enabled: true
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: compute
+          MinCount: 0
+          MaxCount: 64
+          InstanceType: c5n.18xlarge
+          Efa:
+            Enabled: true
+          DisableSimultaneousMultithreading: true
+      Networking:
+        SubnetIds:
+          - subnet-1234567
+        PlacementGroup:
+          Enabled: true
+Region: us-east-1
+Image:
+  Os: alinux2
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /shared
+    FsxLustreSettings:
+      StorageCapacity: 1200
+      DeploymentType: PERSISTENT_1
+      PerUnitStorageThroughput: 200
+      DataCompressionType: LZ4

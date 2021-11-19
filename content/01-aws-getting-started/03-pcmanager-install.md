@@ -1,6 +1,6 @@
 +++
 title = "b. Deploy Pcluster Manager"
-weight = 50
+weight = 13
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 
@@ -11,6 +11,7 @@ Pcluster Manager is a web UI that built upon the AWS ParallelCluster CLI that yo
 1. Deploy the Pcluster Manager stack by clicking on this link: [Pcluster Manager Stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/create/parameters?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-1.s3.amazonaws.com/pcluster-manager.yaml)
 2. The AWS Console opens on the AWS CloudFormation panel to deploy your stack. Update the field *AdminUserEmail* with **a valid email** to receive a temporary password in order to connect to the Pcluster Manager GUI. Leave the other fields with their default values and click **Next** to proceed to Step 3.
 
+![Pcluster Manager install](/images/hpc-aws-parallelcluster-workshop/pcmanager-install.png)
 ![Pcluster Manager install](/images/hpc-aws-parallelcluster-workshop/pcmanager-stack.png)
 
 3. Scroll down to the bottom of the Stage 3 page (*Configure stack options*) and click **Next**.
