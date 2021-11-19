@@ -5,7 +5,7 @@ weight = 30
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-In the re:Invent lab pcluster manager is deployed for you. Follow the steps below to connect to it:
+In the re:Invent lab *Pcluster Manager* is deployed for you. Follow the steps below to connect to it:
 
 1. Got to the AWS Console, in the search box search for [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/home) and click on that service.
 

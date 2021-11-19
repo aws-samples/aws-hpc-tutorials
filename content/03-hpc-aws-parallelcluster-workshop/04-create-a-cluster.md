@@ -19,14 +19,13 @@ In the previous steps you connected to **Pcluster Manager**. You will now create
 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create3.png)
 
-3. **Select** the *Head Node Instance Type* to be `c5.large`, then pick a *Subnet ID*. Then, **select** a *Keypair*. One is created with your temporary account on Event Engine, use that one. Once done, **enable** the *Virtual Console* as shown below and **click** on the *Next* button.
+3. **Select** the *Head Node Instance Type* to be `c5.large`, then pick a *Subnet ID*. Then, **Set** the *Keypair* to `ee-default-keypair` if running the lab at an AWS Hosted event. One is created with your temporary account on Event Engine, use that one. Once done, **enable** the *Virtual Console* as shown below and **click** on the *Next* button.
 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create4.png)
 
 4. On the storage page of the Wizard, **select** Amazon Elastic Block Store as the value for *Storage Type*. Leave the rest as default and **click** on *Next*.
 
 ![Pcluster Manager CloudFormation Stack](/images/hpc-aws-parallelcluster-workshop/pcm-create5.png)
-
 
 5. When on the Queues page, **select** a *Subnet ID*, any will. Select **On-Demand** for the *Purchase Type* if not already selected. Then, set the field *Static Nodes* to **0** and *Dynamic Nodes* to **10**. This means that your cluster will have 0 compute instances but can scale up to 10 instances when jobs are submitted. For the *Instance Type*, select **c5.xlarge**, use the search field to make your selection easier.Finish by **clicking** on the *Next* button.
 

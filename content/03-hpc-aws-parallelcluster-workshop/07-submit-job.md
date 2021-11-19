@@ -1,21 +1,11 @@
 +++
-title = "g. Submit your first HPC job"
+title = "f. Submit your first job"
 date = 2019-09-18T10:46:30-04:00
-weight = 90
+weight = 80
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-{{% notice note %}}
-The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.
-{{% /notice %}}
-
-In this workshop, you run your first *"hello world"* job to introduce you to the mechanisms of AWS ParallelCluster.
-
-#### Preparatory Steps
-
-{{% notice info %}}
-Make sure that you have your AWS Cloud9 terminal open and that you are logged into the head node.
-{{% /notice %}}
+In this lab, you run your first *"hello world"* job to introduce you to the mechanisms of AWS ParallelCluster.
 
 ##### Create the Hello World Application
 
@@ -91,12 +81,12 @@ sbatch submission_script.sbatch
 Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
 
 ```bash
-squeue 
+squeue
 ```
 When ready and registered, your job will be processed and you will see a similar status as below.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/squeue-output.png)
 
-You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 5 min to appear.
+You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 2 min to appear.
 
 ```bash
 sinfo
