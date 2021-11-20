@@ -12,8 +12,10 @@ The following prerequisites are required for the HPC workshops:
 - An internet browser such as Chrome, Firefox, Safari, Opera, or Edge.
 - Familiarity with common Linux commands.
 
-If you have any questions when running this workshop, speak with your group coordinator or contact [AWS HPC](https://aws.amazon.com/hpc/).
+If you have any questions when running this workshop, you can raise your hand to request help. One of our workshop coordinators will be happy to assist you.
 
-This workshop includes multiple code samples that you can copy and paste using the button shown below.
+{{% notice tip%}}
+This workshop contains multiple code samples to help familiarize you with ParallelCluster. To save time, you can copy and paste the code from each sample using the button at the top-right of each code block as shown below.
+{{% /notice %}}
 
 ![Copy Paste](/images/introductory-steps/copy-paste.png)

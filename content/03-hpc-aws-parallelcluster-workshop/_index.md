@@ -6,12 +6,11 @@ pre: "<b>Part I ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
 
-In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) using Pcluster Manager. This workshop includes the following steps:
+In this lab, we will introduce you to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) using PCluster Manager. Specifically, you will learn how to:
 
-- Connect to Pcluster Manager.
+- Connect to PCluster Manager.
 - Create your HPC cluster in AWS.
-- Connect to your new cluster via the Pcluster Manager console.
+- Connect to your new cluster via the PCluster Manager console.
 - Submit a sample job and check what is happening in the background.
 
-Before proceeding to the next stage, let's review what is AWS ParallelCluster and we will dive onto AWS ParallelCluster API.
-
+To get started, we'll review what AWS ParallelCluster is and dive into the AWS ParallelCluster API.

@@ -7,9 +7,9 @@ tags = ["tutorial", "install", "ParallelCluster"]
 
 ![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)
 
-[AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) is an AWS-supported open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. It also supports a variety of job schedulers such as AWS Batch and Slurm for easy job submissions.
+[AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) is an AWS-supported, open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. It also supports a variety of job schedulers such as AWS Batch and Slurm for easy job submissions.
 
-AWS ParallelCluster is built on the popular open source CfnCluster project and is released via the Python Package Index (PyPI). ParallelCluster's source code is hosted on the Amazon Web Services repository on GitHub. AWS ParallelCluster is available at no additional charge, and you pay only for the AWS resources needed to run your applications.
+AWS ParallelCluster is released via the Python Package Index (PyPI). ParallelCluster's source code is hosted on the [Amazon Web Services repository](https://github.com/aws/aws-parallelcluster) on GitHub. AWS ParallelCluster is available at no additional charge, and you pay only for the AWS resources you use to run your applications.
 
 #### Benefits
 
@@ -17,27 +17,31 @@ AWS ParallelCluster is built on the popular open source CfnCluster project and i
 - **Easy Cluster Management**: With AWS ParallelCluster you can provision resources in a safe, repeatable manner, allowing you to build and rebuild your infrastructure without the need for manual actions or custom scripts.
 - **Seamless Migration to the Cloud**: AWS ParallelCluster supports a wide variety of operating systems and batch schedulers so you can migrate your existing HPC workloads with little to no modifications.
 
-#### How It Works
+#### How it works
 
 ![pcluster-arch](/images/hpc-aws-parallelcluster-workshop/pc-how-it-works.png)
 
 
 #### How does it work in practice?
 
-You provide a configuration file to AWS ParallelCluster as shown below. AWS ParallelCluster will translate that into an AWS CloudFormation template that will deploy an HPC system based the settings you provided. This enable you to define specific cluster configurations for each application, for example one that needs GPUs and a high-performance parallel file system such as [Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html) or define a cluster with CPU based instances such as [c5n.24xlarge](https://aws.amazon.com/ec2/instance-types/c5/) to process Computational Fluid Dynamics jobs.
+You provide a text configuration file to AWS ParallelCluster that specifies defining features of your cluster (e.g., how many nodes it can scale to, what kind of shared storage it uses). AWS ParallelCluster translates those specifications into an AWS CloudFormation template and uses the template to deploy an HPC system based on those settings. 
 
-One other key feature of AWS ParallelCluster is that you can connect to your cluster with [NICE DCV](https://docs.aws.amazon.com/dcv/latest/adminguide/what-is-dcv.html) to visualize your data [remotely](https://docs.aws.amazon.com/parallelcluster/latest/ug/dcv-v3.html) with a virtual desktop (no need to move your data back if there's no need)!
+By giving you a clean way to define the infrastructure-as-code for your HPC system, you can easily create numerous clusters tailored to the requirements of individual applications or workloads. For example, you can create one cluster for running workloads that require GPUs and a high-performance parallel file system such as [Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html) for your machine learning workloads and define another cluster for CPU-optimized workloads with high network bandwidth, such as [c5n.24xlarge](https://aws.amazon.com/ec2/instance-types/c5/) for your computational fluid dynamics (CFD) jobs.
+
+Another key feature of AWS ParallelCluster is that you can connect to your cluster with [NICE DCV](https://docs.aws.amazon.com/dcv/latest/adminguide/what-is-dcv.html) to visualize and post-process your data [remotely](https://docs.aws.amazon.com/parallelcluster/latest/ug/dcv-v3.html) with a virtual desktop. This way you can save time and egress charges by eliminating the need to transfer your data out of AWS!
 
 ```bash
 pcluster create-cluster --cluster-name my-cluster --cluster-configuration my-cluster-config.yaml --region ${AWS_REGION}
 ```
 
-AWS ParallelCluster provides [several commands](https://docs.aws.amazon.com/parallelcluster/latest/ug/commands-v3.html) that you can use to manage your cluster such as listing your clusters and their instances, updating a cluster with a new configuration or shutting down a cluster.
+AWS ParallelCluster provides [several commands](https://docs.aws.amazon.com/parallelcluster/latest/ug/commands-v3.html) you can use to manage your cluster such as listing your clusters and their instances, updating a cluster with a new configuration, and shutting down a cluster.
 
 
-#### What about Pcluster Manager
+#### What's PCluster Manager?
 
-9**AWS ParallelCluster Manager**](https://github.com/aws-samples/pcluster-manager) is an opensource project providing a Web User Interface for AWS ParallelCluster using the [AWS ParallelCluster API](https://docs.aws.amazon.com/parallelcluster/latest/ug/api-reference-v3.html). It enables you to create and manage your clusters through your web browser instead of your terminal and is entirely serverless. Authentication capabilities are provided via Amazon Cognito (which is why a valid email was needed to deploy the stacks).
+[**PCluster Manager**](https://github.com/aws-samples/pcluster-manager) is an open source project that leverages the [AWS ParallelCluster API](https://docs.aws.amazon.com/parallelcluster/latest/ug/api-reference-v3.html) to create a web-based user interface for performing cluster management actions on your HPC clusters. This way you can create and manage your clusters through a web browser with point-and-click actions rather than through your terminal. 
+
+PCluster Manager is entirely serverless. Authentication is provided through Amazon Cognito, which is why we asked you to use a valid email as part of deploying PCluster Manager earlier in this workshop.
 
 
 
