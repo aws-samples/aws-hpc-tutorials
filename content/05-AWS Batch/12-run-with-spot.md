@@ -67,7 +67,7 @@ EOF
 1. Let's go through the file you just created and note the below:
    1. Setting the **Compute environment name** to **stress-ng-ce-spot**.
    2. Under **Compute Resources**, we're setting the  **type** to **SPOT** This allows EC2 to provision instances using Spot capacity.
-   3. For **Allowed instance types** and as a key best practice for using Spot, you should consider as many instance types as your workload allows. For this lab, we will be using **optimal** in addtion to C5, M5, R5 families. The wide selection of instance types and using **SPOT_CAPACITY_OPTIMIZED** for **Allocation strategy**, allow the **AWS Batch** to pick the optimal and less likely to be interrupted instances types for the required instances.
+   3. For **Allowed instance types** and as a key best practice for using Spot, you should consider as many instance types as your workload allows. For this lab, we will be using **optimal** in addition to C5, M5, R5 families. The wide selection of instance types and using **SPOT_CAPACITY_OPTIMIZED** for **Allocation strategy**, allow the **AWS Batch** to pick the optimal and less likely to be interrupted instances types for the required instances.
    4. Leave the default value of **0** for **Minimum vCPUs**. This allows your environment to scale down to zero instances when there are no jobs to run.
    5. For **Maximum vCPUs** leave the default of **256**. This is the upper bound for vCPUs across all concurrently running instances.
    6. To keep cost optimal, leave the default value for **Desired vCPUs** to **0** to allow scaling down to **0** instances when there are no jobs running.
@@ -186,6 +186,7 @@ EOF
 export STRESS_BUCKET="s3://$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `Bucket`].OutputValue')"
 aws s3 rm ${STRESS_BUCKET} --recursive
 ```
+
 2. Execute the following commands to submit a Leader job and a Follower array job with a dependency on the successful completion of the Leader.
 
 ```bash
