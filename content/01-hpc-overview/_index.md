@@ -1,14 +1,27 @@
 ---
-title: ""
-weight: 10
+title: "Workshop Overview"
 date: 2019-01-24T09:05:54Z
-pre: "<b>SC21 Tutorial Resources</b>"
+weight: 10
+pre: "<b>Welcome - </b>"
 ---
 
-Here is short reminder of the important links of this section:
 
-- [Agenda](</01-hpc-overview/00-agenda.html>) of the tutorial.
-- [FAQ](</01-hpc-overview/01-updates.html>)answers to common questions will be communicated here during the tutorial.
-- [Lab account](</01-hpc-overview/03-access-aws.md>) on how to access your lab account.
+<!-- Amazon Web Services (AWS) provides the most elastic and scalable cloud infrastructure to run your [High Performance Computing (HPC) applications](https://aws.amazon.com/hpc/). With virtually unlimited capacity, engineers, researchers, and HPC system owners can innovate beyond the limitations of on-premises HPC infrastructure.
 
-Links to the labs will be added on this page starting November 14th 2021.
+AWS delivers an integrated suite of services that provides everything you need to quickly and easily build and manage HPC clusters in the cloud to run the most compute intensive workloads across various industry verticals.
+
+These workloads span the traditional HPC applications, like genomics, computational chemistry, financial risk modeling, computer aided engineering, weather prediction, and seismic imaging, as well as emerging applications, like machine learning, deep learning, and autonomous driving.
+
+HPC on AWS removes the long wait times and lost productivity often associated with on-premises HPC clusters. Flexible configuration and virtually unlimited scalability allow you to grow and shrink your infrastructure as your workloads dictate, not the other way around. Additionally, with access to a broad portfolio of cloud-based services like data analytics, artificial intelligence (AI), and machine learning (ML), you can redefine traditional HPC workflows to innovate faster.
+
+Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
+
+This workshop is is designed to get you familiar with the concepts and best practices to understand AWS components that help to build an HPC cluster and run your HPC workloads on HPC efficiently.
+
+To achieve this you will go through the following stages:
+
+1. [Preparation stage to deploy the AWS ParallelCluster API and the PCluster Manager stacks.](/02-aws-getting-started.html)
+2. [Configure, create your cluster using PCluster Manager and run a job.](/03-hpc-aws-parallelcluster-workshop.html)
+3. [Build a management workflow using the AWS ParallelCluster API.](http://localhost:1313/04-hpc-aws-parallelcluster-api.html)
+
+We will pause between each stage to remind you of key objectives. If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We will be happy to assist you and ensure that you are able to have a great experience learning about HPC on AWS with us.

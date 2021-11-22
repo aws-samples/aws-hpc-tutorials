@@ -3,55 +3,30 @@ title: "AWS HPC Workshops"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
+# Welcome to the Amazon Web Services HPC Workshops
 
-# SC21 Tutorial
+Amazon Web Services provides the most elastic and scalable cloud infrastructure to run your [HPC applications](https://aws.amazon.com/hpc/). With AWS' virtually unlimited capacity, engineers, researchers, and HPC system owners can innovate beyond the limitations of on-premises HPC infrastructure.
 
-Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC21 that will be delivered on November 14th 2021. We are excited to virtually meet you, and look forward to answering your questions!
-The website will be maintained after SC21, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
+AWS delivers an integrated suite of services that provides everything you need to quickly and easily build and manage HPC clusters in the cloud. With this elastic infrastructure you can run even your most compute-intensive workloads regardless of your industry and application.
 
-{{% notice tip %}}
-**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/sc21cloud.**
-{{% /notice %}}
+Workloads running on AWS with the tools detailed in this workshop span both traditional HPC applications--genomics, computational chemistry, financial risk modeling, computer aided engineering, weather prediction, and seismic imaging--as well as emerging applications, such as machine learning, deep learning, and autonomous driving.
 
+HPC on AWS removes the long wait times and lost productivity that can come from using fixed, on-premises HPC clusters. Flexible configuration and virtually unlimited scalability allow you to grow and shrink your infrastructure as your workloads dictate, not the other way around. Additionally, with access to a broad portfolio of cloud-based services like Data Analytics, Artificial Intelligence (AI), and Machine Learning (ML), you can redefine traditional HPC workflows to innovate faster.
 
-{{% notice warning %}}
-Sandbox were available on November 14th 2021 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc21tutorial@amazon.com so we can follow-up with you.
-{{% /notice %}}
+Today, more HPC is run on AWS than on any other cloud.
 
+#### What you will do in this workshop
 
-### Need help?
+In this workshop you will deploy and modify HPC clusters using the AWS ParallelCluster API. To exemplify how the API can be used, you will begin to use [PCluster Manager](https://github.com/aws-samples/pcluster-manager) which is an open-source project providing a Web UI on top of the AWS ParallelCluster API. In the second part of the workshop, you will directly interact with the AWS ParallelCluster API using it's Python client.
 
-- **Email**: you can contact us directly before, during and after the conference through this email: sc21tutorial@amazon.com
+To start with the workshop continue to [**Workshop Overview**](/01-hpc-overview.html).
 
-### Tutorial Content & Resources
+#### About the AWS ParallelCluster API
 
-#### Tutorial Resources
+AWS ParallelCluster API is a serverless application that once deployed to your AWS account will enable programmatic access to AWS ParallelCluster features via API.
 
-Before and during the tutorial you may be interested in going through the following sections:
+AWS ParallelCluster API is distributed as a self-contained AWS CloudFormation template mainly consisting of an Amazon API Gateway endpoint, that exposes AWS ParallelCluster features, and an AWS Lambda function, that takes care of executing the invoked features.
 
-- **[Agenda](/01-hpc-overview/00-agenda.html)** of the tutorial.
-- **[FAQ](/01-hpc-overview/01-updates.md)** answers to common questions will be communicated here during the tutorial.
-- **[Lab account](/02-aws-getting-started/03-access-aws.html)** on how to access your lab account.
+The image below shows a high level architecture diagram of the AWS ParallelCluster API infrastructure.
 
-#### Presentations Slides
-
-The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at sc21tutorial@amazon.com.
-
-#### SC21 Hands-on Labs
-
-Throughout the tutorial you will be going through the following labs:
-
-1. **[Lab 0: Preparation](/01-hpc-overview/00-agenda.html)**: It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system.
-2. **[Lab 1: Create an HPC Cluster](/03-hpc-aws-parallelcluster-workshop.html)**: You will be lead to create your first HPC system in the Cloud and run a tightly coupled application, WRF.
-3. **[Lab 2: Containers on AWS ParallelCluster](/04-container-parallelcluster.html)**: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud.
-4. **[Lab 3: Container Building Automation](/05-cicd-pipeline.html)**: You will learn to create a pipeline to automatically build a container upcon code changes.
-5. **[Lab 4: Simulation on AWS Batch](/06-batch-automation.html)**: You will learn how to use container orchestrators like AWS Batch and deploy an architecture for automated job submission in AWS Batch using serverless functions..
-
-
-#### Accessing Your Lab Account
-Once you get your credentials during the tutorial, access your account through https://dashboard.eventengine.run.
-
-{{% button href="https://github.com/aws-samples/aws-hpc-tutorials" icon="fas fa-bug" %}}Report an issue on GitHub{{% /button %}}
-{{% button href="mailto:aws-hpc-workshops@amazon.com" icon="fas fa-envelope" %}}Contact AWS HPC Team{{% /button %}}
-{{% button href="https://aws.amazon.com/hpc/" icon="fas fa-graduation-cap" %}}Learn more{{% /button %}}
-
+![AWS ParallelCluster API Architecture](https://docs.aws.amazon.com/parallelcluster/latest/ug/images/API-Architecture.png)
