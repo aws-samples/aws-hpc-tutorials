@@ -13,7 +13,7 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 4. For **Name** type **stress-ng-job**.
 5. For **Job definition** select **stress-ng-job-definition:1** (the ":1" suffix signifies version 1).
 6. Select **stress-ng-queue** as the **Job queue**.
-7. Enter **120** in **Execution timeout**.
+7. Enter **120** in **Execution timeout**. Here you are overriding the previous value of 180 seconds you provided in the Job Definition.
 8. Leave the **Job attempts** as **3**.
 ![AWS Batch](/images/aws-batch/run-job-2.png)
 10. Select **Single** as the **Job type**.
