@@ -12,7 +12,7 @@ In this step, you will set up a job queue. You submit your jobs to a queue and t
 2. Under the **Job queue configuration** section, type **stress-ng-queue** as the **Job Queue name**. 
 3. Choose a **Priority** of 1 for this workshop, but you can pick any value between 1 and 500. This option defines the priority of a job queue when a compute environment is shared across job queues. Job queues with a higher priority (or a higher integer value for the priority parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of 10 is given scheduling preference over a job queue with a priority value of 1.
 4. Expand the **Additional configuration** section and ensure that **State** is selected as **Enabled**.
-5. For **Tags *optional***, enter the values for your tags. This is optional but it is considered a good practice to tag your resources.
+5. For **Tags**, optionally enter names and values for your tags. This is optional but it is considered a good practice to tag your resources.
 ![AWS Batch](/images/aws-batch/create-queue-2.png)
 6. Under **Connected compute environments**, select the **stress-ng-ec2** compute environment that you created previously.
 ![AWS Batch](/images/aws-batch/create-queue-3.png)

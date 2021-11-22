@@ -19,7 +19,6 @@ You should now see a new directory named "single" appear in the file navigation 
 4. Copy and paste the following contents into **Dockerfile**:
 
 ```bash
-cat > Dockerfile << EOF
 FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
 RUN amazon-linux-extras install epel -y

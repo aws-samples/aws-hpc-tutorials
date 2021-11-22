@@ -90,7 +90,9 @@ Resources:
               - 's3:ListBucketMultipartUploads'
               - 's3:PutObject'
             Resource:
+              - !Join [ "", [ "arn:aws:s3:::", !Ref 'Bucket' ] ]
               - !Join [ "", [ "arn:aws:s3:::", !Ref 'Bucket' , "/*" ] ]
+
       Roles:
         - !Ref 'JobExecutionRole'       
 

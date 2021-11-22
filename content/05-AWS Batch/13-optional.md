@@ -183,7 +183,7 @@ do
 done
 EOF
 
-bash ~/remove-repos.sh
+bash remove-repos.sh
 ```
 #### Empty the S3 bucket
 7. Go to [Amazon S3](https://console.aws.amazon.com/s3/) in the AWS Console and empty the bucket belonging to the **BatchWorkshop** CloudFormation stack. 

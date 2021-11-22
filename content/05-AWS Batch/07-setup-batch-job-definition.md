@@ -5,7 +5,7 @@ weight = 80
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 
-In this step, you will set up a template for your jobs, known as a **Job Definition (JD)**. For more information about **Job Definitions**, see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
+In this step, you will set up a template for your jobs, known as a **Job Definition**. For more information see [Job Definitions](https://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html).
 
 1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**.
 ![AWS Batch](/images/aws-batch/create-job-def-0.png)
@@ -26,7 +26,7 @@ aws ecr describe-repositories --repository-names stress-ng --output text --query
 9. Expand the **Additional configuration** section.
 10. Leave **Job role** empty and choose None for **Execution role**.
 ![AWS Batch](/images/aws-batch/create-job-def-3.png)
-13. Scroll tow the bottom of the page and Choose **Create**.
+13. Scroll to the bottom of the page and Choose **Create**.
 14. Once the Job definition is ready, it will be visible under **Job definitions** grid. Make sure *Status* is **ACTIVE**.
 ![AWS Batch](/images/aws-batch/create-job-def-4.png)
 Next you will take a closer look at the **compute environment**, **job queue**, and **job definition** that you have created.
