@@ -10,7 +10,11 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 
 ![Cluster Wizard](/images/wrf/pcmanager-1.png)
 
-On the next step you'll be prompted to provide a file, download the [template](/template/cluster-config.yaml) and select that template when prompted.
+On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
+
+## [Download Template](/template/cluster-config.yaml) 
+
+On the next few screens, we'll modify the account specific components and leave the rest as specified by the template.
 
 3. Select a **VPC** from your account
 
@@ -26,4 +30,4 @@ On the next step you'll be prompted to provide a file, download the [template](/
 
 5. Click **Dry Run** to confirm the setup and then click **Create**
 
-![Cluster Wizard](/images/wrf/pcmanager-4.png)
+![Cluster Wizard](/images/wrf/pcmanager-5.png)
