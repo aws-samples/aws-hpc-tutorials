@@ -7,7 +7,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 
 Before proceeding with the rest of the workshop, ensure that the AWS ParallelCluster API and PCluster Manager have been successfully deployed after going through the [preparation stage](/02-aws-getting-started/04-pcluster-stacks.html).
 
-1. Got to the AWS Console, in the search box search for AWS CloudFormation and click on the icon. You can alternatively [**click on this link**](https://console.aws.amazon.com/cloudformation/home).
+1. Got to the AWS Console, in the search box search for AWS CloudFormation and click on the icon. You can alternatively [click on this link](https://console.aws.amazon.com/cloudformation/home).
 
 2. Check if the pc-manager stack has the state **CREATE_COMPLETE** for both stacks as shown in the image below. The AWS ParallelCluster API should appear as **pcluster-manager-AWSParallelClusterAPI-*randomstring*** and PCluster Manager should be named **pcluster-manager**.
 

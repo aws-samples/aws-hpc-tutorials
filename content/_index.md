@@ -19,7 +19,7 @@ Today, more HPC is run on AWS than on any other cloud.
 
 In this workshop you will deploy and modify HPC clusters using the AWS ParallelCluster API. To exemplify how the API can be used, you will begin to use [PCluster Manager](https://github.com/aws-samples/pcluster-manager) which is an open-source project providing a Web UI on top of the AWS ParallelCluster API. In the second part of the workshop, you will directly interact with the AWS ParallelCluster API using it's Python client.
 
-To start with the workshop continue to [**Workshop Overview**](/01-hpc-overview.html).
+To start with the workshop continue to [Workshop Overview](/01-hpc-overview.html).
 
 #### About the AWS ParallelCluster API
 

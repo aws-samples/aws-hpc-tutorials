@@ -10,7 +10,7 @@ In the previous steps you listed your clusters and stopped their compute fleet. 
 
 In this exercise we will give you some hints but let you implement the solution.
 
-1. Look at the [**delete_cluster**](https://github.com/aws/aws-parallelcluster/blob/develop/api/client/src/docs/ClusterOperationsApi.md#delete_cluster) API call.
+1. Look at the [delete_cluster](https://github.com/aws/aws-parallelcluster/blob/develop/api/client/src/docs/ClusterOperationsApi.md#delete_cluster) API call.
 
 2. Add the following code to delete clusters. Don't forget to replace `cluster_name` by the name of the cluster. You can alternatively loop over the list of clusters like in the example in the previous page.
 

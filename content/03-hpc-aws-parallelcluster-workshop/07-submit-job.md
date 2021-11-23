@@ -62,7 +62,7 @@ Create submission script as shown below. This script will launch the MPI *Hello 
 cat > submission_script.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=hello-world-job
-#SBATCH --ntasks=8
+#SBATCH --ntasks=16
 #SBATCH --output=%x_%j.out
 
 mpirun ./mpi_hello_world
@@ -83,7 +83,8 @@ Submit your first job using the following command on the head node:
 sbatch submission_script.sbatch
 ```
 
-Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
+Check the status of the queue using the command **squeue**. The job will be first marked as configured (*CF* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up. For more details on the Slurm job states you can review the [documentation of the squeue command](hhttps://slurm.schedmd.com/squeue.html#SECTION_JOB-STATE-CODES).
+
 
 ```bash
 squeue

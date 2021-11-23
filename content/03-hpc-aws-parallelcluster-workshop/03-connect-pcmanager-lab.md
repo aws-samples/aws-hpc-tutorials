@@ -11,7 +11,7 @@ If you are participating in this workshop as part of re:Invent, then *PCluster M
 
 Once your PCluster Manager CloudFormation stack has been deployed, you can follow these steps to connect to it:
 
-1. Go to the AWS Console and use the search box to search for [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/home).
+1. Go to the AWS Console and use the search box to search for [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home).
 
 2. Once **CloudFormation** appears in your search results, click on it to open the CloudFormation Management Console.
 

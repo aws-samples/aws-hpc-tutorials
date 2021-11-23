@@ -9,7 +9,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 **Skip this step if you are participating in the re:Invent workshop.**
 {{% /notice %}}
 
-1. Go to the AWS Console, and in the search box search for [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/home) and click on that service.
+1. Go to the AWS Console, and in the search box search for [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click on that service.
 
 2. **Click** on the *pcluster-manager* stack, **select** the *Outputs* tab and **click** on the link with the key `PClusterManagerUrl`.
 

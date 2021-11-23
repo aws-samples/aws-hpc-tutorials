@@ -28,7 +28,7 @@ You have submitted a minimum of 10 jobs (go for way more), take the following st
 
 2. **Run** the command `sinfo` to get the state of the instances and see how many joined the queue. They will be in the state `alloc`.
 
-3. Go to the *AWS Console* in your lab account and open the [**Amazon EC2**](https://console.aws.amazon.com/ec2/) page.
+3. Go to the *AWS Console* in your lab account and open the [Amazon EC2](https://console.aws.amazon.com/ec2/) page.
 
 You should see a maximum of 10 compute instances running your jobs. Non-running jobs will stay in the queue until they can get processed. Should you want to absorb this spike you could update your cluster to use more than 10 instances. In practice, administrators will limit the number of instances a given user can use to stay within reasonable limits. These can be of several thousands instances in some cases.
 

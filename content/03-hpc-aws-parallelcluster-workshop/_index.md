@@ -30,10 +30,6 @@ By giving you a clean way to define the infrastructure-as-code for your HPC syst
 
 Another key feature of AWS ParallelCluster is that you can connect to your cluster with [NICE DCV](https://docs.aws.amazon.com/dcv/latest/adminguide/what-is-dcv.html) to visualize and post-process your data [remotely](https://docs.aws.amazon.com/parallelcluster/latest/ug/dcv-v3.html) with a virtual desktop. This way you can save time and egress charges by eliminating the need to transfer your data out of AWS!
 
-```bash
-pcluster create-cluster --cluster-name my-cluster --cluster-configuration my-cluster-config.yaml --region ${AWS_REGION}
-```
-
 AWS ParallelCluster provides [several commands](https://docs.aws.amazon.com/parallelcluster/latest/ug/commands-v3.html) you can use to manage your cluster such as listing your clusters and their instances, updating a cluster with a new configuration, and shutting down a cluster.
 
 #### What you will do in this part of the lab
