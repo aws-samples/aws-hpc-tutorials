@@ -16,7 +16,7 @@ HPC on AWS removes the long wait times and lost productivity often associated wi
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 
-This workshop is is designed to get you familiar with the concepts and best practices to understand AWS components that help to build an HPC cluster and run your HPC workloads on HPC efficiently.
+This workshop is is designed to get you familiar with the concepts and best practices to understand AWS components that help to build an HPC cluster and run your HPC workloads on AWS efficiently.
 
 To achieve this you will go through the following stages:
 
