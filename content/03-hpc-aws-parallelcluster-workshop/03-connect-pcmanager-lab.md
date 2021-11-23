@@ -29,4 +29,7 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 6. You'll get an email with a verification code, enter the code to continue:
 
+![PCluster Manager](/images/hpc-aws-parallelcluster-workshop/pcm-email.png)
+
 ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/verification-code.png)
+
