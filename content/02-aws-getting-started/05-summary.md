@@ -4,4 +4,4 @@ weight = 60
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 
-In this part of the workshop you accessed your account and initiated the deployment of AWS ParallelCluster's API and the PCluster Manager user interface. While these resources are being deployed we will share more information on what's happening under the hood.
+For users following along outside of re:Invent, in this part of the workshop you initiated the deployment of AWS ParallelCluster's API and the PCluster Manager user interface. For those who are attending re:Invent, the PCluster Manager API has been preinstalled for you.
