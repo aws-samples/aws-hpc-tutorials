@@ -23,7 +23,7 @@ To start with the workshop continue to [Workshop Overview](/01-hpc-overview.html
 
 #### About the AWS ParallelCluster API
 
-AWS ParallelCluster API is a serverless application that once deployed to your AWS account will enable programmatic access to AWS ParallelCluster features via API.
+AWS ParallelCluster API is a serverless application that, once deployed to your AWS account, will enable programmatic access to AWS ParallelCluster features via API.
 
 AWS ParallelCluster API is distributed as a self-contained AWS CloudFormation template mainly consisting of an Amazon API Gateway endpoint, that exposes AWS ParallelCluster features, and an AWS Lambda function, that takes care of executing the invoked features.
 
