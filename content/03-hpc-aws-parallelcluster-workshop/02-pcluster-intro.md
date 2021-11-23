@@ -11,7 +11,6 @@ PCluster Manager is entirely serverless. Authentication is provided through Amaz
 
 ![pcluster-manager-arch](/images/hpc-aws-parallelcluster-workshop/pcm-arch.png)
 
-
 Proceed to the next page to start using PCluster Manager and create clusters with the AWS ParallelCluster API.
 
 
