@@ -41,4 +41,4 @@ In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/
 - Connect to your new cluster via the PCluster Manager console.
 - Submit a sample job and check what is happening in the background.
 
-Before proceeding to the next stage, let's review what is AWS ParallelCluster and we will dive onto AWS ParallelCluster API.
+Before proceeding to the next stage, let's review what is AWS ParallelCluster and dive into AWS ParallelCluster API.
