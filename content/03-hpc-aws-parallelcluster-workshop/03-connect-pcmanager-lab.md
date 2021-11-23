@@ -23,6 +23,10 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/sign-up.png)
 
-5. Enter a username and password that meets the requirements and click **Sign Up** to log in:
+5. Enter a username and password that meets the requirements and click **Sign Up**:
 
 ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/signup-password.png)
+
+6. You'll get an email with a verification code, enter the code to continue:
+
+![Signup Screen](/images/hpc-aws-parallelcluster-workshop/verification-code.png)
