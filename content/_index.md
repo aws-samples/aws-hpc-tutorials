@@ -5,7 +5,7 @@ draft: false
 ---
 # Welcome to the Amazon Web Services HPC Workshops
 
-Amazon Web Services provides the most elastic and scalable cloud infrastructure to run your [HPC applications](https://aws.amazon.com/hpc/). With AWS' virtually unlimited capacity, engineers, researchers, and HPC system owners can innovate beyond the limitations of on-premises HPC infrastructure.
+Amazon Web Services provides the most elastic and scalable cloud infrastructure to run your [HPC applications](https://aws.amazon.com/hpc/). With AWS's virtually unlimited capacity, engineers, researchers, and HPC system owners can innovate beyond the limitations of on-premises HPC infrastructure.
 
 AWS delivers an integrated suite of services that provides everything you need to quickly and easily build and manage HPC clusters in the cloud. With this elastic infrastructure you can run even your most compute-intensive workloads regardless of your industry and application.
 
@@ -17,7 +17,7 @@ Today, more HPC is run on AWS than on any other cloud.
 
 #### What you will do in this workshop
 
-In this workshop you will deploy and modify HPC clusters using the AWS ParallelCluster API. To exemplify how the API can be used, you will begin to use [PCluster Manager](https://github.com/aws-samples/pcluster-manager) which is an open-source project providing a Web UI on top of the AWS ParallelCluster API. In the second part of the workshop, you will directly interact with the AWS ParallelCluster API using it's Python client.
+In this workshop you will deploy and modify HPC clusters using the AWS ParallelCluster API. To exemplify how the API can be used, you will begin to use [PCluster Manager](https://github.com/aws-samples/pcluster-manager) which is an open-source project providing a Web UI on top of the AWS ParallelCluster API. In the second part of the workshop, you will directly interact with the AWS ParallelCluster API using its Python client.
 
 To start with the workshop continue to [Workshop Overview](/01-hpc-overview.html).
 
