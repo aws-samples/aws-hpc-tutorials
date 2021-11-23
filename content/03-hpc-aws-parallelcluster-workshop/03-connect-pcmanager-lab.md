@@ -22,3 +22,7 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 4. Next, click on **Sign Up** to create a username and password for accessing PCluster Manager.
 
 ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/sign-up.png)
+
+5. Enter a username and password that meets the requirements and click **Sign Up** to log in:
+
+![Signup Screen](/images/hpc-aws-parallelcluster-workshop/signup-password.png)
