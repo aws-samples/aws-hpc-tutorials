@@ -43,6 +43,11 @@ page = [ "HTML", "AMP"]
     privacyEnhanced = false
 
 [[menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> External Worshops"
+url = "/external.html"
+weight = 20
+
+[[menu.shortcuts]]
 name = "<i class='fab fa-github'></i> Github"
 url = "https://github.com/aws-samples/aws-hpc-tutorials"
 weight = 10
