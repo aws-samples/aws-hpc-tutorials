@@ -1,5 +1,5 @@
 ---
-title: "After the workshop"
+title: "After the event"
 date: 2019-01-24T09:05:54Z
 weight: 60
 tags: ["HPC", "Overview"]
