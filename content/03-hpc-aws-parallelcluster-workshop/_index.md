@@ -34,7 +34,7 @@ AWS ParallelCluster provides [several commands](https://docs.aws.amazon.com/para
 
 #### What you will do in this part of the lab
 
-In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) using PCluster Manager. This workshop includes the following steps:
+In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) using [PCluster Manager](https://github.com/aws-samples/pcluster-manager). This workshop includes the following steps:
 
 - Connect to PCluster Manager.
 - Create your HPC cluster in AWS.
