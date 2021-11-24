@@ -7,7 +7,7 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 In this lab, you run your first *"hello world"* job to introduce you to the mechanisms of AWS ParallelCluster.
 
-##### Create the Hello World Application
+#### Create the Hello World Application
 
 First, build and compile your MPI *hello world* application. In your AWS Cloud9 terminal, run the following commands to create and build the *hello world* binary.
 
@@ -54,7 +54,7 @@ mpirun -n 4 ./mpi_hello_world
 
 Your application is compiled and ready to be executed. Next, build a batch submission script to submit it to SLURM.
 
-##### Create a Submission Script
+#### Create a Submission Script
 
 Create submission script as shown below. This script will launch the MPI *Hello World* application with 4 processes and export the generated output to a *\*.out* file.
 

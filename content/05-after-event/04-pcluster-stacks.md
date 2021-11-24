@@ -1,12 +1,11 @@
 +++
-title = "c. Post-Event: Deploy PCluster Manager (Skip)"
-weight = 60
+title = "a. [Post-Event] Deploy PCluster Manager"
+weight = 10
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 
 {{% notice note %}}
-Skip this step if you are doing the labs during the re:Invent workshop.
-You can skip this step if you are following this workshop during re:Invent. In that case you will deploy PCluster Manager later on in the workshop.
+You can skip this step if you are following this workshop as part of a conference. If using Event Engine then your PCluster Manager is already deployed
 {{% /notice %}}
 
 

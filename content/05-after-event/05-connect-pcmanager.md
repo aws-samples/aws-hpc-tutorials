@@ -1,13 +1,14 @@
 +++
-title = "c. Post-Event: Connect to PCluster Manager (Skip)"
+title = "b. [Post-event] Connect to PCluster Manager "
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-{{% notice warning %}}
-**Skip this step if you are participating in the re:Invent workshop.**
+{{% notice note %}}
+You can skip this step if you are following this workshop as part of a conference. If using Event Engine then your PCluster Manager is already deployed
 {{% /notice %}}
+
 
 1. Go to the AWS Console, and in the search box search for [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click on that service.
 

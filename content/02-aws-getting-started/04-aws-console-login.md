@@ -1,18 +1,10 @@
 +++
-title = "b. Post-Event: Access AWS (Skip)"
+title = "b. AWS Console"
 date = 2019-09-18T10:46:30-04:00
 draft = false
-weight = 60
+weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
-
-{{% notice note %}}
-You can skip this step if you are following this workshop during re:Invent. In that case you will log on to the AWS Management Console through Event Engine.
-{{% /notice %}}
-
-Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or as directed by your workshop facilitator. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/login.png)
 
 After you sign in, take a few minutes to explore the navigation components of the AWS Management Console. 
 

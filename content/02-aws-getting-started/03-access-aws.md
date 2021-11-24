@@ -6,27 +6,20 @@ weight: 50
 ---
 
 {{% notice warning %}}
-Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>).
-{{% /notice %}}
-
-
-##### Step 1
-
-{{% notice warning %}}
 While the sandbox accounts for this workshop are available on the day of the workshop, this website will be maintained if you would like to run through the labs at a later stage on your own (by [creating an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>)), or with your company or institution.
 {{% /notice %}}
 
-##### Step 2
+##### Step 1
 
 Go to the website https://dashboard.eventengine.run/
 
-##### Step 3
+##### Step 2
 
 You will then be prompted to a screen with terms and conditions. Add the *Event Hash* that will be provided to you and click **Accept** to continue:
 
 ![Event Engine Login](</images/sc21/event-engine-login.png>)
 
-##### Step 4
+##### Step 3
 
 Click **AWS Console Login**, then on the following popup click on the link **Open AWS Console**.
 
