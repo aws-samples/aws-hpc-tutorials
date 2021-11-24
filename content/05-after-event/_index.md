@@ -1,8 +1,7 @@
 ---
-title: "the workshop"
+title: "After the workshop"
 date: 2019-01-24T09:05:54Z
 weight: 60
-pre: "<b>After </b>"
 tags: ["HPC", "Overview"]
 ---
 
