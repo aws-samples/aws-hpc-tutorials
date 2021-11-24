@@ -68,7 +68,7 @@ python3 list_clusters.py
 5. You can get same result using the AWS ParallelCluster CLI and piping multiple commands in your AWS Cloud9 terminal by running the code below.
 
 ```bash
-pcluster list-clusters | jq -r ".clusters[].clusterName" | xargs pcluster describe-cluster-instances --cluster-name
+pcluster list-clusters --query "clusters[0].clusterName"
 ```
 
 Now that you understand how to retrieve information about your clusters, let's use this knowledge to stop unused clusters.
