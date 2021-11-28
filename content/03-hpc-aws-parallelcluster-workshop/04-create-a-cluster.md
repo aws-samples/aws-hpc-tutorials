@@ -24,7 +24,7 @@ In the previous step you connected to **PCluster Manager**. Now we will create a
 * **Set** the *Head Node Instance Type* to be `c5.large`
 * **Set** a *Subnet ID* (any will do, we will verify later)
 * **Set** the *Keypair* to `ee-default-keypair` if running the lab at an AWS Hosted event.
-* The *Root Volume Size* should be set to **35**
+* **Set** the *Root Volume Size* to **35**.
 
 Once done, **enable** the *Virtual Console* as shown below and **click** on the *Next* button.
 
