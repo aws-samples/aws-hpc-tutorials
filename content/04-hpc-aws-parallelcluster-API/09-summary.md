@@ -5,7 +5,7 @@ weight = 110
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-Great job! You have deployed a cluster with PCluster Manager and the AWS ParallelCluster API Part 1 of this workshop. Then in Part 2 you interacted directly with the API to begin creating workflows. By further extending your codes, you can use the API to virtually run any operational workflow on your clusters such as starting a custom cluster when there's a new project or just run a cluster for the duration of a job and shut it down when finished.
+Great job! You have deployed a cluster with PCluster Manager and the AWS ParallelCluster API in Part 1 of this workshop. In Part 2, you interacted directly with the API to begin creating workflows. By further extending your codes, you can use the API to virtually run any operational workflow on your clusters such as starting a custom cluster when there's a new project or just run a cluster for the duration of a job and shut it down when finished.
 
 Throughout this workshop you have:
 - Configured and deployed your HPC Cluster with PCluster Manager
