@@ -15,14 +15,14 @@ In [Part I](/03-hpc-aws-parallelcluster-workshop.html) you created an HPC system
 
 AWS ParallelCluster API is a serverless application that once deployed to your AWS account will enable programmatic access to AWS ParallelCluster features via an API.
 
-AWS ParallelCluster API is distributed as a self-contained AWS CloudFormation template mainly consisting of an Amazon API Gateway endpoint, that exposes AWS ParallelCluster features, and an AWS Lambda function, that takes care of executing the invoked features.
+AWS ParallelCluster API is distributed as a self-contained AWS CloudFormation template consisting of an Amazon API Gateway endpoint which exposes AWS ParallelCluster features, and an AWS Lambda function which takes care of executing the invoked features.
 
 
 #### Why use the AWS ParallelCluster API
 
 The ability to manage HPC clusters through an API provides several advantages over the use of the CLI:
 
-1. It makes easier to create even-driven and scripted workflows.
+1. The API makes it easier to create even-driven and scripted workflows.
 2. As part of these workflows, you can consider your HPC clusters as ephemeral. Which means that they will only exist for the duration of the computational stage were they are needed and terminated once your computations is completed.
 3. It enables you to abstract the cluster management piece and create clusters from templates that can be customized for specific computational stages.
 

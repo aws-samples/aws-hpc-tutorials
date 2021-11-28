@@ -8,7 +8,7 @@ tags: ["HPC", "Overview"]
 
 #### AWS ParallelCluster in a nutshell
 
-You provide a text configuration file to AWS ParallelCluster that specifies defining features of your cluster (e.g., how many nodes it can scale to, what kind of shared storage it uses). AWS ParallelCluster translates those specifications into an AWS CloudFormation template and uses the template to deploy an HPC system based on those settings.
+A text configuration file you provide to AWS ParallelCluster specifies the defining features of your cluster (e.g., how many nodes it can scale to, what kind of shared storage it uses). AWS ParallelCluster translates those specifications into an AWS CloudFormation template and uses the template to deploy an HPC system based on those settings.
 
 By giving you a clean way to define the infrastructure-as-code for your HPC system, you can easily create numerous clusters tailored to the requirements of individual applications or workloads. For example, you can create one cluster for running workloads that require GPUs and a high-performance parallel file system such as [Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html) for your machine learning workloads and define another cluster for CPU-optimized workloads with high network bandwidth, such as [c5n.24xlarge](https://aws.amazon.com/ec2/instance-types/c5/) for your computational fluid dynamics (CFD) jobs.
 
