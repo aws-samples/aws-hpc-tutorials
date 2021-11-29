@@ -9,7 +9,7 @@ In this lab, you run your first *"hello world"* job to introduce you to the mech
 
 #### Create the Hello World Application
 
-First, build and compile your MPI *hello world* application. In your AWS Cloud9 terminal, run the following commands to create and build the *hello world* binary.
+First, build and compile your MPI *hello world* application. In your PCluster Manager shell terminal, run the following commands to create and build the *hello world* binary.
 
 ```bash
 cat > mpi_hello_world.c << EOF
@@ -35,7 +35,6 @@ int main(int argc, char **argv){
  MPI_Finalize();
 }
 EOF
-
 ```
 
 Then load the Intel compiler and compile your program.
