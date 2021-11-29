@@ -18,7 +18,7 @@ Use the following command to install IOR. For this installation, use the *io500-
 
 ```bash
 # get IOR
-mkdir -p /shared/ior
+mkdir -p /home/ec2-user/ior
 git clone https://github.com/hpc/ior.git
 cd ior
 git checkout io500-sc19
@@ -28,15 +28,15 @@ module load intelmpi
 
 # install
 ./bootstrap
-./configure --with-mpiio --prefix=/shared/ior
+./configure --with-mpiio --prefix=/home/ec2-user/ior
 make -j 10
 sudo make install
 
 # set the environment
-export PATH=$PATH:/shared/ior/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/shared/ior/lib
-echo 'export PATH=$PATH:/shared/ior/bin' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/shared/ior/lib' >> ~/.bashrc
+export PATH=$PATH:/home/ec2-user/ior/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ec2-user/ior/lib
+echo 'export PATH=$PATH:/home/ec2-user/ior/bin' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ec2-user/ior/lib' >> ~/.bashrc
 ```
 
 To measure throughput, you tune several IOR parameters to favor POSIX as an IO access method and conduct direct access to the file system. This approach helps you bypass almost all caching and evaluate the raw performances of Amazon FSx for Lustre. Further, you generate one file per process to saturate the file system.
@@ -84,7 +84,7 @@ cat > ior_submission.sbatch << EOF
 #SBATCH --ntasks=16
 #SBATCH --output=%x_%j.out
 
-mpirun /shared/ior/bin/ior -w -r -o=/shared/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
+mpirun /home/ec2-user/ior/bin/ior -w -r -o=/home/ec2-user/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
 EOF
 ```
 
