@@ -43,12 +43,12 @@ page = [ "HTML", "AMP"]
     privacyEnhanced = false
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> Conferences Worshops"
+name = "<i class='fas fa-flask'></i> Conferences Worshops"
 url = "/conferences.html"
 weight = 21
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> External Worshops"
+name = "<i class='fas fa-bullhorn'></i> External Worshops"
 url = "/external.html"
 weight = 20
 
