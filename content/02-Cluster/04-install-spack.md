@@ -29,15 +29,19 @@ Let's go ahead and verify spack is installed correctly by installing `patchelf`:
 spack install patchelf
 ```
 
-Once this completes we can see the installed package by running `module avail`:
+Once this completes we can see the installed package by running `module avail` (you may need to log out and log back in to see this):
 
 ```bash
 module avail
 ```
 
-To use it, load it in with `module load` (look at the output of *module avail* to get exact name):
+![Patchelf Module Avail](/images/pcluster/patchelf-spack.png)
+
+To use it, load it in with `spack load`, this is similar to `module load` except it doesn't need the full module name i.e. `patchelf-0.14.1-gcc-7.3.1-3563yeb`:
 
 ```bash
-module load patchelf-0.13-gcc-7.3.1-bm67ztq
-patchelf --version
+spack load patchelf
+which patchelf
 ```
+
+You'll see we install all Spack packages on the `/shared` filesystem. This makes them available to all compute nodes that we later launch.
