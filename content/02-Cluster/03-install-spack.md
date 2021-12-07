@@ -4,7 +4,7 @@ weight: 23
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
-![Spack Logo](/images/wrf/spack.svg)
+![Spack Logo](/images/pcluster/spack.svg)
 
 [Spack](https://spack.io/) is a package manager for supercomputers, Linux, and macOS. It makes installing scientific software easy. Spack isn’t tied to a particular language; you can build a software stack in Python or R, link to libraries written in C, C++, or Fortran, and easily swap compilers or target specific microarchitectures. In this tutorial we'll use Spack to compile and install weather codes.
 
