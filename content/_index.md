@@ -15,4 +15,4 @@ Some of our NWP customers include:
 
 [Maxar Uses AWS to Deliver Forecasts 58% Faster Than Weather Supercomputer](https://aws.amazon.com/solutions/case-studies/maxar-case-study/)
 
-[The Weather Company uses AWS to process four gigabytes of data a second](https://aws.amazon.com/solutions/case-studies/the-weather-company/)
+[Weathernews uses AWS to acheive 10-minute forecast intervals up to 15 hours ahead](https://aws.amazon.com/solutions/case-studies/weathernews/)

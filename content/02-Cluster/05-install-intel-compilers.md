@@ -13,6 +13,14 @@ spack install intel-oneapi-compilers
 This will take about `~4 mins` to complete. Once it's complete we can load the compiler:
 
 ```bash
+spack install intel-oneapi-compilers intel-oneapi-mpi
 spack load intel-oneapi-compilers
-icc --version
+spack compiler find
+spack unload
+```
+
+This will display the intel compiler under:
+
+```bash
+spack compilers
 ```
