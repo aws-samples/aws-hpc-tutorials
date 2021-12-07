@@ -4,15 +4,15 @@ weight: 21
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 
+In this section we're going to use PCluster Manager to create a cluster from a sample template we've provided. 
+
 1. Click **Create Cluster** Button
 
-2. Name the cluster **weather** and select **Template**
+2. Name the cluster **weather** and select **Template**. On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
+
+## [Download Template](/template/cluster-config.yaml)
 
 ![Cluster Wizard](/images/pcluster/pcmanager-1.png)
-
-On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
-
-## [Download Template](/template/cluster-config.yaml) 
 
 On the next few screens, we'll modify the account specific components and leave the rest as specified by the template.
 

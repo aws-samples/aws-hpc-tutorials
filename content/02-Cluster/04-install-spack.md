@@ -1,6 +1,6 @@
 ---
-title: "c. Install Spack"
-weight: 23
+title: "d. Install Spack"
+weight: 24
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
@@ -18,7 +18,26 @@ git clone -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
 cd $SPACK_ROOT
 exit
 echo "export SPACK_ROOT=/shared/spack" >> $HOME/.bashrc
-echo "source $SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
+echo "source \$SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
 sudo chown -R $USER:$USER $SPACK_ROOT
+```
+
+Let's go ahead and verify spack is installed correctly by installing `patchelf`:
+
+```bash
+spack install patchelf
+```
+
+Once this completes we can see the installed package by running `module avail`:
+
+```bash
+module avail
+```
+
+To use it, load it in with `module load` (look at the output of *module avail* to get exact name):
+
+```bash
+module load patchelf-0.13-gcc-7.3.1-bm67ztq
+patchelf --version
 ```
