@@ -9,7 +9,7 @@ Now that we've built a cluster, let's install WRF:
 **Note** we're going to install WRF via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
 
 ```bash
-cat <<EOF > wrf.sbatch
+cat <<EOF > wrf-install.sbatch
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH --exclusive
@@ -19,10 +19,14 @@ spack install -j \$SLURM_CPUS_ON_NODE wrf%intel
 EOF
 ```
 
+* `-N 1` tells Slurm to allocate one instance
+* `--exclusive` tells slurm to use all the cores on that instance
+* `spack install -j $SLURM_CPUS_ON_NODE wrf%intel` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). We specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in the previous section by adding `%intel` and we tell spack to compile using all the cores by specifying `-j $SLURM_CPUS_ON_NODE`.
+
 Submit the job:
 
 ```bash
-sbatch wrf.sbatch
+sbatch wrf-install.sbatch
 ```
 
 Watch **squeue** to see when the job transitions from `CF` (bootstrapping) into `R` (running).
