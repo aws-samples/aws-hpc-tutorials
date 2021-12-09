@@ -41,4 +41,4 @@ Monitor the install by tailing the job output file, i.e. if we submitted a job w
 tail -f slurm-2.out
 ```
 
-While that's installing feel free to advance to the [next step](/03-wrf/02-conus-12km.html) and pull down the Conus 12-km model.
+This will take about **52 minutes** to install. While that's installing feel free to advance to the [next step](/03-wrf/02-conus-12km.html) and pull down the Conus 12-km model.
