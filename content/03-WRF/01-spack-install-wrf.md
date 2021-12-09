@@ -15,7 +15,7 @@ cat <<EOF > wrf.sbatch
 #SBATCH --exclusive
 
 echo "Installing WRF on \$SLURM_CPUS_ON_NODE cores."
-spack install -j \$SLURM_CPUS_ON_NODE wrf
+spack install -j \$SLURM_CPUS_ON_NODE wrf%intel
 EOF
 ```
 

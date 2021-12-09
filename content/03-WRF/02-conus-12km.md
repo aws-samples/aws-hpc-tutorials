@@ -19,9 +19,8 @@ tar -xzf wrf_simulation_CONUS12km.tar.gz
 Next we'll prepare the data for a run by copying in the relevant files from our WRF install:
 
 ```bash
-spack cd -i wrf
-cd test/em_real
+cd /shared/conus_12km/
 
-rm namelist.input
-ln -s /shared/conus_12km/* .
+WRF_ROOT=$(spack location -i wrf%intel)/test/em_real/
+ln -s $WRF_ROOT* .
 ```
