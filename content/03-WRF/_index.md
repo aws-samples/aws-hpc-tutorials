@@ -1,5 +1,5 @@
 ---
-title: "Weather Researching and Forecasting (WRF)"
+title: "Weather Research and Forecasting (WRF)"
 weight: 30
 pre: "<b>Part II ⁃ </b>"
 tags: ["HPC", "Overview"]
@@ -7,7 +7,7 @@ tags: ["HPC", "Overview"]
 
 ![WRF Logo](/images/wrf/logo.jpg)
 
-In this section of the lab we'll setup [Weather Research and Forecasting Model (WRF)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) from NCAR. The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications.
+In this section of the lab we'll setup the [Weather Research and Forecasting Model (WRF)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf). The WRF model is a mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications. It is developed and maintained by by [National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf).
 
 It's easy to install with the package manager Spack.
 
