@@ -17,13 +17,13 @@ curl -O https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.
 bash Miniconda3-py37_4.10.3-Linux-x86_64.sh
 ```
 
-3. Next we'll use conda to install 
+3. Next we'll use conda to install wrf-python and dependencies needed:
 
 ```bash
 conda install -c conda-forge wrf-python netCDF4 matplotlib Cython pyproj
 ```
 
-4. Install [GOES](https://spack.readthedocs.io/en/latest/package_list.html#geos) library:
+4. Install [GOES](https://spack.readthedocs.io/en/latest/package_list.html#geos) library. GEOS is a C/C++ library for spatial computational geometry that's used as a dependency of wrf-python.
 
 ```bash
 spack install geos
@@ -39,7 +39,7 @@ GEOS_DIR=$(spack location -i geos)
 python setup.py install
 ```
 
-6. Next create a python script in `/shared/conus_12km` directory to visualize the results:
+6. Next create a python script in `/shared/conus_12km` directory to visualize the results, this script [Horizontal Interpolation to a Pressure Level](https://wrf-python.readthedocs.io/en/latest/plot.html#horizontal-interpolation-to-a-pressure-level) is from the wrf-python examples.
 
 ```bash
 cd /shared/conus_12km
@@ -107,7 +107,7 @@ plt.show()
 EOF
 ```
 
-Pass in the input file as the first param:
+7. Next run the python file, pass in the netCDF file as the first param:
 
 ```bash
 python wrf-visualize.py wrfout_d01_2019-11-27_00:00:00
