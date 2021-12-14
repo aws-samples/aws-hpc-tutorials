@@ -15,13 +15,21 @@ cat <<EOF > wrf-install.sbatch
 #SBATCH --exclusive
 
 echo "Installing WRF on \$SLURM_CPUS_ON_NODE cores."
-spack install -j \$SLURM_CPUS_ON_NODE wrf%intel
+module load intelmpi
+spack install -j \$SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi
 EOF
 ```
 
 * `-N 1` tells Slurm to allocate one instance
 * `--exclusive` tells slurm to use all the cores on that instance
-* `spack install -j $SLURM_CPUS_ON_NODE wrf%intel` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). We specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in the previous section by adding `%intel` and we tell spack to compile using all the cores by specifying `-j $SLURM_CPUS_ON_NODE`.
+* `spack install -j $SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). It passes some build flags:
+
+| **Spack Flag**   | **Description** |
+| ----------- | ----------- |
+| `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
+| `-j $SLURM_CPUS_ON_NODE`     | Compile with all the cores on the instance.   |
+| `build_type=dm+sm`       | Enable [hybrid parallelism](https://in.nau.edu/hpc/overview/using-the-cluster-advanced/parallelism/) MPI + OpenMP.     |
+| `^intel-mpi`     | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/06-external-packages.html)       |
 
 Submit the job:
 
