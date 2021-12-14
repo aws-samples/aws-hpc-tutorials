@@ -48,3 +48,5 @@ Monitor the job's status with `squeue`:
 ```bash
 squeue
 ```
+
+Using 192 cores, the job took **4 mins 17 seconds** to complete.
