@@ -129,4 +129,19 @@ EOF
 python3 wrf-visualize.py "wrfout_d01_*"
 ```
 
-8. Now let's open up the GIF we created! In the terminal Control + Click on the wrf.gif output path to open it. Make sure you're running using a DCV session as shown in **[b. Connect to the Cluster (DCV)](02-cluster/02-connect-cluster.html#dcv-connect)**.
+8. Now let's open up the GIF we created! First we're going to install Google Chrome:
+
+```bash
+sudo amazon-linux-extras install epel
+sudo yum install -y chromium
+```
+
+Now making sure you're connected via **[b. Connect to the Cluster (DCV)](02-cluster/02-connect-cluster.html#dcv-connect)**, run:
+
+```bash
+chromium-browser /shared/conus_12km/wrf.gif
+```
+
+You'll see the animation playing in the Google Chrome window.
+
+![WRF Chromium](/images/wrf/wrf-chromium.png)
