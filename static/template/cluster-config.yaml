@@ -18,19 +18,18 @@ Scheduling:
   SlurmQueues:
     - Name: compute
       ComputeResources:
-        - Name: compute
+        - Name: hpc6a
           MinCount: 0
           MaxCount: 64
-          InstanceType: c5n.18xlarge
+          InstanceType: hpc6a.48xlarge
           Efa:
             Enabled: true
-          DisableSimultaneousMultithreading: true
       Networking:
         SubnetIds:
           - subnet-1234567
         PlacementGroup:
           Enabled: true
-Region: us-east-1
+Region: us-east-2
 Image:
   Os: alinux2
 SharedStorage:
