@@ -17,8 +17,8 @@ cat > slurm-wrf-conus12km.sh << EOF
 #SBATCH --ntasks-per-node=16
 #SBATCH --exclusive
 
-set -x
 spack load wrf%intel build_type=dm+sm ^intel-mpi
+set -x
 wrf_exe=\$(spack location -i wrf%intel build_type=dm+sm ^intel-mpi)/run/wrf.exe
 ulimit -s unlimited
 ulimit -a
@@ -32,7 +32,9 @@ export I_MPI_PIN_DOMAIN=omp
 export KMP_AFFINITY=compact
 export I_MPI_DEBUG=4
 
+set +x
 module load intelmpi
+set -x
 time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$wrf_exe
 EOF
 ```

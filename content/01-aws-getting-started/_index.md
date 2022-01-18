@@ -13,3 +13,6 @@ Specifically, you learn how to:
 - Deploy the AWS ParallelCluster API and the Pcluster Manager stacks.
 
 You can proceed to the next stage of the workshop once the preparation completed and the stacks deployed.
+
+Please note, some pages are long and you will need to scroll down to read all
+the instructions.
