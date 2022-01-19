@@ -39,7 +39,7 @@ GEOS_DIR=$(spack location -i geos)
 python setup.py install
 ```
 
-6. Next create a python script in `/shared/conus_12km` directory to visualize the results, this script [Horizontal Interpolation to a Pressure Level](https://wrf-python.readthedocs.io/en/latest/plot.html#horizontal-interpolation-to-a-pressure-level) is from the wrf-python examples. We've adapted it to create an animation instead of static images.
+6. Next create a python script in `/shared/conus_12km` directory to visualize the results, this script [Horizontal Interpolation to a Pressure Level](https://wrf-python.readthedocs.io/en/latest/plot.html#horizontal-interpolation-to-a-pressure-level) is from the wrf-python examples. We've adapted it to create an animation instead of static images. You can view the script [here](/scripts/wrf-visualize.py).
 
 ```python
 cd /shared/conus_12km
