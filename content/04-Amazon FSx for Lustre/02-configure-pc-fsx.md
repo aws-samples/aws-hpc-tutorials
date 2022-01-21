@@ -25,7 +25,7 @@ echo "Your bucket name will be mybucket-${BUCKET_POSTFIX}"
 aws s3 mb s3://mybucket-${BUCKET_POSTFIX}
 
 # retrieve local copies
-wget ftp://math.nist.gov/pub/MatrixMarket2/misc/cylshell/s3dkq4m2.mtx.gz
+wget https://math.nist.gov/pub/MatrixMarket2/misc/cylshell/s3dkq4m2.mtx.gz
 wget http://s3.amazonaws.com/open.source.geoscience/open_data/seg_eage_salt/SEG_C3NA_Velocity.sgy
 
 # upload to your bucket
