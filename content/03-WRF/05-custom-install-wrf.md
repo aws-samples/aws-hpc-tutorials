@@ -47,6 +47,8 @@ spack install -j 16
 ```
 4. Finally we're going to compile WRF using the dependencies we just installed:
 ```bash
+# load the MPI package
+spack load intel-oneapi-mpi%intel
 # set dependency paths from spack environment
 export HDF5=$SPACK_ENV/.spack-env/view/
 export JASPERINC=$SPACK_ENV/.spack-env/view/include
