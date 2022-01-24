@@ -21,7 +21,7 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 11. Expand the **Additional configuration** section.
 12. Under **Environment variables**, click **Add**.
 13. Set **Name** to: STRESS_ARGS
-14. Set **Value** to: --cpu 0 --cpu-method fft --timeout 1m --times
+14. Set **Value** to: `--cpu 0 --cpu-method fft --timeout 1m --times`
 ![AWS Batch](/images/aws-batch/run-job-4.png)
 15. Scroll to the bottom and click **Submit**.
 ![AWS Batch](/images/aws-batch/run-job-5.png)
