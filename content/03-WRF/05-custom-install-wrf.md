@@ -1,14 +1,22 @@
 ---
-title: "c. Custom Build WRF"
+title: "e. (optional) WRF Manual Install"
 weight: 35
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
+In [**a. Spack Install WRF**](/03-wrf/01-spack-install-wrf.html) we installed WRF using a package manager, Spack. In this section we're going to compile it by hand, still building dependencies with WRF. You might need to do this if you:
+1. Need to use a [version](https://www.mmm.ucar.edu/wrf-release-information) not currently supported by Spack
+2. Want to use a modified version of WRF. 
 
-To build a custom version of WRF, we first create a Spack environment configuration file that
-contains all the dependencies of WRF.
-
+In most other cases, the Spack approach will be better.
+We're going to create a [Spack environment](https://spack.readthedocs.io/en/latest/environments.html) for our dependencies, think of this similar to a python virtual environment, it defines the packages and specific variants we need and installs them into their own environment, which can be loaded via `spack env activate` command.
+All of these steps will be done on a compute node, so our build matches the architecture that we will be running on.
+1. Get an interactive session on a compute node, this may take 2 to 3 minutes if all the nodes are powered down.
 ```bash
-mkdir /shared/wrf_build && cd $_
+srun -N 1 --exclusive --pty /bin/bash -il
+```
+2. Create the following spack environment file, specifying all the
+   dependencies of WRF:
+```yaml
 cat <<- EOF > wrf_build.yaml
 # This is a Spack Environment file.
 #
@@ -20,7 +28,7 @@ spack:
     all:
       compiler: [intel]
       providers:
-        mpi: [intel-mpi%intel]
+        mpi: [intel-oneapi-mpi%intel]
   specs:
   - intel-oneapi-compilers
   - intel-oneapi-mpi%intel
@@ -31,51 +39,38 @@ spack:
   view: true
 EOF
 ```
-
-Next, we create a job script and submit that to the cluster to will install the dependencies.
-
+3. Next create the environment and install the packages, this will take **~ 25 mins**.
 ```bash
-cat <<- EOF > install_deps.sh
-#!/bin/bash
-
-#SBATCH --job-name=Install_Deps
-#SBATCH --output=install-%j.out
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=96
-#SBATCH --exclusive
-
 spack env create wrf_build wrf_build.yaml
-spack env activate -p wrf_build
-spack install
-spack env deactivate
+spack env activate wrf_build
+spack install -j 16
 ```
-
-Submit the job:
-
+4. Finally we're going to compile WRF using the dependencies we just installed:
 ```bash
-sbatch install_deps.sh
-```
-
-Once all the dependencies are install we can build WRF. Note, we are going to do this
-interactively on a compute node.
-
-```bash
-srun -N 1 --pty /bin/bash -il
-
-spack env activate -p wrf_build
-
-wget https://github.com/wrf-model/WRF/archive/refs/tags/v4.3.3.tar.gz
-
+# set dependency paths from spack environment
 export HDF5=$SPACK_ENV/.spack-env/view/
 export JASPERINC=$SPACK_ENV/.spack-env/view/include
 export JASPERLIB=$SPACK_ENV/.spack-env/view/lib
 export NETCDF=$SPACK_ENV/.spack-env/view/
 export PNETCDF=$SPACK_ENV/.spack-env/view/
-
-tar xf v4.3.3.tar.gz
+# download source from Github
+wget https://github.com/wrf-model/WRF/archive/refs/tags/v4.3.3.tar.gz
+tar -xzf v4.3.3.tar.gz
+# configure
 cd WRF-4.3.3
 ./configure
-./compile em_real 2>&1 | tee compile.log
+```
+When prompted select **Enter selection [1-75] : 67**:
+```bash
+Enter selection [1-75] : 67
+------------------------------------------------------------------------
+Compile for nesting? (1=basic, 2=preset moves, 3=vortex following) [default 1]: 1
+```
+Now compile:
+```bash
+./compile -j4 em_real 2>&1 | tee compile.log
+```
+5. Once WRF has been built, we no longer need the compute node.
+```bash
 exit
 ```
-
