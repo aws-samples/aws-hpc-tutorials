@@ -68,7 +68,7 @@ Compile for nesting? (1=basic, 2=preset moves, 3=vortex following) [default 1]: 
 ```
 Now compile:
 ```bash
-./compile -j4 em_real 2>&1 | tee compile.log
+./compile -j 4 em_real 2>&1 | tee compile.log
 ```
 5. Once WRF has been built, we no longer need the compute node.
 ```bash
