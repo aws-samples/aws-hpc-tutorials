@@ -4,12 +4,14 @@ weight: 35
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 In [**a. Spack Install WRF**](/03-wrf/01-spack-install-wrf.html) we installed WRF using a package manager, Spack. In this section we're going to compile it by hand, still building dependencies with WRF. You might need to do this if you:
+
 1. Need to use a [version](https://www.mmm.ucar.edu/wrf-release-information) not currently supported by Spack
 2. Want to use a modified version of WRF. 
 
 In most other cases, the Spack approach will be better.
 We're going to create a [Spack environment](https://spack.readthedocs.io/en/latest/environments.html) for our dependencies, think of this similar to a python virtual environment, it defines the packages and specific variants we need and installs them into their own environment, which can be loaded via `spack env activate` command.
 All of these steps will be done on a compute node, so our build matches the architecture that we will be running on.
+
 1. Get an interactive session on a compute node, this may take 2 to 3 minutes if all the nodes are powered down.
 ```bash
 srun -N 1 --exclusive --pty /bin/bash -il
