@@ -6,7 +6,7 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 
 Now that we've built a cluster, let's install WRF:
 
-**Note** we're going to install WRF via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
+**Note** we're going to install WRF version 4.3.3 via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
 
 ```bash
 cat <<EOF > wrf-install.sbatch
@@ -15,21 +15,21 @@ cat <<EOF > wrf-install.sbatch
 #SBATCH --exclusive
 
 echo "Installing WRF on \$SLURM_CPUS_ON_NODE cores."
-module load intelmpi
-spack install -j \$SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi
+spack install -j \$SLURM_CPUS_ON_NODE wrf@4.3.3%intel build_type=dm+sm ^intel-oneapi-mpi
 EOF
 ```
 
 * `-N 1` tells Slurm to allocate one instance
 * `--exclusive` tells slurm to use all the cores on that instance
-* `spack install -j $SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). It passes some build flags:
+* `spack install -j $SLURM_CPUS_ON_NODE wrf@4.3.3%intel build_type=dm+sm ^intel-oneapi-mpi` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). It passes some build flags:
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
+| `@4.3.3`    | Specify version 4.3.3 of WRF.    |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all the cores on the instance.   |
 | `build_type=dm+sm`       | Enable [hybrid parallelism](https://in.nau.edu/hpc/overview/using-the-cluster-advanced/parallelism/) MPI + OpenMP.     |
-| `^intel-mpi`     | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/06-external-packages.html)       |
+| `^intel-oneapi-mpi`      | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/05-install-intel-compilers.md)       |
 
 Submit the job:
 

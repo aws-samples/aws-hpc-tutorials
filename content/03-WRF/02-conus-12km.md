@@ -24,3 +24,10 @@ cd /shared/conus_12km/
 WRF_ROOT=$(spack location -i wrf%intel)/test/em_real/
 ln -s $WRF_ROOT* .
 ```
+
+You will get one error message, which can safely be ignored as we want to use
+the namelist that came with the CONUS case.
+
+```bash
+ln: failed to create symbolic link ‘./namelist.input’: File exists
+```
