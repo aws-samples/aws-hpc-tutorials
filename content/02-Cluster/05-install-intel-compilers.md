@@ -1,5 +1,5 @@
 ---
-title: "e. Install Intel Compilers"
+title: "e. Install Intel Compilers and MPI"
 weight: 25
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
