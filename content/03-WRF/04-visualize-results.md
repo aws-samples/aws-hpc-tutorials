@@ -20,6 +20,7 @@ bash Miniconda3-py37_4.10.3-Linux-x86_64.sh
 3. Next we'll use conda to install wrf-python and dependencies needed:
 
 ```bash
+source ~/.bashrc
 conda install -c conda-forge wrf-python netCDF4 matplotlib Cython pyproj imageio termcolor
 ```
 
@@ -32,10 +33,10 @@ spack install geos
 5. Install [matplotlib basemap](https://matplotlib.org/basemap/index.html) tool:
 
 ```bash
-curl -O https://github.com/matplotlib/basemap/archive/refs/tags/v1.2.2rel.tar.gz
+curl -OL https://github.com/matplotlib/basemap/archive/refs/tags/v1.2.2rel.tar.gz
 tar -xzf v1.2.2rel.tar.gz
 cd basemap-1.2.2rel/
-GEOS_DIR=$(spack location -i geos)
+export GEOS_DIR=$(spack location -i geos)
 python setup.py install
 ```
 
