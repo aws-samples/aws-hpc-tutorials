@@ -4,6 +4,12 @@ weight: 43
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
+Now that we've installed MPAS and created a domain decomposition graph for the number of MPI ranks we will use. We're able to run the forecast.
+For the forecast there's two steps:
+
+1. Create the initial conditions for the model.
+2. Run the MPAS model to produce a forecast.
+
 Create a Slurm sbatch script to run the supercell test case:
 
 ```bash
@@ -34,8 +40,10 @@ export I_MPI_PIN_DOMAIN=omp
 export KMP_AFFINITY=compact
 export OMP_NUM_THREADS=6
 
+# create initial conditions
 time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$init_exe
 
+# run the model
 time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$mpas_exe
 EOF
 ```
