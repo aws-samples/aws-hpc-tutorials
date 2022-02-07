@@ -16,7 +16,7 @@ cat <<EOF > wrf-install.sbatch
 
 echo "Installing WRF on \$SLURM_CPUS_ON_NODE cores."
 module load intelmpi
-spack install -j \$SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi
+spack install -j \$SLURM_CPUS_ON_NODE wrf@4.3.3%intel build_type=dm+sm ^intel-mpi
 EOF
 ```
 
@@ -26,6 +26,7 @@ EOF
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
+| `@4.3.3`    | Specify version [4.3.3](https://github.com/wrf-model/WRF/releases/tag/v4.3.3) of WRF. |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all the cores on the instance.   |
 | `build_type=dm+sm`       | Enable [hybrid parallelism](https://in.nau.edu/hpc/overview/using-the-cluster-advanced/parallelism/) MPI + OpenMP.     |
