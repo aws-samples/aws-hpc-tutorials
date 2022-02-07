@@ -17,9 +17,9 @@ cat > slurm-wrf-conus12km.sh << EOF
 #SBATCH --ntasks-per-node=16
 #SBATCH --exclusive
 
-spack load wrf%intel build_type=dm+sm ^intel-mpi
+spack load wrf@4.3.3%intel build_type=dm+sm ^intel-mpi
 set -x
-wrf_exe=\$(spack location -i wrf%intel build_type=dm+sm ^intel-mpi)/run/wrf.exe
+wrf_exe=\$(spack location -i wrf@4.3.3%intel build_type=dm+sm ^intel-mpi)/run/wrf.exe
 ulimit -s unlimited
 ulimit -a
 
