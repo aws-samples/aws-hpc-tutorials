@@ -6,7 +6,9 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 
 Now that we've built a cluster, let's install MPAS:
 
-{{%notice note%}} we're going to install MPAS via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install: {{% /notice %}}
+{{% notice note %}}
+We're going to install MPAS via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
+{{% /notice %}}
 
 ```bash
 cat > mpas-install.sh <<EOF
@@ -47,4 +49,4 @@ Monitor the install by tailing the job output file, i.e. if we submitted a job w
 tail -f slurm-5.out
 ```
 
-This will take about **25 minutes** to install. While that's installing feel free to advance to the [next step](/04-MPAS/02-supercell.html) and pull down the supercell test case.
+This will take about **25 minutes** to install. While that's installing feel free to advance to the [next step](/04-mpas/02-supercell.html) and pull down the supercell test case.
