@@ -27,8 +27,6 @@ export I_MPI_OFI_LIBRARY_INTERNAL=0
 spack load intel-oneapi-mpi
 spack load mpas-model%intel^intel-oneapi-mpi
 set -x
-init_exe=\$(spack location -i mpas-model%intel^intel-oneapi-mpi)/bin/init_atmosphere_model
-mpas_exe=\$(spack location -i mpas-model%intel^intel-oneapi-mpi)/bin/atmosphere_model
 ulimit -s unlimited
 ulimit -a
 
@@ -41,10 +39,10 @@ export KMP_AFFINITY=compact
 export OMP_NUM_THREADS=6
 
 # create initial conditions
-time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$init_exe
+time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE init_atmosphere_model
 
 # run the model
-time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$mpas_exe
+time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE atmosphere_model
 EOF
 ```
 

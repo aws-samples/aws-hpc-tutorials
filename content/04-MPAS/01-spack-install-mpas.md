@@ -30,7 +30,7 @@ EOF
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all cores on the instance.   |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
 | `^intel-mpi`     | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/05-install-intel-compilers.html)
-| `^parallelio+pnetcdf` | Build and use [Parallel IO](https://ncar.github.io/ParallelIO/) with (parallel netcdf)[https://parallel-netcdf.github.io/] support |
+| `^parallelio+pnetcdf` | Build and use [Parallel IO](https://ncar.github.io/ParallelIO/) with [PnetCDF](https://parallel-netcdf.github.io/) support |
 
 Submit the job:
 
