@@ -17,19 +17,20 @@ cat > mpas-install.sh <<EOF
 #SBATCH --exclusive
 
 echo "Installing MPAS on \$SLURM_CPUS_ON_NODE cores."
-spack install -j $SLURM_CPUS_ON_NODE  mpas-model%intel^intel-mpi
+spack install -j $SLURM_CPUS_ON_NODE mpas-model%intel^intel-mpi^parallelio+pnetcdf
 EOF
 ```
 
 * `-N 1` tells Slurm to allocate one instance
 * `--exclusive` tells slurm to use all the cores on that instance
-* `spack install -j $SLURM_CPUS_ON_NODE mpas%intel^intel-mpi` This tells Spack to install [MPAS](https://spack.readthedocs.io/en/latest/package_list.html#mpas-model) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/mpas-model/package.py). It passes some build flags:
+* `spack install -j $SLURM_CPUS_ON_NODE mpas%intel^intel-mpi^parallelio+pnetcdf` This tells Spack to install [MPAS](https://spack.readthedocs.io/en/latest/package_list.html#mpas-model) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/mpas-model/package.py). It passes some build flags:
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all cores on the instance.   |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
 | `^intel-mpi`     | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/05-install-intel-compilers.html)
+| `^parallelio+pnetcdf` | Build and use [Parallel IO](https://ncar.github.io/ParallelIO/) with (parallel netcdf)[https://parallel-netcdf.github.io/] support |
 
 Submit the job:
 
