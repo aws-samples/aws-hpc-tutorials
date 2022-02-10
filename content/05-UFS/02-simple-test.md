@@ -1,6 +1,6 @@
 ---
 title: "b. Simple Test Case"
-weight: 42
+weight: 52
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 

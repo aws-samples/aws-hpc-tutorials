@@ -1,6 +1,6 @@
 ---
 title: "a. Install UFS"
-weight: 41
+weight: 51
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
