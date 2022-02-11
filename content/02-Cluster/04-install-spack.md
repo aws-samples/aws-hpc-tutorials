@@ -29,11 +29,7 @@ Let's go ahead and verify spack is installed correctly by installing `patchelf`:
 spack install patchelf
 ```
 
-Once this completes we can see the installed package by running `module avail` (you may need to log out and log back in to see this):
-
-```bash
-module avail
-```
+Once this completes we can see the installed package by running `spack find`:
 
 ![Patchelf Module Avail](/images/pcluster/patchelf-spack.png)
 
@@ -44,4 +40,5 @@ spack load patchelf
 which patchelf
 ```
 
+To stop using `patchelf`, unload it with `spack unload`.
 You'll see we install all Spack packages on the `/shared` filesystem. This makes them available to all compute nodes that we later launch.
