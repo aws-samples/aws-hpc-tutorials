@@ -17,7 +17,7 @@ cat > ufs-install.sh <<EOF
 #SBATCH --exclusive
 
 echo "Installing ufs on \$SLURM_CPUS_ON_NODE cores."
-spack install -j $SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-mpi
+spack install -j \$SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-mpi
 EOF
 ```
 
@@ -43,7 +43,7 @@ Watch **squeue** to see when the job transitions from `CF` (bootstrapping) into 
 squeue
 ```
 
-Monitor the install by tailing the job output file, i.e. if we submitted a job with id 5 that's:
+Monitor the install by tailing the job output file, i.e. if we submitted a job with id 7 that's:
 
 ```bash
 tail -f slurm-7.out
