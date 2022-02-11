@@ -20,7 +20,7 @@ spack compiler find
 spack unload
 ```
 
-This will display the intel compiler under:
+This will display the Intel compiler under:
 
 ```bash
 spack compilers
