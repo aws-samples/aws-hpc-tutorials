@@ -13,4 +13,7 @@ We've broken the steps down to:
 
 1. Create a Cluster with AWS ParallelCluster
 2. Connect to the cluster
-2. Install Spack package manager
+3. Get to know the cluster
+4. Install Spack package manager
+5. Inform Spack of external packages
+6. Install Intel compilers and MPI

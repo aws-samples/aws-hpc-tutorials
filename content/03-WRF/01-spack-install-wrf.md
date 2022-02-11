@@ -17,22 +17,22 @@ cat <<EOF > wrf-install.sbatch
 #SBATCH --exclusive
 
 echo "Installing WRF on \$SLURM_CPUS_ON_NODE cores."
-module load intelmpi
-spack install -j \$SLURM_CPUS_ON_NODE wrf@4.3.3%intel build_type=dm+sm ^intel-mpi
+spack install --reuse -j \$SLURM_CPUS_ON_NODE wrf@4.3.3%intel build_type=dm+sm ^intel-oneapi-mpi+external-libfabric
 EOF
 ```
 
 * `-N 1` tells Slurm to allocate one instance
 * `--exclusive` tells slurm to use all the cores on that instance
-* `spack install -j $SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-mpi` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). It passes some build flags:
+* `spack install --reuse -j $SLURM_CPUS_ON_NODE wrf%intel build_type=dm+sm ^intel-oneapi-mpi+external-libfabric` This tells Spack to install [WRF](https://spack.readthedocs.io/en/latest/package_list.html#wrf) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/wrf/package.py). It passes some build flags:
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
-| `@4.3.3`    | Specify version [4.3.3](https://github.com/wrf-model/WRF/releases/tag/v4.3.3) of WRF. |
-| `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/05-install-intel-compilers.html). |
+| `--reuse`   | [Reuse](https://spack.readthedocs.io/en/latest/basic_usage.html#reusing-installed-dependencies) installed dependencies. |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all the cores on the instance.   |
+| `@4.3.3`    | Specify version [4.3.3](https://github.com/wrf-model/WRF/releases/tag/v4.3.3) of WRF. |
+| `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/06-install-intel-compilers.html#intel_compilers). |
 | `build_type=dm+sm`       | Enable [hybrid parallelism](https://in.nau.edu/hpc/overview/using-the-cluster-advanced/parallelism/) MPI + OpenMP.     |
-| `^intel-mpi`     | Uses Intel MPI which we added in [f. Spack external packages](/02-cluster/06-external-packages.html)       |
+| `^intel-oneapi-mpi+external-libfabric`    | Uses Intel MPI which we added in [e. Install Intel MPI](/02-cluster/06-install-intel-compilers.html#intel_mpi).   |
 
 Submit the job:
 

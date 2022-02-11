@@ -15,3 +15,6 @@ To do so we've broken it down into the following steps:
 
 1. Install WRF with Spack
 2. Download CONUS 12km model
+3. Run the forecast
+4. Visualize results
+

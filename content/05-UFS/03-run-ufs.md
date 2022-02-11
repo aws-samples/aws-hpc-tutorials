@@ -21,8 +21,9 @@ cat > slurm-ufs.sh << EOF
 #SBATCH --exclusive
 
 export I_MPI_OFI_LIBRARY_INTERNAL=0
-module load intempi
+soack load intel-oneapi-mpi
 spack load ufs-weather-model
+module load libfabric-aws
 set -x
 ulimit -s unlimited
 ulimit -a

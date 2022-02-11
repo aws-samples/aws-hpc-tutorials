@@ -18,7 +18,7 @@ srun -N 1 --exclusive --pty /bin/bash -il
 ```
 2. Create the following spack environment file, specifying all the
    dependencies of WRF:
-```yaml
+```bash
 cat <<- EOF > wrf_build.yaml
 # This is a Spack Environment file.
 #
@@ -30,10 +30,10 @@ spack:
     all:
       compiler: [intel]
       providers:
-        mpi: [intel-oneapi-mpi%intel]
+        mpi: [intel-oneapi-mpi+external-libfabric%intel]
   specs:
   - intel-oneapi-compilers
-  - intel-oneapi-mpi%intel
+  - intel-oneapi-mpi+external-libfabric%intel
   - jasper%intel
   - netcdf-c%intel
   - netcdf-fortran%intel
@@ -45,12 +45,13 @@ EOF
 ```bash
 spack env create wrf_build wrf_build.yaml
 spack env activate wrf_build
-spack install -j 16
+spack install --reuse -j 16
 ```
 4. Finally we're going to compile WRF using the dependencies we just installed:
 ```bash
-# load the MPI package
-spack load intel-oneapi-mpi%intel
+# load the Intel compilers and MPI package
+spack load intel-oneapi-compilers
+spack load intel-oneapi-mpi
 # set dependency paths from spack environment
 export HDF5=$SPACK_ENV/.spack-env/view/
 export JASPERINC=$SPACK_ENV/.spack-env/view/include

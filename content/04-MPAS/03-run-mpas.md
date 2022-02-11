@@ -25,7 +25,8 @@ cat > slurm-mpas-supercell.sh << EOF
 
 export I_MPI_OFI_LIBRARY_INTERNAL=0
 spack load intel-oneapi-mpi
-spack load mpas-model%intel^intel-oneapi-mpi
+spack load mpas-model
+module load libfabric-aws
 set -x
 ulimit -s unlimited
 ulimit -a

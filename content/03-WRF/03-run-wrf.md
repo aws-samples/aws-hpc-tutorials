@@ -17,24 +17,23 @@ cat > slurm-wrf-conus12km.sh << EOF
 #SBATCH --ntasks-per-node=16
 #SBATCH --exclusive
 
-spack load wrf@4.3.3%intel build_type=dm+sm ^intel-mpi
+export I_MPI_OFI_LIBRARY_INTERNAL=0
+spack load intel-oneapi-mpi
+spack load wrf
+module load libfabric-aws
+wrf_exe=$(spack location -i wrf)/run/wrf.exe
 set -x
-wrf_exe=\$(spack location -i wrf@4.3.3%intel build_type=dm+sm ^intel-mpi)/run/wrf.exe
 ulimit -s unlimited
 ulimit -a
 
 export OMP_NUM_THREADS=6
 export FI_PROVIDER=efa
 export I_MPI_FABRICS=ofi
-export I_MPI_OFI_LIBRARY_INTERNAL=0
 export I_MPI_OFI_PROVIDER=efa
 export I_MPI_PIN_DOMAIN=omp
 export KMP_AFFINITY=compact
 export I_MPI_DEBUG=4
 
-set +x
-module load intelmpi
-set -x
 time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$wrf_exe
 EOF
 ```
