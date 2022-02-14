@@ -6,7 +6,9 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 
 Now that we've built a cluster, let's install WRF:
 
-**Note** we're going to install WRF via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
+{{% notice note %}}
+We're going to install WRF via a Slurm job on a compute node, this ensures the architecture that we compile the code on matches the architecture it'll run on, it also allows us to use all the cores on a single instance to speedup the install:
+{{% /notice %}}
 
 ```bash
 cat <<EOF > wrf-install.sbatch

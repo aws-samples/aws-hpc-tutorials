@@ -14,5 +14,6 @@ Specifically, you learn how to:
 
 You can proceed to the next stage of the workshop once the preparation completed and the stacks deployed.
 
-Please note, some pages are long and you will need to scroll down to read all
-the instructions.
+{{% notice note %}}
+Some pages are long and you will need to scroll down to read all the instructions.
+{{% /notice %}}
