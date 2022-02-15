@@ -44,7 +44,7 @@ Watch **squeue** to see when the job transitions from `CF` (bootstrapping) into 
 squeue
 ```
 
-Monitor the install by tailing the job output file, i.e. if we submitted a job with id 5 that's:
+Monitor the install by tailing the job output file, i.e. if we submitted a job with id 7 that's:
 
 ```bash
 tail -f slurm-7.out
