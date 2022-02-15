@@ -33,7 +33,7 @@ squeue
 
 ## Module Environment
 
-[Environment Modules](http://modules.sourceforge.net/) is a fairly standard tool in HPC that is used to dynamically change your environment variables (PATH, LD_LIBRARY_PATH, etc).
+[Environment Modules](http://modules.sourceforge.net/) is a fairly standard tool in HPC that is used to dynamically change your environment variables (`PATH`, `LD_LIBRARY_PATH`, etc).
 
 - **List available modules** You'll notice that every cluster comes with `intelmpi` and `openmpi` pre-installed. These MPI versions are compiled with support for the high-speed interconnect [EFA](https://aws.amazon.com/hpc/efa/). 
 
