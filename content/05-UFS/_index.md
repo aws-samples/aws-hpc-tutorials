@@ -1,11 +1,11 @@
 ---
-title: "Unified Forecast System (UFS)"
+title: "Unified Forecast System (FV3GFS)"
 weight: 50
 pre: "<b>Part IV ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
 
-![UFS Logo](/images/ufs/logo.png)
+![UFS & FV3GFS logos](/images/ufs/logos.png)
 
 In this section of the lab we'll setup the [Unified Forecast System (UFS)](https://ufscommunity.org/) atmospheric model FV3GFS. The UFS is a community-based, coupled, comprehensive Earth modeling system. The UFS numerical applications span local to global domains and predictive time scales from sub-hourly analyses to seasonal predictions. It is designed to support the [Weather Enterprise](https://www.weather.gov/about/weather-enterprise) and to be the source system for [NOAA](https://www.noaa.gov/)‘s operational numerical weather prediction applications.
 
