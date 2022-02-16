@@ -4,6 +4,11 @@ weight: 25
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
+{{% notice note %}}
+The versions of these external packages changes with the version of parallel
+cluster. This `packages.yaml` is for parallel cluster version 3.1.1.
+{{% /notice %}}
+
 AWS ParallelCluster comes pre-installed with [Slurm](https://slurm.schedmd.com/), [libfabric](https://ofiwg.github.io/libfabric/), [PMIx](https://pmix.github.io/standard), [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html), and [Open MPI](https://www.open-mpi.org/). To use these packages, we need to tell [spack where to find them](https://spack.readthedocs.io/en/latest/build_settings.html#external-packages).
 
 ```bash
