@@ -7,7 +7,7 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 AWS ParallelCluster comes pre-installed with Slurm, libfabric, Intel MPI and Open MPI. To use these packages, we need to tell [spack where to find them](https://spack.readthedocs.io/en/latest/build_settings.html#external-packages). 
 
 ```bash
-cat <<- EOF > $SPACK_ROOT/etc/spack/packages.yaml
+cat << EOF > $SPACK_ROOT/etc/spack/packages.yaml
 packages:
     slurm:
         externals:
