@@ -22,10 +22,10 @@ This will take less than a minute to complete.
 ```bash
 cat << EOF >> $HOME/.bashrc
 export NCARG_ROOT=/shared/ncl
-export PATH=$PATH:/shared/ncl
+export PATH=$PATH:/shared/ncl/bin
 EOF
 export NCARG_ROOT=/shared/ncl
-export PATH=$PATH:/shared/ncl
+export PATH=$PATH:/shared/ncl/bin
 ```
 
 3. We will also set our default NCL X11 window size to be 1000x1000.
