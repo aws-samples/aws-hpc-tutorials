@@ -12,7 +12,7 @@ cluster. This `packages.yaml` is for parallel cluster version 3.1.1.
 AWS ParallelCluster comes pre-installed with [Slurm](https://slurm.schedmd.com/), [libfabric](https://ofiwg.github.io/libfabric/), [PMIx](https://pmix.github.io/standard), [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html), and [Open MPI](https://www.open-mpi.org/). To use these packages, we need to tell [spack where to find them](https://spack.readthedocs.io/en/latest/build_settings.html#external-packages).
 
 ```bash
-cat <<- EOF > $SPACK_ROOT/etc/spack/packages.yaml
+cat << EOF > $SPACK_ROOT/etc/spack/packages.yaml
 packages:
     intel-mpi:
         externals:

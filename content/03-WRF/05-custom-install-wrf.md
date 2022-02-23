@@ -19,7 +19,7 @@ srun -N 1 --exclusive --pty /bin/bash -il
 2. Create the following spack environment file, specifying all the
    dependencies of WRF:
 ```bash
-cat <<- EOF > wrf_build.yaml
+cat << EOF > wrf_build.yaml
 # This is a Spack Environment file.
 #
 # It describes a set of packages to be installed, along with
