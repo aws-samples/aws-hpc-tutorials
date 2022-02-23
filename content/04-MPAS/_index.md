@@ -17,3 +17,4 @@ To do so we've broken it down into the following steps:
 1. Install MPAS with Spack
 2. Download supercell test case
 3. Run the test case
+4. Visualize results

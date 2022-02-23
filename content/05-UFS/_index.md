@@ -18,3 +18,4 @@ To do so we've broken it down into the following steps:
 1. Install UFS with Spack
 2. Download the simple test case
 3. Run the test case
+4. Visualize results
