@@ -28,7 +28,7 @@ On the next few screens, we'll modify the account specific components and leave 
 
 ![Cluster Wizard](/images/pcluster/pcmanager-2.png)
 
-4. Select a **Subnet**, ensuring the subnet is from the Availibility Zone **us-east-2b**, and **Keypair** from your account
+4. Select a **Subnet**, ensuring the subnet is from the Availibility Zone ID **use2-az2**, and select a **Keypair** from your account (optional)
 
 ![Cluster Wizard](/images/pcluster/pcmanager-3.png)
 
