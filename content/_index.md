@@ -5,9 +5,7 @@ draft: false
 ---
 # Welcome to the Numerical Weather Prediction (NWP) Workshop
 
-![Example CONUS forecast](/images/forecast.png )
-
-##### Source: [Maxar Uses AWS to Deliver Forecasts 58% Faster Than Weather Supercomputer](https://aws.amazon.com/solutions/case-studies/maxar-case-study/)
+![Example CONUS forecast](/images/surface_temperature.gif)
 
 Amazon Web Services (AWS) provides the most elastic and scalable cloud infrastructure to run your [Weather codes](https://aws.amazon.com/hpc/). With virtually unlimited capacity, engineers, researchers, HPC system adminsitrators, and organizations can innovate beyond the limitations of on-premises HPC infrastructure.
 
