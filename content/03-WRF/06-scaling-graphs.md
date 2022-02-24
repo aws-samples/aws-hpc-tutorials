@@ -12,7 +12,8 @@ When deciding on the best instance type to use for tightly coupled workloads lik
 In the previous sections we used the smaller [CONUS 12-Km model](/03-wrf/02-conus-12km.html) as a simple test-case. To test scale up beyond 8 instances you'll want to fetch the [CONUS 2.5-Km](https://www2.mmm.ucar.edu/wrf/users/benchmark/benchdata_v422.html) and follow the same steps to run it.
 {{% /notice %}}
 
-In the following charts we use two metrics, **Simulation Speed** and **Cost per Simulation**, we define those as follows: 
+In the following charts we use two metrics, **Simulation Speed** and **Cost per Simulation**, we define those as follows:
+
 * `Simulation Speed = forecast time (sec) / Compute Time (sec)`
 * `Cost Per Simulation ($) = Compute Time * EC2 On-Demand Compute Cost (us-east-2 pricing) * # instances`
 
