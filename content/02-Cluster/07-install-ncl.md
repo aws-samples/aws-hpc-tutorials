@@ -19,7 +19,7 @@ This will take less than a minute to complete.
 2. We also need to install the libraries NCL depends on
 
 ```bash
-sudo you install -y compat-gcc-48-libgfortran
+sudo yum install -y compat-gcc-48-libgfortran
 ```
 
 3. Next we need to NCARG_ROOT environment variable to the root directory of where the NCL software is installed and the `bin` directory to our `PATH `.
