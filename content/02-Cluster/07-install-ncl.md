@@ -27,13 +27,20 @@ sudo yum install -y compat-gcc-48-libgfortran
 ```bash
 cat << EOF >> $HOME/.bashrc
 export NCARG_ROOT=/shared/ncl
-export PATH=$PATH:/shared/ncl/bin
+export PATH=\$PATH:/shared/ncl/bin
 EOF
 export NCARG_ROOT=/shared/ncl
 export PATH=$PATH:/shared/ncl/bin
 ```
 
-4. To test and make sure ncl is setup correctly on the path run `ncl -h`, you should see the following output:
+4. To test and make sure ncl is setup correctly on the path run 
+
+```bash
+ncl -h
+```
+
+You should see the following output:
+
 
 ```bash
 Usage: ncl -fhnopxsPQV <args> <file.ncl>
