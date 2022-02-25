@@ -17,3 +17,4 @@ We've broken the steps down to:
 4. Install Spack package manager
 5. Inform Spack of external packages
 6. Install Intel compilers and MPI
+7. Install NCL
