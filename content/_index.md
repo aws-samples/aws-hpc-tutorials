@@ -4,24 +4,24 @@ date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
 
-# SC21 Tutorial
+# ISC22 Tutorial
 
-Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC21 that will be delivered on November 14th 2021. We are excited to virtually meet you, and look forward to answering your questions!
-The website will be maintained after SC21, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
+Welcome to the **Best Practices for HPC in the Cloud** tutorial at ISC22 that will be delivered on May 29th 2022. We are excited to virtually meet you, and look forward to answering your questions!
+The website will be maintained after ISC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
 {{% notice tip %}}
-**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/sc21cloud.**
+**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/isc22cloud.**
 {{% /notice %}}
 
 
 {{% notice warning %}}
-Sandbox were available on November 14th 2021 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc21tutorial@amazon.com so we can follow-up with you.
+Sandbox were available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
 
 ### Need help?
 
-- **Email**: you can contact us directly before, during and after the conference through this email: sc21tutorial@amazon.com
+- **Email**: you can contact us directly before, during and after the conference through this email: isc22tutorial@amazon.com
 
 ### Tutorial Content & Resources
 
@@ -35,9 +35,9 @@ Before and during the tutorial you may be interested in going through the follow
 
 #### Presentations Slides
 
-The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at sc21tutorial@amazon.com.
+The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at isc22tutorial@amazon.com.
 
-#### SC21 Hands-on Labs
+#### ISC22 Hands-on Labs
 
 Throughout the tutorial you will be going through the following labs:
 

@@ -49,7 +49,7 @@ For your `post-install.sh` script to be use by the HPC Cluster, you will need to
 
 ```bash
 BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
-BUCKET_NAME_POSTINSTALL="parallelcluster-sc21-postinstall-${BUCKET_POSTFIX}"
+BUCKET_NAME_POSTINSTALL="parallelcluster-isc22-postinstall-${BUCKET_POSTFIX}"
 
 aws s3 mb s3://${BUCKET_NAME_POSTINSTALL} --region ${AWS_REGION}
 aws s3 cp ~/environment/post_install.sh s3://${BUCKET_NAME_POSTINSTALL}/

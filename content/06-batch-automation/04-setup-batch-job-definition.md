@@ -13,7 +13,7 @@ Run the following commands on your Cloud9 terminal
 1. Copy the Cloudformation template which will be used to create the AWS Batch Job Definition.
 
 ```bash
-aws s3 cp s3://sc21-hpc-labs/sc21-nextflow-batch-jd.template.yaml .
+aws s3 cp s3://isc22-hpc-labs/isc22-nextflow-batch-jd.template.yaml .
 ```
 
 2. Set the following environment variables to be passed as parameters to the Cloudformation stack. 
@@ -23,7 +23,7 @@ aws s3 cp s3://sc21-hpc-labs/sc21-nextflow-batch-jd.template.yaml .
 	- **NFJobQueue** - The name of the AWS Batch job-queue to execute the downstream Nextflow jobs.
 
 ```bash
-REPOSITORY_NAME=sc21-container
+REPOSITORY_NAME=isc22-container
 ImageId=`aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} --output text --query 'repositories[0].[repositoryUri]' --region $AWS_REGION`
 echo "export ImageId=${ImageId}"
 
@@ -42,7 +42,7 @@ echo "export BucketNameResults=${BucketNameResults}"
 3. Deploy the Cloudformation template to create the Batch Job definition.
 
 ```bash
-aws cloudformation deploy --stack-name nextflow-batch-jd --template-file sc21-nextflow-batch-jd.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides  NFJobQueue=${NFJobQueue} BucketNameResults=${BucketNameResults} ImageId=${ImageId} ECSRoleArn=${ECSRoleArn}
+aws cloudformation deploy --stack-name nextflow-batch-jd --template-file isc22-nextflow-batch-jd.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides  NFJobQueue=${NFJobQueue} BucketNameResults=${BucketNameResults} ImageId=${ImageId} ECSRoleArn=${ECSRoleArn}
 ```
 
 4. It will take a few mins for the stack to be created. Once complete you will see a message as below: 
@@ -55,12 +55,12 @@ Successfully created/updated stack - nextflow-batch-jd
 5. Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose **Batch** 
 
 6. In the left pane, choose **Job definitions** and confirm that a Job Definition **nextflow-demo** is created. Make sure *Status* is **ACTIVE**.
-![AWS Batch](/images/aws-batch/sc21/jd-7.png)
+![AWS Batch](/images/aws-batch/isc22/jd-7.png)
 
 
 At this point, you have completed creating the Batch environment. Next, take a closer look at **compute environment**, **job queue**, and **job definition** you created.
 
 
 {{% notice info %}}
-Highly recommended to examine the contents of the downloaded Cloudformation template (**sc21-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
+Highly recommended to examine the contents of the downloaded Cloudformation template (**isc22-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
 {{% /notice %}}
