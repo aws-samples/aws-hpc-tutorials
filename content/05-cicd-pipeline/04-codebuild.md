@@ -34,10 +34,10 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
   	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
 	- In the **Value** field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
-	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/sc21-container"**. Copy without the quotes and paste in the **Value** field.
+	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/isc22-container"**. Copy without the quotes and paste in the **Value** field.
  
 ```bash
-REPO_NAME=sc21-container
+REPO_NAME=isc22-container
 aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep "/${REPO_NAME}"
  ```
 

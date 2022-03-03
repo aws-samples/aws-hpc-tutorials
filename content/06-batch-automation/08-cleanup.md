@@ -36,7 +36,7 @@ aws s3 rb s3://${BUCKET_NAME_RESULTS} --force
 
 3. Navigate to the [ECR](https://console.aws.amazon.com/ecr/repositories) service in the AWS Management Console and delete the repository you created earlier. Or, run the following CLI command on Cloud9.
 ```bash
-REPO_NAME=sc21-container
+REPO_NAME=isc22-container
 aws ecr delete-repository --repository-name $REPO_NAME --force --region $AWS_REGION
 ```
 

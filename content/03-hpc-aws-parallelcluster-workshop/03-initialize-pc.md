@@ -36,12 +36,12 @@ If you have time and are curious, you can examine the different steps of the scr
 
 Retrieve the script.
 ```bash
-curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/sc21_create_parallelcluster_config.sh
+curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/isc22_create_parallelcluster_config.sh
 ```
 
 Execute the script to retrieve network information.
 ```bash
-. ./sc21_create_parallelcluster_config.sh
+. ./isc22_create_parallelcluster_config.sh
 ```
 
 4. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost
