@@ -11,16 +11,24 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 First, on the head node - which we [connected to via SSM or DCV](02-connect-cluster.html) we'll run:
 
 ```bash
-sudo su
 export SPACK_ROOT=/shared/spack
-mkdir -p $SPACK_ROOT
 git clone -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
-cd $SPACK_ROOT
-exit
 echo "export SPACK_ROOT=/shared/spack" >> $HOME/.bashrc
 echo "source \$SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
-sudo chown -R $USER:$USER $SPACK_ROOT
+```
+
+We are going to install the weather codes from a Spack binary build cache/mirror. In order to do this we need to install a few more python packages.
+
+```
+pip3 install botocore==1.23.46 boto3==1.20.46
+```
+
+Next we add the mirror and trust the GPG keys that have signed the packages.
+
+```
+spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
+spack buildcache keys --install --trust --force
 ```
 
 Let's go ahead and verify spack is installed correctly by installing `patchelf`:

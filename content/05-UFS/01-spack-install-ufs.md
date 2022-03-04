@@ -17,7 +17,7 @@ cat > ufs-install.sh <<EOF
 #SBATCH --exclusive
 
 echo "Installing ufs on \$SLURM_CPUS_ON_NODE cores."
-spack install --reuse -j \$SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric
+spack install --cache-only --reuse -j \$SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric
 EOF
 ```
 
@@ -27,6 +27,7 @@ EOF
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
+| `--cache-only` | Only install packages from binary mirrors. |
 | `--reuse`   | [Reuse](https://spack.readthedocs.io/en/latest/basic_usage.html#reusing-installed-dependencies) installed dependencies. |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all cores on the instance.   |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/06-install-intel-compilers.html#intel_compilers). |
@@ -50,4 +51,4 @@ Monitor the install by tailing the job output file, i.e. if we submitted a job w
 tail -f slurm-7.out
 ```
 
-This will take about **52 minutes** to install. While that's installing feel free to advance to the [next step](/05-ufs/02-simple-test.html) and pull down the simple test case.
+This will take about **1 minute** to install. While that's installing feel free to advance to the [next step](/05-ufs/02-simple-test.html) and pull down the simple test case.

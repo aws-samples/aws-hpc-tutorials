@@ -4,38 +4,26 @@ weight: 27
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "NCL"]
 ---
 
-1. Next we'll download and install a pre-compiled version of the [NCAR Command Language (NCL)](https://www.ncl.ucar.edu/) from the [Earth System Grid](https://www.earthsystemgrid.org/dataset/ncl.662.dap.html). We will use NCL to visualize the output in the next few sections.
+1. Next we'll install the [NCAR Command Language (NCL)](https://www.ncl.ucar.edu/). We will use NCL to visualize the output in the next few sections.
 
 
 ```bash
-mkdir /shared/ncl && cd $_
-curl -OL https://www.earthsystemgrid.org/dataset/ncl.662.dap/file/ncl_ncarg-6.6.2-CentOS7.6_64bit_gnu485.tar.gz
-tar xf ncl_ncarg-6.6.2-CentOS7.6_64bit_gnu485.tar.gz
-rm ncl_ncarg-6.6.2-CentOS7.6_64bit_gnu485.tar.gz
+spack install --cache-only ncl^hdf5@1.8.22
 ```
 
-This will take less than a minute to complete.
 
-2. We also need to install the libraries NCL depends on
+| **Spack Flag** | **Description** |
+| ----------- | ----------- |
+| --cache-only | Only install packages from binary mirrors. |
+| ncl | Install the NCL package. |
+| ^hdf5@1.8.22 | Pin the HDF5 dependency at version 1.8.22. |
 
-```bash
-sudo yum install -y compat-gcc-48-libgfortran
-```
+This will take about 4 minutes to complete.
 
-3. Next we need to NCARG_ROOT environment variable to the root directory of where the NCL software is installed and the `bin` directory to our `PATH `.
-
-```bash
-cat << EOF >> $HOME/.bashrc
-export NCARG_ROOT=/shared/ncl
-export PATH=\$PATH:/shared/ncl/bin
-EOF
-export NCARG_ROOT=/shared/ncl
-export PATH=$PATH:/shared/ncl/bin
-```
-
-4. To test and make sure ncl is setup correctly on the path run 
+2. To test and make sure `ncl` is setup correctly.
 
 ```bash
+spack load ncl
 ncl -h
 ```
 
@@ -56,7 +44,7 @@ Usage: ncl -fhnopxsPQV <args> <file.ncl>
          -V: print NCL version and exit
 ```
 
-5. We will also set our default NCL X11 window size to be 1000x1000.
+3. We will also set our default NCL X11 window size to be 1000x1000.
 
 ```bash
 cat << EOF > $HOME/.hluresfile
