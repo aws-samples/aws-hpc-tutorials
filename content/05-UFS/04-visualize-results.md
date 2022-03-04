@@ -24,6 +24,7 @@ sed -i 's/png/x11/; s/sfcf/phyf/' plot_ufs_sfcf.ncl
 4. Create the plots of the forecast at 24 hours.
 
 ```bash
+spack load ncl
 ncl plot_ufs_sfcf.ncl 's="024"'
 ```
 

@@ -20,6 +20,7 @@ sed -i 's/pdf/x11/' supercell.ncl
    - Rain water mixing ratio (qr)
 
 ```bash
+spack load ncl
 ncl supercell.ncl
 ```
 
