@@ -12,7 +12,18 @@ Next we'll use Spack to install the [Intel Compilers (ICC)](https://www.intel.co
 spack install intel-oneapi-compilers
 ```
 
-This will take about `~4 mins` to complete. Once it's complete we can load the compiler:
+This will take about `~4 mins` to complete. Once it's complete we can see the installed package by running `spack find`:
+
+```bash
+spack find
+```
+
+![Intel compilers in Spack](/images/pcluster/intel-oneapi-compilers.png)
+
+To use a package, we load it in with `spack load`. In order for Spack to be
+able to use the compiler to build further packages, we need to inform Spack
+about them, this is done with `spack compiler find`. Finally, when we do not
+need a package we unload it.
 
 ```bash
 spack load intel-oneapi-compilers
@@ -27,6 +38,7 @@ spack compilers
 ```
 
 ![Spack Compilers](/images/pcluster/spack-compilers.png)
+
 
 ## Intel MPI {#intel_mpi}
 
