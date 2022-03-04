@@ -43,13 +43,3 @@ packages:
 EOF
 ```
 
-Alternatively we can have Spack find these [packages automatically](https://spack.readthedocs.io/en/latest/build_settings.html#automatically-find-external-packages) by running:
-
-```bash
-module load intelmpi openmpi libfabric-aws
-spack external find
-```
-
-Run `spack find` to see all the packages that are loaded in (external and internal):
-
-![Spack Find](/images/pcluster/spack-find.png)
