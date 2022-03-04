@@ -8,13 +8,14 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "NCL"]
 
 
 ```bash
-spack install --cache-only ncl^hdf5@1.8.22
+spack install --cache-only --reuse ncl^hdf5@1.8.22
 ```
 
 
 | **Spack Flag** | **Description** |
 | ----------- | ----------- |
 | --cache-only | Only install packages from binary mirrors. |
+| `--reuse`   | [Reuse](https://spack.readthedocs.io/en/latest/basic_usage.html#reusing-installed-dependencies) installed dependencies. |
 | ncl | Install the NCL package. |
 | ^hdf5@1.8.22 | Pin the HDF5 dependency at version 1.8.22. |
 
