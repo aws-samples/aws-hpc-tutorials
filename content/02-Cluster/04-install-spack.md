@@ -20,35 +20,17 @@ echo "source \$SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-Let's go ahead and verify spack is installed correctly by installing `patchelf`:
-
-```bash
-spack install patchelf
-```
-
-Once this completes we can see the installed package by running `spack find`:
-
-![Patchelf Module Avail](/images/pcluster/patchelf-spack.png)
-
-To use it, load it in with `spack load`, this is similar to `module load` except it doesn't need the full module name i.e. `patchelf-0.14.1-gcc-7.3.1-3563yeb`:
-
-```bash
-spack load patchelf
-which patchelf
-```
-
-To stop using `patchelf`, unload it with `spack unload`.
-You'll see we install all Spack packages on the `/shared` filesystem. This makes them available to all compute nodes that we later launch.
-
 ## Spack Build Cache
 
 We are going to install the weather codes from a Spack binary build cache/mirror. In order to do this we need to install a few more python packages.
+These packages are pinned due to an open [issue](https://github.com/spack/spack/issues/28830) in Spack.
 
 ```
 pip3 install botocore==1.23.46 boto3==1.20.46
 ```
 
 Next we add the mirror and trust the GPG keys that have signed the packages.
+If you want to verify the GPG keys, they are on [OpenGPG](https://keys.openpgp.org/search?q=aws-hpc-weather%40amazon.com).
 
 ```
 spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
