@@ -5,7 +5,7 @@ weight = 90
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
-Now that you have configured AWS Batch, take a look at your environment by using the following commands:
+Now that you have configured AWS Batch, you can take inspect your newly created environment by issuing each of the following commands. Note that they each return a paginated environment where you can use the arrow keys to scroll up and down and enter 'q' to quit.
 
 ```bash
 aws batch describe-compute-environments
@@ -19,5 +19,5 @@ aws batch describe-job-queues
 aws batch describe-job-definitions
 ```
 
-You will see that the *JSON* documnets provided as output for each of these commands that contain the parameters you chose when you set up the **compute environment**, **job queue**, and **job definition**. Keep in mind that the steps you completed up to this point using the AWS management Console can also be completed with the AWS CLI, AWS SDK, or AWS CloudFormation.
+You will see that the *JSON* documents returned in response to each of these commands contain the parameters that you specified when you set up the **compute environment**, **job queue**, and **job definition**. Keep in mind that the steps that you have completed up to this point using the AWS Management Console can also be accomplished using the AWS CLI, AWS SDK, or AWS CloudFormation. This output represents the definition of your AWS Batch compute infrastructure, illustrating the concept of *infrastructure as code*. 
 

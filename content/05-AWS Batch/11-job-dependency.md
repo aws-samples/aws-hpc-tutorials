@@ -5,21 +5,26 @@ weight = 110
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
-In this step you will implement a more realistic workflow scenario that employs multiple jobs, shared data, and implements job dependencies as an example of a common Leader/Follower pattern.
+In this step you will implement a more realistic workflow scenario that employs multiple jobs, shared data, and implements a job dependency as an example of a common Leader/Follower pattern.
 
 You will essentially split the work of from the previous array example into two separate jobs:
-- A **Leader** job will define the work to be carried out and write this configuration to a specified S3 bucket. This is effectively accomplished by executing the previous mktests.sh script and uploading the resulting stress-tests.txt file to the specified S3 bucket.
-- Each member task of a **Follower** array job will then read the stress-tests.txt file from the S3 bucket to determine which test to carry out based on its array index in a similar manner to your previous array job. Each Worker task will now write their output to a file in the specified S3 bucket.
+- A **Leader** job will define the work to be carried out and write this information to an Amazon S3 bucket. This is accomplished by executing the mktests.sh script (as described in the previous array axample) and uploading the resulting stress-tests.txt output file to the specified bucket.
+- Each member task of a **Follower** array job will then retrieve the stress-tests.txt file from the S3 bucket and use it as input, determining which test to carry out based on its array index in a similar manner to the previous array job. Each Follower task will also write its output to a separate file in the specified S3 bucket.
 
-You will implement a job dependency such that the Leader job runs first and the Follower array job will only start on successful completion of the Leader job.
+You will submit the two jobs and specify a dependency such that the Leader job runs first and the Follower array job will only start upon successful completion of the Leader job.
 
 
 ### Create an S3 Bucket and IAM Role 
 
-You will use a shell script and CloudFormation template to automate the creation of an S3 bucket and a specific IAM Role with limited read and write permissions to that bucket. 
+You will use [**AWS CloudFormation**](https://aws.amazon.com/cloudformation/) to automate the creation of an S3 bucket and an IAM Role with limited read and write permissions to the bucket for use by the Leader and Follower jobs. 
 
 
-1. Copy and paste the following CloudFormation template into a file named s3policy.yaml
+1. Create a new directory called **dependency** to store the configuration files for this stage of the workshop.
+```bash
+mkdir ~/environment/dependency
+cd ~/environment/dependency
+```
+2. Right click on this directory in the Cloud9 file broswer to create a new file named **s3policy.yaml** and copy and paste the following contents:
 
 ```yaml
 # Use as follow:
@@ -85,7 +90,9 @@ Resources:
               - 's3:ListBucketMultipartUploads'
               - 's3:PutObject'
             Resource:
+              - !Join [ "", [ "arn:aws:s3:::", !Ref 'Bucket' ] ]
               - !Join [ "", [ "arn:aws:s3:::", !Ref 'Bucket' , "/*" ] ]
+
       Roles:
         - !Ref 'JobExecutionRole'       
 
@@ -100,8 +107,8 @@ Outputs:
     Description: ECS Task Policy for S3 access to S3 Bucket
     Value: !Ref BucketPolicy
 ```
-
-2. Copy and paste the following command to your terminal session on your Cloud9 instance.
+3. Save the **s3policy.yaml** file.
+4. Copy, paste and execute the following command in a terminal session on your Cloud9 instance.
 ```bash
 cat > cfn-pre-requisites.sh << EOF
 #!/bin/bash
@@ -126,32 +133,30 @@ echo "Use the following S3 Bucket for your AWS Batch jobs: \${STRESS_BUCKET}"
 EOF
 chmod +x cfn-pre-requisites.sh
 ```
-3. Execute the cfn-pre-requisites.sh shell script.
+This creates a shell script named **cfn-pre-requisites.sh** which works in conjunction with the **s3policy.yaml** CloudFormation template defined above.
+
+5. Double click the newly created **cfn-pre-requisites.sh** shell script in the Cloud9 file browser to open it in an editor and inspect its contents. Note that there are three basic actions being performed by the script/CloudFormation template:
+- Creation of an S3 bucket to store batch job input and output.
+- Definition of an IAM Role for batch job execution.
+- Attaching a Policy to the IAM Role with the necessary permissions to read and write the S3 bucket.
+6. Execute the **cfn-pre-requisites.sh** shell script.
 ```bash
 ./cfn-pre-requisites.sh
 ```
-
-There are three basic steps being performed:
-- Create an S3 bucket to store batch job input and output.
-- Define an IAM Role with the necessary permissions for batch job execution.
-- Attach an additional Policy to the Role that allowing it to read and write the S3 bucket.
-
-It takes a minute or so for CloudFormation to provision your infrastructure. You can observe progress and see the details by inspecting the **BatchWorkshop** stack in [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/).
-
-The script waits until the base infrastructure is ready, and then outputs the **Job Execution Role ID** that will be used for Batch job execution and the **S3 bucket name** used to store input and output. 
+It will take a minute or so for CloudFormation to provision your infrastructure. You can observe progress by inspecting the **BatchWorkshop** stack in [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/). The script waits until the infrastructure is ready, and then outputs the **Job Execution Role ID** that will be used for Batch job execution and the **S3 bucket name** used to store input and output. 
 
 
+### Build a new container for the Leader job
 
-### Build a new container for the Master Job
 
-
-1. Create a new subdirectory called master in which we will build a new container for our master job.
+1. Create a new subdirectory called **leader** in which you will build a new container for our Leader job.
 ```bash
-mkdir ~/master
-cd ~/master
+mkdir ~/environment/dependency/leader
+cd ~/environment/dependency/leader
 ```
 
-2. Copy and paste the following into a new file named Dockerfile in the master directory.
+2. Create a new file named **Dockerfile** in the **leader** directory. 
+3. Copy and paste the following into **Dockerfile** and save the file.
 ```bash
 FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update
@@ -195,38 +200,38 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 ```
 
 Note the changes from the array Dockerfile:
-- This job will generate and run the /mktests.sh script and copy the ouptput file (/stress-tests.txt) to an S3 bucket provided by the environment variable ${STRESS_BUCKET}. This will be used by a subsequent worker array job with each task executing a different command by selecting the corresponding line from /stress-tests.txt depending on their array index variable and setting their STRESS_ARGS environment variable accordingly.
+- The AWS CLI is installed within the container to allow it to interact with Amazon S3.
+- This job will generate and run the mktests.sh script and copy this script and its output (stress-tests.txt) to the S3 bucket provided to the container via the environment variable ${STRESS_BUCKET}. This will be used by a subsequent Follower array job with each task executing a different command by selecting the corresponding line from /stress-tests.txt depending on their array index variable and setting their STRESS_ARGS environment variable accordingly.
   
 
-
-3. Create a new repository for our new master container in Amazon ECR. 
-
-```bash
-~/bin/create_repo.sh stress-ng-master
-```
-
-4. Build and push an image of your new master container.
+3. Create a new repository for the new leader container in Amazon ECR. 
 
 ```bash
-~/bin/build_container.sh stress-ng-master
+~/environment/bin/create_repo.sh stress-ng-leader
+```
+
+4. Build and push an image of the new leader container.
+
+```bash
+~/environment/bin/build_container.sh stress-ng-leader
 ```
 
 
-### Master job definition
+### Leader job definition
 
-Create a new job definition for the new Master job. Note how the job definition below uses the **Job Execution Role** and **S3 bucket** instantiated by the BatchWorkshop Cloudformation stack.
+Execute the following commands to create a job definition for the Leader job. Note how the job definition below retrieves the **Job Execution Role** and **S3 bucket** from the BatchWorkshop Cloudformation stack.
 
 ```bash
 export STACK_NAME=BatchWorkshop
 export EXECUTION_ROLE="$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `JobExecutionRole`].OutputValue')"
 export EXECUTION_ROLE_ARN=$(aws iam get-role --role-name $EXECUTION_ROLE | jq -r '.Role.Arn')
-export MASTER_REPO=$(aws ecr describe-repositories --repository-names stress-ng-master --output text --query 'repositories[0].[repositoryUri]')
-cat > stress-ng-master-job-definition.json << EOF
+export LEADER_REPO=$(aws ecr describe-repositories --repository-names stress-ng-leader --output text --query 'repositories[0].[repositoryUri]')
+cat > stress-ng-leader-job-definition.json << EOF
 {
-    "jobDefinitionName": "stress-ng-master-job-definition",
+    "jobDefinitionName": "stress-ng-leader-job-definition",
     "type": "container",
     "containerProperties": {
-        "image": "${MASTER_REPO}",
+        "image": "${LEADER_REPO}",
         "vcpus": 1,
         "memory": 1024,
         "jobRoleArn": "${EXECUTION_ROLE_ARN}",
@@ -237,21 +242,21 @@ cat > stress-ng-master-job-definition.json << EOF
     }
 }
 EOF
-aws batch register-job-definition --cli-input-json file://stress-ng-master-job-definition.json
+aws batch register-job-definition --cli-input-json file://stress-ng-leader-job-definition.json
 ```
 
-### Master job options
+### Leader job options
 
-Execute the following to create a JSON file of job options for the Master job and execute a test job using this option file.
+Execute the following commands to create a JSON file of job options for the Leader job and execute a test job using this option file.
 
 ```bash
 export STACK_NAME=BatchWorkshop
 export STRESS_BUCKET="s3://$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `Bucket`].OutputValue')"
-cat <<EOF > ./stress-ng-master-job.json
+cat <<EOF > ./stress-ng-leader-job.json
 {
-    "jobName": "stress-ng-master",
+    "jobName": "stress-ng-leader",
     "jobQueue": "stress-ng-queue",
-    "jobDefinition": "stress-ng-master-job-definition",
+    "jobDefinition": "stress-ng-leader-job-definition",
     "containerOverrides": {
         "environment": [
         {
@@ -261,25 +266,25 @@ cat <<EOF > ./stress-ng-master-job.json
     }
 }
 EOF
-aws batch submit-job --cli-input-json file://stress-ng-master-job.json
+aws batch submit-job --cli-input-json file://stress-ng-leader-job.json
 ```
 
-Track the progress of the job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/). Upon successful completion, your [**Amazon S3**](https://console.aws.amazon.com/s3/) bucket should contain the stress-tests.txt file (along with the mktests.sh script that was used to create it). This will be used as the input to the worker job array we will create next. 
+Track the progress of the job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/). Upon successful completion, your [**Amazon S3**](https://console.aws.amazon.com/s3/) bucket should contain the stress-tests.txt file (along with the mktests.sh script that was used to create it). This file will be used as the input to the Follower job array you will create next. 
 
 
 
-### Build a new container for the Worker Job
+### Build a new container for the Follower job
 
-Once you have your Master job working successfully, you can follow a similar process to set up a new Worker container which will run as an array job.
+Once you have your Leader job working successfully, you can follow a similar process to set up a new container for the Follower job.
 
 
-1. Create a new subdirectory called worker in which we will build a new container for our worker job.
+1. Create a new subdirectory called **follower** in which you will build the new container for our Follower job.
 ```bash
-mkdir ~/worker
-cd ~/worker
+mkdir ~/environment/dependency/follower
+cd ~/environment/dependency/follower
 ```
 
-2. Copy and paste the following into a new file named Dockerfile in the worker directory.
+2. Copy and paste the following into a new file named **Dockerfile** in the **follower** directory.
 
 ```bash
 FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -307,36 +312,37 @@ RUN cat /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 ```
 
-3. Create a stress-ng-worker repository.
+3. Save the **Dockerfile**.
+4. Create a **stress-ng-follower** repository.
 
 ```bash
- ~/bin/create_repo.sh stress-ng-worker
+ ~/environment/bin/create_repo.sh stress-ng-follower
 ```
 
-4. Build the container.
+4. Build the **stress-ng-follower** container.
 
 ```bash
-~/bin/build_container.sh stress-ng-worker
+~/environment/bin/build_container.sh stress-ng-follower
 ```
 
 
 
 
-### Worker job definition
+### Follower job definition
 
-Execute the following to create a job definition for the new Worker job. Note how the job definition uses the **Job Execution Role** and **S3 bucket** instantiated by the BatchWorkshop Cloudformation stack.
+Execute the following commands to create a job definition for the Follower job. Note how the job definition retrieves the **Job Execution Role** and **S3 bucket** from the BatchWorkshop Cloudformation stack.
 
 ```bash
 export STACK_NAME=BatchWorkshop
 export EXECUTION_ROLE="$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `JobExecutionRole`].OutputValue')"
 export EXECUTION_ROLE_ARN=$(aws iam get-role --role-name $EXECUTION_ROLE | jq -r '.Role.Arn')
-export WORKER_REPO=$(aws ecr describe-repositories --repository-names stress-ng-worker --output text --query 'repositories[0].[repositoryUri]')
-cat > stress-ng-worker-job-definition.json << EOF
+export FOLLOWER_REPO=$(aws ecr describe-repositories --repository-names stress-ng-follower --output text --query 'repositories[0].[repositoryUri]')
+cat > stress-ng-follower-job-definition.json << EOF
 {
-    "jobDefinitionName": "stress-ng-worker-job-definition",
+    "jobDefinitionName": "stress-ng-follower-job-definition",
     "type": "container",
     "containerProperties": {
-        "image": "${WORKER_REPO}",
+        "image": "${FOLLOWER_REPO}",
         "vcpus": 1,
         "memory": 1024,
         "jobRoleArn": "${EXECUTION_ROLE_ARN}",
@@ -347,26 +353,25 @@ cat > stress-ng-worker-job-definition.json << EOF
     }
 }
 EOF
-aws batch register-job-definition --cli-input-json file://stress-ng-worker-job-definition.json
+aws batch register-job-definition --cli-input-json file://stress-ng-follower-job-definition.json
 ```
 
 
+### Follower job options
 
-### Worker job options
-
-Execute the following to create a JSON file of job options for the Worker job and execute a test job using this option file.
+Execute the following commands to create a JSON file of job options for the Follower job and execute a test job using this option file.
 
 ```bash
 export STACK_NAME=BatchWorkshop
 export STRESS_BUCKET="s3://$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `Bucket`].OutputValue')"
-cat <<EOF > ./stress-ng-worker-job.json
+cat <<EOF > ./stress-ng-follower-job.json
 {
-    "jobName": "stress-ng-worker",
+    "jobName": "stress-ng-follower",
     "jobQueue": "stress-ng-queue",
     "arrayProperties": {
         "size": 2
     },
-    "jobDefinition": "stress-ng-worker-job-definition",
+    "jobDefinition": "stress-ng-follower-job-definition",
     "containerOverrides": {
         "environment": [
         {
@@ -376,15 +381,15 @@ cat <<EOF > ./stress-ng-worker-job.json
     }
 }
 EOF
-aws batch submit-job --cli-input-json file://stress-ng-worker-job.json --array-properties size=7
+aws batch submit-job --cli-input-json file://stress-ng-follower-job.json --array-properties size=7
 ```
 
-Note the parameter in the job definition for **"arraysize"** which is used to set the job array size. It has a default of 2 (it needs to be > 1 for any array job) but you override this default by specifying a parameter on the command line.
+Note the parameter in the job definition for **"arraysize"** which is used to set the job array size. It is set to a value of 2 (it needs to be > 1 for any array job) but you can also override this value by specifying this parameter on the command line.
 
-At this stage you can run and test the Worker job since you have already successfully executed the Master job which has written the required input for the Worker job. You can track the progress of the Worker job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/). Upon successful completion, your [**Amazon S3**](https://console.aws.amazon.com/s3/) bucket should contain the output files for each member task in the array. 
+At this stage you can run and test the Follower job since you have already successfully executed the Leader job which wrote the required input file. You can track the progress of the Follower job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/). Upon successful completion, your [**Amazon S3**](https://console.aws.amazon.com/s3/) bucket should contain the output files for each member task in the array job. 
 
 
-### Submit Master and Worker jobs with dependency
+### Submit Leader and Follower jobs with a dependency
 
 1. Empty your S3 bucket by executing the following commands.
    
@@ -392,30 +397,30 @@ At this stage you can run and test the Worker job since you have already success
 export STRESS_BUCKET="s3://$(aws cloudformation describe-stacks --stack-name $STACK_NAME --output text --query 'Stacks[0].Outputs[?OutputKey == `Bucket`].OutputValue')"
 aws s3 rm ${STRESS_BUCKET} --recursive
 ```
-2. Execute the following commands to submit a Master job and Worker array job with a dependency on the Master.
+2. Execute the following commands to submit a Leader job and a Follower array job with a dependency on the successful completion of the Leader.
 
 ```bash
-### Submit the Master job and determine its jobID.
-cd ~
-export MASTER_JOB=$(aws batch submit-job --cli-input-json file://master/stress-ng-master-job.json)
-echo "${MASTER_JOB}"
-export MASTER_JOB_ID=$(echo ${MASTER_JOB} | jq -r '.jobId')
-echo "${MASTER_JOB_ID}"
-### Submit the Worker array job with a dependency on the Master jobID.
-export WORKER_JOB=$(aws batch submit-job --cli-input-json file://worker/stress-ng-worker-job.json --depends-on jobId="${MASTER_JOB_ID}",type="N_TO_N" --array-properties size=12)
-export WORKER_JOB_ID=$(echo ${WORKER_JOB} | jq -r '.jobId')
-echo "${WORKER_JOB_ID}"
+### Submit the Leader job and determine its jobID.
+cd ~/environment/dependency
+export LEADER_JOB=$(aws batch submit-job --cli-input-json file://leader/stress-ng-leader-job.json)
+echo "${LEADER_JOB}"
+export LEADER_JOB_ID=$(echo ${LEADER_JOB} | jq -r '.jobId')
+echo "${LEADER_JOB_ID}"
+### Submit the Follower array job with a dependency on the Leader jobID.
+export FOLLOWER_JOB=$(aws batch submit-job --cli-input-json file://follower/stress-ng-follower-job.json --depends-on jobId="${LEADER_JOB_ID}",type="N_TO_N" --array-properties size=12)
+export FOLLOWER_JOB_ID=$(echo ${FOLLOWER_JOB} | jq -r '.jobId')
+echo "${FOLLOWER_JOB_ID}"
 ```
 
-2. Check the description of the Worker job by substituting the jobId from the last line of output above into the following command in place of YOUR-JOB-ID.
+1. Check the description of the Follower job by executing the following command.
 
 ```bash
-aws batch describe-jobs --jobs ${WORKER_JOB_ID}
+aws batch describe-jobs --jobs ${FOLLOWER_JOB_ID}
 ```
 
-You will see the dependency on the master job. You can also view this dependency by navigating to a member task of the Worker job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/).
+You will see the dependency on the Leader job in the returned job description. You can also view this dependency by navigating to a member task of the Follower job in the [**AWS Batch dashboard**](https://console.aws.amazon.com/batch/).
 
-Your Master job should complete successfully and followed by the Worker job array and eventually the output from the 12 tasks of the job array will appear in the S3 bucket.
+Your Leader job should complete successfully followed by the Follower job array and eventually the output from the 12 tasks of the job array will appear in the S3 bucket.
 
 The AWS Batch User Guide provides more information and examples of array jobs and job dependencies.
 https://docs.aws.amazon.com/batch/latest/userguide/example_array_job.html
