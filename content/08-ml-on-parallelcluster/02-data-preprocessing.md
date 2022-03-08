@@ -46,7 +46,7 @@ srun --exclusive -n 1 preprocess.sh
 
 The `srun` command requests allocation for one task, `-n 1`, and runs the job in a node with no other jobs running, `--exclusive`. For more information and options to control jobs in **SLURM**, check the [`srun` documentation](https://slurm.schedmd.com/srun.html). You will see the output of the preprocessing script in your terminal.
 
-With 48 workers, the preprocessing completes in approximately 2 minutes, after initialization of the compute instance. As the cluster starts with _ZERO_ compute nodes, it will take around 7 minutes to start one. If AWS ParallelCluster is unable to provision new Spot instances, then a request for new instances is periodically repeated. More information about working with Spot instances in ParallelCluster can be found [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/spot.html).
+With 48 workers, the preprocessing completes in approximately 2 minutes, after initialization of the compute instance. As the cluster starts with _ZERO_ compute nodes, it will take around 7 minutes to start one. If AWS ParallelCluster is unable to provision new Spot instances, then a request for new instances is periodically repeated.
 
 Once the job completes, you see a screen output similar to the following:
 

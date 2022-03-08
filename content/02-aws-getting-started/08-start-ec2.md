@@ -1,26 +1,10 @@
 +++
-title = "f. Create an EC2 Instance"
+title = "g. Create an EC2 Instance"
 weight = 100
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "s3"]
 +++
 
-In this section, you create an SSH key-pair on your AWS Cloud9 instance, create an Amazon EC2 instance, then access it.
-
-#### Generate an SSH Key-pair
-
-SSH is [commonly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) used to connect to Amazon EC2 instances. To allow you to connect to your instances, you can generate a key-pair using the AWS CLI in your AWS Cloud9 instance. This example uses the key name **lab-2-your-key** but you can change the name of your key.
-Enter the following command to generate a key pair:
-
-```bash
-aws ec2 create-key-pair --key-name lab-2-your-key --query KeyMaterial --output text > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-```
-
-Optionally, use the following command to check if your key is registered:
-
-```bash
-aws ec2 describe-key-pairs
-```
+In this section, you use the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) on your AWS Cloud9 instance, create an Amazon EC2 instance, then access it.
 
 #### Create a New Amazon EC2 Instance
 
@@ -50,7 +34,7 @@ EOF
 10. Choose **Next: Configure Security Groups**.
 11. Select the **Create a new security group** check box, and if desired, change the **Security Group** name. The type should be **ssh**, protocol **TCP**, port range **22** and the source **0.0.0.0/0**.
 12. Choose **Review and Launch**. Ignore any warnings messages.
-13. On the review page, choose **Launch**, then select the **lab-2-your-key** key-pair you created earlier.
+13. On the review page, choose **Launch**, then select the **lab-your-key** key-pair you created earlier.
 ![EC2 Tags](/images/introductory-steps/ec2-key.png)
 
 Your instance is being launched! To check the status, view the **Instances** section of the **EC2 Dashboard**.

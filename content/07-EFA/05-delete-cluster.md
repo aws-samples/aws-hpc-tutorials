@@ -23,7 +23,7 @@ And then, from a terminal running on your Cloud9 Instance, run the following com
 
 
 ```bash
-pcluster delete my-efa-cluster
+pcluster delete-cluster --cluster-name efa-cluster
 ```
 
-The cluster and all its resources will be deleted by [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html). You can check the status as command line output or in the [CloudFormation Dashboard](https://console.aws.amazon.com).
+The cluster and all its resources will be deleted by [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html). You can check the status as command line output or in the [CloudFormation Dashboard](https://console.aws.amazon.com/cloudformation).

@@ -7,18 +7,18 @@ tags = ["tutorial", "NICE DCV", "ParallelCluster", "Remote Desktop"]
 +++
 
 {{% notice tip %}}
-The `pcluster dcv connect` command interacts with the NICE DCV server running on the master instance. When you run this command to connect to your DCV cluster, you will get a browser URL which expires 30 seconds after it is issued. If the connection is not made before the URL expires, run `pcluster dcv connect` again to generate a new URL
+The `pcluster dcv-connect` command interacts with the NICE DCV server running on the master instance. When you run this command to connect to your DCV cluster, you will get a browser URL which expires 30 seconds after it is issued. If the connection is not made before the URL expires, run `pcluster dcv-connect` again to generate a new URL
 {{% /notice %}}
 
 To connect to your NICE DCV session, simply run the following command in your AWS Cloud9 Terminal: 
 
-`pcluster dcv connect [cluster] -k [keyname]`
+`pcluster dcv-connect -n [cluster] --key-path [keyname]`
 
 where [cluster] specifies the name of your cluster and [keyname] specifies the location of your private key. 
 
 
 ```bash
-pcluster dcv connect my-dcv-cluster -k ~/.ssh/lab-dcv-key
+pcluster dcv-connect -n my-dcv-cluster --key-path ${AWS_KEYPAIR}.pem
 ```
 You will get a browser URL to connect to the NICE DCV session running on the master instance, copy and paste the URL in your browser
 
@@ -43,7 +43,7 @@ If you have the application, run it. You should see this:
 If the application is not available, go back to your Cloud9 environment and paste the following command in your terminal to connect to the master of your cluster:
 
 ```bash
-pcluster ssh my-dcv-cluster -i ~/.ssh/lab-dcv-key
+pcluster ssh --cluster-name my-dcv-cluster -i ${AWS_KEYPAIR}.pem
 ```
 
 You can now paste the following commands:
@@ -75,6 +75,6 @@ You are now able to launch the DCV Test GL application as explained earlier.
 
 {{% notice tip %}}
 NICE DCV Licensing: The NICE DCV server does not require a license server when running on Amazon EC2 instances. However, the NICE DCV server must periodically connect to an Amazon S3 bucket to determine whether a valid license is available.
-AWS ParallelCluster automatically adds the required permissions to the [ParallelClusterInstancePolicy](https://docs.aws.amazon.com/parallelcluster/latest/ug/iam.html#parallelclusterinstancepolicy), so the user does not need to do anything.
+AWS ParallelCluster automatically adds the [required permissions](https://docs.aws.amazon.com/parallelcluster/latest/ug/iam-roles-in-parallelcluster-v3.html) to the instance, so the user does not need to do anything.
 {{% /notice %}}
 
