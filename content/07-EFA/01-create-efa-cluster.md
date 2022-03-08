@@ -16,12 +16,11 @@ In particular, you need to follow the instructions to install AWS ParallelCluste
 
 This section assumes that you are familiar with AWS ParallelCluster and the process of bootstrapping a cluster.
 
-Generate a new key-pair and new default AWS ParallelCluster configuration.
+Let us reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) created earlier.
 
 ```bash
-# generate a new keypair, remove those lines if you want to use the previous one
-aws ec2 create-key-pair --key-name lab-EFA-your-key --query KeyMaterial --output text > ~/.ssh/lab-EFA-your-key
-chmod 600 ~/.ssh/lab-EFA-your-key
+echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 The cluster configuration that you generate for EFA includes the following:
@@ -32,7 +31,7 @@ The cluster configuration that you generate for EFA includes the following:
 - The selected job scheduler for this example is [SLURM](https://slurm.schedmd.com/overview.html)
 
 {{% notice tip %}}
-For more details about the configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) and the [EFA parameters section](https://docs.aws.amazon.com/parallelcluster/latest/ug/efa.html) of the AWS ParallelCluster User Guide.
+For more details about the configuration options, see the [AWS ParallelCluster User Guide](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) and the [EFA parameters section](https://docs.aws.amazon.com/parallelcluster/latest/ug/Scheduling-v3.html#yaml-Scheduling-SlurmQueues-ComputeResources-Efa) of the AWS ParallelCluster User Guide.
 {{% /notice %}}
 
 ```bash
@@ -42,52 +41,49 @@ SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interf
 VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
 AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
 REGION=${AZ::-1}
+```
 
+```yaml
+cat > efa-config.yaml << EOF
+Region: ${REGION}
+Image:
+  Os: alinux2
+SharedStorage:
+  - MountDir: /shared
+    Name: default-ebs
+    StorageType: Ebs
 
-mkdir -p ~/.parallelcluster
-cat > my-efa-cluster.ini << EOF
-[aws]
-aws_region_name = ${REGION}
+HeadNode:
+  InstanceType: c5n.large
+  Networking:
+    SubnetId: ${SUBNET_ID}
+  Ssh:
+    KeyName: ${AWS_KEYPAIR}
 
-[global]
-cluster_template = default
-update_check = false
-sanity_check = true
-
-[cluster default]
-key_name = lab-EFA-your-key
-vpc_settings = public
-ebs_settings = myebs
-compute_instance_type = c5n.18xlarge
-master_instance_type = c5.2xlarge
-cluster_type = ondemand
-placement_group = DYNAMIC
-placement = compute
-max_queue_size = 4
-initial_queue_size = 0
-disable_hyperthreading = true
-scheduler = slurm
-enable_efa = compute
-base_os = alinux2
-
-[vpc public]
-vpc_id = ${VPC_ID}
-master_subnet_id = ${SUBNET_ID}
-
-[ebs myebs]
-shared_dir = /shared
-volume_type = gp2
-volume_size = 20
-
-[aliases]
-ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: c5n18xlarge
+          InstanceType: c5n.18xlarge
+          MinCount: 0
+          MaxCount: 8
+          DisableSimultaneousMultithreading: true
+	  Efa:
+	    Enabled: true
+      Networking:
+        SubnetIds:
+          - ${SUBNET_ID}
+        PlacementGroup:
+          Enabled: true
 EOF
 ```
 
 If you want to check the content of your configuration file, use the following command:
 
 ```bash
-cat my-efa-cluster.ini
+cat efa-config.yaml
 ```
 
 
@@ -95,22 +91,18 @@ Now, you are ready to create your HPC cluster.
 
 #### Generate a Cluster for with EFA enabled
 
-Create the cluster using the following command. This process would take about 5 minutes.
+Create the cluster using the following command. This process would take a few minutes.
 
 ```bash
-pcluster create my-efa-cluster -c my-efa-cluster.ini
+pcluster create-cluster --cluster-name efa-cluster -c efa-config.yaml
 ```
-
-and the output would be something like this
-
-![pcluster_create_output](/images/efa/pc_create.png)
 
 #### Connect to Your Cluster
 
 Once created, connect to your cluster.
 
 ```bash
-pcluster ssh my-efa-cluster -i ~/.ssh/lab-EFA-your-key
+pcluster ssh --cluster-name efa-cluster -i ${AWS_KEYPAIR}.pem
 ```
 
 Next, take a deeper look at the EFA device.

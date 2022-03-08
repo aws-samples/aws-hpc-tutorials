@@ -19,3 +19,10 @@ In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/
 - Create your first cluster.
 - Submit a sample job and check what is happening in the background.
 - Delete the cluster.
+
+---
+AWS ParallelCluster Architecture
+---
+The architecture, comprising of various AWS services, for deploying a HPC cluster in the cloud is represented in the figure below:
+
+![pc_arch](/images/hpc-aws-parallelcluster-workshop/pc-architecture.png)

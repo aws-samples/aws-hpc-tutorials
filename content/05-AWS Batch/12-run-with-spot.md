@@ -1,5 +1,5 @@
 +++
-title = "l. Optimize Cost with EC2 Spot"
+title = "m. Optimize Cost with EC2 Spot"
 date = 2019-09-18T10:46:30-04:00
 weight = 120
 tags = ["tutorial", "install", "AWS", "batch", "packer"]

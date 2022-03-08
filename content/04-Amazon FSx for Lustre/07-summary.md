@@ -11,7 +11,7 @@ In this workshop, you learned how to create an Amazon FSx for Lustre partition w
 Before moving to the next workshop, make sure to delete your cluster using the following command:
 
 ```bash
-pcluster delete my-fsx-cluster
+pcluster delete-cluster --cluster-name my-fsx-cluster
 ```
 
 {{% notice info %}}

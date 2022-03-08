@@ -1,5 +1,5 @@
 +++
-title = "g. Create an IAM Role"
+title = "h. Create an IAM Role"
 weight = 110
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 +++
@@ -9,7 +9,7 @@ tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 {{% /notice %}}
 
 {{% notice info %}}
-Access to resources by users and services is controlled by [Identity and Access Management](https://aws.amazon.com/iam/) (IAM). For example, IAM permissions can be added to a policy then a role which can be attached to a user user, group role (admins, devops) or a service (Amazon EC2 to access Amazon S3, Amazon Lambda to access Amazon SQS). For an in depth introduction, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html).
+Access to resources by users and services is controlled by [Identity and Access Management](https://aws.amazon.com/iam/) (IAM). For example, IAM permissions can be added to a policy then a role which can be attached to a user, user group role (admins, devops) or a service (Amazon EC2 to access Amazon S3, Amazon Lambda to access Amazon SQS). For an in depth introduction, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html).
 {{% /notice %}}
 
 Now that you have created an EC2 instance and logged into the instance using SSH, you can use the instance to access the Amazon S3 bucket created previously.

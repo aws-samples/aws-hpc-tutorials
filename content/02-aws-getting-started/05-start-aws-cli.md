@@ -60,4 +60,4 @@ aws ec2 describe-instances
 aws ec2 describe-key-pairs
 ```
 
-Next, you use the AWS CLI to interact with Amazon S3.
+Next, you use the AWS CLI to create a key-pair, launch EC2 instance, and interact with Amazon S3.
