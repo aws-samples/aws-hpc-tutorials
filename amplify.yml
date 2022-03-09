@@ -3,10 +3,10 @@ frontend:
   phases:
     build:
       commands:
-        - wget https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.tar.gz
-        - tar -xf hugo_0.88.1_Linux-64bit.tar.gz hugo
+        - wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.92.2/hugo_0.92.2_Linux-64bit.tar.gz
+        - tar -xf hugo.tar.gz hugo
         - mv hugo /usr/bin/hugo
-        - rm -rf hugo_0.88.1_Linux-64bit.tar.gz
+        - rm -rf hugo.tar.gz
         - hugo
   artifacts:
     baseDirectory: public
