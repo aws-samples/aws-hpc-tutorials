@@ -2,7 +2,7 @@
 title: "Simulations with AWS Batch"
 date: 2019-01-24T09:05:54Z
 weight: 300
-pre: "<b>V ⁃ </b>"
+pre: "<b>VI ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
 

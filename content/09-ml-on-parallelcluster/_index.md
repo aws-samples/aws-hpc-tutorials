@@ -2,7 +2,7 @@
 title: "Distributed Machine Learning"
 date: 2020-09-04T15:58:58Z
 weight: 600
-pre: "<b>VIII ⁃ </b>"
+pre: "<b>IX ⁃ </b>"
 tags: ["Machine Learning", "ML", "ParallelCluster", "EFA", "FSx", "Slurm"]
 ---
 
