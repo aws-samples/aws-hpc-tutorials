@@ -1,54 +1,52 @@
 +++
-title = "d. Upload to Amazon ECR"
+title = "d. Build and upload your Container"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 +++
 
-In this step, you will create a private container repository in [Amazon Elastic Container Registry (Amazon ECR)](https://aws.amazon.com/ecr/) and upload your newly created container image for use with AWS Batch. The AWS Management Console is used for these steps, however later in the workshop you will use AWS CLI commands to accomplish these tasks.
+stress-ng is used to simulate the behavior of a computational process for a duration of 10 minutes. You will create the image and upload it to Amazon ECR using Docker on your workstation or an Amazon EC2 instance with Docker; a t2.micro instance is sufficient for this. Install docker by following this guide and ensure that the pre-requisites shown on this page are fulfilled. Your instance needs to have the policy AmazonEC2ContainerRegistryPowerUser attached to its IAM role.
 
-### Create an Amazon ECR Repository
-1. Navigate to [Amazon ECR](https://console.aws.amazon.com/ecr/home).
-2. Click on the **Create repository** button in the top right.
-![AWS Batch](/images/aws-batch/create-repo-1.png)
-3. Name the new repository **stress-ng**. 
-![AWS Batch](/images/aws-batch/create-repo-2.png)
-4. Leave all the other options as the default and click the **Create repository** button at the bottom right.
+Follow these steps to build the container image and upload it to Amazon ECR:
+
+1. Create a new file called Dockerfile in your current working directory, open it, write the content below and save the file:
 
 
-### Upload your Container to the Repository
+```bash
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
+RUN amazon-linux-extras install epel -y && yum install stress-ng -y
+CMD /usr/bin/stress-ng
+```
 
-1. Select your new repository and click on the **View push commands** button.
-![AWS Batch](/images/aws-batch/create-repo-3.png)
+2. If you are using an Amazon EC2 instance, run the commands below to build and push the container image to the Amazon ECR repository created when deploying the Batch CloudFormation stack. If running on your own workstation, ensure that the account ID and region are properly set for the environment variables AWS_ACCOUNT_ID and AWS_REGION. If further guidance is needed, follow this guide.
 
-You should see a set of four commands similar to the following.
-![AWS Batch](/images/aws-batch/create-repo-4.png)
 
-2. Cut and paste each of the commands for your repository (similar to those shown above) into a teminal on your Cloud9 instance and execute them. 
-{{% notice info %}}
-   You can safely skip the second command as you have previously built your container image.
-{{% /notice %}}
+```bash
+#!/bin/bash
 
-   The commands have the the following effects:
+# set environment variables
+AWS_ACCOUNT_ID=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep accountId| awk '{print $3}'|sed  's/"//g'|sed 's/,//g'` # or replace by your account ID
+AWS_REGION=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep region| awk '{print $3}'|sed  's/"//g'|sed 's/,//g'` # or replace by your region ID
+ECR_URL=`aws cloudformation describe-stacks --stack-name BatchStack --query "Stacks[0].Outputs[?OutputKey=='ECRRepositoryUrl'].OutputValue" --output text --region ${AWS_REGION}`
 
-- The first command obtains your credentials and logs into the repository.
+# Authenticate with ECR
+aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
-- The second command builds and tags the container image from the definition contained in the Dockerfile in the current directory.
+# Build the image
+docker build -t stress-ng .
 
-- The third command tags the image in the reposiory.
+# Tag the image
+docker tag stress-ng:latest ${ECR_URL}:latest
 
-- The fourth command "pushes" (uploads) the image to the repository.
+# Push your image to your ECR repository
+docker push ${ECR_URL}:latest
+```
 
-3. After successfully executing these commands, if you click on your repository you will see the image stress-ng:latest image that you just pushed.
-![AWS Batch](/images/aws-batch/create-repo-5.png)
+By now, you should have
 
-4. Click on the icon next to "Copy URI" to copy the URI of your container image. 
-. 
-{{% notice info %}}
-This **Image URI** will be used when you create a Batch Job definition in the next stage of this workshop.
-{{% /notice %}}
+1. Deployed your network environment
+2. Deployed your AWS Batch environment
+3. created the container image that will be used to run your batch jobs.
 
-If you click on the **latest** image tag you will reveal the details of your image including its URI.
-![AWS Batch](/images/aws-batch/create-repo-6.png)
-
+You will now run a test workload in batch to evaluate its behavior.
 
