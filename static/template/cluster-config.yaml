@@ -10,6 +10,7 @@ HeadNode:
   Iam:
     AdditionalIamPolicies:
       - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
   Dcv:
     Enabled: true
 Scheduling:
@@ -28,6 +29,9 @@ Scheduling:
           - subnet-1234567
         PlacementGroup:
           Enabled: true
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 Region: us-east-2
 Image:
   Os: alinux2
