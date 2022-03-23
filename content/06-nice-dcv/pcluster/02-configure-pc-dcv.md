@@ -32,12 +32,8 @@ For more details about the NICE DCV configuration options in AWS ParallelCLuster
 {{% /notice %}}
 
 We'll reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) created earlier.
-```bash
-echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
-source ~/.bashrc
-```
 
-Then we'll create a config file (dcv-config.yaml). Paste the following commands in your terminal.
+Then we'll create a config file (`dcv-config.yaml`). Paste the following commands in your terminal.
 
 ```bash
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
@@ -62,7 +58,7 @@ HeadNode:
   Networking:
     SubnetId: ${SUBNET_ID}
   Ssh:
-    KeyName: {AWS_KEYPAIR}
+    KeyName: ${AWS_KEYPAIR}
   Dcv:
     Emabled: true
 

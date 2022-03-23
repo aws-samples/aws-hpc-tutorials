@@ -16,6 +16,13 @@ aws ec2 create-key-pair --key-name lab-your-key --query KeyMaterial --output tex
 chmod 600 lab-your-key.pem
 ```
 
+Next add it to the `~/.bashrc` file, this allows us to reference it later:
+
+```bash
+echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
+source ~/.bashrc
+```
+
 Optionally, use the following command to check if your key is registered:
 
 ```bash

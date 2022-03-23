@@ -19,11 +19,6 @@ This section assumes that you are familiar with AWS ParallelCluster and the proc
 
 Let us reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) created earlier.
 
-```bash
-echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
-source ~/.bashrc
-```
-
 The cluster configuration that you generate for training large scale ML models includes constructs from EFA and FSx that you can explore in the previous sections of this workshop. The main additions to the cluster configuration script are:
 
 - Set the compute nodes as [p3dn.24xlarge instances](https://aws.amazon.com/ec2/instance-types/). The p3dn.24xlarge is one of the [EFA supported instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types) with multiple GPUs.
@@ -57,6 +52,7 @@ export VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/in
 export AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
 export REGION=${AZ::-1}
 ```
+
 ```yaml
 cat > ml-config.yaml << EOF
 Region: ${REGION}
