@@ -67,9 +67,6 @@ If you are using a different terminal than above, make sure that the Amazon S3 b
 Paste the following commands into your terminal to reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) created earlier:
 
 ```bash
-echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
-source ~/.bashrc
-
 # create the cluster configuration
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
@@ -77,7 +74,8 @@ VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interface
 AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
 REGION=${AZ::-1}
 ```
-``` yaml
+
+```yaml
 cat > fsx-config.yaml << EOF
 Region: ${REGION}
 Image:

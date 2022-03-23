@@ -18,11 +18,6 @@ This section assumes that you are familiar with AWS ParallelCluster and the proc
 
 Let us reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.html) created earlier.
 
-```bash
-echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
-source ~/.bashrc
-```
-
 The cluster configuration that you generate for EFA includes the following:
 
 - Set the compute nodes in a [Cluster Placement Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster) to maximize the bandwidth and reduce the latency between instances.
