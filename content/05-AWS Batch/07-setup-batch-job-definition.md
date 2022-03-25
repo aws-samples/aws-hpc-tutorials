@@ -9,12 +9,13 @@ In this step, you will set up a template for your jobs, known as a **Job Definit
 
 1. In the **AWS Batch Dashboard**, choose **Job definitions** from the left pane, then **Create**.
 ![AWS Batch](/images/aws-batch/create-job-def-0.png)
-2. Type **stress-ng-job-definition** as the **Job definition name**.
-3. Select **EC2** as the platform.
-4. For **Job attempts**, type **3**. This option specifies the number of attempts before declaring a job as failed.
-5. For **Execution timeout**, type **180**. This option specifies the total time the job is expected to run plus some buffer. If the job continues to run after this time you would consider it to have failed.
+2. Select the Single-node option
+3. Type **stress-ng-job-definition** as the **Job definition name**.
+4. Select **EC2** as the platform.
+5. For **Job attempts**, type **3**. This option specifies the number of attempts before declaring a job as failed.
+6. For **Execution timeout**, type **180**. This option specifies the total time the job is expected to run plus some buffer. If the job continues to run after this time you would consider it to have failed.
 ![AWS Batch](/images/aws-batch/create-job-def-1.png)
-6. For **Container properties**, enter the **repositoryUri** generated when you created the **stress-ng** ECR repository. If you do not know the URI, you can use the following command in your terminal to get it.
+7. For **Container properties**, enter the **repositoryUri** generated when you created the **stress-ng** ECR repository. If you do not know the URI, you can use the following command in your terminal to get it.
 ```bash
 aws ecr describe-repositories --repository-names stress-ng --output text --query 'repositories[0].[repositoryUri]'
 ```
