@@ -143,7 +143,7 @@ This cluster generates additional resources for Amazon FSx for Lustre which will
 Once created, connect to your cluster.
 
 ```bash
-pcluster ssh ---cluster-name my-fsx-cluster -i ${AWS_KEYPAIR}.pem
+pcluster ssh --cluster-name my-fsx-cluster -i ${AWS_KEYPAIR}.pem
 ```
 
 Next, take a deeper look at the Lustre file system.
