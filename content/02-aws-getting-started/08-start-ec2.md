@@ -58,7 +58,7 @@ Make sure to select the IP address of the instance you want to connect to and no
 ```bash
 # don't forget to use your OWN ip address
 # keep the username to ec2-user as is, don't use your name!
-ssh ec2-user@10.0.1.6
+ssh -i lab-your-key.pem ec2-user@10.0.1.6
 ```
 3. Ping the internet to test the outbound connectivity.
 ```bash
