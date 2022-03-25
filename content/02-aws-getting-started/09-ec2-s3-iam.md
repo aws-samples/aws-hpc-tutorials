@@ -49,7 +49,10 @@ Select the **Permissions** tab and expand the **AmazonS3FullAccess** policy. The
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "s3:*",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
             "Resource": "*"
         }
     ]
