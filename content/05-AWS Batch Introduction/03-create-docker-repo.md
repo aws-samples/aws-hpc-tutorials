@@ -5,7 +5,7 @@ weight = 40
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 +++
 
-stress-ng is used to simulate the behavior of a computational process for a duration of 10 minutes. You will create the image and upload it to Amazon ECR using Docker on your workstation or an Amazon EC2 instance with Docker; a t2.micro instance is sufficient for this. Install docker by following this guide and ensure that the pre-requisites shown on this page are fulfilled. Your instance needs to have the policy AmazonEC2ContainerRegistryPowerUser attached to its IAM role.
+[stress-ng](https://kernel.ubuntu.com/~cking/stress-ng/) is used to simulate the behavior of a computational process for a duration of 10 minutes. You will create the image and upload it to Amazon ECR using Docker on your workstation or an Amazon EC2 instance with Docker; a *t2.micro* instance is sufficient for this. Install docker by following [this guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker) and ensure that the pre-requisites shown on [this page](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#use-ecr) are fulfilled. Your instance needs to have the policy `AmazonEC2ContainerRegistryPowerUser` attached to its [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
 
 Follow these steps to build the container image and upload it to Amazon ECR:
 
@@ -18,7 +18,7 @@ RUN amazon-linux-extras install epel -y && yum install stress-ng -y
 CMD /usr/bin/stress-ng
 ```
 
-2. If you are using an Amazon EC2 instance, run the commands below to build and push the container image to the Amazon ECR repository created when deploying the Batch CloudFormation stack. If running on your own workstation, ensure that the account ID and region are properly set for the environment variables AWS_ACCOUNT_ID and AWS_REGION. If further guidance is needed, follow this guide.
+2. If you are using an Amazon EC2 instance, run the commands below to build and push the container image to the Amazon ECR repository created when deploying the Batch CloudFormation stack. If running on your own workstation, ensure that the account ID and region are properly set for the environment variables `AWS_ACCOUNT_ID` and `AWS_REGION`. If further guidance is needed, follow this [guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#use-ecr).
 
 
 ```bash
