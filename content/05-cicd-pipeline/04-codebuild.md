@@ -11,7 +11,7 @@ AWS CodeBuild is a fully managed continuous integration service that compiles so
 
 With CodeBuild, you don’t need to provision, manage, and scale your own build servers
 
-1. In the AWS Management Console search bar, type and select **CodeBuild**  Or click on [CodeBuild](https://console.aws.amazon.com/codesuite/codebuild/projects)
+1. In the AWS Management Console search bar, type and select **CodeBuild**. Double check that you are using CodeBuild in the same AWS Region that you have used in the previous steps.
 
 2. Click on **Create build project**.
 
@@ -30,7 +30,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 
 ![AWS CodeBuild](/images/cicd/code-build-3.png)
 
-7. In the **Environment** section, expand the **Additional configuration** section. Keep all settings as default except the following:
+7. Expand the **Additional configuration** section and, in the **Environment** section, keep all settings as default except the following:
   	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
 	- In the **Value** field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
