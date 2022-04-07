@@ -1,5 +1,5 @@
 HeadNode:
-  InstanceType: c5.xlarge
+  InstanceType: c5a.2xlarge
   Ssh:
     KeyName: your-key
   Networking:
