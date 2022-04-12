@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud9 on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/cloud9.html</link>
+    <description>Recent content in cloud9 on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.hpcworkshops.com/tags/cloud9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>b. Create a Cloud9 Environment</title>
+      <link>https://www.hpcworkshops.com/07-aws-getting-started/04-start_cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/07-aws-getting-started/04-start_cloud9.html</guid>
+      <description>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.
+AWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser.</description>
+    </item>
+    
+    <item>
+      <title>b. Open a Cloud9 Environment</title>
+      <link>https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html</guid>
+      <description>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.
+AWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser.</description>
+    </item>
+    
+    <item>
+      <title>c. Work with the AWS CLI</title>
+      <link>https://www.hpcworkshops.com/02-aws-getting-started/05-start-aws-cli.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/02-aws-getting-started/05-start-aws-cli.html</guid>
+      <description>Your AWS Cloud9 Environment should be ready. Now, you can become familiar with the environment, learn about the AWS CLI, and then create an Amazon S3 bucket with the AWS CLI. This S3 bucket is used in the next module.
+AWS Cloud9 IDE Layout The AWS Cloud9 IDE is similar to a traditional IDE you can find on virtually any system. It comprises the following components:
+ file browser, listing the files located on your instances.</description>
+    </item>
+    
+    <item>
+      <title>c. Work with the AWS CLI</title>
+      <link>https://www.hpcworkshops.com/07-aws-getting-started/05-start-aws-cli.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/07-aws-getting-started/05-start-aws-cli.html</guid>
+      <description>Your AWS Cloud9 Environment should be ready. Now, you can become familiar with the environment, learn about the AWS CLI, and then create an Amazon S3 bucket with the AWS CLI. This S3 bucket is used in the next module.
+AWS Cloud9 IDE Layout The AWS Cloud9 IDE is similar to a traditional IDE you can find on virtually any system. It comprises the following components:
+ file browser, listing the files located on your instances.</description>
+    </item>
+    
+  </channel>
+</rss>
