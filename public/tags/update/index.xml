@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>update on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/update.html</link>
+    <description>Recent content in update on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Sep 2019 10:46:30 -0400</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/update/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>a. Update your cluster</title>
+      <link>https://www.hpcworkshops.com/04-container-parallelcluster/02-update-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/04-container-parallelcluster/02-update-pc.html</guid>
+      <description>In this section, you will update the configuration of the HPC cluster you created in Lab I to:
+ Create a post-install script to install Docker and Singularity. Provide access to the container registry, Amazon Elastic Container Registry (ECR). Create a new queue that will be used to run the containerized workload. Update the configuration of the HPC Cluster.  The following commands must be executed on the AWS Cloud9 environment created at the beginning of the tutorial.</description>
+    </item>
+    
+  </channel>
+</rss>

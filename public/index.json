@@ -1,0 +1,589 @@
+[
+{
+	"uri": "https://www.hpcworkshops.com/01-hpc-overview/00-agenda.html",
+	"title": "Tutorial Agenda",
+	"tags": [],
+	"description": "",
+	"content": "You will find here the agenda for the tutorial. An update will be made on May 29th 2022 with references to the different workshops.\nSunday May 29th 2022    Session Kind Time Topic Speakers     Talk 09:00AM - 09:10AM Welcome and Introduction Maxime Hugues   Talk 09:10AM - 10:00AM Modern Cloud Architectures Matt Koop   Lab 1 10:00AM - 11:00AM Create a HPC cluster in the Cloud Maxime Hugues /   30 Min Break 11:00AM - 11:30AM ---------------------------------\u0026ndash; ---------------------   Talk 11:30AM - 12:30PM Deep Dive Compute, Network, Storage Pierre-Yves Aquilanti   Lab 2 12:30PM - 01:00PM Container on your HPC cluster TBD   01h00 Break 01:00PM - 02:00PM ---------------------------------\u0026ndash; ---------------------   Talk 02:00PM - 03:00PM Repeatability in the Cloud Maxime Hugues   Lab 3 03:00PM - 04:00PM Automation, CI/CD \u0026amp; container orchestrators TBD   30 Min Break 04:00PM - 04:30PM ---------------------------------\u0026ndash; ---------------------   Lab 4 04:30PM - 05:30PM Simulation on an container orchestrator TBD   Closing 05:30PM - 06:00PM Summary and Q\u0026amp;A Team    "
+},
+{
+	"uri": "https://www.hpcworkshops.com/01-hpc-overview.html",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "Here is short reminder of the important links of this section:\n Agenda of the tutorial. FAQanswers to common questions will be communicated here during the tutorial. Lab account on how to access your lab account.  Links to the labs will be added on this page starting May 29th 2022.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/01-hpc-overview/01-updates.html",
+	"title": "Updates",
+	"tags": [],
+	"description": "",
+	"content": " Frequently asked questions will be addressed on this page during the tutorial. Do not hesitate to visit this page often during the tutorial!\n Accounts access Sandbox are available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.\nCheck if your are on AWS Cloud9 or the head node of the HPC Cluster If you can\u0026rsquo;t run one of the commands of the tutorial, please ensure that you are running on AWS Cloud9. If in doubt you can run the command below.\nif [ -d /etc/parallelcluster/ ]; then exit; fi "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started.html",
+	"title": "Before starting",
+	"tags": ["HPC", "Introduction", "EC2", "Optional"],
+	"description": "",
+	"content": "This workshop walks you through setting up your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure. Specifically, you learn how to:\n Sign in to the AWS Management Console and explore it. Open AWS Cloud9, a cloud based IDE, this is your portal to the AWS Command Line Interface (AWS CLI). Install AWS CLI v2 on AWS Cloud9 Instance  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/02-codecommit-repo.html",
+	"title": "a. Create a repo in CodeCommit",
+	"tags": ["tutorial", "DeveloperTools", "CodeCommit"],
+	"description": "",
+	"content": " This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the Prepartion section of the workshop.\n   In the AWS Management Console search bar, type and select Cloud9.\n  Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.\n  Next, we\u0026rsquo;ll use the AWS Command Line Interface (CLI) to create a Git repository in AWS CodeCommit and clone the empty repo in your Cloud9 environment.\n  Set AWS Region\n  AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) echo \u0026#34;export AWS_REGION=${AWS_REGION}\u0026#34; Next create your CodeCommit Repo:  AWS CodeCommit is a secure, highly scalable, managed source control service that hosts private Git repositories.\naws codecommit create-repository --repository-name MyDemoRepo --repository-description \u0026#34;My demonstration repository\u0026#34; --tags Team=ISC22 --region $AWS_REGION Get repository URL to clone:  REPOURL=$(aws codecommit get-repository --repository-name MyDemoRepo --query repositoryMetadata.cloneUrlHttp --output text --region $AWS_REGION) echo $REPOURL Verify echo $REPOURL outputs a repo url like https://git-codecommit.\u0026lt;region\u0026gt;.amazonaws.com/v1/repos/MyDemoRepo\nClone the repository in your Cloud9 terminal and cd into it:  git clone $REPOURL cd MyDemoRepo/ You can ignore the warning shown [warning: You appear to have cloned an empty repository]\nNow let\u0026rsquo;s update the default branch from master to main:  git branch -m master main "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/02-install-pc.html",
+	"title": "a. Install AWS ParallelCluster",
+	"tags": ["tutorial", "install", "ParallelCluster"],
+	"description": "",
+	"content": " This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections a. Sign in to the Console through d. Work with the AWS CLI in the Getting Started in the Cloud workshop.\n  In the AWS Management Console search bar, type and select Cloud9. Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE. Use the pip install command to install AWS ParallelCluster. Python and Python package management tool (PIP) are already installed in the Cloud9 environment.  Install AWS ParallelCluster version 2.11.2\npip3 install aws-parallelcluster==2.11.2 -U --user Next, you configure AWS ParallelCluster.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/04-container-parallelcluster/02-update-pc.html",
+	"title": "a. Update your cluster",
+	"tags": ["tutorial", "update", "ParallelCluster"],
+	"description": "",
+	"content": "In this section, you will update the configuration of the HPC cluster you created in Lab I to:\n Create a post-install script to install Docker and Singularity. Provide access to the container registry, Amazon Elastic Container Registry (ECR). Create a new queue that will be used to run the containerized workload. Update the configuration of the HPC Cluster.  The following commands must be executed on the AWS Cloud9 environment created at the beginning of the tutorial. You can find the AWS Cloud9 environment by opening the AWS Cloud9 console and choose Open IDE\n Preliminary Prior to version 3.x, AWS ParallelCluster uses configuration file in ini format. For the following steps, you will use an utility to manipulate ini files, named crudini. That will make the editing easier and more reproductible.\nIn the Cloud 9 Terminal, copy and paste the command below to install crudini:\npip3 install crudini -U --user 1. Create a post-install script In this step, you will create a post-install script that installs Docker and Singularity on the compute nodes.\ncat \u0026gt; ~/environment/post_install.sh \u0026lt;\u0026lt; EOF # Install Docker sudo amazon-linux-extras install -y docker sudo usermod -a -G docker ec2-user sudo systemctl start docker sudo systemctl enable docker # Install Singularity sudo yum install -y singularity EOF For your post-install.sh script to be use by the HPC Cluster, you will need to create Amazon S3 bucket and copy the post-install.sh script to the bucket.\nBUCKET_POSTFIX=$(python3 -S -c \u0026#34;import uuid; print(str(uuid.uuid4().hex)[:10])\u0026#34;) BUCKET_NAME_POSTINSTALL=\u0026#34;parallelcluster-isc22-postinstall-${BUCKET_POSTFIX}\u0026#34; aws s3 mb s3://${BUCKET_NAME_POSTINSTALL} --region ${AWS_REGION} aws s3 cp ~/environment/post_install.sh s3://${BUCKET_NAME_POSTINSTALL}/ Now, you can add access to the BUCKET_NAME_POSTINSTALL bucket and specify the post install script path in the HPC cluster configuration file\nPARALLELCLUSTER_CONFIG=~/environment/my-cluster-config.ini crudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;cluster default\u0026#34; s3_read_resource \u0026#34;arn:aws:s3:::${BUCKET_NAME_POSTINSTALL}*\u0026#34; crudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;cluster default\u0026#34; post_install \u0026#34;s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh\u0026#34; 2. Access to the container registry In this step, you will add permission to the HPC cluster configuration file to access the Amazon Elastic Container Registry (ECR) by adding the managed AmazonEC2ContainerRegistryFullAccess AWS IAM policy.\ncrudini --set --list ${PARALLELCLUSTER_CONFIG} \u0026#34;cluster default\u0026#34; additional_iam_policies \u0026#34;arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess\u0026#34; 3. Add a compute queue In this step, you will add a new compute queue that use c5.xlarge EC2 instances.\nLet create a new compute resources named c5xlarge:\ncrudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;compute_resource c5xlarge\u0026#34; instance_type \u0026#34;c5.xlarge\u0026#34; crudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;compute_resource c5xlarge\u0026#34; min_count \u0026#34;0\u0026#34; crudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;compute_resource c5xlarge\u0026#34; max_count \u0026#34;8\u0026#34; Let create a new queue named c5xlarge:\ncrudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;queue c5xlarge\u0026#34; compute_resource_settings \u0026#34;c5xlarge\u0026#34; Let add the new c5xlarge queue to the cluster:\ncrudini --set ${PARALLELCLUSTER_CONFIG} \u0026#34;cluster default\u0026#34; queue_settings \u0026#34;c5xlarge, c5n18large\u0026#34; 4. Update your HPC Cluster In this step, you will update your HPC cluster with the configuration changes made in the previous steps.\nPrior to an update, the cluster should be a stopped state.\npcluster stop hpc-cluster-lab -r $AWS_REGION Before proceeding to the cluster update, you can check the content of the configuration file that should look like this:\ncat ~/environment/my-cluster-config.ini\n[vpc public] vpc_id = ${VPC_ID} master_subnet_id = ${SUBNET_ID} [global] cluster_template = default update_check = true sanity_check = true [cluster default] key_name = ${SSH_KEY_NAME} base_os = ${BASE_OS} scheduler = ${SCHEDULER} fsx_settings = myfsx master_instance_type = c5.xlarge master_root_volume_size = 40 compute_root_volume_size = 40 additional_iam_policies = arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore, arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole, arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess vpc_settings = public ebs_settings = myebs queue_settings = c5xlarge, c5n18large custom_ami = ${CUSTOM_AMI} s3_read_resource = arn:aws:s3:::${BUCKET_NAME_POSTINSTALL}* post_install = s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh [queue c5n18large] compute_resource_settings = c5n18large disable_hyperthreading = true enable_efa = true placement_group = DYNAMIC [compute_resource c5n18large] instance_type = c5n.18xlarge min_count = 0 max_count = 2 [fsx myfsx] shared_dir = /fsx storage_capacity = 1200 deployment_type = SCRATCH_2 [ebs myebs] shared_dir = /shared volume_type = gp2 volume_size = 20 [aliases] ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS} [compute_resource c5xlarge] instance_type = c5.xlarge min_count = 0 max_count = 8 [queue c5xlarge] compute_resource_settings = c5xlarge Let update the cluster by running the pcluster update command\npcluster update hpc-cluster-lab -c my-cluster-config.ini --yes -r $AWS_REGION Pay attention to the old value and new value fields. You will see a new instance type under new value field. The output will be similar to this: Start your cluster again after update process is completed.\npcluster start hpc-cluster-lab -r $AWS_REGION "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop.html",
+	"title": "Create an HPC Cluster",
+	"tags": ["HPC", "Overview"],
+	"description": "",
+	"content": "In this lab, you are introduced to AWS ParallelCluster and will run a Weather forecast model (WRF) on the HPC Cluster on AWS. This workshop includes the following steps:\n Install and configure ParallelCluster on your AWS Cloud9 IDE. Create your first cluster. Submit a sample job and check what is happening in the background. Delete the cluster.  About Weather Research and Forecasting (WRF) The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications. It features a dynamical core, a data assimilation system, and a software architecture supporting parallel computation and system extensibility. The model serves a wide range of meteorological applications across scales from tens of meters to thousands of kilometers.\nThe effort to develop WRF began in the latter 1990\u0026rsquo;s and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (represented by the National Centers for Environmental Prediction (NCEP) and the Earth System Research Laboratory), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (FAA).\nWRF is a tightly coupled application that uses MPI and/or OpenMP. In this lab, you will run WRF using only MPI.\nAbout AWS ParallelCluster AWS ParallelCluster is an AWS-supported open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. It also supports a variety of job schedulers such as AWS Batch, SGE, Torque, and Slurm for easy job submissions.\nAWS ParallelCluster is built on the popular open source CfnCluster project and is released via the Python Package Index (PyPI). ParallelCluster\u0026rsquo;s source code is hosted on the Amazon Web Services repository on GitHub. AWS ParallelCluster is available at no additional charge, and you pay only for the AWS resources needed to run your applications.\nBenefits Automatic Resource Scaling With AWS ParallelCluster, you can use a simple text file to model, provision, and dynamically scale the resources needed for your applications in an automated and secure manner.\nEasy Cluster Management With AWS ParallelCluster you can provision resources in a safe, repeatable manner, allowing you to build and rebuild your infrastructure without the need for manual actions or custom scripts.\nSeamless Migration to the Cloud AWS ParallelCluster supports a wide variety of operating systems and batch schedulers so you can migrate your existing HPC workloads with little to no modifications.\nHow It Works This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections a. Sign in to the Console through d. Work with the AWS CLI in the Getting Started in the Cloud workshop.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/03-docker-buildspec.html",
+	"title": "b. Create Docker and buildspec files",
+	"tags": ["tutorial", "DeveloperTools", "CodeCommit"],
+	"description": "",
+	"content": " If you have not created the container repository as part Lab II, complete the Create container repository section of Lab II before proceeding.\n In this section, you will create a Docker container for the application and a buildspec file in the CodeCommit repository created in the previous section\nA buildspec is a collection of build commands and related settings in YAML format. This file is used by AWS CodeBuild to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline.\n Confirm you are in the MyDemoRepo repository:  pwd # should be MyDemoRepo Create a Docker container for the application. We\u0026rsquo;re going to use the Amazon Linux container from Amazon Elastic Container Registry (ECR) Public Gallery.  cat \u0026gt; Dockerfile \u0026lt;\u0026lt; EOF FROM public.ecr.aws/amazonlinux/amazonlinux:latest ADD script.py / CMD python /script.py EOF Create a buildspec file to build and push the Docker container to Amazon ECR  cat \u0026gt; buildspec.yml \u0026lt;\u0026lt; EOF version: 0.2 phases: pre_build: commands: - echo Logging in to Amazon ECR... - aws --version - \\$(aws ecr get-login --region \\$AWS_REGION --no-include-email) - IMAGE_TAG=\\$(echo \\$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8) - echo IMAGE TAG \\$IMAGE_TAG build: commands: - echo Build started at \\$(date) - echo Building the Docker image... - docker build -t \\$REPOSITORY_URI:latest . - docker tag \\$REPOSITORY_URI:latest \\$REPOSITORY_URI:\\$IMAGE_TAG post_build: commands: - echo Build completed at $(date) - echo Pushing the Docker images... - docker push \\$REPOSITORY_URI:latest - docker push \\$REPOSITORY_URI:\\$IMAGE_TAG EOF Create a file script.py with a simple hello world:  cat \u0026gt; script.py \u0026lt;\u0026lt; EOF # Hello World Python Script print(\u0026#39;Hello World!\u0026#39;) EOF Commit and Push your local created files to the remote repository hosted in CodeCommit.  git add Dockerfile buildspec.yml script.py git commit -m \u0026#34;Created Dockerfile and buildspec file\u0026#34; git push origin main Now update the default Codecommit branch to main:  aws codecommit update-default-branch --repository-name MyDemoRepo --default-branch-name main --region $AWS_REGION "
+},
+{
+	"uri": "https://www.hpcworkshops.com/04-container-parallelcluster/03-create-repository.html",
+	"title": "b. Create container repository",
+	"tags": ["tutorial", "container", "repository"],
+	"description": "",
+	"content": "In this section, you will create a container repository on Amazon ECR and create a Docker container image.\nPreliminary In the AWS Cloud9 terminal, connect to the HPC Cluster\npcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION Since the HPC Cluster existed prior to post-install script, you will need to manually install Docker and Singularity on the head node of the HPC Cluster.\n# Install Docker sudo amazon-linux-extras install -y docker sudo usermod -a -G docker ec2-user sudo systemctl start docker sudo systemctl enable docker # Install Singularity sudo yum install -y singularity Exit the HPC cluster\nexit Reconnect to the HPC Cluster\npcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION Configure the AWS Region on the head node of the HPC Cluster to be used by the AWS CLI.\nexport AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) aws configure set default.region ${AWS_REGION} 1. Create the container repository In this step, you will create a repository named isc22-container using the Command Line Interface (CLI) in Amazon ECR. Amazon ECR is a fully managed container registry offering high-performance hosting, so you can reliably deploy application images and artifacts anywhere.\nCONTAINER_REPOSITORY_NAME=\u0026#34;isc22-container\u0026#34; aws ecr create-repository --repository-name ${CONTAINER_REPOSITORY_NAME} 2. Authenticate Docker with the Amazon ECR Repository For Docker to interact with Amazon ECR, you will need to authenticate to the container registry of your AWS account.\nTo facilitate the Docker authentication, the commands provided below will:\n List the container repository and extract the URI of the container repository Extract the container registry URI: It looks like this aws_account_id.dkr.ecr.region.amazonaws.com Login Docker to Amazon ECR container registry  CONTAINER_REPOSITORY_URI=`aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] | grep \u0026#34;/${CONTAINER_REPOSITORY_NAME}\u0026#34; | tr -d \u0026#39;\u0026#34;\u0026#39;` ECR_URI=`echo $CONTAINER_REPOSITORY_URI | sed \u0026#34;s%/${CONTAINER_REPOSITORY_NAME}%%g\u0026#34; | tr -d \u0026#39;\u0026#34;\u0026#39;` aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_URI} 3. Create the Docker container You will start by creating a directory that will host the container creation files, named container in the shared directory.\nCONTAINER_WORKDIR=\u0026#34;/shared/container\u0026#34; mkdir -p $CONTAINER_WORKDIR Let create a Python \u0026ldquo;Hello World\u0026rdquo; script example.\ncat \u0026gt; $CONTAINER_WORKDIR/hello-world.py \u0026lt;\u0026lt; EOF #!/usr/bin/env python3 # Hello World Python Script print(\u0026#39;Hello World from my Container!\u0026#39;) EOF Now, create a Dockerfile that contains the commands to assemble a container image with our Python \u0026ldquo;Hello World\u0026rdquo; script.\ncat \u0026gt; $CONTAINER_WORKDIR/Dockerfile \u0026lt;\u0026lt; EOF FROM public.ecr.aws/amazonlinux/amazonlinux:latest RUN yum install -y python3 ADD hello-world.py / CMD python3 /hello-world.py EOF Let\u0026rsquo;s build the container. Since it is the first and latest version of the container, you will tag it with v1 and latest tags.\ncd $CONTAINER_WORKDIR docker build -t ${CONTAINER_REPOSITORY_URI}:v1 -t ${CONTAINER_REPOSITORY_URI}:latest . You have built your container image successfully, you will push the local container image to the container repository you created earlier.\ndocker push ${CONTAINER_REPOSITORY_URI}:v1 docker push ${CONTAINER_REPOSITORY_URI}:latest 4. Run the container on the head node After bulding your container image, you check that it works correctly by running the container using singularity.\nexport SINGULARITY_CACHEDIR=/shared/singularity-cache singularity run docker://`echo ${CONTAINER_REPOSITORY_URI}`:latest The output will be similar to this:\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/03-initialize-pc.html",
+	"title": "b. Set up AWS ParallelCluster foundation",
+	"tags": ["tutorial", "initialize", "ParallelCluster"],
+	"description": "",
+	"content": "Typically, to configure AWS ParallelCluster, you use the interactive command pcluster configure to provide the information, such as the AWS Region, VPC, Subnet, and Amazon EC2 Instance Type. For this workshop, you will create a custom configuration file to include the HPC specific options for this lab.\nIn this section, you will set up the foundation (for example network, scheduler, \u0026hellip;) required to build the ParallelCluster config file in the next section.\nDon\u0026rsquo;t skip these steps, it is important to follow each step sequentially, copy paste and run these commands\n Retrieve network information and set environment variables. In these steps you will also be writing these environment variables into a file in your working directory which can be sourced and set again in case you logout of the session.\n Set AWS Region  AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) echo \u0026#34;export AWS_REGION=${AWS_REGION}\u0026#34; \u0026gt;\u0026gt; env_vars Set Amazon EC2 instance types that be will be used through this lab for head and compute nodes in the following sections (sections c)  INSTANCES=c5n.18xlarge,c5.large Retrieve network information  Your HPC cluster configuration will need network information such as VPC ID, Subnet ID and create a SSH Key. To ease the setup, you will use a script for settings of those parameters. If you have time and are curious, you can examine the different steps of the script.\nRetrieve the script.\ncurl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/isc22_create_parallelcluster_config.sh Execute the script to retrieve network information.\n. ./isc22_create_parallelcluster_config.sh Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost  b64key=$(base64 ~/.ssh/${SSH_KEY_NAME}) aws secretsmanager create-secret --name ${SSH_KEY_NAME} \\  --description \u0026#34;Private key file\u0026#34; \\  --secret-string \u0026#34;$b64key\u0026#34; \\  --region ${AWS_REGION} Next, you build a configuration to generate a cluster to run HPC applications.\nOptional Step: Please run this command ONLY in the event that you lose your SSH private key and need to retrieve it from the secrets manager\naws secretsmanager get-secret-value --secret-id ${SSH_KEY_NAME} \\  --query \u0026#39;SecretString\u0026#39; \\  --region ${AWS_REGION} \\  --output text | base64 --decode \u0026gt; ~/.ssh/${SSH_KEY_NAME} chmod 400 ~/.ssh/${SSH_KEY_NAME}  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/02-requirement_notes.html",
+	"title": "Prerequisites",
+	"tags": ["tutorial", "Prerequisite", "ec2"],
+	"description": "",
+	"content": "The following prerequisites are required for the HPC workshops:\n A computer with an internet connection running Microsoft Windows, Mac OS X, or Linux. An internet browser such as Chrome, Firefox, Safari, Opera, or Edge. Familiarity with common Linux commands.  If you have any questions when running this workshop, speak with your group coordinator or contact AWS HPC.\nThis workshop includes multiple code samples that you can copy and paste using the button shown below.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/02-requirement_notes.html",
+	"title": "Prerequisites",
+	"tags": ["tutorial", "Prerequisite", "ec2"],
+	"description": "",
+	"content": "The following prerequisites are required for the HPC workshops:\n A computer with an internet connection running Microsoft Windows, Mac OS X, or Linux. An internet browser such as Chrome, Firefox, Safari, Opera, or Edge. Familiarity with common Linux commands.  If you have any questions when running this workshop, speak with your group coordinator or contact AWS HPC.\nThis workshop includes multiple code samples that you can copy and paste using the button shown below.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/04-container-parallelcluster.html",
+	"title": "Container on AWS ParallelCluster",
+	"tags": ["HPC", "Overview"],
+	"description": "",
+	"content": " This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections a. Sign in to the Console through d. Work with the AWS CLI in the Getting Started in the Cloud workshop.\n HPC Applications typically rely on several libraries and software components along with complex dependencies. Those applications tend to be deployed on a shared file system for on-premise HPC system. It can be challenging to share and deploy on a different HPC systems. In the cloud, there are various ways to deploy an application: on a shared file system or an Amazon Machine Image (AMI). Shared file systems in the cloud tend to last for a short period of time, typically the length of job. A machine image is a basic unit of deployment for Amazon EC2 instances and is another mechanism to deploy your application across many Amazon EC2 instances. When the application will be modified with bug fixes or new features, you will need to create new machine with the new version of the application create a new EC2 instance using the new machine image.\nContainer has simplified the way groups develop, share and run software. The growth of container technology has been mainly led by Docker which provides a way to package an application and its dependencies in a container that can run on a variety of locations, such as on-premises or in the cloud. In HPC, the use of container mainly started in Life Science to address the growing number of software dependencies that computational bioinformatic applications have. Many containers runtime for HPC has been created like Singularity, Shifter, CharlieCloud and Sarus which allow end-users to run containers in environments where Docker would not be feasible. In addition, container enables to share with others the application easily and to deploy new version on existing EC2 instance without changing the machine image.\nIn this lab, you will create a container using Docker and use Singularity to run the container on your HPC cluster on AWS that you created in Lab I. This lab includes the following steps:\n Modify your HPC cluster configuration file for AWS ParallelCluster Update your HPC cluster to install Docker, Singularity and provide access to Amazon Elastic Container Registry (ECR). Create your containerized application. Submit a sample job to run your containerized workload.  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/04-codebuild.html",
+	"title": "c. Setup project in CodeBuild",
+	"tags": ["tutorial", "DeveloperTools", "CodeBuild"],
+	"description": "",
+	"content": "In this section, you will create and setup a build project in AWS CodeBuild.\nAWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy.\nWith CodeBuild, you don’t need to provision, manage, and scale your own build servers\n  In the AWS Management Console search bar, type and select CodeBuild. Double check that you are using CodeBuild in the same AWS Region that you have used in the previous steps.\n  Click on Create build project.\n  In the Project configuration section, enter MyDemoBuild as the Project name and leave the rest as defaults in this section.\n  In the Source section, select AWS CodeCommit from the dropdown as the Source provider. In the Repository, enter the name of the codecommit repository MyDemoRepo created earlier. For the Branch select the main branch (which contains the code, in this case the Docker container to build)  In the Environment section, select the settings as shown below  Make sure to enable the Privileged flag required to build the Docker images Select the New service role and let the project create a new service role required for CodeBuild    Expand the Additional configuration section and, in the Environment section, keep all settings as default except the following:  Under the Environment variables, in the Name field enter the Name as REPOSITORY_URI In the Value field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default Plaintext You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2. The output should look as \u0026quot;\u0026lt;account-id\u0026gt;.dkr.ecr.\u0026lt;region\u0026gt;.amazonaws.com/isc22-container\u0026quot;. Copy without the quotes and paste in the Value field.    REPO_NAME=isc22-container aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep \u0026#34;/${REPO_NAME}\u0026#34;  In the Buildspec section, select Use a buildspec file option. By default CodeBuild looks for a file named buildspec.yml in the source code root directory. Since we named our buildspec file as buildspec.yml and put it in the root directory of the CodeCommit repo, you can skip providing a name or absolute path\n  Keep the defaults in Batch configuration and Artifacts section.\n   In the Logs section enable the CloudWatch logs. This option will upload the build output logs to CloudWatch\n  Click on Create build project\n  Since the CodeBuild is going to interact with Amazon ECR, the CodeBuild service role created requires additional permissions. In the Cloud9 terminal, execute the following  aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess --role-name codebuild-MyDemoBuild-service-role When executing the above if you run into an error as shown below, it means you have not disabled AWS managed temporary credentials in Cloud9 as covered in the Preparation section of the Lab. Kindly fix that and re-do the above step. In the next section, you will build a CodePipeline which you will use to automate your container build process\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline.html",
+	"title": "Container building automation",
+	"tags": ["CI/CD", "AWS Developer Tools", "DevOps"],
+	"description": "",
+	"content": "HPC resources have complex and dynamic software needs that are challenging to manage and maintain. Users often want the latest software available for their research and development which drives the need for frequent installation and updates. Administrators currently address these complex software needs with package managers such as Lmod, Easybuild or Spack. However, even with these tools software management in an HPC environment includes manual and error-prone steps. Continuous integration, delivery, and deployment (CICD) is widely used in DevOps communities, as it allows to deploy rapidly-changing hardware and software resources. One can build a CICD pipeline to automatically build and/or deploy their HPC application either in the form of containers or as a custom image with all the software dependencies installed. Integrating CICD practices into HPC workflows increases the potential for delivering high quality and reliable software.\nIn this lab, you are introduced to AWS Developer Tools and how to use services like AWS CodeCommit, AWS CodeBuild and AWS CodePipeline to automate application deployment with containers, CI/CD pipelines and container orchestrators.\nYou will be deploying the below architecture as part of this lab:\nThis lab includes the following steps:\n Create a repository in AWS CodeCommit Create a build environment using AWS CodeBuild Create a pipeline using AWS CodePipeline Automate the build process with repository update  AWS Developer Tools provides a list of services to host code, build, test, and deploy your applications quickly and effectively. AWS services offered as part of the AWS Developer Tools suite helps remove the undifferentiated heavy lifting associated with DevOps adaptation and software development. You can build a continuous integration and delivery capability without managing servers or build nodes, and leverage Infrastructure as code (IaC) to provision and manage your cloud resources in a consistent and repeatable manner.\nBenefits   Minimize downtime\nBuild highly available applications on a resilient cloud infrastructure and enable your teams to respond, adapt, and recover quickly from unexpected events.\n  Automate CI/CD pipelines \u0026amp; Release software faster\nRemove error-prone manual processes and eliminate the need to babysit software releases. Use software release pipelines that encompass build, test, and deployment.\n  Increase developer productivity\nManage services, provision resources, and automate development tasks without switching context or leaving your editor.\n  Monitor operations\nBuild an observability dashboard to gain instant and continuous insight into your system’s operations.\n  Test and automate infrastructure\nCombine Infrastructure as code with version control and automated, continuous integration to bring scalability and consistency to provisioning and management.\n  This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the Preparation section of the workshop.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/03-access-aws.html",
+	"title": "a. Event: Accessing Your Lab Account",
+	"tags": [],
+	"description": "",
+	"content": " Accounts are only accessible for the duration of the event. To continue using AWS after the event, create an AWS Account.\n Do not hesitate to ask questions at isc22tutorial@amazon.com if you need any help.\nStep 1 Sandbox were available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.\n Step 2 Go to the website https://dashboard.eventengine.run/\nStep 3 You will then be prompted to a screen with the terms and conditions, add the hashcode that will be provided to you and click Accept to continue:\nStep 4 Click AWS Console Login, then on the following popup click on the link Open AWS Console.\nDo not forget to run in the North Virginia AWS Region (us-east-1). We can connect into your account if you need help during the tutorial.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/03-access-aws.html",
+	"title": "a. Event: Accessing Your Lab Account",
+	"tags": [],
+	"description": "",
+	"content": " Accounts are only accessible for the duration of the event. To continue using AWS after the event, create an AWS Account.\n Do not hesitate to ask questions at isc22tutorial@amazon.com if you need any help.\nStep 1 Sandbox were available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.\n Step 2 Go to the website https://dashboard.eventengine.run/\nStep 3 You will then be prompted to a screen with the terms and conditions, add the hashcode that will be provided to you and click Accept to continue:\nStep 4 Click AWS Console Login, then on the following popup click on the link Open AWS Console.\nDo not forget to run in the North Virginia AWS Region (us-east-1). We can connect into your account if you need help during the tutorial.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/04-configure-pc.html",
+	"title": "c. Create a Cluster Config",
+	"tags": ["tutorial", "initialize", "ParallelCluster"],
+	"description": "",
+	"content": "Now that you installed AWS ParallelCluster and set up the foundation, you can create a configuration file to build a simple HPC system. This file is generated in your home directory.\nGenerate the cluster with the following settings:\n Head-node and compute nodes: c5.xlarge instances. You can change the instance type if you like, but you may run into EC2 limits that may prevent you from creating instances or create too many instances. AWS ParallelCluster 2.9 or above supports multiple instance types and multiple queues. We use a placement group in this lab. A placement group will sping up instances close together inside one physical data center in a single Availability Zone to maximize the bandwidth and reduce the latency between instances. In this lab, the cluster has 0 compute nodes when starting and a maximum of 2 instances. AWS ParallelCluster will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog. A GP2 Amazon EBS volume will be attached to the head-node then shared through NFS to be mounted by the compute nodes on /shared. It is generally a good location to store applications or scripts. Keep in mind that the /home directory is shared on NFS as well. SLURM is used as a job scheduler We disable Intel Hyper-threading by setting disable_hyperthreading = true in the configuration file.  For more details about the AWS ParallelCluster configuration options, see the AWS ParallelCluster User Guide.\n For now, paste the following commands in your terminal:\n Let us first makes sure all the required environment vairables from the previous section are set (if any of these commands return a null please go to step 2 and set the variables from the env_vars file generated previously)  echo $AWS_REGION echo $SUBNET_ID echo $SSH_KEY_NAME In case any of the above environment variables are not set, source it from the env_vars file generated in your working directory previously  source env_vars Retrieve NCAR WRF v4 AMI  NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of WRF v4. You will leverage this AMI to run WRF on a test case in the next section of this lab.\nCUSTOM_AMI=`aws ec2 describe-images --owners 111992169430 \\  --query \u0026#39;Images[*].{ImageId:ImageId,CreationDate:CreationDate}\u0026#39; \\  --filters \u0026#34;Name=name,Values=*-amzn2-parallelcluster-2.11.2-wrf-4.2.2-*\u0026#34; \\  --region ${AWS_REGION} \\  | jq -r \u0026#39;sort_by(.CreationDate)[-1] | .ImageId\u0026#39;` echo \u0026#34;export CUSTOM_AMI=${CUSTOM_AMI}\u0026#34; \u0026gt;\u0026gt; env_vars Build the custom config file for ParallelCluster  cat \u0026gt; my-cluster-config.ini \u0026lt;\u0026lt; EOF [vpc public] vpc_id = ${VPC_ID} master_subnet_id = ${SUBNET_ID} [global] cluster_template = default update_check = true sanity_check = true [cluster default] key_name = ${SSH_KEY_NAME} base_os = alinux2 scheduler = slurm master_instance_type = c5.xlarge master_root_volume_size = 40 compute_root_volume_size = 40 additional_iam_policies = arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore, arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole vpc_settings = public ebs_settings = myebs queue_settings = c5n18large custom_ami = ${CUSTOM_AMI} [queue c5n18large] compute_resource_settings = c5n18large disable_hyperthreading = true enable_efa = true placement_group = DYNAMIC [compute_resource c5n18large] instance_type = c5n.18xlarge min_count = 0 max_count = 2 [ebs myebs] shared_dir = /shared volume_type = gp2 volume_size = 20 [aliases] ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS} EOF Now, you are ready to launch a cluster! Proceed to the next section.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/04-container-parallelcluster/04-launch-nextflow.html",
+	"title": "c. Run nextflow container",
+	"tags": ["tutorial", "initialize", "ParallelCluster"],
+	"description": "",
+	"content": "In this section, you will run a basic pipeline for quantification of genomic features from short read data implemented with Nextflow. Nextflow enables scalable and reproducible scientific workflows using software containers.\n1. Create a new container image with nextflow Let\u0026rsquo;s begning by creating a new version of the container image.\nChange the Dockerfile with the nextflow container\ncd $CONTAINER_WORKDIR cat \u0026gt; Dockerfile \u0026lt;\u0026lt; EOF FROM nextflow/rnaseq-nf ENV DEBIAN_FRONTEND=noninteractive RUN apt-get --allow-releaseinfo-change update \u0026amp;\u0026amp; apt-get update -y \u0026amp;\u0026amp; apt-get install -y git python3-pip curl jq RUN curl -s https://get.nextflow.io | bash \\ \u0026amp;\u0026amp; mv nextflow /usr/local/bin/ RUN pip3 install --upgrade awscli RUN chmod 755 /usr/local/bin/nextflow EOF Remove container cached layer\ndocker system prune -a -f Build the new container image\ndocker build -t ${CONTAINER_REPOSITORY_URI}:v2 -t ${CONTAINER_REPOSITORY_URI}:latest . You have built your container image successfully, you will push the v2 local container image to the container repository you created earlier.\ndocker push ${CONTAINER_REPOSITORY_URI}:v2 docker push ${CONTAINER_REPOSITORY_URI}:latest 2. Download the genomics workflow cd /shared git clone https://github.com/seqeralabs/nextflow-tutorial.git cd nextflow-tutorial 3. Run the Genomics Pipeline A container contains the applications, libraries and system packages that you installed during the container image creation. At runtime, the container only its content and does not have access to files and directories outside. They can be made available inside the running container by binding the external directory to a directory inside the container. In the case of running Nextflow for this lab, the /shared/nextflow-tutorial directory contains the workflow description in scripts7.nf that will be executed by Nextflow. One the job will complete, results will be stored in the --outdir=/mnt of the container that is the /shared/nextflow-tutorial directory of the cluster where the results will be stored.\nLet\u0026rsquo;s create a slurm batch script with the following command:\ncat \u0026gt; nextflow_sub.sh \u0026lt;\u0026lt; EOF #!/bin/bash #SBATCH --job-name=nextflow #SBATCH --partition=c5xlarge #SBATCH --output=%x_%j.out #SBATCH --error=%x_%j.err #SBATCH --ntasks=1 srun singularity run --bind /shared/nextflow-tutorial:/mnt docker://`echo ${CONTAINER_REPOSITORY_URI}`:v2 nextflow run /mnt/script7.nf --reads \u0026#39;/mnt/data/ggal/*_{1,2}.fq\u0026#39; --outdir=/mnt EOF Submit the job to Slurm to run on 1 c5.xlarge instance the nextflow genomics pipeline composed of 4 steps with the following command:\nsbatch nextflow_sub.sh The output of the job will be in the nextflow_[SLURM_JOB_ID].out file and similar to this:\nYou have now run a basic genomics pipeline and you won\u0026rsquo;t need the cluster in the next labs. The next section will go over how to delete your HPC Cluster.\n  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation.html",
+	"title": "Simulations with AWS Batch",
+	"tags": ["HPC", "Overview", "Batch"],
+	"description": "",
+	"content": "This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the Prepartion section of the workshop\n In this workshop, you will learn how to use container orchestrators like AWS Batch and deploy an architecture for genomics pipeline execution on AWS Batch.\nIn this lab you will run a basic pipeline for quantification of genomic features from short read data implemented with Nextflow\nYou will be deploying the below architecture as part of this lab:\nThis includes the following steps:\n Create an object store bucket in S3 to store your results. Set up the infrastructure for AWS Batch. Run a sample genomics pipeline on AWS Batch. Monitor your jobs Cleanup  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/05-codepipeline.html",
+	"title": "d. Create a pipeline",
+	"tags": ["tutorial", "DeveloperTools", "CodePipeline"],
+	"description": "",
+	"content": "In this section, you will create a pipeline using AWS CodePipeline.\nAWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define\nIn the first section of this lab you created a CodeCommit repo and created a sample Docker container and corresponding buildspec file to build the container. In the second section of this lab you created a project in CodeBuild and provided the necessary information to compile your created Docker container.\nIn this section, you will create a pipeline with a source and build stage to automate the container build and push to Amazon ECR whenever there are any changes in the source CodeCommit repository.\n  In the AWS Management Console search bar, type and select CodePipeline.\n  Click on Create pipeline\n  In Step 1 Choose pipeline settings, enter the Pipeline name as MyDemoPipeline. Allow AWS CodePipeline to create a service role to be used with this pipeline. The Role name will default to the following AWSCodePipelineServiceRole-\u0026lt;region\u0026gt;-\u0026lt;pipelinename\u0026gt;. Click Next   In Step 2 Add source stage, select AWS CodeCommit as your Source provider. Choose MyDemoRepo as your repository name where you have pushed your source code. Choose main for Branch name.\n  Keep the default selection for the Change detection options and Output artifact format. Click Next   In Step 3 Add build stage, select AWS CodeBuild as your Build provider from the dropdown list. Choose the appropriate Region. In the Project name, choose the CodeBuild project MyDemoBuild that you created in the previous section. You can skip adding the Environment variables as you already provided that in the CodeBuild section. Select Single build for the Build type and click Next.   In Step 4 Add deploy stage, click on Skip deploy stage as we are building the pipeline in this lab for build automation only. We will focus on deploy/orchestration in the next lab.   Review your pipeline settings and select Create pipeline\n  Your pipeline should execute. It will take a few mins to execute the pipeline and and if successful should display a message as shown below Click on the \u0026ldquo;Details\u0026rdquo; link to open the build logs:   "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/03-aws-console-login.html",
+	"title": "b. Post Event: Access AWS (Skip)",
+	"tags": ["tutorial", "aws console", "ec2"],
+	"description": "",
+	"content": "Skip this step if you are doing the labs during the ISC22 event.\nDepending on your workshop, you may access the AWS Management Console through direct sign-in (here) or as directed by your trainer. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.\nAfter you sign in, take a few minutes to explore the navigation components of the AWS Management Console.\n A search bar allows you to quickly locate services based on text. Recently visited services are located below the search bar. In the toolbar, the Services drop-down menu populates a list of all services. The Support drop-down menu includes links to support and documentation. The Region drop-down menu allows you to select a specific AWS Region.  Start this workshop by selecting an AWS Region:\nChoose the Region drop-down menu, then choose US East (N. Virginia) us-east-1.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/03-aws-console-login.html",
+	"title": "b. Post Event: Access AWS (Skip)",
+	"tags": ["tutorial", "aws console", "ec2"],
+	"description": "",
+	"content": "Skip this step if you are doing the labs during the ISC22 event.\nDepending on your workshop, you may access the AWS Management Console through direct sign-in (here) or as directed by your trainer. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.\nAfter you sign in, take a few minutes to explore the navigation components of the AWS Management Console.\n A search bar allows you to quickly locate services based on text. Recently visited services are located below the search bar. In the toolbar, the Services drop-down menu populates a list of all services. The Support drop-down menu includes links to support and documentation. The Region drop-down menu allows you to select a specific AWS Region.  Start this workshop by selecting an AWS Region:\nChoose the Region drop-down menu, then choose US East (N. Virginia) us-east-1.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/04-container-parallelcluster/06-delete-pc.html",
+	"title": "d. Terminate Your Cluster",
+	"tags": ["tutorial", "delete", "ParallelCluster"],
+	"description": "",
+	"content": "Now that you are done with your HPC cluster, you can delete it.\nLet\u0026rsquo;s exit the cluster to go back to your AWS Cloud9 terminal.\nexit On AWS Cloud9 terminal, let\u0026rsquo;s delete the cluster with the following command\npcluster delete hpc-cluster-lab -r $AWS_REGION The cluster and all its resources will be deleted by CloudFormation. You can check the status in the CloudFormation Dashboard.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/04-start_cloud9.html",
+	"title": "b. Create a Cloud9 Environment",
+	"tags": ["tutorial", "cloud9", "ParallelCluster"],
+	"description": "",
+	"content": "AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.\nAWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser. The IDE offers support for python, pip, AWS CLI, and provides easy access to AWS resources through Identity and Access Management (IAM) user credentials. The IDE includes a terminal with sudo privileges to the managed instance that is hosting your development environment and a pre-authenticated CLI. This makes it easy for you to quickly run commands and directly access AWS services.\nAfter accessing your IDE, take a moment to familiarize yourself with the Cloud9 environment. For more information, follow a tutorial or even view Introduction to AWS Cloud9.\n Create Your Own AWS Cloud9 Instance These steps apply to both individual users of this workshop and those in a group setting. To access your IDE, follow these steps:\n In the AWS Management Console, locate Cloud9 by using the search bar, or choose Services, then Cloud9.  Choose Create Environment Name your environment MyCloud9Env and choose Next Step.  On the Configure Settings page, locate Cost-saving setting drop-down menu, and choose After a day. (Note: Your instructor may change other default selections.)  Choose Next Step. Choose Create Environment.  Your AWS Cloud9 instance will be ready in a few minutes!\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html",
+	"title": "b. Open a Cloud9 Environment",
+	"tags": ["tutorial", "cloud9", "ParallelCluster"],
+	"description": "",
+	"content": "AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.\nAWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser. The IDE offers support for python, pip, AWS CLI, and provides easy access to AWS resources through Identity and Access Management (IAM) user credentials. The IDE includes a terminal with sudo privileges to the managed instance that is hosting your development environment and a pre-authenticated CLI. This makes it easy for you to quickly run commands and directly access AWS services.\nAfter accessing your IDE, take a moment to familiarize yourself with the Cloud9 environment. For more information, follow a tutorial or even view Introduction to AWS Cloud9.\n Open Your Own AWS Cloud9 Instance These steps apply to both individual users of this workshop and those in a group setting. To access your IDE, follow these steps:\n In the AWS Management Console, locate Cloud9 by using the search bar, or choose Services, then Cloud9. Cloud9 Link  Choose Your Environments on the left panel Choose MyCloud9Env and choose Open IDE.  A new tab will open with your AWS Cloud9 environment will be ready in a few minutes!\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/06-updatebuild.html",
+	"title": "e. Auto execute pipeline",
+	"tags": ["tutorial", "DeveloperTools", "CodePipeline", "CodeBuild", "CI/CD"],
+	"description": "",
+	"content": "In this section, we will update the sample Dockerfile created earlier to automatically trigger the container build and update to Amazon ECR as part of the CodePipeline we created earlier.\nWe will modify the Dockerfile to run a Genomics workflow using Nextflow.\nWe will go over the Nextflow architecture and job execution/orchestration more in the next lab. For now, we will go ahead and update the repository and see how the CICD pipeline works for your build.\n First confirm you are in the MyDemoRepo repository:  pwd # should be MyDemoRepo Update the Dockerfile to the following. This is an entrypoint script which can consume the link to an Amazon S3 bucket or a git repository from which to download the Nextflow pipeline and executes it.  The Nextflow command-line tool uses the JVM. Thus, we will install AWS open-source variant Amazon Corretto. Amazon Corretto is a no-cost, multiplatform, production-ready distribution of the Open Java Development Kit (OpenJDK). Corretto comes with long-term support that will include performance enhancements and security fixes. Amazon runs Corretto internally on thousands of production services and Corretto is certified as compatible with the Java SE standard. With Corretto, you can develop and run Java applications on popular operating systems, including Linux, Windows, and macOS.\n cat \u0026gt; Dockerfile \u0026lt;\u0026lt; EOF FROM public.ecr.aws/amazoncorretto/amazoncorretto:8 RUN curl -s https://get.nextflow.io | bash \\ \u0026amp;\u0026amp; mv nextflow /usr/local/bin/ RUN yum install -y git python-pip curl jq RUN pip install --upgrade awscli COPY entrypoint.sh /usr/local/bin/entrypoint.sh VOLUME [\u0026#34;/scratch\u0026#34;] CMD [\u0026#34;/usr/local/bin/entrypoint.sh\u0026#34;] EOF Copy the entrypoint file (entrypoint.sh) from the S3 bucket and make it an executable  aws s3 cp s3://isc22-hpc-labs/entrypoint.sh . chmod +x entrypoint.sh Now we will update and push this file to the created codecommit repository  git add Dockerfile entrypoint.sh git commit -m \u0026#34;Updated the Dockerfile to trigger Genomics workflow using Nextflow\u0026#34; git push origin main  In the AWS Management Console search bar, type and select CodePipeline. Click on the MyDemoPipeline that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically.   Click on the Details deep link from the Build stage of the CodePipeline. This will take you to build logs from the CodeBuild project that you created:\n   Click on the Tail logs to see the on-going or completed build process. This is showcasing every step of the build process as provided in your buildspec.yml file.   In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR.\n  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html",
+	"title": "d. Build an HPC Cluster",
+	"tags": ["tutorial", "create", "ParallelCluster"],
+	"description": "",
+	"content": "In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command pcluster create and the \u0026amp;ndash;config (or -c) option to use another configuration file other than the default one.\nIf you create your cluster without using the \u0026ndash;config (or -c) option, then AWS ParallelCluster uses the default configuration with the minimum requirements to get a cluster running. For example, the default configuration for head and compute nodes is t2.micro instances instead of c5.xlarge.\n In your AWS Cloud9 terminal, run the following to create a cluster. Make sure that the configuration file path is correct.\npcluster create hpc-cluster-lab -c my-cluster-config.ini -r $AWS_REGION Your cluster will take a few minutes to build. The creation status displays in your terminal. Once the cluster is ready, you should see a result similar to the one shown in the following image.\nThere can be only one cluster of a given name at any time on your account.\n What\u0026rsquo;s Happening in the Background When the pcluster create command is executed, AWS ParallelCluster generates an AWS CloudFormation template to generate an infrastructure in AWS. The bulk of the work is done in AWS and once the create is launched, you don\u0026rsquo;t need to keep AWS ParallelCluster running. If you want to see AWS CloudFormation generating the infrastructure, you can view the CloudFormation console. The following image shows cluster creation in the CloudFormation console.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started.html",
+	"title": "Cloud9 Step by Step",
+	"tags": ["HPC", "Introduction", "EC2", "Optional"],
+	"description": "",
+	"content": "This workshop walks you through setting up your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure. Specifically, you learn how to:\n Sign in to the AWS Management Console and explore it. Create AWS Cloud9, a cloud based IDE, this is your portal to the AWS Command Line Interface (AWS CLI). Attach an IAM role to an AWS Cloud9 Instance  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/05-start-aws-cli.html",
+	"title": "c. Work with the AWS CLI",
+	"tags": ["tutorial", "cloud9", "aws cli", "s3"],
+	"description": "",
+	"content": "Your AWS Cloud9 Environment should be ready. Now, you can become familiar with the environment, learn about the AWS CLI, and then create an Amazon S3 bucket with the AWS CLI. This S3 bucket is used in the next module.\nAWS Cloud9 IDE Layout The AWS Cloud9 IDE is similar to a traditional IDE you can find on virtually any system. It comprises the following components:\n file browser, listing the files located on your instances. opened files in tab format, located at the top terminal tabs, located at the bottom.  AWS Cloud9 also includes the latest version of AWS CLI, but it is always a good practice to verify you are using the latest version. You can verify the AWS CLI version by following the next section.\nInstall AWS CLI version 2 and some software utilities The AWS CLI allows you to manage services using the command line and control services through scripts. Many users choose to conduct some level of automation using the AWS CLI.\nUse the copy button in each of the following code samples to quickly copy the command to your clipboard.\n In your AWS Cloud9 terminal window paste the following commands\n Clean-up any exsisting aws cli installation  To make sure you have AWS CLI version 2.x. You will first uninstall any existing AWS CLI.\nsudo pip uninstall -y awscli Install AWS CLI 2.x  curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install . ~/.bash_profile Verify you have AWS CLI 2.x  aws --version Install jq utility ( you will need this utility to work with JSON files in the labs that follow )  sudo yum install -y jq "
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/05-start-aws-cli.html",
+	"title": "c. Work with the AWS CLI",
+	"tags": ["tutorial", "cloud9", "aws cli", "s3"],
+	"description": "",
+	"content": "Your AWS Cloud9 Environment should be ready. Now, you can become familiar with the environment, learn about the AWS CLI, and then create an Amazon S3 bucket with the AWS CLI. This S3 bucket is used in the next module.\nAWS Cloud9 IDE Layout The AWS Cloud9 IDE is similar to a traditional IDE you can find on virtually any system. It comprises the following components:\n file browser, listing the files located on your instances. opened files in tab format, located at the top terminal tabs, located at the bottom.  AWS Cloud9 also includes the latest version of AWS CLI, but it is always a good practice to verify you are using the latest version. You can verify the AWS CLI version by following the next section.\nInstall AWS CLI version 2 and some software utilities The AWS CLI allows you to manage services using the command line and control services through scripts. Many users choose to conduct some level of automation using the AWS CLI.\nUse the copy button in each of the following code samples to quickly copy the command to your clipboard.\n In your AWS Cloud9 terminal window paste the following commands\n Clean-up any exsisting aws cli installation  To make sure you have AWS CLI version 2.x. You will first uninstall any existing AWS CLI.\nsudo pip uninstall -y awscli Install AWS CLI 2.x  curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install . ~/.bash_profile Verify you have AWS CLI 2.x  aws --version Install jq utility ( you will need this utility to work with JSON files in the labs that follow )  sudo yum install -y jq "
+},
+{
+	"uri": "https://www.hpcworkshops.com/05-cicd-pipeline/07-conclusion.html",
+	"title": "f. Conclusion",
+	"tags": ["tutorial", "DeveloperTools", "CodePipeline", "CodeBuild", "CI/CD"],
+	"description": "",
+	"content": "Congratulations! You built a CI/CD pipeline uisng CodePipeline.\nYour pipeline began with code in CodeCommit, built a Docker container and pushed the image to Elastic Container Registry (ECR) using CodeBuild.\nIn the next lab, you will learn about container orchestration and how to deploy your container using AWS Batch.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/06-iam-role.html",
+	"title": "d. Attach Role to Cloud9 Instance",
+	"tags": ["tutorial", "install", "IAM"],
+	"description": "",
+	"content": "In this step, you will create an IAM role with Administrator access and configure Cloud9 to use the IAM role for the rest of this lab.\nAWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.\nBy configuring Cloud9 to use the IAM role, you will allow your Cloud9 instance to access any services of your AWS account.\n  Follow this link to create an IAM role with Administrator access.\n  Confirm that AWS service and EC2 are selected, then click Next: Permissions to view permissions.\n  Confirm that AdministratorAccess is checked, then click Next: Tags to assign tags.\n  Take the defaults, and click Next: Review to review.\n  Enter hpcworkshop-admin for the Name, and click Create role.   Follow this link to find your Cloud9 EC2 instance.\n  Select the Cloud9 instance.\n  For Actions, choose Security, select Modify IAM Role.\n   For IAM Role, choose hpcworkshop-admin.\n  Choose Save.   In Cloud9, choose the gear icon in top right corner to open a new tab and choose \u0026ldquo;Preferences” tab.\n  In the Preferences tab, choose AWS SETTINGS to turn off AWS managed temporary credentials, then close the Preferences tab.\n  Identify the AWS region with the following commands:  export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) echo $AWS_REGION Configure the AWS CLI to use this AWS region:  aws configure set default.region ${AWS_REGION} aws configure get default.region "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/06-iam-role.html",
+	"title": "d. Temporary credentials on Cloud9",
+	"tags": ["tutorial", "install", "IAM"],
+	"description": "",
+	"content": "In this step, you will turn off the temporary credentials managed by Cloud9. You AWS Cloud9 instance has been created for this lab with the IAM role that allows your Cloud9 instance to access any services of your AWS account\nAWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.\n  In Cloud9, choose the gear icon in top right corner to open a new tab and choose \u0026ldquo;Preferences” tab.\n  In the Preferences tab, choose AWS SETTINGS to turn off AWS managed temporary credentials, then close the Preferences tab.\n  Identify the AWS region with the following commands in the Cloud9 terminal:  export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) echo $AWS_REGION Configure the AWS CLI to use this AWS region:  aws configure set default.region ${AWS_REGION} aws configure get default.region "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/07-logon-pc.html",
+	"title": "e. Log in to Your Cluster",
+	"tags": ["tutorial", "create", "ParallelCluster"],
+	"description": "",
+	"content": " The pcluster ssh is a wrapper around SSH. Depending on the case, you can also log in to your head node using ssh and the public or private IP address.\n You can list existing clusters using the following command. This is a convenient way to find the name of a cluster in case you forget it.\npcluster list --color -r $AWS_REGION Now that your cluster has been created, log in to the head node using the following command in your AWS Cloud9 terminal:\npcluster ssh hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION The EC2 instance asks for confirmation of the ssh login the first time you log in to the instance. Type yes. Getting to Know your Cluster Now that you are connected to the head node, familiarize yourself with the cluster structure by running the following set of commands.\nSLURM SLURM from SchedMD is one of the batch schedulers that you can use in AWS ParallelCluster. For an overview of the SLURM commands, see the SLURM Quick Start User Guide.\n  List existing partitions and nodes per partition. You should see two nodes if your run this command after creating your cluster, and zero nodes if running it 10 minutes after creation (default cooldown period for AWS ParallelCluster, you don\u0026rsquo;t pay for what you don\u0026rsquo;t use).  sinfo  List jobs in the queues or running. Obviously, there won\u0026rsquo;t be any since we did not submit anything\u0026hellip;yet!  squeue Module Environment Lmod is a fairly standard tool used to dynamically change your environment.\n List available modules  module av  Load a particular module. In this case, this command loads IntelMPI in your environment and checks the path of mpirun.  module load intelmpi which mpirun NFS Shares  List mounted volumes. A few volumes are shared by the head-node and will be mounted on compute instances when they boot up. Both /shared and /home are accessible by all nodes.  showmount -e localhost Next, you can run your first job!\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/08-run-1stjob.html",
+	"title": "f. Submit a tightly coupled HPC job",
+	"tags": ["tutorial", "create", "ParallelCluster"],
+	"description": "",
+	"content": " The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.\n In this step, you run the WRF CONUS 12km test case job to introduce you to the mechanisms of AWS ParallelCluster.\nPreparatory Steps Make sure that you are logged into the AWS ParallelCluster head node through the AWS Cloud9 terminal.\n Download CONUS 12KM Input data used for simulating the Weather Research and Forecasting (WRF) model are 12-km CONUS input. These are used to run the WRF executable (wrf.exe) to simulate atmospheric events that took place during the Pre-Thanksgiving Winter Storm of 2019. The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km. The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure).\nOn the HPC Cluster, download the CONUS 12km test case from the NCAR/MMM website into the /shared directory. /shared is the mount point of NFS server hosted on the head node.\nHere are the steps:\ncd /shared curl -O https://isc22-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz tar -xzf wrf_simulation_CONUS12km.tar.gz For the purpose of ISC22, a copy of the data that can be found on UCAR website through this link has been stored in a S3 bucket.\nPrepare the data Copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code. A copy of the WRF source code is part of the AMI and located in /opt/wrf-omp/src.\ncd /shared/conus_12km cp /opt/wrf-omp/src/run/{\\ GENPARM.TBL,\\ HLC.TBL,\\ LANDUSE.TBL,\\ MPTABLE.TBL,\\ RRTM_DATA,\\ RRTM_DATA_DBL,\\ RRTMG_LW_DATA,\\ RRTMG_LW_DATA_DBL,\\ RRTMG_SW_DATA,\\ RRTMG_SW_DATA_DBL,\\ SOILPARM.TBL,\\ URBPARM.TBL,\\ URBPARM_UZE.TBL,\\ VEGPARM.TBL,\\ ozone.formatted,\\ ozone_lat.formatted,\\ ozone_plev.formatted} . Run the CONUS 12Km simulation In this step, you create the SLURM batch script that will run the WRF CONUS 12km test case on 72 cores distributed over 2 x c5n.18xlarge EC2 instances.\ncat \u0026gt; slurm-c5n-wrf-conus12km.sh \u0026lt;\u0026lt; EOF #!/bin/bash #SBATCH --job-name=WRF-CONUS12km #SBATCH --partition=c5n18large #SBATCH --output=%x_%j.out #SBATCH --error=%x_%j.err #SBATCH --ntasks=72 #SBATCH --ntasks-per-node 36 #SBATCH --cpus-per-task=1 export I_MPI_OFI_LIBRARY_INTERNAL=0 export I_MPI_OFI_PROVIDER=efa module purge module load wrf-omp/4.2.2-intel-2021.3.0 mpirun wrf.exe EOF Submit your First Job Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist.\nIf there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached, no additional instances will be created.\nSubmit your first job using the following command on the head node:\nsbatch slurm-c5n-wrf-conus12km.sh Check the status of the queue using the command squeue. The job will be first marked as pending (PD state) because resources are being created (or in a down/drained state). If you check the EC2 Dashboard, you should see nodes booting up.\nsqueue When ready and registered, your job will be processed and you will see a similar status as below. You can also check the number of nodes available in your cluster using the command sinfo. Do not hesitate to refresh it, nodes generally take less than 5 min to appear.\nsinfo The following example shows 2 nodes. Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:\nLook for \u0026ldquo;SUCCESS COMPLETE WRF\u0026rdquo; at the end of the rsl* file.\nDone!\nAfter a few minutes, your cluster will scale down unless there are more job to process.\nExit the HPC Cluster\nexit "
+},
+{
+	"uri": "https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/09-exit-cluster.html",
+	"title": "g. Summary",
+	"tags": ["tutorial", "create", "ParallelCluster"],
+	"description": "",
+	"content": "Congratulations, you have deployed a HPC Cluster on AWS !\nIn this lab, you have:\n Configured your HPC Cluster Deployed a HPC Cluster in the cloud. Run a tighly couple application: WRF on the CONUS 12KM test case.  In the next lab, you will learn how to build a Docker container image and how to run a container on the HPC cluster in the cloud.\nYou can learn more about AWS ParallelCluster by visiting the documentation.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/01-create-s3.html",
+	"title": "a. Create S3 bucket",
+	"tags": ["tutorial", "install", "AWS", "Batch"],
+	"description": "",
+	"content": "In this step, we will create a S3 bucket to store the results of your Nextflow simulations\n  In the AWS Management Console search bar, type and select Cloud9.\n  Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.\n  Go to the environment space\n  cd ~/environment Create your unique S3 bucket using the following command  BUCKET_NAME=nextflow-results BUCKET_POSTFIX=$(uuidgen --random | cut -d\u0026#39;-\u0026#39; -f1) aws s3 mb s3://${BUCKET_NAME}-${BUCKET_POSTFIX} export BUCKET_NAME_RESULTS=${BUCKET_NAME}-${BUCKET_POSTFIX} echo \u0026#34;export BUCKET_NAME_RESULTS=${BUCKET_NAME_RESULTS}\u0026#34; \u0026gt;\u0026gt; s3_vars  An Amazon S3 bucket name is globally unique, and the namespace is shared by all AWS accounts. Keep note of your bucket name. If you forget your bucket name, you can view it in the Amazon S3 Dashboard.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/02-create-iam-role.html",
+	"title": "b. Create IAM Role",
+	"tags": ["tutorial", "install", "AWS", "Batch"],
+	"description": "",
+	"content": "In this step, we will create an IAM role for Amazon ECS Task Execution.\nAWS Batch uses Amazon ECS to create the compute environment. The task execution role grants the Amazon ECS container permission to make AWS API calls on your behalf.\nRun the following commands in your Cloud9 terminal to create a task execution IAM role.\n Create a file named ecs-tasks-trust-policy.json that contains the trust policy to use for the IAM role as below:  cat \u0026gt; ecs-tasks-trust-policy.json \u0026lt;\u0026lt; EOF { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Sid\u0026#34;: \u0026#34;\u0026#34;, \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: { \u0026#34;Service\u0026#34;: \u0026#34;ecs-tasks.amazonaws.com\u0026#34; }, \u0026#34;Action\u0026#34;: \u0026#34;sts:AssumeRole\u0026#34; } ] } EOF Create an IAM role named ecsTaskExecutionRole using the trust policy created in the previous step.  aws iam create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://ecs-tasks-trust-policy.json Attach the AWS managed AmazonECSTaskExecutionRolePolicy policy to the ecsTaskExecutionRole role. This policy provides the permissions required to pull the container image from Amazon ECR private repository and to send the container logs to CloudWatch.  aws iam attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy You will be using this role when creating the AWS Batch Job definition later in this lab.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/03-setup-batch-ce-jq.html",
+	"title": "c. Set up Batch Resources",
+	"tags": ["tutorial", "install", "AWS", "batch", "packer"],
+	"description": "",
+	"content": "In this step, you set up an AWS Batch Compute Environment and Job Queue via infrastructure as code using AWS Cloudformation.\nCompute environments can be seen as computational clusters. They can consist of one or several instance kinds or just the number of cores you want in the environment. For more information on the compute environments, see Compute Environments.\nThe Job Queue is where you submit your jobs. These jobs are dispatched to the compute environment(s) of your choosing by order of priority. If you want to learn more about job queues, see Job Queues.\nRun the following commands on your Cloud9 terminal\n Copy the Cloudformation template which will be used to create the AWS Batch Compute Environment and Job Queue.  aws s3 cp s3://isc22-hpc-labs/isc22-nextflow-batch-ce-jq.template.yaml . Set the following environment variables to be passed as parameters to the Cloudformation stack.  AWS_REGION - Specifies the AWS region to create the AWS Batch resources. VPC_ID - Specifies a virtual network to deploy AWS Batch resources. SUBNET_IDS - Specifies the subnets you want your batch compute environment to launch in.    AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region) echo \u0026#34;export AWS_REGION=${AWS_REGION}\u0026#34; VPC_ID=`aws ec2 describe-vpcs --output text --query \u0026#39;Vpcs[*].VpcId\u0026#39; --filters Name=isDefault,Values=true --region ${AWS_REGION}` echo \u0026#34;export VPC_ID=${VPC_ID}\u0026#34; SUBNET_IDS=`aws ec2 describe-subnets --query \u0026#34;Subnets[*].SubnetId\u0026#34; --filters Name=vpc-id,Values=${VPC_ID} --region ${AWS_REGION} --output text | sed \u0026#39;s/\\s\\+/,/g\u0026#39;` echo \u0026#34;export SUBNET_IDS=${SUBNET_IDS}\u0026#34; Deploy the Cloudformation template to create the Batch Compute Environment and Job Queue.  aws cloudformation deploy --stack-name nextflow-batch-ce-jq --template-file isc22-nextflow-batch-ce-jq.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds=\u0026#34;${SUBNET_IDS}\u0026#34; It will take a few mins for the stack to be created. Once complete you will see a message as below:  Waiting for changeset to be created.. Waiting for stack create/update to complete Successfully created/updated stack - nextflow-batch-ce-jq  Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose Batch\n  In the left pane, choose Compute environments option and confirm that a Compute environment nextflow-ce is created. Make sure Status is VALID and State is ENABLED. Refresh to check the Status updates.   Similarly, In the left pane choose Job queues section and confirm that a Job Queue nextflow-jq is created. Make sure State is ENABLED and Status is VALID   At this point, you have done the hard part! Continue to set up the job definition.\nHighly recommended to examine the contents of the downloaded Cloudformation template (isc22-nextflow-batch-ce-jq.template.yaml) to understand the usage of infrastructure as code to create the Batch resources in this section.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/04-setup-batch-job-definition.html",
+	"title": "d. Set up a Job Definition",
+	"tags": ["tutorial", "install", "AWS", "batch", "nextflow"],
+	"description": "",
+	"content": "In this step, you set up a template used for your jobs, known as a job definition. A job definition is not required, but a good practice to use so that you can version how your jobs are launched. For more information about job definitions, see Job Definitions.\nRun the following commands on your Cloud9 terminal\n Copy the Cloudformation template which will be used to create the AWS Batch Job Definition.  aws s3 cp s3://isc22-hpc-labs/isc22-nextflow-batch-jd.template.yaml . Set the following environment variables to be passed as parameters to the Cloudformation stack.  ImageId - The name of the Amazon ECR container repository where the Docker image is stored. You will run the image that you built in Lab III. ECSRoleArn - The name of the ECS task execution role created in Section b. of this Lab. BucketNameResults - The name of the Amazon S3 bucket created in Section a. of this Lab to store the results of the Nextflow pipeline run. NFJobQueue - The name of the AWS Batch job-queue to execute the downstream Nextflow jobs.    REPOSITORY_NAME=isc22-container ImageId=`aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} --output text --query \u0026#39;repositories[0].[repositoryUri]\u0026#39; --region $AWS_REGION` echo \u0026#34;export ImageId=${ImageId}\u0026#34; ECSRoleName=ecsTaskExecutionRole ECSRoleArn=`aws iam get-role --role-name ${ECSRoleName} --query \u0026#39;Role.[Arn]\u0026#39; --output text` echo \u0026#34;export ECSRoleArn=${ECSRoleArn}\u0026#34; NFJobQueue=nextflow-jq echo \u0026#34;export NFJobQueue=${NFJobQueue}\u0026#34; source s3_vars BucketNameResults=${BUCKET_NAME_RESULTS} echo \u0026#34;export BucketNameResults=${BucketNameResults}\u0026#34; Deploy the Cloudformation template to create the Batch Job definition.  aws cloudformation deploy --stack-name nextflow-batch-jd --template-file isc22-nextflow-batch-jd.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides NFJobQueue=${NFJobQueue} BucketNameResults=${BucketNameResults} ImageId=${ImageId} ECSRoleArn=${ECSRoleArn} It will take a few mins for the stack to be created. Once complete you will see a message as below:  Waiting for changeset to be created.. Waiting for stack create/update to complete Successfully created/updated stack - nextflow-batch-jd  Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose Batch\n  In the left pane, choose Job definitions and confirm that a Job Definition nextflow-demo is created. Make sure Status is ACTIVE.   At this point, you have completed creating the Batch environment. Next, take a closer look at compute environment, job queue, and job definition you created.\nHighly recommended to examine the contents of the downloaded Cloudformation template (isc22-nextflow-batch-ce-jq.template.yaml) to understand the usage of infrastructure as code to create the Batch resources in this section.\n "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/05-describe-batch-env.html",
+	"title": "e. Describe Your Environment",
+	"tags": ["tutorial", "install", "AWS", "batch"],
+	"description": "",
+	"content": "Now that you have configured AWS Batch, take a look at your environment by using the following commands\naws batch describe-compute-environments --region $AWS_REGION aws batch describe-job-queues --region $AWS_REGION aws batch describe-job-definitions --region $AWS_REGION You will see that the JSONs provided as output contain the parameters you chose for the compute environment, job queue, and job definition. Keep in mind that the steps you completed previously using the AWS CloudFormation can also be completed with the AWS CLI, AWS SDK, or AWS Console.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/06-run-job.html",
+	"title": "f. Run a Single Job",
+	"tags": ["tutorial", "install", "AWS", "batch", "packer"],
+	"description": "",
+	"content": "In this step, you launch a job using the AWS CLI. (Note that you could also use the AWS Management Console or the AWS SDK to submit jobs, but this workshop does not cover those options.)\nRun the following command on Cloud9 terminal to run a single job..\naws batch submit-job --job-name nextflow-job --job-queue nextflow-jq --job-definition nextflow-demo --region $AWS_REGION  If the job does not run, double-check that the job queue name and job definition are correct.\n Once your job is submitted successfully, note the Job Id because you can use it to show the status of a job:\naws batch describe-jobs --jobs \u0026lt;your-job-id\u0026gt; --region $AWS_REGION A JSON displays and describes the status of you job.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/07-monitor-job.html",
+	"title": "g. Monitor your jobs",
+	"tags": ["tutorial", "install", "AWS", "batch", "Nextflow"],
+	"description": "",
+	"content": "In this step, you will monitor your submitted jobs on the Batch console\n  Go to the Batch console and click on the Dashboard on the left hand side   The Dashboard gives you an overview of your Batch environment (i.e. Compute Environment, Job Queues and status of the submitted Jobs). The Job queue overview shows the different Job States that a batch job runs through during its execution cycle. For more information about the different job states, see Job States   The Nextflow job you submitted using the command line in the previous step submits one head job and four downstream jobs in the same job queue as part of the genomics pipeline. So you should see a total of 5 succeeded jobs in your output at the end of the run. Note that it will take ~5 mins for the different downstream jobs to start running and move to SUCCEEDED state.\n  You can view the job logs when the job state is RUNNING or SUCCEDED. Click on the SUCCEEDED jobs and you should see an output as shown below   Click on one of the jobs and click on the Log stream under Log stream name to see the job output logs in CloudWatch   The logs should open in CloudWatch in another browser window   "
+},
+{
+	"uri": "https://www.hpcworkshops.com/06-batch-automation/08-cleanup.html",
+	"title": "h. Cleanup",
+	"tags": ["tutorial", "install", "AWS", "batch", "Nextflow"],
+	"description": "",
+	"content": "Congratulations! You have completed the container orchestration lab and learnt how to deploy your containers using AWS Batch.\nIn Lab 3 you build and pushed your container to ECR in an automated way using CICD pipeline via CodeCommit and CodeBuild. In Lab 4 you deployed the same container using Batch.\nIn this section, you will clean all the resources that you created in Lab 3 and Lab 4.\nClean Up After you complete the workshop, clean up your environment by following these steps:\n On the Cloud9 terminal run the following commands to delete the AWS Batch environment \u0026amp; resources you created:  aws cloudformation delete-stack --stack-name nextflow-batch-ce-jq --region $AWS_REGION aws cloudformation delete-stack --stack-name nextflow-batch-jd --region $AWS_REGION Note, it will take a few mins for the stacks to be deleted.\n Navigate to the AWS CloudFormation Dashboard of the AWS Management Console and confirm that the stacks are deleted.\n  Navigate to Amazon S3 Dashboard of the AWS Management Console and delete the S3 bucket you created in Lab 4. Or, run the following CLI command on Cloud9.\n  source s3_vars aws s3 rb s3://${BUCKET_NAME_RESULTS} --force Navigate to the ECR service in the AWS Management Console and delete the repository you created earlier. Or, run the following CLI command on Cloud9.  REPO_NAME=isc22-container aws ecr delete-repository --repository-name $REPO_NAME --force --region $AWS_REGION Navigate to CodeCommit in the AWS Management Console and delete the repository you created in Lab 3. Or, run the following CLI command on Cloud9  CODECOMMIT_REPO_NAME=MyDemoRepo aws codecommit delete-repository --repository-name $CODECOMMIT_REPO_NAME --region $AWS_REGION Navigate to CodeBuild in the AWS Management Console and delete the build project you created in Lab 3. Or, run the following CLI command on Cloud9  CODEBUILD_PROJECT_NAME=MyDemoBuild aws codebuild delete-project --name $CODEBUILD_PROJECT_NAME --region $AWS_REGION Navigate to CodePipeline in the AWS Management Console and delete the pipeline that you creared in Lab 3. Or, run the following CLI command on Cloud9  CODEPIPELINE_NAME=MyDemoPipeline aws codepipeline delete-pipeline --name $CODEPIPELINE_NAME --region $AWS_REGION Navigate to IAM and delete the following Policies (click on Policies on the left hand pane) created as part of the labs. Search for the below policies. Click on the Policy -\u0026gt; Action -\u0026gt; Delete. Follow the required steps to confirm deletion.   CodeBuildBasePolicy-\u0026lt;codebuild-project-name\u0026gt;-\u0026lt;region\u0026gt; AWSCodePipelineServiceRole-\u0026lt;region\u0026gt;-\u0026lt;codepipeline-name\u0026gt;  Navigate to IAM and delete the following Roles (click on Roles on the left hand pane) created as part of the labs. Search for the below roles. Click on the Role -\u0026gt; Action -\u0026gt; Delete. Follow the required steps to confirm deletion.   AWSCodePipelineServiceRole-\u0026lt;region\u0026gt;-\u0026lt;codepipeline-name\u0026gt; codebuild-\u0026lt;codebuild-project-name\u0026gt;-service-role ecsTaskExecutionRole  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/02-aws-getting-started/99-summary.html",
+	"title": "Summary",
+	"tags": ["tutorial", "summary"],
+	"description": "",
+	"content": "During this workshop, you learned how to build a basic infrastructure in the AWS Cloud. Specifically, you learned how to:\n Access and use the AWS Management Console Open an AWS Cloud9 Environment Install AWS CLI v2 on AWS Cloud9 Instance  In the next section, you learn how to build an HPC cluster using AWS ParallelCluster. Let\u0026rsquo;s get started.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/07-aws-getting-started/99-summary.html",
+	"title": "Summary",
+	"tags": ["tutorial", "summary"],
+	"description": "",
+	"content": "During this workshop, you learned how to build a basic infrastructure in the AWS Cloud. Specifically, you learned how to:\n Access and use the AWS Management Console Create an AWS Cloud9 Environment Attach an IAM role to an AWS Cloud9 Instance  In the next section, you learn how to build an HPC cluster using AWS ParallelCluster. Let\u0026rsquo;s get started.\n"
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/batch.html",
+	"title": "Batch",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/hpc.html",
+	"title": "HPC",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/overview.html",
+	"title": "Overview",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags.html",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/codebuild.html",
+	"title": "CodeBuild",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/codecommit.html",
+	"title": "CodeCommit",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/codepipeline.html",
+	"title": "CodePipeline",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/developertools.html",
+	"title": "DeveloperTools",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/tutorial.html",
+	"title": "tutorial",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/aws-developer-tools.html",
+	"title": "AWS Developer Tools",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/devops.html",
+	"title": "DevOps",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/",
+	"title": "AWS HPC Workshops",
+	"tags": [],
+	"description": "",
+	"content": "ISC22 Tutorial Welcome to the Best Practices for HPC in the Cloud tutorial at ISC22 that will be delivered on May 29th 2022. We are excited to virtually meet you, and look forward to answering your questions! The website will be maintained after ISC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.\nWe are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/isc22cloud.\n Sandbox were available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.\n Need help?  Email: you can contact us directly before, during and after the conference through this email: isc22tutorial@amazon.com  Tutorial Content \u0026amp; Resources Tutorial Resources Before and during the tutorial you may be interested in going through the following sections:\n Agenda of the tutorial. FAQ answers to common questions will be communicated here during the tutorial. Lab account on how to access your lab account.  Presentations Slides The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at isc22tutorial@amazon.com.\nISC22 Hands-on Labs Throughout the tutorial you will be going through the following labs:\n Lab 0: Preparation: It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system. Lab 1: Create an HPC Cluster: You will be lead to create your first HPC system in the Cloud and run a tightly coupled application, WRF. Lab 2: Containers on AWS ParallelCluster: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud. Lab 3: Container Building Automation: You will learn to create a pipeline to automatically build a container upcon code changes. Lab 4: Simulation on AWS Batch: You will learn how to use container orchestrators like AWS Batch and deploy an architecture for automated job submission in AWS Batch using serverless functions..  Accessing Your Lab Account Once you get your credentials during the tutorial, access your account through https://dashboard.eventengine.run.\n  Report an issue on GitHub   Contact AWS HPC Team   Learn more  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/aws.html",
+	"title": "AWS",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/aws-console.html",
+	"title": "aws console",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/container.html",
+	"title": "container",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/create.html",
+	"title": "create",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/delete.html",
+	"title": "delete",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/ec2.html",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/iam.html",
+	"title": "IAM",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/initialize.html",
+	"title": "initialize",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/install.html",
+	"title": "install",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/nextflow.html",
+	"title": "nextflow",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/packer.html",
+	"title": "packer",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/parallelcluster.html",
+	"title": "ParallelCluster",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/prerequisite.html",
+	"title": "Prerequisite",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/repository.html",
+	"title": "repository",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/update.html",
+	"title": "update",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/introduction.html",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/optional.html",
+	"title": "Optional",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/aws-cli.html",
+	"title": "aws cli",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/categories.html",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/ci/cd.html",
+	"title": "CI/CD",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/cloud9.html",
+	"title": "cloud9",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/authors.html",
+	"title": "Credits",
+	"tags": [],
+	"description": "",
+	"content": "Main Authors The AWS HPC Workshops website has been developed by:\n Pierre-Yves Aquilanti, Ph.D. - Labs \u0026amp; content Maxime Hugues, Ph.D. - Labs and Content Anh Tran - Website, format and tech review Nicola Venuti - EFA content Karthik Raman - DCV content  Additional Authors  Linda Hedges, Ph.D. - Original content and HPC Workshop Sean Smith - content review and site build  Other Contributors This website is the result of many reviews and contributions.\nTech Writer  Abby Menting  Technical Reviewers  Matt Koop Sean Smith Nina Vogl Li (Li) Mu Carlos Castro Raghu Raja Brendan Sisson Srinivas Tadepalli Nicola Venuti Francesco Ruffino Barry Bolding Carlos Manzanedo Rueda and many more\u0026hellip;  "
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/s3.html",
+	"title": "s3",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://www.hpcworkshops.com/tags/summary.html",
+	"title": "summary",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

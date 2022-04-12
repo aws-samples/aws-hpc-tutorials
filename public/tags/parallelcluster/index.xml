@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ParallelCluster on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/parallelcluster.html</link>
+    <description>Recent content in ParallelCluster on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Sep 2019 10:46:30 -0400</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/parallelcluster/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>a. Install AWS ParallelCluster</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/02-install-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/02-install-pc.html</guid>
+      <description>This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections a. Sign in to the Console through d. Work with the AWS CLI in the Getting Started in the Cloud workshop.
+  In the AWS Management Console search bar, type and select Cloud9. Choose open IDE for the Cloud9 instance set up previously. It may take a few moments for the IDE to open.</description>
+    </item>
+    
+    <item>
+      <title>a. Update your cluster</title>
+      <link>https://www.hpcworkshops.com/04-container-parallelcluster/02-update-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/04-container-parallelcluster/02-update-pc.html</guid>
+      <description>In this section, you will update the configuration of the HPC cluster you created in Lab I to:
+ Create a post-install script to install Docker and Singularity. Provide access to the container registry, Amazon Elastic Container Registry (ECR). Create a new queue that will be used to run the containerized workload. Update the configuration of the HPC Cluster.  The following commands must be executed on the AWS Cloud9 environment created at the beginning of the tutorial.</description>
+    </item>
+    
+    <item>
+      <title>b. Set up AWS ParallelCluster foundation</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/03-initialize-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/03-initialize-pc.html</guid>
+      <description>Typically, to configure AWS ParallelCluster, you use the interactive command pcluster configure to provide the information, such as the AWS Region, VPC, Subnet, and Amazon EC2 Instance Type. For this workshop, you will create a custom configuration file to include the HPC specific options for this lab.
+In this section, you will set up the foundation (for example network, scheduler, &amp;hellip;) required to build the ParallelCluster config file in the next section.</description>
+    </item>
+    
+    <item>
+      <title>c. Create a Cluster Config</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/04-configure-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/04-configure-pc.html</guid>
+      <description>Now that you installed AWS ParallelCluster and set up the foundation, you can create a configuration file to build a simple HPC system. This file is generated in your home directory.
+Generate the cluster with the following settings:
+ Head-node and compute nodes: c5.xlarge instances. You can change the instance type if you like, but you may run into EC2 limits that may prevent you from creating instances or create too many instances.</description>
+    </item>
+    
+    <item>
+      <title>c. Run nextflow container</title>
+      <link>https://www.hpcworkshops.com/04-container-parallelcluster/04-launch-nextflow.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/04-container-parallelcluster/04-launch-nextflow.html</guid>
+      <description>In this section, you will run a basic pipeline for quantification of genomic features from short read data implemented with Nextflow. Nextflow enables scalable and reproducible scientific workflows using software containers.
+1. Create a new container image with nextflow Let&amp;rsquo;s begning by creating a new version of the container image.
+Change the Dockerfile with the nextflow container
+cd $CONTAINER_WORKDIR cat &amp;gt; Dockerfile &amp;lt;&amp;lt; EOF FROM nextflow/rnaseq-nf ENV DEBIAN_FRONTEND=noninteractive RUN apt-get --allow-releaseinfo-change update &amp;amp;&amp;amp; apt-get update -y &amp;amp;&amp;amp; apt-get install -y git python3-pip curl jq RUN curl -s https://get.</description>
+    </item>
+    
+    <item>
+      <title>d. Terminate Your Cluster</title>
+      <link>https://www.hpcworkshops.com/04-container-parallelcluster/06-delete-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/04-container-parallelcluster/06-delete-pc.html</guid>
+      <description>Now that you are done with your HPC cluster, you can delete it.
+Let&amp;rsquo;s exit the cluster to go back to your AWS Cloud9 terminal.
+exit On AWS Cloud9 terminal, let&amp;rsquo;s delete the cluster with the following command
+pcluster delete hpc-cluster-lab -r $AWS_REGION The cluster and all its resources will be deleted by CloudFormation. You can check the status in the CloudFormation Dashboard.</description>
+    </item>
+    
+    <item>
+      <title>b. Create a Cloud9 Environment</title>
+      <link>https://www.hpcworkshops.com/07-aws-getting-started/04-start_cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/07-aws-getting-started/04-start_cloud9.html</guid>
+      <description>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.
+AWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser.</description>
+    </item>
+    
+    <item>
+      <title>b. Open a Cloud9 Environment</title>
+      <link>https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html</guid>
+      <description>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.
+AWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser.</description>
+    </item>
+    
+    <item>
+      <title>d. Build an HPC Cluster</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html</guid>
+      <description>In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command pcluster create and the &amp;amp;ndash;config (or -c) option to use another configuration file other than the default one.
+If you create your cluster without using the &amp;ndash;config (or -c) option, then AWS ParallelCluster uses the default configuration with the minimum requirements to get a cluster running. For example, the default configuration for head and compute nodes is t2.</description>
+    </item>
+    
+    <item>
+      <title>e. Log in to Your Cluster</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/07-logon-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/07-logon-pc.html</guid>
+      <description>The pcluster ssh is a wrapper around SSH. Depending on the case, you can also log in to your head node using ssh and the public or private IP address.
+ You can list existing clusters using the following command. This is a convenient way to find the name of a cluster in case you forget it.
+pcluster list --color -r $AWS_REGION Now that your cluster has been created, log in to the head node using the following command in your AWS Cloud9 terminal:</description>
+    </item>
+    
+    <item>
+      <title>f. Submit a tightly coupled HPC job</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/08-run-1stjob.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/08-run-1stjob.html</guid>
+      <description>The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.
+ In this step, you run the WRF CONUS 12km test case job to introduce you to the mechanisms of AWS ParallelCluster.
+Preparatory Steps Make sure that you are logged into the AWS ParallelCluster head node through the AWS Cloud9 terminal.
+ Download CONUS 12KM Input data used for simulating the Weather Research and Forecasting (WRF) model are 12-km CONUS input.</description>
+    </item>
+    
+    <item>
+      <title>g. Summary</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/09-exit-cluster.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/09-exit-cluster.html</guid>
+      <description>Congratulations, you have deployed a HPC Cluster on AWS !
+In this lab, you have:
+ Configured your HPC Cluster Deployed a HPC Cluster in the cloud. Run a tighly couple application: WRF on the CONUS 12KM test case.  In the next lab, you will learn how to build a Docker container image and how to run a container on the HPC cluster in the cloud.
+You can learn more about AWS ParallelCluster by visiting the documentation.</description>
+    </item>
+    
+  </channel>
+</rss>

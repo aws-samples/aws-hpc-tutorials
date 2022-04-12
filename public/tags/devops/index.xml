@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/devops.html</link>
+    <description>Recent content in DevOps on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Container building automation</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline.html</link>
+      <pubDate>Wed, 29 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline.html</guid>
+      <description>HPC resources have complex and dynamic software needs that are challenging to manage and maintain. Users often want the latest software available for their research and development which drives the need for frequent installation and updates. Administrators currently address these complex software needs with package managers such as Lmod, Easybuild or Spack. However, even with these tools software management in an HPC environment includes manual and error-prone steps. Continuous integration, delivery, and deployment (CICD) is widely used in DevOps communities, as it allows to deploy rapidly-changing hardware and software resources.</description>
+    </item>
+    
+  </channel>
+</rss>
