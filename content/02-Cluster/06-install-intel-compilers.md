@@ -49,4 +49,9 @@ We are also going to use the AWS [EFA](https://aws.amazon.com/hpc/efa/) libfabri
 spack install intel-oneapi-mpi+external-libfabric%intel
 ```
 
+{{% notice note %}}
+You can safely ignore the warning about patchelf:
+`patchelf: cannot find section '.dynamic'. The input file is most likely statically linked`
+{{% /notice %}}
+
 This will take less than a minute to complete.

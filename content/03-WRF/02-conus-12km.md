@@ -29,9 +29,5 @@ ln -s $WRF_ROOT* .
 Please be aware there is a `namelist.input` in the current directory that you
 do not want to overwrite. The link command will return the following
 error, which is safe to ignore.
-
-```bash
-ln: failed to create symbolic link ‘./namelist.input’: File exists
-```
-
+`ln: failed to create symbolic link ‘./namelist.input’: File exists`
 {{% /notice %}}
