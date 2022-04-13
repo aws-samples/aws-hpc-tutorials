@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-The cluster we created on the previous page takes about ~15 mins to create. While you're waiting grab a ☕️.
+The cluster we created on the previous page takes about ~10 mins to create. While you're waiting grab a ☕️.
 
 Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of two ways, either through the shell or via the DCV session:
 
