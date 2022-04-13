@@ -5,6 +5,10 @@ weight = 30
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 
+
+Both templates can be found in the repository of the [monitoring solution](https://github.com/aws-samples/aws-batch-runtime-monitoring) or directly [here](https://raw.githubusercontent.com/aws-samples/aws-batch-runtime-monitoring/main/docs/ExamplesCfnTemplates/VPC-Large-Scale.yaml) for the VPC stack and [here](https://raw.githubusercontent.com/aws-samples/aws-batch-runtime-monitoring/main/docs/ExamplesCfnTemplates/Batch-Large-Scale.yaml) to deploy your AWS Batch environment. Once your retrieved and located the stacks, proceed to the steps below:
+
+
 Now that your network architecture is set up, you will build your AWS Batch environment.
 
 #### Deploy your AWS Batch Environment

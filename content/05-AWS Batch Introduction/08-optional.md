@@ -1,5 +1,5 @@
 +++
-title = "f. Clean up"
+title = "i. Clean up"
 date = 2019-09-18T10:46:30-04:00
 weight = 120
 tags = ["tutorial", "install", "AWS", "batch", "optional"]

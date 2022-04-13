@@ -33,13 +33,12 @@ This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE s
 {{% /notice %}}
 
 
-In this workshop you will learn how to create batch jobs that run a computationally intensive task ([stress-ng](https://kernel.ubuntu.com/~cking/stress-ng/)) in various ways. This includes running a single job, supplying different command line parameters to separate tasks of an array job, and defining a job dependency to simulate the flow control of a more complex workflow.
+In this workshop, you will learn how to create batch jobs that run a computationally intensive task ([stress-ng](https://kernel.ubuntu.com/~cking/stress-ng/)) in various ways. 
 
 This workshop includes the following major topics:
 
-- Set up the infrastructure for required for the workshop.
+- Set up the infrastructure for required the workshop.
 - Define, build and upload a container to [Amazon Elastic Container Registry (ECR)](hhttps://aws.amazon.com/ecr/).
-- Run a compute intensive task using [AWS Batch](https://aws.amazon.com/batch/).
-- Run the compute intensive task in different ways by passing separate command line parameters member tasks of an array job.
-- Define a job dependency for conditional execution of related batch jobs.
+- Run asingle compute intensive task using [AWS Batch](https://aws.amazon.com/batch/).
+- Run multiple compute intensive task by submitting an array job.
 - Clean up the resources used by this workshop.

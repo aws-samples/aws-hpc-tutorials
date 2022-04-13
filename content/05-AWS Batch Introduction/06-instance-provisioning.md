@@ -1,7 +1,7 @@
 +++
-title = "d. Instance Provisioning"
+title = "g. Instance Provisioning"
 date = 2019-09-18T10:46:30-04:00
-weight = 40
+weight = 70
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 +++
 
