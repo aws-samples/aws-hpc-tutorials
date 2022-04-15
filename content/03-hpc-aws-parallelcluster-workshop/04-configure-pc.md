@@ -63,7 +63,7 @@ CUSTOM_AMI=`aws ec2 describe-images --owners 111992169430 \
 ```bash
 cat > my-cluster-config.yaml << EOF
 HeadNode:
-  InstanceType: c5.large
+  InstanceType: m5.2large
   Ssh:
     KeyName: ${SSH_KEY_NAME}
   Networking:
