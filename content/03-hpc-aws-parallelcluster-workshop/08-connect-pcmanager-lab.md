@@ -1,7 +1,7 @@
 +++
-title = "c. Connect to PCluster Manager"
+title = "g. Connect to PCluster Manager"
 date = 2019-09-18T10:46:30-04:00
-weight = 30
+weight = 60
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 

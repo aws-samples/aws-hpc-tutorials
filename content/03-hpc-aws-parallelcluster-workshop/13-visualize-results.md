@@ -1,13 +1,13 @@
 +++
-title = "i. Visualize Results"
+title = "n. Visualize Results"
 date = 2022-04-10T10:46:30-04:00
-weight = 90
+weight = 130
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
 In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/). NCL will be pre-installed on your Cluster.
 
-1. Connect to the Head node via DCV, following instructions from part **[b. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/05-connect-cluster.html#dcv-connect)**
+1. Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/05-connect-cluster.html#dcv-connect)**
 
 2. In a terminal navigate to the WRF run directory.
 
@@ -19,7 +19,7 @@ cd /shared/conus_12km
    time 2019-11-27 00:00. Use the space bar to advance to the next plot.
 
 ```bash
-spack load ncl
+sudo yum install -y -q ncl-common
 ncl ncl_scripts/surface.ncl
 ```
 

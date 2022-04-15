@@ -1,19 +1,23 @@
 +++
-title = "f. Connect to the Cluster"
+title = "h. Connect to the Cluster"
 date = 2022-04-10T10:46:30-04:00
-weight = 50
+weight = 90
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
 The cluster we created on the previous page takes about ~10 mins to create. While you're waiting grab a ☕️.
 
-Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of two ways, either through the shell or via the DCV session:
+Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of the following three ways, either through the shell, via the DCV, or via SSH:
 
-**SSM Session Manager** is ideal for quick terminal access to the head node, it doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
+**SHELL** is ideal for quick terminal access to the head node.
 
 **DCV** is a full graphical remote desktop that allows you to run GUI applications on the head node. It doesn't require AWS account access but does require you to be able to connect to the head node on port **8443**.
 
+**SSH** is ideal for accessing the command line and/or moving (small) files onto the cluster (using *scp*). It does require to open port 22 (open by default).
+
 ## SSM Connect
+
+**SSM Connect** It doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
 
 1. Click on the **Shell** Button to connect:
 
@@ -36,3 +40,14 @@ You'll need to be authenticated to the AWS account that instance is running in a
 3. Next to launch a terminal (where the rest of the lab will run) we'll click **Activities** > **Terminal**:
 
 ![DCV Terminal](/images/isc22/dcv-terminal.png)
+
+
+## SSH
+
+1. from the Cloud9 machine terminal, run the following:
+
+```bash
+source env_vars
+pcluster ssh -n ISC22 -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION      
+```
+

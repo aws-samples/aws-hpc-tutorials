@@ -10,7 +10,7 @@ tags = ["tutorial", "ParallelCluster"]
 ![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)
 
 [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) is an open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. It also supports multiple instance types and job submission queues, and job schedulers like AWS Batch and Slurm.
-
+ 
 AWS ParallelCluster is built on the popular open source CfnCluster project and is released via the Python Package Index (PyPI). ParallelCluster's source code is hosted on the Amazon Web Services repository on GitHub. AWS ParallelCluster is available at no additional charge, and you pay only for the AWS resources needed to run your applications.
 
 ### Benefits

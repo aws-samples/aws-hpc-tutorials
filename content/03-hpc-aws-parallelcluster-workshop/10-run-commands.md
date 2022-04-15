@@ -1,7 +1,7 @@
 +++
-title = "f. Get to know your Cluster"
+title = "i. Get to know your Cluster"
 date = 2022-04-10T10:46:30-04:00
-weight = 60
+weight = 100
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

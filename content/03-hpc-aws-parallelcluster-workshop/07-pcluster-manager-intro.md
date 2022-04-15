@@ -1,7 +1,7 @@
 +++
-title = "b. About AWS ParallelCluster Manager"
+title = "f. About AWS PCluster Manager"
 date = 2022-04-10T10:46:30-04:00
-weight = 20
+weight = 60
 tags = ["tutorial", "ParallelCluster", "Manager"]
 +++
 
@@ -11,4 +11,4 @@ PCluster Manager is entirely serverless. Authentication is provided through Amaz
 
 ![pcluster-manager-arch](/images/isc22/pcm-arch.png)
 
-Proceed to the next page to start using PCluster Manager and create clusters with the AWS ParallelCluster API.
+Proceed to the next page to start using PCluster Manager and create clusters with the AWS ParallelCluster API. 
