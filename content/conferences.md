@@ -7,6 +7,7 @@ disableToc: true
 
 | Name | Description |
 |------|-------------|
+|[Weather Workshop](https://weather.hpcworkshops.com) | Introduction to weather forecasting using WRF, MPAS and FV3GFS on AWS ParallelCluster |
 |[reInvent 2021 AWS ParallelClusterAPI](https://ri21.hpcworkshops.com) | Introduction to the AWS ParallelCluster API and the PCluster Manager web UI to manage clusters|
 |[Supercomputing 2021 Tutorial](https://sc21.hpcworkshops.com) | Collection of labs created for the [full-day tutorial](https://sc21.supercomputing.org/presentation/?id=tut136&sess=sess182) delivered by the AWS HPC team at SC21 |
 |[Supercomputing 2020 Tutorial](https://sc20.hpcworkshops.com) | Find the labs created for the [full-day tutorial](https://sc20.supercomputing.org/presentation/?id=tut137&sess=sess245) delivered by the AWS HPC team at SC20 |
