@@ -15,11 +15,11 @@ Both templates can be found in the repository of the [monitoring solution](https
 ##### Deploy the Batch CloudFormation stack via the Amazon Console
 1. **Download** the [Batch CloudFormation Template](https://raw.githubusercontent.com/aws-samples/aws-batch-runtime-monitoring/main/docs/ExamplesCfnTemplates/Batch-Large-Scale.yaml)
 2. **Open** the AWS Cloudformation console ([link](https://console.aws.amazon.com/cloudformation/)) to find your AWS CloudFormation stacks.
-3. **Click** on Create Stack in the upper right hand corner. ![CloudFormation Create Stack](/images/aws-batch/deep-dive/CloudFormation_1.png)
+3. **Click** on *Create Stack* in the upper right hand corner. ![CloudFormation Create Stack](/images/aws-batch/deep-dive/CloudFormation_1.png)
 4. **Select** the *With new resources* option ![CloudFormation Create Stack](/images/aws-batch/deep-dive/CloudFormation_2.png)
 5. In the Prepare template section, **Select** *Template is ready* ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-11.png)
 6. In the Specify template section, **Select** *Upload a template file*.  Then **click** on the choose file putton and **choose** the VPC cloudformation template you downloaded in step 1 ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-12.png)
-7. **Type** the Name of your VPC. Here you can see the VPC name is *LargeScaleVPC*. please use whatever you see fit. ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-13.png)
+7. **Type** the name of your VPC. Here you can see the VPC name is *LargeScaleVPC*. Please use whatever you see fit. ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-13.png)
 8. **Leave** the *Parameters* settings with their default values. ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-14.png)
 9. **Click** on the *Next* button to proceed. ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-16.png)
 10. **Leave** all the fields in the *Configure stack options* at the default values.  ![CloudFormation Prep Template](/images/aws-batch/deep-dive/CloudFormation_-_Stack-15.png)
