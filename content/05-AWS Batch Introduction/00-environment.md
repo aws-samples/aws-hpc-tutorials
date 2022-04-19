@@ -34,9 +34,3 @@ After executing ther commands above, confirm that you now have AWS CLI version 2
 ```text
 aws-cli/2.3.3 Python/3.8.8 Linux/4.14.248-189.473.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
 ```
-
-### Install JQ
-To help with commands results slicing and filtering.
-```bash
-sudo yum -y install jq 
-```
