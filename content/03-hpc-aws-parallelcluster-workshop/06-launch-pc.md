@@ -13,12 +13,11 @@ In your AWS Cloud9 terminal, run the following to create a cluster. Make sure th
 pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
 ```
 
-The **pcluster create-clsuter** command might output a few warnings, the cluster creation will progress. 
+The **pcluster create-cluster** command might output a few warnings, the cluster creation will progress. 
 
 ```bash
-TeamRole:~/environment $ cat > my-cluster-config.yaml << EOF
-                         source env_vars
-                         pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
+TeamRole:~/environment $ source env_vars
+TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
 {
   "cluster": {
     "clusterName": "ISC22",
@@ -69,6 +68,6 @@ There can be only one cluster of a given name at any time on your account.
 
 #### What's Happening in the Background
 
-When the **pcluster create** command is executed, AWS ParallelCluster generates an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate an infrastructure in AWS. The bulk of the work is done in AWS and once the create is launched, you don't need to keep AWS ParallelCluster running. If you want to see AWS CloudFormation generating the infrastructure, you can view the [CloudFormation console](https://console.aws.amazon.com/cloudformation/). The following image shows cluster creation in the CloudFormation console.
+When the **pcluster create-cluster** command is executed, AWS ParallelCluster generates an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate an infrastructure in AWS. The bulk of the work is done in AWS and once the create is launched, you don't need to keep AWS ParallelCluster running. If you want to see AWS CloudFormation generating the infrastructure, you can view the [CloudFormation console](https://console.aws.amazon.com/cloudformation/). The following image shows cluster creation in the CloudFormation console.
 
 ![ParallelCluster CloudFormation](/images/hpc-aws-parallelcluster-workshop/pc-cloudformation.png)
