@@ -1,5 +1,5 @@
 +++
-title = "d. Build and upload your Container"
+title = "c. Build and upload your Container"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
@@ -9,6 +9,10 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 In the previous steps, we have used AWS Cloudformation Templates to deploy both our VPC and Batch environments for us to run our tests. In this section, you will build the container image to be used in the test and upload it to Amazon ECR.
 
 [stress-ng](https://kernel.ubuntu.com/~cking/stress-ng/) is used to simulate the behavior of a computational process for a duration of 10 minutes. You will create the image and upload it to Amazon ECR using Docker using an Amazon EC2 instance with Docker. A *t2.micro* instance is sufficient for this. 
+
+{{% notice info %}}
+If you are using the Cloud9 environment that you created in the [Getting Started in the Cloud](/02-aws-getting-started.html) please jump to the **[Install Docker on your Amazon EC2 instance](#install-docker-on-your-amazon-ec2-instance)** section below.
+{{% /notice %}}
 
 ##### Deploy an Amazon EC2 instance
 1. **Open** the Amazon EC2 console ([link](https://console.aws.amazon.com/ec2/v2/)) to find your Amazon EC2 instances.

@@ -1,5 +1,5 @@
 +++
-title = "b. Deploy VPC Environment"
+title = "a. Deploy VPC Environment"
 date = 2019-09-18T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "install", "AWS", "Batch"]
