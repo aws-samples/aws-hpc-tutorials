@@ -9,7 +9,7 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 Next we'll use Spack to install the [Intel Compilers (ICC)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html), we'll use these to compile binaries such as WRF in the next few sections:
 
 ```bash
-spack install intel-oneapi-compilers
+spack install --no-cache intel-oneapi-compilers
 ```
 
 This will take about `~4 mins` to complete. Once it's complete we can see the installed package by running `spack find`:
@@ -46,7 +46,7 @@ We will now install the [Intel MPI library](https://www.intel.com/content/www/us
 We are also going to use the AWS [EFA](https://aws.amazon.com/hpc/efa/) libfabric by setting `external-libfabric` in our Spack install. We told Spack this was already installed in the [previous step](05-external-packages.html). The AWS libfabric library is optimized for EFA and we recommend using it over the libfabric bundled with Intel MPI.
 
 ```bash
-spack install intel-oneapi-mpi+external-libfabric%intel
+spack install --no-cache intel-oneapi-mpi+external-libfabric%intel
 ```
 
 {{% notice note %}}
