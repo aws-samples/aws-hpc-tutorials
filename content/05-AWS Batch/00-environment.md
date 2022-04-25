@@ -32,7 +32,7 @@ aws --version
 ```
 After executing ther commands above, confirm that you now have AWS CLI version 2 sucessfully installed by verfying output from the last command above results in output similar to the following:
 ```text
-aws-cli/2.3.3 Python/3.8.8 Linux/4.14.248-189.473.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
+aws-cli/2.5.7 Python/3.9.11 Linux/4.14.273-207.502.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
 ```
 
 ### Install JQ
