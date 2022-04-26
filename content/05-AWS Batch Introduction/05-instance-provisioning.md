@@ -1,5 +1,5 @@
 +++
-title = "g. Instance Provisioning"
+title = "f. Instance Provisioning"
 date = 2019-09-18T10:46:30-04:00
 weight = 70
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
@@ -22,4 +22,11 @@ With the Allocation Strategy:
 
 Instance provisioning is directed by one or more Auto-Scaling groups or a Spot Fleet depending on the purchasing model selected. If using BEST_FIT and the Spot purchasing model, AWS Batch uses a Spot Fleet which can contain differing instance types. If using BEST_FIT and the On-Demand purchasing model, one ASG is used per instance type. For BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED, a single ASG is used to provision all the instances for a Compute Environment regardless of the purchasing model. From a performance or behavior perspective, there’s no major difference between these approaches.
 
+##### Explore Batch Dashboard - Compute Environment
+1. **Open** the AWS Batch in the console to see the AWS Batch Dashboards ([link](https://console.aws.amazon.com/batch/))
+2. **See** the provisioning model and instance types chosen for the Compute environment. ![job submission](/images/aws-batch/deep-dive/AWS_Batch___Dashboard-2.png)
+3. **Click** on the compute environment.
+![job submission](/images/aws-batch/deep-dive/AWS_Batch___Dashboard-2-2.png)
+4. **Notice** the details about the compute environment built by the Batch CloudFormation stack. ![job submission](/images/aws-batch/deep-dive/AWS_Batch___Compute_environments___Details___ComputeEnvironment1-lxGus0AlMOsVNSaw.png) 
 
+Now that you understand the AWS Batch job lifecycle and how instances ar provisioned, in the next section we will talk a bit about optimization of your AWS Batch workload.

@@ -16,8 +16,8 @@ CMD /usr/bin/stress-ng
 ```
 3. **Save** the file.![EC2 instance create](/images/aws-batch/deep-dive/terminal_3.png)
 
-4. **Run** the commands below to build and push the container image to the Amazon ECR repository you created when deploying the Batch CloudFormation stack. 
-	- *If running on your own workstation, ensure that the account ID and region are properly set for the environment variables `AWS_ACCOUNT_ID` and `AWS_REGION`.* If further guidance is needed, follow this [guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#use-ecr).
+4. **Run** the commands below to build and push the container image to the Amazon ECR repository you created when deploying the Batch CloudFormation stack. You will need to modify the script below to use the name of your batch environment stack.  In the case of this workshop, we used *LargeScaleBatch*.
+	- *If running on your own workstation, ensure that the account ID and region are properly set for the environment variables `AWS_ACCOUNT_ID` and `AWS_REGION`.* If further guidance is needed, follow this [guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html).
 
 
 ```bash
@@ -26,7 +26,7 @@ CMD /usr/bin/stress-ng
 # set environment variables
 AWS_ACCOUNT_ID=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep accountId| awk '{print $3}'|sed  's/"//g'|sed 's/,//g'` # or replace by your account ID
 AWS_REGION=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep region| awk '{print $3}'|sed  's/"//g'|sed 's/,//g'` # or replace by your region ID
-ECR_URL=`aws cloudformation describe-stacks --stack-name BatchStack --query "Stacks[0].Outputs[?OutputKey=='ECRRepositoryUrl'].OutputValue" --output text --region ${AWS_REGION}`
+ECR_URL=`aws cloudformation describe-stacks --stack-name LargeScaleBatch --query "Stacks[0].Outputs[?OutputKey=='ECRRepositoryUrl'].OutputValue" --output text --region ${AWS_REGION}`
 
 # Authenticate with ECR
 aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com

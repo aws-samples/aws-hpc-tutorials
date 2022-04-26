@@ -1,5 +1,5 @@
 +++
-title = "h. Optimization of Instance Selection"
+title = "g. Optimization of Instance Selection"
 date = 2019-09-18T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
