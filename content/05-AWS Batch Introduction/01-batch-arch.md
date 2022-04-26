@@ -1,5 +1,5 @@
 +++
-title = "c. Create your AWS Batch Architecture"
+title = "b. Create your AWS Batch Architecture"
 date = 2019-09-18T10:46:30-04:00
 weight = 30
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]

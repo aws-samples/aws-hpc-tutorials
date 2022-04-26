@@ -1,5 +1,5 @@
 +++
-title = "i. Clean up"
+title = "h. Clean up"
 date = 2019-09-18T10:46:30-04:00
 weight = 120
 tags = ["tutorial", "install", "AWS", "batch", "optional"]
@@ -80,11 +80,11 @@ bash remove-repos.sh
 4. Either delete the previously created cloudformation stacks using the AWS Management Console or AWS CLI:
 
 - Console: go to [CloudFormation](https://console.aws.amazon.com/cloudformation/)
-    1. select the right region and the Batch-Large-Scale stack and click on *Delete*
-    2. select the right region and the VPC-Large-Scale stack and click on *Delete*
+    1. select the right region and the LargeScaleBatch stack and click on *Delete*
+    2. select the right region and the LargeScaleVPC stack and click on *Delete*
 
 - CLI: use the following command in your Cloud9 Environment:
 ```bash
-aws cloudformation delete-stack --stack-name Batch-Large-Scale.yaml
-aws cloudformation delete-stack --stack-name VPC-Large_Scale.yaml
+aws cloudformation delete-stack --stack-name LargeScaleBatch
+aws cloudformation delete-stack --stack-name LargeScaleVPC
 ```
