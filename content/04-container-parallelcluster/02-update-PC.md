@@ -18,14 +18,15 @@ You can find the AWS Cloud9 environment by opening the [AWS Cloud9 console](http
 
 #### Preliminary
 
-Prior to version 3.x, AWS ParallelCluster uses configuration file in `ini` format.
-For the following steps, you will use an utility to manipulate `ini` files, named [crudini](https://github.com/pixelb/crudini).
+Starting with version 3.x, AWS ParallelCluster uses configuration file in `yaml` format.
+For the following steps, you will use an utility to manipulate `yaml` files, named [yq](https://github.com/mikefarah/yq).
 That will make the editing easier and more reproductible.
 
-In the Cloud 9 Terminal, copy and paste the command below to install `crudini`:
+In the Cloud 9 Terminal, copy and paste the command below to install `yq`:
 
 ```bash
-pip3 install crudini -U --user
+YQ_VERSION=4.21.1
+sudo wget https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
 ```
 
 #### 1. Create a post-install script
