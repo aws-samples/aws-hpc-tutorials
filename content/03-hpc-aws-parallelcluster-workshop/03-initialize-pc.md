@@ -27,7 +27,7 @@ curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/s
 Execute the script to retrieve network information.
 ```bash
 chmod +x ./ISC22_create_parallelcluster_config.sh 
-./ISC22_create_parallelcluster_config.sh 
+. ./ISC22_create_parallelcluster_config.sh 
 ```
 
 4. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost

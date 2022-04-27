@@ -48,6 +48,6 @@ You'll need to be authenticated to the AWS account that instance is running in a
 
 ```bash
 source env_vars
-pcluster ssh -n ISC22 -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION      
+pcluster ssh -n hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION      
 ```
 
