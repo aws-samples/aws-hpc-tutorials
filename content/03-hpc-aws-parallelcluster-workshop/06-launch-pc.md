@@ -18,7 +18,7 @@ The **pcluster create-clsuter** command might output a few warnings, the cluster
 ```bash
 TeamRole:~/environment $ cat > my-cluster-config.yaml << EOF
                          source env_vars
-                         pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
+                         pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --cluster-configuration my-cluster-config.yaml
 {
   "cluster": {
     "clusterName": "ISC22",
