@@ -17,13 +17,16 @@ You will create an instance to build a container and push it to Amazon ECR. To d
 
 
 ### Deploy an Amazon EC2 instance
+
+In this step you will create an instance based on the instructions below:
+
 1. **Open** the Amazon EC2 console ([link](https://console.aws.amazon.com/ec2/v2/)) to find your Amazon EC2 instances.
 ![EC2 instance create](/images/aws-batch/deep-dive/Instances___EC2_Management_Console.png)
 2. **Click** on *Launch Instances* in the upper right hand corner. ![EC2 instance create](/images/aws-batch/deep-dive/Instances___EC2_Management_Console-2.png)
 3. **Type** the name of your instance. Here you can see the instance name is *DockerBuilder*. Please use whatever you see fit. ![EC2 instance create](/images/aws-batch/deep-dive/Launch_an_instance___EC2_Management_Console.png)
 4. **Keep** the Amazon Machine Image and Instance type at the default values.  These should be free teir eligable.  ![EC2 instance create](/images/aws-batch/deep-dive/Cursor_and_Launch_an_instance___EC2_Management_Console.png)
 5. **Create** a new key pair to be able to connect to your new instance.![EC2 instance create](/images/aws-batch/deep-dive/EC2_KP1.png) 
-6. **Type** the name of your key pair. Here you can see the instance name is *dockerKP*. Please use whatever you see fit. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_KP2.png) 
+6. **Type** the name of your EC2 key pair. Here you can see the instance name is *dockerKP*. Please use whatever you see fit. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_KP2.png)
 7. **Click** on *Create key pair.* ![EC2 instance create](/images/aws-batch/deep-dive/EC2_KP3.png) 
 8. **Note** that the key pair has been downloaded to your computer. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_KP4.png) 
 9. **Keep** the rest of the settings at their default values. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_Management_Console-10.png)
@@ -32,6 +35,9 @@ You will create an instance to build a container and push it to Amazon ECR. To d
 12. **Note** the successful launch of the instance and click *View all instances* ![EC2 instance create](/images/aws-batch/deep-dive/EC2_Management_Console-7.png) 
 
 ### Add instance role
+
+Roles contain [policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that define what you, users and resources are permitted to do on an AWS account. In this case you will allow your instance to push images to Amazon ECR.
+
 1. **Check** that the instance you just created is running. **Check** the checkbox next to that instace. **Drop** the *Action* menu. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_Management_Console-8.png)
 2. **Select** *Security* from the menu options. ![EC2 instance create](/images/aws-batch/deep-dive/Instances___EC2_Management_Console-3.png)
 3. **Select** *Modify IAM role* under the security options. Your instance needs to have the policy `AmazonEC2ContainerRegistryPowerUser` attached to its [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)![EC2 instance create](/images/aws-batch/deep-dive/Instances___EC2_Management_Console-4.png)
@@ -48,6 +54,9 @@ You will create an instance to build a container and push it to Amazon ECR. To d
 14. **Select** the new IAM role you just created from the drop down menu. **Click** *Save*.  ![EC2 instance create](/images/aws-batch/deep-dive/Modify_IAM_role___EC2_Management_Console-2.png)
 
 ### Connect to your instance
+
+You now connect to the instance and will proceed to the next steps.
+
 1. **Check** that the instance you just created is running. **Check** the checkbox next to that instace. **Drop** the *Action* menu. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_Management_Console-8.png)
 2. **Select** *Connect* from the menu options. ![EC2 instance create](/images/aws-batch/deep-dive/EC2_Management_Console-9.png) 
 3. **Connect** to your instance. There are multiple ways to connect to your instance.  **Select** your preffered way and follow the directions on the screen. Here, the workshop will use the terminal window to connect using the *key pair* we created in the above step. ![EC2 instance create](/images/aws-batch/deep-dive/Connect_to_instance___EC2_Management_Console.png)

@@ -13,7 +13,7 @@ In this section, we are going to submit jobs to the Batch cluster.  The code bel
 ##### Upgrade to AWS CLI Version 2
 
 AWS CLI Version 2 is required to interact with [Amazon ECR](https://aws.amazon.com/ecr/). You will install it by copying, pasting, and executing the following instructions in your terminal window.
-1.  **Run** the following commands to upgrade to AWS CLI to Version 2. More information on this process is available at https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html. 
+1.  **Run** the following commands to upgrade to AWS CLI to Version 2. More information on this process is available [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html).
 ```bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip

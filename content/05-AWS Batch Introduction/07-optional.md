@@ -5,9 +5,9 @@ weight = 120
 tags = ["tutorial", "install", "AWS", "batch", "optional"]
 +++
 
-Now that you have successfully completed the Batch introduction and Batch Deep Dive workshop you should be familiar with the concepts and operations of AWS Batch. This includes the basic steps required to build and register your own container images; create and run simple and array batch jobs; and the fundementals around AWS Batch architecture. These form the basic building blocks of more complex workflows. 
+Now that you have successfully completed the Batch introduction and Batch Deep Dive workshop you should be familiar with the concepts and operations of AWS Batch. This includes the basic steps required to build and register your own container images; create and run simple and array batch jobs; and the fundamentals around AWS Batch architecture. These form the basic building blocks of more complex workflows.
 
-At this stage it is a good idea to reinforce your knowedge by applying it to address your own problems and workflows.
+At this stage it is a good idea to reinforce your knowledge by applying it to address your own problems and workflows.
 
 #### Clean up
 
