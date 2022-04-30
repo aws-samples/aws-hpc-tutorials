@@ -12,7 +12,7 @@ You will find here the agenda for the tutorial. An update will be made on May 29
 | Session Kind | Time                                                                  | Topic                                                                | Speakers                                   |
 | ------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
 | Talk         | 09:00AM - 09:10AM                                                     | Welcome and Introduction                                             | Maxime Hugues                              |
-| Talk         | 09:10AM - 10:00AM                                                     | Modern Cloud Architectures                                           | Matt Koop                                  |
+| Talk         | 09:10AM - 10:00AM                                                     | Modern Cloud Architectures                                           | Francesco Ruffino                                  |
 | *Lab 1*      | 10:00AM - 11:00AM                                                     | Create a HPC cluster in the Cloud                                    | Maxime Hugues /                            |
 | 30 Min Break | 11:00AM - 11:30AM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
 | Talk         | 11:30AM - 12:30PM                                                     | Deep Dive Compute, Network, Storage                                  | Pierre-Yves Aquilanti                      |
