@@ -11,7 +11,7 @@ In this step, you will monitor your submitted jobs on the Batch console
 ![AWS Batch](/images/aws-batch/ISC22/mon-1.png)
 
 2. The **Dashboard** gives you an overview of your Batch environment (i.e. Compute Environment, Job Queues and status of the submitted Jobs). The Job queue overview shows the different Job States that a batch job runs through during its execution cycle. For more information about the different job states, see [Job States](https://docs.aws.amazon.com/batch/latest/userguide/job_states.html)
-![AWS Batch](/images/aws-batch/ISC22/mon-2.png)
+![AWS Batch](/images/aws-batch/ISC22/mon-2b.png)
 
 3. The Nextflow job you submitted using the command line in the previous step submits one head job and four downstream jobs in the same job queue as part of the genomics pipeline. So you should see a total of 5 succeeded jobs in your output at the end of the run. Note that it will take ~5 mins for the different downstream jobs to start running and move to SUCCEEDED state.   
 ![AWS Batch](/images/aws-batch/ISC22/mon-3.png)
