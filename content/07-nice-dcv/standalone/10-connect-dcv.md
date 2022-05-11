@@ -17,8 +17,14 @@ When you connect make sure you use the https protocol to ensure a secure connect
 3. Use the following command to list running instances and display their names, type, private IP address, **Public IP address** and **Public DNS Name**. Here, the information is filtered to only keep certain details (hence the complex command). The same information is displayed on the [EC2 Dashboard](https://console.aws.amazon.com/ec2).
 ```bash
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]| [0].Value,InstanceType, PrivateIpAddress, PublicIpAddress, PublicDnsName]' --filters Name=instance-state-name,Values=running --output table  
+
+-------------------------------------------------------------------------------------------------------------------
+|                                                DescribeInstances                                                |
++---------------+--------------+----------------+-----------------+-----------------------------------------------+
+|  NICE DCV DEMO|  g4dn.xlarge |  172.31.7.241  |  3.239.217.95   |  ec2-3-239-217-95.compute-1.amazonaws.com     |
++---------------+--------------+----------------+-----------------+-----------------------------------------------+
 ```
-![DCV Connect](/images/nice-dcv/Connect-DCV-DNS.png)
+`3.239.217.95` is the **Public IP address**. `ec2-3-239-217-95.compute-1.amazonaws.com` is the **Public DNS name**.
 
 4. Open your web browser and enter the NICE DCV server URL in the following format:   https://PublicDNSname:port/#mysession
 
@@ -26,7 +32,7 @@ aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Na
 
 ```bash
 ##Remember to use your OWN PublicDNS name
-https://ec2-3-82-53-238.compute-1.amazonaws.com:8443/#dcvdemo
+https://ec2-3.239.217.95.compute-1.amazonaws.com:8443/#dcvdemo
 ```
 
 5. Enter your user name and password that you setup for the NICE DCV Server instance and choose Login.

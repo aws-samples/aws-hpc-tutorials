@@ -6,11 +6,11 @@ tags : ["tutorial", "EFA", "ec2", "IntelMPI", "MPI", "intel", "module"]
 ---
 
 
-In this section, Learn how to work with [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) on AWS ParallelCluster.
+In this section, Learn how to work with [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) on AWS ParallelCluster.
 
 #### Enable Intel MPI
 
-Intel MPI is available on the AWS ParallelCluster AMIs for alinux, alinux2, centos7, ubuntu1604, and ubuntu1804 values for the [**base_os**](https://docs.aws.amazon.com/parallelcluster/latest/ug/cluster-definition.html#base-os) setting.
+Intel MPI is available on the AWS ParallelCluster AMIs for alinux, alinux2, centos7, ubuntu1604, and ubuntu1804 values for the [**Image: Os:**](https://docs.aws.amazon.com/parallelcluster/latest/ug/cluster-definition.html#base-os) setting.
 
 {{% notice info %}}
 Using Intel MPI indicates that you accept the Intel Simplified Software License.
@@ -60,6 +60,6 @@ mpirun --version
 the output of the command is something like this:
 
 ```bash
-Intel(R) MPI Library for Linux* OS, Version 2019 Update 7 Build 20200312 (id: 5dc2dd3e9)
+Intel(R) MPI Library for Linux* OS, Version 2019 Update 8 Build 20200624 (id: 4f16ad915)
 Copyright 2003-2020, Intel Corporation.
 ```

@@ -1,5 +1,5 @@
 +++
-title = "g. Create an IAM Role"
+title = "h. Create an IAM Role"
 weight = 110
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 +++
@@ -9,7 +9,7 @@ tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 {{% /notice %}}
 
 {{% notice info %}}
-Access to resources by users and services is controlled by [Identity and Access Management](https://aws.amazon.com/iam/) (IAM). For example, IAM permissions can be added to a policy then a role which can be attached to a user user, group role (admins, devops) or a service (Amazon EC2 to access Amazon S3, Amazon Lambda to access Amazon SQS). For an in depth introduction, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html).
+Access to resources by users and services is controlled by [Identity and Access Management](https://aws.amazon.com/iam/) (IAM). For example, IAM permissions can be added to a policy then a role which can be attached to a user, user group role (admins, devops) or a service (Amazon EC2 to access Amazon S3, Amazon Lambda to access Amazon SQS). For an in depth introduction, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html).
 {{% /notice %}}
 
 Now that you have created an EC2 instance and logged into the instance using SSH, you can use the instance to access the Amazon S3 bucket created previously.
@@ -49,7 +49,10 @@ Select the **Permissions** tab and expand the **AmazonS3FullAccess** policy. The
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "s3:*",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
             "Resource": "*"
         }
     ]
@@ -87,7 +90,7 @@ IAM is a great way to control who and what can access which resources at a fine 
 Now that you have created a new IAM role, you can assign it to your EC2 instance:
 
 1. Navigate to the **EC2 Dashboard** then choose **Instances**.
-2. Choose your instance, then choose **Actions**, **Instance Settings**, and **Attach/Replace IAM Role**.
+2. Choose your instance, then choose **Actions**, **Security**, and **Modify IAM Role**.
 3. Select the newly created IAM Role, and choose **Apply**. Your role is attached and visible in your EC2 instance details. Your EC2 instance is now allowed to access S3.
 ![EC2 IAM Role](/images/introductory-steps/ec2-role.png)
 4. Return to your AWS Cloud9 IDE, connect to the instance with SSH, and run the following commands (don't forget to change the bucket name to yours!). This command lists your Amazon S3 bucket content then downloads the file downloaded previously.

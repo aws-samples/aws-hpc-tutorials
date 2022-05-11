@@ -14,20 +14,16 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 5. For **Job definition** select **stress-ng-job-definition:1** (the ":1" suffix signifies version 1).
 6. Select **stress-ng-queue** as the **Job queue**.
 7. Enter **120** in **Execution timeout**. Here you are overriding the previous value of 180 seconds you provided in the Job Definition.
-8. Leave the **Job attempts** as **3**.
 ![AWS Batch](/images/aws-batch/run-job-2.png)
-10. Select **Single** as the **Job type**.
-![AWS Batch](/images/aws-batch/run-job-3.png)
-11. Expand the **Additional configuration** section.
-12. Under **Environment variables**, click **Add**.
-13. Set **Name** to: **STRESS_ARGS**
-14. Set **Value** to: 
+8. Under **Job configuration** select the **Environment variables configuration** toggle.
+9. Set **Name** to: **STRESS_ARGS**
+10. Set **Value** to: 
     ```text
     --cpu 0 --cpu-method fft --timeout 1m --times
     ```
+![AWS Batch](/images/aws-batch/run-job-3.png)
+11.  Scroll to the bottom and click **Submit**.
 ![AWS Batch](/images/aws-batch/run-job-4.png)
-1.  Scroll to the bottom and click **Submit**.
-![AWS Batch](/images/aws-batch/run-job-5.png)
 
 ### Observe batch job status.
 1. Click on **Dashboard** in the left side menu of the AWS Batch console. You will see a summary of the status your **Jobs, Job queues and Compute environments**.
@@ -83,11 +79,7 @@ The returned *JSON* output displays and describes the status of your job.
 
 It's sometimes useful to capture of the job information at the time of submission for later use. 
 
-Execute the following to install the "jq" utility to allow extraction of relevant fields from the JSON output.
-
-```bash
-sudo yum -y install jq
-```
+Use "jq" utility to allow extraction of relevant fields from the JSON output.
 
 Execute the following commands:
 ```bash

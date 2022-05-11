@@ -28,7 +28,7 @@ After an optional introduction and setup, you can walk through the following lab
 
 - Amazon FSx for Lustre walks you through HPC focused services.
 
-- AWS Batch teaches to you run a driving simulation with [CARLA](http://carla.org/).
+- AWS Batch teaches to you run a HPC application using the AWS managed service.
 
 - Distributed ML explores how to leverage cloud HPC infrastructure to run data parallel training at scale.
 

@@ -35,7 +35,7 @@ Make sure to select the IP address of the instance you want to connect to and no
 ```bash
 # don't forget to use your OWN ip address
 # keep the username to ec2-user as is, don't use your name!
-ssh -i ~/.ssh/lab-dcv-ami ec2-user@3.82.53.238
+ssh -i lab-your-key ec2-user@3.239.217.95
 ```
 
 4. Ping the internet to test the outbound connectivity.
@@ -44,7 +44,6 @@ ping www.wikipedia.org
 ```
 
 You now have an functional instance that can access the internet.
-![EC2 Connect](/images/nice-dcv/Connect-EC2.png)
 
 #### Troubleshooting Instance Connections
 
@@ -57,9 +56,13 @@ There could be two primary reasons why you cannot connect to your instance:
 Set the password for **ec2-user** as below. Note, this is the **password** that you will use when prompted while connecting to the DCV Remote Desktop Session.
 
 ```bash
-sudo passwd ec2-user
+[ec2-user@ip-172-31-7-241 ~]$ sudo passwd ec2-user
+Changing password for user ec2-user.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-7-241 ~]$
 ``` 
-![EC2 Connect](/images/nice-dcv/Connect-EC2-passwd.png)
 
 #### Launch a DCV session
 
