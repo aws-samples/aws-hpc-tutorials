@@ -16,7 +16,7 @@ tags = ["tutorial", "ParallelCluster", "Manager"]
 Install AWS ParallelCluster version 3.1.1
 
 ```bash
-pip3 install aws-parallelcluster==3.1.1 -U --user
+pip3 install aws-parallelcluster==3.1.2 -U --user
 ```
 
 You can check the ParallelCluster installation completed successfully by running: 
@@ -28,7 +28,7 @@ pcluster version
 The output would be:
 ```bash
 {
-  "version": "3.1.1"
+  "version": "3.1.2"
 }
 ```
 
