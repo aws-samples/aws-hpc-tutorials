@@ -49,9 +49,9 @@ You will leverage this AMI to run WRF on a test case in the next section of this
 Your **env_vars** file already contains the AMI ID you need, you can see below - just for your convenience - how we did retrieve this AMI ID.
 
 ```bash
-CUSTOM_AMI=`aws ec2 describe-images --owners 111992169430 \
+CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
     --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
-    --filters "Name=name,Values=*-amzn2-parallelcluster-3.1.1-wrf-4.2.2-*" \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-3.1.2-wrf-4.2.2-*" \
     --region ${AWS_REGION} \
     | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
 
