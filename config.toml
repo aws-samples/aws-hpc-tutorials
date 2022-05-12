@@ -1,4 +1,4 @@
-baseURL = "https://www.hpcworkshops.com"
+baseURL = "https://weather.hpcworkshops.com"
 languageCode = "en-us"
 title = "AWS HPC Workshops"
 theme = "hugo-theme-learn"
@@ -10,7 +10,7 @@ pygmentsCodeFences = true
 hrefTargetBlank = true
 
 [params]
-editURL = "https://github.com/aws-samples/aws-hpc-tutorials/tree/master/content/"
+editURL = "https://github.com/aws-samples/aws-hpc-tutorials/tree/weather/content/"
 themeVariant = "mine"
 showVisitedLinks = true
 description = "AWS HPC Workshops"
