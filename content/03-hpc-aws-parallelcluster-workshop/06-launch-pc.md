@@ -10,19 +10,19 @@ In this section, you create a cluster based on the specifications defined in the
 In your AWS Cloud9 terminal, run the following to create a cluster. Make sure that the configuration file path is correct.
 
 ```bash
-pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
+pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --cluster-configuration my-cluster-config.yaml
 ```
 
 The **pcluster create-cluster** command might output a few warnings, the cluster creation will progress. 
 
 ```bash
 TeamRole:~/environment $ source env_vars
-TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluster-name ISC22 --cluster-configuration my-cluster-config.yaml
+TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --cluster-configuration my-cluster-config.yaml
 {
   "cluster": {
-    "clusterName": "ISC22",
+    "clusterName": "hpc-cluster-lab",
     "cloudformationStackStatus": "CREATE_IN_PROGRESS",
-    "cloudformationStackArn": "arn:aws:cloudformation:us-east-1:146043110428:stack/ISC22/4934f020-bca3-11ec-9752-0ecc1f64971f",
+    "cloudformationStackArn": "arn:aws:cloudformation:us-east-1:146043110428:stack/hpc-cluster-lab/4934f020-bca3-11ec-9752-0ecc1f64971f",
     "region": "us-east-1",
     "version": "3.1.1",
     "clusterStatus": "CREATE_IN_PROGRESS"
