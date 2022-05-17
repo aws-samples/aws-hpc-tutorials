@@ -9,7 +9,7 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 Next we'll use Spack to install the [Intel Compilers (ICC)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html), we'll use these to compile binaries such as WRF in the next few sections:
 
 ```bash
-spack install --no-cache intel-oneapi-compilers
+spack install --no-cache intel-oneapi-compilers@2022.0.2
 ```
 
 This will take about `~4 mins` to complete. Once it's complete we can see the installed package by running `spack find`:
