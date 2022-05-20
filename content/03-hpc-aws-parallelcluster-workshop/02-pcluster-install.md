@@ -25,11 +25,11 @@ You can check the ParallelCluster installation completed successfully by running
 pcluster version
 ```
 
-The output would be:
+The output should be:
 ```bash
 {
   "version": "3.1.2"
 }
 ```
 
-Next, you configure AWS ParallelCluster.
+Next, you will configure AWS ParallelCluster.
