@@ -23,6 +23,6 @@ After you sign in, take a few minutes to explore the navigation components of th
 
 Start this workshop by selecting an **AWS Region**:
 
-Choose the **Region** drop-down menu, then choose **US East (N. Virginia)** us-east-1.
+Choose the **Region** drop-down menu, then choose **Europe (Ireland)** eu-west-1.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/aws-console.png)

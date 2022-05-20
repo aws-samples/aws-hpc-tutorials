@@ -7,7 +7,7 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/). NCL will be pre-installed on your Cluster.
 
-1. Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/05-connect-cluster.html#dcv-connect)**
+1. Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
 
 2. In a terminal navigate to the WRF run directory.
 

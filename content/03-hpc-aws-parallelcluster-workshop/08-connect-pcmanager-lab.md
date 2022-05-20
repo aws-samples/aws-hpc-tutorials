@@ -23,7 +23,9 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 ![Signup Screen](/images/isc22/sign-up.png)
 
-5. Enter a username and password that meets the requirements and click **Sign Up**:
+5. Enter your email and password that meets the requirements and click **Sign Up**:
+(We are not collecting your email, it will be deleted togheter with the AWS account that you are using for this lab).
+
 
 ![Signup Screen](/images/isc22/signup-password.png)
 
