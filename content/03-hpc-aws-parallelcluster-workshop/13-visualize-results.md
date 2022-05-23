@@ -19,7 +19,7 @@ cd /shared/conus_12km
    time 2019-11-27 00:00. Use the space bar to advance to the next plot.
 
 ```bash
-sudo yum install -y -q ncl-common
+sudo yum install -y -q ncl
 ncl ncl_scripts/surface.ncl
 ```
 
