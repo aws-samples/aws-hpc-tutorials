@@ -5,27 +5,10 @@ weight = 80
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-The cluster we created on the previous page takes about ~10 mins to create. While you're waiting grab a ☕️.
-
-Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of the following three ways, either through the shell, via the DCV, or via SSH:
-
-**SHELL** is ideal for quick terminal access to the head node.
+Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node via DCV:
 
 **DCV** is a full graphical remote desktop that allows you to run GUI applications on the head node. It doesn't require AWS account access but does require you to be able to connect to the head node on port **8443**.
 
-**SSH** is ideal for accessing the command line and/or moving (small) files onto the cluster (using *scp*). It does require to open port 22 (open by default).
-
-## SSM Connect
-
-**SSM Connect** It doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
-
-1. Click on the **Shell** Button to connect:
-
-![SSM Connect](/images/isc22/ssm-connect.png)
-
-You'll need to be authenticated to the AWS account that instance is running in and have [permission to launch a SSM session](https://docs.aws.amazon.com/systems-manager/latest/userguide/getting-started-add-permissions-to-existing-profile.html). Once you're connected you'll have access to a terminal on the head node:
-
-![SSM Console](/images/isc22/ssm-console.png)
 
 ## DCV Connect
 
@@ -42,12 +25,18 @@ You'll need to be authenticated to the AWS account that instance is running in a
 ![DCV Terminal](/images/isc22/dcv-terminal.png)
 
 
-## SSH
+## Optional (SSM Connect)
 
-1. from the Cloud9 machine terminal, run the following:
+You can skip this step or you can read below if you are curious about the other ways to connect your cluster.
 
-```bash
-source env_vars
-pcluster ssh -n hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION      
-```
+In addition to DCV, you can connect to your cluster via SSH using SSM. 
 
+**SSM Connect** It doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
+
+1. Click on the **Shell** Button to connect:
+
+![SSM Connect](/images/isc22/ssm-connect.png)
+
+You'll need to be authenticated to the AWS account that instance is running in and have [permission to launch a SSM session](https://docs.aws.amazon.com/systems-manager/latest/userguide/getting-started-add-permissions-to-existing-profile.html). Once you're connected you'll have access to a terminal on the head node:
+
+![SSM Console](/images/isc22/ssm-console.png)
