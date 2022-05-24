@@ -13,7 +13,7 @@ In your AWS Cloud9 terminal, run the following to create a cluster. Make sure th
 pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --suppress-validators ALL --cluster-configuration my-cluster-config.yaml
 ```
 
-The the cluster creation process will take ~10 minutes. Below is the expected output.
+The cluster creation process will take ~10 minutes. Below is the expected output.
 
 ```bash
 TeamRole:~/environment $ source env_vars
