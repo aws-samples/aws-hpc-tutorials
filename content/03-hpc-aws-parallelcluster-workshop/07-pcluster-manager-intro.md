@@ -1,5 +1,5 @@
 +++
-title = "f. About AWS PCluster Manager"
+title = "f. About PCluster Manager"
 date = 2022-04-10T10:46:30-04:00
 weight = 60
 tags = ["tutorial", "ParallelCluster", "Manager"]
