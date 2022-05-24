@@ -22,7 +22,7 @@ TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluste
   "cluster": {
     "clusterName": "hpc-cluster-lab",
     "cloudformationStackStatus": "CREATE_IN_PROGRESS",
-    "cloudformationStackArn": "arn:aws:cloudformation:us-west-1:146043110428:stack/hpc-cluster-lab/4934f020-bca3-11ec-9752-0ecc1f64971f",
+    "cloudformationStackArn": "arn:aws:cloudformation:eu-west-1:146043110428:stack/hpc-cluster-lab/4934f020-bca3-11ec-9752-0ecc1f64971f",
     "region": "eu-west-1",
     "version": "3.1.2",
     "clusterStatus": "CREATE_IN_PROGRESS"
