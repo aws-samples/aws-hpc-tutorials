@@ -41,4 +41,4 @@ When the **pcluster create-cluster** command is executed, AWS ParallelCluster ge
 
 ![ParallelCluster CloudFormation](/images/hpc-aws-parallelcluster-workshop/pc-cloudformation.png)
 
-There is a visual alternative to the command line interface for deploying and managing your clusters called **pcluster-manager**. Move on to the next stage while your cluster is deploying to explore this.
+In the next section you'll take a look at a visual alternative to the command line interface for deploying and managing your clusters called **pcluster-manager**.
