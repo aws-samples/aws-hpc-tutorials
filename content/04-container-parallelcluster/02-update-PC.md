@@ -46,6 +46,7 @@ yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].InstanceType = "c5.xlarge"
 yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MinCount = 0' ${PARALLELCLUSTER_CONFIG}
 yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MaxCount = 8' ${PARALLELCLUSTER_CONFIG}
 yq -i '.Scheduling.SlurmQueues[1].Networking.SubnetIds[0] = strenv(SUBNET_ID)' ${PARALLELCLUSTER_CONFIG}
+yq -i '.Scheduling.SlurmQueues[1].ComputeSettings.LocalStorage.RootVolume.Size = 50' ${PARALLELCLUSTER_CONFIG}
 ```
 #### 2. Access to the container registry
 
@@ -164,6 +165,10 @@ Scheduling:
       CustomActions:
         OnNodeConfigured:
           Script: s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh
+      ComputeSettings:
+        LocalStorage:
+          RootVolume:
+            Size: 50
 Region: eu-west-1
 Image:
   Os: alinux2
