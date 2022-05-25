@@ -13,7 +13,7 @@ tags = ["tutorial", "ParallelCluster", "Manager"]
 3. Use the pip install command to install AWS ParallelCluster. Python and Python package management tool (PIP) are already installed in the Cloud9 environment.
  
 
-Install AWS ParallelCluster version 3.1.1
+Install AWS ParallelCluster version 3.1.2
 
 ```bash
 pip3 install aws-parallelcluster==3.1.2 -U --user
