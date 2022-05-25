@@ -43,9 +43,3 @@ Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
 Done!
 
 After a few minutes, your cluster will scale down unless there are more job to process.
-
-
-Exit the HPC Cluster
-```bash
-exit
-```
