@@ -19,7 +19,7 @@ You will find here the agenda for the tutorial. An update will be made on May 29
 | *Lab 2*      | 12:30PM - 01:00PM                                                     | Container on your HPC cluster                                        | TBD                                        |
 | 01h00 Break  | 01:00PM - 02:00PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
 | Talk         | 02:00PM - 03:00PM                                                     | Repeatability in the Cloud                                           | Maxime Hugues                              |
-| *Lab 3*      | 03:00PM - 04:00PM	                                                   | Automation, CI/CD & container orchestrators                          | TBD                                        |
+| *Lab 3*      | 03:00PM - 04:00PM	                                                   | Automation, CI/CD & container orchestrators                          | Francesco Ruffino                                        |
 | 30 Min Break | 04:00PM - 04:30PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| *Lab 4*      | 04:30PM - 05:30PM	                                                   | Simulation on an container orchestrator                              | TBD                                        |
+| *Lab 4*      | 04:30PM - 05:30PM	                                                   | Simulation on an container orchestrator                              | Francesco Ruffino                                        |
 | Closing      | 05:30PM - 06:00PM	                                                   | Summary and Q&A                                                      | Team                                       |
