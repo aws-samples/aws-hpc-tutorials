@@ -95,8 +95,6 @@ Scheduling:
           - ${SUBNET_ID}
         PlacementGroup:
           Enabled: true
-      Image:
-        CustomAmi: ${CUSTOM_AMI}
       ComputeSettings:
         LocalStorage:
           RootVolume:

@@ -9,11 +9,7 @@ In this section, you will create a container repository on Amazon ECR and create
 
 #### Preliminary
 
-In the AWS Cloud9 terminal, connect to the HPC Cluster
-
-```bash
-pcluster ssh -n hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
-```
+Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
 
 Since the HPC Cluster existed prior to `post-install` script, you will need to manually install Docker and Singularity on the head node of the HPC Cluster.
 
@@ -28,16 +24,9 @@ sudo systemctl enable docker
 sudo yum install -y singularity
 ```
 
-Exit the HPC cluster
-
+Reload the environment to have the correct linux permissions.
 ```bash
-exit
-```
-
-Reconnect to the HPC Cluster
-
-```bash
-pcluster ssh -n hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION
+exec sudo su -l $USER
 ```
 
 Configure the AWS Region on the head node of the HPC Cluster to be used by the AWS CLI.
