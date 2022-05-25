@@ -14,9 +14,9 @@ In this step, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/w
 #### Preparatory Steps
 
 {{% notice info %}}
-Make sure that you are logged into the AWS ParallelCluster head node through the AWS Cloud9 terminal.
+Make sure that you are logged into the AWS ParallelCluster head node through DCV.
 {{% /notice %}}
-
+Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
 
 #### Download CONUS 12KM
 Input data used for simulating the Weather Research and Forecasting (WRF) model are 12-km CONUS input.

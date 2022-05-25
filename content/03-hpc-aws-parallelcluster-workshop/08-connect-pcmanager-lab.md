@@ -6,7 +6,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 {{%notice note%}}
-If you are participating in this workshop as part of ISC22, then *PCluster Manager* will already be deployed for you, and you can continue with the steps below. If not, you will first have to deploy PCluster Manager from [AWS CloudFormation](https://github.com/aws-samples/pcluster-manager) to your account.
+If you are participating in this workshop as part of ISC22, then *PCluster Manager* will already be deployed for you. 
 {{% /notice %}}
 
 Once your PCluster Manager CloudFormation stack has been deployed, you can follow these steps to connect to it:
