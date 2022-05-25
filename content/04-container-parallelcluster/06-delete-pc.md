@@ -7,14 +7,8 @@ tags = ["tutorial", "delete", "ParallelCluster"]
 
 Now that you are done with your HPC cluster, you can delete it.
 
-Let's exit the cluster to go back to your AWS Cloud9 terminal.
-```bash
-exit
-```
+On Pcluster manager, let's delete the cluster by selecting delete:
 
-On AWS Cloud9 terminal, let's delete the cluster with the following command
-```bash
-pcluster delete-cluster -n hpc-cluster-lab -r $AWS_REGION
-```
+![ParallelCluster Delete](/images/container-pc/pcluster_manager_delete.png)
 
-The cluster and all its resources will be deleted by CloudFormation. You can check the status in the [CloudFormation Dashboard](https://console.aws.amazon.com).
+The cluster and all its resources will be deleted.
