@@ -35,6 +35,7 @@ In this step, you will add a new compute queue that use **c5.xlarge** EC2 instan
 
 Let create a new queue named __c5xlarge__:
 ```bash
+PARALLELCLUSTER_CONFIG=~/environment/my-cluster-config.yaml
 yq -i '.Scheduling.SlurmQueues[1].Name = "c5xlarge"' ${PARALLELCLUSTER_CONFIG}
 ```
 
@@ -45,7 +46,6 @@ yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].InstanceType = "c5.xlarge"
 yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MinCount = 0' ${PARALLELCLUSTER_CONFIG}
 yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MaxCount = 8' ${PARALLELCLUSTER_CONFIG}
 yq -i '.Scheduling.SlurmQueues[1].Networking.SubnetIds[0] = strenv(SUBNET_ID)' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].Image.CustomAmi = strenv(CUSTOM_AMI)' ${PARALLELCLUSTER_CONFIG}
 ```
 #### 2. Access to the container registry
 
@@ -86,7 +86,6 @@ aws s3 cp ~/environment/post_install.sh s3://${BUCKET_NAME_POSTINSTALL}/
 Now, you can add access to the `BUCKET_NAME_POSTINSTALL` bucket and specify the post install script path in the HPC cluster configuration file
 
 ```bash
-PARALLELCLUSTER_CONFIG=~/environment/my-cluster-config.yaml
 export BUCKET_NAME_POSTINSTALL_PATH="s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh"
 yq -i '.HeadNode.Iam.S3Access[0].BucketName = strenv(BUCKET_NAME_POSTINSTALL)' ${PARALLELCLUSTER_CONFIG}
 yq -i '.Scheduling.SlurmQueues[1].Iam.S3Access[0].BucketName = strenv(BUCKET_NAME_POSTINSTALL)' ${PARALLELCLUSTER_CONFIG}
@@ -105,7 +104,7 @@ pcluster update-compute-fleet -n hpc-cluster-lab --status STOP_REQUESTED -r $AWS
 
 Before proceeding to the cluster update, you can check the content of the configuration file that should look like this:
 
-`cat ~/environment/my-cluster-config.ini`
+`cat ~/environment/my-cluster-config.yaml`
 
 ```yaml
 HeadNode:
@@ -144,8 +143,6 @@ Scheduling:
           - ${SUBNET_ID}
         PlacementGroup:
           Enabled: true
-      Image:
-        CustomAmi: ${CUSTOM_AMI}
       ComputeSettings:
         LocalStorage:
           RootVolume:
@@ -159,8 +156,6 @@ Scheduling:
       Networking:
         SubnetIds:
           - ${SUBNET_ID}
-      Image:
-        CustomAmi: ${CUSTOM_AMI}
       Iam:
         AdditionalIamPolicies:
           - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess
@@ -186,14 +181,95 @@ SharedStorage:
 Let update the cluster by running the **pcluster update** command
 
 ```bash
-pcluster update-cluster -n hpc-cluster-lab -c ~/environment/my-cluster-config.yaml -r $AWS_REGION
+pcluster update-cluster -n hpc-cluster-lab -c ~/environment/my-cluster-config.yaml -r $AWS_REGION --suppress-validators ALL
 ```
 
+The cluster update process will take ~5 minutes.
 Pay attention to the **old value** and **new value** fields. You will see a new instance type under new value field. The output will be similar to this:
-<!---
-![ParallelCluster Update](/images/container-pc/pcluster_update.png)
---->
+```bash
+{
+  "cluster": {
+    "clusterName": "hpc-cluster-lab",
+    "cloudformationStackStatus": "UPDATE_IN_PROGRESS",
+    "cloudformationStackArn": "arn:aws:cloudformation:eu-west-1:104413097956:stack/hpc-cluster-lab/06f3af10-dc3a-11ec-8800-0a69a3d8066b",
+    "region": "eu-west-1",
+    "version": "3.1.2",
+    "clusterStatus": "UPDATE_IN_PROGRESS"
+  },
+  "changeSet": [
+    {
+      "parameter": "HeadNode.Iam.S3Access",
+      "requestedValue": {
+        "BucketName": "parallelcluster-isc22-postinstall-5a12bc77e1"
+      }
+    },
+    {
+      "parameter": "HeadNode.Iam.AdditionalIamPolicies",
+      "requestedValue": {
+        "Policy": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+      }
+    },
+    {
+      "parameter": "Scheduling.SlurmQueues",
+      "requestedValue": {
+        "Name": "c5xlarge",
+        "ComputeResources": [
+          {
+            "Name": "c5xlarge",
+            "InstanceType": "c5.xlarge",
+            "MinCount": 0,
+            "MaxCount": 8
+          }
+        ],
+        "Networking": {
+          "SubnetIds": [
+            "subnet-06368fbc501002dec"
+          ]
+        },
+        "Iam": {
+          "AdditionalIamPolicies": [
+            {
+              "Policy": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+            }
+          ],
+          "S3Access": [
+            {
+              "BucketName": "parallelcluster-isc22-postinstall-5a12bc77e1"
+            }
+          ]
+        },
+        "CustomActions": {
+          "OnNodeConfigured": {
+            "Script": "s3://parallelcluster-isc22-postinstall-5a12bc77e1/post_install.sh"
+          }
+        }
+      }
+    }
+  ]
+}
+```
 
+
+You will have to wait for the cluster status to be **UPDATE_COMPLETE**. You can check the cluster with the **pcluster list-clusters** command as follow:
+```bash
+pcluster list-clusters -n hpc-cluster-lab -r ${AWS_REGION}
+```
+
+Here is the expected output:
+```bash
+{
+  "clusters": [
+    {
+      "clusterName": "hpc-cluster-lab",
+      "cloudformationStackStatus": "UPDATE_COMPLETE",
+      "cloudformationStackArn": "arn:aws:cloudformation:eu-west-1:104413097956:stack/hpc-cluster-lab/06f3af10-dc3a-11ec-8800-0a69a3d8066b",
+      "region": "eu-west-1",
+      "version": "3.1.2",
+      "clusterStatus": "UPDATE_COMPLETE"
+    }
+  ]
+}
+```
 
 Start your cluster again after update process is completed.
 
