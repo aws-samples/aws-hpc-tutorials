@@ -1,14 +1,12 @@
 ---
-title: "Container on AWS ParallelCluster"
+title: "Containers on AWS ParallelCluster"
 date: 2019-01-24T09:05:54Z
 weight: 40
 pre: "<b>Lab II ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
 
-
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the **[Getting Started in the Cloud](/02-aws-getting-started.html)** workshop.
-{{% /notice %}}
+![ECS Logo](/images/container-pc/ecs-logo.png)
 
 HPC Applications typically rely on several libraries and software components along with complex dependencies.
 Those applications tend to be deployed on a shared file system for on-premise HPC system.

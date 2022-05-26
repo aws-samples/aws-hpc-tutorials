@@ -1,5 +1,5 @@
 +++
-title = "b. Create container repository"
+title = "c. Create container repository"
 date = 2019-09-18T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "container", "repository"]
@@ -7,9 +7,15 @@ tags = ["tutorial", "container", "repository"]
 
 In this section, you will create a container repository on Amazon ECR and create a Docker container image.
 
+#### Start Cluster
+
+After the update completes, be sure to start the cluster.
+
+![Start Cluster](/images/container-pc/start-cluster.png)
+
 #### Preliminary
 
-Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
+From the pcluster manager console connect to the cluster via [h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#optional-ssm-connect).
 
 Since the HPC Cluster existed prior to `post-install` script, you will need to manually install Docker and Singularity on the head node of the HPC Cluster.
 

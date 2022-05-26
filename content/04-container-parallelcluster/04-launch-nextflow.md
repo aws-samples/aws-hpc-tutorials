@@ -1,5 +1,5 @@
 +++
-title = "c. Run nextflow container"
+title = "d. Run nextflow container"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "initialize", "ParallelCluster"]
@@ -74,7 +74,7 @@ cat > nextflow_sub.sh << EOF
 #!/bin/bash
 
 #SBATCH --job-name=nextflow
-#SBATCH --partition=c5xlarge
+#SBATCH --partition=queue1
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 #SBATCH --ntasks=1
@@ -96,33 +96,3 @@ The output of the job will be in the `nextflow_[SLURM_JOB_ID].out` file and simi
 
 You have now run a basic genomics pipeline and you won't need the cluster in the next labs.
 The next section will go over how to delete your HPC Cluster.
-
-
-<!-- ```bash
-cat > Dockerfile << EOF
-FROM nextflow/rnaseq-nf
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get --allow-releaseinfo-change update && apt-get update -y && apt-get install -y git python3-pip curl jq
-
-RUN curl -s https://get.nextflow.io | bash \
- && mv nextflow /usr/local/bin/
-
-RUN pip3 install --upgrade awscli
-EOF
-```
-
-
-```bash
-cat > Dockerfile << EOF
-FROM public.ecr.aws/amazoncorretto/amazoncorretto:8
-
-RUN yum install -y python3
-
-RUN curl -O https://repo.anaconda.com/miniconda/Miniconda2-4.7.12-Linux-x86_64.sh
-
-RUN bash ./Miniconda2-4.7.12-Linux-x86_64.sh -b -p /opt/conda
-RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh &&     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
-RUN curl -O https://raw.githubusercontent.com/nextflow-io/rnaseq-nf/master/conda.yml && source ~/.bashrc && conda env update -n root -f conda.yml
-EOF
-``` -->

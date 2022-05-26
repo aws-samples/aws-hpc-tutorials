@@ -1,119 +1,87 @@
 +++
-title = "a. Update your cluster"
+title = "b. Update your cluster"
 date = 2019-09-18T10:46:30-04:00
 weight = 30
 tags = ["tutorial", "update", "ParallelCluster"]
 +++
 
-In this section, you will update the configuration of the HPC cluster you created in Lab I to:
-- Create a post-install script to install Docker and Singularity.
+In this section, you will update the configuration of the HPC cluster you created in [Lab I](03-hpc-aws-parallelcluster-workshop.html) to:
+- Add a script to install Docker and Singularity.
 - Provide access to the container registry, [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).
 - Create a new queue that will be used to run the containerized workload.
 - Update the configuration of the HPC Cluster.
 
-{{% notice warning %}}
-The following commands must be executed on the AWS Cloud9 environment created at the beginning of the tutorial.
-You can find the AWS Cloud9 environment by opening the [AWS Cloud9 console](https://console.aws.amazon.com/cloud9) and choose **Open IDE**
-{{% /notice %}}
+#### 1. Edit Cluster
 
-#### Preliminary
+Click on the **Edit** button in Pcluster Manager.
 
-Starting with version 3.x, AWS ParallelCluster uses configuration file in `yaml` format.
-For the following steps, you will use an utility to manipulate `yaml` files, named [yq](https://github.com/mikefarah/yq).
-That will make the editing easier and more reproductible.
+![Edit button](/images/container-pc/edit.png)
 
-In the Cloud 9 Terminal, copy and paste the command below to install `yq`:
+#### 2. HeadNode
 
-```bash
-YQ_VERSION=4.21.1
-sudo wget https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
+The first screen leave it as is, next advance to the **HeadNode** tab.
+
+On the HeadNode tab add permission to access the [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) by adding the managed `AmazonEC2ContainerRegistryFullAccess` [AWS IAM](https://aws.amazon.com/iam/) policy.
+
+1. Click the drop down on the **Advanced options**
+2. Click the drop down on **IAM Policies**
+3. Add in the policy `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess`. Click Add.
+
+![HeadNode IAM](/images/container-pc/headnode-iam.png)
+
+#### 3. Queue Configuration
+
+Click next twice to advance to the **Queues section**, here we're going to add a queue that has Docker and Singularity installed on the compute nodes. 
+
+1. Choose **Add Queue**
+2. Set the **Subnet** to the same subnet as the first queue (queue1)
+3. Set the **Dynamic Nodes** to `8`
+4. Set the **Instance Type** to `c5.xlarge`
+
+![Queue Edit](/images/container-pc/queue-edit.png)
+
+Next add in a script that installs Docker and Singularity on the Compute Nodes.
+
+1. Dropdown **Advanced Options** on the queue you just created
+2. Paste in the following url into **On Configured** section `https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh`
+3. Expand **IAM Policies** and paste in the following policy `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess`. Click Add.
+
+![Advanced Options](/images/container-pc/queue-iam.png)
+
+#### 4. Increase RootVolume Size of your cluster
+
+In the cluster's config add the following snippet at the bottom of the `queue1` section, `line 56`:
+
+```yaml
+ComputeSettings:
+  LocalStorage:
+    RootVolume:
+      Size: 50
 ```
 
-#### 1. Add a compute queue with a different instance type for running the container
+![Add in LocalStorage](/images/container-pc/localstorage-edit.png)
 
-In this step, you will add a new compute queue that use **c5.xlarge** EC2 instances.
+#### 5. Update your HPC Cluster
 
-Let create a new queue named __c5xlarge__:
-```bash
-PARALLELCLUSTER_CONFIG=~/environment/my-cluster-config.yaml
-yq -i '.Scheduling.SlurmQueues[1].Name = "c5xlarge"' ${PARALLELCLUSTER_CONFIG}
-```
+On the next screen confirm the cluster configuration and update the cluster.
 
-Let create a new compute resources named __c5xlarge__:
-```bash
-yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].Name = "c5xlarge"' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].InstanceType = "c5.xlarge"' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MinCount = 0' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].ComputeResources[0].MaxCount = 8' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].Networking.SubnetIds[0] = strenv(SUBNET_ID)' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].ComputeSettings.LocalStorage.RootVolume.Size = 50' ${PARALLELCLUSTER_CONFIG}
-```
-#### 2. Access to the container registry
+1. Click **Stop Compute Fleet** and click to confirm, this will take a minute to complete, wait to run the update until it's stopped.
+2. **Dryrun** to validate the cluster configuration. You'll see three warnings that you can safely ignore.
+3. Run **Update**
 
-In this step, you will add permission to the HPC cluster configuration file to access the [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) by adding the managed `AmazonEC2ContainerRegistryFullAccess` [AWS IAM](https://aws.amazon.com/iam/) policy.
+![Update Cluster](/images/container-pc/update-cluster.png)
 
-```bash
-yq -i '.HeadNode.Iam.AdditionalIamPolicies[1].Policy = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].Iam.AdditionalIamPolicies[0].Policy = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"' ${PARALLELCLUSTER_CONFIG}
-```
+Once we've ran the update we'll be redirected to the main pcluster console screen where we can view update progress.
 
-#### 3. Create a post-install script
-
-In this step, you will create a post-install script that installs Docker and Singularity on the compute nodes.
-
-```bash
-cat > ~/environment/post_install.sh << EOF
-# Install Docker
-sudo amazon-linux-extras install -y docker
-sudo usermod -a -G docker ec2-user
-sudo systemctl start docker
-sudo systemctl enable docker
-
-# Install Singularity
-sudo yum install -y singularity
-EOF
-```
-
-For your `post-install.sh` script to be use by the HPC Cluster, you will need to create [Amazon S3](https://aws.amazon.com/s3/) bucket and copy the `post-install.sh` script to the bucket.
-
-```bash
-BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
-export BUCKET_NAME_POSTINSTALL="parallelcluster-isc22-postinstall-${BUCKET_POSTFIX}"
-
-aws s3 mb s3://${BUCKET_NAME_POSTINSTALL} --region ${AWS_REGION}
-aws s3 cp ~/environment/post_install.sh s3://${BUCKET_NAME_POSTINSTALL}/
-```
-
-Now, you can add access to the `BUCKET_NAME_POSTINSTALL` bucket and specify the post install script path in the HPC cluster configuration file
-
-```bash
-export BUCKET_NAME_POSTINSTALL_PATH="s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh"
-yq -i '.HeadNode.Iam.S3Access[0].BucketName = strenv(BUCKET_NAME_POSTINSTALL)' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].Iam.S3Access[0].BucketName = strenv(BUCKET_NAME_POSTINSTALL)' ${PARALLELCLUSTER_CONFIG}
-yq -i '.Scheduling.SlurmQueues[1].CustomActions.OnNodeConfigured.Script= strenv(BUCKET_NAME_POSTINSTALL_PATH)' ${PARALLELCLUSTER_CONFIG}
-```
-
-#### 4. Update your HPC Cluster
-
-In this step, you will update your HPC cluster with the configuration changes made in the previous steps.
-
-Prior to an update, the cluster should be a stopped state.
-
-```bash
-pcluster update-compute-fleet -n hpc-cluster-lab --status STOP_REQUESTED -r $AWS_REGION
-```
-
-Before proceeding to the cluster update, you can check the content of the configuration file that should look like this:
-
-`cat ~/environment/my-cluster-config.yaml`
+If the update doesn't succeed check the contents of the cluster configuration file looks similar to the below. If you are missing anything, review the steps above.
 
 ```yaml
 HeadNode:
   InstanceType: m5.2xlarge
   Ssh:
-    KeyName: ${SSH_KEY_NAME}
+    KeyName: hpc-lab-key
   Networking:
-    SubnetId: ${SUBNET_ID}
+    SubnetId: subnet-123456789
   LocalStorage:
     RootVolume:
       Size: 50
@@ -121,8 +89,6 @@ HeadNode:
     AdditionalIamPolicies:
       - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
       - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess
-    S3Access:
-      - BucketName: ${BUCKET_NAME_POSTINSTALL}
   Dcv:
     Enabled: true
   Imds:
@@ -139,32 +105,32 @@ Scheduling:
           DisableSimultaneousMultithreading: true
           Efa:
             Enabled: true
+            GdrSupport: true
       Networking:
         SubnetIds:
-          - ${SUBNET_ID}
+          - subnet-123456789
         PlacementGroup:
           Enabled: true
       ComputeSettings:
         LocalStorage:
           RootVolume:
             Size: 50
-    - Name: c5xlarge
+    - Name: queue1
       ComputeResources:
-        - Name: c5xlarge
-          InstanceType: c5.xlarge
+        - Name: queue1-c5xlarge
           MinCount: 0
           MaxCount: 8
+          InstanceType: c5.xlarge
       Networking:
         SubnetIds:
-          - ${SUBNET_ID}
+          - subnet-123456789
+      CustomActions:
+        OnNodeConfigured:
+          Script: >-
+            https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh
       Iam:
         AdditionalIamPolicies:
           - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess
-        S3Access:
-          - BucketName: ${BUCKET_NAME_POSTINSTALL}
-      CustomActions:
-        OnNodeConfigured:
-          Script: s3://${BUCKET_NAME_POSTINSTALL}/post_install.sh
       ComputeSettings:
         LocalStorage:
           RootVolume:
@@ -172,7 +138,7 @@ Scheduling:
 Region: eu-west-1
 Image:
   Os: alinux2
-  CustomAmi: ${CUSTOM_AMI}
+  CustomAmi: ami-0975de9b755cc2d78
 SharedStorage:
   - Name: Ebs0
     StorageType: Ebs
