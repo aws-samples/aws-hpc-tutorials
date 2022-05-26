@@ -34,11 +34,4 @@ TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluste
 There can be only one cluster of a given name at any time on your account.
 {{% /notice %}}
 
-
-#### What's Happening in the Background
-
-When the **pcluster create-cluster** command is executed, AWS ParallelCluster generates an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate an infrastructure in AWS. If you want to see AWS CloudFormation generating the infrastructure, you can view the [CloudFormation console](https://console.aws.amazon.com/cloudformation/). The following image shows cluster creation in the CloudFormation console. 
-
-![ParallelCluster CloudFormation](/images/hpc-aws-parallelcluster-workshop/pc-cloudformation.png)
-
 In the next section you'll take a look at a visual alternative to the command line interface for deploying and managing your clusters called **pcluster-manager**.

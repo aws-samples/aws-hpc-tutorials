@@ -15,7 +15,7 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 2. Once **CloudFormation** appears in your search results, click on it to open the CloudFormation Management Console.
 
-3. You'll see a stack named **mod-[random hash]**. Click on that stack, then click on the **Outputs** tab, and finally click on the **PclusterManagerUrl** to connect to PCluster Manager.
+3. You'll two stacks named **mod-[random hash]**. Click on the second stack, then click on the **Outputs** tab, and finally click on the **PclusterManagerUrl** to connect to PCluster Manager.
 
 ![PCluster Manager Deployed](/images/isc22/pcluster-deployed.png)
 

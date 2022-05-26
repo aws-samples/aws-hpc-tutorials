@@ -5,10 +5,17 @@ weight = 80
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node via DCV:
+Once we're connected to Pcluster Manager we can see the cluster we just created, depending on timing this cluster might be in **CREATE_IN_PROGRESS** or **CREATE_COMPLETE** state.
+
+#### What's Happening in the Background
+
+When the **pcluster create-cluster** command is executed, AWS ParallelCluster generates an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate an infrastructure in AWS. If you want to see AWS CloudFormation generating the infrastructure, you can view the **Stack Events** tab to see cluster creation events in real time:
+
+![ParallelCluster CloudFormation](/images/hpc-aws-parallelcluster-workshop/pc-cloudformation.png)
+
+Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node via DCV.
 
 **DCV** is a full graphical remote desktop that allows you to run GUI applications on the head node. It doesn't require AWS account access but does require you to be able to connect to the head node on port **8443**.
-
 
 ## DCV Connect
 
