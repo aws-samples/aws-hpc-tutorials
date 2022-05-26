@@ -5,7 +5,7 @@ weight = 80
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-Once we're connected to Pcluster Manager we can see the cluster we just created, depending on timing this cluster might be in **CREATE_IN_PROGRESS** or **CREATE_COMPLETE** state.
+Once you are connected to Pcluster Manager, you can see the created cluster, depending on timing this cluster might be in **CREATE_IN_PROGRESS** or **CREATE_COMPLETE** state.
 
 #### What's Happening in the Background
 
