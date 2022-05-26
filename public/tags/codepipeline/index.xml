@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CodePipeline on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/codepipeline.html</link>
+    <description>Recent content in CodePipeline on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Sep 2021 10:46:30 -0400</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/codepipeline/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>d. Create a pipeline</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline/05-codepipeline.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline/05-codepipeline.html</guid>
+      <description>In this section, you will create a pipeline using AWS CodePipeline.
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define
+In the first section of this lab you created a CodeCommit repo and created a sample Docker container and corresponding buildspec file to build the container.</description>
+    </item>
+    
+    <item>
+      <title>e. Auto execute pipeline</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline/06-updatebuild.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline/06-updatebuild.html</guid>
+      <description>In this section, we will update the sample Dockerfile created earlier to automatically trigger the container build and update to Amazon ECR as part of the CodePipeline we created earlier.
+We will modify the Dockerfile to run a Genomics workflow using Nextflow.
+We will go over the Nextflow architecture and job execution/orchestration more in the next lab. For now, we will go ahead and update the repository and see how the CICD pipeline works for your build.</description>
+    </item>
+    
+    <item>
+      <title>f. Conclusion</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline/07-conclusion.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline/07-conclusion.html</guid>
+      <description>Congratulations! You built a CI/CD pipeline uisng CodePipeline.
+Your pipeline began with code in CodeCommit, built a Docker container and pushed the image to Elastic Container Registry (ECR) using CodeBuild.
+In the next lab, you will learn about container orchestration and how to deploy your container using AWS Batch.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -20,6 +20,7 @@ NCARG_ROOT=/shared/ncl
 PATH=$NCARG_ROOT/bin:$PATH
 export NCARG_ROOT
 export PATH
+sudo yum install -y -q ncl
 ```
 3. Navigate to the WRF run directory.
 

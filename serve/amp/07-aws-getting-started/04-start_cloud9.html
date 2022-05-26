@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta property="og:title" content="HPC Workshops" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hpcworkshops.com/" />
+    <meta property="og:image" content="https://hpcworkshops.com/images/spotlogo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="AWS HPC Workshops">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>b. Create a Cloud9 Environment :: AWS HPC Workshops</title>
+
+    
+    <link href="/css/nucleus.css?1652978145" rel="stylesheet">
+    <link href="/css/fontawesome-all.css?1652978145" rel="stylesheet">
+    <link href="/css/hybrid.css?1652978145" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1652978145" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1652978145" rel="stylesheet">
+    <link href="/css/auto-complete.css?1652978145" rel="stylesheet">
+    <link href="/css/theme.css?1652978145" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1652978145" rel="stylesheet">
+    
+      <link href="/css/theme-mine.css?1652978145" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1652978145"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/amp/07-aws-getting-started/04-start_cloud9.html">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" title="Go home"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="60%" style="padding:20px 0px;"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg></a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1652978145"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1652978145"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/www.hpcworkshops.com";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1652978145"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/01-hpc-overview.html" title="" class="dd-item
+        
+        
+        
+        ">
+      <a href="/01-hpc-overview.html">
+          <b>ISC22 Tutorial Resources</b>
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/01-hpc-overview/00-agenda.html" title="Tutorial Agenda" class="dd-item ">
+        <a href="/amp/01-hpc-overview/00-agenda.html">
+        Tutorial Agenda
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/01-hpc-overview/01-updates.html" title="Updates" class="dd-item ">
+        <a href="/amp/01-hpc-overview/01-updates.html">
+        Updates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/02-aws-getting-started.html" title="Before starting" class="dd-item
+        
+        
+        
+        ">
+      <a href="/02-aws-getting-started.html">
+          <b>Preparation ⁃ </b>Before starting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/02-requirement_notes.html" title="Prerequisites" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/02-requirement_notes.html">
+        Prerequisites
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/03-access-aws.html" title="a. Event: Accessing Your Lab Account" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/03-access-aws.html">
+        a. Event: Accessing Your Lab Account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/03-aws-console-login.html" title="b. Post Event: Access AWS (Skip)" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/03-aws-console-login.html">
+        b. Post Event: Access AWS (Skip)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/04-start_cloud9.html" title="b. Open a Cloud9 Environment" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/04-start_cloud9.html">
+        b. Open a Cloud9 Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/05-start-aws-cli.html" title="c. Work with the AWS CLI" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/05-start-aws-cli.html">
+        c. Work with the AWS CLI
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/06-iam-role.html" title="d. Temporary credentials on Cloud9" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/06-iam-role.html">
+        d. Temporary credentials on Cloud9
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/02-aws-getting-started/99-summary.html" title="Summary" class="dd-item ">
+        <a href="/amp/02-aws-getting-started/99-summary.html">
+        Summary
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/03-hpc-aws-parallelcluster-workshop.html" title="Create an HPC Cluster" class="dd-item
+        
+        
+        
+        ">
+      <a href="/03-hpc-aws-parallelcluster-workshop.html">
+          <b>Lab I ⁃ </b>Create an HPC Cluster
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/01-pcluster-intro.html" title="a. About AWS ParallelCluster" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/01-pcluster-intro.html">
+        a. About AWS ParallelCluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/02-pcluster-install.html" title="b. Install AWS ParallelCluster" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/02-pcluster-install.html">
+        b. Install AWS ParallelCluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/03-initialize-pc.html" title="c. Set up AWS ParallelCluster foundation" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/03-initialize-pc.html">
+        c. Set up AWS ParallelCluster foundation
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/04-configure-pc.html" title="d. Create a Cluster Config" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/04-configure-pc.html">
+        d. Create a Cluster Config
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html" title="e. Build an HPC Cluster" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html">
+        e. Build an HPC Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/07-pcluster-manager-intro.html" title="f. About AWS PCluster Manager" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/07-pcluster-manager-intro.html">
+        f. About AWS PCluster Manager
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/08-connect-pcmanager-lab.html" title="g. Connect to PCluster Manager" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/08-connect-pcmanager-lab.html">
+        g. Connect to PCluster Manager
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html" title="h. Connect to the Cluster" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html">
+        h. Connect to the Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/10-run-commands.html" title="i. Get to know your Cluster" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/10-run-commands.html">
+        i. Get to know your Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/11-conus-12km.html" title="l. CONUS 12-km Model" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/11-conus-12km.html">
+        l. CONUS 12-km Model
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/12-run-wrf.html" title="m. Run WRF" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/12-run-wrf.html">
+        m. Run WRF
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/13-visualize-results.html" title="n. Visualize Results" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/13-visualize-results.html">
+        n. Visualize Results
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/03-hpc-aws-parallelcluster-workshop/14-exit-cluster.html" title="o. Summary" class="dd-item ">
+        <a href="/amp/03-hpc-aws-parallelcluster-workshop/14-exit-cluster.html">
+        o. Summary
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/04-container-parallelcluster.html" title="Container on AWS ParallelCluster" class="dd-item
+        
+        
+        
+        ">
+      <a href="/04-container-parallelcluster.html">
+          <b>Lab II ⁃ </b>Container on AWS ParallelCluster
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/04-container-parallelcluster/02-update-pc.html" title="a. Update your cluster" class="dd-item ">
+        <a href="/amp/04-container-parallelcluster/02-update-pc.html">
+        a. Update your cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/04-container-parallelcluster/03-create-repository.html" title="b. Create container repository" class="dd-item ">
+        <a href="/amp/04-container-parallelcluster/03-create-repository.html">
+        b. Create container repository
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/04-container-parallelcluster/04-launch-nextflow.html" title="c. Run nextflow container" class="dd-item ">
+        <a href="/amp/04-container-parallelcluster/04-launch-nextflow.html">
+        c. Run nextflow container
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/04-container-parallelcluster/06-delete-pc.html" title="d. Terminate Your Cluster" class="dd-item ">
+        <a href="/amp/04-container-parallelcluster/06-delete-pc.html">
+        d. Terminate Your Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/05-cicd-pipeline.html" title="Container building automation" class="dd-item
+        
+        
+        
+        ">
+      <a href="/05-cicd-pipeline.html">
+          <b>Lab III ⁃ </b>Container building automation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/02-codecommit-repo.html" title="a. Create a repo in CodeCommit" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/02-codecommit-repo.html">
+        a. Create a repo in CodeCommit
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/03-docker-buildspec.html" title="b. Create Docker and buildspec files" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/03-docker-buildspec.html">
+        b. Create Docker and buildspec files
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/04-codebuild.html" title="c. Setup project in CodeBuild" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/04-codebuild.html">
+        c. Setup project in CodeBuild
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/05-codepipeline.html" title="d. Create a pipeline" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/05-codepipeline.html">
+        d. Create a pipeline
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/06-updatebuild.html" title="e. Auto execute pipeline" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/06-updatebuild.html">
+        e. Auto execute pipeline
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/05-cicd-pipeline/07-conclusion.html" title="f. Conclusion" class="dd-item ">
+        <a href="/amp/05-cicd-pipeline/07-conclusion.html">
+        f. Conclusion
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/06-batch-automation.html" title="Simulations with AWS Batch" class="dd-item
+        
+        
+        
+        ">
+      <a href="/06-batch-automation.html">
+          <b>Lab IV ⁃ </b>Simulations with AWS Batch
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/01-create-s3.html" title="a. Create S3 bucket" class="dd-item ">
+        <a href="/amp/06-batch-automation/01-create-s3.html">
+        a. Create S3 bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/02-create-iam-role.html" title="b. Create IAM Role" class="dd-item ">
+        <a href="/amp/06-batch-automation/02-create-iam-role.html">
+        b. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/03-setup-batch-ce-jq.html" title="c. Set up Batch Resources" class="dd-item ">
+        <a href="/amp/06-batch-automation/03-setup-batch-ce-jq.html">
+        c. Set up Batch Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/04-setup-batch-job-definition.html" title="d. Set up a Job Definition" class="dd-item ">
+        <a href="/amp/06-batch-automation/04-setup-batch-job-definition.html">
+        d. Set up a Job Definition
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/05-describe-batch-env.html" title="e. Describe Your Environment" class="dd-item ">
+        <a href="/amp/06-batch-automation/05-describe-batch-env.html">
+        e. Describe Your Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/06-run-job.html" title="f. Run a Single Job" class="dd-item ">
+        <a href="/amp/06-batch-automation/06-run-job.html">
+        f. Run a Single Job
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/07-monitor-job.html" title="g. Monitor your jobs" class="dd-item ">
+        <a href="/amp/06-batch-automation/07-monitor-job.html">
+        g. Monitor your jobs
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/06-batch-automation/08-cleanup.html" title="h. Cleanup" class="dd-item ">
+        <a href="/amp/06-batch-automation/08-cleanup.html">
+        h. Cleanup
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/07-aws-getting-started.html" title="Cloud9 Step by Step" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/07-aws-getting-started.html">
+          <b>Optional ⁃ </b>Cloud9 Step by Step
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/02-requirement_notes.html" title="Prerequisites" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/02-requirement_notes.html">
+        Prerequisites
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/03-access-aws.html" title="a. Event: Accessing Your Lab Account" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/03-access-aws.html">
+        a. Event: Accessing Your Lab Account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/03-aws-console-login.html" title="b. Post Event: Access AWS (Skip)" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/03-aws-console-login.html">
+        b. Post Event: Access AWS (Skip)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/04-start_cloud9.html" title="b. Create a Cloud9 Environment" class="dd-item active">
+        <a href="/amp/07-aws-getting-started/04-start_cloud9.html">
+        b. Create a Cloud9 Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/05-start-aws-cli.html" title="c. Work with the AWS CLI" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/05-start-aws-cli.html">
+        c. Work with the AWS CLI
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/06-iam-role.html" title="d. Attach Role to Cloud9 Instance" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/06-iam-role.html">
+        d. Attach Role to Cloud9 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/amp/07-aws-getting-started/99-summary.html" title="Summary" class="dd-item ">
+        <a href="/amp/07-aws-getting-started/99-summary.html">
+        Summary
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li>
+                  <a class="padding" href="https://github.com/aws-samples/aws-hpc-tutorials"><i class='fab fa-github'></i> Github</a>
+              </li>
+          
+              <li>
+                  <a class="padding" href="https://aws.amazon.com/hpc/"><i class='fas fa-bookmark'></i> AWS - HPC</a>
+              </li>
+          
+              <li>
+                  <a class="padding" href="https://www.hpcworkshops.com/authors.html"><i class='fas fa-users'></i> Authors</a>
+              </li>
+          
+              <li>
+                  <a class="padding" href="mailto:aws-hpc-workshops@amazon.com"><i class='fas fa-envelope'></i> Feedback / Questions?</a>
+              </li>
+          
+              <li>
+                  <a class="padding" href="https://www.hpcworkshops.com/tags"><i class='fas fa-tags'></i> Tags</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+        <a class="github-button" href="https://github.com/aws-samples/aws-hpc-tutorials" data-icon="octicon-star" data-show-count="true" aria-label="Star on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/aws-samples/aws-hpc-tutorials" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork on GitHub">Fork</a>
+        <br><a href="https://aws.amazon.com/privacy/?nc1=f_pr">Privacy</a> | <a href="https://aws.amazon.com/terms/?nc1=f_pr">Site Terms</a> | © 2022, Amazon Web Services, Inc. or its affiliates. All rights reserved. 
+</left>
+
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/aws-samples/aws-hpc-tutorials/tree/master/content/07-aws-getting-started/04-start_cloud9.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/amp/'>AWS HPC Workshops</a> > <a href='/07-aws-getting-started.html'>Cloud9 Step by Step</a> > b. Create a Cloud9 Environment
+          
+        
+          
+        
+          
+        
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>b. Create a Cloud9 Environment</h1>
+          
+
+        
+
+
+<p><img src="/images/hpc-aws-parallelcluster-workshop/cloud9.png" alt="Cloud 9">
+<a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. This workshop uses Cloud9 to introduce you to the AWS Command Line Interface (AWS CLI) without the need to install any software on your laptop.</p>
+<p>AWS Cloud9 contains a collection of tools that let you code, build, run, test, debug, and release software in the cloud using your internet browser. The IDE offers support for python, pip, AWS CLI, and provides easy access to AWS resources through Identity and Access Management (IAM) user credentials. The IDE includes a terminal with sudo privileges to the managed instance that is hosting your development environment and a pre-authenticated CLI. This makes it easy for you to quickly run commands and directly access AWS services.</p>
+
+<div class="notices info" ><p>After accessing your IDE, take a moment to familiarize yourself with the Cloud9 environment. For more information, follow a <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tutorial.html#tutorial-tour-ide" target="_blank">tutorial</a> or even view <a href="https://www.youtube.com/watch?v=JDHZOGMMkj8" target="_blank">Introduction to AWS Cloud9</a>.</p>
+</div>
+
+<h4 id="section-2">Create Your Own AWS Cloud9 Instance</h4>
+<p>These steps apply to both individual users of this workshop and those in a group setting. To access your IDE, follow these steps:</p>
+<ol>
+<li>In the AWS Management Console, locate <strong>Cloud9</strong> by using the search bar, or choose <strong>Services</strong>, then <strong>Cloud9</strong>.
+<img src="/images/introductory-steps/cloud9-find.png" alt="Cloud 9"></li>
+<li>Choose <strong>Create Environment</strong></li>
+<li>Name your environment <strong>MyCloud9Env</strong> and choose <strong>Next Step</strong>.
+<img src="/images/introductory-steps/cloud9-name.png" alt="Cloud 9"></li>
+<li>On the <strong>Configure Settings</strong> page, locate <strong>Cost-saving setting</strong> drop-down menu, and choose <strong>After a day</strong>. (Note: Your instructor may change other default selections.)
+<img src="/images/introductory-steps/cloud9-defaults.png" alt="Cloud 9"></li>
+<li>Choose <strong>Next Step</strong>.</li>
+<li>Choose <strong>Create Environment</strong>.</li>
+</ol>
+<p>Your AWS Cloud9 instance will be ready in a few minutes!</p>
+<p><img src="/images/introductory-steps/cloud9-create.png" alt="Cloud9 Create"></p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/amp/07-aws-getting-started/03-aws-console-login.html" title="b. Post Event: Access AWS (Skip)"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/amp/07-aws-getting-started/05-start-aws-cli.html" title="c. Work with the AWS CLI" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1652978145"></script>
+    <script src="/js/perfect-scrollbar.min.js?1652978145"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1652978145"></script>
+    <script src="/js/jquery.sticky.js?1652978145"></script>
+    <script src="/js/featherlight.min.js?1652978145"></script>
+    <script src="/js/highlight.pack.js?1652978145"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1652978145"></script>
+    <script src="/js/learn.js?1652978145"></script>
+    <script src="/js/hugo-learn.js?1652978145"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1652978145"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

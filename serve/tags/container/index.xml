@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>container on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/container.html</link>
+    <description>Recent content in container on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Sep 2019 10:46:30 -0400</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/container/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>b. Create container repository</title>
+      <link>https://www.hpcworkshops.com/04-container-parallelcluster/03-create-repository.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/04-container-parallelcluster/03-create-repository.html</guid>
+      <description>In this section, you will create a container repository on Amazon ECR and create a Docker container image.
+Preliminary In the AWS Cloud9 terminal, connect to the HPC Cluster
+pcluster ssh -n hpc-cluster-lab -i ~/.ssh/$SSH_KEY_NAME -r $AWS_REGION Since the HPC Cluster existed prior to post-install script, you will need to manually install Docker and Singularity on the head node of the HPC Cluster.
+# Install Docker sudo amazon-linux-extras install -y docker sudo usermod -a -G docker ec2-user sudo systemctl start docker sudo systemctl enable docker # Install Singularity sudo yum install -y singularity Exit the HPC cluster</description>
+    </item>
+    
+  </channel>
+</rss>

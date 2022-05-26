@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags.html</link>
+    <description>Recent content in Tags on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2022 09:05:54 +0000</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HPC</title>
+      <link>https://www.hpcworkshops.com/tags/hpc.html</link>
+      <pubDate>Mon, 11 Apr 2022 09:05:54 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/hpc.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://www.hpcworkshops.com/tags/overview.html</link>
+      <pubDate>Mon, 11 Apr 2022 09:05:54 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/overview.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>create</title>
+      <link>https://www.hpcworkshops.com/tags/create.html</link>
+      <pubDate>Sun, 10 Apr 2022 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/create.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>initialize</title>
+      <link>https://www.hpcworkshops.com/tags/initialize.html</link>
+      <pubDate>Sun, 10 Apr 2022 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/initialize.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Manager</title>
+      <link>https://www.hpcworkshops.com/tags/manager.html</link>
+      <pubDate>Sun, 10 Apr 2022 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/manager.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ParallelCluster</title>
+      <link>https://www.hpcworkshops.com/tags/parallelcluster.html</link>
+      <pubDate>Sun, 10 Apr 2022 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/parallelcluster.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://www.hpcworkshops.com/tags/tutorial.html</link>
+      <pubDate>Sun, 10 Apr 2022 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/tutorial.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Batch</title>
+      <link>https://www.hpcworkshops.com/tags/batch.html</link>
+      <pubDate>Fri, 08 Oct 2021 09:05:54 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/batch.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CodeBuild</title>
+      <link>https://www.hpcworkshops.com/tags/codebuild.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/codebuild.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CodeCommit</title>
+      <link>https://www.hpcworkshops.com/tags/codecommit.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/codecommit.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CodePipeline</title>
+      <link>https://www.hpcworkshops.com/tags/codepipeline.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/codepipeline.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DeveloperTools</title>
+      <link>https://www.hpcworkshops.com/tags/developertools.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/developertools.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Developer Tools</title>
+      <link>https://www.hpcworkshops.com/tags/aws-developer-tools.html</link>
+      <pubDate>Wed, 29 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/aws-developer-tools.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://www.hpcworkshops.com/tags/devops.html</link>
+      <pubDate>Wed, 29 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/devops.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>https://www.hpcworkshops.com/tags/aws.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/aws.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws console</title>
+      <link>https://www.hpcworkshops.com/tags/aws-console.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/aws-console.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>container</title>
+      <link>https://www.hpcworkshops.com/tags/container.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/container.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>delete</title>
+      <link>https://www.hpcworkshops.com/tags/delete.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/delete.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>EC2</title>
+      <link>https://www.hpcworkshops.com/tags/ec2.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/ec2.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IAM</title>
+      <link>https://www.hpcworkshops.com/tags/iam.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/iam.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>install</title>
+      <link>https://www.hpcworkshops.com/tags/install.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/install.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nextflow</title>
+      <link>https://www.hpcworkshops.com/tags/nextflow.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/nextflow.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>packer</title>
+      <link>https://www.hpcworkshops.com/tags/packer.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/packer.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prerequisite</title>
+      <link>https://www.hpcworkshops.com/tags/prerequisite.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/prerequisite.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>repository</title>
+      <link>https://www.hpcworkshops.com/tags/repository.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/repository.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>update</title>
+      <link>https://www.hpcworkshops.com/tags/update.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/update.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://www.hpcworkshops.com/tags/introduction.html</link>
+      <pubDate>Thu, 24 Jan 2019 09:05:54 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/introduction.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optional</title>
+      <link>https://www.hpcworkshops.com/tags/optional.html</link>
+      <pubDate>Thu, 24 Jan 2019 09:05:54 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/optional.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws cli</title>
+      <link>https://www.hpcworkshops.com/tags/aws-cli.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/aws-cli.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://www.hpcworkshops.com/tags/ci/cd.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/ci/cd.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud9</title>
+      <link>https://www.hpcworkshops.com/tags/cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/cloud9.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>s3</title>
+      <link>https://www.hpcworkshops.com/tags/s3.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/s3.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>summary</title>
+      <link>https://www.hpcworkshops.com/tags/summary.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/tags/summary.html</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/ci/cd.html</link>
+    <description>Recent content in CI/CD on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.hpcworkshops.com/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Container building automation</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline.html</link>
+      <pubDate>Wed, 29 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline.html</guid>
+      <description>HPC resources have complex and dynamic software needs that are challenging to manage and maintain. Users often want the latest software available for their research and development which drives the need for frequent installation and updates. Administrators currently address these complex software needs with package managers such as Lmod, Easybuild or Spack. However, even with these tools software management in an HPC environment includes manual and error-prone steps. Continuous integration, delivery, and deployment (CICD) is widely used in DevOps communities, as it allows to deploy rapidly-changing hardware and software resources.</description>
+    </item>
+    
+    <item>
+      <title>e. Auto execute pipeline</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline/06-updatebuild.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline/06-updatebuild.html</guid>
+      <description>In this section, we will update the sample Dockerfile created earlier to automatically trigger the container build and update to Amazon ECR as part of the CodePipeline we created earlier.
+We will modify the Dockerfile to run a Genomics workflow using Nextflow.
+We will go over the Nextflow architecture and job execution/orchestration more in the next lab. For now, we will go ahead and update the repository and see how the CICD pipeline works for your build.</description>
+    </item>
+    
+    <item>
+      <title>f. Conclusion</title>
+      <link>https://www.hpcworkshops.com/05-cicd-pipeline/07-conclusion.html</link>
+      <pubDate>Thu, 30 Sep 2021 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/05-cicd-pipeline/07-conclusion.html</guid>
+      <description>Congratulations! You built a CI/CD pipeline uisng CodePipeline.
+Your pipeline began with code in CodeCommit, built a Docker container and pushed the image to Elastic Container Registry (ECR) using CodeBuild.
+In the next lab, you will learn about container orchestration and how to deploy your container using AWS Batch.</description>
+    </item>
+    
+  </channel>
+</rss>

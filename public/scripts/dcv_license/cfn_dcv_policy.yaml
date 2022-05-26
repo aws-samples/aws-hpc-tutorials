@@ -1,0 +1,46 @@
+# Use as follow:
+#   aws cloudformation create-stack --stack-name 'DCVInstanceProfile' \
+#                                   --template-body file://cfn_dcv_policy.yaml \
+#                                   --capabilities "CAPABILITY_IAM"
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create instance profile for an EC2 Instance to access NICE DCV licensing S3 buckets'
+
+Resources:
+  # For the packer build to access the nvidia drivers
+  DCVBucketsInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref 'DCVReadAccessOnlyRole'
+  DCVReadAccessOnlyPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: DCVReadAccessOnlyPolicy
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+            Resource:
+              - !Sub arn:aws:s3:::dcv-license.${AWS::Region}/*
+      Roles:
+        - !Ref 'DCVReadAccessOnlyRole'
+  DCVReadAccessOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+
+Outputs:
+  InstanceProfileARN:
+    Description: Instance profile to access NICE DCV licensing buckets
+    Value: !Ref DCVBucketsInstanceProfile

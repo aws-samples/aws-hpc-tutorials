@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>create on AWS HPC Workshops</title>
+    <link>https://www.hpcworkshops.com/tags/create.html</link>
+    <description>Recent content in create on AWS HPC Workshops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Sep 2019 10:46:30 -0400</lastBuildDate><atom:link href="https://www.hpcworkshops.com/tags/create/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>d. Build an HPC Cluster</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/06-launch-pc.html</guid>
+      <description>In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command pcluster create and the &amp;amp;ndash;config (or -c) option to use another configuration file other than the default one.
+If you create your cluster without using the &amp;ndash;config (or -c) option, then AWS ParallelCluster uses the default configuration with the minimum requirements to get a cluster running. For example, the default configuration for head and compute nodes is t2.</description>
+    </item>
+    
+    <item>
+      <title>e. Log in to Your Cluster</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/07-logon-pc.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/07-logon-pc.html</guid>
+      <description>The pcluster ssh is a wrapper around SSH. Depending on the case, you can also log in to your head node using ssh and the public or private IP address.
+ You can list existing clusters using the following command. This is a convenient way to find the name of a cluster in case you forget it.
+pcluster list --color -r $AWS_REGION Now that your cluster has been created, log in to the head node using the following command in your AWS Cloud9 terminal:</description>
+    </item>
+    
+    <item>
+      <title>f. Submit a tightly coupled HPC job</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/08-run-1stjob.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/08-run-1stjob.html</guid>
+      <description>The steps here can also be executed on any cluster running SLURM. There may be some variations depending on your configuration.
+ In this step, you run the WRF CONUS 12km test case job to introduce you to the mechanisms of AWS ParallelCluster.
+Preparatory Steps Make sure that you are logged into the AWS ParallelCluster head node through the AWS Cloud9 terminal.
+ Download CONUS 12KM Input data used for simulating the Weather Research and Forecasting (WRF) model are 12-km CONUS input.</description>
+    </item>
+    
+    <item>
+      <title>g. Summary</title>
+      <link>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/09-exit-cluster.html</link>
+      <pubDate>Wed, 18 Sep 2019 10:46:30 -0400</pubDate>
+      
+      <guid>https://www.hpcworkshops.com/03-hpc-aws-parallelcluster-workshop/09-exit-cluster.html</guid>
+      <description>Congratulations, you have deployed a HPC Cluster on AWS !
+In this lab, you have:
+ Configured your HPC Cluster Deployed a HPC Cluster in the cloud. Run a tighly couple application: WRF on the CONUS 12KM test case.  In the next lab, you will learn how to build a Docker container image and how to run a container on the HPC cluster in the cloud.
+You can learn more about AWS ParallelCluster by visiting the documentation.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -257,7 +257,7 @@ Pay attention to the **old value** and **new value** fields. You will see a new 
 
 You will have to wait for the cluster status to be **UPDATE_COMPLETE**. You can check the cluster with the **pcluster list-clusters** command as follow:
 ```bash
-pcluster list-clusters -n hpc-cluster-lab -r ${AWS_REGION}
+pcluster describe-cluster -n hpc-cluster-lab -r ${AWS_REGION}
 ```
 
 Here is the expected output:
