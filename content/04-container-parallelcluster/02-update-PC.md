@@ -23,8 +23,8 @@ The first screen leave it as is, next advance to the **HeadNode** tab.
 
 On the HeadNode tab add permission to access the [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) by adding the managed `AmazonEC2ContainerRegistryFullAccess` [AWS IAM](https://aws.amazon.com/iam/) policy.
 
-1. Click the drop down on the **Advanced options**
-2. Click the drop down on **IAM Policies**
+1. Click the drop down on the **Advanced options**.
+2. Click the drop down on **IAM Policies**.
 3. Add in the policy `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess`. Click Add.
 
 ![HeadNode IAM](/images/container-pc/headnode-iam.png)
@@ -33,18 +33,19 @@ On the HeadNode tab add permission to access the [Amazon Elastic Container Regis
 
 Click next twice to advance to the **Queues section**, here we're going to add a queue that has Docker and Singularity installed on the compute nodes. 
 
-1. Choose **Add Queue**
-2. Set the **Subnet** to the same subnet as the first queue (queue1)
-3. Set the **Dynamic Nodes** to `8`
-4. Set the **Instance Type** to `c5.xlarge`
+1. Choose **Add Queue**.
+2. Set the **Subnet** to the same subnet as the first queue (queue1).
+3. Set the **Dynamic Nodes** to `8`.
+4. Set the **Instance Type** to `c5.xlarge`.
 
 ![Queue Edit](/images/container-pc/queue-edit.png)
 
 Next add in a script that installs Docker and Singularity on the Compute Nodes.
 
-1. Dropdown **Advanced Options** on the queue you just created
-2. Paste in the following url into **On Configured** section `https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh`
+1. Dropdown **Advanced Options** on the queue you just created.
+2. Paste in the following url into **On Configured** section `https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh`.
 3. Expand **IAM Policies** and paste in the following policy `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess`. Click Add.
+4. Click **Next** to continue to the **Update** section.
 
 ![Advanced Options](/images/container-pc/queue-iam.png)
 
