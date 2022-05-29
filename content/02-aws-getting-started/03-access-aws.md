@@ -23,7 +23,9 @@ Go to the website https://dashboard.eventengine.run/
 
 ##### Step 3
 
-You will then be prompted to a screen with the terms and conditions, add the *hashcode* that will be provided to you and click **Accept** to continue:
+You will then be prompted to a screen with the terms and conditions, add the *hashcode* and click **Accept** to continue:
+
+## Hash: e921-1549fc6ca4-65
 
 ![Event Engine Login](</images/isc22/event-engine-login.png>)
 
