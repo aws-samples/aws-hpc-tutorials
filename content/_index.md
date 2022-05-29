@@ -10,7 +10,7 @@ Welcome to the **Best Practices for HPC in the Cloud** tutorial at ISC22 that wi
 The website will be maintained after ISC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
 {{% notice tip %}}
-**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/isc22cloud.**
+**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://survey.immersionday.com/IGDEbg9nR.**
 {{% /notice %}}
 
 
