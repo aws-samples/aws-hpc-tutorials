@@ -17,17 +17,16 @@ cat > ufs-install.sh <<EOF
 #SBATCH --exclusive
 
 echo "Installing ufs on \$SLURM_CPUS_ON_NODE cores."
-spack install --reuse -j \$SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric
+spack install -j \$SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric
 EOF
 ```
 
 * `-N 1` tells Slurm to allocate one instance
 * `--exclusive` tells slurm to use all the cores on that instance
-* `spack install --reuse -j $SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric` This tells Spack to install [UFS](https://spack.readthedocs.io/en/latest/package_list.html#ufs-weather-model) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/ufs-weather-model/package.py). It passes some build flags:
+* `spack install -j $SLURM_CPUS_ON_NODE ufs-weather-model%intel^intel-oneapi-mpi+external-libfabric` This tells Spack to install [UFS](https://spack.readthedocs.io/en/latest/package_list.html#ufs-weather-model) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/ufs-weather-model/package.py). It passes some build flags:
 
 | **Spack Flag**   | **Description** |
 | ----------- | ----------- |
-| `--reuse`   | [Reuse](https://spack.readthedocs.io/en/latest/basic_usage.html#reusing-installed-dependencies) installed dependencies. |
 | `-j $SLURM_CPUS_ON_NODE`     | Compile with all cores on the instance.   |
 | `%intel`     | Specify the [Intel Compiler (icc)](https://spack.readthedocs.io/en/latest/package_list.html#intel-oneapi-compilers) we installed in [e. Install Intel Compilers](/02-cluster/06-install-intel-compilers.html#intel_compilers). |
 | `^intel-oneapi-mpi+external-libfabric`  | Uses Intel MPI which we added in [e. Install Intel MPI](/02-cluster/06-install-intel-compilers.html#intel_mpi)

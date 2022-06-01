@@ -26,9 +26,9 @@ packages:
           prefix: /opt/amazon/efa
         buildable: False
     openmpi:
-        variants: fabrics=auto +pmix +legacylaunchers schedulers=slurm
+        variants: fabrics=auto +legacylaunchers schedulers=slurm
         externals:
-        - spec: openmpi@4.1.1 fabrics=auto +pmix +legacylaunchers schedulers=slurm
+        - spec: openmpi@4.1.1 fabrics=auto +legacylaunchers schedulers=slurm
           prefix: /opt/amazon/openmpi
     pmix:
         externals:

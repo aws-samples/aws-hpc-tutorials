@@ -25,7 +25,7 @@ will run MPAS on.
 1. Install [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) a graph partitioning program. This will take **~5 minutes**.
 
 ```bash
-spack install --reuse metis%intel
+spack install metis%intel
 ```
 
 2. Create a graph for the number of MPI ranks we will run MPAS on.

@@ -45,7 +45,7 @@ EOF
 ```bash
 spack env create wrf_build wrf_build.yaml
 spack env activate wrf_build
-spack install --reuse -j 16
+spack install -j 16
 ```
 4. Finally we're going to compile WRF using the dependencies we just installed:
 ```bash

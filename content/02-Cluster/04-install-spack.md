@@ -14,7 +14,7 @@ First, on the head node - which we [connected to via SSM or DCV](02-connect-clus
 
 ```bash
 export SPACK_ROOT=/shared/spack
-git clone -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
+git clone -b v0.18.0 -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
 echo "export SPACK_ROOT=/shared/spack" >> $HOME/.bashrc
 echo "source \$SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
