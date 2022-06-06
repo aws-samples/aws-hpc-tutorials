@@ -1,6 +1,6 @@
 +++
 title = "g. Create an EC2 Instance"
-weight = 100
+weight = 28
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "s3"]
 +++
 

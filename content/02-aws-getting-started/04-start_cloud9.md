@@ -1,6 +1,6 @@
 +++
 title = "b. Create a Cloud9 Environment"
-weight = 60
+weight = 23
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 ![Cloud 9](/images/hpc-aws-parallelcluster-workshop/cloud9.png)
