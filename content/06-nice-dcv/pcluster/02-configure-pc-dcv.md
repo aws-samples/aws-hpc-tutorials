@@ -60,7 +60,7 @@ HeadNode:
   Ssh:
     KeyName: ${AWS_KEYPAIR}
   Dcv:
-    Emabled: true
+    Enabled: true
 
 Scheduling:
   Scheduler: slurm
