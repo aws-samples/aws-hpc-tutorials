@@ -1,7 +1,7 @@
 +++
 title = "c. (Optional) Create config with 'pcluster configure'"
 date = 2019-09-18T10:46:30-04:00
-weight = 50
+weight = 42
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 

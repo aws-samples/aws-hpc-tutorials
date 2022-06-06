@@ -1,6 +1,6 @@
 +++
 title = "Summary"
-weight = 999
+weight = 30
 tags = ["tutorial", "summary"]
 +++
 

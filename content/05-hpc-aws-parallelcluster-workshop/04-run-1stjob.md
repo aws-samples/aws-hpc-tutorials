@@ -1,7 +1,7 @@
 +++
 title = "f. Submit your first HPC job"
 date = 2022-03-01T10:46:30-04:00
-weight = 90
+weight = 54
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
@@ -99,12 +99,11 @@ When ready and registered, your job will be processed and you will see a similar
 You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 5 min to appear.
 
 ```bash
-
 sinfo
-
-
 ```
+
  The following example shows 4 nodes.
+
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
 Once the job has been processed, you should see similar results as follows in the *.out* file:
@@ -112,7 +111,6 @@ Once the job has been processed, you should see similar results as follows in th
 The output is similar bellow:
 
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
-
 
 Done!
 

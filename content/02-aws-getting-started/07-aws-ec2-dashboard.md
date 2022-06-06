@@ -1,6 +1,6 @@
 +++
 title = "f. Launch the EC2 Dashboard"
-weight = 90
+weight = 27
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 

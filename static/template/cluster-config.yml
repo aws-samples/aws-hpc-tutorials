@@ -1,0 +1,46 @@
+HeadNode:
+  InstanceType: c5a.2xlarge
+  Ssh:
+    KeyName: your-key
+  Networking:
+    SubnetId: subnet-1234567
+  LocalStorage:
+    RootVolume:
+      Size: 40
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+  Dcv:
+    Enabled: true
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: hpc6a
+          MinCount: 0
+          MaxCount: 64
+          InstanceType: hpc6a.48xlarge
+          Efa:
+            Enabled: true
+      Networking:
+        SubnetIds:
+          - subnet-1234567
+        PlacementGroup:
+          Enabled: true
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+Region: us-east-2
+Image:
+  Os: alinux2
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /shared
+    FsxLustreSettings:
+      StorageCapacity: 1200
+      DeploymentType: PERSISTENT_1
+      PerUnitStorageThroughput: 200
+      DataCompressionType: LZ4

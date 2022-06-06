@@ -1,6 +1,6 @@
 +++
 title = "e. Create an S3 Bucket"
-weight = 80
+weight = 26
 tags = ["tutorial", "cloud9", "s3"]
 +++
 

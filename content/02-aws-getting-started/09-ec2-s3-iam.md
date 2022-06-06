@@ -1,6 +1,6 @@
 +++
 title = "h. Create an IAM Role"
-weight = 110
+weight = 29
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "iam"]
 +++
 
