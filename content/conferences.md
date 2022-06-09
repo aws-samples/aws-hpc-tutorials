@@ -3,7 +3,7 @@ title: Conferences Workshops
 disableToc: true
 ---
 
-#### List of workshops given at confernces
+#### List of workshops given at conferences
 
 | Name | Description |
 |------|-------------|
