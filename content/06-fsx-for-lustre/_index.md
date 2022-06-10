@@ -6,6 +6,8 @@ pre: "<b>IV ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
 
+![FSx Lustre Logo](/images/06-fsx-for-lustre/fsx-logo.png)
+
 [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/) provides a high-performance file system optimized for fast processing of workloads such as machine learning, high performance computing (HPC), video processing, financial modeling, and electronic design automation (EDA). These workloads commonly require data to be presented via a fast and scalable file system interface, and typically have datasets stored on long-term data stores like Amazon S3.
 
 Amazon FSx for Lustre allows you to build a Lustre file system based with an Amazon S3 backend. Files can be transferred between the Lustre partition and Amazon S3 using Lustre Hierarchical Storage Management (HSM). The size of your file system determines how much throughput is provided by Amazon FSx for Lustre. For more details, see the [Amazon FSx for Lustre Performance](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html).
@@ -19,9 +21,10 @@ This workshop also requires familiarity with AWS ParallelCluster. If you are not
 
 In this workshop, you learn how to use [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/) with [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and complete the following steps:
 
+- Create a managed Lustre filesystem with FSx Lustre
 - Upload files from an AWS Cloud9 instance to an Amazon S3 bucket.
-- Create a new cluster with AWS ParallelCluster and Amazon FSx for Lustre.
-- Run an IO intensive application to test Lustre performances.
+- Create a new cluster with AWS ParallelCluster and mount the filesystem
+- Run an I/O intensive application to test Lustre performances.
 - Push and get files using Lustre HSM.
 - Delete the cluster and the Lustre partition.
 
