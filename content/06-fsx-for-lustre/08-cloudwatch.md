@@ -1,7 +1,7 @@
 +++
 title = "f. View Metrics with CloudWatch"
 date = 2019-09-18T10:46:30-04:00
-weight = 70
+weight = 80
 tags = ["tutorial", "IOR", "FSx", "metrics"]
 +++
 
@@ -10,7 +10,7 @@ In this step, you visualize the metrics related to your Amazon FSx for Lustre fi
 
 This example looks at the IOPS and free space on the file system as shown in the image below.
 
-![IOR Result](/images/fsx-for-lustre/fsx-cloudwatch.png)
+![IOR Result](/images/06-fsx-for-lustre/fsx-cloudwatch.png)
 
 To produce a similar graph, follow these steps:
 

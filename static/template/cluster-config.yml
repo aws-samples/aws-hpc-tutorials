@@ -35,12 +35,3 @@ Scheduling:
 Region: us-east-2
 Image:
   Os: alinux2
-SharedStorage:
-  - Name: FsxLustre0
-    StorageType: FsxLustre
-    MountDir: /shared
-    FsxLustreSettings:
-      StorageCapacity: 1200
-      DeploymentType: PERSISTENT_1
-      PerUnitStorageThroughput: 200
-      DataCompressionType: LZ4

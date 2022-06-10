@@ -27,14 +27,22 @@ The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using t
 Use the copy button in each of the following code samples to quickly copy the command to your clipboard.
 {{% /notice %}}
 
+First we need to upgrade the version of the `aws` cli:
 
-Open a Terminal window and paste the following command to install the AWS CLI . Pip updates the version, if necessary. 
 ```bash
-pip3 install awscli -U --user
+sudo yum remove -y awscli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+exit
 ```
-{{% notice info %}}
-If a warning message appears prompting you to upgrade PIP, ignore it.
-{{% /notice %}}
+
+If that worked open a new terminal and run `aws --version` and you shoudl see version >= 2.
+
+```bash
+$ aws --version
+aws-cli/2.7.10 Python/3.9.11 Linux/4.14.281-212.502.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
+```
 
 ### Check Existing Amazon EC2 Instances
 
