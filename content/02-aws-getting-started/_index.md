@@ -6,7 +6,7 @@ pre: "<b>Preparation ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
-This workshop will walk you through setting up infrastructure to run your own HPC workloads. You will learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
+This workshop will walk you through setting up infrastructure to run your own HPC system for ML. You will learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
 
 Specifically, you will learn how to sign in to and explore the AWS Management Console. Once you are familiar with the AWS Management Console, you can move on to the next stage of the workshop.
 

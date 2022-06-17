@@ -16,12 +16,12 @@ HPC on AWS removes the long wait times and lost productivity often associated wi
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 
-This workshop is is designed to get you familiar with the concepts, best practices and AWS components that help to build an HPC cluster and run your HPC workloads efficiently on AWS.
+This workshop is is designed to get you familiar with the concepts, best practices and AWS components that help to build an HPC cluster and run self-managed ML workloads using Docker Containers on this system.
 
 To achieve this you will go through the following stages:
 
-1. [Preparation stage to deploy the AWS ParallelCluster API and the PCluster Manager stacks.](/02-aws-getting-started.html)
-2. [Configure, create your cluster using PCluster Manager and run a job.](/03-hpc-aws-parallelcluster-workshop.html)
-3. [Build a management workflow using the AWS ParallelCluster API.](http://localhost:1313/04-hpc-aws-parallelcluster-api.html)
+1. [AWS Account Access](/02-aws-getting-started.html)
+2. [Configure, create your cluster using PCluster Manager](/03-hpc-aws-parallelcluster-workshop.html)
+3. [Build your container, retrieve data, train a Deep Learning model on your cluster with PyTorch](/04-hpc-aws-parallelcluster-api.html)
 
-We will pause between each stage to remind you of key objectives. If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We will be happy to assist you and ensure that you are able to have a great experience learning about HPC on AWS with us.
+We will pause between each stage to remind you of key objectives. If you need any help during the workshop, do not hesitate to raise your hand and ask for help. We will be happy to assist you and ensure that you are able to have a great experience learning about Self-Managed Machine Learning on AWS with us.
