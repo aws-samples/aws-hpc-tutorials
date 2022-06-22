@@ -19,12 +19,5 @@ With all that information in mind, let's connect to your cluster and we will sta
 
 You are logged in your HPC system and will run some commands to get familiar with it in the next section.
 
-{{%notice note%}}
-When you submit a job to your Slurm job scheduler, AWS ParallelCluster will request new instances to be provisioned using Slurm's power management plugin for deploying instances in the cloud. If you submit a parallel job that requires the equivalent of 2 instances, then Slurm and ParallelCluster will provision those 2 instances to match that request. While we don't use that option in this lab, feel free to explore it by changing the number of dynamic nodes.
-
-If you submit additional jobs to run concurrently, then Slurm and ParallelCluster will provision additional instances until you reach your configured limit. Once that limit is reached, jobs will remain in the queue until slots are freed to place these jobs.
-
-Once all jobs are processed and instances have been idle for a configurable period of time, ParallelCluster will scale down those instances. All of these lifecycle actions are fully managed, meaning users do not have to worry about needing to manually scale resources up or down, and ensuring you only need to spend for resources that are actively being used to perform work.
-{{% /notice %}}
 
 
