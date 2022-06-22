@@ -12,6 +12,6 @@ In this lab, you have:
 - Connected and executed a sample application on your HPC Cluster.
 - Observed the scaling of instances when jobs are submitted.
 
-In the next part of the lab, you will learn how to interact with the new *AWS ParallelCluster API* using Python.
+In the next part of the lab, you will run a training job on AWS ParallelCluster.
 
 You can learn more about AWS ParallelCluster by visiting the [documentation](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html) page.
