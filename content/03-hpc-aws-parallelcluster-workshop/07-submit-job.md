@@ -64,7 +64,7 @@ cat > submission_script.sbatch << EOF
 #SBATCH --ntasks=16
 #SBATCH --output=%x_%j.out
 
-mpirun ./mpi_hello_world
+srun ./mpi_hello_world
 EOF
 ```
 
