@@ -8,7 +8,7 @@ The [AWS ParallelCluster API](https://docs.aws.amazon.com/parallelcluster/latest
 
 Pcluster Manager is a web UI that built upon the AWS ParallelCluster CLI that you can use to manage your compute clusters. It'll take about 20 minutes to deploy both stacks. You will initiate the deployment now to have it ready by the time you need it.
 
-1. Deploy the Pcluster Manager stack by clicking on this link: [Pcluster Manager Stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-2.s3.amazonaws.com/pcluster-manager.yaml&param_Version=3.1.1)
+1. Deploy the Pcluster Manager stack by clicking on this link: [Pcluster Manager Stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-2.s3.amazonaws.com/pcluster-manager.yaml)
 2. The AWS Console opens on the AWS CloudFormation panel to deploy your stack. Update the field *AdminUserEmail* with **a valid email** to receive a temporary password in order to connect to the Pcluster Manager GUI. Leave the other fields with their default values and click **Next** to proceed to Step 3.
 
 ![Pcluster Manager install](/images/hpc-aws-parallelcluster-workshop/pcmanager-install.png)
