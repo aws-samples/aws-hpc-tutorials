@@ -6,7 +6,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 {{%notice note%}}
-If you are participating in this workshop as part of re:Invent, then *PCluster Manager* will already be deployed for you.
+If you are running this lab as part of an AWS event, then *PCluster Manager* will already be deployed for you.
 {{% /notice %}}
 
 Once your PCluster Manager CloudFormation stack has been deployed, you can follow these steps to connect to it:
@@ -21,11 +21,11 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 4. Next, click on **Sign Up** to create a username and password for accessing PCluster Manager.
 
-![Signup Screen](/images/hpc-aws-parallelcluster-workshop/sign-up.png)
+<!-- ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/sign-up.png) -->
 
-5. Enter a username and password that meets the requirements and click **Sign Up**:
+5. Enter a username and password that meets the requirements and click **Sign Up**.
 
-![Signup Screen](/images/hpc-aws-parallelcluster-workshop/signup-password.png)
+<!-- ![Signup Screen](/images/hpc-aws-parallelcluster-workshop/signup-password.png) -->
 
 6. You'll get an email with a verification code, enter the code to continue:
 

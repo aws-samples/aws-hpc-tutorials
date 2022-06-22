@@ -74,7 +74,7 @@ Now, submit your fist job!
 
 Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist.
 
-However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster. If the maximum number of nodes is reached, no additional instances will be created.
+However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster to 4 instances so the cluster will keep that capacity for the life of the cluster.
 
 Submit your first job using the following command on the head node:
 
