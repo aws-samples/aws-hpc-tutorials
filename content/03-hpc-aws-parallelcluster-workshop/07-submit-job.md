@@ -72,7 +72,7 @@ Now, submit your fist job!
 
 #### Submit your First Job
 
-Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist.
+Submitted jobs are immediately processed if the job is in the queue and a sufficient number of compute nodes exist. Since we selected 16 tasks and our
 
 However, if there are not enough compute nodes to satisfy the computational requirements of the job, such as the number of cores, AWS ParallelCluster creates new instances to satisfy the requirements of the jobs sitting in the queue. However, note that you determined the minimum and maximum number of nodes when you created the cluster to 4 instances so the cluster will keep that capacity for the life of the cluster.
 
@@ -82,7 +82,7 @@ Submit your first job using the following command on the head node:
 sbatch submission_script.sbatch
 ```
 
-Check the status of the queue using the command **squeue**. The job will be first marked as configured (*CF* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up. For more details on the Slurm job states you can review the [documentation of the squeue command](hhttps://slurm.schedmd.com/squeue.html#SECTION_JOB-STATE-CODES).
+Check the status of the queue using the command **squeue**. For more details on the Slurm job states you can review the [documentation of the squeue command](hhttps://slurm.schedmd.com/squeue.html#SECTION_JOB-STATE-CODES).
 
 
 ```bash
@@ -91,7 +91,7 @@ squeue
 When ready and registered, your job will be processed and you will see a similar status as below.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/squeue-output.png)
 
-You can also check the number of nodes available in your cluster using the command **sinfo**. Do not hesitate to refresh it, nodes generally take less than 2 min to appear.
+You can also check the number of nodes available in your cluster using the command **sinfo**.
 
 ```bash
 sinfo
@@ -105,7 +105,5 @@ The output is similar bellow:
 
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
 
-
 Done!
 
-After a few minutes, your cluster will scale down unless there are more job to process.

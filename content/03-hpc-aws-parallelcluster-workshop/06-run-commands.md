@@ -12,7 +12,7 @@ Now that you are connected to the head node, familiarize yourself with the clust
 [SLURM](https://slurm.schedmd.com) from SchedMD is one of the batch schedulers that you can use in AWS ParallelCluster. For an overview of the SLURM commands, see the [SLURM Quick Start User Guide](https://slurm.schedmd.com/quickstart.html).
 {{% /notice %}}
 
-- **List existing partitions and nodes per partition**. You should see two nodes if your run this command after creating your cluster, and zero nodes if running it 10 minutes after creation (default cooldown period for AWS ParallelCluster, you don't pay for what you don't use).
+- **List existing partitions and nodes per partition**. You should see 4 nodes if your run this command after creating your cluster.
 ```bash
 sinfo
 ```
