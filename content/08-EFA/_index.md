@@ -12,12 +12,13 @@ tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 
 EFA is available as an optional EC2 networking feature that you can enable on any supported EC2 instance at no additional cost. Plus, it works with the most commonly used interfaces, APIs, and libraries for inter-node communications, so you can migrate your HPC applications to AWS with little or no modifications.
 
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the [**Getting Started in the Cloud**](/02-aws-getting-started.html) workshop.
+{{% notice note %}}
+Follow the instructions in the [Create an HPC Cluster](/05-create-cluster.html) lab before starting this section. We'll be using the cluster you created there.
 {{% /notice %}}
 
-In this workshop, you will learn how to use [ EFA ](https://aws.amazon.com/hpc/efa/) with [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and complete the following steps:
+In this workshop, you will learn how to use [EFA](https://aws.amazon.com/hpc/efa/) with [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and complete the following steps:
 
-- Create a new HPC cluster with AWS ParallelCluster and EFA enabled.
+- Examine EFA on the HeadNode and Compute Nodes
 - Complile a common MPI benchmarks from [Ohio State University (OSU) ](http://mvapich.cse.ohio-state.edu/benchmarks/) 
 - Run the OSU Benchmark for bandwidth and latency.
 - Delete the cluster.

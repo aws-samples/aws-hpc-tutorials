@@ -12,10 +12,10 @@ In this section, you will download, compile and run a common MPI benchmarks from
 
 #### Download and Compile the OSU Benchmarks
 
-You can run the script below on the Master node of your ParallelCluster in the **/shared** directory
+You can run the script below on the Master node of your ParallelCluster in the home directory
 
 ```bash
-cd /shared
+cd ~
 
 cat > compile-osu.sh << EOF
 #!/bin/bash
@@ -35,7 +35,7 @@ sh ./compile-osu.sh
 Verify that the OSU-Benchmark is installed correctly
 
 ```bash
-ll /shared/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
+ll ~/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
 ```
 
 #### Submit OSU Latency benchmark
@@ -43,25 +43,54 @@ ll /shared/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
 Create your job submission script for *OSU Latency* and use **sbatch** to submit your job:
 
 ```bash
-cat > c5n_osu_latency.sbatch << EOF
+cat > osu_latency.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=osu-latency-job
 #SBATCH --ntasks=2 --nodes=2
 #SBATCH --output=osu_latency.out
 
 module load intelmpi
-srun --mpi=pmi2 /shared/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
+srun --mpi=pmi2 ~/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_latency
 EOF
 
-sbatch c5n_osu_latency.sbatch
+sbatch osu_latency.sbatch
 watch squeue
 ```
 
 You have to wait a couple of minutes for your compute instances to come up, once you see the job go from **PD** pending to **R** running state, you know the instances are up. Type **Ctrl-C** to exit squeue at any point.
 
-After the job has completed, find the output on **/shared/osu_latency.out** . Tail or cat this file, you will see something like this:
+After the job has completed, find the output in `cat ~/osu_latency.out` . You will see something like:
 
-![OSU Latency](/images/efa/OSU_latency.png)
+```bash
+$ cat ~/osu_latency.out
+Loading intelmpi version 2021.4.0
+# OSU MPI Latency Test v5.6.2
+# Size          Latency (us)
+0                      15.64
+1                      15.63
+2                      15.64
+4                      15.63
+8                      15.61
+16                     15.62
+32                     15.65
+64                     15.69
+128                    15.73
+256                    15.77
+512                    15.88
+1024                   16.03
+2048                   16.34
+4096                   17.72
+8192                   19.68
+16384                  21.15
+32768                  23.21
+65536                  26.75
+131072                 92.06
+262144                 87.05
+524288                153.99
+1048576               286.83
+2097152               552.51
+4194304              1050.22
+```
 
 If EFA is configured correctly and you are running within a Cluster Placement Group, the latency between two EC2 instances will be ~15μs (Microsecond)
 Running the same benchmark on two non-EFA enabled instances will show around ~25μs (Microsecond), much hihger values if case not running on a Cluster Placement Group.
@@ -72,17 +101,18 @@ Running the same benchmark on two non-EFA enabled instances will show around ~25
 Another benchmark you might want to run is the *OSU Bandwidth*.
 
 ```bash
-cat > c5n_osu_bw.sbatch << EOF
+cat > osu_bw.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=osu-bw-job
-#SBATCH --ntasks=72 --nodes=2
+#SBATCH --ntasks=192 --nodes=2
 #SBATCH --output=osu_bw.out
 
 module load intelmpi
-srun --mpi=pmi2 /shared/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_mbw_mr
+srun --mpi=pmi2 ~/osu-micro-benchmarks-5.6.2/mpi/pt2pt/osu_mbw_mr
 EOF
 
-sbatch c5n_osu_bw.sbatch
+sbatch osu_bw.sbatch
+watch squeue
 ```
 
 Below you can find an example output
@@ -116,4 +146,4 @@ Below you can find an example output
 2097152             12113.78           5776.30
 ```
 
-In the above example, once we reached a message size of about 4k, we acheived a multi-pair bandwidth of 12k MBps or 96.9 Gbps, roughly the 100Gbps bandwidth availible on **c5n** instances.
+In the above example, once we reached a message size of about 4k, we acheived a multi-pair bandwidth of 12k MBps or 96.9 Gbps, roughly the 100Gbps bandwidth availible on **hpc6a** instances.
