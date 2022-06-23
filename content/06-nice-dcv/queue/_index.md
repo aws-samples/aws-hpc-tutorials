@@ -5,6 +5,8 @@ weight: 30
 tags: ["HPC", "NICE", "Visualization", "Remote Desktop"]
 ---
 
+![DCV Queue](/images/nice-dcv/dcv-queue.png)
+
 {{% notice info %}}
 This lab requires a cluster setup, please follow instructions in [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html) section of the workshop before proceeding further.
 {{% /notice %}}

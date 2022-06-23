@@ -19,7 +19,7 @@ Click on the **Queues** tab and click **Add Queue**
 
 * Select **c6i.32xlarge**
 * Enable **EFA**
-* Enable **pclacement group**
+* Enable **placement group**
 
 ![Edit Cluster](/images/pcluster/pcmanager-edit-1.jpeg)
 
