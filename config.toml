@@ -48,7 +48,7 @@ url = "/conferences.html"
 weight = 21
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-bullhorn'></i> External Workjshops"
+name = "<i class='fas fa-bullhorn'></i> External Workshops"
 url = "/external.html"
 weight = 20
 
