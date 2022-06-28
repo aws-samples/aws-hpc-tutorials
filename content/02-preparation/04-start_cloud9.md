@@ -17,15 +17,15 @@ After accessing your IDE, take a moment to familiarize yourself with the Cloud9 
 These steps apply to both individual users of this workshop and those in a group setting. To access your IDE, follow these steps:
 
 1. In the AWS Management Console, locate **Cloud9** by using the search bar, or choose **Services**, then **Cloud9**.
-![Cloud 9](/images/introductory-steps/cloud9-find.png)
+![Cloud 9](/images/preparation/cloud9-find.png)
 2. Choose **Create Environment**
 3. Name your environment **MyCloud9Env** and choose **Next Step**.
-![Cloud 9](/images/introductory-steps/cloud9-name.png)
+![Cloud 9](/images/preparation/cloud9-name.png)
 4. On the **Configure Settings** page, locate **Cost-saving setting** drop-down menu, and choose **After a day**. (Note: Your instructor may change other default selections.)
-![Cloud 9](/images/introductory-steps/cloud9-defaults.png)
+![Cloud 9](/images/preparation/cloud9-defaults.png)
 5. Choose **Next Step**.
 6. Choose **Create Environment**.
 
 Your AWS Cloud9 instance will be ready in a few minutes!
 
-![Cloud9 Create](/images/introductory-steps/cloud9-create.png)
+![Cloud9 Create](/images/preparation/cloud9-create.png)
