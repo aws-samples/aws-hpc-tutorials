@@ -1,8 +1,7 @@
 ---
-title: "Getting Started in the Cloud"
-date: 2019-01-24T09:05:54Z
+title: "Preparation"
+date: 2022-06-27T09:05:54Z
 weight: 20
-pre: "<b>II ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
