@@ -16,4 +16,4 @@ If you have any questions when running this workshop, speak with your group coor
 
 This workshop includes multiple code samples that you can copy and paste using the button shown below.
 
-![Copy Paste](/images/introductory-steps/copy-paste.png)
+![Copy Paste](/images/preparation/copy-paste.png)

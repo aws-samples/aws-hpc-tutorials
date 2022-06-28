@@ -17,7 +17,7 @@ The AWS Cloud9 IDE is similar to a traditional IDE you can find on virtually any
 AWS Cloud9 also includes the latest version of AWS CLI, but it is always a good practice to verify you are using the latest version. You can verify the AWS CLI version by following the next section. 
  
 
-![Cloud9 First Use](/images/introductory-steps/cloud9-first-use.png)
+![Cloud9 First Use](/images/preparation/cloud9-first-use.png)
 
 ### Update the AWS CLI
 
