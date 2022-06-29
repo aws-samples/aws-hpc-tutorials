@@ -76,7 +76,7 @@ COUNT=0\n\
 for II in `stress-ng --cpu-method which 2>&1`\n\
 do\n\
     if [ $COUNT -gt  5 ]; then\n\
-        echo "--cpu 0 -t 120s --times --cpu-method $II" >> $FILE\n\
+        echo "--cpu 1 -t 120s --times --cpu-method $II" >> $FILE\n\
     fi\n\
     COUNT=`expr $COUNT + 1`\n\
 done' >> /mktests.sh
@@ -123,7 +123,7 @@ for II in `stress-ng --cpu-method which 2>&1`
 do
     # Discard the first 5 words.
     if [ $COUNT -gt  5 ]; then 
-        echo "--cpu 0 -t 120s --metrics --cpu-method $II" >> $FILE
+        echo "--cpu 1 -t 120s --metrics --cpu-method $II" >> $FILE
     fi
     COUNT=`expr $COUNT + 1`
 done
@@ -131,11 +131,11 @@ done
 
 When called by docker-entrypoint.sh that script creates a file of different tests called /stress-tests.txt **inside the running container** with contents similar to the following:
 ```text
---cpu 0 -t 120s --metrics --cpu-method ackermann
---cpu 0 -t 120s --metrics --cpu-method bitops
---cpu 0 -t 120s --metrics --cpu-method callfunc
---cpu 0 -t 120s --metrics --cpu-method cdouble
---cpu 0 -t 120s --metrics --cpu-method cfloat
+--cpu 1 -t 120s --metrics --cpu-method ackermann
+--cpu 1 -t 120s --metrics --cpu-method bitops
+--cpu 1 -t 120s --metrics --cpu-method callfunc
+--cpu 1 -t 120s --metrics --cpu-method cdouble
+--cpu 1 -t 120s --metrics --cpu-method cfloat
 ...
 ```
 
