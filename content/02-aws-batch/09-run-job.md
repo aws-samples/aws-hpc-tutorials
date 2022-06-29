@@ -19,7 +19,7 @@ tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 9. Set **Name** to: **STRESS_ARGS**
 10. Set **Value** to: 
     ```text
-    --cpu 0 --cpu-method fft --timeout 1m --times
+    --cpu 1 --cpu-method fft --timeout 1m --times
     ```
 ![AWS Batch](/images/aws-batch/run-job-3.png)
 11.  Scroll to the bottom and click **Submit**.
@@ -53,7 +53,7 @@ cat > job.json << EOF
         "environment": [
             {
                 "name": "STRESS_ARGS",
-                "value": "--cpu 0 --cpu-method fft --timeout 1m --times"
+                "value": "--cpu 1 --cpu-method fft --timeout 1m --times"
             }
         ]
     }

@@ -1,5 +1,5 @@
 ---
-title: "Simulations with AWS Batch"
+title: "AWS Batch Deep Dive"
 date: 2019-01-24T09:05:54Z
 weight: 30
 pre: "<b>III ⁃ </b>"

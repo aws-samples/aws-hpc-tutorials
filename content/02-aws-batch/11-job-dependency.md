@@ -179,7 +179,7 @@ COUNT=0\n\
 for II in `stress-ng --cpu-method which 2>&1`\n\
 do\n\
     if [ $COUNT -gt  5 ]; then\n\
-        echo "--cpu 0 -t 120s --times --cpu-method $II" >> $FILE\n\
+        echo "--cpu 1 -t 120s --times --cpu-method $II" >> $FILE\n\
     fi\n\
     COUNT=`expr $COUNT + 1`\n\
 done' >> /mktests.sh

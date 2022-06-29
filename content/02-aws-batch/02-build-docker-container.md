@@ -53,7 +53,7 @@ You should see your "stress-ng" image listed with the tag "latest".
 4. You can test your container by running it locally on your Cloud9 instance using the following command.
 
 ```bash
-docker run -e STRESS_ARGS="--cpu 0 --cpu-method fft --timeout 30s --times" -i stress-ng
+docker run -e STRESS_ARGS="--cpu 1 --cpu-method fft --timeout 30s --times" -i stress-ng
 ```
 This program runs a stress test on the CPU and you should see the command run for a little over 30 seconds and report successful execution along with its CPU usage. 
 
