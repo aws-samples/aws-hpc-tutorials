@@ -1,7 +1,7 @@
 +++
-title = "d. Upload to Amazon ECR"
+title = "b. Upload to Amazon ECR"
 date = 2019-09-18T10:46:30-04:00
-weight = 40
+weight = 20
 tags = ["tutorial", "install", "AWS", "batch", "Docker", "ECR"]
 +++
 
