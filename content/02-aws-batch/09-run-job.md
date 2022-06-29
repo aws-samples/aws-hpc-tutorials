@@ -1,7 +1,7 @@
 +++
-title = "i. Run a Single Job"
+title = "g. Run a Single Job"
 date = 2019-09-18T10:46:30-04:00
-weight = 100
+weight = 80
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 

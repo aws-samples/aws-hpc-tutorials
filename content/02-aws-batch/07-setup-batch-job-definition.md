@@ -1,7 +1,7 @@
 +++
-title = "g. Set up a Job Definition"
+title = "e. Set up a Job Definition"
 date = 2019-09-18T10:46:30-04:00
-weight = 80
+weight = 60
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 

@@ -1,7 +1,7 @@
 +++
-title = "l. Next Steps & Clean up"
+title = "j. Next Steps & Clean up"
 date = 2019-09-18T10:46:30-04:00
-weight = 120
+weight = 110
 tags = ["tutorial", "install", "AWS", "batch", "optional"]
 +++
 

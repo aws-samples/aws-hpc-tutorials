@@ -1,7 +1,7 @@
 +++
-title = "c. Build A Container With Docker"
+title = "a. Build A Container With Docker"
 date = 2019-09-18T10:46:30-04:00
-weight = 30
+weight = 10
 tags = ["tutorial", "install", "AWS", "batch", "Docker"]
 +++
 

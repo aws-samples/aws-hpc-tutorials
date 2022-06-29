@@ -1,7 +1,7 @@
 +++
-title = "j. Run an Array Job"
+title = "h. Run an Array Job"
 date = 2019-09-18T10:46:30-04:00
-weight = 110
+weight = 90
 tags = ["tutorial", "install", "AWS", "batch", "packer"]
 +++
 
