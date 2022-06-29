@@ -1,7 +1,7 @@
 ---
 title: "AWS Batch Deep Dive"
 date: 2019-01-24T09:05:54Z
-weight: 30
+weight: 40
 pre: "<b>II ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
