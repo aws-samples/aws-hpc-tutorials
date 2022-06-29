@@ -2,16 +2,14 @@
 title: "Preparation"
 date: 2022-06-27T09:05:54Z
 weight: 20
-tags: ["HPC", "Introduction", "EC2", "Optional"]
+tags: ["Introduction", "EC2", "Optional"]
 ---
 
-This workshop walks you through setting up your own AWS account to run your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
-Specifically, you learn how to:
+In this step, you will prepare the environment on your own AWS account or a temporary AWS Account to run the various workshops.
+Specifically, you will:
 
 - Sign in to the AWS Management Console and explore it.
-- Launch AWS Cloud9, a cloud based IDE, this is your portal to the AWS Command Line Interface (AWS CLI).
-- Create an Amazon EC2 instance and SSH into it.
-- Upload and download a file using Amazon S3 object storage and the AWS CLI.
+- Create AWS Cloud9 environment, a cloud based IDE.
+- Upgrade AWS Command Line Interface (AWS CLI).
+- Resize the AWS Cloud9 root volume to build Docker container images.
 - Look at AWS Identity and Access Management (IAM) and attach an IAM role to an EC2 instance.
-
-<!-- Total cost to run this lab is expected to be less than **two dollars should you run it on your own or company account** if the guide is followed as discussed, in one sitting, and including the deletion of all resources outlined through the guide. -->
