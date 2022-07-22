@@ -15,9 +15,16 @@ To build the content
 git clone --recurse-submodules https://github.com/aws-samples/aws-hpc-tutorials.git
 ```
 2. [Install Hugo](https://gohugo.io/getting-started/installing/). On a mac that's:
+
 ```bash
-brew install hugo
+wget https://github.com/gohugoio/hugo/releases/download/v0.92.2/hugo_0.92.2_macOS-64bit.tar.gz
+tar -xzf hugo_0.92.2_macOS-64bit.tar.gz
+sudo mv hugo /usr/local/bin
+hugo version
 ```
+
+**Note** you must use version <= `0.92.2` or else you'll see errors.
+
 3. Run hugo to generate the site, and point your browser to http://localhost:1313
 ```bash
 hugo serve -D
