@@ -9,10 +9,11 @@ In this step, you create the EC2 pem key along with the IAM profiles needed for 
 
 ### Create EC2 Pem Key Pair
 
+{{% notice info %}}
+You can reuse your pem key if you already have one and do not have to create a new one.
+{{% /notice %}}
+
 The PEM key is essential for the users to ssh into their instance post their creation to monitor or troubleshoot issues in the nodes. [Create a KeyPair](https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html#create-an-iam-role) documents the steps to create a keypair.
-
-**You can reuse your pem key if you already have one and do not have to create a new one.**
-
 
 ### Create the AWSBatchServiceRole, Instance and ECSTaskExecution Roles
 
@@ -24,11 +25,11 @@ The AWS Batch compute environment and container instance roles are automatically
 
 ### Create Cloud9 Console
 
-In order to get an environment where you can build containers, we need a Cloud9 IDE. 
+In order to get an environment where you can build containers, we need a Cloud9 IDE. Since we are using the Cloud 9 to build/push containers and log into our cluster, we need to select the reasonably sized instance located in an appropriate subnet. 
 
-At a high level, we will
+At a high level,
 - Create a new Cloud9 Instance and select a c5.2xlarge as the instance
-- Launch it in the VPC and Public Subnet you created in the previous step
+- Launch it in the **VPC and Public Subnet you created in the previous step**
 The steps to create the Cloud9 instance is detailed in [Cloud9 Creation](https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html)
 
 - The default Storage attached to Cloud9 (10GB) is not sufficient to build the containers, Follow the steps in [Resize EBS](https://catalog.us-east-1.prod.workshops.aws/workshops/4522540d-c97b-482b-9725-3f5ce058e6b8/en-US/prerequisites/05-grow-fs) to use the script to resize the volume to 100 GB. The script above automates the sequence of steps to identify the root volume and increase the size
