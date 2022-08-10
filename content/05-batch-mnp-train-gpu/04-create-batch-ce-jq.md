@@ -5,7 +5,8 @@ weight : 50
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
 ---
 
-In this step, you will create AWS Batch Compute Environment and Job Queue using aws cli
+In this step,
+- Create AWS Batch Compute Environment and Job Queue using aws cli
 
 ### Creating the AWS Batch Compute Environment
 
@@ -24,7 +25,7 @@ The json configuration for the Compute Environment is given below
     "maxvCpus": 64,
     "desiredvCpus": 0,
     "launchTemplate": {
-      "launchTemplateId": "LAUNCH TEMPLATE",
+      "launchTemplateId": "LAUNCH_TEMPLATE",
       "version": "1"
     },
     "instanceTypes": [
@@ -33,25 +34,28 @@ The json configuration for the Compute Environment is given below
     "subnets": [
       "SUBNET"
     ],
-    "ec2KeyPair": "PEM KEY NAME",
-    "instanceRole": "INSTANCE ROLE",
+    "ec2KeyPair": "PEM_KEY_NAME",
+    "instanceRole": "INSTANCE_ROLE",
     "tags": {
       "Name": "gpu_mnp_ce"
     }
   },
-  "serviceRole": "arn:aws:iam::561120826261:role/service-role/AWSBatchServiceRole"
+  "serviceRole": "BATCH_SERVICE_ROLE"
 }
 
 ```
 
+{{% notice info %}}
 **Note: When you are entering strings inside JSON file, it has to be quoted for a valid json**
+{{% /notice %}}
 
 | PlaceHolder      	| Replace With                                                           	|
 |------------------	|------------------------------------------------------------------------	|
-| INSTANCE ROLE 	| `"arn:aws:iam::123456789012:instance-profile/ecsInstanceRole"` 	|
-| LAUNCH TEMPLATE  	| `"lt-0123456789"`                                              	|
-| SUBNET           	| `"subnet-0123456789"`                                         	|
-| PEM KEY NAME     	| `"key_name"` w/o .pem extension                                          	|
+| INSTANCE_ROLE 	| arn:aws:iam::xxxxxxxx:instance-profile/ecsInstanceRole 	|
+| LAUNCH_TEMPLATE  	| lt-xxxxxxxx                                             	|
+| SUBNET           	| subnet-xxxxxxxx                                         	|
+| PEM_KEY_NAME     	| key_name w/o .pem extension                                          	|
+| BATCH_SERVICE_ROLE| arn:aws:iam::xxxxxxxxxxx:role/service-role/AWSBatchServiceRole                                          	|
 
 After editing the placeholders, execute the command below to create the compute environment
 ```bash

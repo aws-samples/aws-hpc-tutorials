@@ -5,7 +5,12 @@ weight : 90
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
 ---
 
-In this section, we will submit a MNP job through the AWS Batch console. The different underlying steps that occur behind the scenes are explained in the first section. Subsequenty, we will ssh into the master node and then submit several commands to test the NCCL backends, Distributed training on single node and multiple nodes with Deep Speed.
+In this section
+- Submit a MNP job (2 nodes) through the AWS Batch console
+- SSH into the master container and verify the communication in the cluster
+- Validate the NCCL communication between the containers
+- Deepspeed training on a single node
+- Launch Multi Node Deep Speed training with Mistral
 
 ### High Level MNP Job Setup
 
@@ -136,7 +141,7 @@ In this case,
 
 #### Check the NCCL runs on Single Node and Multiple Nodes
 
-- Exec into the Master Node using docker exec. You will be in the /workspace folder which has all the scripts installed during the container build process
+- Exec into the Master Node using docker exec. The /workspace folder has all the scripts installed during the container build process
 ```bash
 [ec2-user@ip-10-0-140-196 ~]$ docker exec -it aac /bin/bash                                                                                                                                                                          
 root@ip-10-0-139-244:/workspace# ls -lrt
@@ -155,14 +160,6 @@ drwxr-xr-x 12 root root     4096 Jul 26 03:05 mistral
 
 ```
 root@ip-10-0-139-244:/workspace# cd nccl-tests/
-
-root@ip-10-0-139-244:/workspace/nccl-tests# ls
-LICENSE.txt  Makefile  README.md  build  doc  src
-
-root@ip-10-0-139-244:/workspace/nccl-tests# cd build/
-
-root@ip-10-0-139-244:/workspace/nccl-tests/build# ls
-all_gather_perf  all_reduce_perf  alltoall_perf  broadcast_perf  gather_perf  hypercube_perf  reduce_perf  reduce_scatter_perf  scatter_perf  sendrecv_perf
 
 root@ip-10-0-139-244:/workspace/nccl-tests/build# pwd
 /workspace/nccl-tests/build
@@ -251,7 +248,7 @@ Warning: Permanently added '[10.0.142.242]:2022' (RSA) to the list of known host
 # Avg bus bandwidth    : 0 
 #
 ```
-- Triggger the nccl-test with two nodes and two processes. Very important to set the NCCL_SOCKET_IFNAME to be eth0 and NCCL_DEBUG=INFO to get detailed message during the test
+- Trigger the nccl-test with two nodes and two processes. Very important to set the NCCL_SOCKET_IFNAME to be eth0 and NCCL_DEBUG=INFO to get detailed message during the test
 ```
 root@ip-10-0-139-244:/workspace/nccl-tests/build# mpirun -x NCCL_DEBUG=INFO -x NCCL_SOCKET_IFNAME=eth0 -host 10.0.139.244,10.0.142.242 -np 2 all_reduce_perf -b 8 -e 128M -f 2 -g 1                                                  
 Warning: Permanently added '[10.0.142.242]:2022' (RSA) to the list of known hosts.
@@ -350,7 +347,7 @@ W&B disabled.
 export NCCL_DEBUG=INFO
 ```
 
-- The deepspeed examples from the transformers library will be executed next. The single node run will be done from the master where the NLP training **(t5-small model - 60 million parameters)** will be done with local resources. The output has been provided here for your reference.
+- Execute the deepspeed examples from the transformers library. Launch the single node run from the master where the NLP training **(t5-small model - 60 million parameters)** will be done with local resources. The output has been provided here for your reference.
 
 ```bash
 root@ip-10-0-139-244:/workspace/transformers# deepspeed examples/pytorch/translation/run_translation.py --deepspeed tests/deepspeed/ds_config_zero3.json --model_name_or_path t5-small --per_device_train_batch_size 1   --output_dir output_dir --overwrite_output_dir --fp16 --do_train --max_train_samples 500 --num_train_epochs 1 --dataset_name wmt16 --dataset_config "ro-en" --source_lang en --target_lang ro
@@ -381,13 +378,13 @@ Time to load utils op: 0.0003139972686767578 seconds
 
 ### Multi-Node Deepspeed run with mistral
 
-- You will run the multi node deepspeed use case with mistral. Ensure that WANDB is disabled
+- Run the multi node deepspeed use case with mistral. Ensure that WANDB is disabled
 - Enable the NCCL_DEBUG level to INFO to observe the messages
 ```bash
 export NCCL_DEBUG=INFO
 ```
 
-- **Set the NCCL_SOCKET_IFNAME=eth0, otherwise it will pick the first IP address for the container which is the container-eth0**
+- **Set the NCCL_SOCKET_IFNAME=eth0, otherwise it picks the first IP address for the container which is the container-eth0**
 ```bash
 export NCCL_SOCKET_IFNAME=eth0
 ```
@@ -397,7 +394,7 @@ export NCCL_SOCKET_IFNAME=eth0
     - Master Port can be anything between 0 - 65535
     - Point the Hostfile to /tmp/hostfile
     - Number of Nodes as 2 (since we started the training job with 2 nodes)
-    - It will automatically download the data files, preprocess them and use it for training
+    - It automatically downloads the data files, preprocess them and use it for training
 
 ```bash
 root@ip-10-0-143-177:/workspace/mistral# deepspeed --num_gpus 1 --num_nodes 2 --master_addr 10.0.143.177 --master_port 33330 --hostfile /tmp/hostfile train.py --config conf/tutorial-gpt2-micro.yaml --nnodes 2 --nproc_per_node 1 --training_arguments.fp16 true --training_arguments.per_device_train_batch_size 4 --run_id tutorial-gpt2-micro-multi-node

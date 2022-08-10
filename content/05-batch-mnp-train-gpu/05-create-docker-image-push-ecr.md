@@ -5,7 +5,9 @@ weight : 60
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
 ---
 
-In this step, you will create a registry in Elastic Container Registry to push the images created by aws-do-docker for use during the training.
+In this step, 
+- create a registry in Elastic Container Registry
+- push the images created by aws-do-docker for use during the training.
 
 ### Create ECR Registry
 Create an ECR registry called g5_train using aws-cli
@@ -14,16 +16,16 @@ Create an ECR registry called g5_train using aws-cli
 aws ecr create-repository --repository-name g5_train 
 ```
 
-Upon successful creation, you will see a return json file that gives the arn of the repository
+Upon successful creation, you get return json message that gives the arn of the repository
 
 ```json
 aws ecr create-repository --repository-name g5_train 
 {
     "repository": {
-        "repositoryArn": "arn:aws:ecr:us-east-1:0123456789:repository/g5_train",
+        "repositoryArn": "arn:aws:ecr:us-east-1:xxxxxxxx:repository/g5_train",
         "registryId": "0123456789",
         "repositoryName": "g5_train",
-        "repositoryUri": "0123456789.dkr.ecr.us-east-1.amazonaws.com/g5_train",
+        "repositoryUri": "xxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/g5_train",
         "createdAt": "2022-05-25T20:11:23+00:00",
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
@@ -42,8 +44,7 @@ aws ecr create-repository --repository-name g5_train
 Download the [build_container.tar.gz](/scripts/batch_mnp/build_container.tar.gz) and upload it into your cloudshell environment
 
 ```bash
-gunzip build_container.tar.gz
-tar xvf build_container.tar
+tar xzvf build_container.tar
 ```
 
 The **build_container** folder has the aws-do-framework structure
@@ -60,10 +61,13 @@ region=us-east-1
 image_name=g5_train
 image_tag=:v1
 ```
+{{% notice info %}}
+**Note: Strings inside properties file must not be quoted**
+{{% /notice %}}
 
 | PlaceHolder     	| Replace With                 	|
 |-----------------	|------------------------------	|
-| REGISTRY       	| 0123456789.dkr.ecr.us-east-1.amazonaws.com/(**Note: trailing /**) 	|
+| REGISTRY       	| xxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/(**Note: trailing /**) 	|
 
 #### Build and Push the container
 

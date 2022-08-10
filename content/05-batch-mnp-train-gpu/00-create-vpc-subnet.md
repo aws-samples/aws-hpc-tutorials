@@ -5,9 +5,11 @@ weight : 10
 tags : ["configuration", "vpc", "subnet", "wizard"]
 ---
 
-In this step, you create the VPC, Private Subnet w/ NAT Gateway and a Public Subnet with the Internet Gateway (IGW). We will use the VPC wizard to set this up very quickly from the console.
+{{% notice info %}}
+If you already have a VPC, Private Subnet w/ NAT Gateway and Public Subnet w/ IGW, please skip the step and proceed to the next step 
+{{% /notice %}}
 
-**Note: If you already have a VPC, Private Subnet w/ NAT Gateway and Public Subnet w/ IGW, please skip the step and proceed to the next step**
+In this step, you create the VPC, Private Subnet w/ NAT Gateway and a Public Subnet with the Internet Gateway (IGW). We will use the VPC wizard to set this up very quickly from the console.
 
 #### Create VPC, Private and Public Subnet
 
@@ -21,6 +23,6 @@ In this step, you create the VPC, Private Subnet w/ NAT Gateway and a Public Sub
 ![VPC Options](/images/batch_mnp/vpc_wizard_options.png)
 5. The tree view shows the different entities that will be created graphically
 ![VPC Tree](/images/batch_mnp/vpc_wizard_tree.png)
-6. Verify the VPC and Subnets created in the AWS Console. We would be be using their id's to create the Elastic File System and AWS Batch Environment in the next step
+6. Verify the VPC and Subnets created in the AWS Console. We would be be using their id's to create the Cloud9, Elastic File System and AWS Batch Environment in the next step
 ![VPC Console View](/images/batch_mnp/vpc_subnet_console_view.png)
 

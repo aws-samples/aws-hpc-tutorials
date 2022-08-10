@@ -9,7 +9,7 @@ tags: ["Machine Learning", "ML", "Batch", "EFA", "DeepSpeed"]
 {{% notice info %}}This lab requires ability to create VPC, Subnets, AWS Batch Environment and Access to Elastic Container Registry.
 {{% /notice %}}
 
-In this workshop, you'll learn how to use [AWS Batch](https://aws.amazon.com/batch/) and in particular the Multi Node Parallel jobs to launch large scale containerized training jobs on Fully Managed clusters:
+In this workshop, you learn how to use [AWS Batch](https://aws.amazon.com/batch/) and in particular the Multi Node Parallel jobs to launch large scale containerized training jobs on Fully Managed clusters:
  - Create a VPC with subnets to launch fully managed instances for the training workload.
  - Create a shared file system (EFS) to share data between the instances
  - Setup a Launch template to automatically mount the File Systems into the instances launched in the setup
