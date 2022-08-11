@@ -76,8 +76,10 @@ The utility scripts can be used to build and run the containers
 ```bash
 ./build.sh
 
-Builds the container and takes around 5 - 10 minutes to build it
+Builds the container and takes around 10 - 15 minutes to build it for the first time
 
 ./push.sh
-Logs into ECR and pushes the container
+Logs into ECR and pushes the container and around 8 minutes to push it for the first time
+
+However, the times are much lower for subsequent builds since all layers need not be rebuilt for any changes
 ```
