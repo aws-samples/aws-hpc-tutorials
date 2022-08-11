@@ -5,7 +5,9 @@ weight : 80
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
 ---
 
-In this section you will create the AWS Batch Multi-Nodel Parallel job definition as a json and create the artifact using aws-cli
+In this section,
+- create the AWS Batch Multi-Nodel Parallel job definition as a json file
+- create the artifact using aws-cli
 
 ### Multi Node Job Definition Template
 
@@ -32,9 +34,9 @@ Copy and paste the template into **dl1_batch_jd.json** and replace the placehold
       {
         "targetNodes": "0:",
         "container": {
-          "image": IMAGE_NAME,
+          "image": "IMAGE_NAME",
           "command": [],
-          "jobRoleArn": TASK EXEC ROLE,
+          "jobRoleArn": "TASK_EXEC_ROLE",
           "resourceRequirements": [
             {
               "type": "MEMORY",
@@ -91,11 +93,14 @@ Copy and paste the template into **dl1_batch_jd.json** and replace the placehold
   }
 }
 ```
+{{% notice info %}}
+**Note: When you are entering strings inside JSON file, it has to be quoted for a valid json**
+{{% /notice %}}
 
 | PlaceHolder      	| Replace With                                                           	|
 |------------------	|------------------------------------------------------------------------	|
-| IMAGE_NAME        | `"0123456789.dkr.ecr.us-east-1.amazonaws.com/dl1_bert_train:v1"`|
-| TASK EXEC ROLE 	| `"arn:aws:iam::0123456789:role/ecsTaskExecutionRole"` 	|
+| IMAGE_NAME        | 0123456789.dkr.ecr.us-east-1.amazonaws.com/dl1_bert_train:v1|
+| TASK_EXEC_ROLE 	| arn:aws:iam::0123456789:role/ecsTaskExecutionRole 	|
 
 ### Create the Job Definition using aws cli
 
@@ -110,4 +115,4 @@ You can use the AWS Batch Console to verify the
 - Job Queue
 - Job Definition
 
-Next we will go through the process of launching a job from the job definition and test out distributed traning with multiple nodes
+Next we launch a job from the job definition and test out distributed traning with multiple nodes

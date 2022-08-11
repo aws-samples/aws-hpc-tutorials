@@ -44,7 +44,7 @@ aws ecr create-repository --repository-name g5_train
 Download the [build_container.tar.gz](/scripts/batch_mnp/build_container.tar.gz) and upload it into your cloudshell environment
 
 ```bash
-tar xzvf build_container.tar
+tar xzvf build_container.tar.gz
 ```
 
 The **build_container** folder has the aws-do-framework structure
