@@ -5,37 +5,92 @@ weight : 90
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
 ---
 
-In this section, we will submit a MNP job through the AWS Batch console. The different underlying steps that occur behind the scenes are explained in the first section. Subsequenty, we will ssh into the master node and then submit several commands to test the NCCL backends, Distributed training on single node and multiple nodes with Deep Speed.
+In this section,
+- Create the wikitext-2 dataset for training from huggingface
+- Tokenize the dataset and shard it into multiple smaller files for data parallel distributed training
+- Submit a MNP job through the AWS Batch console. 
 
-The wikitext data needs to be preprocessed for the pretraining scripts. The datasets are prepared based on the instructions in [data_preparation](https://github.com/HabanaAI/Model-References/tree/master/PyTorch/nlp/pretraining/deepspeed-bert)
-- The wikitext data needs to be downloaded (~100 GB+)
-- The preprocessing steps will prepare the data using multiple passes. It would take around 8 - 12 hours to preprocess the data
-- Since the data is not distributable directly, the end user has to prepare the data by downloading it from the source
-- The hdf5 files are the primary inputs for the phase1 pretraining
+## Creating the wikitext-2 dataset
+The docker container that was built in the previous step establishes the environment and is the easiest way to create a working environment for creating the datasets.
+
+- From the deploy folder, run the container locally and exec into the container
+```
+ubuntu@ip-172-31-9-117:~/CodeCommit/batch_multiarray_dl/build$ ls
+Container-Root  Dockerfile  build.sh  config.properties  exec.sh  pull.sh  push.sh  requirements.txt  run.sh  stop.sh
+ubuntu@ip-172-31-9-117:~/CodeCommit/batch_multiarray_dl/build$ ./run.sh 
+
+Run Container in Daemon mode
+1658b3185d28434a1b564c3d39bd7e2012c3f07d981b99dc59b2845ff760db02
+
+ubuntu@ip-172-31-9-117:~/CodeCommit/batch_multiarray_dl/build$ ./exec.sh 
+Exec into Container
+
+root@ip-172-31-9-117:/workspace# 
+```
+- The preprocessing scripts are already packed into the **/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data**
+
+```
+root@12024b6e0389:/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data# bash create_datasets_from_start.sh wikitext-2
+
+Download dataset wikitext-2
+Download pretrained weights for bert_large_uncased
+/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+Working Directory: /Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data
+Action: download
+Dataset Name: google_pretrained_weights_bert_large_uncased
+
+Directory Structure:
+{ 'download': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/download',
+  'extracted': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/extracted',
+  'formatted': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/formatted_one_article_per_line',
+  'hdf5': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/hdf5_lower_case_1_seq_len_512_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5',
+  'sharded': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/sharded_training_shards_256_test_shards_256_fraction_0.1',
+  'tfrecord': '/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/tfrecord_lower_case_1_seq_len_512_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5'}
+
+Downloading https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-24_H-1024_A-16.zip
+```
+
+- After around 2 minutes of execution, two folders will be created under the data folder from which the command was executed
+```
+hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0: Directory with sharded files for Pre Training Phase 1
+hdf5_lower_case_1_seq_len_512_max_pred_20_masked_lm_prob_0: Directory with sharded files for Pre Training Phase 2
+```
+- In order to accomodate multiple datasets, we recommend the following structure
+```
+<EFS_ROOT>/hdf5_dataset/hdf5_lower_case_1_seq_len_512_max_pred_80_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/<datasetname>
+```
+- Move the wixitext-2 folder under each folders into the shared EFS (which is currently mounted at /efs)
+```
+/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5$ mv wikitext-2 /efs/hdf5_dataset/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/
+
+/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/data/hdf5_lower_case_1_seq_len_512_max_pred_80_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5$ mv wikitext-2 /efs/hdf5_dataset/hdf5_lower_case_1_seq_len_512_max_pred_80_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/
+```
+- The more comprehensive wikicorpus_en can be prepared based on the instructions in [data_preparation](https://github.com/HabanaAI/Model-References/tree/master/PyTorch/nlp/pretraining/deepspeed-bert). The corpus data needs to be downloaded (~100 GB+). The preprocessing steps will prepare the data using multiple passes. It would take around 8 - 12 hours to preprocess the data. - Since the data is not distributable directly, the end user has to prepare the data by downloading it from the source. This is not essential for the rest of the steps but has been included for the sake of completeness.
+
+- The hdf5 files are the primary inputs for the phase1 pretraining. After moving the folders into the hdf5_dataset folder, the resulting folder structure is shown below
 ```
 -- /mnt/efs/hdf5_dataset ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    58.1 GiB [################################] /hdf5_lower_case_1_seq_len_512_max_pred_80_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5
    50.4 GiB [###########################     ] /hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5
 
-```
+--- /efs/hdf5_dataset/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5 --------------------------------------------------------------------------------------------------------------------------------------------
+   50.4 GiB [##########] /wikicorpus_en
+   44.3 MiB [          ] /wikitext-2
 
-- Each folder has several split datasets
-```
--- /mnt/efs/hdf5_dataset/hdf5_lower_case_1_seq_len_512_max_pred_80_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en ------------------------------------------------------------------------------------------------
-                                               /..
-  212.5 MiB [################################]  wikicorpus_en_training_81.hdf5
-  212.3 MiB [############################### ]  wikicorpus_en_training_61.hdf5
-  212.3 MiB [############################### ]  wikicorpus_en_training_56.hdf5
-  212.2 MiB [############################### ]  wikicorpus_en_training_243.hdf5
-  212.2 MiB [############################### ]  wikicorpus_en_training_126.hdf5
-  212.2 MiB [############################### ]  wikicorpus_en_training_178.hdf5
-  212.1 MiB [############################### ]  wikicorpus_en_training_139.hdf5
-  212.1 MiB [############################### ]  wikicorpus_en_training_198.hdf5
-  212.1 MiB [############################### ]  wikicorpus_en_training_22.hdf5
-  212.1 MiB [############################### ]  wikicorpus_en_training_167.hdf5
-  212.0 MiB [############################### ]  wikicorpus_en_training_131.hdf5
-  ...
-  ...
+--- /efs/hdf5_dataset/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikitext-2 ---------------------------------------------------------------------------------------------------------------------------------
+                         /..                                                                                                                                                                                                                                    
+  276.0 KiB [##########]  wikitext-2_training_1.hdf5
+  264.0 KiB [######### ]  wikitext-2_training_0.hdf5
+  232.0 KiB [########  ]  wikitext-2_training_2.hdf5
+  228.0 KiB [########  ]  wikitext-2_training_3.hdf5
+  220.0 KiB [#######   ]  wikitext-2_training_18.hdf5
+  ....
+  208.0 KiB [#######   ]  wikitext-2_training_7.hdf5
+  196.0 KiB [#######   ]  wikitext-2_training_13.hdf5
+  192.0 KiB [######    ]  wikitext-2_training_25.hdf5
+
 ```
 
 ### High Level MNP Job Setup
@@ -202,6 +257,9 @@ total 48
 -rwxrwxr-x 1 root root 2286 Jul 13 21:55 run_bert_large.sh
 -rwxrwxr-x 1 root root 2334 Jul 13 21:55 run_bert_1.5b.sh
 ```
+
+### Specify Dataset for the Scripts
+
 ### BERT Tiny Model + DeepSpeed
 
 A tiny model of the BERT is prepared by using the **bert_tiny_config.json** & **deepspeed_config_bert_tiny.json** with only 2 layers to quickly assess deepspeed functionality. It is almost equivalent to the helloworld program.
@@ -210,6 +268,15 @@ A tiny model of the BERT is prepared by using the **bert_tiny_config.json** & **
 # Params: DeepSpeed
 NUM_NODES=1
 NGPU_PER_NODE=1
+```
+- The sharded dataset is specified in the launch script
+```
+# Dataset Params
+EFS_FOLDER=/mnt/efs
+SHARED_FOLDER=${EFS_FOLDER}
+data_dir=${SHARED_FOLDER}/hdf5_dataset
+# DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en
+DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikitext-2
 ```
 
 - Here is the output of running the training script
@@ -429,6 +496,15 @@ Next we will run the BERT large model with **340 Million Parameters** on a singl
 NUM_NODES=1
 NGPU_PER_NODE=8
 ```
+- The sharded dataset is specified in the launch script
+```
+# Dataset Params
+EFS_FOLDER=/mnt/efs
+SHARED_FOLDER=${EFS_FOLDER}
+data_dir=${SHARED_FOLDER}/hdf5_dataset
+# DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en
+DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikitext-2
+```
 
 The output from the execution is shown below
 ```bash
@@ -633,6 +709,23 @@ Iteration:   0%|          | 48/21208 [00:44<37:03,  9.51it/s][2022-08-03 03:51:3
 ### BERT 1.5B Model + DeepSpeed
 
 Next we will run the BERT 1.5B model with **1.5 Billion Parameters** on a single node using all the 8 HPU's with DeepSpeed. The configuration for the BERT large are present in  **bert_1.5b_config.json** & **deepspeed_config_bert_1.5b.json**. Without deepspeed, it is not possible to train such a big model on 1 node with 32GB of HPU memory. This clearly shows the ability of the HPU to utilize deepspeed functionality to train large models.
+
+```bash
+# Params: DeepSpeed
+NUM_NODES=1
+NGPU_PER_NODE=8
+```
+
+- The sharded dataset is specified in the launch script
+```
+# Dataset Params
+EFS_FOLDER=/mnt/efs
+SHARED_FOLDER=${EFS_FOLDER}
+data_dir=${SHARED_FOLDER}/hdf5_dataset
+# DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en
+DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikitext-2
+```
+
 
 ```bash
 root@ip-172-31-81-82:/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/scripts# ./run_bert_1.5b.sh
@@ -877,6 +970,17 @@ NUM_NODES=2
 NGPU_PER_NODE=8
 ```
 
+- The sharded dataset is specified in the launch script
+```
+# Dataset Params
+EFS_FOLDER=/mnt/efs
+SHARED_FOLDER=${EFS_FOLDER}
+data_dir=${SHARED_FOLDER}/hdf5_dataset
+# DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en
+DATA_DIR=${data_dir}/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikitext-2
+```
+
+
 The hostfile is already assembled in the master node in **/tmp/hostfile**
 ```bash
 root@ip-172-31-81-82:/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/scripts# cat /tmp/hostfile
@@ -988,4 +1092,4 @@ root@ip-172-31-81-82:/Model-References/PyTorch/nlp/pretraining/deepspeed-bert/sc
 
 ### General observations
 
-With this approach the team has been able to run the training with as much as 32 nodes (32 * 8 = 256 Gaudis). The results of the scaling studies are shown in the blog xxx.
+With this approach the team has been able to scale the training with as much as 32 nodes (32 * 8 = 256 Gaudis).

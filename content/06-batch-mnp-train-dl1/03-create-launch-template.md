@@ -9,26 +9,12 @@ In this step, you create the EC2 launch template with the user data to mount the
 
 ### Log into AWS Cloud9
 1. Log into your AWS Cloud9 that you created in the previous step
-2. Download the tar file [create_launch_template_dl1.tar.gz](/scripts/batch_mnp/create_launch_template_dl1.tar.gz)
-3. Upload the tar.gz file to the Cloud9 using the upload file option
+2. Use the template with placeholders as a starting point to create the base template
+3. Incorporate the userdata section with specific commands to run during instance initialization
+4. Insert the userdata section as byte encoded text into the template file
+5. Use aws cli to create the launch template
 
-```bash
-gunzip create_launch_template_dl1.tar.gz
-tar xvf create_launch_template_dl1.tar
-```
-
-### Creating the launch template
-The folder "create_launch_template" has a template folder along with python code to easily create a merged json file for creating the launch template using aws cli.
-
-At a high level, the python program will
-- start with the base ec2_launch_template is present in ./template/ec2_template_config.json
-- override the values/fields by the content of ./overdide_dict.json
-- encode the ./template/efs_ecs_launch_template.yml and create an user_data string
-- finally, export a ./export_dict.json which is the single json that could be used to create the launch template
-
-Below we explain the placeholders in the template that needs to be modified based on the values of subnet, efs, pem key and iam profiles created from the previous steps
-
-#### Update ./template/efs_ecs_launch_template.yml
+### Byte Encode the YAML file for User Data
 
 The yaml file contains multi-part commands to 
 - create the efs mount to /mnt/efs and
@@ -47,7 +33,7 @@ packages:
 - amazon-efs-utils
 
 runcmd:
-- efs_file_system_id_01=<EFS MOUNT DNS>
+- efs_file_system_id_01=EFS_MOUNT_DNS
 - efs_directory=/mnt/efs
 - mkdir -p ${efs_directory}
 - echo "${efs_file_system_id_01}:/ ${efs_directory} efs tls,_netdev" >> /etc/fstab
@@ -58,29 +44,40 @@ runcmd:
 --==MYBOUNDARY==--
 ```
 
-##### Replace Place Holders
+Save this file as **efs_ecs_user_data.yml** in the working directory
 
+Replace the placeholders in YAML file
 | PlaceHolder     	| Replace With                 	|
 |-----------------	|------------------------------	|
-| EFS MOUNT DNS 	| full dns name of the efs dns (No Quotes) 	|
+| EFS_MOUNT_DNS 	| full dns name of the efs dns (No Quotes) 	|
 
-#### Scan ./template/ec2-template-config.json
+Create a base64 encoded string of this YAML file suitable for internet transmission
 
-The json file has the base ec2 template with 
-- Place Holder for the IamInstanceProfile
-- Block device with 200GB root volume
-- One Network Interface with placeholder for the Security Groups
-- Place Holder for User Data
-- Place Holder for the Tag Specifications for the instance launched
+```angular2html
+base64 -w 0 efs_ecs_user_data.yml
+```
+
+{{% notice info %}}
+It is very important to create it as a single line of text without any wrapping by the terminal. A sample output is shown below and the encoded string will be used in the subsequent section
+{{% /notice %}}
+
+```bash
+~/environment/create_launch_template_dl1/template $ base64 -w 0 efs_ecs_launch_template.yml 
+TUlNRS1WZXJzaW9uOiAxLjAKQ29udGVudC1UeXBlOiBtdWx0aXBhcnQvbWl4ZWQ7IGJvdW5kYXJ5PSI9PU1ZQk9VTkRBUlk9PSIKCi0tPT1NWUJPVU5EQVJZPT0KQ29udGVudC1UeXBlOiB0ZXh0L2Nsb3VkLWNvbmZpZzsgY2hhcnNldD0idXMtYXNjaWkiCgpwYWNrYWdlczoKLSBhbWF6b24tZWZzLXV0aWxzCgpydW5jbWQ6Ci0gZWZzX2ZpbGVfc3lzdGVtX2lkXzAxPTxFRlMgTU9VTlQgRE5TPgotIGVmc19kaXJlY3Rvcnk9L21udC9lZnMKLSBta2RpciAtcCAke2Vmc19kaXJlY3Rvcnl9Ci0gZWNobyAiJHtlZnNfZmlsZV9zeXN0ZW1faWRfMDF9Oi8gJHtlZnNfZGlyZWN0b3J5fSBlZnMgdGxzLF9uZXRkZXYiID4+IC9ldGMvZnN0YWIKLSBtb3VudCAtYSAtdCBlZnMgZGVmYXVsdHMKCi0gbWtkaXIgLXAgL3NjcmF0Y2gKCi0tPT1NWUJPVU5EQVJZPT0tLQ==
+```
+
+### Creating the launch template
+
+The json file with the templates with placeholders are provided below. Copy this to a file called **ecs_launch_template.json** and update the place holder values
 
 ```json
 {
   "DryRun": false,
-  "LaunchTemplateName": "",
-  "VersionDescription": "Launch template created by aws-do-cli",
+  "LaunchTemplateName": "ECS_DL1_EFS",
+  "VersionDescription": "Override Template",
   "LaunchTemplateData": {
     "IamInstanceProfile": {
-      "Arn": ""
+      "Arn": "INSTANCE_PROFILE"
     },
     "BlockDeviceMappings": [
       {
@@ -93,32 +90,33 @@ The json file has the base ec2 template with
     ],
     "NetworkInterfaces": [
       {
-        "AssociatePublicIpAddress": true,
+        "AssociatePublicIpAddress": false,
         "DeleteOnTermination": true,
         "DeviceIndex": 0,
         "Groups": [
-          ""
+          "SECURITY_GROUP"
         ],
+        "InterfaceType": "efa",
         "Ipv6AddressCount": 0,
-        "SubnetId": "",
+        "SubnetId": "SUBNET",
         "NetworkCardIndex": 0
       }
     ],
-    "ImageId": "",
-    "KeyName": "",
+    "ImageId": "ami-0d869a3f36bb26f73",
+    "KeyName": "PEM_KEY_NAME",
     "Monitoring": {
       "Enabled": true
     },
     "DisableApiTermination": false,
     "InstanceInitiatedShutdownBehavior": "stop",
-    "UserData": "",
+    "UserData": "USER_DATA",
     "TagSpecifications": [
       {
         "ResourceType": "instance",
         "Tags": [
           {
             "Key": "purpose",
-            "Value": "dl1 batch training"
+            "Value": "batch multinode training"
           }
         ]
       }
@@ -141,77 +139,30 @@ The json file has the base ec2 template with
     }
   ]
 }
-
 ```
-
-Typically these values can be left untouched and be overridden from the override_dict.json
-
-#### Update ./override_dict.json
-```json
-{
-  "LaunchTemplateName": "ECS_DL1_EFS",
-  "VersionDescription": "Override Template",
-  "LaunchTemplateData": {
-    "IamInstanceProfile": {
-      "Arn": "<INSTANCE PROFILE>"
-    },
-    "NetworkInterfaces": [
-      {
-        "AssociatePublicIpAddress": false,
-        "DeleteOnTermination": true,
-        "DeviceIndex": 0,
-        "Groups": [
-          "<SECURITY GROUP>"
-        ],
-        "InterfaceType": "efa",
-        "Ipv6AddressCount": 0,
-        "SubnetId": "<SUBNET>",
-        "NetworkCardIndex": 0
-      }
-    ],
-    "ImageId": "ami-0d869a3f36bb26f73",
-    "KeyName": "<PEM KEY NAME>",
-    "UserData": "",
-    "TagSpecifications": [
-      {
-        "ResourceType": "instance",
-        "Tags": [
-          {
-            "Key": "purpose",
-            "Value": "batch multinode training"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+{{% notice info %}}
 **Note: When you are entering strings inside JSON file, it has to be quoted for a valid json**
+{{% /notice %}}
 
 | PlaceHolder      	| Replace With                                                           	|
 |------------------	|------------------------------------------------------------------------	|
-| INSTANCE PROFILE 	| `"arn:aws:iam::123456789012:instance-profile/ecsInstanceRole"` 	|
-| SECURITY GROUP   	| `"sg-0123456789"`                                              	|
-| SUBNET           	| `"subnet-0123456789"`                                         	|
-| PEM KEY NAME     	| `"key_name"`                                          	|
+| INSTANCE_PROFILE 	| arn:aws:iam::xxxxxxxxxxx:instance-profile/ecsInstanceRole 	|
+| SECURITY_GROUP   	| sg-xxxxxxxxx                                              	|
+| SUBNET           	| subnet-xxxxxxxx                                         	|
+| PEM_KEY_NAME     	| key_name_no_extension                                         	|
+| USER_DATA       	| Base64 encoded string from YAML file                                         	|
 
-#### Run the Python Command
-
-```bash
-python3 create_ec2_template.py 
-```
-
-This will create an export_dict.json which can be utilized to create the ec2 launch template
+#### Create Launch template with aws cli
 
 ```bash
-aws ec2 create-launch-template --cli-input-json file://export_dict.json
+aws ec2 create-launch-template --cli-input-json file://ecs_launch_template.json
 ```
 
 Upon successful execution, it will output the LaunchTemplateId and LaunchTemplateName. 
 ```json
 {
     "LaunchTemplate": {
-        "LaunchTemplateId": "lt-0123456789",
+        "LaunchTemplateId": "lt-xxxxxxxxx",
         "LaunchTemplateName": "ECS_DL1_EFS",
         "CreateTime": "2022-06-03T21:41:11+00:00",
         "CreatedBy": "...",
