@@ -1,7 +1,7 @@
 +++
-title = "b. Create S3 Bucket"
+title = "c. Create S3 Bucket"
 date = 2019-09-18T10:46:30-04:00
-weight = 20
+weight = 30
 tags = ["configuration", "FSx", "ParallelCluster"]
 +++
 
@@ -32,12 +32,12 @@ rm SEG_C3NA_Velocity.sgy
 Before continuing to the next step, check the content of your bucket using the AWS CLI with the command:
 
 ```bash
-$ aws s3 ls s3://mybucket-${BUCKET_POSTFIX}` 
+aws s3 ls s3://mybucket-${BUCKET_POSTFIX}
 ```
 
 You should see two files:
 
-```
+```bash
 2022-06-22 21:55:12  477086544 SEG_C3NA_Velocity.sgy
 2022-06-22 21:55:11   13027582 s3dkq4m2.mtx.gz
 ```
