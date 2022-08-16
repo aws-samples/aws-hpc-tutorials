@@ -21,10 +21,9 @@ This workshop also requires familiarity with AWS ParallelCluster. If you are not
 
 In this workshop, you learn how to use [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/) with [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) and complete the following steps:
 
-- Create a managed Lustre filesystem with FSx Lustre
+- Create a new cluster with AWS ParallelCluster and a FSx Filesystem
 - Upload files from an AWS Cloud9 instance to an Amazon S3 bucket.
-- Create a new cluster with AWS ParallelCluster and mount the filesystem
+- Associate the filesystem with the S3 Bucket
 - Run an I/O intensive application to test Lustre performances.
 - Push and get files using Lustre HSM.
 - Delete the cluster and the Lustre partition.
-

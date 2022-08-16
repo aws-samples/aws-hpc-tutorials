@@ -1,15 +1,27 @@
 +++
-title = "c. Link S3 to FSx Lustre"
+title = "d. Link S3 to FSx Lustre"
 date = 2019-09-18T10:46:30-04:00
-weight = 30
+weight = 40
 tags = ["configuration", "FSx", "ParallelCluster"]
 +++
 
 Now that we've created the filesystem we're going to link the filesystem to the cluster by creating a data repository association.
 
-A [data repository association (DRA)](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) imports metadata from the S3 bucket to the filesystem, making it appear as if the files in the S3 bucket exist on the filesystem. When you go to load a file it's fetched from S3 in the background and imported into the filesystem. If you want the filesystem to mirror the S3 bucket you can link it to the root of the filesystem `/`, like we do below. 
+A [data repository association (DRA)](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) imports metadata from the S3 bucket to the filesystem, making it appear as if the files in the S3 bucket exist on the filesystem. When you go to load a file it's fetched from S3 in the background and imported into the filesystem. If you want the filesystem to mirror the S3 bucket you can link it to the root of the filesystem `/`, like we do below.
 
-Next we're going to create a data repository association for the filesystem we created earlier:
+First, let's grab the ID of the newly created filesystem. You'll need to wait for the stack to go into **CREATE_COMPLETE** before running the following command:
+
+```bash
+FSX_ID=$(aws cloudformation describe-stacks --stack-name hpc-cluster-fsx --query "Stacks[0].Outputs[?OutputKey=='FSXIds'].OutputValue" --output text)
+```
+
+Confirm that worked by echoing out the response. If you don't see an ID like `fs-123456789`, check confirm the name of the cluster is `hpc-cluster-fsx` and the stack is in `CREATE_COMPLETE`.
+
+```bash
+echo $FSX_ID
+```
+
+Next we're going to create a data repository association. Note this can also be done from the FSx Console if you'd prefer a GUI approach.
 
 ```bash
 aws fsx create-data-repository-association \

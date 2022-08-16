@@ -1,5 +1,5 @@
 +++
-title = "c. Examine the File System"
+title = "e. Examine the File System"
 date = 2019-09-18T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "HSM", "FSx"]
