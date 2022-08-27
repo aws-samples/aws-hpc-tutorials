@@ -1,5 +1,5 @@
 ---
-title: "b. Security Groups"
+title: "c. Security Groups"
 date: 2022-08-18
 weight: 40
 tags: ["Ray", "Security Groups"]

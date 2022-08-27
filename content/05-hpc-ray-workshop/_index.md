@@ -12,7 +12,7 @@ Ray is an open source technology for distributed AI and Python applications.
 
 (TODO: add brief description of ray clusters)
 
-![ray-cluster-arch](/images/hpc-ray/ray-cluster.jpg)
+![ray-cluster-arch](/images/hpc-ray-workshop/ray-cluster.jpg)
 
 #### What you will do in this part of the lab
 

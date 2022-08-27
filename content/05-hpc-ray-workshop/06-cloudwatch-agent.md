@@ -1,5 +1,5 @@
 ---
-title: "e. Set up CloudWatch metrics"
+title: "f. Set up CloudWatch metrics"
 date: 2022-08-19
 weight: 70
 tags: ["Ray", "CloudWatch"]

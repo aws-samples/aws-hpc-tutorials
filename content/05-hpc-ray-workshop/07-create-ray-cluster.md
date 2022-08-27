@@ -1,5 +1,5 @@
 ---
-title: "f. Create Ray Cluster"
+title: "g. Create Ray Cluster"
 date: 2022-08-19
 weight: 80
 tags: ["Ray", "Cluster"]
@@ -14,20 +14,17 @@ cluster_name: workshop
 available_node_types:
     ray.head:
         node_config:
-            SubnetIds: [SUBNET] # ray-subnet-public1
+            SubnetIds: [SUBNET]
             ImageId: AMI_ID
             IamInstanceProfile:
                 Arn: RAY_HEAD_IAM_ROLE_ARN
-            InstanceType: g4dn.xlarge
+            InstanceType: c5.2xlarge
 
     ray.worker.gpu:
-        # The minimum number of nodes of this type to launch.
         min_workers: 2
-        # The maximum number of workers nodes of this type to launch.
         max_workers: 2
-        resources: {"node_type_gpu": 1}
         node_config:
-            SubnetIds: [SUBNET] # ray-subnet-public1
+            SubnetIds: [SUBNET]
             ImageId: AMI_ID
             IamInstanceProfile:
                 Arn: RAY_WORKER_IAM_ROLE_ARN
@@ -67,12 +64,15 @@ worker_start_ray_commands:
 
 |PlaceHolder |Replace With |
 |------------ |-------------- |
-|SUBNET      |subnet-xxxxxxxxxxxxxxxxx |
+|SUBNET      |subnet-xxxxxxxxxxxxxxxxx (public subnet for the availability_zone specified in the .yaml file) |
 |RAY_HEAD_IAM_ROLE_ARN |arn:aws:iam::xxxxxxxxxxxx:instance-profile/ray-head |
 |RAY_WORKER_IAM_ROLE_ARN |arn:aws:iam::xxxxxxxxxxxx:instance-profile/ray-worker |
 |FSXL_MOUNT_COMMAND | sudo mount command from FSxL console (see below) |
 
-To get the mount command for FSxL, navigate to the **ray-fsx** file system we created in section **c** and click Attach. This will show an information pan. Copy the command from step 3. under Attach instructions. It looks something like this:
+
+Use the Arns for the instance profiles obtained in the last step of section **b**.
+
+To get the mount command for FSxL, navigate to the **ray-fsx** file system we created in section **c** and click Attach. This will show an information pan. Copy the command from step 3. under Attach instructions and add that to the .yaml file. It looks something like this:
 ```bash
 sudo mount -t lustre -o noatime,flock fs-xxxxxxxxxxxxxxxxx.fsx.us-west-2.amazonaws.com@tcp:/xxxxxxxx /fsx
 ```
@@ -100,12 +100,12 @@ ray status
 
 You would see an output like this:
 ```bash
-======== Autoscaler status: 2022-08-19 23:49:05.950418 ========
+======== Autoscaler status: 2022-08-27 20:48:19.055954 ========
 Node status
 ---------------------------------------------------------------
 Healthy:
- 1 ray.head
  2 ray.worker.gpu
+ 1 ray.head
 Pending:
  (no pending nodes)
 Recent failures:
@@ -114,12 +114,11 @@ Recent failures:
 Resources
 ---------------------------------------------------------------
 Usage:
- 0.0/20.0 CPU
- 0.0/3.0 GPU
- 0.0/3.0 accelerator_type:T4
- 0.00/53.603 GiB memory
- 0.0/2.0 node_type_gpu
- 0.00/22.577 GiB object_store_memory
+ 0.0/24.0 CPU
+ 0.0/2.0 GPU
+ 0.0/2.0 accelerator_type:T4
+ 0.00/53.336 GiB memory
+ 0.00/22.405 GiB object_store_memory
 
 Demands:
  (no resource demands)

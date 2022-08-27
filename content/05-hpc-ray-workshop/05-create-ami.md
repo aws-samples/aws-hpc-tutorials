@@ -1,5 +1,5 @@
 ---
-title: "d. Create AMI"
+title: "e. Create AMI"
 date: 2022-08-19
 weight: 60
 tags: ["Ray", "AMI"]
@@ -22,7 +22,7 @@ ssh -i your_key.pem ubuntu@10.0.xxx.xxx
 We are going to install the following packages in this instance:
 
 - miniconda
-- ray
+- ray (2.0)
 - PyTorch
 - FSxL client
 
@@ -44,12 +44,12 @@ pip install --upgrade pip
 
 Install ray:
 ```bash
-pip install ray[default]
+pip install ray[air]
 ```
 
 Install PyTorch:
 ```bash
-conda install pytorch torchvision cudatoolkit=11.6 -c pytorch -c conda-forge
+conda install -y pytorch torchvision cudatoolkit=11.6 -c pytorch -c conda-forge
 ```
 
 Install FSx for Luster client (Ubuntu 20.04):
@@ -65,4 +65,6 @@ sudo mkdir /fsx
 sudo chmod 777 /fsx
 ```
 
-After this setup, exit the instance. Navigate to the EC2 console, select the instance, click on Actions. From the drop down, select Image and templates and click on Create image. In the create image wizard, just provide a name and description and click on Create image. This process can take up to 10 minutes to create an AMI. After that is done, terminate this instance. Nota that we will need the AMI id for later use.
+After this setup, exit the instance.
+
+Navigate to the EC2 console, select the instance and click on Actions button. From the dropdown, select Image and templates, and click on Create image. In the create image wizard, just provide a name and description and click on Create image. This process can take up to 10 minutes to create an AMI. To check the progress, click AMIs under Images in the left pan. You will see new AMI in the list. Once the status of AMI changes to from Pending to Available, terminate the EC2 instance. Note that we will need the AMI id for later use.

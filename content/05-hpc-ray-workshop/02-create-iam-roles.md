@@ -1,5 +1,5 @@
 ---
-title: "a. Create IAM Roles"
+title: "b. Create IAM Roles"
 date: 2022-08-18
 weight: 30
 tags: ["Ray", "IAM"]
@@ -74,4 +74,11 @@ Now, attache this policy to the ray-head role:
 
 ```bash
 aws iam put-role-policy --role-name ray-head --policy-name ray-pass-role-policy --policy-document file://ray_pass_role_policy.json
+```
+
+We would need the Arns for the instance profiles for these roles later when creating the cluster. Execute the following to get these arns:
+
+```
+aws iam get-instance-profile --instance-profile-name ray-head --o text --query 'InstanceProfile.Arn'
+aws iam get-instance-profile --instance-profile-name ray-worker --o text --query 'InstanceProfile.Arn'
 ```

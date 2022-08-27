@@ -1,5 +1,5 @@
 ---
-title: "c. Create FSx for Luster Filesystem"
+title: "d. Create FSx for Luster Filesystem"
 date: 2022-08-18
 weight: 50
 tags: ["Ray", "FSx"]
