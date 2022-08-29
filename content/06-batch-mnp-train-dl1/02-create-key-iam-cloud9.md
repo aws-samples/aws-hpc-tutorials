@@ -61,6 +61,6 @@ tmpfs            7.6G     0  7.6G   0% /sys/fs/cgroup
 /dev/loop3        47M   47M     0 100% /snap/snapd/16292
 /dev/nvme0n1p15  105M  4.4M  100M   5% /boot/efi
 tmpfs            1.6G     0  1.6G   0% /run/user/1000
-mahaaws_full:~/environment $ 
+~/environment $ 
 ```
 - The Cloud9 IDE comes with a default aws cli. However, it is always better to update it to the latest cli. Follow the steps in [Update AWS CLI](https://www.hpcworkshops.com/02-aws-getting-started/05-start-aws-cli.html) to update the aws cli and run a sample cli to list the ec2 instances and keypairs in your account.
