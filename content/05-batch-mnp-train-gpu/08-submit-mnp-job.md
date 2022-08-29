@@ -98,7 +98,7 @@ Run "sudo yum update" to apply all updates.
 ```bash
 [ec2-user@ip-10-0-140-196 ~]$ docker ps
 CONTAINER ID   IMAGE                                                      COMMAND                  CREATED         STATUS                   PORTS     NAMES
-aac8885ecdd8   561120826261.dkr.ecr.us-east-1.amazonaws.com/g5_train:v1   "/bin/sh -c /entry-p…"   3 minutes ago   Up 3 minutes                       ecs-gpu_mnp_batch_jd_0-1-2-default-d4e9b3dfc6f0d3f33c00
+aac8885ecdd8   01234567890.dkr.ecr.us-east-1.amazonaws.com/g5_train:v1   "/bin/sh -c /entry-p…"   3 minutes ago   Up 3 minutes                       ecs-gpu_mnp_batch_jd_0-1-2-default-d4e9b3dfc6f0d3f33c00
 b4a59eea4287   amazon/amazon-ecs-pause:0.1.0                              "/pause"                 8 minutes ago   Up 8 minutes                       ecs-gpu_mnp_batch_jd_0-1-2-internalecspause-a2b0959aeec980946400
 875b9d23d94d   amazon/amazon-ecs-agent:latest                             "/agent"                 8 minutes ago   Up 8 minutes (healthy)             ecs-agent
 ```

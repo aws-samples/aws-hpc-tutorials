@@ -13,8 +13,8 @@ In this section,
 
 The template job definition is given below along with the placeholder values that needs to replaced based on your setup. Other values could be left at the defaults and the reason for the choice of the values are explained below:
 - Instance being selected is a dl1.24xlarge (which has 768 GB of Memory, 8 HPU, 96 vCPU)
-- Resource Requirements of 16GB, 1GPU and 8vCPU is made per node
-- Shared Memory of 8GB is specified to be set for shmem usage across the containers
+- Resource Requirements of 760GB and 96vCPU is made per node
+- Shared Memory of 64GB is specified to be set for shmem usage across the containers
 - Elevated previleges for the container is desired
 - Default number of nodes is set as 2 (This can be changed at the time of launch)
 - Each node properties is specified as range 0: (This automatically applies the same node properties to all nodes from 0 to numNodes-1)
@@ -36,7 +36,7 @@ Copy and paste the template into **dl1_batch_jd.json** and replace the placehold
         "container": {
           "image": "IMAGE_NAME",
           "command": [],
-          "jobRoleArn": "TASK_EXEC_ROLE",
+          "executionRoleArn": "TASK_EXEC_ROLE",
           "resourceRequirements": [
             {
               "type": "MEMORY",
@@ -84,8 +84,23 @@ Copy and paste the template into **dl1_batch_jd.json** and replace the placehold
           "ulimits": [],
           "instanceType": "dl1.24xlarge",
           "linuxParameters": {
-            "sharedMemorySize": 64000
+            "sharedMemorySize": 64000,
+            "devices": [
+              {
+                "hostPath": "/dev/infiniband/uverbs0",
+                "containerPath": "/dev/infiniband/uverbs0",
+                "permissions": [
+                    "READ", "WRITE", "MKNOD"
+                ]
+              }
+            ]
           },
+          "secrets": [
+            {
+              "name": "MPI_SSH_KEY",
+              "valueFrom": "SECRETS_ARN"
+            }
+          ],
           "privileged": true
         }
       }
@@ -99,8 +114,9 @@ Copy and paste the template into **dl1_batch_jd.json** and replace the placehold
 
 | PlaceHolder      	| Replace With                                                           	|
 |------------------	|------------------------------------------------------------------------	|
-| IMAGE_NAME        | 0123456789.dkr.ecr.us-east-1.amazonaws.com/dl1_bert_train:v1|
-| TASK_EXEC_ROLE 	| arn:aws:iam::0123456789:role/ecsTaskExecutionRole 	|
+| IMAGE_NAME        | xxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/dl1_bert_train:v1|
+| TASK_EXEC_ROLE 	| arn:aws:iam::xxxxxxx:role/ecsTaskExecutionRole 	|
+| SECRETS_ARN 	| arn:aws:secretsmanager:us-east-1:xxxxxxx:secret:MPI_SSH_KEY-xxxxx 	|
 
 ### Create the Job Definition using aws cli
 

@@ -22,7 +22,7 @@ The json configuration for the Compute Environment is given below
   "computeResources": {
     "type": "EC2",
     "minvCpus": 0,
-    "maxvCpus": 64,
+    "maxvCpus": 384,
     "desiredvCpus": 0,
     "launchTemplate": {
       "launchTemplateId": "LAUNCH_TEMPLATE",
