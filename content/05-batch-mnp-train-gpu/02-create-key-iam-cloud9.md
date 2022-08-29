@@ -43,7 +43,13 @@ At a high level,
 - Launch it in the **VPC and Public Subnet you created in the previous step**
 The steps to create the Cloud9 instance is detailed in [Cloud9 Creation](https://www.hpcworkshops.com/02-aws-getting-started/04-start_cloud9.html)
 
-- The default Storage attached to Cloud9 (10GB) is not sufficient to build the containers, Follow the steps in [Resize EBS](https://catalog.us-east-1.prod.workshops.aws/workshops/4522540d-c97b-482b-9725-3f5ce058e6b8/en-US/prerequisites/05-grow-fs) to use the script to resize the volume to 100 GB. The script above automates the sequence of steps to identify the root volume and increase the size
+- The default Storage attached to Cloud9 (10 GB) is not sufficient to build the containers. Each of the DL containers are atleast 10 - 20GB in size and building several containers can easily fillup the space.
+  Therefore, we recommend to increase the root volume to atleast 200 GB. Next, we outline simple steps to increase the size to 200 GB. 
+  Follow the steps in [Resize EBS](https://catalog.us-east-1.prod.workshops.aws/workshops/4522540d-c97b-482b-9725-3f5ce058e6b8/en-US/prerequisites/05-grow-fs) to use the script to resize the volume to 200 GB.
+  The script given below automates the sequence of steps to identify the root volume and increase the size
+```textmate
+curl -s https://gist.githubusercontent.com/wongcyrus/a4e726b961260395efa7811cab0b4516/raw/6a045f51acb2338bb2149024a28621db2abfcaab/resize.sh | bash /dev/stdin 200
+```
 
 - After increasing the size, check the disk space
 ```bash
