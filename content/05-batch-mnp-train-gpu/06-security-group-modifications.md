@@ -40,6 +40,11 @@ The newline characters will be stripped in the output and carefully select the p
   
 ### Security Group Modifications
 
+{{% notice info %}}
+Though the g5 instance selected does not have EFA, one would need this step to be performed for using p3dn, p4d, p4de and p5.
+{{% /notice %}} 
+
+
 Edit the inbound and outbound rules of the security group to permit All Traffic, All Protocols, All Ports from the source as the "same" security group. Though this seems obvious, it is essential to permit the instances to communicate with each other other than TCP.
 
 - Inbound Rules Modification
