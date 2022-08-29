@@ -1,5 +1,5 @@
 ---
-title : "f. Modifications to Security Group for NCCL + MPI Communication"
+title : "f. Modifications to Security Group for HCCL + MPI Communication"
 date: 2022-07-22T15:58:58Z
 weight : 70
 tags : ["configuration", "vpc", "subnet", "iam", "pem"]
