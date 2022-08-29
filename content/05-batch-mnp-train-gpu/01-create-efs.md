@@ -11,6 +11,8 @@ If you already have an EFS that could be mounted within the VPC, you can skip th
 
 In this step, you create the EFS volume in same zone we created the subnet in the last step.
 
+**Note: If you already have an EFS that could be mounted within the VPC, you can skip the step and proceed to the next step.**
+
 #### Create One Zone EFS
 
 1. Select EFS inside your AWS Console login

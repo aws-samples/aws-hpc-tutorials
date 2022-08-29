@@ -15,6 +15,9 @@ You can reuse your pem key if you already have one and do not have to create a n
 
 The PEM key is essential for the users to ssh into their instance post their creation to monitor or troubleshoot issues in the nodes. [Create a KeyPair](https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html#create-an-iam-role) documents the steps to create a keypair.
 
+**You can reuse your pem key if you already have one and do not have to create a new one.**
+
+
 ### Create the AWSBatchServiceRole, Instance and ECSTaskExecution Roles
 
 The AWS Batch compute environment and container instance roles are automatically created for you in the console first-run experience, so if you intend to use the AWS Batch console, you can move ahead to the next section. If you plan to use the AWS CLI instead, complete the procedures in 
@@ -22,10 +25,18 @@ The AWS Batch compute environment and container instance roles are automatically
 - [AWS Instance Role](https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html) for the instance to make calls to several AWS API's on your behalf.
 - [AWS ECS Task Execution Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) for the task to make calls to several AWS API's on your behalf
 
+{{% notice info %}}
+Access to additional services from ECS Task.
+
+For security, we use secrets manager to inject ssh keys into the container during runtime instead of packaging it into to build process. Therefore, ecsTaskExecution role should have access to the secretsmanager.
+![ECSTaskExecRole + SecretsManager](/images/batch_mnp/ecsTaskExecRole_Secrets.png)
+
+Additionally, if your container requires access to other AWS Services (DynamoDB, S3, RDS etc..) - it can be added to the Role
+{{% /notice %}}
 
 ### Create Cloud9 Console
 
-In order to get an environment where you can build containers, we need a Cloud9 IDE. Since we are using the Cloud 9 to build/push containers and log into our cluster, we need to select the reasonably sized instance located in an appropriate subnet. 
+In order to get an environment where you can build containers, we need a Cloud9 IDE. Since we are using the Cloud9 to build/push containers and log into our cluster, we need to select the reasonably sized instance located in an appropriate subnet. 
 
 At a high level,
 - Create a new Cloud9 Instance and select a c5.2xlarge as the instance

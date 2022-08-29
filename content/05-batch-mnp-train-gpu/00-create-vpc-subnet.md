@@ -11,6 +11,8 @@ If you already have a VPC, Private Subnet w/ NAT Gateway and Public Subnet w/ IG
 
 In this step, you create the VPC, Private Subnet w/ NAT Gateway and a Public Subnet with the Internet Gateway (IGW). We will use the VPC wizard to set this up very quickly from the console.
 
+**Note: If you already have a VPC, Private Subnet w/ NAT Gateway and Public Subnet w/ IGW, please skip the step and proceed to the next step**
+
 #### Create VPC, Private and Public Subnet
 
 1. Log into your AWS Console

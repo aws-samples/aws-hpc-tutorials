@@ -36,7 +36,7 @@ Copy and paste the template into **gpu_batch_jd.json** and replace the placehold
         "container": {
           "image": "IMAGE_NAME",
           "command": [],
-          "jobRoleArn": "TASK_EXEC_ROLE",
+          "executionRoleArn": "TASK_EXEC_ROLE",
           "resourceRequirements": [
             {
               "type": "MEMORY",
@@ -90,6 +90,12 @@ Copy and paste the template into **gpu_batch_jd.json** and replace the placehold
           "linuxParameters": {
             "sharedMemorySize": 8000
           },
+          "secrets": [
+            {
+              "name": "MPI_SSH_KEY",
+              "valueFrom": "SECRETS_ARN"
+            }
+          ],
           "privileged": true
         }
       }
@@ -105,6 +111,7 @@ Copy and paste the template into **gpu_batch_jd.json** and replace the placehold
 |------------------	|------------------------------------------------------------------------	|
 | IMAGE_NAME        | xxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/g5_train:v1|
 | TASK_EXEC_ROLE 	| arn:aws:iam::xxxxxxx:role/ecsTaskExecutionRole 	|
+| SECRETS_ARN 	| arn:aws:secretsmanager:us-east-1:xxxxxxx:secret:MPI_SSH_KEY-xxxxx 	|
 
 ### Create the Job Definition using aws cli
 

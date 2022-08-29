@@ -12,4 +12,5 @@ Terminating the job automatically cleans up the instances since it is a managed 
 - Select Dashboard
 - Click on the MNP job definition that has the runnable job
 - Click on Terminate Job
-- AWS Batch automatically kills the job and release the instances in around 5 minutes
+![Terminate Job](/images/batch_mnp/terminate_job.png)
+- AWS Batch will automatically kill the job and release the instances in around 5 minutes
