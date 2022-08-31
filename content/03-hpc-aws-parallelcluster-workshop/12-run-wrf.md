@@ -20,7 +20,7 @@ sbatch slurm-c5n-wrf-conus12km.sh
 Check the status of the queue using the command **squeue**. The job will be first marked as pending (*PD* state) because resources are being created (or in a down/drained state). If you check the [EC2 Dashboard](https://console.aws.amazon.com/ec2), you should see nodes booting up.
 
 ```bash
-squeue 
+squeue
 ```
 When ready and registered, your job will be processed and you will see a similar status as below.
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/squeue-output.png)
@@ -31,13 +31,13 @@ You can also check the number of nodes available in your cluster using the comma
 sinfo
 ```
  The following example shows 2 nodes.
-![squeue output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
+![sinfo output](/images/hpc-aws-parallelcluster-workshop/sinfo-output.png)
 
 Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:
 
 Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
 
-![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
+![wrf output](/images/hpc-aws-parallelcluster-workshop/wrf-rsl-out-0000.png)
 
 
 Done!

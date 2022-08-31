@@ -11,13 +11,6 @@ In this next section, we're going to visualize the results of the job we just ra
 
 2. Open a terminal and install NCL.
 ```bash
-cd /shared
-mkdir ncl
-cd ncl
-wget -c https://www.earthsystemgrid.org/api/v1/dataset/ncl.662.dap/file/ncl_ncarg-6.6.2-CentOS7.6_64bit_gnu485.tar.gz
-tar -xvf ncl_ncarg-6.6.2-CentOS7.6_64bit_gnu485.tar.gz
-export NCARG_ROOT=/shared/ncl
-export PATH=$NCARG_ROOT/bin:$PATH
 sudo yum install -y -q ncl
 ```
 3. Navigate to the WRF run directory.
