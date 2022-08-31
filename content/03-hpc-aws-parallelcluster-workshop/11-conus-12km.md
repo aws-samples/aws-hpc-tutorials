@@ -24,18 +24,17 @@ These are used to run the WRF executable (wrf.exe) to simulate atmospheric event
 The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km.
 The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure). 
 
-On the HPC Cluster, download the CONUS 12km test case from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/) into the **/shared** directory.
+On the HPC Cluster, download the CONUS 12km test case from the [tutorial bucket](https://sc22-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz) into the **/shared** directory.
 **/shared** is the mount point of NFS server hosted on the head node.
 
 Here are the steps:
 
 ```bash
 cd /shared
-curl -O https://isc22-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz
-
+curl -O https://sc22-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz
 tar -xzf wrf_simulation_CONUS12km.tar.gz 
 ```
-For the purpose of ISC22, a copy of the data that can be found on UCAR website through this [link](https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz) has been stored in a S3 bucket.
+For the purpose of SC22, a copy of the data that can be found on UCAR website through this [link](https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz) has been stored in a S3 bucket.
 
 #### Prepare the data
 Copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code.
@@ -45,6 +44,7 @@ A copy of the WRF source code is part of the AMI and located  in __/opt/wrf-omp/
 cd /shared/conus_12km
 
 cp /opt/wrf-omp/src/run/{\
+CAMtr_volume_mixing_ratio,\
 GENPARM.TBL,\
 HLC.TBL,\
 LANDUSE.TBL,\
