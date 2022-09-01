@@ -8,11 +8,9 @@ tags: ["Ray", "Overview"]
 
 #### Ray Cluster in Nutshell
 
-Ray is an open source technology for distributed AI and Python applications.
+Ray is a distributed computing platform that can be used to scale Python applications with minimal effort. It provides a unified way to scale Python and AI applications from a laptop to a cluster. It is designed to be general-purpose and it can run any kind of workloads. Ray consists of a core distributed runtime and a toolkit of libraries (Ray AIR) for simplifying ML compute.
 
-(TODO: add brief description of ray clusters)
-
-![ray-cluster-arch](/images/hpc-ray-workshop/ray-cluster.jpg)
+![ray-cluster-arch](/images/hpc-ray-workshop/ray_air.png)
 
 #### What you will do in this part of the lab
 
@@ -24,4 +22,4 @@ In this workshop, you will learn how to set up a Ray cluster on [Amazon EC2](htt
 - Set up [Amazon FSx for Luster](https://aws.amazon.com/fsx/lustre/) (FSxL) filesystem
 - Set up [Amazon CloudWatch](https://aws.amazon.com/pm/cloudwatch/) agent for resource monitoring
 - Spin up Ray cluster
-- Train PyTorch ResNet50 model on image dataset
+- Train PyTorch ResNet18 model on Tiny ImageNet dataset

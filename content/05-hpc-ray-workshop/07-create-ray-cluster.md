@@ -5,7 +5,9 @@ weight: 80
 tags: ["Ray", "Cluster"]
 ---
 
-To create ray cluster, we need a .yaml file with the necessary configuration. Copy the following configuration to **cluster.yaml**:
+To create ray cluster, we need a .yaml file with the necessary configuration. A complete list of configuration options can be found [here](https://docs.ray.io/en/latest/cluster/vms/references/ray-cluster-configuration.html).
+
+Copy the following configuration to **cluster.yaml**:
 
 ```yaml
 cluster_name: workshop

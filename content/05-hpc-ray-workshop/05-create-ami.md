@@ -21,7 +21,7 @@ ssh -i your_key.pem ubuntu@10.0.xxx.xxx
 ```
 We are going to install the following packages in this instance:
 
-- miniconda
+- anaconda
 - ray (2.0)
 - PyTorch
 - FSxL client
@@ -35,8 +35,8 @@ sudo apt update && sudo apt upgrade -y
 
 Set up conda:
 ```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/anaconda3
+wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+bash Anaconda3-2022.05-Linux-x86_64.sh -b -p $HOME/anaconda3
 ./anaconda3/bin/conda init
 source .bashrc
 pip install --upgrade pip
@@ -44,7 +44,7 @@ pip install --upgrade pip
 
 Install ray:
 ```bash
-pip install ray[air]
+pip install ray[air]==2.0
 ```
 
 Install PyTorch:
