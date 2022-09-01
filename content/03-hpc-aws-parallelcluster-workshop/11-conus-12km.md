@@ -24,7 +24,7 @@ These are used to run the WRF executable (wrf.exe) to simulate atmospheric event
 The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km.
 The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure). 
 
-The CONUS 12km is a test case provided by NCAR and can be retrieve from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/). For this tutorial and convenience, you will download the CONUS 12km test from [Amazon S3](https://aws.amazon.com/s3/) bucket into the **/shared** directory of the HPC Cluster
+The CONUS 12km is a test case provided by NCAR and can be retrieved from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/). For this tutorial and convenience, you will download the CONUS 12km test from [Amazon S3](https://aws.amazon.com/s3/) bucket into the **/shared** directory of the HPC Cluster
 **/shared** is the mount point of NFS server hosted on the head node.
 
 Here are the steps:
