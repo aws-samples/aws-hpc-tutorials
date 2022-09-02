@@ -17,12 +17,13 @@ Choose a random prefix, postfix, or append your name.
 {{% /notice %}}
 
 ```bash
-BUCKET_POSTFIX=$(uuidgen --random | cut -d'-' -f1)
-aws s3 mb s3://bucket-${BUCKET_POSTFIX}
+BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
+BUCKET_NAME_DATA="bucketname-${BUCKET_POSTFIX}"
+aws s3 mb s3://$BUCKET_NAME_DATA
 
 cat << EOF
 ***** Take Note of Your Bucket Name *****
-Bucket Name = bucket-${BUCKET_POSTFIX}
+Bucket Name = $BUCKET_NAME_DATA
 *****************************************
 EOF
 ```
@@ -45,7 +46,7 @@ aws s3 cp ./SEG_C3NA_Velocity.sgy s3://bucket-${BUCKET_POSTFIX}/SEG_C3NA_Velocit
 5. List the content of your bucket using the following command. Alternatively, you can view the [S3 Dashboard](https://console.aws.amazon.com/s3/) in the AWS Management Console and view your newly created bucket to see the file.
 
 ```bash
-aws s3 ls s3://bucket-${BUCKET_POSTFIX}/
+aws s3 ls s3://$BUCKET_NAME_DATA/
 ```
 
 6. Delete the local version of the file using the command **rm** or the AWS Cloud9 IDE interface.
@@ -54,7 +55,7 @@ aws s3 ls s3://bucket-${BUCKET_POSTFIX}/
 rm SEG_C3NA_Velocity.sgy
 ```
 
-7. Navigate to the S3 console via AWS console by searching for S3. You will be able to see the bucket you just created there with the data you uploaded in the previous steps.
+7. Navigate to the S3 console via AWS console by clicking [here](https://console.aws.amazon.com/s3/home).
 
 ![views3upload](/images/fsx-for-lustre-hsm/views3upload.png)
 

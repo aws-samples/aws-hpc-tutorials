@@ -7,7 +7,7 @@ tags = ["tutorial", "lustre", "FSx", "S3"]
 
 In this step, you will create a [data repository association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) between the S3 bucket and FSx for lustre filesystem created in the previous two steps.  
 
-1. On the AWS console, recently visited section click on FSx. This will take you to the FSx console. On this console you will see the file system you created in section a. Click on the file system name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
+1. Navigate to the FSx console by clicking [here](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
 
 ![viewsfsxl](/images/fsx-for-lustre-hsm/viewfsxl.png)
 
