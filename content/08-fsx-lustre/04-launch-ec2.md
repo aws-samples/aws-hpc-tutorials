@@ -5,9 +5,9 @@ weight = 80
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this section you will launch and Amazon EC2 instance and prepare the instance to mount the filesystem created in section a.
+In this section you will launch an Amazon EC2 instance which will be used in the next section to mount the filesystem created in section a.
 
-1. On the AWS console search EC2 and click on EC2 service. 
+1. Click [here](https://console.aws.amazon.com/ec2/home) to navigate to your EC2 dashboard on AWS console.. 
 
 2. On the EC2 dashboard click on **Launch instance** button
 
@@ -42,4 +42,10 @@ echo ${SUBNET_ID}
 
 ![keypair](/images/fsx-for-lustre-hsm/keypair.png)
 
-8. It will take a couple minutes for the instance to be configured. Once the status is shown as available 
+8. It will take a couple minutes for the instance to be configured. You can click on the link to the instance ID as shown below. 
+
+![launchmsg](/images/fsx-for-lustre-hsm/launchmsg.png)
+
+10. This will show you the instance you launched just now on the EC2 instances dashboard and wait for the status to be **Running** as shown below.
+
+![ec2status](/images/fsx-for-lustre-hsm/ec2status.png)
