@@ -40,7 +40,7 @@ wget http://s3.amazonaws.com/open.source.geoscience/open_data/seg_eage_salt/SEG_
 4. Upload the file to your S3 bucket using the following command:
 
 ```bash
-aws s3 cp ./SEG_C3NA_Velocity.sgy s3://bucket-${BUCKET_POSTFIX}/SEG_C3NA_Velocity.sgy
+aws s3 cp ./SEG_C3NA_Velocity.sgy s3://${BUCKET_NAME_DATA}/SEG_C3NA_Velocity.sgy
 ```
 
 5. List the content of your bucket using the following command. Alternatively, you can view the [S3 Dashboard](https://console.aws.amazon.com/s3/) in the AWS Management Console and view your newly created bucket to see the file.
@@ -55,7 +55,7 @@ aws s3 ls s3://$BUCKET_NAME_DATA/
 rm SEG_C3NA_Velocity.sgy
 ```
 
-7. Navigate to the S3 console via AWS console by clicking [here](https://console.aws.amazon.com/s3/home).
+7. If you would like a view of S3 through the user interface  open the [Amazon S3 console] and click on your bucket name to find the newly uploaded file.
 
 ![views3upload](/images/fsx-for-lustre-hsm/views3upload.png)
 
