@@ -7,9 +7,9 @@ tags = ["tutorial", "lustre", "FSx", "S3"]
 
 In this section you will launch an Amazon EC2 instance which will be used in the next section to mount the filesystem created in section a.
 
-1. Click [here](https://console.aws.amazon.com/ec2/home) to navigate to your EC2 dashboard on AWS console.. 
+1. Navigate to the [Amazon EC2 Console](https://console.aws.amazon.com/ec2/home) to navigate to your EC2 dashboard on AWS console.. 
 
-2. On the EC2 dashboard click on **Launch instance** button
+2. Choose  **Launch instance**.
 
 ![ec2launch](/images/fsx-for-lustre-hsm/ec2launch.png)
 
