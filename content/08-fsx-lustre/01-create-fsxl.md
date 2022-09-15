@@ -28,12 +28,11 @@ In this section, you will create a new FSx for lustre filesystem in your test ac
 source env_vars
 
 echo ${AWS_REGION}
-echo ${INSTANCES}
 echo ${SSH_KEY_NAME}
 echo ${VPC_ID}
 echo ${SUBNET_ID}
-
 ```
+
 {{% notice info %}}
 Please leave the cloud9 terminal open in another tab through this  lab.
 At times, you will need to go back and forth between the cloud9 terminal and AWS console browser tabs. 
