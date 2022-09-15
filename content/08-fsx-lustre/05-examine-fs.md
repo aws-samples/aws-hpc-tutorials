@@ -1,5 +1,5 @@
 +++
-title = "e. Mount the lustre file system and check data repository"
+title = "e. Mount the lustre file system and check auto import and lazy loading"
 date = 2019-09-18T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "lustre", "FSx", "S3"]
@@ -61,19 +61,91 @@ You can also run `lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy`. It confirms
 
 ![lazyload](/images/fsx-for-lustre-hsm/lazyload.png)
 
-10. You will next test **auto export**. When we created the data repository association we chose to go with automatic export from FSx file system to the S3 bucket. To test this, let us just create a 10MB file on the file system and then verify on the S3 bucket.
+You should see that the file is **released**, i.e. not loaded.
+
+10. Now, check the size of the file 
 
 ```bash
-sudo chown -R ec2-user /fsx/
-cd /fsx/hsmtest
-truncate -s 10M export_test_file
-ls -lh
+$ ls -lah /fsx/hsmtest/SEG_C3NA_Velocity.sgy
+```
+![lazyloadsize](/images/fsx-for-lustre-hsm/lzyloadsize.png)
+
+As shown above, the file size is about 455 MB.
+
+
+11. Next you will access the file and measure the time it takes to load it from the linked Amazon S3 bucket using the HSM. You write the file to *tempfs*.
+
+Use the following command to retrive the file
+
+```bash
+time cat /fsx/hsmtest/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
 ```
 
-11. Now go back on the AWS console page, search for S3 service, click on the bucket you created in section b. Here you should be seeing the newly created file **export_test_file** of 10M automatically copied into S3 bucket. This verifies the auto export of this data repository association. 
+It should take  about **6 seconds** to retrieve the file.
 
-![exportfile](/images/fsx-for-lustre-hsm/exportfile.png)
+Run the command again and see the access time:
+
+```bash
+time cat /fsx/hsmtest/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
+```
+
+This time it should take lesser about  **.2 seconds** only.
+
+The new access time is a bit too fast because the data has been cached on the instance. Now, drop the caches and repeat the command again.
+
+```bash
+sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches'
+time cat /fsx/hsmtest/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
+```
+
+This access time is more realistic: at about **0.9s**
+
+![lazyloadaccess](/images/fsx-for-lustre-hsm/lzyloadaccess.png)
+
+#### Review the File System Status
+
+12. Next, look at the file content state through the HSM. Run the following command 
+
+```bash
+lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy
+```
+You can see that the file state changed from **released** to **archived**.
+
+Now, use the following command to see how much data is stored on the Lustre partition.
+
+```bash
+time lfs df -h
+```
+
+Do you notice a difference compared to the previous execution of this command? Instead of **7.8 MB** of data stored, you now have **465 MB** stored on the OST, your may see slightly different results.
+
+![lazyloadarchived](/images/fsx-for-lustre-hsm/lzyloadarchived.png)
 
 
-![verifys3export](/images/fsx-for-lustre-hsm/verifys3export.png)
+13. Next you will release the file Content. This action does not not delete nor remove the file itself. The metadata is still stored on the MDT.
 
+Use the following command to release the file content:
+
+```bash
+sudo lfs hsm_release /fsx/hsmtest/SEG_C3NA_Velocity.sgy
+```
+
+Then, run this command to see again how much data is stored on your file system.
+
+```bash
+lfs df -h
+```
+
+You are back to **7.8 MB** of stored data.
+
+![lazyloadreleased](/images/fsx-for-lustre-hsm/lzyloadreleased.png)
+
+Access the file again and check how much time it takes.
+
+```bash
+time cat /fsx/hsmtestSEG_C3NA_Velocity.sgy >/dev/shm/fsx
+```
+
+It should take around 5-6 seconds like we checked in step 11. Subsequent reads use the client cache. You can drop the caches, if desired.
+
+In the next section you will test auto export feature of the FSx-S3 data repository association.
