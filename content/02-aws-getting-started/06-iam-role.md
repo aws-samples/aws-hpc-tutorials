@@ -1,7 +1,7 @@
 +++
-title = "d. Temporary credentials on Cloud9"
+title = "c. Temporary credentials on Cloud9"
 date = 2019-09-18T10:46:30-04:00
-weight = 80
+weight = 70
 tags = ["tutorial", "install", "IAM"]
 +++
 
@@ -17,17 +17,3 @@ Using IAM, you can create and manage AWS users and groups, and use permissions t
 2. In the Preferences tab, choose **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
 
 ![Getting Started](/images/introductory-steps/cloud9-credentials.png)
-
-3. Identify the AWS region with the following commands in the Cloud9 terminal:
-
-```bash
-export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
-echo $AWS_REGION
-```
-
-4. Configure the AWS CLI to use this AWS region:
-
-```bash
-aws configure set default.region ${AWS_REGION}
-aws configure get default.region
-```
