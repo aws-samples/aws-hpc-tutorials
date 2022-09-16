@@ -8,24 +8,23 @@ tags: ["CI/CD", "AWS Developer Tools", "DevOps"]
 
 ![devops_logo](/images/cicd/devops-logo.png)
 
-HPC resources have complex and dynamic software needs that are challenging to manage and maintain. Users often want the latest software available for their research and development which drives the need for frequent installation and updates. Administrators currently address these complex software needs with package managers such as Lmod, Easybuild or Spack. However, even with these tools software management in an HPC environment includes manual and error-prone steps. Continuous integration, delivery, and deployment (CICD) is widely used in DevOps communities, as it allows to deploy rapidly-changing hardware and software resources. One can build a CICD pipeline to automatically build and/or deploy their HPC application either in the form of containers or as a custom image with all the software dependencies installed. Integrating CICD practices into HPC workflows increases the potential for delivering high quality and reliable software. 
+HPC resources have complex and dynamic software needs that are challenging to manage and maintain. Users often want the latest software available for their research and development which drives the need for frequent installation and updates.  Continuous integration, delivery, and deployment (CICD) is widely used in DevOps communities, as it allows to deploy rapidly-changing hardware and software resources. 
 
-In this lab, you are introduced to [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) and how to use services like AWS CodeCommit, AWS CodeBuild and AWS CodePipeline to automate application deployment with containers, CI/CD pipelines and container orchestrators. 
+One can build a CICD pipeline to automatically build and/or deploy their HPC application either in the form of containers or as a custom image with all the software dependencies installed. Integrating CICD practices into HPC workflows increases the potential for delivering high quality and reliable software.  Packaging HPC applications as containers also allows these applications to be easily ported to new platforms, delivered to others, and orchestrated across the variety of container managemenet an orchestration platforms available today. 
+
+In this lab, you are introduced to [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) and how to use services like AWS CodeCommit, AWS CodeBuild and AWS CodePipeline to automate application deployment with containers and CI/CD pipelines. The next lab will focus on how to take the containers built in this lab and deploy tightly-coupled simulation workflows using container orchestration. 
 
 You will be deploying the below architecture as part of this lab:
 
 ![AWS CICD](/images/cicd/cicd-pipeline-arch.png)
 
-
-
 This lab includes the following steps:
 
-1. Create a repository in AWS CodeCommit
-2. Create a build environment using AWS CodeBuild
-3. Create a pipeline using AWS CodePipeline
-4. Automate the build process with repository update
-
-
+1. Create a container definition for an MPI-based GROMACS simulation
+2. Create a repository in AWS CodeCommit
+3. Create a build environment using AWS CodeBuild
+4. Create a pipeline using AWS CodePipeline
+5. Automate the build process with repository update
 
 [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) provides a list of services to host code, build, test, and deploy your applications quickly and effectively.  AWS services offered as part of the AWS Developer Tools suite helps remove the undifferentiated heavy lifting associated with DevOps adaptation and software development. You can build a continuous integration and delivery capability without managing servers or build nodes, and leverage Infrastructure as code (IaC) to provision and manage your cloud resources in a consistent and repeatable manner.
 
