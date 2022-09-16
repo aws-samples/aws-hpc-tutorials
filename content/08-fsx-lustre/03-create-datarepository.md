@@ -5,9 +5,9 @@ weight = 100
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this step, you will create a [data repository association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) between the S3 bucket and FSx for lustre filesystem created in the previous two steps.  
+In this step, you will create a [Data Repository Association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) (DRA) between the S3 bucket and FSx for lustre filesystem created in the previous two steps.  
 
-1. Navigate to the FSx console by clicking [here](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
+1. Navigate to the [FSx console](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
 
 ![viewsfsxl](/images/fsx-for-lustre-hsm/viewfsxl.png)
 
@@ -27,7 +27,9 @@ In this step, you will create a [data repository association](https://docs.aws.a
 
 ![createdra](/images/fsx-for-lustre-hsm/createdra.png)
 
-6. Step 5 is expected to take a few  minutes. You are going to check this again in the next section and you can proceed with the next section. While creating you should be able to see the status as shown below. 
+{{% notice info %}}
+Step 5 is expected to take a few  minutes. You are going to check this again and you can proceed with the next section. While creating you should be able to see the status as shown below. 
+{{% notice info %}}
 
 ![dracreating](/images/fsx-for-lustre-hsm/dracreating.png)
 
