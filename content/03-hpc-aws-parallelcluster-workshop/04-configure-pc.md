@@ -51,7 +51,7 @@ Your **env_vars** file already contains the AMI ID you need, you can see below -
 ```bash
 CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
     --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
-    --filters "Name=name,Values=*-amzn2-parallelcluster-3.2.0-wrf-4.4.*" \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-3.2.0-wrf-4.4.1-*" \
     --region ${AWS_REGION} \
     | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
 
