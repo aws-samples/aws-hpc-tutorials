@@ -11,6 +11,8 @@ AWS CodeBuild is a fully managed continuous integration service that compiles so
 
 With CodeBuild, you don’t need to provision, manage, and scale your own build servers
 
+
+
 1. In the AWS Management Console search bar, type and select **CodeBuild**. Double check that you are using CodeBuild in the same AWS Region that you have used in the previous steps.
 
 2. Click on **Create build project**.
@@ -34,11 +36,11 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
   	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
 	- In the **Value** field provide the Amazon ECR repository URI created in the Lab 2 (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
-	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/isc22-container"**. Copy without the quotes and paste in the **Value** field.
+	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/sc22-container"**. Copy without the quotes and paste in the **Value** field.
  
 ```bash
-REPO_NAME=isc22-container
-aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] --region $AWS_REGION | grep "/${REPO_NAME}"
+REPO_NAME=sc22-container
+aws ecr describe-repositories --query repositories[].[repositoryName,repositoryUri] $AWS_REGION | grep "/${REPO_NAME}"
  ```
 
 ![AWS CodeBuild](/images/cicd/code-build-5.png)
@@ -66,6 +68,46 @@ Kindly fix that and re-do the above step.
 ![AWS CodeBuild](/images/cicd/code-build-temp-cred-error.png)
  
 
+12. Create a buildspec file to build and push the Docker container to [Amazon ECR](https://aws.amazon.com/ecr/)
+
+A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
+```bash
+
+cat > buildspec.yml << EOF
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - \$(aws ecr get-login --region \$AWS_REGION --no-include-email)
+      - IMAGE_TAG=\$(echo \$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
+      - echo IMAGE TAG \$IMAGE_TAG
+
+  build:
+    commands:
+      - echo Build started at \$(date)
+      - echo Building the Docker image...
+      - docker build -t \$REPOSITORY_URI:latest .
+      - docker tag \$REPOSITORY_URI:latest \$REPOSITORY_URI:\$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Build completed at $(date)
+      - echo Pushing the Docker images...
+      - docker push \$REPOSITORY_URI:latest
+      - docker push \$REPOSITORY_URI:\$IMAGE_TAG
+
+EOF
+```
+
+13. Commit the buildspec file and push to the CodeCommit repository.
+
+```
+git add buildspec.yml
+git commit -m "add build specification file"
+git push
+```
+
 In the next section, you will build a CodePipeline which you will use to automate your container build process
-
-
