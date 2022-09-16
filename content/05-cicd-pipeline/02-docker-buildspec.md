@@ -50,7 +50,7 @@ FROM spack/amazon-linux:v0.18.0 as build
 ADD spack.yaml /opt/spack-environment/spack.yaml
 # Set up spack env & binary cache, then build the software
 RUN spack env activate -d /opt/spack-environment \
-&&  spack mirror add binary_mirror https://binaries.spack.io/releaes/v0.18 \
+&&  spack mirror add binary_mirror https://binaries.spack.io/releases/v0.18 \
 &&  spack buildcache keys --install --trust \
 &&  spack install --reuse --use-cache --fail-fast \
 &&  spack gc -y \
