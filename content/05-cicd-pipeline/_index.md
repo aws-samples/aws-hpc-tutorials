@@ -20,11 +20,11 @@ You will be deploying the below architecture as part of this lab:
 
 This lab includes the following steps:
 
-2. Create a container definition for an MPI-based GROMACS simulation
+1. Create a container definition for an MPI-based GROMACS simulation
 2. Create a repository in AWS CodeCommit
-1. Create a build environment using AWS CodeBuild
-3. Create a pipeline using AWS CodePipeline
-4. Automate the build process with repository update
+3. Create a build environment using AWS CodeBuild
+4. Create a pipeline using AWS CodePipeline
+5. Automate the build process with repository update
 
 [AWS Developer Tools](https://aws.amazon.com/products/developer-tools/) provides a list of services to host code, build, test, and deploy your applications quickly and effectively.  AWS services offered as part of the AWS Developer Tools suite helps remove the undifferentiated heavy lifting associated with DevOps adaptation and software development. You can build a continuous integration and delivery capability without managing servers or build nodes, and leverage Infrastructure as code (IaC) to provision and manage your cloud resources in a consistent and repeatable manner.
 

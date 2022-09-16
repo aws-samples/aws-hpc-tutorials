@@ -11,7 +11,7 @@ tags = ["tutorial", "DeveloperTools", "CodeCommit"]
 In this section, you will create a Docker container for the application and a buildspec file.
 
 
-1. In the AWS Management Console search bar, type and select **Cloud9**.
+1. Open the [AWS Cloud9 console](https://console.aws.amazon.com/cloud9).
 	
 2. Choose **open IDE** for the Cloud9 instance set up previously. It may take a few moments for the IDE to open. AWS Cloud9 stops and restarts the instance so that you do not pay compute charges when no longer using the Cloud9 IDE.
 
@@ -23,7 +23,7 @@ cd MyDemoRepo
 pwd # should be MyDemoRepo
 ```
 
-4. Create our Spack build definition.  We will be using [Spack](https://spack.io) to build our GROMACS application inside of our container.  This defintion sets what software is to be built, build options, and where to install the software.  We leave most of the build values as defaults, and select the **x86_64_v4** architecture, which will enable building with **AVX512** optimizations.  This architecture is also available in the [Spack rolling binary cache](https://aws.amazon.com/blogs/hpc/introducing-the-spack-rolling-binary-cache/) which will significantly speed up our build time.
+4. Create our Spack build definition. You will be using [Spack](https://spack.io) to build our GROMACS application inside of our container. This definition sets what software is to be built, build options, and where to install the software. You will leave most of the build values as defaults, and will select the **x86_64_v4** architecture, which will enable building with **AVX512** optimizations.  This architecture is also available in the [Spack rolling binary cache](https://aws.amazon.com/blogs/hpc/introducing-the-spack-rolling-binary-cache/) which will significantly speed up our build time. 
 
 ```bash
 cat > spack.yaml <<EOF
@@ -61,4 +61,4 @@ ENTRYPOINT [ "/bin/bash", "-l" ]
 EOF
 ```
 
-We could use standard **docker build** commands to build this description into a container image, but we will use automated CICD pipeline tools to do this work for us in the following steps.
+You will use automated CICD pipeline tools to build the container image. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM] (https://aws.amazon.com/iam/) while having elevated privileges. The following step will guide you on how to setup the pipeline.

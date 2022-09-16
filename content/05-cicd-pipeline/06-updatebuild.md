@@ -60,7 +60,7 @@ EOF
   - The **entrypoint.sh** script will handle setting up our environment and executiong GROMACS commands for us.
   - The **inputs/** files contain a set of default inputs that we will use.  These files will be used to execute the "Lysozyme in Water" described on the [GROMACS tutorials website](http://www.mdtutorials.com/gmx/lysozyme/index.html).
 
-We will copy these files from the S3 bucket.
+You will copy these files from the S3 bucket.
 
   ```bash
   aws s3 cp s3://sc22-hpc-labs/entrypoint.sh .
@@ -88,7 +88,9 @@ git push origin main
 
 8. In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR. 
 
-Once the build has completed, in the AwS Management Console search bar, type and select **Elastic Container Registry**.  Click on the **sc22-container**. 
+Once the build has completed you should be able to see that a container exists in the ECR repository tagged as **latest**:
+1. Open the [Amazon ECR console](https://us-east-1.console.aws.amazon.com/ecr/repositories).
+2. Select **sc22-container**
 
 You should see an entry like:
 
