@@ -57,3 +57,17 @@ aws --version
 ```bash
 sudo yum install -y jq 
 ```
+
+5. Identify the AWS region with the following commands in the Cloud9 terminal:
+
+```bash
+export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+echo $AWS_REGION
+```
+
+6. Configure the AWS CLI to use this AWS region:
+
+```bash
+aws configure set default.region ${AWS_REGION}
+aws configure get default.region
+```
