@@ -1,7 +1,7 @@
 +++
 title = "b. Create S3 bucket and upload test data"
 date = 2019-09-18T10:46:30-04:00
-weight = 80
+weight = 90
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 

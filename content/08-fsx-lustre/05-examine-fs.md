@@ -1,7 +1,7 @@
 +++
 title = "e. Mount the lustre file system and check auto import and lazy loading"
 date = 2019-09-18T10:46:30-04:00
-weight = 80
+weight = 120
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
