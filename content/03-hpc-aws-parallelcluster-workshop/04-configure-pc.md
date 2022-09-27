@@ -51,7 +51,7 @@ Your **env_vars** file already contains the AMI ID you need, you can see below -
 ```bash
 CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
     --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
-    --filters "Name=name,Values=*-amzn2-parallelcluster-3.1.2-wrf-4.2.2-*" \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-3.2.0-wrf-4.4.1-*" \
     --region ${AWS_REGION} \
     | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
 
@@ -83,7 +83,7 @@ Scheduling:
   SlurmQueues:
     - Name: queue0
       ComputeResources:
-        - Name: queue0-c5n18xlarge
+        - Name: c5n18xlarge
           MinCount: 0
           MaxCount: 2
           InstanceType: c5n.18xlarge
