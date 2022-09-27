@@ -14,12 +14,6 @@ tags: ["HPC", "Overview", "Kubernetes"]
 This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop
 {{% /notice %}}
 
-<!--
-{{% notice info %}}
-This lab requires a Kubernetes cluster. If you are working on this lab as part of an AWS presented event, a cluster is already provisioned in your lab environment. If you do not have a cluster available, you can use the **[provision-eks-cluster](06-provision-eks-cluster)** instructions to provision a new cluster.
-{{% /notice %}}
--->
-
 In this lab, you are introduced to deploy and use a container orchestrator such as [Kubernetes](https://kubernetes.io/) for running HPC applications. You will run a high-performance application for molecular dynamics, [GROMACS](https://www.gromacs.org/), that reads and writes data from/to a managed Lustre parallel file system, Amazon FSx for Lustre.
 
 The deployment of Kubernetes is a challenging endeavour when done on your own. In the cloud, managed service simplifies the installation, operation and maintenance of Kubernetes. [Amazon Elastic Kubernetes Service (Amazon EKS)](https://aws.amazon.com/eks/) is a managed Kubernetes service on AWS.
