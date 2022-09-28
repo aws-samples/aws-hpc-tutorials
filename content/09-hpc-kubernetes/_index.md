@@ -27,7 +27,7 @@ You will be deploying the below architecture as part of this lab:
 
 Outline of all steps in the lab:
 
-- Clone `aws-do-eks` project
+- Clone `aws-do-eks` project (1 min)
 
 The `aws-do-eks` project is cloned in /home/ec2-user/aws-do-eks. Alternatively clone with the following command:
 ```
@@ -35,34 +35,41 @@ cd ~
 git clone https://github.com/aws-samples/aws-do-eks
 ```
 
-- Scale the cluster 
+- Scale the cluster (5 min) (if provisioning +30 min)
 
 ```
-  CLUSTER_REGION=us-east-1 CLUSTER_NAME=eks-hpc nodegroup_name=c5n-18xl nodegroup_min=0 nodgroup_size=2 nodegroup_max=2 /eks/nodegroup/eks-nodegroup-scale.sh
+  CLUSTER_REGION=us-east-1 CLUSTER_NAME=eks-hpc nodegroup_name=c5n-18xl nodegroup_min=0 nodegroup_size=2 nodegroup_max=2 /eks/nodegroup/eks-nodegroup-scale.sh
 ```
 
-- Deploy EFA device plugin
+- Verify EFA device plugin is already deployed (2 min)
 
+If the cluster was provisioned with eksctl and the eks-hpc.yaml manifest following the instructions above, then the EFA device plugin is already installed. To verify, execute:
+
+```
+kubectl -n kube-system get daemonset | grep efa
+```
+You should see the efa-k8s-devide-plugin daemonset 
+
+If you have provisioned a cluster by other means and need to deploy the EFA device plugin, you can execute:
 ```
 cd /eks/deployment/efa-device-plugin
 ./deploy.sh
 ```
 
-- Setup an FSx volume
+- Deploy FSx CSI Driver and create storage class (3 min)
 
-TODO: configure subnet and instance profile
 ```
 cd /eks/deployment/csi/fsx
 ./deploy.sh
 ```
 
-- Deploy Kubeflow MPI Operator
+- Deploy Kubeflow MPI Operator (1 min)
 ```
 cd /eks/deplyment/kubeflow/mpi-operator
 ./deploy.sh
 ```
 
-- Build and push `do-gromacs` container (or just reuse from Lab3)
+- Build and push `do-gromacs` container (or just reuse from Lab3) (8 min)
 
 ```
 cd /eks/deployment/hpc/do-gromacs
@@ -70,7 +77,7 @@ cd /eks/deployment/hpc/do-gromacs
 ./push.sh
 ``` 
 
-- Run unit tests
+- Run unit tests (5 min)
 
 Unit tests of the do-gromacs container include OSU benchmarks to test network performance with and without EFA
 ```
@@ -78,7 +85,7 @@ cd /eks/deployment/hpc/do-gromacs
 ./test.sh
 ```
 
-- Run Gromacs pipeline
+- Run Gromacs pipeline (12 min)
 
 ```
 cd /eks/deployment/hpc/do-gromacs
@@ -117,13 +124,13 @@ cd /eks/ops
 htop
 ```
 
-- Display results
+- Display results (10 min)
 
 Once the pipeline execution completes (status of prod job is Completed) the data is in FSx. 
 If same FSx is not mounted to head node, get data to head node.
 DCV into the head node, install and launch VMD, then visualize protein.
 
-- Cleanup (Optional)
+- Cleanup (Optional) (10 min)
 
 Delete FSx volume
 ```
