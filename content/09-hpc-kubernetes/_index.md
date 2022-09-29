@@ -31,4 +31,3 @@ Lab workflow:
 - Run EFA latency ping-pong test
 - Run GROMACS MPI job
 - Delete FSx volume and the EKS cluster
-
