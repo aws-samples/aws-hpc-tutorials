@@ -19,6 +19,7 @@ disableAssetsBusting = false
 disableLanguageSwitchingButton = true
 disableShortcutsTitle = false
 tutorialDate = "November 14th 2022"
+contact = "[sc22tutorial@amazon.com](mailto:sc22tutorial@amazon.com)"
 
 
 [outputs]

@@ -15,13 +15,13 @@ The website will be maintained after SC22, labs will also be available on https:
 
 
 {{% notice warning %}}
-Sandbox were available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc22tutorial@amazon.com so we can follow-up with you.
+Sandbox were available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at {{< param contact >}} so we can follow-up with you.
 {{% /notice %}}
 
 
 ### Need help?
 
-- **Email**: you can contact us directly before, during and after the conference through this email: sc22tutorial@amazon.com
+- **Email**: you can contact us directly before, during and after the conference through this email: {{% param contact %}}
 
 ### Tutorial Content & Resources
 
@@ -35,7 +35,7 @@ Before and during the tutorial you may be interested in going through the follow
 
 #### Presentations Slides
 
-The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at sc22tutorial@amazon.com.
+The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at {{% param contact %}}.
 
 #### SC22 Hands-on Labs
 
