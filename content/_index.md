@@ -9,8 +9,6 @@ draft: false
 Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC22 that will be delivered on {{< param tutorialDate >}} . We are excited to meet you, and look forward to answering your questions!
 The website will be maintained after SC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
-You can download the slide on [https://sc22-hpc-slides.s3.us-east-1.amazonaws.com/SC22_Best_Practices_HPC_in_The_Cloud.pdf](https://sc22-hpc-slides.s3.us-east-1.amazonaws.com/SC22_Best_Practices_HPC_in_The_Cloud.pdf)
-
 {{% notice tip %}}
 **We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://survey.immersionday.com/IGDEbg9nR.**
 {{% /notice %}}
