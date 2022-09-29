@@ -9,7 +9,7 @@ Before we get started we need to add more permissions to **pcluster-manager**.
 
 #### Modify the Lambda Function
 
-1. Go to the [Lambda Console (deeplink)](https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions?f0=true&fo=and&k0=functionName&n0=false&o0=%3A&op=and&v0=ParallelClusterFunction) and search for `ParallelClusterFunction`
+1. Go to the [Lambda Console (deeplink)](https://us-east-2.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions?f0=true&fo=and&k0=functionName&n0=false&o0=%3A&op=and&v0=ParallelClusterFunction) and search for `ParallelClusterFunction`
 2. Select the function then `Configuration` > `Permissions` > Click on the role under `Role name`.
 
 ![Attach Policies](/images/container-pc/lambda-permissions.jpeg)

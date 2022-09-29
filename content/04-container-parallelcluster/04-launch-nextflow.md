@@ -96,11 +96,11 @@ The output of the job will be in the `nextflow_[SLURM_JOB_ID].out` file and simi
 
 {{% notice warning  %}}
 There was a previous error with this tutorial that had the wrong github url
-`https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh`
+`https://github.com/aws-samples/aws-hpc-tutorials/blob/sc22/static/scripts/post-install/container-install.sh`
 This was resolved in [#260](https://github.com/aws-samples/aws-hpc-tutorials/pull/260).
 If you hit this error you can debug it by looking at the **Logs** tab and looking at the **cloud-init-output** log of one of the compute nodes like so:
 ![Logs Tab](/images/container-pc/pcm-logs.png)
-To resolve this, update the cluster to use the url `https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/isc22/static/scripts/post-install/container-install.sh`
+To resolve this, update the cluster to use the url `https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/sc22/static/scripts/post-install/container-install.sh`
 {{% /notice %}}
 
 You have now run a basic genomics pipeline and you won't need the cluster in the next labs.

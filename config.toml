@@ -18,6 +18,7 @@ disableSearch = false
 disableAssetsBusting = false
 disableLanguageSwitchingButton = true
 disableShortcutsTitle = false
+tutorialDate = "November 14th 2022"
 
 
 [outputs]

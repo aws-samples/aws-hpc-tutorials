@@ -1,6 +1,6 @@
 ---
 title: "Updates"
-date: 2019-09-18T10:50:17-04:00
+date: 2022-09-29T14:41:06Z
 draft: false
 weight: 20
 ---
@@ -11,7 +11,7 @@ Frequently asked questions will be addressed on this page during the tutorial. D
 
 #### Accounts access
 
-Sandbox are available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.
+Sandbox are available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at sc22tutorial@amazon.com so we can follow-up with you.
 
 #### Check if your are on AWS Cloud9 or the head node of the HPC Cluster
 

@@ -39,7 +39,7 @@ In this lab you will run a basic pipeline for quantification of genomic features
 
 You will be deploying the below architecture as part of this lab:
 
-![AWS BATCH](/images/aws-batch/ISC22/lab4-intro-arch.png)
+![AWS BATCH](/images/aws-batch/SC22/lab4-intro-arch.png)
 
 This includes the following steps:
 

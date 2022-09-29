@@ -5,9 +5,9 @@ draft: false
 weight: 10
 ---
 
-You will find here the agenda for the tutorial. An update will be made on May 29th 2022 with references to the different workshops.
+You will find here the agenda for the tutorial. An update will be made on {{< param tutorialDate >}} with references to the different workshops.
 
-### Sunday May 29th 2022
+### {{< param tutorialDate >}}
 
 | Session Kind | Time                                                                  | Topic                                                                | Speakers                                   |
 | ------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
