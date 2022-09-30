@@ -9,6 +9,6 @@ tags = ["tutorial", "ParallelCluster", "Manager"]
 
 PCluster Manager is entirely serverless. Authentication is provided through Amazon Cognito, which is why a valid email is required as part of deploying the PCluster Manager stack. Attendees at the event will be provided an initial login in the following steps.
 
-![pcluster-manager-arch](/images/isc22/pcm-arch.png)
+![pcluster-manager-arch](/images/sc22/pcm-arch.png)
 
 Proceed to the next page to start using PCluster Manager and create clusters with the AWS ParallelCluster API. 

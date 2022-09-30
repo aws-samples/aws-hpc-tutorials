@@ -6,7 +6,7 @@ weight = 60
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Skip this step if you are doing the labs during the ISC22 event.
+Skip this step if you are doing the labs during the SC22 event.
 
 
 Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or as directed by your trainer. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
