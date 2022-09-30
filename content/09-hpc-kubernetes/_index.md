@@ -1,7 +1,7 @@
 ---
 title: "HPC on Kubernetes"
 date: 2022-09-21T09:05:54Z
-weight: 60x
+weight: 60
 pre: "<b>Lab IV ⁃ </b>"
 tags: ["HPC", "Overview", "Kubernetes"]
 ---
