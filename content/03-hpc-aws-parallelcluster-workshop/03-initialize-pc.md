@@ -19,17 +19,17 @@ Your HPC cluster configuration will need network information such as VPC ID, Sub
 To ease the setup, you will use a script for settings of those parameters.
 If you have time and are curious, you can examine the different steps of the script.
 
-1. Retrieve the script.
+#### 1. Retrieve the script.
 ```bash
 curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/SC22_create_parallelcluster_config.sh
 ```
 
-2. Execute the script to retrieve network information.
+#### 2. Execute the script to retrieve network information.
 ```bash
 source ./SC22_create_parallelcluster_config.sh
 ```
 
-3. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost
+#### 3. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost.
 ```bash
 b64key=$(base64 ~/.ssh/${SSH_KEY_NAME})
 aws secretsmanager create-secret --name ${SSH_KEY_NAME} \
