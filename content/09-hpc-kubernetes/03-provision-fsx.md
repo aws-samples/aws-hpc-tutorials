@@ -8,7 +8,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 In this section, you will deploy the FSx CSI driver and create a Kubernetes storage class for FSx. You will then create a persistent volume claim using the storage clas, which will dynamically provision an FSx volume.
 
 
-1. Create FSx policy
+#### 1. Create FSx policy
 
 Copy the following policy document into a file named `fsx-policy.json`
 
@@ -42,7 +42,7 @@ POLICY_ARN=$(aws iam create-policy --policy-name fsx-csi --policy-document file:
 echo "POLICY_ARN=$POLICY_ARN"
 ```
 
-2. Attach policy to node instance profile
+#### 2. Attach policy to node instance profile
 
 This is necessary to allow the nodes of your cluster to mount FSx volumes.
 
@@ -54,7 +54,7 @@ role_name=$(aws iam get-instance-profile --instance-profile-name $instance_profi
 aws iam attach-role-policy --policy-arn ${POLICY_ARN} --role-name ${role_name}
 ```
 
-3. Create security group 
+#### 3. Create security group 
 
 Create a security group that allows TCP traffic on port 988 for FSx
 
@@ -67,7 +67,7 @@ SECURITY_GROUP_ID=$(aws ec2 create-security-group --vpc-id ${VPC_ID} --region us
 aws ec2 authorize-security-group-ingress --group-id ${SECURITY_GROUP_ID} --region us-east-2 --protocol tcp --port 988 --cidr ${SUBNET_CIDR}
 ```
 
-4. Deploy FSx CSI Driver
+#### 4. Deploy FSx CSI Driver
 
 The following command deploys the FSx Container Storage Interface driver to your cluster:
 
@@ -75,7 +75,7 @@ The following command deploys the FSx Container Storage Interface driver to your
 kubectl apply -k "github.com/kubernetes-sigs/aws-fsx-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
 ```
 
-5. Create storage class
+#### 5. Create storage class
 
 Execute the following snippet to generate the storage class manifest (`fsx-storage-class.yaml`) and then apply it to the cluster
 
@@ -107,7 +107,7 @@ fsx-sc          fsx.csi.aws.com         Delete          Immediate              f
 gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  16h
 ```
 
-6. Dynamically provision FSx volume
+#### 6. Dynamically provision FSx volume
 
 Copy the persistent volume claim manifest below into a file named `fsx-pvc.yaml`:
 
