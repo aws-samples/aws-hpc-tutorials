@@ -1,7 +1,7 @@
 +++
-title = "e. Run network latency tests"
+title = "f. Run network latency tests"
 date = 2022-09-28T10:46:30-04:00
-weight = 80
+weight = 60
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 

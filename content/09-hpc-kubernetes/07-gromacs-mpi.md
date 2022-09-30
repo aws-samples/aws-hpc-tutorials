@@ -1,7 +1,7 @@
 +++
-title = "f. Run Gromacs MPI job"
+title = "g. Run Gromacs MPI job"
 date = 2022-09-28T10:46:30-04:00
-weight = 80
+weight = 70
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
