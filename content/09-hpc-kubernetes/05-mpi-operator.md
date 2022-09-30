@@ -1,7 +1,7 @@
 +++
-title = "d. Deploy MPI Operator"
+title = "e. Deploy MPI Operator"
 date = 2022-09-28T10:46:30-04:00
-weight = 80
+weight = 50
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
