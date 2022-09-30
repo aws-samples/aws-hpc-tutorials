@@ -20,7 +20,7 @@ This lab requires a Kubernetes cluster. If you are working on this lab as part o
 {{% /notice %}}
 -->
 
-In this lab, you will learn how to use container orchestrators like **Amazun EKS** and deploy an architecture for high-performance molecular dynamics. Specifically, you wil run a pipeline for modeling the molecular dynamics of lisozome in water ```Lowell TODO: ensure accuracy, expand as needed```, implemented with [Gromacs](https://www.gromacs.org/). 
+In this lab, you will learn how to use container orchestrators like **Amazon EKS** and deploy an architecture for high-performance molecular dynamics. Specifically, you will run a pipeline for modeling the molecular dynamics of lisozome in water ```Lowell TODO: ensure accuracy, expand as needed```, implemented with [Gromacs](https://www.gromacs.org/). 
 
 You will be deploying the below architecture as part of this lab:
 
