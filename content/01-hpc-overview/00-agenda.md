@@ -5,21 +5,22 @@ draft: false
 weight: 10
 ---
 
-You will find here the agenda for the tutorial. An update will be made on May 29th 2022 with references to the different workshops.
+You will find here the agenda for the tutorial. An update will be made on {{< param tutorialDate >}} with references to the different workshops.
 
-### Sunday May 29th 2022
+### {{< param tutorialDate >}}
 
-| Session Kind | Time                                                                  | Topic                                                                | Speakers                                   |
-| ------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
-| Talk         | 09:00AM - 09:10AM                                                     | Welcome and Introduction                                             | Maxime Hugues                              |
-| Talk         | 09:10AM - 10:00AM                                                     | Modern Cloud Architectures                                           | Francesco Ruffino                          |
-| *Lab 1*      | 10:00AM - 11:00AM                                                     | Create a HPC cluster in the Cloud                                    | Francesco Ferrari /  Nicola Venuti         |
-| 30 Min Break | 11:00AM - 11:30AM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| Talk         | 11:30AM - 12:30PM                                                     | Deep Dive Compute, Network, Storage                                  | Pierre-Yves Aquilanti                      |
-| *Lab 2*      | 12:30PM - 01:00PM                                                     | Container on your HPC cluster                                        | Sean Smith                                 |
-| 01h00 Break  | 01:00PM - 02:00PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| Talk         | 02:00PM - 03:00PM                                                     | Repeatability in the Cloud                                           | Maxime Hugues                              |
-| *Lab 3*      | 03:00PM - 04:00PM	                                                   | Automation, CI/CD & container orchestrators                          | Francesco Ruffino                          |
-| 30 Min Break | 04:00PM - 04:30PM                                                     | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--- | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
-| *Lab 4*      | 04:30PM - 05:30PM	                                                   | Simulation on an container orchestrator                              | Francesco Ruffino / Maxime Hugues          |
-| Closing      | 05:30PM - 06:00PM	                                                   | Summary and Q&A                                                      | Team                                       |
+| Session Kind | Time                | Topic                                                                             | Speakers                     |
+| ------------ | ------------------- | ---------------------------------------------------------------------------       | ---------------------------- |
+| Talk         | 08:00AM - 08:10AM   | Welcome and Introduction                                                          | Maxime Hugues                |
+| Talk         | 08:10AM - 09:00AM   | Modern Cloud Architectures                                                        | Francesco Ruffino            |
+| *Lab 1*      | 09:00AM - 10:00AM   | Build your HPC System in the Cloud, run WRF and remote visualization              | Kelly Warner / Timothy Brown |
+| 30 Min Break | 10:00AM - 10:30AM   | _Morning Break_                                                                   | \-\-\-\-\-\-\-\-\-\-\-\-     |
+| Talk         | 10:30AM - 11:15AM   | Deep dive on Compute and Orchestration                                            | Pierre-Yves Aquilanti        |
+| *Lab 2*      | 11:15AM - 12:00PM   | Managed Lustre and long term storage integration using object Object Storage      | Karthik Raman                |
+| 01h30 Break  | 12:00PM - 01:30PM   | _Lunch_                                                                           | \-\-\-\-\-\-\-\-\-\-\-\-     |
+| Talk         | 01:30PM - 02:15PM   | Repeatability: integration pipelines, monitoring and troubleshooting in the cloud | Maxime Hugues                |
+| *Lab 3*      | 02:15PM - 03:00PM   | Automation, CI/CD & container orchestrators                                       | Lowell Wofford               |
+| 30 Min Break | 03:00PM - 03:30PM   | _Afternoon Break_                                                                 | \-\-\-\-\-\-\-\-\-\-\-\-     |
+| Talk         | 03:30PM - 04:15PM   | Kubernetes for HPC in the cloud                                                   | Alex Iankoulski              |
+| *Lab 4*      | 04:15PM - 04:50PM   | EKS + Serverless lab. It can be AWS Batch + EKS                                   | Alex Iankoulski              |
+| Closing      | 04:50PM - 05:00PM   | Summary and Q&A                                                                   | Team                         |
