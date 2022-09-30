@@ -24,13 +24,14 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 
 For now, paste the following commands in your terminal:
 
-1. Let us first makes sure all the required environment vairables from the previous section are set, Source the **env_vars** file generated in your working directory previously
+#### 1. Source the env_vars file.
+This makes sure all the required environment vairables from the previous section are set.
 
 ```bash
 source env_vars
 ```
 
-2. You can have a look at them by running:
+#### 2. You can have a look at them by running:
 
 ```bash
 echo ${AWS_REGION}
@@ -41,7 +42,7 @@ echo ${SUBNET_ID}
 echo ${CUSTOM_AMI}
 ```
 
-3. Retrieve NCAR WRF v4 AMI
+#### 3. Retrieve NCAR WRF v4 AMI.
 
 NCAR provides an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
 You will leverage this AMI to run WRF on a test case in the next section of this lab.
@@ -58,7 +59,7 @@ CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
 ```
 
 
-4. Build the custom config file for ParallelCluster
+#### 4. Build the custom config file for ParallelCluster.
 
 ```bash
 cat > my-cluster-config.yaml << EOF
