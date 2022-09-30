@@ -1,5 +1,5 @@
 +++
-title = "a. Provision EKS cluster"
+title = "b. Provision EKS cluster"
 date = 2022-09-28T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "hpc", "Kubernetes"]
