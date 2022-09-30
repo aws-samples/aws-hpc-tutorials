@@ -2,7 +2,7 @@
 title: ""
 weight: 10
 date: 2019-01-24T09:05:54Z
-pre: "<b>ISC22 Tutorial Resources</b>"
+pre: "<b>SC22 Tutorial Resources</b>"
 ---
 
 Here is short reminder of the important links of this section:
