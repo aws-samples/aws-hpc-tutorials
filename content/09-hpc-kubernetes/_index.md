@@ -1,14 +1,10 @@
 ---
 title: "HPC on Kubernetes"
 date: 2022-09-21T09:05:54Z
-weight: 60
+weight: 60x
 pre: "<b>Lab IV ⁃ </b>"
 tags: ["HPC", "Overview", "Kubernetes"]
 ---
-
-<!--
-**HPC jobs on Kubernetes**
--->
 
 {{% notice info %}}
 This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop

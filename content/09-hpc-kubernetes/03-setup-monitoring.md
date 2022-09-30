@@ -59,13 +59,13 @@ Open two new terminal windows.
 In the first terminal window open a shell into the first htop pod.
 
 ```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- bash
+kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- sh
 ```
 
 In the second terminal window open a shell into the second htop pod.
 
 ```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- bash
+kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- sh
 ```
 
 In each of the pod shells execute the command `htop`
@@ -74,4 +74,4 @@ In each of the pod shells execute the command `htop`
 
 At this point you should have four terminals open. Use drag and drop to arrange them in a way that allows you to see all of them at the same time. A recommended layout is shown below.
 
-TODO: Add image here
+![Interactive Monitoring](/images/aws-eks/interactive-monitoring.png)
