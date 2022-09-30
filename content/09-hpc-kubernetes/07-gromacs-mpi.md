@@ -7,7 +7,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will run a Gromacs MPI job distributed between two nodes in your Kubernetes cluster.
 
-1. Create MPIJob manifest
+####  1. Create MPIJob manifest
 
 Copy the MPIJob manifest below into a file named `gromacs-mpi.yaml`, 
 
@@ -118,7 +118,7 @@ Replace {IMAGE} with the Gromacs container image URI that you pushed to ECR in t
 sed -i "s#{IMAGE}#${IMAGE}#g" ./gromacs-mpi.yaml
 ```
 
-2. Run the Gromacs MPIJob
+####  2. Run the Gromacs MPIJob
 
 ```
 kubectl apply -f ./gromacs-mpi.yaml
@@ -153,7 +153,7 @@ Also notice the running pods and the CPU utilization in your monitoring terminal
 ![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)
 
 
-3. Check output files in FSx volume
+####  3. Check output files in FSx volume
 
 Once the job is completed the output files are in the FSx volume. To check that we will mount the volume in a new pod and open a shell in that pod.
 

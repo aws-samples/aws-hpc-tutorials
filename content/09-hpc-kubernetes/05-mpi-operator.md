@@ -7,7 +7,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will deploy the Kubeflow MPI operator to your Kubernetes cluster. 
 
-1. Deploy Kubeflow MPI oparator
+####  1. Deploy Kubeflow MPI oparator
 
 The Kubeflow MPI operator allows running tightly-coupled workloads on Kubernetes. It creates the MPIJob custom resource definition in your cluster. It also deploys a custom controller that handles MPIJobs.
 
@@ -15,7 +15,7 @@ The Kubeflow MPI operator allows running tightly-coupled workloads on Kubernetes
 kubectl apply -f https://raw.githubusercontent.com/kubeflow/mpi-operator/v0.3.0/deploy/v2beta1/mpi-operator.yaml
 ```
 
-2. Check operator deployment
+####  2. Check operator deployment
 
 To check MPI operator is deployed successfully execute the following command
 

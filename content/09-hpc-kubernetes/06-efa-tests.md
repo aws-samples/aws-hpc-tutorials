@@ -7,7 +7,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will run OSU latency benchmarks to compare network speed with and without Elastic Fabric Adapter.  
 
-1. Run test with sockets provider
+####  1. Run test with sockets provider
 
 Copy the MPIJob manifest below into a file named `osu-latency-sockets.yaml`, 
 
@@ -138,7 +138,7 @@ You should see results similar to the ones below
 4194304              2520.77
 ```
 
-2. Run test with efa provider
+####  2. Run test with efa provider
 
 Copy the MPIJob manifest below into a file named `osu-latency-efa.yaml`, 
 
