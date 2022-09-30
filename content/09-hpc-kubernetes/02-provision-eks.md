@@ -30,7 +30,7 @@ availabilityZones:
 iam:
   withOIDC: true
 
-nodeGroups:
+managedNodeGroups:
   - name: c5n-18xl
     instanceType: c5n.18xlarge
     instancePrefix: c5n-18xl
