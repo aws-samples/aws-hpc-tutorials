@@ -6,7 +6,6 @@ draft: false
 
 # SC22 Tutorial
 
-<<<<<<< HEAD
 Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC22 that will be delivered on {{< param tutorialDate >}} . We are excited to meet you, and look forward to answering your questions!
 The website will be maintained after SC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
