@@ -35,7 +35,7 @@ sinfo
 
 Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:
 
-Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
+Look for "SUCCESS COMPLETE WRF" at the end of the rsl.out.0000 file.
 
 ![wrf output](/images/hpc-aws-parallelcluster-workshop/wrf-rsl-out-0000.png)
 
