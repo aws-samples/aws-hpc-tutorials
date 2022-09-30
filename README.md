@@ -22,6 +22,15 @@ brew install hugo
 ```bash
 hugo serve -D
 ```
+or
+
+If you have Docker installed, alternatively to point 2 and 3 above, you could just execute
+
+```
+./run.sh
+```
+
+and point your browser to [http://localhost:1313](http://localhost:1313)
 
 ### Update Theme
 

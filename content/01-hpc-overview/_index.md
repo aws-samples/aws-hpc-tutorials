@@ -1,6 +1,7 @@
 ---
 title: ""
 weight: 10
+<<<<<<< HEAD
 date: 2022-09-29T14:41:06Z
 pre: "<b>SC22 Tutorial Resources</b>"
 ---
