@@ -24,9 +24,9 @@ If you have time and are curious, you can examine the different steps of the scr
 curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/SC22_create_parallelcluster_config.sh
 ```
 
-2. Append the contents of the created environment variables file to your bash rc file, so they are always set.
+2. Execute the script to retrieve network information.
 ```bash
-cat env_vars >> ~/.bashrc
+source ./SC22_create_parallelcluster_config.sh
 ```
 
 3. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost
