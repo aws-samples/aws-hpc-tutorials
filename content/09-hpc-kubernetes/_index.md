@@ -1,7 +1,7 @@
 ---
 title: "HPC on Kubernetes"
 date: 2022-09-21T09:05:54Z
-weight: 60
+weight: 60x
 pre: "<b>Lab IV ⁃ </b>"
 tags: ["HPC", "Overview", "Kubernetes"]
 ---
@@ -20,7 +20,7 @@ This lab requires a Kubernetes cluster. If you are working on this lab as part o
 {{% /notice %}}
 -->
 
-In this lab, you will learn how to use container orchestrators like AWS EKS and deploy an architecture for high-performance molecular dynamics. Specifically, you wil run a pipeline for modeling the molecular dynamics of lisozome in water ```Lowell TODO: ensure accuracy, expand as needed```, implemented with [Gromacs](https://www.gromacs.org/). 
+In this lab, you will learn how to use container orchestrators like **Amazun EKS** and deploy an architecture for high-performance molecular dynamics. Specifically, you wil run a pipeline for modeling the molecular dynamics of lisozome in water ```Lowell TODO: ensure accuracy, expand as needed```, implemented with [Gromacs](https://www.gromacs.org/). 
 
 You will be deploying the below architecture as part of this lab:
 

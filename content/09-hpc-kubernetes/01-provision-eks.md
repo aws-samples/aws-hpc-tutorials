@@ -13,7 +13,7 @@ In this section, you will create a new EKS cluster in your account.
 1.1. `eksctl` - command line utility for provisioning and management of EKS clusters
 
 ```bash
-curl --location "https://github.com/weaveworks/eksctl/releases/download/v0.106.0/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+curl --location "https://github.com/weaveworks/eksctl/releases/download/v0.112.0/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
@@ -27,6 +27,12 @@ sudo mv ./kubectl /usr/local/bin
 kubectl version --client --short
 ```
 
+1.3. `jq` - command line utility for parsing json 
+
+```bash
+sudo yum install -y jq
+```
+
 2. Create a cluster manifest
 
 Copy and paste the following content into a file named `eks-hpc.yaml`
@@ -38,11 +44,11 @@ kind: ClusterConfig
 metadata:
   name: eks-hpc
   version: "1.21"
-  region: us-east-1
+  region: us-east-2
 
 availabilityZones:
-  - us-east-1a
-  - us-east-1b
+  - us-east-2a
+  - us-east-2b
 
 iam:
   withOIDC: true
@@ -52,12 +58,12 @@ managedNodeGroups:
     instanceType: c5n.18xlarge
     instancePrefix: c5n-18xl
     privateNetworking: true
-    availabilityZones: ["us-east-1a"]
+    availabilityZones: ["us-east-2a"]
     efaEnabled: true
     minSize: 0
     desiredCapacity: 2
     maxSize: 10
-    volumeSize: 900
+    volumeSize: 300
     iam:
       withAddonPolicies:
         autoScaler: true
@@ -74,7 +80,7 @@ Note: It takes about 20 minutes to provision a new cluster.
 Upon successful completion, you will see a log line similar to this:
 
 ```
-2022-09-29 03:34:37 [✔]  EKS cluster "eks-hpc" in "us-east-1" region is ready
+2022-09-29 03:34:37 [✔]  EKS cluster "eks-hpc" in "us-east-2" region is ready
 ```
 
 4. Access cluster API
@@ -98,6 +104,6 @@ ip-192-168-86-17.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
 If your kubectl client is unable to connect to the cluster, you may try to update the connection information by executing the command below, then try accessing the cluster API again.
 
 ```bash
-aws eks update-kubeconfig --name eks-hpc --region us-east-1
+aws eks update-kubeconfig --name eks-hpc --region us-east-2
 ```
 

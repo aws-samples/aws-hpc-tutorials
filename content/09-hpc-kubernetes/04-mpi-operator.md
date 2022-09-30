@@ -24,3 +24,7 @@ kubectl get pods -A | grep mpi
 ```
 
 You should see the MPI operator controller pod in Running state.
+
+```text
+mpi-operator   mpi-operator-65d47d6d67-zfb7z               1/1     Running   0          9s
+```
