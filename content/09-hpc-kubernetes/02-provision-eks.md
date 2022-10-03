@@ -14,7 +14,7 @@ The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS 
 Let's create the manifest file by pasting the following commands into the Cloud9 terminal:
 
 ```bash
-cat > ~/eks-hpc.yaml << EOF
+cat > ~/environment/eks-hpc.yaml << EOF
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -56,7 +56,7 @@ Notice the `efaEnabled` flag in the manifest file. It will ask `eksctl` to creat
 It will take ~10 minutes to create the Kubernetes control plane and ~10 minutes to create the node group, in total ~20 minutes.
 
 ```
-eksctl create cluster -f ~/eks-hpc.yaml
+eksctl create cluster -f ~/environment/eks-hpc.yaml
 ```
 
 Upon successful completion, you will see a log line similar to this:

@@ -39,7 +39,7 @@ SUBNET_ID=`aws eks describe-nodegroup --cluster-name eks-hpc --nodegroup-name "c
 Execute the following snippet to generate the storage class manifest (`fsx-storage-class.yaml`) and then apply it to the cluster
 
 ```bash
-cat > ~/fsx-storage-class.yaml << EOF
+cat > ~/environment/fsx-storage-class.yaml << EOF
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -54,7 +54,7 @@ EOF
 ```
 
 ```bash
-kubectl apply -f ~/fsx-storage-class.yaml
+kubectl apply -f ~/environment/fsx-storage-class.yaml
 ```
 
 To verify that the storage class is create successfully, execute:
@@ -76,7 +76,7 @@ gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   f
 Copy the persistent volume claim manifest below into a file named `fsx-pvc.yaml`:
 
 ```bash
-cat > ~/fsx-pvc.yaml << EOF
+cat > ~/environment/fsx-pvc.yaml << EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -96,7 +96,7 @@ Create a namespace `gromacs` in your cluster and a persistent volume claim `fsx-
 
 ```bash
 kubectl create namespace gromacs
-kubectl apply -f ~/fsx-pvc.yaml
+kubectl apply -f ~/environment/fsx-pvc.yaml
 ```
 
 Select the persistent volume claim to check its status
