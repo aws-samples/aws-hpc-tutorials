@@ -10,7 +10,7 @@ In this section, you will lean how to interactively watch the running pods in yo
 
 #### 1. Deploy `htop` daemonset
 
-We will use `htop` pods running on each node to interactively monitor CPU utilization.
+You will use `htop` pods running on each node to interactively monitor CPU utilization.
 
 Copy the daemonset manifest below into a file named `htop-daemonset.yaml`
 
