@@ -14,12 +14,13 @@ The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS 
 Let's create the manifest file by pasting the following commands into the Cloud9 terminal:
 
 ```bash
+EKS_CLUSTER_NAME="eks-hpc"
 cat > ~/environment/eks-hpc.yaml << EOF
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: eks-hpc
+  name: ${EKS_CLUSTER_NAME}
   version: "1.21"
   region: us-east-2
 
@@ -86,6 +87,6 @@ ip-192-168-86-17.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
 If your kubectl client is unable to connect to the cluster, you may try to update the connection information by executing the command below, then try accessing the cluster API again.
 
 ```bash
-aws eks update-kubeconfig --name eks-hpc --region ${AWS_REGION}
+aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
 ```
 

@@ -25,13 +25,13 @@ kubectl apply -k "github.com/kubernetes-sigs/aws-fsx-csi-driver/deploy/kubernete
 Create a security group that allows TCP traffic on port 988 for FSx
 
 ```bash
-SECURITY_GROUP_ID=`aws eks describe-cluster --name eks-hpc --query cluster.resourcesVpcConfig.clusterSecurityGroupId --region ${AWS_REGION}`
+SECURITY_GROUP_ID=`aws eks describe-cluster --name ${EKS_CLUSTER_NAME} --query cluster.resourcesVpcConfig.clusterSecurityGroupId --region ${AWS_REGION}`
 ```
 
 #### 3. Retrieve subnet id of node group
 
 ```bash
-SUBNET_ID=`aws eks describe-nodegroup --cluster-name eks-hpc --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} | jq -r '.[]'`
+SUBNET_ID=`aws eks describe-nodegroup --cluster-name ${EKS_CLUSTER_NAME} --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} | jq -r '.[]'`
 ```
 
 #### 4. Create storage class
