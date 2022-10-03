@@ -31,9 +31,8 @@ SECURITY_GROUP_ID=`aws eks describe-cluster --name eks-hpc --query cluster.resou
 #### 3. Retrieve subnet id of node group
 
 ```bash
-aws eks describe-nodegroup --cluster-name eks-hpc --nodegroup-name "c5n-18xl" --region ${AWS_REGION} 
+SUBNET_ID=`aws eks describe-nodegroup --cluster-name eks-hpc --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} | jq -r '.[]'`
 ```
-
 
 #### 4. Create storage class
 
@@ -47,7 +46,7 @@ metadata:
   name: fsx-sc
 provisioner: fsx.csi.aws.com
 parameters:
-  subnetId: ${subnet_id}
+  subnetId: ${SUBNET_ID}
   securityGroupIds: ${SECURITY_GROUP_ID}
   deploymentType: SCRATCH_2
   storageType: SSD
