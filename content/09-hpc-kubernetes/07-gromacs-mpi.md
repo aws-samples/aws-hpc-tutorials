@@ -5,20 +5,21 @@ weight = 70
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will run a Gromacs MPI job distributed between two nodes in your Kubernetes cluster.
+In this section, you will run a Gromacs MPI job distributed between two c5n.18xlarge nodes in your Kubernetes cluster.
 
 ####  1. Create MPIJob manifest
 
 Copy the MPIJob manifest below into a file named `gromacs-mpi.yaml`, 
 
-```yaml
+```bash
+cat > ~/environment/gromacs-mpi.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
   name: gromacs-mpi
   namespace: gromacs
 spec:
-  slotsPerWorker: 1
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -36,14 +37,14 @@ spec:
             persistentVolumeClaim:
               claimName: fsx-pvc
           initContainers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             name: init
             command: ["sh", "-c", "cp /inputs/* /data; sleep 5"]
             volumeMounts:
             - name: data
               mountPath: /data
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: gromacs-mpi-launcher
             volumeMounts:
@@ -93,7 +94,7 @@ spec:
             persistentVolumeClaim:
               claimName: fsx-pvc
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: gromacs-mpi-worker
             volumeMounts:
@@ -110,23 +111,18 @@ spec:
                 hugepages-2Mi: 5120Mi
                 vpc.amazonaws.com/efa: 1
                 memory: 8000Mi
-```
-
-Replace {IMAGE} with the Gromacs container image URI that you pushed to ECR in the previous lab.
-
-```
-sed -i "s#{IMAGE}#${IMAGE}#g" ./gromacs-mpi.yaml
+EOF
 ```
 
 ####  2. Run the Gromacs MPIJob
 
-```
+```bash
 kubectl apply -f ./gromacs-mpi.yaml
 ```
 
 Follow the launcher logs as soon as the pod enters the Running state
 
-```
+```bash
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep gromacs-mpi-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
@@ -159,7 +155,8 @@ Once the job is completed the output files are in the FSx volume. To check that 
 
 Copy the pod manifest below into a file named `fsx-data.yaml`
 
-```yaml
+```bash
+cat > ~/environment/fsx-data.yaml << EOF
 apiVersion: v1
 kind: Pod
 metadata:
@@ -178,12 +175,13 @@ spec:
   - name: data
     persistentVolumeClaim:
       claimName: fsx-pvc
+EOF
 ```
 
 Create the pod.
 
 ```bash
-kubectl apply -f ./fsx-data.yaml
+kubectl apply -f ~/environment/fsx-data.yaml
 ```
 
 Once the pod is in Running state, open a shell into it
@@ -193,14 +191,14 @@ kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep fsx-data | head
 ```
 
 Describe the volumes mounted in the pod
-```
+```bash
 df -h
 ```
 Notice the FSx volume is mounted under `/data`.
 
 Check that the output data from the Gromacs MPI job is in the `/data` directory.
 
-```
+```bash
 ls -alh /data
 ```
 
