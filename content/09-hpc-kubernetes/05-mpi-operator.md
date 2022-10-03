@@ -5,7 +5,10 @@ weight = 50
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will deploy the Kubeflow MPI operator to your Kubernetes cluster. 
+In this section, you will deploy the Kubeflow MPI operator to your Kubernetes cluster.
+MPI Operator provides a common Custom Resource Definition (CRD) for defining single or parallel job. It takes care of creating the hostfile, generate ssh keys, wait the worker pods to be ready and launch the job.
+You can read more about how the MPI Operator works in the [ Kubeflow page](https://github.com/kubeflow/mpi-operator/blob/master/proposals/scalable-robust-operator.md#background). The operator currently supports Open MPI and Intel MPI trough the `mpiImplementation` variable that can be set to `OpenMPI` or `Intel`.
+You will use Open MPI with GROMACS for this lab.
 
 ####  1. Deploy Kubeflow MPI oparator
 
@@ -20,7 +23,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeflow/mpi-operator/v0.3.0/
 To check MPI operator is deployed successfully execute the following command
 
 ```bash
-kubectl get pods -A | grep mpi
+kubectl get pods -n mpi-operator
 ```
 
 You should see the MPI operator controller pod in Running state.
