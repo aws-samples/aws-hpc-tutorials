@@ -42,10 +42,10 @@ The last version of the tutorial slides are available in your Tutorial attendee 
 Throughout the tutorial you will be going through the following labs:
 
 1. **[Lab 0: Preparation](/01-hpc-overview/00-agenda.html)**: It has to be done before running the first lab. It will grant you access to a web-based development environment and terminals. This ensure that every one can run the labs regardless of their operating system.
-2. **[Lab 1: Create an HPC Cluster](/03-hpc-aws-parallelcluster-workshop.html)**: You will be lead to create your first HPC system in the Cloud and run a tightly coupled application, WRF.
-3. **[Lab 2: Containers on AWS ParallelCluster](/04-container-parallelcluster.html)**: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud.
-4. **[Lab 3: Container Building Automation](/05-cicd-pipeline.html)**: You will learn to create a pipeline to automatically build a container upcon code changes.
-5. **[Lab 4: HPC on Kubernetes](/09-hpc-kubernetes.html)**: You will learn how to use container orchestrators like AWS EKS to deploy and run HPC workloads on Kubernetes.
+2. **[Lab 1: Create an HPC cluster](/03-hpc-aws-parallelcluster-workshop.html)**: You will be lead to create your first HPC system in the Cloud and run a tightly coupled application, WRF.
+3. **[Lab 2: FSx for lustre and S3](/08-fsx-lustre.html)**: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud.
+4. **[Lab 3: Container building automation](/05-cicd-pipeline.html)**: You will learn to create a pipeline to automatically build a container upcon code changes.
+5. **[Lab 4: HPC on kubernetes](/09-hpc-kubernetes.html)**: You will learn how to use container orchestrators like AWS EKS to deploy and run HPC workloads on Kubernetes.
 
 
 #### Accessing Your Lab Account
