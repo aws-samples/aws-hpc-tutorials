@@ -20,7 +20,9 @@ pwd # should be MyDemoRepo
 The **inputs/** files contain a set of default inputs that we will use.  These files will be used to execute the "Lysozyme in Water" example described on the [GROMACS tutorials website](http://www.mdtutorials.com/gmx/lysozyme/index.html).
 
 ```bash
-aws s3 cp -r s3://sc22-hpc-labs/gromacs/inputs .
+mkdir inputs
+curl -o inputs/md_0_1.tpr https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/md_0_1.tpr
+curl -o inputs/topol.top https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/topol.top
 ```
 
 3. Add the **entrypoint.sh** script. This script will execute by default at the beginning of any container run to configure the container environment.
