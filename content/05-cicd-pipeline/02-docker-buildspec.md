@@ -30,6 +30,7 @@ cat > spack.yaml <<EOF
 spack:
   specs:
   - gromacs
+  - osu-micro-benchmarks
   packages:
     all:
       target: [ x86_64_v4 ]
@@ -61,4 +62,4 @@ ENTRYPOINT [ "/bin/bash", "-l" ]
 EOF
 ```
 
-You will use automated CICD pipeline tools to build the container image. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM] (https://aws.amazon.com/iam/) while having elevated privileges. The following step will guide you on how to setup the pipeline.
+You will use automated CICD pipeline tools to build the container image. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM](https://aws.amazon.com/iam/) while having elevated privileges. The following step will guide you on how to setup the pipeline.
