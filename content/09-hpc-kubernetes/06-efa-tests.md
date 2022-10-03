@@ -28,7 +28,7 @@ metadata:
   name: test-osu-latency-sockets
   namespace: gromacs
 spec:
-  slotsPerWorker: 72
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -160,7 +160,7 @@ metadata:
   name: test-osu-latency-efa
   namespace: gromacs
 spec:
-  slotsPerWorker: 1
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
