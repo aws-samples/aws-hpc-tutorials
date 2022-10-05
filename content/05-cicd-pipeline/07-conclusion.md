@@ -9,4 +9,4 @@ Congratulations! You built a CI/CD pipeline uisng CodePipeline.
 
 Your pipeline began with code in CodeCommit, built a Docker container and pushed the image to Elastic Container Registry (ECR) using CodeBuild.
 
-In the next lab, you will learn about container orchestration and how to deploy your container on Kubernetes using [Amazon EKS](https://aws.amazon.com/eks/) to run a tightly-coupled simulation workflow.
+In the next lab, you will learn about container orchestration and how to deploy your container on Kubernetes using [Amazon EKS](https://aws.amazon.com/eks/) to run a tightly-coupled GROMACS simulation.

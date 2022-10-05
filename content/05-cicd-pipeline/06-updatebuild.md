@@ -41,7 +41,7 @@ export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 cp /inputs/* /data
 cd /data
 
-"${@}"
+"\${@}"
 EOF
 ```
 
@@ -133,4 +133,4 @@ Once the build has completed you should be able to see that a container exists i
 
 You should see an entry like:
 
-**SCREENSHOT MISSING**
+![AWS CodePipeline](/images/cicd/updatebuild-1.png)
