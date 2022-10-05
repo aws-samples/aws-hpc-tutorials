@@ -61,5 +61,94 @@ RUN spack env activate --sh -v -d /opt/spack-environment > /etc/profile.d/z10_sp
 ENTRYPOINT [ "/bin/bash", "-l" ]
 EOF
 ```
+Before you move on to building an automated CICD pipeline, you will build and run the container and push it to an [Elastic Container Registry](https://aws.amazon.com/ecr/) (ECR) container repository.
 
-You will use automated CICD pipeline tools to build the container image. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM](https://aws.amazon.com/iam/) while having elevated privileges. The following step will guide you on how to setup the pipeline.
+6. Build the Docker container.  We will use the **Dockerfile** definition we just created to build a minimum workable container with Gromacs and OpenMPI installed.
+
+```bash
+docker build . -f Dockerfile -t gromacs
+```
+
+This step will take 5-6 minutes to complete.  We will move on by creating a new terminal tab.  Click the green plus symbol in the tab list, and select **New Terminal**.
+
+![AWS CodeBuild](/images/cicd/docker-1.png)
+
+7. In the new terminal tab, create an ECR repository.
+
+```bash
+aws ecr create-repository --repository-name sc22-container
+```
+
+You will use the **repositoryUri** later to reference this repositry. Fetch and display the URI with.
+
+
+```bash
+export CONTAINER_REPOSITORY_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+echo $CONTAINER_REPOSITORY_URI
+```
+
+8. Authenticate docker to the ECR repository.
+
+For Docker to interact with Amazon ECR, you will need to authenticate to the container registry of your AWS account.
+
+The following commands will:
+- Extract the base ECR URI from the container repository URI (needed for authentication).
+- Get a single-use authentication password from ecr and pass it to **docker login** to authenticate docker.
+
+```bash
+export ECR_URI=$(echo $CONTAINER_REPOSITORY_URI | awk -F/ '{print $1}')
+aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_URI}
+```
+
+9. Test the container.
+
+At this point your container build should be close to completion.  If the container build completed successfully, you should see:
+
+```bash
+...
+Step 5/5 : ENTRYPOINT [ "/bin/bash", "-l" ]
+ ---> Running in c0b85c3d0d70
+Removing intermediate container c0b85c3d0d70
+ ---> ba0af12d9fe9
+Successfully built ba0af12d9fe9
+Successfully tagged gromacs:latest
+```
+
+If it hasn't yet completed, now is a good time to open the [ECR Console](https://us-east-2.console.aws.amazon.com/ecr/repositories) and get familiar with the console features of ECR.
+
+You will now test the container.  Run an instance of the container.
+
+```bash
+docker run -it --rm gromacs:latest
+```
+
+You will be presented with a different bash prompt.  You can inspect the installed OpenMPI and Gromacs.
+
+```bash
+bash-4.2# mpirun --version
+mpirun (Open MPI) 4.1.3
+
+Report bugs to http://www.open-mpi.org/community/help/
+bash-4.2# gmx_mpi --version
+                    :-) GROMACS - gmx_mpi, 2021.5-spack (-:
+                    ...
+```
+
+Now, exit the container.
+
+```bash
+exit
+```
+
+This will return you to the usual Cloud9 shell prompt.
+
+10. Push the docker container to the ECR repository.
+
+This will upload the container to ECR where it can be pulled by other systems.
+
+```bash
+docker tag gromacs:latest $CONTAINER_REPOSITORY_URI:latest
+docker push $CONTAINER_REPOSITORY_URI:latest
+```
+
+In the next steps, you will use automated CICD pipeline tools to build the container image and update ECR. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM](https://aws.amazon.com/iam/) while having elevated privileges. 

@@ -41,7 +41,7 @@ export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 cp /inputs/* /data
 cd /data
 
-"${@}"
+"\${@}"
 EOF
 ```
 
