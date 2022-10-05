@@ -133,4 +133,4 @@ Once the build has completed you should be able to see that a container exists i
 
 You should see an entry like:
 
-**SCREENSHOT MISSING**
+![AWS CodePipeline](/images/cicd/updatebuild-1.png)
