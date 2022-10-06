@@ -7,6 +7,11 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will install `eksctl` and `kubectl`.
 
+For the remainder of this lab, we will be working in the `environment` directory.
+
+```bash
+cd ~/environment
+```
 
 #### Install eksctl
 
