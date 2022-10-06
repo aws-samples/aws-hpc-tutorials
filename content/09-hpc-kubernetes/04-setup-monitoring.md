@@ -12,9 +12,10 @@ In this section, you will lean how to interactively watch the running pods in yo
 
 You will use `htop` pods running on each node to interactively monitor CPU utilization.
 
-Copy the daemonset manifest below into a file named `htop-daemonset.yaml`
+Create the `htop` daemonset manifest.
 
 ```yaml
+cat > htop-daemonset.yaml <<EOF
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -34,6 +35,7 @@ spec:
           image: terencewestphal/htop:latest
           command: ["/bin/sh"]
           args: ["-c", "while true; do date; sleep 10; done"]
+EOF
 ```
 
 Then apply the daemonset manifest

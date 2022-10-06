@@ -13,7 +13,8 @@ In this section, you will run the OSU ping pong benchmark to compare network lat
 Configure environment variable `IMAGE_URI` with URI of container image built in the previous lab.
 
 ```bash
-IMAGE_URI=`aws ecr describe-repositories --query repositories[].[repositoryUri] --region ${AWS_REGION} | grep "/${REPO_NAME}" | tr -d '"' | xargs`
+export IMAGE_RUI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+echo $IMAGE_URI
 ```
 
 ####  2. Run test with sockets provider
@@ -150,10 +151,10 @@ kubectl delete -f ~/environment/osu-latency-sockets.yaml
 
 ####  3. Run test with efa provider
 
-Copy the MPIJob manifest below into a file named `osu-latency-efa.yaml`, 
+Create a new MPI job manifest with Elastic Fabric Adapter support.  This will enable high-speed, low-latency networking for MPI.
 
 ```bash
-cat > << EOF
+cat > osu-latency-efa.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:

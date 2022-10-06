@@ -5,8 +5,21 @@ weight = 10
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
+#### Setting up your working environment
+
 In this section, you will install `eksctl` and `kubectl`.
 
+For the remainder of this lab, we will be working in the `environment` directory.
+
+```bash
+cd ~/environment
+```
+
+Several commands will specify the AWS region.  Export this as an environment variable that you can use through the following steps.
+
+```bash
+export AWS_REGION=us-east-2
+```
 
 #### Install eksctl
 
