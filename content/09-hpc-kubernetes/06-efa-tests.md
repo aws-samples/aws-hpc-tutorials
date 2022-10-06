@@ -151,10 +151,10 @@ kubectl delete -f ~/environment/osu-latency-sockets.yaml
 
 ####  3. Run test with efa provider
 
-Copy the MPIJob manifest below into a file named `osu-latency-efa.yaml`, 
+Create a new MPI job manifest with Elastic Fabric Adapter support.  This will enable high-speed, low-latency networking for MPI.
 
 ```bash
-cat > << EOF
+cat > osu-latency-efa.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
