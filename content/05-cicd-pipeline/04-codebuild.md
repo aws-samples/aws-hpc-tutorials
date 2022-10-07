@@ -39,8 +39,8 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/sc22-container"**. Copy without the quotes and paste in the **Value** field.
  
 ```bash
-export CONTAINER_REPOSITORY_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
-echo $CONTAINER_REPOSITORY_URI
+export IMAGE_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+echo $IMAGE_URI
 ```
 
 ![AWS CodeBuild](/images/cicd/code-build-5.png)
