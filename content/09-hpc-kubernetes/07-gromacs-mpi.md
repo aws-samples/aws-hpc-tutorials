@@ -217,7 +217,10 @@ drwxr-xr-x 1 root root   29 Sep 30 04:34 ..
 -rw-r--r-- 1 root root 797K Sep 30 04:29 md_0_1_prev.cpt
 ```
 
-You can type `exit` to close the data pod shell.
+When you are done inspecting the data files, exit the data pod shell.
+```bash
+exit
+```
 
 Congratulations, you have successfully run a tightly coupled MPI job on two nodes using Gromacs to simulate a molecular process (TODO: ... Lowell). If the output data is copied to a desktop where VMD is installed, it can be visualized with the following command:
 
