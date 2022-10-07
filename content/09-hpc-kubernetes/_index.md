@@ -11,7 +11,7 @@ tags: ["HPC", "Overview", "Kubernetes"]
 -->
 
 {{% notice info %}}
-This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop
+This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Preparation](/02-aws-getting-started.html)** section of the workshop.
 {{% /notice %}}
 
 <!--
