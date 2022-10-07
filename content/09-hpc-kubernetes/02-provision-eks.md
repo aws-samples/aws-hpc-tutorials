@@ -22,11 +22,11 @@ kind: ClusterConfig
 metadata:
   name: ${EKS_CLUSTER_NAME}
   version: "1.21"
-  region: us-east-2
+  region: ${AWS_REGION}
 
 availabilityZones:
-  - us-east-2a
-  - us-east-2b
+  - ${AWS_REGION}a
+  - ${AWS_REGION}b
 
 iam:
   withOIDC: true
@@ -36,7 +36,7 @@ managedNodeGroups:
     instanceType: c5n.18xlarge
     instancePrefix: c5n-18xl
     privateNetworking: true
-    availabilityZones: ["us-east-2a"]
+    availabilityZones: ["${AWS_REGION}a"]
     efaEnabled: true
     minSize: 0
     desiredCapacity: 2
