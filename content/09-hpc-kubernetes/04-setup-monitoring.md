@@ -14,8 +14,8 @@ You will use `htop` pods running on each node to interactively monitor CPU utili
 
 Create the `htop` daemonset manifest.
 
-```yaml
-cat > htop-daemonset.yaml <<EOF
+```bash
+cat > ~/environment/htop-daemonset.yaml <<EOF
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -41,7 +41,7 @@ EOF
 Then apply the daemonset manifest
 
 ```bash
-kubectl apply -f ./htop-daemonset.yaml
+kubectl apply -f ~/environment/htop-daemonset.yaml
 ```
 
 #### 2. Monitor running pods

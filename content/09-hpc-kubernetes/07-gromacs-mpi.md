@@ -117,7 +117,7 @@ EOF
 ####  2. Run the Gromacs MPIJob
 
 ```bash
-kubectl apply -f ./gromacs-mpi.yaml
+kubectl apply -f ~/environment/gromacs-mpi.yaml
 ```
 
 Follow the launcher logs as soon as the pod enters the Running state
