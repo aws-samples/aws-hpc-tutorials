@@ -83,8 +83,8 @@ You will use the **repositoryUri** later to reference this repositry. Fetch and 
 
 
 ```bash
-export CONTAINER_REPOSITORY_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
-echo $CONTAINER_REPOSITORY_URI
+export IMAGE_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+echo $IMAGE_URI
 ```
 
 8. Authenticate docker to the ECR repository.
@@ -96,7 +96,7 @@ The following commands will:
 - Get a single-use authentication password from ecr and pass it to **docker login** to authenticate docker.
 
 ```bash
-export ECR_URI=$(echo $CONTAINER_REPOSITORY_URI | awk -F/ '{print $1}')
+export ECR_URI=$(echo $IMAGE_URI | awk -F/ '{print $1}')
 aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_URI}
 ```
 
@@ -147,8 +147,8 @@ This will return you to the usual Cloud9 shell prompt.
 This will upload the container to ECR where it can be pulled by other systems.
 
 ```bash
-docker tag gromacs:latest $CONTAINER_REPOSITORY_URI:latest
-docker push $CONTAINER_REPOSITORY_URI:latest
+docker tag gromacs:latest $IMAGE_URI:latest
+docker push $IMAGE_URI:latest
 ```
 
 In the next steps, you will use automated CICD pipeline tools to build the container image and update ECR. In addition to the automation, the CICD pipeline provides a sandbox environment with the ability to limit access to AWS resources using [AWS IAM](https://aws.amazon.com/iam/) while having elevated privileges. 

@@ -70,7 +70,10 @@ In the second terminal window open a shell into the second htop pod.
 kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- sh
 ```
 
-In each of the pod shells execute the command `htop`
+In each of the pod shells execute the command `htop`.
+```bash
+htop
+```
 
 #### 4. Arrange terminals
 

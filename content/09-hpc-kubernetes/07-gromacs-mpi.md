@@ -151,6 +151,8 @@ Also notice the running pods and the CPU utilization in your monitoring terminal
 
 ####  3. Check output files in FSx volume
 
+Congratulations, you have successfully run a tightly coupled MPI job on two nodes using GROMACS to simulate a protein (lysozyme) in a box of water with ions. 
+
 Once the job is completed the output files are in the FSx volume. To check that we will mount the volume in a new pod and open a shell in that pod.
 
 Copy the pod manifest below into a file named `fsx-data.yaml`
@@ -217,14 +219,24 @@ drwxr-xr-x 1 root root   29 Sep 30 04:34 ..
 -rw-r--r-- 1 root root 797K Sep 30 04:29 md_0_1_prev.cpt
 ```
 
-You can type `exit` to close the data pod shell.
+These are the files that the GROMACS simulations produced:
+- `md_0_1.log` contains the GROMACS run output logs (open it up and inspect).
+- `md_0_1.gro` contains the encoded protein structure.
+- `md_0_1.xtc` contains particle trajectory information.
+- `md_0_1.edr` contains information about physical quantities, like energy, temperature, and pressure.
+- `md_0_1*.cpt` contain checkpoint/restore data (can be used to resume the simulation).
 
-Congratulations, you have successfully run a tightly coupled MPI job on two nodes using Gromacs to simulate a molecular process (TODO: ... Lowell). If the output data is copied to a desktop where VMD is installed, it can be visualized with the following command:
+When you are done inspecting the data files, exit the data pod shell.
+```bash
+exit
+```
+
+If the output data is copied to a workstation where VMD is installed, it can be visualized with the [VMD](http://www.ks.uiuc.edu/Research/vmd/) tool with the following command (not covered here):
 
 ```bash
 /usr/local/bin/vmd md_0_1.gro md_0_1.xtc
 ```
 
-And visualized, the output would look like the image below:
+And visualized, the output would look like the image below (as a movie over time):
 
 ![VMD Visualization](/images/aws-eks/results.png)
