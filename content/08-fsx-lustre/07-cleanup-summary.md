@@ -5,9 +5,21 @@ weight = 140
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this lab you learnt how to create an FSx for lustre file system, an S3 bucket as well as creating Data Repository Action between FSx for lustre and S3. You also learnt how to update the cluster created in Lab I and mounted the FSx for lustre on the compute instances and run HSM tests to realize automatic imports and exports of data to and from S3. 
+In this lab you learnt how to create an FSx for Lustre file system, an S3 bucket as well as creating Data Repository Association between FSx for Lustre and S3. You also learnt how to update the cluster created in Lab I using AWS ParallelCluster and mounted the FSx for lustre on the compute instances and run HSM tests to realize automatic imports and exports of data to and from S3. 
 
+Run the following commands on the Cloud9 terminal to delete the cluster and FSx for Lustre Filesystem
 
-Note:  Lustre clean up at the end of the tutorial. Just delete the cluster if we go the PC 3.3 route , FSx might be used in lab4 and needs to cleanedup at the end of labs
+1. Delete the cluster created in Lab I
 
-### CLEANUP --> TBD
+```bash
+source env_vars
+pcluster delete-cluster -n hpc-cluster-lab --region ${AWS_REGION}
+```
+
+2. Delete the Lustre Filesystem
+
+```bash
+aws fsx delete-file-system --file-system-id ${FSX_ID} --region ${AWS_REGION}
+```
+
+Congratulations, you have successfully completed Lab II. 
