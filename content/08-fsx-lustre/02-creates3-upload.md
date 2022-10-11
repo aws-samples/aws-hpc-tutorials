@@ -5,9 +5,9 @@ weight = 90
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this step, you will create a new [AWS S3](https://aws.amazon.com/s3/) bucket , upload test data into it. This bucket will be linked in the next step to the FSx for lustre filesystem created in the previous step. 
+In this step, you will create a new [Amazon S3](https://aws.amazon.com/s3/) bucket and upload test data in it. This bucket will then be linked to the FSx Lustre filesystem created in the previous step.
 
-You can create S3 bucket either via AWS console or via AWS Cli. For this lab you are going to use AWS cli to create S3 bucket and upload data. However, later on you will also be able to take a look at the S3 console to view the bucket and its contents.
+You can create S3 bucket either via AWS console or via AWS CLI. For this lab you are going to use AWS CLI to create S3 bucket and upload data. However, later on you will also be able to take a look at the S3 console to view the bucket and its contents.
 
 1. Navigate to your Cloud9 IDE and on the Cloud9 terminal create S3 bucket with unique name.
 
@@ -19,7 +19,7 @@ Choose a random prefix, postfix, or append your name.
 ```bash
 BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
 BUCKET_NAME_DATA="bucketname-${BUCKET_POSTFIX}"
-aws s3 mb s3://$BUCKET_NAME_DATA
+aws s3 mb s3://$BUCKET_NAME_DATA --region ${AWS_REGION}
 
 cat << EOF
 ***** Take Note of Your Bucket Name *****
