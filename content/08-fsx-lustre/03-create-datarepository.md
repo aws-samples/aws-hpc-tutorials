@@ -5,9 +5,9 @@ weight = 100
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this step, you will create a [Data Repository Association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) (DRA) between the S3 bucket and FSx for lustre filesystem created in the previous two steps.  
+In this step, you will create a [Data Repository Association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) (DRA) between the S3 bucket and FSx Lustre Filesystem. 
 
-1. Navigate to the [FSx console](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
+1. Navigate to the [FSx console](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system id with name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
 
 ![viewsfsxl](/images/fsx-for-lustre-hsm/viewfsxl.png)
 
@@ -19,7 +19,7 @@ In this step, you will create a [Data Repository Association](https://docs.aws.a
 
 ![clickdra](/images/fsx-for-lustre-hsm/clickdra.png) 
 
-4. On the create data repository association form name the filesystem path which needs to be associated for data repository and paste the name of your S3 bucket. To get the name of your S3 bucket, like indicated in section b step 7, navigate to the [S3 console](https://console.aws.amazon.com/s3/) and copy the name of the bucket you created and paste it in the form as shown below. 
+4. On the create data repository association form name the filesystem path which needs to be associated for data repository and paste the name of your S3 bucket. You can get the name of your S3 bucket with `echo ${BUCKET_NAME_DATA}` in Cloud9 terminal or navigate to the [S3 console](https://console.aws.amazon.com/s3/) and copy the name of the bucket you created and paste it in the form as shown below. 
 
 ![draform1](/images/fsx-for-lustre-hsm/draform1.png)
 
