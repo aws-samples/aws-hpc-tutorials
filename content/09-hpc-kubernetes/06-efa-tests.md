@@ -100,7 +100,7 @@ Run the latency test MPIJob without EFA
 kubectl apply -f ~/environment/osu-latency-sockets.yaml
 ```
 
-Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+Keep watching the pods state till they enter `Running` state. `Ctrl-c` to exit
 
 ```bash
 kubectl get pods -n gromacs -w
@@ -232,7 +232,7 @@ Run the latency test MPIJob with EFA
 kubectl apply -f ~/environment/osu-latency-efa.yaml
 ```
 
-Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+Keep watching the pods state till they enter `Running` state. `Ctrl-c` to exit
 
 ```bash
 kubectl get pods -n gromacs -w
