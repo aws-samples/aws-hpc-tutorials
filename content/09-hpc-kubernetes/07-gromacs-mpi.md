@@ -5,20 +5,21 @@ weight = 70
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will run a Gromacs MPI job distributed between two nodes in your Kubernetes cluster.
+In this section, you will run a Gromacs MPI job distributed between two c5n.18xlarge nodes in your Kubernetes cluster.
 
-1. Create MPIJob manifest
+####  1. Create MPIJob manifest
 
 Copy the MPIJob manifest below into a file named `gromacs-mpi.yaml`, 
 
-```yaml
+```bash
+cat > ~/environment/gromacs-mpi.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
   name: gromacs-mpi
   namespace: gromacs
 spec:
-  slotsPerWorker: 1
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -36,14 +37,14 @@ spec:
             persistentVolumeClaim:
               claimName: fsx-pvc
           initContainers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             name: init
             command: ["sh", "-c", "cp /inputs/* /data; sleep 5"]
             volumeMounts:
             - name: data
               mountPath: /data
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: gromacs-mpi-launcher
             volumeMounts:
@@ -93,7 +94,7 @@ spec:
             persistentVolumeClaim:
               claimName: fsx-pvc
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: gromacs-mpi-worker
             volumeMounts:
@@ -110,23 +111,18 @@ spec:
                 hugepages-2Mi: 5120Mi
                 vpc.amazonaws.com/efa: 1
                 memory: 8000Mi
+EOF
 ```
 
-Replace {IMAGE} with the Gromacs container image URI that you pushed to ECR in the previous lab.
+####  2. Run the Gromacs MPIJob
 
-```
-sed -i "s#{IMAGE}#${IMAGE}#g" ./gromacs-mpi.yaml
-```
-
-2. Run the Gromacs MPIJob
-
-```
-kubectl apply -f ./gromacs-mpi.yaml
+```bash
+kubectl apply -f ~/environment/gromacs-mpi.yaml
 ```
 
 Follow the launcher logs as soon as the pod enters the Running state
 
-```
+```bash
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep gromacs-mpi-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
@@ -153,13 +149,16 @@ Also notice the running pods and the CPU utilization in your monitoring terminal
 ![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)
 
 
-3. Check output files in FSx volume
+####  3. Check output files in FSx volume
+
+Congratulations, you have successfully run a tightly coupled MPI job on two nodes using GROMACS to simulate a protein (lysozyme) in a box of water with ions. 
 
 Once the job is completed the output files are in the FSx volume. To check that we will mount the volume in a new pod and open a shell in that pod.
 
 Copy the pod manifest below into a file named `fsx-data.yaml`
 
-```yaml
+```bash
+cat > ~/environment/fsx-data.yaml << EOF
 apiVersion: v1
 kind: Pod
 metadata:
@@ -178,12 +177,13 @@ spec:
   - name: data
     persistentVolumeClaim:
       claimName: fsx-pvc
+EOF
 ```
 
 Create the pod.
 
 ```bash
-kubectl apply -f ./fsx-data.yaml
+kubectl apply -f ~/environment/fsx-data.yaml
 ```
 
 Once the pod is in Running state, open a shell into it
@@ -193,14 +193,14 @@ kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep fsx-data | head
 ```
 
 Describe the volumes mounted in the pod
-```
+```bash
 df -h
 ```
 Notice the FSx volume is mounted under `/data`.
 
 Check that the output data from the Gromacs MPI job is in the `/data` directory.
 
-```
+```bash
 ls -alh /data
 ```
 
@@ -219,14 +219,24 @@ drwxr-xr-x 1 root root   29 Sep 30 04:34 ..
 -rw-r--r-- 1 root root 797K Sep 30 04:29 md_0_1_prev.cpt
 ```
 
-You can type `exit` to close the data pod shell.
+These are the files that the GROMACS simulations produced:
+- `md_0_1.log` contains the GROMACS run output logs (open it up and inspect).
+- `md_0_1.gro` contains the encoded protein structure.
+- `md_0_1.xtc` contains particle trajectory information.
+- `md_0_1.edr` contains information about physical quantities, like energy, temperature, and pressure.
+- `md_0_1*.cpt` contain checkpoint/restore data (can be used to resume the simulation).
 
-Congratulations, you have successfully run a tightly coupled MPI job on two nodes using Gromacs to simulate a molecular process (TODO: ... Lowell). If the output data is copied to a desktop where VMD is installed, it can be visualized with the following command:
+When you are done inspecting the data files, exit the data pod shell.
+```bash
+exit
+```
+
+If the output data is copied to a workstation where VMD is installed, it can be visualized with the [VMD](http://www.ks.uiuc.edu/Research/vmd/) tool with the following command (not covered here):
 
 ```bash
 /usr/local/bin/vmd md_0_1.gro md_0_1.xtc
 ```
 
-And visualized, the output would look like the image below:
+And visualized, the output would look like the image below (as a movie over time):
 
 ![VMD Visualization](/images/aws-eks/results.png)

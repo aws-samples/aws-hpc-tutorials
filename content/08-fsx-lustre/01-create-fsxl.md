@@ -1,5 +1,5 @@
 +++
-title = "a. Create FSx for Lustre fielsystem via FSx Console"
+title = "a. Create FSx for Lustre filesystem via FSx Console"
 date = 2019-09-18T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "lustre", "FSx"]

@@ -5,26 +5,26 @@ weight = 80
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will delete the FSx file system and the EKS cluster that you created for this lab.
+In this section, you will delete the FSx for Lustre file system and the EKS cluster that you created for this lab.
 
-1. Delete FSx volume
+#### 1. Delete FSx for Lustre PVC
 
 Cleanup resources that may have the FSX volume mounted.
 
+```bash
+kubectl delete -f ~/environment/fsx-pvc.yaml
 ```
+
+#### 2. Delete resources belonging to the namespace.
+
+```bash
 kubectl delete namespace gromacs
 ```
 
-TODO: Detach FSx policy from intance profile
+#### 3. Delete EKS cluster
 
 ```bash
-POLICY_ARN=$(aws iam list-policies --query Policies[?PolicyName=="'${FSX_POLICY_NAME}'"].{Arn:Arn} --output text)
+eksctl delete cluster -f ~/environment/eks-hpc.yaml
 ```
 
-2. Delete EKS cluster
-
-```
-eksctl delete cluster -f ./eks-hpc.yaml
-```
-
-This command will delete the cluster stack in CloueFormation
+This command will delete the EKS cluster through AWS CloudFormation.

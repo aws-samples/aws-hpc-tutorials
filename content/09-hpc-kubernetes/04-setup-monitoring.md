@@ -8,13 +8,14 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 In this section, you will lean how to interactively watch the running pods in your cluster as well as monitor the CPU utilization of your nodes.
 
 
-1. Deploy `htop` daemonset
+#### 1. Deploy `htop` daemonset
 
-We will use `htop` pods running on each node to interactively monitor CPU utilization.
+You will use `htop` pods running on each node to interactively monitor CPU utilization.
 
-Copy the daemonset manifest below into a file named `htop-daemonset.yaml`
+Create the `htop` daemonset manifest.
 
-```yaml
+```bash
+cat > ~/environment/htop-daemonset.yaml <<EOF
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -34,15 +35,16 @@ spec:
           image: terencewestphal/htop:latest
           command: ["/bin/sh"]
           args: ["-c", "while true; do date; sleep 10; done"]
+EOF
 ```
 
 Then apply the daemonset manifest
 
 ```bash
-kubectl apply -f ./htop-daemonset.yaml
+kubectl apply -f ~/environment/htop-daemonset.yaml
 ```
 
-2. Monitor running pods
+#### 2. Monitor running pods
 
 Open a new terminal window and execute the following command to watch the running pods in the `gromacs` namespace:
 
@@ -52,7 +54,7 @@ watch kubectl -n gromacs get pods -o wide
 
 You should see the htop pods running on each of the nodes
 
-3. Monitor CPU utilization
+#### 3. Monitor CPU utilization
 
 Open two new terminal windows. 
 
@@ -68,9 +70,12 @@ In the second terminal window open a shell into the second htop pod.
 kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- sh
 ```
 
-In each of the pod shells execute the command `htop`
+In each of the pod shells execute the command `htop`.
+```bash
+htop
+```
 
-4. Arrange terminals
+#### 4. Arrange terminals
 
 At this point you should have four terminals open. Use drag and drop to arrange them in a way that allows you to see all of them at the same time. A recommended layout is shown below.
 

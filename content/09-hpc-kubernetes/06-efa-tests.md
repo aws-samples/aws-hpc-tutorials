@@ -5,20 +5,31 @@ weight = 60
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will run OSU latency benchmarks to compare network speed with and without Elastic Fabric Adapter.  
+In this section, you will run the OSU ping pong benchmark to compare network latency without and with [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/).
 
-1. Run test with sockets provider
 
-Copy the MPIJob manifest below into a file named `osu-latency-sockets.yaml`, 
+####  1. Retrieve the container image URI
 
-```yaml
+Configure environment variable `IMAGE_URI` with URI of container image built in the previous lab.
+
+```bash
+export IMAGE_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+echo $IMAGE_URI
+```
+
+####  2. Run test with sockets provider
+
+Copy the MPIJob manifest below into a file named `osu-latency-sockets.yaml`:
+
+```bash
+cat > ~/environment/osu-latency-sockets.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
   name: test-osu-latency-sockets
   namespace: gromacs
 spec:
-  slotsPerWorker: 1
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -28,7 +39,7 @@ spec:
          spec:
           restartPolicy: OnFailure
           initContainers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             name: init
             command: ["sh", "-c", "sleep 5"]
           volumes:
@@ -37,7 +48,7 @@ spec:
               medium: Memory
               sizeLimit: 128Mi
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: test-osu-latency-sockets-launcher
             volumeMounts:
@@ -65,7 +76,7 @@ spec:
               medium: Memory
               sizeLimit: 128Mi
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: test-osu-latency-sockets-worker
             volumeMounts:
@@ -80,29 +91,24 @@ spec:
                 hugepages-2Mi: 5120Mi
                 vpc.amazonaws.com/efa: 0
                 memory: 8000Mi
-```
-
-Configure environment variable IMAGE with URI of container image built in the previous lab.
-
-```
-export IMAGE=<paste image uri here>
-```
-
-Replace {IMAGE} with the Gromacs container image URI.
-
-```
-sed -i "s#{IMAGE}#${IMAGE}#g" ./osu-latency-sockets.yaml
+EOF
 ```
 
 Run the latency test MPIJob without EFA
 
+```bash
+kubectl apply -f ~/environment/osu-latency-sockets.yaml
 ```
-kubectl apply -f ./osu-latency-sockets.yaml
+
+Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+
+```bash
+kubectl get pods -n gromacs -w
 ```
 
 Read test results as soon as the launcher pod enters the Running state
 
-```
+```bash
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep sockets-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
@@ -138,18 +144,24 @@ You should see results similar to the ones below
 4194304              2520.77
 ```
 
-2. Run test with efa provider
+Delete the pods using the sockets.
+```bash
+kubectl delete -f ~/environment/osu-latency-sockets.yaml
+```
 
-Copy the MPIJob manifest below into a file named `osu-latency-efa.yaml`, 
+####  3. Run test with efa provider
 
-```yaml
+Create a new MPI job manifest with Elastic Fabric Adapter support.  This will enable high-speed, low-latency networking for MPI.
+
+```bash
+cat > ~/environment/osu-latency-efa.yaml << EOF
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
   name: test-osu-latency-efa
   namespace: gromacs
 spec:
-  slotsPerWorker: 1
+  slotsPerWorker: 36
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -159,7 +171,7 @@ spec:
          spec:
           restartPolicy: OnFailure
           initContainers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             name: init
             command: ["sh", "-c", "sleep 5"]
           volumes:
@@ -168,7 +180,7 @@ spec:
               medium: Memory
               sizeLimit: 128Mi
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: test-osu-latency-efa-launcher
             volumeMounts:
@@ -196,7 +208,7 @@ spec:
               medium: Memory
               sizeLimit: 128Mi
           containers:
-          - image: "{IMAGE}"
+          - image: "${IMAGE_URI}"
             imagePullPolicy: Always
             name: test-osu-latency-efa-worker
             volumeMounts:
@@ -211,23 +223,24 @@ spec:
                 hugepages-2Mi: 5120Mi
                 vpc.amazonaws.com/efa: 1
                 memory: 8000Mi
-```
-
-Replace {IMAGE} with the Gromacs container image URI that you pushed to ECR in the previous lab.
-
-```
-sed -i "s#{IMAGE}#${IMAGE}#g" ./osu-latency-efa.yaml
+EOF
 ```
 
 Run the latency test MPIJob with EFA
 
+```bash
+kubectl apply -f ~/environment/osu-latency-efa.yaml
 ```
-kubectl apply -f ./osu-latency-efa.yaml
+
+Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+
+```bash
+kubectl get pods -n gromacs -w
 ```
 
 Read test results as soon as the launcher pod enters the Running state
 
-```
+```bash
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep efa-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
@@ -264,3 +277,9 @@ You should see results similar to the ones below
 ```
 
 Notice that when EFA is turned on, the benchmark shows lower latency.
+
+
+Delete the pods using the sockets.
+```bash
+kubectl delete -f ~/environment/osu-latency-efa.yaml
+```
