@@ -148,6 +148,10 @@ This will return you to the usual Cloud9 shell prompt.
 
 10. Push the docker container to the ECR repository.
 
+{{% notice info %}}
+This step must be completed in the terminal where **docker login** was performed in step 8.
+{{% /notice %}}
+
 This will upload the container to ECR where it can be pulled by other systems.
 
 ```bash
