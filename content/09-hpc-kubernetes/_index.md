@@ -11,7 +11,7 @@ tags: ["HPC", "Overview", "Kubernetes"]
 -->
 
 {{% notice info %}}
-This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Preparation](/02-aws-getting-started.html)** section of the workshop.
+This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete all of the steps in the **[Preparation](/02-aws-getting-started.html)** section of the workshop.
 {{% /notice %}}
 
 <!--
@@ -29,8 +29,7 @@ Amazon EKS is is a managed service that you can use to run Kubernetes on AWS wit
 
 
 As part of this lab, you will deploy the below architecture to run GROMACS:
-
-![AWS EKS](/images/aws-eks/eks-hpc-architecture.png)
+![Architecture](/images/aws-eks/eks-hpc-architecture.png?width=50pc)
 
 Lab workflow:
 

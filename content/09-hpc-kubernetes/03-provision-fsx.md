@@ -32,7 +32,7 @@ echo $SECURITY_GROUP_ID
 #### 3. Retrieve subnet id of node group
 
 ```bash
-SUBNET_ID=`aws eks describe-nodegroup --cluster-name ${EKS_CLUSTER_NAME} --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} | jq -r '.[]'`
+SUBNET_ID=`aws eks describe-nodegroup --cluster-name ${EKS_CLUSTER_NAME} --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} --output text`
 echo $SUBNET_ID
 ```
 
@@ -163,7 +163,11 @@ You should see output like the following:
 
 The **Lifecycle** field indicates the current status. It is expected that the status will be **CREATING** for about 7 minutes. When the provisioning is complete, the status will change to **CREATED**. 
 
-And the status of the persistent volume claim in Kubernetes will change to **Bound**
+{{% notice info %}}
+To save time, you can proceed with the next three steps of the tutorial as they do not require the FSx volume to be available. Please come back to this step and execute the command below to ensure the volume is available before you run the [Gromacs MPI job](/09-hpc-kubernetes/07-gromacs-mpi.html).
+{{% /notice %}}
+
+When the FSx volume becomes available, the status of the persistent volume claim in Kubernetes will change to **Bound**
 
 ```bash
 kubectl -n gromacs get pvc fsx-pvc
@@ -176,4 +180,4 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 fsx-pvc   Bound    pvc-159049a3-d25d-465f-ad7e-3e0799756fce   1200Gi     RWX            fsx-sc         7m45s
 ```
 
-The FSx volume is now provisioned and ready to attach to pods.
+The **Bound** status indicates that the persistent volume claim is successfully bound to the persistent FSx volume and is ready to be mounted by pods.
