@@ -7,8 +7,38 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will lean how to interactively watch the running pods in your cluster as well as monitor the CPU utilization of your nodes.
 
+There are several ways to set up monitoring. Here we will explore a few options.
 
-#### 1. Deploy `htop` daemonset
+#### 1. Monitor using kubectl
+
+This method allows viewing of cluster-wide metrics in textual form
+
+##### 1.1. Deploy metrics server
+
+To enable utilization monitoring of the cluster using `kubectl`, deploy the Kubernetes metrics server by executing the following command:
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+##### 1.2. Execute kubectl
+
+To see node utilization of your cluster, execute
+
+```bash
+kubectl top node
+```
+
+To see how much resources each pod is utilizing, execute
+```bash
+kubectl top pod
+```
+
+#### 2. Monitor using htop daemonset
+
+This method allows viewing individual node metrics using the text-based user interface `htop`
+
+##### 2.1. Deploy `htop` daemonset
 
 You will use `htop` pods running on each node to interactively monitor CPU utilization.
 
@@ -44,7 +74,7 @@ Then apply the daemonset manifest
 kubectl apply -f ~/environment/htop-daemonset.yaml
 ```
 
-#### 2. Monitor running pods
+#### 2.2. Monitor running pods
 
 Open a new terminal window and execute the following command to watch the running pods in the `gromacs` namespace:
 
@@ -54,7 +84,7 @@ watch kubectl -n gromacs get pods -o wide
 
 You should see the htop pods running on each of the nodes
 
-#### 3. Monitor CPU utilization
+#### 2.3. Monitor CPU utilization
 
 Open two new terminal windows. 
 
@@ -75,7 +105,7 @@ In each of the pod shells execute the command `htop`.
 htop
 ```
 
-#### 4. Arrange terminals
+#### 2.4. Arrange terminals
 
 At this point you should have four terminals open. Use drag and drop to arrange them in a way that allows you to see all of them at the same time. A recommended layout is shown below.
 

@@ -84,6 +84,8 @@ ip-192-168-86-17.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
 
 **Troubleshooting**
 
+If the cluster creation fails with with an ExpiredToken error (`ExpiredToken: The security token included in the request is expired`), ensure you have disabled the AWS Managed temporary credentials in your Cloud9 IDE following the instructions from the Preparation section [here](/02-aws-getting-started/06-iam-role.html).
+
 If your kubectl client is unable to connect to the cluster, you may try to update the connection information by executing the command below, then try accessing the cluster API again.
 
 ```bash
