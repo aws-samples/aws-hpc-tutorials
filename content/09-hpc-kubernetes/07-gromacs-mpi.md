@@ -60,7 +60,7 @@ spec:
             - --allow-run-as-root
             - --oversubscribe
             - -x
-            - FI_LOG_LEVEL=info
+            - FI_LOG_LEVEL=warn
             - -x
             - FI_PROVIDER=efa
             - -np
@@ -69,10 +69,6 @@ spec:
             - "36"
             - --bind-to
             - "core"
-            - -x
-            - OMPI_MCA_verbose
-            - -x
-            - OMP_NUM_THREADS
             - /opt/view/bin/gmx_mpi
             - mdrun
             - -ntomp
@@ -126,22 +122,35 @@ Follow the launcher logs as soon as the pod enters the Running state
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep gromacs-mpi-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
-You should see libfabric log entries similar to the shown below. Together with the launcher pod in status Running and increased utilization of the cluster node cores, this is an indication that the MPI Job is in progress.
+You should see GROMACS log entries similar to the shown below. Together with the launcher pod in status Running and increased utilization of the cluster node cores, this is an indication that the MPI Job is running.  Job output will hang on the line `50000 steps,    100.0 ps.` while the simulation runs and will report the rest on simulation completion.
 
 ```log
-libfabric:64:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 0, deletes 0, hits 0 notify 158
-libfabric:28:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 49683, deletes 49683, hits 49679 notify 142
-libfabric:27:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 142
-libfabric:21:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 142
-libfabric:71:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 142
-libfabric:19:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 49683, deletes 49683, hits 49679 notify 143
-libfabric:22:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 143
-libfabric:20:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 49683, deletes 49683, hits 49679 notify 145
-libfabric:55:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 141
-libfabric:53:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 142
-libfabric:24:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 49683, deletes 49683, hits 49679 notify 144
-libfabric:57:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 140
-libfabric:61:1664512976:efa:mr:ofi_mr_cache_cleanup():466<info> MR cache stats: searches 2, deletes 2, hits 0 notify 140
+...
+50000 steps,    100.0 ps.
+
+Writing final coordinates.
+
+
+Dynamic load balancing report:
+ DLB was off during the run due to low measured imbalance.
+ Average load imbalance: 24.7%.
+ The balanceable part of the MD step is 56%, load imbalance is computed from this.
+ Part of the total run time spent waiting due to load imbalance: 13.8%.
+ Average PME mesh/force load: 1.091
+ Part of the total run time spent waiting due to PP/PME imbalance: 4.6 %
+
+NOTE: 13.8 % of the available CPU time was lost due to load imbalance
+      in the domain decomposition.
+      Dynamic load balancing was automatically disabled, but it might be beneficial to manually tuning it on (option -dlb on.)
+      You can also consider manually changing the decomposition (option -dd);
+      e.g. by using fewer domains along the box dimension in which there is
+      considerable inhomogeneity in the simulated system.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:     2971.865       41.276     7199.9
+                 (ns/day)    (hour/ns)
+Performance:      209.325        0.115
+
 ```
 
 Also notice the running pods and the CPU utilization in your monitoring terminals

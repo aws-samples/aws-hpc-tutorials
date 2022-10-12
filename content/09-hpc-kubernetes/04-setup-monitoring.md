@@ -88,21 +88,16 @@ You should see the htop pods running on each of the nodes
 
 Open two new terminal windows. 
 
-In the first terminal window open a shell into the first htop pod.
+In the first terminal window runt htop in the first htop pod.
 
 ```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- sh
+kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- htop
 ```
 
-In the second terminal window open a shell into the second htop pod.
+In the second terminal window run htop in the second htop pod.
 
 ```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- sh
-```
-
-In each of the pod shells execute the command `htop`.
-```bash
-htop
+kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- htop
 ```
 
 #### 2.4. Arrange terminals
