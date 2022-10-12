@@ -49,8 +49,9 @@ Verify that the git remote is set correctly:
 
 ```bash
 $ git remote -v
-origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (fetch)
-origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (push)
+# expected output
+# origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (fetch)
+# origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (push)
 ```
 
 6. Push the local Git changes to CodeCommit:
@@ -63,8 +64,9 @@ Verify that the CodeCommit and local repositories are synchronized with:
 
 ```bash
 $ git fetch && git status
-...
-On branch main
-Your branch is up to date with 'origin/main'.
-...
+# expected output
+# ...
+# On branch main
+# Your branch is up to date with 'origin/main'.
+# ...
 ```
