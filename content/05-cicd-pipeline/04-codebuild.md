@@ -33,7 +33,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 ![AWS CodeBuild](/images/cicd/code-build-3.png)
 
 7. Expand the **Additional configuration** section and, in the **Environment** section, keep all settings as default except the following:
-  	- Under the **Environment variables**, in the **Name** field enter the Name as **REPOSITORY_URI** 
+  	- Under the **Environment variables**, in the **Name** field enter the Name as **IMAGE_URI** 
 	- In the **Value** field provide the Amazon ECR repository URI created the last step (see below). Keep the Type as default **Plaintext**
 	- You can obtain the Amazon ECR repository URI by running the below CLI command on Cloud9, this repo comes from Lab 2.
 	- The output should look as **"\<account-id\>.dkr.ecr.\<region\>.amazonaws.com/sc22-container"**. Copy without the quotes and paste in the **Value** field.
@@ -89,15 +89,15 @@ phases:
     commands:
       - echo Build started at \$(date)
       - echo Building the Docker image...
-      - docker build -t \$REPOSITORY_URI:latest .
-      - docker tag \$REPOSITORY_URI:latest \$REPOSITORY_URI:\$IMAGE_TAG
+      - docker build -t \$IMAGE_URI:latest .
+      - docker tag \$IMAGE_URI:latest \$IMAGE_URI:\$IMAGE_TAG
 
   post_build:
     commands:
       - echo Build completed at $(date)
       - echo Pushing the Docker images...
-      - docker push \$REPOSITORY_URI:latest
-      - docker push \$REPOSITORY_URI:\$IMAGE_TAG
+      - docker push \$IMAGE_URI:latest
+      - docker push \$IMAGE_URI:\$IMAGE_TAG
 
 EOF
 ```
