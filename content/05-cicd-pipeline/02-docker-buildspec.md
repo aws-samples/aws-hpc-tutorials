@@ -69,7 +69,9 @@ Before you move on to building an automated CICD pipeline, you will build and ru
 docker build . -f Dockerfile -t gromacs
 ```
 
+{{% notice info %}}
 This step will take 5-6 minutes to complete.  We will move on by creating a new terminal tab.  Click the green plus symbol in the tab list, and select **New Terminal**.
+{{% /notice %}}
 
 ![AWS CodeBuild](/images/cicd/docker-1.png)
 
@@ -125,13 +127,15 @@ docker run -it --rm gromacs:latest
 You will be presented with a different bash prompt.  You can inspect the installed OpenMPI and Gromacs.
 
 ```bash
-bash-4.2# mpirun --version
-mpirun (Open MPI) 4.1.3
-
-Report bugs to http://www.open-mpi.org/community/help/
-bash-4.2# gmx_mpi --version
-                    :-) GROMACS - gmx_mpi, 2021.5-spack (-:
-                    ...
+mpirun --version
+# expected output:
+# mpirun (Open MPI) 4.1.3
+#
+# Report bugs to http://www.open-mpi.org/community/help/
+gmx_mpi --version
+# expected output:
+#                    :-) GROMACS - gmx_mpi, 2021.5-spack (-:
+#                    ...
 ```
 
 Now, exit the container.
