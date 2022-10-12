@@ -5,15 +5,15 @@ weight = 40
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will lean how to interactively watch the running pods in your cluster as well as monitor the CPU utilization of your nodes.
+In this section, you will lean how to monitor your cluster as well as monitor the pods running on it.
 
-There are several ways to set up monitoring. Here we will explore a few options.
+There are several ways to set up monitoring. Here we will provide a few options. It is not required to deploy each one, however it is recommended to select at least one option for the lab, so you may see the change in resource utilization while your job is running.
 
-#### 1. Monitor using kubectl
+## 1. Monitor using kubectl
 
 This method allows viewing of cluster-wide metrics in textual form
 
-##### 1.1. Deploy metrics server
+### 1.1. Deploy metrics server
 
 To enable utilization monitoring of the cluster using `kubectl`, deploy the Kubernetes metrics server by executing the following command:
 
@@ -21,24 +21,62 @@ To enable utilization monitoring of the cluster using `kubectl`, deploy the Kube
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
-##### 1.2. Execute kubectl
+### 1.2. Execute kubectl
 
 To see node utilization of your cluster, execute
 
 ```bash
-kubectl top node
+kubectl top node --use-protocol-buffers
+```
+
+Sample output:
+
+```text
+NAME                                           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+ip-192-168-68-194.us-east-2.compute.internal   201m         0%     1362Mi          0%        
+ip-192-168-91-99.us-east-2.compute.internal    226m         0%     1001Mi          0%  
 ```
 
 To see how much resources each pod is utilizing, execute
 ```bash
-kubectl top pod
+kubectl top pod -A --use-protocol-buffers
 ```
 
-#### 2. Monitor using htop daemonset
+Sample output:
+
+```text
+NAMESPACE      NAME                                            CPU(cores)   MEMORY(bytes)   
+default        bash                                            0m           81Mi            
+grafana        grafana-7c4b6ccb8-q2qsv                         2m           71Mi            
+gromacs        htop-bb6d4                                      1m           10Mi            
+gromacs        htop-pdhmp                                      1m           6Mi             
+kube-system    aws-efa-k8s-device-plugin-daemonset-q6cll       1m           6Mi             
+kube-system    aws-efa-k8s-device-plugin-daemonset-srqdk       1m           6Mi             
+kube-system    aws-node-crzgq                                  6m           83Mi            
+kube-system    aws-node-qjx2h                                  4m           81Mi            
+kube-system    coredns-f47955f89-dsrjp                         3m           27Mi            
+kube-system    coredns-f47955f89-vvvn4                         3m           26Mi            
+kube-system    fsx-csi-controller-78b5599496-2992k             9m           80Mi            
+kube-system    fsx-csi-controller-78b5599496-5gf5k             5m           66Mi            
+kube-system    fsx-csi-node-bxjzc                              2m           53Mi            
+kube-system    fsx-csi-node-qs9dh                              8m           52Mi            
+kube-system    kube-proxy-l6747                                11m          52Mi            
+kube-system    kube-proxy-ntjf7                                13m          51Mi            
+kube-system    metrics-server-64cf6869bd-b9lsg                 5m           28Mi            
+mpi-operator   mpi-operator-65d47d6d67-dx7kk                   4m           24Mi            
+prometheus     prometheus-alertmanager-6f64cb4659-wkbj5        1m           27Mi            
+prometheus     prometheus-kube-state-metrics-77ddf69b4-z8z4z   1m           20Mi            
+prometheus     prometheus-node-exporter-lm4rt                  0m           34Mi            
+prometheus     prometheus-node-exporter-r4hbp                  0m           36Mi            
+prometheus     prometheus-pushgateway-5f7dcb67bb-b4z5k         1m           21Mi            
+prometheus     prometheus-server-584d5c7c84-gmf4z              7m           342Mi   
+```
+
+## 2. Monitor using htop daemonset
 
 This method allows viewing individual node metrics using the text-based user interface `htop`
 
-##### 2.1. Deploy `htop` daemonset
+### 2.1. Deploy `htop` daemonset
 
 You will use `htop` pods running on each node to interactively monitor CPU utilization.
 
@@ -74,7 +112,7 @@ Then apply the daemonset manifest
 kubectl apply -f ~/environment/htop-daemonset.yaml
 ```
 
-#### 2.2. Monitor running pods
+### 2.2. Monitor running pods
 
 Open a new terminal window and execute the following command to watch the running pods in the `gromacs` namespace:
 
@@ -84,7 +122,7 @@ watch kubectl -n gromacs get pods -o wide
 
 You should see the htop pods running on each of the nodes
 
-#### 2.3. Monitor CPU utilization
+### 2.3. Monitor CPU utilization
 
 Open two new terminal windows. 
 
@@ -100,8 +138,193 @@ In the second terminal window run htop in the second htop pod.
 kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- htop
 ```
 
-#### 2.4. Arrange terminals
+### 2.4. Arrange terminals
 
 At this point you should have four terminals open. Use drag and drop to arrange them in a way that allows you to see all of them at the same time. A recommended layout is shown below.
 
 ![Interactive Monitoring](/images/aws-eks/interactive-monitoring.png)
+
+## 3. Monitor using Prometheus and Grafana
+
+This approach allow cluster-wide monitoring using a graphical web interface.
+
+### 3.1. Install helm
+
+First we will install [helm](https://helm.sh) - a package manager for Kubernetes.
+
+```bash
+curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
+```
+
+### 3.2. Add helm repositories
+
+Add the Prometheus and Grafana helm repositories
+
+```bash
+# add prometheus Helm repo
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+# add grafana Helm repo
+helm repo add grafana https://grafana.github.io/helm-charts
+```
+
+### 3.3. Deploy Prometheus
+
+The Prometheus server collects and exports cluster metrics.
+
+```bash
+kubectl create namespace prometheus
+
+helm install prometheus prometheus-community/prometheus \
+    --namespace prometheus \
+    --set alertmanager.persistentVolume.storageClass="gp2" \
+    --set server.persistentVolume.storageClass="gp2"
+```
+
+To verify the deployment, execute:
+
+```bash
+kubectl get all -n prometheus
+```
+
+The expected output looks similar to this:
+
+```text
+NAME                                                READY   STATUS    RESTARTS   AGE
+pod/prometheus-alertmanager-6f64cb4659-wkbj5        2/2     Running   0          107m
+pod/prometheus-kube-state-metrics-77ddf69b4-z8z4z   1/1     Running   0          107m
+pod/prometheus-node-exporter-lm4rt                  1/1     Running   0          107m
+pod/prometheus-node-exporter-r4hbp                  1/1     Running   0          107m
+pod/prometheus-pushgateway-5f7dcb67bb-b4z5k         1/1     Running   0          107m
+pod/prometheus-server-584d5c7c84-gmf4z              2/2     Running   0          107m
+
+NAME                                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/prometheus-alertmanager         ClusterIP   10.100.15.106   <none>        80/TCP     107m
+service/prometheus-kube-state-metrics   ClusterIP   10.100.38.71    <none>        8080/TCP   107m
+service/prometheus-node-exporter        ClusterIP   10.100.28.205   <none>        9100/TCP   107m
+service/prometheus-pushgateway          ClusterIP   10.100.76.25    <none>        9091/TCP   107m
+service/prometheus-server               ClusterIP   10.100.103.56   <none>        80/TCP     107m
+
+NAME                                      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/prometheus-node-exporter   2         2         2       2            2           <none>          107m
+
+NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/prometheus-alertmanager         1/1     1            1           107m
+deployment.apps/prometheus-kube-state-metrics   1/1     1            1           107m
+deployment.apps/prometheus-pushgateway          1/1     1            1           107m
+deployment.apps/prometheus-server               1/1     1            1           107m
+
+NAME                                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/prometheus-alertmanager-6f64cb4659        1         1         1       107m
+replicaset.apps/prometheus-kube-state-metrics-77ddf69b4   1         1         1       107m
+replicaset.apps/prometheus-pushgateway-5f7dcb67bb         1         1         1       107m
+replicaset.apps/prometheus-server-584d5c7c84              1         1         1       107m
+```
+
+
+### 3.4. Deploy Grafana
+
+The Grafana server displays metrics from Prometheus as graphical dashboards.
+
+First create a data source manifest for Prometheus:
+
+```bash
+mkdir ${HOME}/environment/grafana
+
+cat << EoF > ${HOME}/environment/grafana/prometheus.yaml
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server.prometheus.svc.cluster.local
+      access: proxy
+      isDefault: true
+EoF
+```
+
+Then deploy Grafana and configure it with this data source:
+
+```bash
+kubectl create namespace grafana
+
+helm install grafana grafana/grafana \
+    --namespace grafana \
+    --set persistence.storageClassName="gp2" \
+    --set persistence.enabled=true \
+    --set adminPassword='SC22!sAWSome' \
+    --values ${HOME}/environment/grafana/prometheus.yaml \
+    --set service.type=ClusterIP
+```
+
+To verify the deployment, execute:
+
+```bash
+kubectl get all -n grafana
+```
+
+The expected output looks similar to the following:
+
+```text
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/grafana-7c4b6ccb8-q2qsv   1/1     Running   0          110m
+
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/grafana   LoadBalancer   10.100.159.35   <pending>     80:31114/TCP   110m
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/grafana   1/1     1            1           110m
+
+NAME                                DESIRED   CURRENT   READY   AGE
+replicaset.apps/grafana-7c4b6ccb8   1         1         1       110m
+```
+
+### 3.5. Connect and login to Grafana
+
+In a production deployment, Grafana would likely be exposed via an Application Load Balancer and served with a domain name and an SSL certificate. To expose Grafana securely for this lab, we are going to use a port-foward command and proxy through the Cloud9 IDE.
+
+Port forward the Graphana service to your Cloud9 IDE:
+
+```bash
+kubectl port-forward -n grafana svc/grafana 8080:80
+```
+
+Then Click, Preview->Preview Running Application, you will see a URL open in a tab inside the IDE. Please click the button in the upper-right corner of the tab to open the page in a new browser window. You will see the Grafana login screen.
+
+![Grafana Login](/images/aws-eks/grafana-login.png)
+
+Login as user `admin`
+To obtain the password, execute the following command:
+
+```bash
+kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+### 3.6. Open dashboards
+
+We will import two standard dashboards from Grafana.com
+
+#### 3.6.1. Cluster Monitoring Dashboard
+
+* Click on Dashboards->Import
+* Enter 7249 dashboard id under Grafana.com Dashboard
+* Click ‘Load’
+* Select ‘Prometheus’ as the endpoint under prometheus data sources drop down
+* Click ‘Import’
+
+You should see a Cluster monitoring dashboard similar to the one below
+
+![Cluster Monitoring](/images/aws-eks/grafana-dashboard-cluster.png)
+
+#### 3.6.2. Pod Monitoring Dashboard
+
+* Click on Dashboards->Import
+* Enter 747 dashboard id under Grafana.com Dashboard
+* Click 'Load'
+* Select 'Prometheus' as the endpoint under prometheus data sources drop down
+* Click 'Import'
+
+You should see a Pod monitoring dashboard similar to the one below
+
+![Pod Monitoring](/images/aws-eks/grafana-dashboard-pod.png)
