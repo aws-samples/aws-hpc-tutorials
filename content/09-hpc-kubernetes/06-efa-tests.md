@@ -13,7 +13,7 @@ In this section, you will run the OSU ping pong benchmark to compare network lat
 Configure environment variable `IMAGE_URI` with URI of container image built in the previous lab.
 
 ```bash
-export IMAGE_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+export IMAGE_URI=$(aws ecr --region ${AWS_REGION} describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
 echo $IMAGE_URI
 ```
 
@@ -100,7 +100,7 @@ Run the latency test MPIJob without EFA
 kubectl apply -f ~/environment/osu-latency-sockets.yaml
 ```
 
-Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+Keep watching the pods state till they enter `Running` state. `Ctrl-c` to exit
 
 ```bash
 kubectl get pods -n gromacs -w
@@ -232,7 +232,7 @@ Run the latency test MPIJob with EFA
 kubectl apply -f ~/environment/osu-latency-efa.yaml
 ```
 
-Keep wathing the pods state till they enter `Running` state. `Ctrl-c` to exit
+Keep watching the pods state till they enter `Running` state. `Ctrl-c` to exit
 
 ```bash
 kubectl get pods -n gromacs -w

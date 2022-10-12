@@ -11,7 +11,7 @@ Once you are connected to Pcluster Manager, you can see the created cluster, dep
 
 When the **pcluster create-cluster** command is executed, AWS ParallelCluster generates an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate an infrastructure in AWS. If you want to see AWS CloudFormation generating the infrastructure, you can view the **Stack Events** tab to see cluster creation events in real time:
 
-![ParallelCluster CloudFormation](/images/hpc-aws-parallelcluster-workshop/pc-cloudformation.png)
+![ParallelCluster CloudFormation](/images/sc22/PCM.png)
 
 Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node via DCV.
 
@@ -21,7 +21,7 @@ Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node
 
 1. Click on the **DCV** Button to connect:
 
-![DCV Connect](/images/sc22/dcv-connect.png)
+![DCV Connect](/images/sc22/PCM_DCV.png)
 
 2. As a one-time step since DCV uses self-signed certificates you'll need to click on **Advanced** > **Proceed to Unsafe**:
 
@@ -42,7 +42,7 @@ In addition to DCV, you can connect to your cluster via SSH using SSM.
 
 1. Click on the **Shell** Button to connect:
 
-![SSM Connect](/images/sc22/ssm-connect.png)
+![SSM Connect](/images/sc22/PCM_Shell.png)
 
 You'll need to be authenticated to the AWS account that instance is running in and have [permission to launch a SSM session](https://docs.aws.amazon.com/systems-manager/latest/userguide/getting-started-add-permissions-to-existing-profile.html). Once you're connected you'll have access to a terminal on the head node:
 
