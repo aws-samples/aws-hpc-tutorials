@@ -13,7 +13,7 @@ In this section, you will run the OSU ping pong benchmark to compare network lat
 Configure environment variable `IMAGE_URI` with URI of container image built in the previous lab.
 
 ```bash
-export IMAGE_URI=$(aws ecr describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
+export IMAGE_URI=$(aws ecr --region ${AWS_REGION} describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
 echo $IMAGE_URI
 ```
 
