@@ -39,4 +39,6 @@ In this section, you will create a pipeline with a source and build stage to aut
 Click on the "Details" link to open the build logs:
 ![AWS CodePipeline](/images/cicd/codepipeline-9.png)
 
-You do not need to wait for the pipeline to complete before moving to the next steps.
+{{% notice info %}}
+You **do not** need to wait for the pipeline to complete before moving to the next steps.
+{{% /notice %}}
