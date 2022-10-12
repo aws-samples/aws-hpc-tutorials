@@ -23,7 +23,7 @@ cd MyDemoRepo
 pwd # should be MyDemoRepo
 ```
 
-4. Create our Spack build definition. You will be using [Spack](https://spack.io) to build our GROMACS application inside of our container. This definition sets what software is to be built, build options, and where to install the software. You will leave most of the build values as defaults, and will select the **x86_64_v4** architecture, which will enable building with **AVX512** optimizations.  This architecture is also available in the [Spack rolling binary cache](https://aws.amazon.com/blogs/hpc/introducing-the-spack-rolling-binary-cache/) which will significantly speed up our build time. 
+4. Create our Spack build definition. You will be using [Spack](https://spack.io) to build our GROMACS application inside of our container. This definition sets what software is to be built, build options, and where to install the software. You will leave most of the build values as defaults, and will select the **x86_64_v3** architecture, which will build an optimized binary with **AVX2** extensions.  This architecture is also available in the [Spack rolling binary cache](https://aws.amazon.com/blogs/hpc/introducing-the-spack-rolling-binary-cache/) which will significantly speed up our build time. 
 
 ```bash
 cat > spack.yaml <<EOF
@@ -33,7 +33,7 @@ spack:
   - osu-micro-benchmarks
   packages:
     all:
-      target: [ x86_64_v4 ]
+      target: [ x86_64_v3 ]
   concretizer:
     unify: true
   config:
