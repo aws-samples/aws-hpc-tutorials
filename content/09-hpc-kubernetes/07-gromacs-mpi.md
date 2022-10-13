@@ -1,5 +1,5 @@
 +++
-title = "g. Run Gromacs MPI job"
+title = "g. Run GROMACS MPI job"
 date = 2022-09-28T10:46:30-04:00
 weight = 70
 tags = ["tutorial", "hpc", "Kubernetes"]
@@ -156,7 +156,6 @@ Performance:      209.325        0.115
 While waiting for the Gromacs MPIJob to complete, explore the cluster utilization using your Grafana dashboard.
 
 <!--![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)-->
-
 
 ####  3. Check output files in FSx volume
 
