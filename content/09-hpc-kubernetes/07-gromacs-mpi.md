@@ -153,7 +153,7 @@ Performance:      209.325        0.115
 
 ```
 
-Also notice the running pods and the CPU utilization in your monitoring terminals. If you set up monitoring using an htop daemonset, your utilization should look similar to the image below. Monitoring using any of the alternative methods should also reflect the higher CPU utilization of the nodes while the Gromacs job is running.
+While waiting for the Gromacs MPIJob to complete, explore the cluster utilization using your Grafana dashboard.
 
 ![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)
 
