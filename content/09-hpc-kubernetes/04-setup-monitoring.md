@@ -287,10 +287,16 @@ In a production deployment, Grafana would likely be exposed via an Application L
 Port forward the Graphana service to your Cloud9 IDE:
 
 ```bash
-kubectl port-forward -n grafana svc/grafana 8080:80
+kubectl port-forward -n grafana svc/grafana 8080:80 &
 ```
 
-Then Click, Preview->Preview Running Application, you will see a URL open in a tab inside the IDE. Please click the button in the upper-right corner of the tab to open the page in a new browser window. You will see the Grafana login screen.
+Then Click, Preview->Preview Running Application, you will see a URL open in a tab inside the IDE. Please click the button in the upper-right corner of the tab to open the page in a new browser tab. You will see the Grafana login screen.
+
+Alternatively, execute the following command to get your Grafana URL and open it in a new browser tab.
+
+```bash
+echo https://${C9_PID}.vfs.cloud9.${AWS_REGION}.amazonaws.com/login
+```
 
 ![Grafana Login](/images/aws-eks/grafana-login.png)
 
