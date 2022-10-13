@@ -15,46 +15,36 @@ source env_vars
 echo ${SSH_KEY_NAME}
 ```
 
-2. Log in to the cluster 
+2. Log in to the cluster
 
 ```bash
 pcluster ssh -n hpc-cluster-lab --region ${AWS_REGION} -i ~/.ssh/${SSH_KEY_NAME}
 ```
 
-3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a SLURM job to allocate a compute node
+3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a Slurm job to allocate a compute node
 
 ```bash
-salloc -N 1 --exclusive
+srun -N 1 --exclusive --pty /bin/bash -il
 ```
 
-4. Wait for the node to be available in Running state (R). You can check this by running the SLURM `squeue` command
-![squeue](/images/fsx-for-lustre-hsm/squeue-out.png)
-
-
-5. Login to the compute node
-
-```bash
-ssh ${SLURM_JOB_NODELIST} 
-```
-
-5. Confirm that the lustre filesystem is mounted on the compute node and is available.
+4. Confirm that the lustre filesystem is mounted on the compute node and is available.
 
 ```bash
 df -h /fsx
 ```
 
-4. You have now successfully mounted the file system. The next step is to verify the data respository association and run some HSM commands. Go into the fsx for lustre directory and into the data repository path to verify the files uploaded into s3 bucket in section b are seen on the file system. --> This verifies **auto import** from S3 to FSx for lustre. 
+5. You have now successfully mounted the file system. The next step is to verify the data respository association and run some HSM commands. Go into the fsx for lustre directory and into the data repository path to verify the files uploaded into s3 bucket in section b are seen on the file system. --> This verifies **auto import** from S3 to FSx for lustre.
 
 ![import](/images/fsx-for-lustre-hsm/import.png)
 
-9. **Lazy Loading** FSx for lustre uses the lazy load  policy where the meta data is visible when you look at the data repository path, however the data is copied to the filesystem only at the time of first access and subsequent accesses will be faster. You can see this by running the command `lfs df -h`. We know that the actual size of the file uploaded into S3 is 455MB. However the space used on the file system before access is 7.8MB of metadata. 
-You can also run `lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy`. It confirms that the file is released but is archived. 
+6. **Lazy Loading** FSx for lustre uses the lazy load  policy where the meta data is visible when you look at the data repository path, however the data is copied to the filesystem only at the time of first access and subsequent accesses will be faster. You can see this by running the command `lfs df -h`. We know that the actual size of the file uploaded into S3 is 455MB. However the space used on the file system before access is 7.8MB of metadata.
+You can also run `lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy`. It confirms that the file is released but is archived.
 
 ![lazyload](/images/fsx-for-lustre-hsm/lazyload.png)
 
 You should see that the file is **released**, i.e. not loaded.
 
-10. Now, check the size of the file 
+7. Now, check the size of the file
 
 ```bash
  ls -lah /fsx/hsmtest/SEG_C3NA_Velocity.sgy
@@ -65,7 +55,7 @@ You should see that the file is **released**, i.e. not loaded.
 As shown above, the file size is about 455 MB.
 
 
-11. Next you will access the file and measure the time it takes to load it from the linked Amazon S3 bucket using the HSM. You write the file to *tempfs*.
+8. Next you will access the file and measure the time it takes to load it from the linked Amazon S3 bucket using the HSM. You write the file to *tempfs*.
 
 Use the following command to retrive the file
 
@@ -96,7 +86,7 @@ This access time is more realistic: at about **0.9s**
 
 #### Review the File System Status
 
-12. Next, look at the file content state through the HSM. Run the following command 
+9. Next, look at the file content state through the HSM. Run the following command
 
 ```bash
 lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy
@@ -115,7 +105,7 @@ Do you notice a difference compared to the previous execution of this command? I
 ![lazyloadarchived](/images/fsx-for-lustre-hsm/lazyloadarchived.png)
 
 
-13. Next you will release the file Content. This action does not not delete nor remove the file itself. The metadata is still stored on the MDT.
+10. Next you will release the file Content. This action does not not delete nor remove the file itself. The metadata is still stored on the MDT.
 
 Use the following command to release the file content:
 
