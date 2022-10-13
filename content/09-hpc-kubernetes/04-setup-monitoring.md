@@ -7,13 +7,13 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will lean how to monitor your cluster as well as monitor the pods running on it.
 
-There are several ways to set up monitoring. Here we will provide a few options. It is not required to deploy each one, however it is recommended to select at least one option for the lab, so you may see the change in resource utilization while your job is running.
+There are several ways to set up monitoring. Here we will provide two approaches to illustrate the range from simple built-in command line-based monitoring to comprehensive graphical dashboard-based moniroting.
 
-## 1. Monitor using kubectl
+#### 1. Monitor using kubectl
 
-This method allows viewing of cluster-wide metrics in textual form
+This method allows viewing of cluster-wide metrics in textual form.
 
-### 1.1. Deploy metrics server
+#### 1.1. Deploy metrics server
 
 To enable utilization monitoring of the cluster using `kubectl`, deploy the Kubernetes metrics server by executing the following command:
 
@@ -21,7 +21,7 @@ To enable utilization monitoring of the cluster using `kubectl`, deploy the Kube
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
-### 1.2. Execute kubectl
+#### 1.2. Execute kubectl
 
 To see node utilization of your cluster, execute
 
@@ -72,83 +72,11 @@ prometheus     prometheus-pushgateway-5f7dcb67bb-b4z5k         1m           21Mi
 prometheus     prometheus-server-584d5c7c84-gmf4z              7m           342Mi   
 ```
 
-## 2. Monitor using htop daemonset
-
-This method allows viewing individual node metrics using the text-based user interface `htop`
-
-### 2.1. Deploy `htop` daemonset
-
-You will use `htop` pods running on each node to interactively monitor CPU utilization.
-
-Create the `htop` daemonset manifest.
-
-```bash
-cat > ~/environment/htop-daemonset.yaml <<EOF
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: htop
-  namespace: gromacs
-spec:
-  selector:
-    matchLabels:
-      name: htop
-  template:
-    metadata:
-      labels:
-        name: htop
-    spec:
-      containers:
-        - name: htop
-          image: terencewestphal/htop:latest
-          command: ["/bin/sh"]
-          args: ["-c", "while true; do date; sleep 10; done"]
-EOF
-```
-
-Then apply the daemonset manifest
-
-```bash
-kubectl apply -f ~/environment/htop-daemonset.yaml
-```
-
-### 2.2. Monitor running pods
-
-Open a new terminal window and execute the following command to watch the running pods in the `gromacs` namespace:
-
-```bash
-watch kubectl -n gromacs get pods -o wide
-```
-
-You should see the htop pods running on each of the nodes
-
-### 2.3. Monitor CPU utilization
-
-Open two new terminal windows. 
-
-In the first terminal window runt htop in the first htop pod.
-
-```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 1 | cut -d ' ' -f 1) -- htop
-```
-
-In the second terminal window run htop in the second htop pod.
-
-```bash
-kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep htop | head -n 2 | cut -d ' ' -f 1) -- htop
-```
-
-### 2.4. Arrange terminals
-
-At this point you should have four terminals open. Use drag and drop to arrange them in a way that allows you to see all of them at the same time. A recommended layout is shown below.
-
-![Interactive Monitoring](/images/aws-eks/interactive-monitoring.png)
-
-## 3. Monitor using Prometheus and Grafana
+#### 2. Monitor using Prometheus and Grafana
 
 This approach allow cluster-wide monitoring using a graphical web interface.
 
-### 3.1. Install helm
+#### 2.1. Install helm
 
 First we will install [helm](https://helm.sh) - a package manager for Kubernetes.
 
@@ -156,7 +84,7 @@ First we will install [helm](https://helm.sh) - a package manager for Kubernetes
 curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
 ```
 
-### 3.2. Add helm repositories
+#### 2.2. Add helm repositories
 
 Add the Prometheus and Grafana helm repositories
 
@@ -168,7 +96,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
 
-### 3.3. Deploy Prometheus
+#### 2.3. Deploy Prometheus
 
 The Prometheus server collects and exports cluster metrics.
 
@@ -222,7 +150,7 @@ replicaset.apps/prometheus-server-584d5c7c84              1         1         1 
 ```
 
 
-### 3.4. Deploy Grafana
+#### 2.4. Deploy Grafana
 
 The Grafana server displays metrics from Prometheus as graphical dashboards.
 
@@ -280,7 +208,7 @@ NAME                                DESIRED   CURRENT   READY   AGE
 replicaset.apps/grafana-7c4b6ccb8   1         1         1       110m
 ```
 
-### 3.5. Connect and login to Grafana
+#### 2.5. Connect and login to Grafana
 
 In a production deployment, Grafana would likely be exposed via an Application Load Balancer and served with a domain name and an SSL certificate. To expose Grafana securely for this lab, we are going to use a port-foward command and proxy through the Cloud9 IDE.
 
@@ -307,11 +235,11 @@ To obtain the password, execute the following command:
 kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
-### 3.6. Open dashboards
+#### 2.6. Open dashboards
 
 We will import two standard dashboards from Grafana.com
 
-#### 3.6.1. Cluster Monitoring Dashboard
+#### 2.6.1. Cluster Monitoring Dashboard
 
 * Click on Dashboards->Import
 * Enter 7249 dashboard id under Grafana.com Dashboard
@@ -323,7 +251,7 @@ You should see a Cluster monitoring dashboard similar to the one below
 
 ![Cluster Monitoring](/images/aws-eks/grafana-dashboard-cluster.png)
 
-#### 3.6.2. Pod Monitoring Dashboard
+#### 2.6.2. Pod Monitoring Dashboard
 
 * Click on Dashboards->Import
 * Enter 747 dashboard id under Grafana.com Dashboard
