@@ -12,3 +12,4 @@ You have provisioned a Kubernetes cluster with HPC capabilities and monitoring.
 You ran a distributed tightly-coupled workload using Kubeflow MPI Operator. 
 
 The experience obtained through this lab can be used when running your own HPC jobs on Kubernetes! 
+
