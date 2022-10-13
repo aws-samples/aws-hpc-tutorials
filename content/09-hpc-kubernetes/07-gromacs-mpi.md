@@ -155,8 +155,7 @@ Performance:      209.325        0.115
 
 While waiting for the Gromacs MPIJob to complete, explore the cluster utilization using your Grafana dashboard.
 
-<!--![GROMACS Utilization](/images/aws-eks/gromacs-utilization.png)-->
-
+<!--![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)-->
 
 ####  3. Check output files in FSx volume
 
