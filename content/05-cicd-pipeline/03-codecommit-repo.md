@@ -1,5 +1,5 @@
 +++
-title = "a. Create a repo in CodeCommit"
+title = "b. Create a repo in CodeCommit"
 date = 2021-09-30T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "DeveloperTools", "CodeCommit"]
