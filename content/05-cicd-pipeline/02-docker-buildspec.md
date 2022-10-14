@@ -26,7 +26,7 @@ pwd # should be MyDemoRepo
 4. Create our Spack build definition. You will be using [Spack](https://spack.io) to build our GROMACS application inside of our container. This definition sets what software is to be built, build options, and where to install the software. You will leave most of the build values as defaults, and will select the **x86_64_v3** architecture, which will build an optimized binary with **AVX2** extensions.  This architecture is also available in the [Spack rolling binary cache](https://aws.amazon.com/blogs/hpc/introducing-the-spack-rolling-binary-cache/) which will significantly speed up our build time. 
 
 ```bash
-cat > spack.yaml <<EOF
+cat > ~/environment/MyDemoRepo/spack.yaml <<EOF
 spack:
   specs:
   - gromacs
@@ -45,7 +45,7 @@ EOF
 5. Create a Dockerfile definition for the container. We will augment this container definition in a later step to add additional functionality that we will need. This container will include a complete [OpenMPI](https://openmpi.org) implementation, as well as an MPI-enabled version of the [GROMACS](https://gromacs.org) molecular dynamics application.  We're going to use the Spack-enabled [Amazon Linux container](https://gallery.ecr.aws/amazonlinux/amazonlinux) provided by the Spack project to build this container.
 
 ```bash
-cat > Dockerfile << EOF
+cat > ~/environment/MyDemoRepo/Dockerfile << EOF
 FROM spack/amazon-linux:v0.18.0 as build
 # Add our spack.yaml file that defines our build and environment
 ADD spack.yaml /opt/spack-environment/spack.yaml

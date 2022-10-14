@@ -73,7 +73,7 @@ Kindly fix that and re-do the above step.
 A [buildspec](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) is a collection of build commands and related settings in YAML format. This file is used by [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) to automatically create an updated version of the container upon code changes. The buildspec file informs CodeBuild of all the actions that should be taken during a build run for your application. In the next section, you will dive deeper on what is CodeBuild and how to set it up as part of a pipeline. 
 ```bash
 
-cat > buildspec.yml << EOF
+cat > ~/environment/MyDemoRepo/buildspec.yml << EOF
 version: 0.2
 
 phases:

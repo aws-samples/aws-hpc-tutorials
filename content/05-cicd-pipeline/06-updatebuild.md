@@ -20,15 +20,15 @@ pwd # should be MyDemoRepo
 The **inputs/** files contain a set of default inputs that we will use.  These files will be used to execute the "Lysozyme in Water" example described on the [GROMACS tutorials website](http://www.mdtutorials.com/gmx/lysozyme/index.html).
 
 ```bash
-mkdir inputs
-curl -o inputs/md_0_1.tpr https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/md_0_1.tpr
-curl -o inputs/topol.top https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/topol.top
+mkdir ~/environment/MyDemoRepo/inputs
+curl -o ~/environment/MyDemoRepo/inputs/md_0_1.tpr https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/md_0_1.tpr
+curl -o ~/environment/MyDemoRepo/inputs/inputs/topol.top https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/topol.top
 ```
 
 3. Add the **entrypoint.sh** script. This script will execute by default at the beginning of any container run to configure the container environment.
 
 ```bash
-cat > entrypoint.sh << EOF
+cat > ~/environment/MyDemoRepo/entrypoint.sh << EOF
 #!/bin/bash
 
 # load spack env
@@ -48,7 +48,7 @@ EOF
 4. Update the Dockerfile to the following. 
 
 ```bash
-cat > Dockerfile << EOF
+cat > ~/environment/MyDemoRepo/Dockerfile << EOF
 FROM spack/amazon-linux:v0.18.0 as build
 # Add our spack.yaml file that defines our build and environment
 ADD spack.yaml /opt/spack-environment/spack.yaml
