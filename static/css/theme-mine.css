@@ -279,3 +279,10 @@ div.notices.info p {
   .btn-default:active {
     background-image: none !important;
   }
+
+/*
+ * Turn off copy/paste for "console" code blocks
+ */
+code.language-console + .copy-to-clipboard {
+  display: none;
+}
