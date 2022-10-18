@@ -1,5 +1,5 @@
 +++
-title = "a. Create a repo in CodeCommit"
+title = "b. Create a repo in CodeCommit"
 date = 2021-09-30T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "DeveloperTools", "CodeCommit"]
@@ -48,10 +48,13 @@ git remote add origin $REPOURL
 Verify that the git remote is set correctly:
 
 ```bash
-$ git remote -v
-# expected output
-# origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (fetch)
-# origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (push)
+git remote -v
+```
+
+You should get output:
+```console
+origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (fetch)
+origin	https://git-codecommit.<region>.amazonaws.com/v1/repos/MyDemoRepo (push)
 ```
 
 6. Push the local Git changes to CodeCommit:
@@ -63,10 +66,13 @@ git push -u origin main
 Verify that the CodeCommit and local repositories are synchronized with:
 
 ```bash
-$ git fetch && git status
-# expected output
-# ...
-# On branch main
-# Your branch is up to date with 'origin/main'.
-# ...
+git fetch && git status
+```
+
+You should get output like:
+```console
+...
+On branch main
+Your branch is up to date with 'origin/main'.
+...
 ```
