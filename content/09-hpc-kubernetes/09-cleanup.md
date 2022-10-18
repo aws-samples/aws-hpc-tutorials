@@ -1,7 +1,7 @@
 +++
 title = "h. Cleanup and Conclusion"
 date = 2022-09-28T10:46:30-04:00
-weight = 80
+weight = 90
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 

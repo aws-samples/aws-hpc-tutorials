@@ -6,6 +6,19 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
 In this section, you will create a new Amazon EKS cluster. 
+Prior to the start, we can ensure our environment variables are set by executing:
+
+```bash
+souce env_vars
+
+echo ${AWS_REGION}
+echo ${INSTANCES}
+echo ${SSH_KEY_NAME}
+echo ${VPC_ID}
+echo ${SUBNET_ID}
+echo ${CUSTOM_AMI}
+```
+
 
 #### 1. Create the EKS manifest file
 

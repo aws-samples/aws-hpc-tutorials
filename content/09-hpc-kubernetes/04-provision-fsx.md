@@ -1,7 +1,7 @@
 +++
 title = "c. Provision FSx for Lustre persistent volume"
 date = 2022-09-28T10:46:30-04:00
-weight = 30
+weight = 40
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
