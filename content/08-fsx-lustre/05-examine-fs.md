@@ -21,11 +21,15 @@ echo ${SSH_KEY_NAME}
 pcluster ssh -n hpc-cluster-lab --region ${AWS_REGION} -i ~/.ssh/${SSH_KEY_NAME}
 ```
 
+Continue connecting to the head node of the cluster by saying **yes**
+
+
 3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a Slurm job to allocate a compute node
 
 ```bash
 srun -N 1 --exclusive --pty /bin/bash -il
 ```
+It will take around 5 mins to get your compute node. 
 
 4. Confirm that the lustre filesystem is mounted on the compute node and is available.
 
@@ -33,9 +37,12 @@ srun -N 1 --exclusive --pty /bin/bash -il
 df -h /fsx
 ```
 
-5. You have now successfully mounted the file system. The next step is to verify the data respository association and run some HSM commands. Go into the fsx for lustre directory and into the data repository path to verify the files uploaded into s3 bucket in section b are seen on the file system. --> This verifies **auto import** from S3 to FSx for lustre.
+5. You have now successfully mounted the file system. The next step is to verify the data respository association and run some HSM commands. Go into the fsx for lustre directory and into the data repository path to verify the files uploaded into s3 bucket in section b are seen on the file system. --> This verifies **auto import** from S3 to FSx for lustre. You should see the test data **SEG_C3NA_Velocity.sgy** you uploaded in the S3 bucket on the FSx Lustre filesystem.
 
-![import](/images/fsx-for-lustre-hsm/import.png)
+```bash
+cd /fsx/hsmtest
+ls -lrt
+```
 
 6. **Lazy Loading** FSx for lustre uses the lazy load  policy where the meta data is visible when you look at the data repository path, however the data is copied to the filesystem only at the time of first access and subsequent accesses will be faster. You can see this by running the command `lfs df -h`. We know that the actual size of the file uploaded into S3 is 455MB. However the space used on the file system before access is 7.8MB of metadata.
 You can also run `lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy`. It confirms that the file is released but is archived.

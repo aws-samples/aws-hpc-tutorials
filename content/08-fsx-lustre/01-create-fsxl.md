@@ -1,5 +1,5 @@
 +++
-title = "a. Create FSx for Lustre filesystem via FSx Console"
+title = "a. Create FSx for Lustre filesystem using AWS CLI"
 date = 2019-09-18T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "lustre", "FSx"]
@@ -8,49 +8,58 @@ tags = ["tutorial", "lustre", "FSx"]
 In this section, you will create a new FSx for lustre filesystem in your test account
 
 
-1. Open the [Amazon FSx console](https://console.aws.amazon.com/fsx/home).
+1. Open your Cloud9 IDE terminal and go to your environment
 
-2. Choose  **Create file system** as shown below
+```bash
+cd ~/environment
+```
 
-![createfilesystem](/images/fsx-for-lustre-hsm/createfilesystem.png)
+2. Define a FSx Lustre Filesystem Name
 
-3. On the next screen select FSx for lustre and click next as shown below.   
+```bash
+export FSX_NAME="sc22lab2"
+```
 
-![selectfsxforlsutre](/images/fsx-for-lustre-hsm/selectfsxlustre.png)
+3. Obtain the Compute Security Group ID of of your cluster. 
+```bash
+export SG_ID=$(aws ec2 describe-security-groups --region ${AWS_REGION} --query "SecurityGroups[*].[GroupId]" --filters Name=group-name,Values=hpc-cluster-lab-Compute* --output text)
+```
 
-4. Fill in the details such as filesystem name and file system size in the create file system form as shown below.
+4. Set the VPC ID and Subnet ID by sourcing the **env_vars** script
+```bash
+source ~/environment/env_vars
+```
 
-![createform](/images/fsx-for-lustre-hsm/createform.png)
+5. Create the FSx Lustre Filesystem
+```bash
+export FSX_ID=$(aws fsx create-file-system \
+    --file-system-type LUSTRE \
+    --storage-capacity 1200 \
+    --storage-type SSD \
+    --subnet-ids ${SUBNET_ID} \
+    --security-group-ids ${SG_ID} \
+    --tags Key=Name,Value=${FSX_NAME} \
+    --lustre-configuration DeploymentType="PERSISTENT_2",PerUnitStorageThroughput=125 \
+    --region ${AWS_REGION} \
+    --query "FileSystem.FileSystemId" \
+    --output text)
+```
 
+6. Store the FSX ID in the **env_vars** script
+```bash
+echo "export FSX_ID=${FSX_ID}" >> ~/environment/env_vars
+echo ${FSX_ID}
+```
 
-{{% notice info %}}
-Please leave the cloud9 terminal open in another tab through this  lab.
-At times, you will need to go back and forth between the cloud9 terminal and AWS console browser tabs. 
-{{% /notice %}}
+7. Check the status of of the FSx Lustre filesystem creation.
 
-5. Now go back to the tab where you have the create file system form open and scroll down to the next section to fill in VPC , subnet and security group as shown below. Enter in the VPC field the output of `echo ${VPC_ID}` from the cloud9 terminal, similarly subnet the output of `echo ${SUBNET_ID}`. For the security group from the drop down select the cluster security group (compute) which should look like sg-XXXX (hpc-cluster-lab-ComputeSecurityGroup-XXXX), from the cluster created in the previous lab. This will make sure thefilesystem you create will be in the same network as your cluster as well as any instances that you may need to mount this filesystem on during this lab. Note down/make a mental note of the security group name. This security group will be edited at the end of this section. 
+```bash
+aws fsx --region ${AWS_REGION} describe-file-systems --file-system-ids ${FSX_ID} --query "FileSystems[0].Lifecycle" --output text
+``` 
 
-![filesystemnetwork](/images/fsx-for-lustre-hsm/filesystemnetwork.png)
-
-6. Scroll down to the **Backup and Maintanence** section and disable automatic backups as shown below. This step is important because you will be creating a data repository association in section c and to do this we need to make sure automatic backups are disabled.
-
-![disablebackup](/images/fsx-for-lustre-hsm/disablebackup.png) 
-
-7. Choose **Next**.
-
-8. Review the summary and choose  **Create file system**.
-
-![createfsl](/images/fsx-for-lustre-hsm/createfsl.png)
+The status should be **CREATING**. Once created the status should be **AVAILABLE**. You can also check the Filesystem details and status in the [FSx console](https://console.aws.amazon.com/fsx/home).
 
 {{% notice info %}}
 Amazon FSx for Lustre file system creation will take **approximately 10 mins. In the meantime let us move to next steps**. 
 {{% notice info %}}
-
-9. While the file system is creating, you will need to edit the inbound rules of the security group attached to this file system to allow EC2 instances to mount the file system. Open [VPC console] (https://console.aws.amazon.com/vpc/home). On this page, on the left most column you will find a link to **security groups**. Click on this link and look for the security group ( compute cluster security group sg-XXXX (hpc-cluster-lab-ComputeSecurityGroup-XXXX)) you noted in step 6. In the details of this security group click on **Edit inbound rules** button.
-
-![editinbound](/images/fsx-for-lustre-hsm/editinbound.png)
-
-10. This will open a screen where you need to click on **Add rule** button and add **Custom TCP** , port number **988** , from 0.0.0.0. Once this is done, click on **Save rules**.
-
-![988](/images/fsx-for-lustre-hsm/988.png)
 

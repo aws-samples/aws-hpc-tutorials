@@ -9,14 +9,17 @@ In this lab you learnt how to create an FSx for Lustre file system, an S3 bucket
 
 Run the following commands on the Cloud9 terminal to delete the cluster and FSx for Lustre Filesystem
 
-1. Delete the cluster created in Lab I
+1. Exit from the Compute node and Cluster head node.
+![exit](/images/fsx-for-lustre-hsm/exit-compute-head.png)
+
+2. Delete the cluster created in Lab I. Note that you need to run this on the Cloud9 terminal, so ensure you have exited from the cluster completely. 
 
 ```bash
 source env_vars
 pcluster delete-cluster -n hpc-cluster-lab --region ${AWS_REGION}
 ```
 
-2. Delete the Lustre Filesystem
+3. Delete the Lustre Filesystem
 
 ```bash
 aws fsx delete-file-system --file-system-id ${FSX_ID} --region ${AWS_REGION}
