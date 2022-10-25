@@ -1,7 +1,7 @@
 +++
 title = "g. Run GROMACS MPI job"
 date = 2022-09-28T10:46:30-04:00
-weight = 70
+weight = 80
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 

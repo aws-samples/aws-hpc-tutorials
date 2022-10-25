@@ -1,7 +1,7 @@
 +++
 title = "d. Setup monitoring"
 date = 2022-09-28T10:46:30-04:00
-weight = 40
+weight = 50
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
@@ -76,15 +76,7 @@ prometheus     prometheus-server-584d5c7c84-gmf4z              7m           342M
 
 This approach allow cluster-wide monitoring using a graphical web interface.
 
-#### 2.1. Install helm
-
-First we will install [helm](https://helm.sh) - a package manager for Kubernetes.
-
-```bash
-curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
-```
-
-#### 2.2. Add helm repositories
+#### 2.1. Add helm repositories
 
 Add the Prometheus and Grafana helm repositories
 
@@ -96,7 +88,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
 
-#### 2.3. Deploy Prometheus
+#### 2.2. Deploy Prometheus
 
 The Prometheus server collects and exports cluster metrics.
 
@@ -172,7 +164,14 @@ datasources:
 EoF
 ```
 
-Then deploy Grafana and configure it with this data source:
+We will use a classic Load Balancer to expose the Grafana dashboard outside of the Kubernetes cluster. Use the following snippet to ensure that only one of the security groups linked to the cluster nodes has the `kubernetes.io/cluster/eks-hpc=owned` tag.
+
+```bash
+export SGID=$(aws ec2 describe-security-groups | jq -r ".SecurityGroups[] | .GroupName, .GroupId" | grep EFA -A1 | grep -v EFA)
+aws ec2 delete-tags --resources $SGID --tags Key=kubernetes.io/cluster/eks-hpc
+```
+
+Then deploy Grafana and configure it with Prometheus as the data source:
 
 ```bash
 kubectl create namespace grafana
@@ -183,7 +182,7 @@ helm install grafana grafana/grafana \
     --set persistence.enabled=true \
     --set adminPassword='SC22!sAWSome' \
     --values ${HOME}/environment/grafana/prometheus.yaml \
-    --set service.type=ClusterIP
+    --set service.type=LoadBalancer
 ```
 
 To verify the deployment, execute:
@@ -210,21 +209,18 @@ replicaset.apps/grafana-7c4b6ccb8   1         1         1       110m
 
 #### 2.5. Connect and login to Grafana
 
-In a production deployment, Grafana would likely be exposed via an Application Load Balancer and served with a domain name and an SSL certificate. To expose Grafana securely for this lab, we are going to use a port-foward command and proxy through the Cloud9 IDE.
+In a production deployment, Grafana would likely be exposed via an Application Load Balancer and served with a domain name and an SSL certificate. For the purposes of the lab we are using a classic lod balancer and traffic is over HTTP.
 
-Port forward the Graphana service to your Cloud9 IDE:
+To get the address whee the grafana service is available, execute:
 
-```bash
-kubectl port-forward -n grafana svc/grafana 8080:80 &
+```
+export LB=$(kubectl -n grafana get svc grafana -o json | jq -r .status.loadBalancer.ingress[].hostname)
+
+echo "Your Grafana URL is here:"
+echo "https://${LB}
 ```
 
-Then Click, Preview->Preview Running Application, you will see a URL open in a tab inside the IDE. Please click the button in the upper-right corner of the tab to open the page in a new browser tab. You will see the Grafana login screen.
-
-Alternatively, execute the following command to get your Grafana URL and open it in a new browser tab.
-
-```bash
-echo https://${C9_PID}.vfs.cloud9.${AWS_REGION}.amazonaws.com/login
-```
+ You will see the Grafana login screen.
 
 ![Grafana Login](/images/aws-eks/grafana-login.png)
 
