@@ -21,7 +21,7 @@ eksctl version
 
 #### Install kubectl
 
-[kubectl](https://kubernetes.io/docs/reference/kubectl/) is a command line utility for interacting with the Kubernetes API. It allows you to run commands against Kubernetes clusters, deploy applications, inspect and manage cluster resources, and view logs. For more information see the [kubectl reference documentation](https://kubernetes.io/docs/reference/kubectl/).
+`kubectl` is a command line utility for interacting with the Kubernetes API. It allows you to run commands against Kubernetes clusters, deploy applications, inspect and manage cluster resources, and view logs. For more information see the [reference documentation](https://kubernetes.io/docs/reference/kubectl/).
 
 
 In your AWS Cloud9 terminal window paste the following commands to install `kubectl`:
