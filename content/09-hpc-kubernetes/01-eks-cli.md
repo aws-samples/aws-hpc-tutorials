@@ -9,7 +9,7 @@ In this section, you will install `eksctl` and `kubectl`.
 
 #### Install eksctl
 
-[eksctl](https://eksctl.io) is a simple CLI tool for creating and managing Amazon EKS. It is written in Go, uses [AWS CloudFormation](https://aws.amazon.com/cloudformation/), was created by Weaveworks.
+`eksctl` is a simple CLI tool for creating and managing Amazon EKS. It is written in Go, uses [AWS CloudFormation](https://aws.amazon.com/cloudformation/), was created by Weaveworks. You learn more by visitng [https://eksctl.io](https://eksctl.io).
 
 In your AWS Cloud9 terminal window paste the following commands to install `eksctl`:
 ```bash
