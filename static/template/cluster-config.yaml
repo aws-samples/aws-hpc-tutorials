@@ -1,5 +1,5 @@
 HeadNode:
-  InstanceType: c5a.2xlarge
+  InstanceType: c6a.2xlarge
   Ssh:
     KeyName: your-key
   Networking:
@@ -41,6 +41,6 @@ SharedStorage:
     MountDir: /shared
     FsxLustreSettings:
       StorageCapacity: 1200
-      DeploymentType: PERSISTENT_1
-      PerUnitStorageThroughput: 200
+      DeploymentType: PERSISTENT_2
+      PerUnitStorageThroughput: 125
       DataCompressionType: LZ4
