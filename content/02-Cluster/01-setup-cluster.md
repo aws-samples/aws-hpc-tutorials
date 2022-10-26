@@ -18,7 +18,7 @@ We'll be using the [hpc6a](https://aws.amazon.com/ec2/instance-types/hpc6/) inst
 
 2. Name the cluster **weather** and select **Template**. On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
 
-## [Download Template](/template/cluster-config.yaml)
+{{% button href="/template/cluster-config.yaml" icon="fas fa-download" %}}Download Template{{% /button %}}
 
 ![Cluster Wizard](/images/pcluster/pcmanager-1.png)
 

@@ -12,7 +12,7 @@ packages:
     libfabric:
         variants: fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
         externals:
-        - spec: libfabric@1.13.2 fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
+        - spec: libfabric@1.16.0 fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
           prefix: /opt/amazon/efa
         buildable: False
 EOF
