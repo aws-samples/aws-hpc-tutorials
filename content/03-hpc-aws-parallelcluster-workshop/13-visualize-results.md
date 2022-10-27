@@ -5,14 +5,15 @@ weight = 120
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/). NCL will be pre-installed on your Cluster.
+In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/).
 
-1. Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
-
-2. Open a terminal and install NCL.
+1. Install NCL.
 ```bash
 sudo yum install -y -q ncl
 ```
+
+2. Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
+
 3. Navigate to the WRF run directory.
 
 ```bash
