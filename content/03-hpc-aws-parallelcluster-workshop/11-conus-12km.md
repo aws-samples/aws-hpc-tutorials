@@ -63,7 +63,7 @@ ozone_plev.formatted} .
 ```
 
 #### Run the CONUS 12Km simulation
-In this step, you create the SLURM batch script that will run the WRF CONUS 12km test case on 192 cores distributed over 2 x hpc6a.48xlarge EC2 instances.
+In this step, you create the Slurm batch script that will run the WRF CONUS 12km test case on 192 cores distributed over 2 x hpc6a.48xlarge EC2 instances.
 
 ```bash
 cat > slurm-wrf-conus12km.sh << EOF
