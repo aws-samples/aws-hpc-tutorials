@@ -7,7 +7,7 @@ tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 Now that we've built a cluster, let's install WRF:
 
 {{% notice note %}}
-We're going to install WRF on the HeadNode, we're able to do this as the architecture of the HeadNode instance type, `c6a.2xlarge`, matches the compute ndoes. In most other cases it makes sense to install on compute nodes.
+We're going to install WRF on the HeadNode, we're able to do this as the architecture of the HeadNode instance type, `c6a.2xlarge`, matches the compute nodes so Spack does the correct [microarchitecture detection](https://spack.readthedocs.io/en/latest/basic_usage.html#support-for-specific-microarchitectures). In most other cases it makes sense to install on compute nodes.
 {{% /notice %}}
 
 ```bash
