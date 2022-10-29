@@ -1,15 +1,15 @@
 +++
-title = "c. Provision FSx for Lustre persistent volume"
+title = "d. Provision FSx for Lustre persistent volume"
 date = 2022-09-28T10:46:30-04:00
 weight = 40
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will create a FSx for Lustre file system and exposed as a resource in Kubernetes to be used by your application pods.
+In this section, you will create a FSx for Lustre file system and expose it as a resource in Kubernetes to be used by your application pods.
 
 To begin, you will deploy The FSx for Lustre Container Storage Interface (CSI) driver. It provides a CSI interface that allows Amazon EKS clusters to manage the lifecycle of FSx for Lustre file systems.
-Then, you will create a Kubernetes `StorageClass` for FSx for Lustre. A Kubernetes `StorageClass` is a Kubernetes storage mechanism that lets you provision persistent volumes (PV) in a Kubernetes cluster and then pods can dynamically request the specific type of storage they need.
-To finish, you will create a persistent volume claim (PVC) using the `StorageClass` created previously that will dynamically provision an FSx for Lustre volume. A PVC is a request for storage by a user that consumes PV. It is similar to a Pod that consumes node resources.
+Then, you will create a Kubernetes `StorageClass` for FSx for Lustre. A Kubernetes `StorageClass` is a Kubernetes storage mechanism that lets you provision persistent volumes (PV) in a Kubernetes cluster and allows pods to dynamically request the specific type of storage they need.
+To finish, you will create a persistent volume claim (PVC) using the `StorageClass` created previously, which will dynamically provision an FSx for Lustre persistent volume (PV). A PVC is a claim of storage capacity from a persistant volume and is a resource that can be mounted into pods and used as shared storage.
 
 
 #### 1. Deploy FSx CSI Driver
@@ -32,7 +32,7 @@ echo $SECURITY_GROUP_ID
 #### 3. Retrieve subnet id of node group
 
 ```bash
-SUBNET_ID=`aws eks describe-nodegroup --cluster-name ${EKS_CLUSTER_NAME} --nodegroup-name "c5n-18xl" --query nodegroup.subnets --region ${AWS_REGION} --output text`
+SUBNET_ID=`aws eks describe-nodegroup --cluster-name ${EKS_CLUSTER_NAME} --nodegroup-name "hpc" --query nodegroup.subnets --region ${AWS_REGION} --output text`
 echo $SUBNET_ID
 ```
 
@@ -59,7 +59,7 @@ EOF
 kubectl apply -f ~/environment/fsx-storage-class.yaml
 ```
 
-To verify that the storage class is create successfully, execute:
+To verify that the storage class is created successfully, execute:
 
 ```bash
 kubectl get storageclass
@@ -75,7 +75,7 @@ gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   f
 
 #### 6. Dynamically provision FSx volume
 
-Copy the persistent volume claim manifest below into a file named `fsx-pvc.yaml`:
+Copy and paste the code below to create a persistent volume claim manifest into a file named `fsx-pvc.yaml`:
 
 ```bash
 cat > ~/environment/fsx-pvc.yaml << EOF
@@ -94,7 +94,7 @@ spec:
 EOF
 ```
 
-Create a namespace `gromacs` in your cluster and a persistent volume claim `fsx-pvc` in this namespace, using the `fsx-sc` storage class. This dynamically creates an FSx persistent volume. Creation of the volume is expected to take 6-8 minutes.
+Create a namespace `gromacs` in your cluster and a persistent volume claim `fsx-pvc` in this namespace, using the `fsx-sc` storage class. This dynamically creates an FSx for Lustre persistent volume. Creation of the volume is expected to take 6-8 minutes.
 
 ```bash
 kubectl create namespace gromacs
@@ -107,7 +107,7 @@ Select the persistent volume claim to check its status
 kubectl -n gromacs get pvc fsx-pvc
 ```
 
-While the You should see output like the following:
+While the persistent volume is provisioning, you should see output like the following:
 
 ```text
 NAME      STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
@@ -155,16 +155,16 @@ You should see output like the following:
             "FileSystemId": "fs-0a983bda1fd46d2f7", 
             "DNSName": "fs-0a983bda1fd46d2f7.fsx.us-east-2.amazonaws.com", 
             "OwnerId": "944270628268", 
-            "Lifecycle": "AVAILABLE"
+            "Lifecycle": "CREATING"
         }
     ]
 }
 ```
 
-The **Lifecycle** field indicates the current status. It is expected that the status will be **CREATING** for about 7 minutes. When the provisioning is complete, the status will change to **CREATED**. 
+The **Lifecycle** field indicates the current status. It is expected that the status will be **CREATING** for about 7 minutes. When the provisioning is complete, the status will change to **AVAILABLE**. 
 
 {{% notice info %}}
-To save time, you can proceed with the next three steps of the tutorial as they do not require the FSx volume to be available. Please come back to this step and execute the command below to ensure the volume is available before you run the [Gromacs MPI job](/09-hpc-kubernetes/07-gromacs-mpi.html).
+To save time, you can proceed with the next three steps of the tutorial as they do not require the FSx volume to be available. Please come back to this step and execute the command below to ensure the persistent volume claim is bound to the persistent volume before you run the [Gromacs MPI job](/09-hpc-kubernetes/07-gromacs-mpi.html).
 {{% /notice %}}
 
 When the FSx volume becomes available, the status of the persistent volume claim in Kubernetes will change to **Bound**
@@ -180,4 +180,4 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 fsx-pvc   Bound    pvc-159049a3-d25d-465f-ad7e-3e0799756fce   1200Gi     RWX            fsx-sc         7m45s
 ```
 
-The **Bound** status indicates that the persistent volume claim is successfully bound to the persistent FSx volume and is ready to be mounted by pods.
+The **Bound** status indicates that the persistent volume claim is successfully bound to the persistent FSx for Lustre volume and is ready to be mounted by pods.
