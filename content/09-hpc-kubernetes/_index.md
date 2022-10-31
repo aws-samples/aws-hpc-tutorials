@@ -20,7 +20,7 @@ This lab requires a Kubernetes cluster. If you are working on this lab as part o
 {{% /notice %}}
 -->
 
-In this lab, you are introduced to deploying and using a container orchestrator such as [Kubernetes](https://kubernetes.io/) for running HPC applications. You will run a high-performance application for molecular dynamics, [GROMACS](https://www.gromacs.org/), that reads and writes data from/to a managed Lustre parallel file system, [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/).
+In this lab, you depoy and use a container orchestrator such as [Kubernetes](https://kubernetes.io/) for running HPC applications. You will run a high-performance application for molecular dynamics, [GROMACS](https://www.gromacs.org/), that reads and writes data from/to a managed Lustre parallel file system, [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/).
 
 The deployment of Kubernetes is a challenging endeavour when done on your own. In the cloud, managed services simplify the installation, operation, and maintenance of Kubernetes. [Amazon Elastic Kubernetes Service (Amazon EKS)](https://aws.amazon.com/eks/) is a managed Kubernetes service on AWS.
 

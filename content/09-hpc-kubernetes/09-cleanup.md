@@ -25,7 +25,7 @@ To delete the cluster, execute:
 eksctl delete cluster -f ~/environment/eks-hpc.yaml
 ```
 
-This command will delete all CloudFormation stacks related to the Amazon EKS cluster. It will take several minutes for all resources to be removed.
+This command will delete the EKS cluster through AWS CloudFormation. It will take several minutes to complete.
 
 #### Conclusion
 

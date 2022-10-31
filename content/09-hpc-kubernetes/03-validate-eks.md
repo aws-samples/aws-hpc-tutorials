@@ -7,7 +7,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will validate the newly created Amazon EKS cluster. 
 
-#### 1. Validate EKS cluster
+#### 1. Validate Amazon EKS cluster creation
 
 To validate that the cluster was provisioned successfully and is ready for use, you will list the Kubernetes nodes by executing the following command:
 

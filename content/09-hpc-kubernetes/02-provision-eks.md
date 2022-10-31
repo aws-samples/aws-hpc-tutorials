@@ -14,6 +14,7 @@ echo export CLUSTER_NAME=eks-hpc >> env_vars
 source env_vars
 
 echo ${AWS_REGION}
+echo ${SUBNET_ID}
 echo ${CLUSTER_NAME}
 ```
 
@@ -25,7 +26,6 @@ The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS 
 Let's create the manifest file by pasting the following commands into the Cloud9 terminal:
 
 ```bash
-export EKS_CLUSTER_NAME="eks-hpc"
 cat > ~/environment/eks-hpc.yaml << EOF
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
@@ -63,7 +63,7 @@ EOF
 
 Notice the `efaEnabled` flag in the manifest file. It will ask `eksctl` to create a node group with the correct setup for using the [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/) network interface to run a tightly-coupled workload with MPI. `eksctl` will leverage AWS CloudFormation to create a [Placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) that puts instances close together and a [EFA-enabled security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html#efa-start-security).
 
-#### 2. Provision the EKS cluster
+#### 2. Create the EKS cluster
 
 It will take ~10 minutes to create the Kubernetes control plane and ~10 minutes to create the node group, in total ~20 minutes.
 
