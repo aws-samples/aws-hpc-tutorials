@@ -12,7 +12,6 @@ We're going to install MPAS on the HeadNode, we're able to do this as the archit
 
 ```bash
 spack install -j $(nproc) mpas-model%intel^intel-oneapi-mpi+external-libfabric^parallelio+pnetcdf
-EOF
 ```
 
 The command `spack install -j $(nproc) mpas%intel^intel-oneapi-mpi+external-libfabric^parallelio+pnetcdf` tells Spack to install [MPAS](https://spack.readthedocs.io/en/latest/package_list.html#mpas-model) using the latest version in the [Spack recipe](https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/mpas-model/package.py). It passes some build flags:

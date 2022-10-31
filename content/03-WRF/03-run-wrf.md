@@ -21,7 +21,7 @@ export I_MPI_OFI_LIBRARY_INTERNAL=0
 spack load intel-oneapi-mpi
 spack load wrf
 module load libfabric-aws
-wrf_exe=$(spack location -i wrf)/run/wrf.exe
+wrf_exe=\$(spack location -i wrf)/run/wrf.exe
 set -x
 ulimit -s unlimited
 ulimit -a
