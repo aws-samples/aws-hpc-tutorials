@@ -17,9 +17,7 @@ Once the cluster goes into **CREATE COMPLETE**, you can connect to the head node
 
 ## SSM Connect
 
-You can skip this step or you can read below if you are curious about the other ways to connect your cluster.
-
-In addition to DCV, you can connect to your cluster via SSH using SSM. 
+You can connect to your cluster via SSH using SSM.
 
 **SSM Connect** It doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
 
@@ -44,7 +42,7 @@ You'll need to be authenticated to the AWS account that instance is running in a
 
 ![Browser Warning](/images/sc22/browser-warning.png)
 
-3. Next to launch a terminal (where the rest of the lab will run) we'll click **Activities** > **Terminal**:
+3. Next to launch a terminal we'll click **Activities** > **Terminal**:
 
 ![DCV Terminal](/images/sc22/dcv-terminal.png)
 
