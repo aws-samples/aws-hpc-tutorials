@@ -1,5 +1,5 @@
 +++
-title = "b. Provision EKS cluster"
+title = "b. Create EKS cluster"
 date = 2022-09-28T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "hpc", "Kubernetes"]
@@ -9,13 +9,13 @@ In this section, you will create a new Amazon EKS cluster.
 Prior to the start, we can ensure our environment variables are set by executing:
 
 ```bash
-echo export CLUSTER_NAME=eks-hpc >> env_vars
+echo export EKS_CLUSTER_NAME=eks-hpc >> env_vars
 
 source env_vars
 
 echo ${AWS_REGION}
 echo ${SUBNET_ID}
-echo ${CLUSTER_NAME}
+echo ${EKS_CLUSTER_NAME}
 ```
 
 

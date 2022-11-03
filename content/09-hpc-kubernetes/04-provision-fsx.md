@@ -9,7 +9,7 @@ In this section, you will create a FSx for Lustre file system and expose it as a
 
 To begin, you will deploy The FSx for Lustre Container Storage Interface (CSI) driver. It provides a CSI interface that allows Amazon EKS clusters to manage the lifecycle of FSx for Lustre file systems.
 Then, you will create a Kubernetes `StorageClass` for FSx for Lustre. A Kubernetes `StorageClass` is a Kubernetes storage mechanism that lets you provision persistent volumes (PV) in a Kubernetes cluster and allows pods to dynamically request the specific type of storage they need.
-To finish, you will create a persistent volume claim (PVC) using the `StorageClass` created previously, which will dynamically provision an FSx for Lustre persistent volume (PV). A PVC is a claim of storage capacity from a persistant volume and is a resource that can be mounted into pods and used as shared storage.
+To finish, you will create a persistent volume claim (PVC) using the `StorageClass` created previously, which will dynamically provision an FSx for Lustre persistent volume (PV). A PVC is a claim of storage capacity from a persistent volume and is a resource that can be mounted into pods.
 
 
 #### 1. Deploy FSx CSI Driver
