@@ -1,5 +1,5 @@
 +++
-title = "b. Provision EKS cluster"
+title = "b. Create EKS cluster"
 date = 2022-09-28T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "hpc", "Kubernetes"]
@@ -9,25 +9,23 @@ In this section, you will create a new Amazon EKS cluster.
 Prior to the start, we can ensure our environment variables are set by executing:
 
 ```bash
-souce env_vars
+echo export EKS_CLUSTER_NAME=eks-hpc >> env_vars
+
+source env_vars
 
 echo ${AWS_REGION}
-echo ${INSTANCES}
-echo ${SSH_KEY_NAME}
-echo ${VPC_ID}
 echo ${SUBNET_ID}
-echo ${CUSTOM_AMI}
+echo ${EKS_CLUSTER_NAME}
 ```
 
 
 #### 1. Create the EKS manifest file
 
-The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS region as well as the associated availability zones to use, the instance type and network settings. For this lab, you will mainly focus on those parameters but many more parameters can be setup in the EKS manifest. In this example, you will create a EKS cluster with a node composed of two c5n.18xlarge instances using [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/).
+The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS region as well as the associated availability zones to use, the instance type and network settings. For this lab, you will mainly focus on those parameters but many more parameters can be setup in the EKS manifest. In this example, you will create a EKS cluster with a node group composed of two hpc6a.48xlarge instances using [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/).
 
 Let's create the manifest file by pasting the following commands into the Cloud9 terminal:
 
 ```bash
-EKS_CLUSTER_NAME="eks-hpc"
 cat > ~/environment/eks-hpc.yaml << EOF
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
@@ -45,11 +43,11 @@ iam:
   withOIDC: true
 
 managedNodeGroups:
-  - name: c5n-18xl
-    instanceType: c5n.18xlarge
-    instancePrefix: c5n-18xl
+  - name: hpc
+    instanceType: hpc6a.48xlarge
+    instancePrefix: hpc
     privateNetworking: true
-    availabilityZones: ["${AWS_REGION}a"]
+    availabilityZones: ["${AWS_REGION}b"]
     efaEnabled: true
     minSize: 0
     desiredCapacity: 2
@@ -63,7 +61,7 @@ managedNodeGroups:
 EOF
 ```
 
-Notice the `efaEnabled` flag in the manifest file. It will ask `eksctl` to create a node group with the correct setup for using [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/) network interface to run a tightly couple workload (MPI). `eksctl` will leverage AWS CloudFormation to create a [Placement group] (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) that puts instance close together and a [EFA-enabled security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html#efa-start-security).
+Notice the `efaEnabled` flag in the manifest file. It will ask `eksctl` to create a node group with the correct setup for using the [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/) network interface to run a tightly-coupled workload with MPI. `eksctl` will leverage AWS CloudFormation to create a [Placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) that puts instances close together and a [EFA-enabled security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html#efa-start-security).
 
 #### 2. Create the EKS cluster
 
@@ -79,29 +77,6 @@ Upon successful completion, you will see a log line similar to this:
 2022-09-29 03:34:37 [✔]  EKS cluster "eks-hpc" in "us-east-2" region is ready
 ```
 
-#### 3. Check cluster creation using API.
 
-To validate that the cluster was provisioned successfully and is ready for use, you will list the Kubernetes nodes by executing the following command:
 
-```bash
-kubectl get nodes -o wide
-```
-
-You should see a list of two nodes similar to the one shown below.
-
-```
-NAME                             STATUS   ROLES    AGE     VERSION
-ip-192-168-86-187.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
-ip-192-168-86-17.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
-```
-
-**Troubleshooting**
-
-If the cluster creation fails with with an ExpiredToken error (`ExpiredToken: The security token included in the request is expired`), ensure you have disabled the AWS Managed temporary credentials in your Cloud9 IDE following the instructions from the Preparation section [here](/02-aws-getting-started/06-iam-role.html).
-
-If your kubectl client is unable to connect to the cluster, you may try to update the connection information by executing the command below, then try accessing the cluster API again.
-
-```bash
-aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
-```
 

@@ -1,11 +1,11 @@
 +++
-title = "a. Install EKS and Kubectl CLI"
+title = "a. Install CLIs"
 date = 2022-09-28T10:46:30-04:00
 weight = 10
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will install `eksctl` and `kubectl`.
+In this section, you will install `eksctl`, `kubectl`, and `helm`.
 
 #### Install eksctl
 
@@ -36,7 +36,7 @@ kubectl version --client --short
 
 `helm` is a package manager for Kubernetes. It allows easy deployment of software from a helm repository to your cluster. Learn more at [helm](https://helm.sh). 
 
-To install helm, execute the following:
+To install helm, in your AWS Cloud9 terminal execute the following command:
 
 ```bash
 curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
