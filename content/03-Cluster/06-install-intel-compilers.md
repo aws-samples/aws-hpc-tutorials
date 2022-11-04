@@ -18,7 +18,7 @@ This will take about `~4 mins` to complete. Once it's complete we can see the in
 spack find
 ```
 
-![Intel compilers in Spack](/images/pcluster/intel-oneapi-compilers.png)
+![Intel compilers in Spack](/images/03-cluster/intel-oneapi-compilers.png)
 
 To use a package, we load it in with `spack load`. In order for Spack to be
 able to use the compiler to build further packages, we need to inform Spack
@@ -37,7 +37,7 @@ This will display the Intel compiler under:
 spack compilers
 ```
 
-![Spack Compilers](/images/pcluster/spack-compilers.png)
+![Spack Compilers](/images/03-cluster/spack-compilers.png)
 
 
 ## Intel MPI {#intel_mpi}

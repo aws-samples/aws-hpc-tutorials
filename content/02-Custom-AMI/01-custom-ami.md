@@ -6,11 +6,16 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 
 #### 1 - Assets Required to Build the Image
 
-The image build assets consist of the following assets:
-- `nvidia-efa-ml-al2-enroot_pyxis.json`: is your main image file, it consists of several sections to define the resources (instance, base AMI, security groups...) you will use to build your image. The base AMI is a ParallelCluster Amazon Linux 2 base AMI. The provisioners section consists of inline scripts that will be executed serially to install the desired software stack onto your image.
-- `variables.json`: contains some key variables. Packer will refer to them in the image script through `user` variables calls.
-- `enroot.com`: in the enroot directory contains the [Enroot](https://github.com/NVIDIA/enroot) configuration that will be copied to your AMI.
+First let's fetch the assets required to build the image:
 
+```bash
+wget https://smml.hpcworkshops.com/template/packer.tar.gz
+tar -xzf packer.tar.gz
+```
+This consists of:
+* `nvidia-efa-ml-al2-enroot_pyxis.json`: is your main image file, it consists of several sections to define the resources (instance, base AMI, security groups...) you will use to build your image. The base AMI is a ParallelCluster Amazon Linux 2 base AMI. The provisioners section consists of inline scripts that will be executed serially to install the desired software stack onto your image.
+* `variables.json`: contains some key variables. Packer will refer to them in the image script through user variables calls.
+* `enroot.com`: in the enroot directory contains the [Enroot](https://github.com/NVIDIA/enroot) configuration that will be copied to your AMI.
 
 #### 2 - Installing Packer
 

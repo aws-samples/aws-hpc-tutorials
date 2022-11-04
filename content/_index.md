@@ -5,7 +5,7 @@ draft: false
 ---
 # Self-Managed Machine Learning Workshop
 
-![Ultracluster](/images/gpu/p4d.jpg)
+![Ultracluster](/images/ultracluster.jpg)
 
 Amazon Web Services (AWS) provides the most elastic and scalable cloud infrastructure to run your [Machine Learning](https://aws.amazon.com/ml/). With virtually unlimited capacity, engineers, researchers, HPC system adminsitrators, and organizations can innovate beyond the limitations of on-premises capacity.
 

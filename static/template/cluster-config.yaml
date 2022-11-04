@@ -1,29 +1,37 @@
 HeadNode:
-  InstanceType: c6a.2xlarge
+  InstanceType: g4dn.2xlarge
   Ssh:
     KeyName: your-key
   Networking:
     SubnetId: subnet-1234567
   LocalStorage:
     RootVolume:
-      Size: 40
+      Size: 100
   Iam:
     AdditionalIamPolicies:
       - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
       - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
   Dcv:
     Enabled: true
 Scheduling:
   Scheduler: slurm
   SlurmQueues:
     - Name: compute
+      ComputeSettings:
+        LocalStorage:
+          EphemeralVolume:
+            MountDir: /local_scratch
+          RootVolume:
+            Size: 200
       ComputeResources:
-        - Name: hpc6a
+        - Name: p4de
           MinCount: 0
-          MaxCount: 64
-          InstanceType: hpc6a.48xlarge
+          MaxCount: 4
+          InstanceType: p4de.24xlarge
           Efa:
             Enabled: true
+            GdrSupport: true
       Networking:
         SubnetIds:
           - subnet-1234567
@@ -32,7 +40,9 @@ Scheduling:
       Iam:
         AdditionalIamPolicies:
           - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-Region: us-east-2
+          - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+          - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+Region: us-east-1
 Image:
   Os: alinux2
 SharedStorage:
@@ -42,5 +52,5 @@ SharedStorage:
     FsxLustreSettings:
       StorageCapacity: 1200
       DeploymentType: PERSISTENT_2
-      PerUnitStorageThroughput: 125
+      PerUnitStorageThroughput: 1000
       DataCompressionType: LZ4

@@ -4,7 +4,7 @@ weight: 24
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
-![Spack Logo](/images/pcluster/spack.svg)
+![Spack Logo](/images/03-cluster/spack.svg)
 
 ## Install Spack
 

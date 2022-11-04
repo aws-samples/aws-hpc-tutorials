@@ -16,22 +16,22 @@ Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node 
 
 1. Click on the **Shell** Button to connect:
 
-![SSM Connect](/images/pcluster/ssm-connect.png)
+![SSM Connect](/images/03-cluster/ssm-connect.png)
 
 You'll need to be authenticated to the AWS account that instance is running in and have [permission to launch a SSM session](https://docs.aws.amazon.com/systems-manager/latest/userguide/getting-started-add-permissions-to-existing-profile.html). Once you're connected you'll have access to a terminal on the head node:
 
-![SSM Console](/images/pcluster/ssm-console.png)
+![SSM Console](/images/03-cluster/ssm-console.png)
 
 ## DCV Connect
 
 1. Click on the **DCV** Button to connect:
 
-![DCV Connect](/images/pcluster/dcv-connect.png)
+![DCV Connect](/images/03-cluster/dcv-connect.png)
 
 2. As a one-time step since DCV uses self-signed certificates you'll need to click on **Advanced** > **Proceed to Unsafe**:
 
-![Browser Warning](/images/pcluster/browser-warning.png)
+![Browser Warning](/images/03-cluster/browser-warning.png)
 
 3. Next to launch a terminal (where the rest of the lab will run) we'll click **Activities** > **Terminal**:
 
-![DCV Terminal](/images/pcluster/dcv-terminal.png)
+![DCV Terminal](/images/03-cluster/dcv-terminal.png)

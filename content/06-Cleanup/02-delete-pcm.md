@@ -8,7 +8,7 @@ To delete Pcluster Manager, navigate to [CloudFormation Console (deeplink)](http
 
 This will ask you to confirm.
 
-![Delete Pcluster Manager](/images/pcluster/delete-pcmanager.png)
+![Delete Pcluster Manager](/images/03-cluster/delete-pcmanager.png)
 
 {{% notice note %}}
 Deleting Pcluster Manager does not delete the cluster, to delete the cluster, follow steps in [**b. Delete Cluster**](/06-cleanup/02-delete-cluster.html), or delete the CloudFormation stack with the same name as the cluster. 

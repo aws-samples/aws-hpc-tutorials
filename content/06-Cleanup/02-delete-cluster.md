@@ -6,4 +6,4 @@ tags: []
 
 To delete the cluster, click **Delete** on the cluster detail pane. This will ask you to confirm.
 
-![Stop Cluster](/images/pcluster/pcmanager-delete-cluster.png)
+![Stop Cluster](/images/03-cluster/pcmanager-delete-cluster.png)

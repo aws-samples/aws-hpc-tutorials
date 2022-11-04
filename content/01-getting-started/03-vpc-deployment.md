@@ -4,7 +4,7 @@ weight = 13
 tags = ["tutorial", "vpc", "ParallelCluster"]
 +++
 
-![VPC](/images/introductory-steps/vpc.png)
+![VPC](/images/01-getting-started/vpc.png)
 
 If using a new account, your VPC configuration will consist of one public subnet and a private subnet in the target region. The `p4de` instances come with 4 network cards and need to be placed into a private subnet otherwise instances will not be able to communicate over the network (see [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#public-ip-addresses)).
 

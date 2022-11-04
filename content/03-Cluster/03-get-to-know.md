@@ -8,7 +8,7 @@ Now that you are connected to the head node, familiarize yourself with the clust
 
 ## SLURM
 
-![Slurm Logo](/images/pcluster/slurm.png)
+![Slurm Logo](/images/03-cluster/slurm.png)
 
 {{% notice tip %}}
 [SLURM](https://slurm.schedmd.com) from SchedMD is one of the batch schedulers that you can use in AWS ParallelCluster. For an overview of the SLURM commands, see the [SLURM Quick Start User Guide](https://slurm.schedmd.com/quickstart.html).
