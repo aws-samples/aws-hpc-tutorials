@@ -36,7 +36,8 @@
           "Source_AMI": "{{ .SourceAMI }}",
           "parallelcluster:version": "{{ user `parallel_cluster_version`}}",
           "parallelcluster:build_status": "available",
-          "parallelcluster:os": "alinux2"
+          "parallelcluster:os": "alinux2",
+          "parallelcluster:image_id": "{{user `company_name`}}-parallelcluster-{{ user `parallel_cluster_version`}}-amzn2"
       },
       "ssh_interface": "{{user `ssh_interface`}}",
       "communicator": "ssh",
