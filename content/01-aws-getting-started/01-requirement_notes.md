@@ -6,7 +6,7 @@ weight = 11
 tags = ["tutorial", "Prerequisite", "ec2"]
 +++
 
-The following prerequisites are required for the HPC workshops:
+The following prerequisites are required for the workshop:
 
 - A computer with an internet connection running Microsoft Windows, Mac OS X, or Linux.
 - An internet browser such as Chrome, Firefox, Safari, Opera, or Edge.

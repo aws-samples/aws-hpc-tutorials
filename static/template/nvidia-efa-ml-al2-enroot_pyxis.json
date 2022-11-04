@@ -1,0 +1,295 @@
+{
+  "min_packer_version": "1.6.0",
+  "variables": {
+    "intel_mkl_version": "intel-mkl-2020.0-088",
+    "cudnn_version": "libcudnn8",
+    "nccl_version": "v2.12.10-1",
+    "pyxis_version": "v0.12.0"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{user `aws_region`}}",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "aws-parallelcluster-{{user `parallel_cluster_version`}}-amzn2-*",
+          "architecture": "x86_64",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "amazon"
+        ],
+        "most_recent": true
+      },
+      "instance_type": "{{user `instance_type`}}",
+      "ssh_username": "ec2-user",
+      "ami_name": "{{user `company_name`}}-parallelcluster-{{ user `parallel_cluster_version`}}-amzn2-{{user `nvidia_driver_version`}}-{{user `cuda_version`}}-{{isotime \"20060102150405\" | clean_resource_name}}",
+      "shutdown_behavior": "terminate",
+      "associate_public_ip_address": "{{user `public_ip`}}",
+      "encrypt_boot": "{{user `encrypt_boot`}}",
+      "tags": {
+          "Name": "{{user `company_name`}}-parallelcluster-{{ user `parallel_cluster_version`}}-amzn2",
+          "State": "{{user `state`}}",
+          "Env": "{{user `env`}}",
+          "OS": "Amazon Linux 2",
+          "Source_AMI": "{{ .SourceAMI }}",
+          "parallelcluster:version": "{{ user `parallel_cluster_version`}}",
+          "parallelcluster:build_status": "available",
+          "parallelcluster:os": "alinux2"
+      },
+      "ssh_interface": "{{user `ssh_interface`}}",
+      "communicator": "ssh",
+      "launch_block_device_mappings": [
+        {
+          "delete_on_termination": true,
+          "device_name": "/dev/xvda",
+          "volume_size": 100,
+          "throughput": 1000,
+          "iops": 10000,
+          "volume_type": "gp3"
+        }
+      ],
+      "temporary_iam_instance_profile_policy_document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ssm:DescribeAssociation",
+              "ssm:GetDeployablePatchSnapshotForInstance",
+              "ssm:GetDocument",
+              "ssm:DescribeDocument",
+              "ssm:GetManifest",
+              "ssm:GetParameter",
+              "ssm:GetParameters",
+              "ssm:ListAssociations",
+              "ssm:ListInstanceAssociations",
+              "ssm:PutInventory",
+              "ssm:PutComplianceItems",
+              "ssm:PutConfigurePackageResult",
+              "ssm:UpdateAssociationStatus",
+              "ssm:UpdateInstanceAssociationStatus",
+              "ssm:UpdateInstanceInformation"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ssmmessages:CreateControlChannel",
+              "ssmmessages:CreateDataChannel",
+              "ssmmessages:OpenControlChannel",
+              "ssmmessages:OpenDataChannel"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ec2messages:AcknowledgeMessage",
+              "ec2messages:DeleteMessage",
+              "ec2messages:FailMessage",
+              "ec2messages:GetEndpoint",
+              "ec2messages:GetMessages",
+              "ec2messages:SendReply"
+            ],
+            "Resource": "*"
+          }
+        ]
+      },
+      "pause_before_ssm": "30s"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "expect_disconnect": true,
+      "inline": [
+        "sudo  yum update -y",
+        "sudo amazon-linux-extras install lustre2.10 epel kernel-5.10 -y",
+        "sudo yum install amazon-cloudwatch-agent python3 yum-utils cmake dkms mdadm git htop hwloc iftop kernel-tools rpm-build rpmdevtools numactl parallel pigz python3-distutils wget kernel-devel kernel-headers -y",
+        "sudo yum groupinstall 'Development Tools' -y",
+        "curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py && sudo python3 /tmp/get-pip.py",
+        "uname -r",
+        "echo 'blacklist nouveau' | sudo tee /etc/modprobe.d/nvidia-graphics-drivers.conf",
+        "echo 'blacklist lbm-nouveau' | sudo tee -a /etc/modprobe.d/nvidia-graphics-drivers.conf",
+        "echo 'alias nouveau off' | sudo tee -a /etc/modprobe.d/nvidia-graphics-drivers.conf",
+        "echo 'alias lbm-nouveau off' | sudo tee -a /etc/modprobe.d/nvidia-graphics-drivers.conf",
+        "sudo shutdown -r now"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "echo 'net.core.default_qdisc = fq' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.ipv4.tcp_congestion_control = bbr' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.ipv4.tcp_timestamps = 0' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.core.rmem_max = 67108864' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.core.wmem_max = 67108864' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.ipv4.tcp_rmem = 4096 87380 67108864' | sudo tee -a /etc/sysctl.conf",
+        "echo 'net.ipv4.tcp_wmem = 4096 65536 67108864' | sudo tee -a /etc/sysctl.conf",
+        "sudo sysctl -p"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "uname -r",
+        "wget -O /tmp/awscli2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip",
+        "cd /tmp && sudo unzip /tmp/awscli2.zip",
+        "sudo /tmp/aws/install",
+        "aws configure set default.s3.max_concurrent_requests 100",
+        "aws configure set default.s3.max_queue_size 10000",
+        "aws configure set default.s3.multipart_threshold 64MB",
+        "aws configure set default.s3.multipart_chunksize 16MB"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "echo '    StrictHostKeyChecking no' | sudo tee -a /etc/ssh/ssh_config",
+        "echo '    HostbasedAuthentication no' | sudo tee -a /etc/ssh/ssh_config",
+        "echo '    CheckHostIP no' | sudo tee -a /etc/ssh/ssh_config"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "cd /tmp",
+        "sudo yum install gcc10 kernel-devel kernel-headers -y",
+        "sudo yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo",
+        "sudo yum clean all",
+        "sudo wget -O /tmp/NVIDIA-Linux-driver.run 'https://us.download.nvidia.com/tesla/{{user `nvidia_driver_version`}}/NVIDIA-Linux-x86_64-{{user `nvidia_driver_version`}}.run'",
+        "sudo CC=gcc10-cc sh /tmp/NVIDIA-Linux-driver.run -q -a --ui=none",
+        "sudo curl -O https://developer.download.nvidia.com/compute/nvidia-driver/redist/fabricmanager/linux-x86_64/fabricmanager-linux-x86_64-{{user `nvidia_driver_version`}}-archive.tar.xz",
+        "sudo tar xf fabricmanager-linux-x86_64-{{user `nvidia_driver_version`}}-archive.tar.xz -C /tmp",
+        "sudo rsync -al /tmp/fabricmanager-linux-x86_64-{{user `nvidia_driver_version`}}-archive/ /usr/ --exclude LICENSE",
+        "sudo mv /usr/systemd/nvidia-fabricmanager.service /usr/lib/systemd/system",
+        "sudo systemctl enable nvidia-fabricmanager",
+        "sudo yum -y install cuda-toolkit-{{user `cuda_version`}} {{user `cudnn_version`}} {{user `cudnn_version`}}-devel",
+        "echo -e '#!/bin/sh\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64\nexport PATH=$PATH:/usr/local/cuda/bin' | sudo tee /etc/profile.d/cuda.sh",
+        "sudo chmod +x /etc/rc.local"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "distribution=$(. /etc/os-release;echo $ID$VERSION_ID)",
+        "sudo amazon-linux-extras install docker",
+        "sudo systemctl enable docker",
+        "curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo",
+        "sudo yum install -y nvidia-container-toolkit nvidia-docker2",
+        "sudo sed -i 's/^OPTIONS/#&/' /etc/sysconfig/docker",
+        "echo -e '{\"default-ulimits\":{\"memlock\":{\"Name\":\"memlock\",\"Soft\":-1,\"Hard\":-1}},\"default-runtime\":\"nvidia\",\"runtimes\":{\"nvidia\":{\"path\":\"nvidia-container-runtime\",\"runtimeArgs\":[]}}}' | sudo tee /etc/docker/daemon.json",
+        "sudo systemctl restart docker",
+        "sudo usermod -aG docker ec2-user",
+        "sudo docker pull nvcr.io/nvidia/cuda:11.0.3-runtime-ubuntu18.04"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "wget -O /tmp/aws-efa-installer.tar.gz https://efa-installer.amazonaws.com/aws-efa-installer-{{user `efa_version`}}.tar.gz",
+        "tar -xf /tmp/aws-efa-installer.tar.gz -C /tmp",
+        "cd /tmp/aws-efa-installer",
+        "sudo ./efa_installer.sh -y -g",
+        "echo -e '#!/bin/sh\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/amazon/openmpi/lib64:/opt/amazon/efa/lib64\nexport PATH=$PATH:/opt/amazon/efa/bin:/opt/amazon/openmpi/bin' | sudo tee /etc/profile.d/amazon_efa.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "cd /opt",
+        "sudo git clone https://github.com/NVIDIA/nccl.git",
+        "cd nccl",
+        "sudo git checkout {{user `nccl_version`}}",
+        "sudo make -j src.build CUDA_HOME=/usr/local/cuda NVCC_GENCODE='-gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80'",
+        "echo -e '#!/bin/sh\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/nccl/build/lib\nexport NCCL_PROTO=simple' | sudo tee /etc/profile.d/nccl.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "git clone https://github.com/aws/aws-ofi-nccl.git -b aws",
+        "cd aws-ofi-nccl",
+        "export PATH=$PATH:/opt/amazon/efa/bin:/opt/amazon/openmpi/bin",
+        "./autogen.sh",
+        "sudo mkdir -p /opt/aws-ofi-nccl",
+        "./configure --prefix=/opt/aws-ofi-nccl --with-mpi=/opt/amazon/openmpi --with-libfabric=/opt/amazon/efa --with-nccl=/opt/nccl/build --with-cuda=/usr/local/cuda",
+        "make && sudo make install",
+        "echo -e '#!/bin/sh\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/aws-ofi-nccl/lib' | sudo tee /etc/profile.d/aws-ofi-nccl.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "cd /tmp",
+        "git clone https://github.com/NVIDIA/nccl-tests.git",
+        "cd nccl-tests",
+        "make MPI=1 MPI_HOME=/opt/amazon/openmpi CUDA_HOME=/usr/local/cuda NCCL_HOME=/opt/nccl/build"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "enroot/enroot.conf",
+      "destination": "/tmp/enroot.conf"
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "sudo yum install -y jq squashfs-tools parallel fuse-overlayfs libnvidia-container-tools pigz squashfuse slurm-devel",
+        "export arch=$(uname -m) && sudo -E yum install -y https://github.com/NVIDIA/enroot/releases/download/v3.4.0/enroot-3.4.0-2.el7.${arch}.rpm",
+        "export arch=$(uname -m) && sudo -E yum install -y https://github.com/NVIDIA/enroot/releases/download/v3.4.0/enroot+caps-3.4.0-2.el7.${arch}.rpm",
+        "sudo mkdir /scratch && sudo chmod -R 777 /scratch",
+        "git clone -b {{user `pyxis_version`}} https://github.com/NVIDIA/pyxis.git /tmp/pyxis",
+        "cd /tmp/pyxis && sudo make rpm && sudo rpm -ihv *.rpm",
+        "sudo mv /tmp/enroot.conf /etc/enroot/enroot.conf",
+        "sudo mkdir -p /opt/slurm/etc/plugstack.conf.d",
+        "echo -e 'include /opt/slurm/etc/plugstack.conf.d/*' | sudo tee /opt/slurm/etc/plugstack.conf",
+        "sudo ln -s -f /usr/share/pyxis/pyxis.conf /opt/slurm/etc/plugstack.conf.d/pyxis.conf"
+
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "sudo mkdir -p /opt/aws",
+        "wget -O /tmp/aws-gpu-boost-clock.sh 'https://github.com/aws-samples/aws-efa-nccl-baseami-pipeline/raw/master/nvidia-efa-ami_base/boost/aws-gpu-boost-clock.sh'",
+        "wget -O /tmp/aws-gpu-boost-clock.service 'https://github.com/aws-samples/aws-efa-nccl-baseami-pipeline/raw/master/nvidia-efa-ami_base/boost/aws-gpu-boost-clock.service'",
+        "sudo mv /tmp/aws-gpu-boost-clock.sh /opt/aws/ && sudo chmod +x /opt/aws/aws-gpu-boost-clock.sh",
+        "sudo mv /tmp/aws-gpu-boost-clock.service /lib/systemd/system",
+        "sudo systemctl enable aws-gpu-boost-clock.service && sudo systemctl start aws-gpu-boost-clock.service"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/bin/bash",
+      "inline": [
+        "sudo /usr/local/bin/pip3 install boto3",
+        "sudo mkdir -p /opt/aws",
+        "git clone https://github.com/aws-samples/aws-efa-nccl-baseami-pipeline.git /tmp/aws-efa-nccl-baseami",
+        "sudo mv /tmp/aws-efa-nccl-baseami/nvidia-efa-ami_base/cloudwatch /opt/aws/",
+        "sudo mv /opt/aws/cloudwatch/aws-hw-monitor.service /lib/systemd/system",
+        "echo -e '#!/bin/sh\n' | sudo tee /opt/aws/cloudwatch/aws-cloudwatch-wrapper.sh",
+        "echo -e '/usr/bin/python3 /opt/aws/cloudwatch/nvidia/aws-hwaccel-event-parser.py &' | sudo tee -a /opt/aws/cloudwatch/aws-cloudwatch-wrapper.sh",
+        "echo -e '/usr/bin/python3 /opt/aws/cloudwatch/nvidia/accel-to-cw.py /opt/aws/cloudwatch/nvidia/nvidia-exporter >> /dev/null 2>&1 &\n' | sudo tee -a /opt/aws/cloudwatch/aws-cloudwatch-wrapper.sh",
+        "echo -e '/usr/bin/python3 /opt/aws/cloudwatch/efa/efa-to-cw.py /opt/aws/cloudwatch/efa/efa-exporter >> /dev/null 2>&1 &\n' | sudo tee -a /opt/aws/cloudwatch/aws-cloudwatch-wrapper.sh",
+        "sudo chmod +x /opt/aws/cloudwatch/aws-cloudwatch-wrapper.sh",
+        "sudo cp /opt/aws/cloudwatch/nvidia/cwa-config.json /opt/aws/amazon-cloudwatch-agent/bin/config.json",
+        "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s",
+        "sudo systemctl enable aws-hw-monitor.service",
+        "sudo systemctl restart amazon-cloudwatch-agent.service"
+      ]
+    }
+  ]
+}

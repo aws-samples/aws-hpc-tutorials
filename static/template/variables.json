@@ -1,0 +1,17 @@
+{
+  "aws_region": "us-east-1",
+  "company_name": "smml",
+  "parallel_cluster_version": "3.3.0",
+  "instance_type": "g4dn.2xlarge",
+  "encrypt_boot": "false",
+  "public_ip": "true",
+  "ssh_interface": "public_dns",
+
+  "efa_version": "latest",
+  "intel_mkl_version": "intel-mkl-2020.0-088",
+  "nvidia_driver_version": "510.47.03",
+  "cuda_version": "11-6",
+  "cudnn_version": "libcudnn8",
+  "pyxis_version": "v0.12.0",
+  "nccl_version": "v2.12.10-1"
+}
