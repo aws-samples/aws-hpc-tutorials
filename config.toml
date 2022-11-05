@@ -1,6 +1,6 @@
-baseURL = "https://weather.hpcworkshops.com"
+baseURL = "https://ssml.hpcworkshops.com"
 languageCode = "en-us"
-title = "AWS HPC Workshops"
+title = "AWS ML Workshop"
 theme = "hugo-theme-learn"
 uglyurls = true
 sectionPagesMenu = "main"
@@ -10,10 +10,10 @@ pygmentsCodeFences = true
 hrefTargetBlank = true
 
 [params]
-editURL = "https://github.com/aws-samples/aws-hpc-tutorials/tree/weather/content/"
+editURL = "https://github.com/aws-samples/aws-hpc-tutorials/tree/smml/content/"
 themeVariant = "mine"
 showVisitedLinks = true
-description = "AWS HPC Workshops"
+description = "AWS ML Workshop"
 disableSearch = false
 disableAssetsBusting = false
 disableLanguageSwitchingButton = true
