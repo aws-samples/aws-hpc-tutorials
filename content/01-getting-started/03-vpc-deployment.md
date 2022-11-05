@@ -14,7 +14,7 @@ Please follow the steps below to deploy your new VPC:
 
 1. Click on this link to deploy to CloudFormation:
 
-    {{% button href="https://us-east-1.console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=VPC-Large-Scale&templateURL=https://smml.hpcworkshops.com/template/VPC-Large-Scale.yaml" icon="fas fa-rocket" %}}Deploy VPC{{% /button %}}
+    {{% button href="https://us-east-1.console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=VPC-Large-Scale&templateURL=https://aws-hpc-workshops.s3.amazonaws.com/VPC-Large-Scale.yaml" icon="fas fa-rocket" %}}Deploy VPC{{% /button %}}
 
 2. You will see a list of parameters, do as follows:
 

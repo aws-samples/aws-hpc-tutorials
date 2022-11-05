@@ -9,9 +9,10 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 First let's fetch the assets required to build the image:
 
 ```bash
-wget https://smml.hpcworkshops.com/template/packer.tar.gz
+wget https://aws-hpc-workshops.s3.amazonaws.com/packer.tar.gz
 tar -xzf packer.tar.gz
 ```
+
 This consists of:
 * `nvidia-efa-ml-al2-enroot_pyxis.json`: is your main image file, it consists of several sections to define the resources (instance, base AMI, security groups...) you will use to build your image. The base AMI is a ParallelCluster Amazon Linux 2 base AMI. The provisioners section consists of inline scripts that will be executed serially to install the desired software stack onto your image.
 * `variables.json`: contains some key variables. Packer will refer to them in the image script through user variables calls.
