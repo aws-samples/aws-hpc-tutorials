@@ -22,7 +22,7 @@ The **inputs/** files contain a set of default inputs that we will use.  These f
 ```bash
 mkdir ~/environment/MyDemoRepo/inputs
 curl -o ~/environment/MyDemoRepo/inputs/md_0_1.tpr https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/md_0_1.tpr
-curl -o ~/environment/MyDemoRepo/inputs/inputs/topol.top https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/topol.top
+curl -o ~/environment/MyDemoRepo/inputs/topol.top https://sc22-hpc-labs.s3.amazonaws.com/gromacs/inputs/topol.top
 ```
 
 3. Add the **entrypoint.sh** script. This script will execute by default at the beginning of any container run to configure the container environment.
