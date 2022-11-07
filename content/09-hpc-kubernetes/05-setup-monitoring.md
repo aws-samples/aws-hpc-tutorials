@@ -1,13 +1,13 @@
 +++
-title = "d. Setup monitoring"
+title = "e. Setup monitoring"
 date = 2022-09-28T10:46:30-04:00
 weight = 50
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
-In this section, you will lean how to monitor your cluster as well as monitor the pods running on it.
+In this section, you will lean how to monitor your cluster and the pods running on it.
 
-There are several ways to set up monitoring. Here we will provide two approaches to illustrate the range from simple built-in command line-based monitoring to comprehensive graphical dashboard-based moniroting.
+There are several ways to set up monitoring. Here we will provide two approaches to illustrate the range from simple built-in command line-based monitoring to comprehensive graphical dashboard-based monitoring.
 
 #### 1. Monitor using kubectl
 
@@ -21,9 +21,11 @@ To enable utilization monitoring of the cluster using `kubectl`, deploy the Kube
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
+Please allow 1 to 2 minutes for the metrics server to initialize, then proceed to the next step. If you execute the next step and see an error instead of the expected output, please wait a few more seconds and retry.
+
 #### 1.2. Execute kubectl
 
-To see node utilization of your cluster, execute
+To see node utilization of your cluster, execute:
 
 ```bash
 kubectl top node --use-protocol-buffers
@@ -37,7 +39,8 @@ ip-192-168-68-194.us-east-2.compute.internal   201m         0%     1362Mi       
 ip-192-168-91-99.us-east-2.compute.internal    226m         0%     1001Mi          0%  
 ```
 
-To see how much resources each pod is utilizing, execute
+To see how much resources each pod is utilizing, execute:
+
 ```bash
 kubectl top pod -A --use-protocol-buffers
 ```
@@ -46,10 +49,6 @@ Sample output:
 
 ```text
 NAMESPACE      NAME                                            CPU(cores)   MEMORY(bytes)   
-default        bash                                            0m           81Mi            
-grafana        grafana-7c4b6ccb8-q2qsv                         2m           71Mi            
-gromacs        htop-bb6d4                                      1m           10Mi            
-gromacs        htop-pdhmp                                      1m           6Mi             
 kube-system    aws-efa-k8s-device-plugin-daemonset-q6cll       1m           6Mi             
 kube-system    aws-efa-k8s-device-plugin-daemonset-srqdk       1m           6Mi             
 kube-system    aws-node-crzgq                                  6m           83Mi            
@@ -63,22 +62,15 @@ kube-system    fsx-csi-node-qs9dh                              8m           52Mi
 kube-system    kube-proxy-l6747                                11m          52Mi            
 kube-system    kube-proxy-ntjf7                                13m          51Mi            
 kube-system    metrics-server-64cf6869bd-b9lsg                 5m           28Mi            
-mpi-operator   mpi-operator-65d47d6d67-dx7kk                   4m           24Mi            
-prometheus     prometheus-alertmanager-6f64cb4659-wkbj5        1m           27Mi            
-prometheus     prometheus-kube-state-metrics-77ddf69b4-z8z4z   1m           20Mi            
-prometheus     prometheus-node-exporter-lm4rt                  0m           34Mi            
-prometheus     prometheus-node-exporter-r4hbp                  0m           36Mi            
-prometheus     prometheus-pushgateway-5f7dcb67bb-b4z5k         1m           21Mi            
-prometheus     prometheus-server-584d5c7c84-gmf4z              7m           342Mi   
 ```
 
 #### 2. Monitor using Prometheus and Grafana
 
-This approach allow cluster-wide monitoring using a graphical web interface.
+This approach allows cluster-wide monitoring through a web-based graphical user interface.
 
 #### 2.1. Add helm repositories
 
-Add the Prometheus and Grafana helm repositories
+Add the Prometheus and Grafana helm repositories by executing the following commands:
 
 ```bash
 # add prometheus Helm repo
@@ -90,7 +82,7 @@ helm repo add grafana https://grafana.github.io/helm-charts
 
 #### 2.2. Deploy Prometheus
 
-The Prometheus server collects and exports cluster metrics.
+The Prometheus server collects and exports cluster metrics. Execute the following commands to deploy it:
 
 ```bash
 kubectl create namespace prometheus
@@ -164,14 +156,18 @@ datasources:
 EoF
 ```
 
-We will use a classic Load Balancer to expose the Grafana dashboard outside of the Kubernetes cluster. Use the following snippet to ensure that only one of the security groups linked to the cluster nodes has the `kubernetes.io/cluster/eks-hpc=owned` tag.
+<!--
+We will use a classic Load Balancer to expose the Grafana dashboard outside of the Kubernetes cluster. 
+Use the following snippet to ensure that only one of the security groups linked to the cluster nodes has the `kubernetes.io/cluster/eks-hpc=owned` tag.
 
 ```bash
 export SGID=$(aws ec2 describe-security-groups | jq -r ".SecurityGroups[] | .GroupName, .GroupId" | grep EFA -A1 | grep -v EFA)
+echo ${SGID}
 aws ec2 delete-tags --resources $SGID --tags Key=kubernetes.io/cluster/eks-hpc
 ```
+-->
 
-Then deploy Grafana and configure it with Prometheus as the data source:
+Deploy Grafana and configure it with Prometheus as the data source:
 
 ```bash
 kubectl create namespace grafana
@@ -209,18 +205,18 @@ replicaset.apps/grafana-7c4b6ccb8   1         1         1       110m
 
 #### 2.5. Connect and login to Grafana
 
-In a production deployment, Grafana would likely be exposed via an Application Load Balancer and served with a domain name and an SSL certificate. For the purposes of the lab we are using a classic lod balancer and traffic is over HTTP.
+In a production deployment, Grafana would typically be exposed via an Application Load Balancer, configured with a domain name and an SSL certificate. For this lab we are using a classic lod balancer and traffic is over HTTP.
 
-To get the address whee the grafana service is available, execute:
+To get your Grafana URL, execute:
 
 ```
 export LB=$(kubectl -n grafana get svc grafana -o json | jq -r .status.loadBalancer.ingress[].hostname)
 
-echo "Your Grafana URL is here:"
-echo "https://${LB}
+echo "Your Grafana URL is:"
+echo "http://${LB}"
 ```
 
- You will see the Grafana login screen.
+ Open the Grafana URL. It may take a few minutes for the Grafana URL to become active. When the load balancer is provisioned and its DNS record has propagated, you will see the Grafana login screen.
 
 ![Grafana Login](/images/aws-eks/grafana-login.png)
 
@@ -238,23 +234,23 @@ We will import two standard dashboards from Grafana.com
 #### 2.6.1. Cluster Monitoring Dashboard
 
 * Click on Dashboards->Import
-* Enter 7249 dashboard id under Grafana.com Dashboard
+* Enter dashboard id `7249` under Grafana.com Dashboard
 * Click ‘Load’
-* Select ‘Prometheus’ as the endpoint under prometheus data sources drop down
+* Select ‘Prometheus’ as the endpoint under the "Prometheus data sources" drop down
 * Click ‘Import’
 
-You should see a Cluster monitoring dashboard similar to the one below
+You will see a Cluster monitoring dashboard similar to the one below:
 
 ![Cluster Monitoring](/images/aws-eks/grafana-dashboard-cluster.png)
 
 #### 2.6.2. Pod Monitoring Dashboard
 
 * Click on Dashboards->Import
-* Enter 747 dashboard id under Grafana.com Dashboard
+* Enter dashboard id `747` under Grafana.com Dashboard
 * Click 'Load'
-* Select 'Prometheus' as the endpoint under prometheus data sources drop down
+* Select 'Prometheus' as the endpoint under the "Prometheus data sources" drop down
 * Click 'Import'
 
-You should see a Pod monitoring dashboard similar to the one below
+You will see a Pod monitoring dashboard similar to the one below:
 
 ![Pod Monitoring](/images/aws-eks/grafana-dashboard-pod.png)

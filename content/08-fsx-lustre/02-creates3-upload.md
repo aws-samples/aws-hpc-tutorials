@@ -19,43 +19,43 @@ Choose a random prefix, postfix, or append your name.
 ```bash
 BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
 BUCKET_NAME_DATA="bucketname-${BUCKET_POSTFIX}"
-aws s3 mb s3://$BUCKET_NAME_DATA --region ${AWS_REGION}
-
-cat << EOF
-***** Take Note of Your Bucket Name *****
-Bucket Name = $BUCKET_NAME_DATA
-*****************************************
-EOF
+aws s3 mb s3://${BUCKET_NAME_DATA} --region ${AWS_REGION}
 ```
 {{% notice info %}}
 Keep note of your bucket name. If you forget your bucket name, you can view it in the [Amazon S3 Dashboard](https://s3.console.aws.amazon.com/s3/home).
 {{% /notice %}}
 
-2. Download a file from the Internet to your Cloud9 instance. For example, download [synthetic subsurface model](https://wiki.seg.org/wiki/SEG_C3_45_shot). The file will be downloaded on your AWS Cloud9 instance, not your computer.
+2. Store bucket name in the **env_vars** script.
+```bash
+echo "export BUCKET_NAME_DATA=${BUCKET_NAME_DATA}" >> ~/environment/env_vars
+echo ${BUCKET_NAME_DATA}
+``` 
+
+3. Download a file from the Internet to your Cloud9 instance. For example, download [synthetic subsurface model](https://wiki.seg.org/wiki/SEG_C3_45_shot). The file will be downloaded on your AWS Cloud9 instance, not your computer.
 
 ```bash
 wget http://s3.amazonaws.com/open.source.geoscience/open_data/seg_eage_salt/SEG_C3NA_Velocity.sgy
 ```
 
-3. Upload the file to your S3 bucket using the following command:
+4. Upload the file to your S3 bucket using the following command:
 
 ```bash
-aws s3 cp ./SEG_C3NA_Velocity.sgy s3://$BUCKET_NAME_DATA/SEG_C3NA_Velocity.sgy
+aws s3 cp ./SEG_C3NA_Velocity.sgy s3://${BUCKET_NAME_DATA}/SEG_C3NA_Velocity.sgy
 ```
 
-4. List the content of your bucket using the following command. Alternatively, you can view the [S3 Dashboard](https://console.aws.amazon.com/s3/) in the AWS Management Console and view your newly created bucket to see the file.
+5. List the content of your bucket using the following command. Alternatively, you can view the [S3 Dashboard](https://console.aws.amazon.com/s3/) in the AWS Management Console and view your newly created bucket to see the file.
 
 ```bash
-aws s3 ls s3://$BUCKET_NAME_DATA/
+aws s3 ls s3://${BUCKET_NAME_DATA}/
 ```
 
-5. Delete the local version of the file using the command **rm** or the AWS Cloud9 IDE interface.
+6. Delete the local version of the file using the command **rm** or the AWS Cloud9 IDE interface.
 
 ```bash
 rm SEG_C3NA_Velocity.sgy
 ```
 
-6. If you would like a view of S3 through the user interface  open the [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home) and click on your bucket name (bucketname-xxxx) to find the newly uploaded file.
+7. If you would like a view of S3 through the user interface  open the [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home) and click on your bucket name (bucketname-xxxx) to find the newly uploaded file.
 
 ![views3upload](/images/fsx-for-lustre-hsm/views3upload.png)
 
