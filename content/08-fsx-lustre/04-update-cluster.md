@@ -8,18 +8,15 @@ tags = ["tutorial", "lustre", "FSx", "S3"]
 
 In this section you will update the cluster created in Lab I and  mount the filesystem created earlier in section a. of this lab.
 
-1. Go to your Cloud9 IDE terminal and run the below to obtain the FSx Lustre Filesystem ID
+1. Go to your Cloud9 IDE terminal and run the **env_vars** if not done already.
 
 ```bash
-export FSX_ID=$(aws fsx describe-file-systems --query 'FileSystems[?FileSystemType == `LUSTRE`].{FileSystemId:FileSystemId}' --region $AWS_REGION --output text)
-echo "export FSX_ID=${FSX_ID}" >> env_vars
-echo ${FSX_ID}
+source ~/environment/env_vars
 ```
 
 2. Create a post-install script to mount the FSx Lustre Filesystem on the cluster.
 
 ```bash
-# get filesystem information
 export filesystem_id=${FSX_ID}
 export filesystem_dns=$(aws fsx --region ${AWS_REGION} describe-file-systems --file-system-ids $filesystem_id --query "FileSystems[0].DNSName" --output text)
 export filesystem_mountname=$(aws fsx --region ${AWS_REGION} describe-file-systems --file-system-ids $filesystem_id --query "FileSystems[].LustreConfiguration[].MountName" --output text)
@@ -29,10 +26,8 @@ export filesystem_mountname=$(aws fsx --region ${AWS_REGION} describe-file-syste
 cat > mount-fsx.sh << EOF
 #!/bin/bash
 
-# create mount dir
 sudo mkdir -p /fsx
 
-# mount filesystem
 sudo mount -t lustre -o noatime,flock ${filesystem_dns}@tcp:/${filesystem_mountname} /fsx
 
 EOF
@@ -49,8 +44,8 @@ aws s3 cp mount-fsx.sh s3://${BUCKET_NAME_DATA}
 ```bash
 export S3PATH=s3://${BUCKET_NAME_DATA}/mount-fsx.sh
 yq -i '(.Scheduling.SlurmQueues[0].CustomActions.OnNodeConfigured.Script=env(S3PATH)) |
-      '(.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[0]={"Policy": "arn:aws:iam::aws:policy/AmazonFSxFullAccess"}) |
-      '(.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[1]={"Policy": "arn:aws:iam::aws:policy/AmazonS3FullAccess"})' my-cluster-config.yaml
+       (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[0]={"Policy": "arn:aws:iam::aws:policy/AmazonFSxFullAccess"}) |
+       (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[1]={"Policy": "arn:aws:iam::aws:policy/AmazonS3FullAccess"})' ~/environment/my-cluster-config.yaml
 ```
 
 5. Update the cluster
@@ -59,10 +54,15 @@ yq -i '(.Scheduling.SlurmQueues[0].CustomActions.OnNodeConfigured.Script=env(S3P
 pcluster update-cluster -n hpc-cluster-lab -c my-cluster-config.yaml --region ${AWS_REGION} --suppress-validators ALL
 ```
 
-Wait for the cluster to be updated. You can check the cluster update status with `pcluster list-clusters -r ${AWS_REGION}` or monitoring the CloudFormation stack in the AWS Console.
+9. Wait for the cluster to be updated. You can check the cluster update status as below or monitoring the CloudFormation stack in the AWS Console.
 
-Re-start the compute fleet
+```bash
+pcluster describe-cluster -n hpc-cluster-lab --query clusterStatus --region ${AWS_REGION}
+```
 
+Once the cluster is updated, you will see a **UPDATE_COMPLETE** status.
+
+10. Re-start the compute fleet
 
 ```bash
 pcluster update-compute-fleet -n hpc-cluster-lab --status START_REQUESTED --region ${AWS_REGION}

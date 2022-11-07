@@ -1,5 +1,5 @@
 +++
-title = "h. Cleanup and Conclusion"
+title = "i. Cleanup and Conclusion"
 date = 2022-09-28T10:46:30-04:00
 weight = 90
 tags = ["tutorial", "hpc", "Kubernetes"]
@@ -9,17 +9,23 @@ In this section, you will delete the FSx for Lustre file system and the EKS clus
 
 #### 1. Delete resources belonging to the namespace.
 
+Execute the following command to remove all Kubernetes resources that were created in the gromacs namespace:
+
 ```bash
 kubectl delete namespace gromacs
 ```
 
+When the persistent volume claim is deleted, the FSx for Lustre volume will automatically be deleted as well.
+
 #### 2. Delete EKS cluster
+
+To delete the cluster, execute:
 
 ```bash
 eksctl delete cluster -f ~/environment/eks-hpc.yaml
 ```
 
-This command will delete the EKS cluster through AWS CloudFormation.  This command will take several minutes to complete.
+This command will delete the EKS cluster through AWS CloudFormation. The process will take several minutes to complete.
 
 #### Conclusion
 

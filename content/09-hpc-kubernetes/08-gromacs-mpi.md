@@ -1,5 +1,5 @@
 +++
-title = "g. Run GROMACS MPI job"
+title = "h. Run GROMACS MPI job"
 date = 2022-09-28T10:46:30-04:00
 weight = 80
 tags = ["tutorial", "hpc", "Kubernetes"]
@@ -9,7 +9,7 @@ In this section, you will run a Gromacs MPI job distributed between two c5n.18xl
 
 ####  1. Create MPIJob manifest
 
-Copy the MPIJob manifest below into a file named `gromacs-mpi.yaml`, 
+Execute the code block below to create a file named `gromacs-mpi.yaml`, containing an MPIJob manifest: 
 
 ```bash
 cat > ~/environment/gromacs-mpi.yaml << EOF
@@ -110,19 +110,27 @@ spec:
 EOF
 ```
 
-####  2. Run the Gromacs MPIJob
+####  2. Run the GROMACS MPIJob
+
+To launch the GROMACS MPIJob, execute:
 
 ```bash
 kubectl apply -f ~/environment/gromacs-mpi.yaml
 ```
 
-Follow the launcher logs as soon as the pod enters the Running state
+Watch the pods in the gromacs namespace until the launcher pod enters `Running` state. Press `Ctrl-c` to exit.
+
+```bash
+kubectl get pods -n gromacs -w
+```
+
+Follow the launcher logs while the pod is in Running state.
 
 ```bash
 kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep gromacs-mpi-launcher | head -n 1 | cut -d ' ' -f 1)
 ```
 
-You should see GROMACS log entries similar to the shown below. Together with the launcher pod in status Running and increased utilization of the cluster node cores, this is an indication that the MPI Job is running.  Job output will hang on the line `50000 steps,    100.0 ps.` while the simulation runs and will report the rest on simulation completion.
+You should see GROMACS log entries similar to the ones shown below. Job output will hang on the line `50000 steps,    100.0 ps.` while the simulation runs and will report the rest on simulation completion.
 
 ```log
 ...
@@ -153,17 +161,41 @@ Performance:      209.325        0.115
 
 ```
 
-While waiting for the Gromacs MPIJob to complete, explore the cluster utilization using your Grafana dashboard.
+While waiting for the GROMACS MPIJob to complete, explore the cluster utilization using either `kubectl top node` or the Grafana dashboards. 
+
+Example:
+
+```bash
+kubectl top node
+```
+
+Output:
+
+```text
+NAME                                            CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+ip-192-168-116-245.us-east-2.compute.internal   36114m       37%    5275Mi          1%        
+ip-192-168-125-235.us-east-2.compute.internal   36120m       37%    4951Mi          1%  
+```
+
+You should notice increased utilization of the cluster node cores. This is an indication that the MPI Job is running.
 
 <!--![Gromacs Utilization](/images/aws-eks/gromacs-utilization.png)-->
 
-####  3. Check output files in FSx volume
+#### 3. Delete MPIJob when completed
+
+To delete the GROMACS MPIJob, after it is completed, execute:
+
+```bash
+kubectl delete -f ~/environment/gromacs-mpi.yaml
+```
+
+#### 4. Check output files in FSx volume
 
 Congratulations, you have successfully run a tightly coupled MPI job on two nodes using GROMACS to simulate a protein (lysozyme) in a box of water with ions. 
 
 Once the job is completed the output files are in the FSx volume. To check that we will mount the volume in a new pod and open a shell in that pod.
 
-Copy the pod manifest below into a file named `fsx-data.yaml`
+Execute the code below to create a file named `fsx-data.yaml`, containing the pod manifest.
 
 ```bash
 cat > ~/environment/fsx-data.yaml << EOF
@@ -194,7 +226,13 @@ Create the pod.
 kubectl apply -f ~/environment/fsx-data.yaml
 ```
 
-Once the pod is in Running state, open a shell into it
+Check the pod status.
+
+```bash
+ kubectl -n gromacs get pods
+ ```
+
+Once the pod is in `Running` state, open a shell into it.
 
 ```bash
 kubectl -n gromacs exec -it $(kubectl -n gromacs get pods | grep fsx-data | head -n 1 | cut -d ' ' -f 1) -- bash
@@ -204,6 +242,21 @@ Describe the volumes mounted in the pod
 ```bash
 df -h
 ```
+
+Output:
+```text
+Filesystem                     Size  Used Avail Use% Mounted on
+overlay                         30G  6.7G   24G  23% /
+tmpfs                           64M     0   64M   0% /dev
+tmpfs                          185G     0  185G   0% /sys/fs/cgroup
+192.168.106.172@tcp:/aqbp5bmv  1.1T   16M  1.1T   1% /data
+/dev/nvme0n1p1                  30G  6.7G   24G  23% /etc/hosts
+shm                             64M     0   64M   0% /dev/shm
+tmpfs                          185G   12K  185G   1% /run/secrets/kubernetes.io/serviceaccount
+tmpfs                          185G     0  185G   0% /proc/acpi
+tmpfs                          185G     0  185G   0% /sys/firmware
+```
+
 Notice the FSx volume is mounted under `/data`.
 
 Check that the output data from the Gromacs MPI job is in the `/data` directory.
@@ -212,7 +265,7 @@ Check that the output data from the Gromacs MPI job is in the `/data` directory.
 ls -alh /data
 ```
 
-You should see a list like the one below:
+You should see a list of files like the one below:
 
 ```text
 ...
@@ -232,19 +285,20 @@ These are the files that the GROMACS simulations produced:
 - `md_0_1.gro` contains the encoded protein structure.
 - `md_0_1.xtc` contains particle trajectory information.
 - `md_0_1.edr` contains information about physical quantities, like energy, temperature, and pressure.
-- `md_0_1*.cpt` contain checkpoint/restore data (can be used to resume the simulation).
+- `md_0_1*.cpt` contains checkpoint/restore data (can be used to resume the simulation).
 
 When you are done inspecting the data files, exit the data pod shell.
+
 ```bash
 exit
 ```
 
-If the output data is copied to a workstation where VMD is installed, it can be visualized with the [VMD](http://www.ks.uiuc.edu/Research/vmd/) tool with the following command (not covered here):
+If the output data is copied to a linux desktop, it can be visualized with the [VMD](http://www.ks.uiuc.edu/Research/vmd/) tool by using the following command (not covered here):
 
 ```bash
 /usr/local/bin/vmd md_0_1.gro md_0_1.xtc
 ```
 
-And visualized, the output would look like the image below (as a movie over time):
+Visualized, the output looks like the image below and can be displayed as a movie over time:
 
 ![VMD Visualization](/images/aws-eks/results.png)

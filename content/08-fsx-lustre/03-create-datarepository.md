@@ -5,31 +5,38 @@ weight = 100
 tags = ["tutorial", "lustre", "FSx", "S3"]
 +++
 
-In this step, you will create a [Data Repository Association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) (DRA) between the S3 bucket and FSx Lustre Filesystem. 
+In this step, you will create a [Data Repository Association](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html) (DRA) between the S3 bucket and FSx Lustre Filesystem.
 
-1. Navigate to the [FSx console](https://console.aws.amazon.com/fsx/home). On this console you will see the file system you created in section a. Click on the file system id with name **sc22lab2** and you will view the details of the filesystem as shown below. Make sure the status shows as **available** to make sure the create step from section a is complete 
+1. Navigate to your Cloud9 IDE and on the Cloud9 terminal. Ensure you have sourced the **env_vars** script
 
-![viewsfsxl](/images/fsx-for-lustre-hsm/viewfsxl.png)
+```bash
+source ~/environment/env_vars
+```  
 
-2. Scroll down a little on this screen and click on **Data Repository** tab shown below
+2. Now you will create a data repository association between your S3 bucket (created in step b.) and your FSx Lustre Filesystem (created in step a.) of this lab. Before doing this please confirm that your FSx Lustre Filesystem is created and AVAILABLE from Step a.
+
+```bash
+aws fsx create-data-repository-association \
+    --file-system-id ${FSX_ID} \
+    --file-system-path "/hsmtest" \
+    --data-repository-path s3://${BUCKET_NAME_DATA} \
+    --s3 AutoImportPolicy='{Events=[NEW,CHANGED,DELETED]},AutoExportPolicy={Events=[NEW,CHANGED,DELETED]}' \
+    --region ${AWS_REGION}
+``` 
+
+3. You can query the status of the data repsository association creation as below
+
+```bash
+aws fsx describe-data-repository-associations --filters "Name=file-system-id,Values=${FSX_ID}" --query "Associations[0].Lifecycle" --output text
+```
+The status should be **CREATING**. Once created the status should be **AVAILABLE**. You can also check the Data repository association details and status in the [FSx console](https://console.aws.amazon.com/fsx/home) by clicking on your File System ID.
 
 ![datarepotab](/images/fsx-for-lustre-hsm/datarepotab.png)
 
-3. Here click on **Create data repository association** button as shown below 
-
-![clickdra](/images/fsx-for-lustre-hsm/clickdra.png) 
-
-4. On the create data repository association form name the filesystem path which needs to be associated for data repository and paste the name of your S3 bucket. You can get the name of your S3 bucket with `echo ${BUCKET_NAME_DATA}` in Cloud9 terminal or navigate to the [S3 console](https://console.aws.amazon.com/s3/) and copy the name of the bucket you created and paste it in the form as shown below. 
-
-![draform1](/images/fsx-for-lustre-hsm/draform1.png)
-
-5. Scroll down to view the rest of the default options and do NOT change any of them for the purpose of this lab. The rest of the options indicate your export import preferences for data movement between your file system and S3 bucket. Now click on **Create** button like shown below to create the data repository action. 
-
-![createdra](/images/fsx-for-lustre-hsm/createdra.png)
-
-{{% notice info %}}
-Step 5 is expected to take a few  minutes. You are going to check this again and you can proceed with the next section. While creating you should be able to see the status as shown below. 
-{{% notice info %}}
-
 ![dracreating](/images/fsx-for-lustre-hsm/dracreating.png)
+
+{{% notice info %}}
+Step 3 is expected to take a few  minutes. You are going to check this again and you can proceed with the next section. While creating you should be able to see the status as shown above. 
+{{% notice info %}}
+
 

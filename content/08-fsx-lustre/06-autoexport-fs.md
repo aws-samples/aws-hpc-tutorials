@@ -16,7 +16,7 @@ truncate -s 10M export_test_file
 ls -lh
 ```
 
-2. Now go back on the AWS console page, search for S3 service, click on the bucket you created in section b. Here you should be seeing the newly created file **export_test_file** of 10M automatically copied into S3 bucket. This verifies the auto export of this data repository association.
+2. Go to the [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home), click on the bucket you created in section b. Here you should be seeing the newly created file **export_test_file** of 10M automatically copied into S3 bucket. This verifies the auto export of this data repository association.
 
 ![exportfile](/images/fsx-for-lustre-hsm/exportfile.png)
 
