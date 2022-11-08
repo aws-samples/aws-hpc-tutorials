@@ -6,7 +6,7 @@ tags = ["tutorial", "install", "IAM"]
 +++
 
 In this step, you will turn off the temporary credentials managed by Cloud9.
-You AWS Cloud9 instance has been created for this lab with the IAM role that allows your Cloud9 instance to access any services of your AWS account
+Your AWS Cloud9 instance has been created for this lab with the IAM role that allows your Cloud9 instance to access any services of your AWS account
 
 AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely.
 Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.

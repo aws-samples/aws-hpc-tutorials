@@ -14,6 +14,12 @@ In this lab, you have:
 
 In the next lab, you will learn about [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/).
 
+We need to stop the compute fleet, so we can update it in the next lab. In your AWS Cloud9 terminal window paste the following command
+
+```bash
+pcluster update-compute-fleet -n hpc-cluster-lab --status STOP_REQUESTED --region ${AWS_REGION}
+```
+
 
 You can learn more about AWS ParallelCluster by visiting the [documentation](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html).
 
