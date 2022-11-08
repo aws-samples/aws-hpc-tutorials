@@ -16,10 +16,15 @@ echo "EKS_CLUSTER_NAME=${EKS_CLUSTER_NAME}"
 export AWS_REGION=${AWS_REGION:-us-east-1}
 echo "AWS_REGION=${AWS_REGION}"
 
-export AZ1_NAME=$(aws ec2 describe-availability-zones --region ${AWS_REGION} --query "AvailabilityZones[?ZoneId == 'use1-az1'].ZoneName" --output text )
+# Select two random availability zones for the cluster
+export AZ_IDS=(use1-az4 use1-az5 use1-az6)
+echo "AZ_IDS=(${AZ_IDS[@]})"
+export AZ_COUNT=${#AZ_IDS[@]}
+export AZ_IND=($(python3 -S -c "import random; az_ind=random.sample(range(${AZ_COUNT}),2); print(*az_ind)"))
+echo "AZ_IND=(${AZ_IND[@]})"
+export AZ1_NAME=$(aws ec2 describe-availability-zones --region ${AWS_REGION} --query "AvailabilityZones[?ZoneId == '${AZ_IDS[${AZ_IND[0]}]}'].ZoneName" --output text)
 echo "AZ1_NAME=${AZ1_NAME}"
-
-export AZ2_NAME=$(aws ec2 describe-availability-zones --region ${AWS_REGION} --query "AvailabilityZones[?ZoneId == 'use1-az4'].ZoneName" --output text )
+export AZ2_NAME=$(aws ec2 describe-availability-zones --region ${AWS_REGION} --query "AvailabilityZones[?ZoneId == '${AZ_IDS[${AZ_IND[1]}]}'].ZoneName" --output text)
 echo "AZ2_NAME=${AZ2_NAME}"
 
 export IMAGE_URI=$(aws ecr --region ${AWS_REGION} describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)
@@ -61,7 +66,7 @@ managedNodeGroups:
     instanceType: c5.24xlarge
     instancePrefix: hpc
     privateNetworking: true
-    availabilityZones: ["${AZ2_NAME}"]
+    availabilityZones: ["${AZ1_NAME}"]
     efaEnabled: false
     minSize: 0
     desiredCapacity: 1
@@ -90,7 +95,3 @@ Upon successful completion, you will see a log line similar to this:
 ```
 2022-09-29 03:34:37 [✔]  EKS cluster "eks-hpc" in "us-east-1" region is ready
 ```
-
-
-
-
