@@ -12,10 +12,10 @@ You will find here the agenda for the tutorial. An update will be made on {{< pa
 | Session Kind | Time                | Topic                                                                             | Speakers                     |
 | ------------ | ------------------- | ---------------------------------------------------------------------------       | ---------------------------- |
 | Talk         | 08:00AM - 08:10AM   | Welcome and Introduction                                                          | Maxime Hugues                |
-| Talk         | 08:10AM - 09:00AM   | Modern Cloud Architectures                                                        | Francesco Ruffino            |
+| Talk         | 08:10AM - 09:00AM   | Modern Cloud Architectures                                                        | Pierre-Yves Aquilanti        |
 | *Lab 1*      | 09:00AM - 10:00AM   | Build your HPC System in the Cloud, run WRF and remote visualization              | Kelly Warner / Timothy Brown |
 | 30 Min Break | 10:00AM - 10:30AM   | _Morning Break_                                                                   | \-\-\-\-\-\-\-\-\-\-\-\-     |
-| Talk         | 10:30AM - 11:15AM   | Deep dive on Compute and Orchestration                                            | Pierre-Yves Aquilanti        |
+| Talk         | 10:30AM - 11:15AM   | Deep dive on Compute and Orchestration                                            | Timothy Brown                |
 | *Lab 2*      | 11:15AM - 12:00PM   | Managed Lustre and long term storage integration using Object Storage             | Karthik Raman                |
 | 01h30 Break  | 12:00PM - 01:30PM   | _Lunch_                                                                           | \-\-\-\-\-\-\-\-\-\-\-\-     |
 | Talk         | 01:30PM - 02:15PM   | Repeatability: integration pipelines, monitoring and troubleshooting in the cloud | Maxime Hugues                |

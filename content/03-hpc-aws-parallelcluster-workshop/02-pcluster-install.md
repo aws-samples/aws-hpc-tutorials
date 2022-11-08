@@ -26,7 +26,7 @@ pcluster version
 ```
 
 The output should be:
-```bash
+```console
 {
   "version": "3.2.0"
 }

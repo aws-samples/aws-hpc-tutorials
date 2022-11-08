@@ -5,22 +5,29 @@ weight = 120
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/). NCL will be pre-installed on your Cluster.
+In this next section, we're going to visualize the results of the job we just ran using [NCL](https://www.ncl.ucar.edu/).
 
-1. Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
-
-2. Open a terminal and install NCL.
+1. Install NCL.
 ```bash
 sudo yum install -y -q ncl
 ```
+
+2. Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
+
 3. Navigate to the WRF run directory.
 
 ```bash
 cd /shared/conus_12km
 ```
 
-4. The provided `ncl_scripts/surface.ncl` script will generate two plots of surface fields at valid
-   time 2019-11-27 00:00. Use the space bar to advance to the next plot.
+4. Update the provided NCL scripts to plot the fields at 14:00 hrs 26/11/2019 since we shortened the forecast length.
+
+```bash
+sed -i 's/27_00/26_14/' ncl_scripts/surface.ncl
+sed -i 's/27_00/26_14/' ncl_scripts/vert_crossSection.ncl
+```
+
+5. Run `ncl` to generate two plots of surface fields.
 
 ```bash
 ncl ncl_scripts/surface.ncl
@@ -32,7 +39,7 @@ Use the space bar to advance to the next plot.
 
 ![Surface dew point](/images/sc22/plt_Surface1.000002.png)
 
-5. Generate a vertical profile of relative humidity (%) and temperature (K).
+6. Generate a vertical profile of relative humidity (%) and temperature (K).
 
 ```bash
 ncl ncl_scripts/vert_crossSection.ncl

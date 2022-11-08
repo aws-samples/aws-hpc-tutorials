@@ -15,7 +15,7 @@ pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --
 
 The cluster creation process will take ~10 minutes. Below is the expected output.
 
-```bash
+```console
 TeamRole:~/environment $ source env_vars
 TeamRole:~/environment $ pcluster create-cluster --region ${AWS_REGION} --cluster-name hpc-cluster-lab --suppress-validators ALL --cluster-configuration my-cluster-config.yaml
 {

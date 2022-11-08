@@ -95,7 +95,3 @@ Upon successful completion, you will see a log line similar to this:
 ```
 2022-09-29 03:34:37 [✔]  EKS cluster "eks-hpc" in "us-east-1" region is ready
 ```
-
-
-
-

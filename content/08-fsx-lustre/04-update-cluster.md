@@ -39,16 +39,7 @@ EOF
 aws s3 cp mount-fsx.sh s3://${BUCKET_NAME_DATA}
 ```
 
-4. The cluster configuration file is in YAML format, so we will use a bash utility **yq** to update it
-
-```bash
-VERSION=v4.28.1
-BINARY=yq_linux_amd64
-wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq
-export PATH=$HOME/.local/bin:${PATH}
-```
-
-5. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies. **Note that we are updating the compute queue and not the head node**
+4. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies. **Note that we are updating the compute queue and not the head node**
 
 ```bash
 export S3PATH=s3://${BUCKET_NAME_DATA}/mount-fsx.sh
@@ -57,18 +48,7 @@ yq -i '(.Scheduling.SlurmQueues[0].CustomActions.OnNodeConfigured.Script=env(S3P
        (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[1]={"Policy": "arn:aws:iam::aws:policy/AmazonS3FullAccess"})' ~/environment/my-cluster-config.yaml
 ```
 
-6. Stop the compute fleet before updating the cluster. Note that the compute fleet needs to be stopped even if no compute instances are running.
-
-```bash
-pcluster update-compute-fleet -n hpc-cluster-lab --status STOP_REQUESTED --region ${AWS_REGION}
-```
-
-7. You can check the compute fleet status as below. Confirm the status is **STOPPED** before proceeding further.
-
-```bash
-pcluster describe-compute-fleet -n hpc-cluster-lab --region ${AWS_REGION} --query status
-```
-8. Update the cluster 
+5. Update the cluster
 
 ```bash
 pcluster update-cluster -n hpc-cluster-lab -c my-cluster-config.yaml --region ${AWS_REGION} --suppress-validators ALL

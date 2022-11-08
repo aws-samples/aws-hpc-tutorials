@@ -52,13 +52,22 @@ source ~/.bash_profile
 aws --version
 ```
 
-4. Install jq utility ( you will need this utility to work with JSON files in the labs that follow )
+4. Install jq utility (you will need this utility to work with JSON files in the labs that follow)
 
 ```bash
-sudo yum install -y jq 
+sudo yum install -y jq
 ```
 
-5. Identify the AWS region with the following commands in the Cloud9 terminal:
+5. Install yq utility (you will need this utiity to work with the cluster configuration file, as it is in YAML format)
+
+```bash
+VERSION=v4.28.1
+BINARY=yq_linux_amd64
+mkdir -p $HOME/.local/bin
+wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq
+```
+
+6. Identify the AWS region with the following commands in the Cloud9 terminal:
 
 ```bash
 export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
