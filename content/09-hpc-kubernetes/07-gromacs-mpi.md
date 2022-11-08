@@ -19,7 +19,7 @@ metadata:
   name: gromacs-mpi
   namespace: gromacs
 spec:
-  slotsPerWorker: 36
+  slotsPerWorker: 48
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -62,11 +62,11 @@ spec:
             - -x
             - FI_LOG_LEVEL=warn
             - -x
-            - FI_PROVIDER=sockets
+            - FI_PROVIDER=shm,sockets
             - -np
-            - "36"
+            - "48"
             - -npernode
-            - "36"
+            - "48"
             - --bind-to
             - "core"
             - /opt/view/bin/gmx_mpi

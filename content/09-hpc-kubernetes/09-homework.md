@@ -1,9 +1,14 @@
 +++
-title = "i. Homework"
+title = "i. Scale out (optional)"
 date = 2022-09-28T10:46:30-04:00
 weight = 90
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
+
+
+{{% notice info %}}
+This section is optional. It will not work in an event account due to resource restrictions. You may choose to just read through the content to learn about the settings used for scaling out this architecture, or you may run through the section in your private AWS account.
+{{% /notice %}}
 
 In this section, you will learn about scaling out the architecture from the lab so you may use it to run large HPC applications in your own environment.
 

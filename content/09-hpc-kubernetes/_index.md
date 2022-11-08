@@ -33,11 +33,12 @@ As part of this lab, you will deploy the below architecture to run GROMACS:
 
 Lab workflow:
 
-- Install CLIs
-- Create Amazon EKS cluster
-- Create FSx for Lustre volume
-- Setup monitoring
-- Deploy Kubeflow MPI Operator
-- Run GROMACS MPI job
-- Cleanup
-- Homework
+- [Install CLIs](/09-hpc-kubernetes/01-eks-cli.html)
+- [Create Amazon EKS cluster](/09-hpc-kubernetes/02-provision-eks.html)
+- [Validate Amazon EKS cluster](/09-hpc-kubernetes/03-validate-eks.html)
+- [Create FSx for Lustre volume](/09-hpc-kubernetes/04-provision-fsx.html)
+- [Setup monitoring](/09-hpc-kubernetes/05-setup-monitoring.html)
+- [Deploy Kubeflow MPI Operator](/09-hpc-kubernetes/06-mpi-operator.html)
+- [Run GROMACS MPI job](/09-hpc-kubernetes/07-gromacs-mpi.html)
+- [Cleanup](/09-hpc-kubernetes/08-cleanup.html)
+- [Scale out (optional)](/09-hpc-kubernetes/09-homework.html)
