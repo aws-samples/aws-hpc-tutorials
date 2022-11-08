@@ -1,7 +1,7 @@
 +++
-title = "h. Run GROMACS MPI job"
+title = "g. Run GROMACS MPI job"
 date = 2022-09-28T10:46:30-04:00
-weight = 80
+weight = 70
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
@@ -19,7 +19,7 @@ metadata:
   name: gromacs-mpi
   namespace: gromacs
 spec:
-  slotsPerWorker: 36
+  slotsPerWorker: 48
   runPolicy:
     cleanPodPolicy: Running
   mpiReplicaSpecs:
@@ -62,11 +62,11 @@ spec:
             - -x
             - FI_LOG_LEVEL=warn
             - -x
-            - FI_PROVIDER=efa
+            - FI_PROVIDER=shm,sockets
             - -np
-            - "72"
+            - "48"
             - -npernode
-            - "36"
+            - "48"
             - --bind-to
             - "core"
             - /opt/view/bin/gmx_mpi
@@ -78,7 +78,7 @@ spec:
             - -s
             - "/data/md_0_1.tpr"
     Worker:
-      replicas: 2
+      replicas: 1
       template:
         spec:
           volumes:
@@ -100,12 +100,8 @@ spec:
               mountPath: /data
             resources:
               limits:
-                hugepages-2Mi: 5120Mi
-                vpc.amazonaws.com/efa: 1
                 memory: 8000Mi
               requests:
-                hugepages-2Mi: 5120Mi
-                vpc.amazonaws.com/efa: 1
                 memory: 8000Mi
 EOF
 ```
@@ -174,7 +170,6 @@ Output:
 ```text
 NAME                                            CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
 ip-192-168-116-245.us-east-2.compute.internal   36114m       37%    5275Mi          1%        
-ip-192-168-125-235.us-east-2.compute.internal   36120m       37%    4951Mi          1%  
 ```
 
 You should notice increased utilization of the cluster node cores. This is an indication that the MPI Job is running.

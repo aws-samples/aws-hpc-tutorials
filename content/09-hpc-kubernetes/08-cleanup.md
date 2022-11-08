@@ -1,7 +1,7 @@
 +++
-title = "i. Cleanup and Conclusion"
+title = "h. Cleanup and Conclusion"
 date = 2022-09-28T10:46:30-04:00
-weight = 90
+weight = 80
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
 
@@ -31,8 +31,8 @@ This command will delete the EKS cluster through AWS CloudFormation. The process
 
 Congratulations!
 
-You have provisioned a Kubernetes cluster with HPC capabilities and monitoring. 
-
-You ran a distributed tightly-coupled workload using Kubeflow MPI Operator. 
+You have provisioned a Kubernetes cluster and ran an HPC application on it, using Kubeflow MPI Operator. 
 
 The experience obtained through this lab can be used when running your own HPC jobs on Kubernetes! 
+
+Read the [next section](/09-hpc-kubernetes/09-homework.html) to learn about scaling out this architecture with EFA-enabled nodes on a multi-node cluster in your own AWS account.
