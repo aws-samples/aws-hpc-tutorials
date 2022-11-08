@@ -62,8 +62,14 @@ ozone_lat.formatted,\
 ozone_plev.formatted} .
 ```
 
+Modify the namelist to run a shorter six hour forecast, instead of the default 12 hours.
+
+```bash
+sed -i 's/run_hours.*/run_hours                           = 6,/' namelist.input
+```
+
 #### Run the CONUS 12Km simulation
-In this step, you create the Slurm batch script that will run the WRF CONUS 12km test case on 192 cores distributed over 2 x hpc6a.48xlarge EC2 instances.
+In this step, you create the Slurm batch script that will run the WRF CONUS 12km test case on 192 cores distributed over 1 x c5.18xlarge EC2 instances.
 
 ```bash
 cat > slurm-wrf-conus12km.sh << EOF
@@ -73,11 +79,11 @@ cat > slurm-wrf-conus12km.sh << EOF
 #SBATCH --partition=queue0
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
-#SBATCH --ntasks=192
-#SBATCH --constraint=hpc6a.48xlarge
+#SBATCH --ntasks=36
+#SBATCH --nodes=1
 
 module purge
-module load wrf-omp/4.4.1-gcc-10.3.0
+module load wrf-omp/4.4.1-intel-2022.2.0
 
 mpirun wrf.exe
 EOF

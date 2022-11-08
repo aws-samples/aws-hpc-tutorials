@@ -27,7 +27,7 @@ When ready and registered, your job will be processed and you will see a similar
 ```console
 [ec2-user@ip-172-31-27-78 conus_12km]$ squeue
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-                 1    queue0 WRF-CONU ec2-user CF       0:21      2 queue0-dy-hpc6a48xlarge-[1-2]
+                 1    queue0 WRF-CONU ec2-user CF       0:21      1 queue0-dy-c524xl
 [ec2-user@ip-172-31-27-78 conus_12km]$
 ```
 
@@ -40,7 +40,7 @@ sinfo
 ```console
 [ec2-user@ip-172-31-27-78 conus_12km]$ sinfo
 PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
-queue0*      up   infinite      2 alloc# queue0-dy-hpc6a48xlarge-[1-2]
+queue0*      up   infinite      1 alloc# queue0-dy-c524xl
 [ec2-user@ip-172-31-27-78 conus_12km]$
 ```
 
