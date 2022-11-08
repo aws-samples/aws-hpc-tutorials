@@ -14,6 +14,6 @@ Using IAM, you can create and manage AWS users and groups, and use permissions t
 
 1. In Cloud9, choose the gear icon in top right corner to open a new tab and choose "Preferences” tab.
 
-2. In the Preferences tab, choose **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
+2. In the Preferences tab, choose **AWS Settings** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
 
 ![Getting Started](/images/introductory-steps/cloud9-credentials.png)

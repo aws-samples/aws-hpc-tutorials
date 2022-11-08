@@ -38,7 +38,7 @@ By configuring Cloud9 to use the IAM role, you will allow your Cloud9 instance t
 
 11. In Cloud9, choose the gear icon in top right corner to open a new tab and choose "Preferences” tab.
 
-12. In the Preferences tab, choose **AWS SETTINGS** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
+12. In the Preferences tab, choose **AWS Settings** to turn off **AWS managed temporary credentials**, then close the Preferences tab.
 
 ![Getting Started](/images/introductory-steps/cloud9-credentials.png)
 
