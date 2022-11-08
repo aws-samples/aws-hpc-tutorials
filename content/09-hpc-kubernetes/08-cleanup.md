@@ -35,4 +35,4 @@ You have provisioned a Kubernetes cluster and ran an HPC application on it, usin
 
 The experience obtained through this lab can be used when running your own HPC jobs on Kubernetes! 
 
-Read the [next section](/09-hpc-kubernetes/09-homework.html) to learn about scaling out this architecture with EFA-enabled nodes in a multi-node cluster in your own AWS account.
+Read the [next section](/09-hpc-kubernetes/09-homework.html) to learn about scaling out this architecture with EFA-enabled nodes on a multi-node cluster in your own AWS account.

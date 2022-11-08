@@ -9,7 +9,7 @@ In this section, you will learn about scaling out the architecture from the lab 
 
 #### 1. Create multi-node Amazon EKS cluster for HPC with EFA enabled
 
-Select an instance type appropriate for your HPC workload with support for [Elastic Fabric Adapter]().
+Select an instance type appropriate for your HPC workload with support for [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types).
 Create a cluster manifest similar to the example below:
 
 ```yaml
@@ -48,7 +48,7 @@ managedNodeGroups:
 EOF
 ```
 
-Then create the cluster:
+Then in your own account, create the cluster:
 
 ```bash
 eksctl create cluster -f ./eks-hpc.yaml
