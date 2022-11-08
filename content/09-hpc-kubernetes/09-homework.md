@@ -1,23 +1,76 @@
 +++
-title = "g. Run network bandwidth tests"
+title = "i. Homework"
 date = 2022-09-28T10:46:30-04:00
-weight = 70
+weight = 90
 tags = ["tutorial", "hpc", "Kubernetes"]
 +++
+
+In this section, you will learn about scaling out the architecture from the lab so you may use it to run large HPC applications in your own environment.
+
+#### 1. Create multi-node Amazon EKS cluster for HPC with EFA enabled
+
+Select an instance type appropriate for your HPC workload with support for [Elastic Fabric Adapter]().
+Create a cluster manifest similar to the example below:
+
+```yaml
+cat > ./eks-hpc.yaml << EOF
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ${EKS_CLUSTER_NAME}
+  version: "1.21"
+  region: ${AWS_REGION}
+
+availabilityZones:
+  - ${AWS_REGION}a
+  - ${AWS_REGION}b
+
+iam:
+  withOIDC: true
+
+managedNodeGroups:
+  - name: hpc
+    instanceType: hpc6a.48xlarge
+    instancePrefix: hpc
+    privateNetworking: true
+    availabilityZones: ["${AWS_REGION}b"]
+    efaEnabled: true
+    minSize: 0
+    desiredCapacity: 2
+    maxSize: 10
+    volumeSize: 30
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        ebs: true
+        fsx: true
+EOF
+```
+
+Then create the cluster:
+
+```bash
+eksctl create cluster -f ./eks-hpc.yaml
+```
+
+Once the cluster is created and you can validate it, following the instructions in step [c. Validate EKS Cluster](/09-hpc-kubernetes/03-validate-eks.html), execute the next three steps without change including [f. Deploy MPI operator](/09-hpc-kubernetes/06-mpi-operator.html).
+
+#### 2. Run bi-directional bandwidth tests to validate EFA
 
 In this section, you will run the OSU bi-directional bandwidth test to compare network bandwidth without and with [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/).
 
 
-####  1. Retrieve the container image URI
+#####  2.1. Retrieve the container image URI
 
-Configure environment variable `IMAGE_URI` with URI of container image built in the previous lab.
+Configure environment variable `IMAGE_URI` with URI of container image built in [Lab III](/05-cicd-pipeline.html).
 
 ```bash
 export IMAGE_URI=$(aws ecr --region ${AWS_REGION} describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)                                                                                                                                                
 echo $IMAGE_URI
 ```
 
-####  2. Run test with sockets provider
+####  2.2. Run test with sockets provider
 
 Copy the MPIJob manifest below into a file named `osu-bandwidth-sockets.yaml`:
 
@@ -149,7 +202,7 @@ Delete the test pods.
 kubectl delete -f ~/environment/osu-bandwidth-sockets.yaml
 ```
 
-####  3. Run test with efa provider
+####  2.3. Run test with efa provider
 
 Create a new MPI job manifest with Elastic Fabric Adapter support.  This will enable high-bandwidth networking for MPI.
 
@@ -283,3 +336,110 @@ Delete the test pods.
 ```bash
 kubectl delete -f ~/environment/osu-bandwidth-efa.yaml
 ```
+
+#### 3. Run GROMACS MPI Job on multiple nodes with high-speed interconnect
+
+Create an MPIJob manifest, `gromacs-mpi.yaml`
+
+```yaml
+cat > ~/environment/gromacs-mpi.yaml << EOF
+apiVersion: kubeflow.org/v2beta1
+kind: MPIJob
+metadata:
+  name: gromacs-mpi
+  namespace: gromacs
+spec:
+  slotsPerWorker: 36
+  runPolicy:
+    cleanPodPolicy: Running
+  mpiReplicaSpecs:
+    Launcher:
+      replicas: 1
+      template:
+         spec:
+          restartPolicy: OnFailure
+          volumes:
+          - name: cache-volume
+            emptyDir:
+              medium: Memory
+              sizeLimit: 2048Mi
+          - name: data
+            persistentVolumeClaim:
+              claimName: fsx-pvc
+          initContainers:
+          - image: "${IMAGE_URI}"
+            name: init
+            command: ["sh", "-c", "cp /inputs/* /data; sleep 5"]
+            volumeMounts:
+            - name: data
+              mountPath: /data
+          containers:
+          - image: "${IMAGE_URI}"
+            imagePullPolicy: Always
+            name: gromacs-mpi-launcher
+            volumeMounts:
+            - name: cache-volume
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /data
+            env:
+            - name: OMPI_MCA_verbose
+              value: "1"
+            command:
+            - /opt/view/bin/mpirun
+            - --allow-run-as-root
+            - --oversubscribe
+            - -x
+            - FI_LOG_LEVEL=warn
+            - -x
+            - FI_PROVIDER=efa
+            - -np
+            - "72"
+            - -npernode
+            - "36"
+            - --bind-to
+            - "core"
+            - /opt/view/bin/gmx_mpi
+            - mdrun
+            - -ntomp
+            - "1"
+            - -deffnm
+            - "/data/md_0_1"
+            - -s
+            - "/data/md_0_1.tpr"
+    Worker:
+      replicas: 2
+      template:
+        spec:
+          volumes:
+          - name: cache-volume
+            emptyDir:
+              medium: Memory
+              sizeLimit: 2048Mi
+          - name: data
+            persistentVolumeClaim:
+              claimName: fsx-pvc
+          containers:
+          - image: "${IMAGE_URI}"
+            imagePullPolicy: Always
+            name: gromacs-mpi-worker
+            volumeMounts:
+            - name: cache-volume
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /data
+            resources:
+              limits:
+                hugepages-2Mi: 5120Mi
+                vpc.amazonaws.com/efa: 1
+                memory: 8000Mi
+              requests:
+                hugepages-2Mi: 5120Mi
+                vpc.amazonaws.com/efa: 1
+                memory: 8000Mi
+EOF
+```
+
+Note that the job manifest specifies two worker replicas and requires one EFA adapter for each of the workers. These settings instruct the Kubernetes scheduler to launch the worker pods on cluster nodes that are enabled with EFA. Using EFA for HPC jobs running across multiple instances is a best practice.
+
+Finally, following the same pattern, create MPIJob manifest files for your own HPC jobs and run them on Kubernetes.

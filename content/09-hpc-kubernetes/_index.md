@@ -33,10 +33,11 @@ As part of this lab, you will deploy the below architecture to run GROMACS:
 
 Lab workflow:
 
-- Provision Amazon EKS cluster
-- Provision FSx for Lustre volume
+- Install CLIs
+- Create Amazon EKS cluster
+- Create FSx for Lustre volume
 - Setup monitoring
 - Deploy Kubeflow MPI Operator
-- Run EFA network bandwidth test
 - Run GROMACS MPI job
-- Delete FSx volume and the EKS cluster
+- Cleanup
+- Homework

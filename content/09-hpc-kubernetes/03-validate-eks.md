@@ -15,12 +15,11 @@ To validate that the cluster was provisioned successfully and is ready for use, 
 kubectl get nodes -o wide
 ```
 
-You should see a list of two nodes similar to the one shown below.
+You should see a node listed similar to the one shown below.
 
 ```
 NAME                             STATUS   ROLES    AGE     VERSION
 ip-192-168-86-187.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
-ip-192-168-86-17.ec2.internal   Ready    <none>   4m54s   v1.21.14-eks-ba74326
 ```
 
 **Troubleshooting**
