@@ -67,7 +67,7 @@ kubectl get storageclass
 
 You should see a list, similar to the following:
 
-```text
+```console
 NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 fsx-sc          fsx.csi.aws.com         Delete          Immediate              false                  9s
 gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  16h

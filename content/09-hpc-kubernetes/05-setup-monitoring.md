@@ -33,7 +33,7 @@ kubectl top node --use-protocol-buffers
 
 Sample output:
 
-```text
+```console
 NAME                                           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
 ip-192-168-68-194.us-east-2.compute.internal   201m         0%     1362Mi          0%        
 ip-192-168-91-99.us-east-2.compute.internal    226m         0%     1001Mi          0%  
@@ -47,7 +47,7 @@ kubectl top pod -A --use-protocol-buffers
 
 Sample output:
 
-```text
+```console
 NAMESPACE      NAME                                            CPU(cores)   MEMORY(bytes)   
 kube-system    aws-efa-k8s-device-plugin-daemonset-q6cll       1m           6Mi             
 kube-system    aws-efa-k8s-device-plugin-daemonset-srqdk       1m           6Mi             
@@ -101,7 +101,7 @@ kubectl get all -n prometheus
 
 The expected output looks similar to this:
 
-```text
+```console
 NAME                                                READY   STATUS    RESTARTS   AGE
 pod/prometheus-alertmanager-6f64cb4659-wkbj5        2/2     Running   0          107m
 pod/prometheus-kube-state-metrics-77ddf69b4-z8z4z   1/1     Running   0          107m
@@ -189,7 +189,7 @@ kubectl get all -n grafana
 
 The expected output looks similar to the following:
 
-```text
+```console
 NAME                          READY   STATUS    RESTARTS   AGE
 pod/grafana-7c4b6ccb8-q2qsv   1/1     Running   0          110m
 

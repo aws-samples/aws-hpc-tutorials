@@ -172,7 +172,7 @@ kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep sockets-launcher
 
 You should see results similar to the ones below:
 
-```text
+```console
 ...
 # OSU MPI Bi-Directional Bandwidth Test v5.9
 # Size      Bandwidth (MB/s)
@@ -304,7 +304,7 @@ kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep efa-launcher | h
 
 You should see results similar to the ones below:
 
-```text
+```console
 ...
 # OSU MPI Bi-Directional Bandwidth Test v5.9
 # Size      Bandwidth (MB/s)
