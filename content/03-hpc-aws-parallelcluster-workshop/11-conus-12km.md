@@ -14,7 +14,7 @@ In this step, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/w
 #### Preparatory Steps
 
 {{% notice info %}}
-Make sure that you are logged into the AWS ParallelCluster head node through DCV.
+Make sure that you are logged into the AWS ParallelCluster head node through a shell.
 {{% /notice %}}
 Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
 
@@ -69,7 +69,7 @@ sed -i 's/run_hours.*/run_hours                           = 6,/' namelist.input
 ```
 
 #### Run the CONUS 12Km simulation
-In this step, you create the Slurm batch script that will run the WRF CONUS 12km test case on 192 cores distributed over 1 x c5.18xlarge EC2 instances.
+In this step, you create the Slurm batch script that will run the WRF CONUS 12km test case on 36 cores distributed over 1 x c5.18xlarge EC2 instances.
 
 ```bash
 cat > slurm-wrf-conus12km.sh << EOF

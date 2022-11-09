@@ -13,7 +13,7 @@ Once your PCluster Manager CloudFormation stack has been deployed, you can follo
 
 1. Open the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home).
 
-2. You'll see two stacks named **mod-[random hash]**. Click on the second stack, then click on the **Outputs** tab, and finally click on the **PclusterManagerUrl** to connect to PCluster Manager.
+2. You'll see two stacks named **mod-187330a4e44c489a**. Click on the second stack, then click on the **Outputs** tab, and finally click on the **PclusterManagerUrl** to connect to PCluster Manager.
 
 ![PCluster Manager Deployed](/images/sc22/pcluster-deployed.png)
 
