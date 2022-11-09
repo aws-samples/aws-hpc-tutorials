@@ -7,7 +7,7 @@ tags = ["tutorial", "hpc", "Kubernetes"]
 
 In this section, you will learn how to monitor your cluster and the pods running on it.
 
-There are several ways to set up monitoring. You will walk through two approaches to learn about simple built-in command line-based monitoring as well as comprehensive graphical dashboard-based monitoring.
+There are several ways to set up monitoring. You will walk through two approaches in order to learn about simple built-in command line-based monitoring as well as comprehensive graphical dashboard-based monitoring.
 
 #### 1. Monitor using kubectl
 
