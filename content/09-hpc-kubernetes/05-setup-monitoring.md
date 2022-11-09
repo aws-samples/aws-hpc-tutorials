@@ -216,7 +216,7 @@ echo "Your Grafana URL is:"
 echo "http://${LB}"
 ```
 
- Open the Grafana URL. It may take a few minutes for the Grafana URL to become active. When the load balancer is provisioned and its DNS record has propagated, you will see the Grafana login screen.
+ Open the Grafana URL. It may take a few minutes for the Grafana URL to become active. When the load balancer is provisioned and its ***DNS record has propagated***, you will see the Grafana login screen. Note that DNS record propagation may take about 5 minutes. Refresh the page periodically until you see the Grafana login.
 
 ![Grafana Login](/images/aws-eks/grafana-login.png)
 
