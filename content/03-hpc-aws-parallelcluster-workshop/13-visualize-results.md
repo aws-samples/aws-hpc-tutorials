@@ -9,7 +9,7 @@ In this next section, we're going to visualize the results of the job we just ra
 
 1. Install NCL.
 ```bash
-sudo yum install -y -q ncl
+sudo yum install -y ncl
 ```
 
 2. Connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
