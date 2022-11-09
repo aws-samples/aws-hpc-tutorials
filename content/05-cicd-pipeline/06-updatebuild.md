@@ -114,11 +114,11 @@ git push origin main
 ```
 
 6. In the AWS Management Console search bar, type and select **CodePipeline**. Click on the **MyDemoPipeline** that you created in the previous section. You should now see that the CodeCommit push above should have triggered the build via CodeBuild automatically. 
-![AWS CodePipeline](/images/cicd/codepipeline-6.png)
+![AWS CodePipeline](/images/cicd/codepipeline-6.png?width=40pc)
 
 7. Click on the **Details** deep link from the Build stage of the CodePipeline. This will take you to build logs from the CodeBuild project that you created:
 
-![AWS CodePipeline](/images/cicd/codepipeline-7.png)
+![AWS CodePipeline](/images/cicd/codepipeline-7.png?width=40pc)
 ![AWS CodePipeline](/images/cicd/codepipeline-8.png)
 
 
@@ -133,4 +133,4 @@ Once the build has completed you should be able to see that a container exists i
 
 You should see an entry like:
 
-![AWS CodePipeline](/images/cicd/updatebuild-1.png)
+![AWS CodePipeline](/images/cicd/updatebuild-1.png?width=50pc)
