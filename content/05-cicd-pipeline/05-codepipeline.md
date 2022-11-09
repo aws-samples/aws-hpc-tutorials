@@ -28,17 +28,19 @@ In this section, you will create a pipeline with a source and build stage to aut
 6. In Step 3 **Add build stage**, select **AWS CodeBuild** as your Build provider from the dropdown list. Choose the appropriate **Region**. In the **Project name**, choose the CodeBuild project **MyDemoBuild** that you created in the previous section. You can skip adding the Environment variables as you already provided that in the CodeBuild section. Select **Single build** for the Build type and click **Next**.
 ![AWS CodePipeline](/images/cicd/codepipeline-3.png)
 
-7. In Step 4 **Add deploy stage**, click on  **Skip deploy stage** as we are building the pipeline in this lab for build automation only. We will focus on deploy/orchestration in the next lab. 
+7. In Step 4 **Add deploy stage**, click on  **Skip deploy stage** as we are building the pipeline in this lab for build automation only. We will focus on deploy/orchestration in the next lab. A dialog will ask you if you're sure you want to Skip, select **Skip** again to verify. 
 ![AWS CodePipeline](/images/cicd/codepipeline-4.png)
 
 
 8. Review your pipeline settings and select **Create pipeline**
  
 9. Your pipeline should execute. It will **take a few mins** to execute the pipeline and and if successful should display a message as shown below
-![AWS CodePipeline](/images/cicd/codepipeline-5.png)
-Click on the "Details" link to open the build logs:
-![AWS CodePipeline](/images/cicd/codepipeline-9.png)
 
 {{% notice info %}}
 You **do not** need to wait for the pipeline to complete before moving to the next steps.
 {{% /notice %}}
+
+![AWS CodePipeline](/images/cicd/codepipeline-5.png)
+Click on the "Details" link to open the build logs:
+![AWS CodePipeline](/images/cicd/codepipeline-9.png)
+
