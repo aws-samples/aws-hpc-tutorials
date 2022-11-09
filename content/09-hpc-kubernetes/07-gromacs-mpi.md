@@ -114,11 +114,13 @@ To launch the GROMACS MPIJob, execute:
 kubectl apply -f ~/environment/gromacs-mpi.yaml
 ```
 
-Watch the pods in the gromacs namespace until the launcher pod enters `Running` state. Press `Ctrl-c` to exit.
+Watch the pods in the gromacs namespace until the launcher pod enters `Running` state.
 
 ```bash
 kubectl get pods -n gromacs -w
 ```
+
+Press `Ctrl-c` to exit.
 
 Follow the launcher logs while the pod is in Running state.
 
@@ -157,6 +159,8 @@ Performance:      209.325        0.115
 
 ```
 
+Press `Ctrl-c` to stop following the log.
+
 While waiting for the GROMACS MPIJob to complete, explore the cluster utilization using either `kubectl top node` or the Grafana dashboards. 
 
 Example:
@@ -169,7 +173,7 @@ Output:
 
 ```console
 NAME                                            CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
-ip-192-168-116-245.us-east-2.compute.internal   36114m       37%    5275Mi          1%        
+ip-192-168-86-187.us-east-1.compute.internal    36114m       37%    5275Mi          1%        
 ```
 
 You should notice increased utilization of the cluster node cores. This is an indication that the MPI Job is running.
@@ -272,7 +276,6 @@ drwxr-xr-x 1 root root   29 Sep 30 04:34 ..
 -rw-r--r-- 1 root root 2.3M Sep 30 04:29 md_0_1.gro
 -rw-r--r-- 1 root root  36K Sep 30 04:29 md_0_1.log
 -rw-r--r-- 1 root root 1.3M Sep 30 04:29 md_0_1.xtc
--rw-r--r-- 1 root root 797K Sep 30 04:29 md_0_1_prev.cpt
 ```
 
 These are the files that the GROMACS simulations produced:

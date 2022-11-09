@@ -21,7 +21,7 @@ To enable utilization monitoring of the cluster using `kubectl`, deploy the Kube
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
-Please allow 1 to 2 minutes for the metrics server to initialize, then proceed to the next step. If you execute the next step and see an error instead of the expected output, please wait a few more seconds and retry.
+Please allow ***1 to 2 minutes*** for the metrics server to initialize, then proceed to the next step. If you execute the next step and see an error instead of the expected output, please wait a few more seconds and retry.
 
 #### 1.2. Execute kubectl
 
@@ -36,7 +36,6 @@ Sample output:
 ```console
 NAME                                           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
 ip-192-168-68-194.us-east-2.compute.internal   201m         0%     1362Mi          0%        
-ip-192-168-91-99.us-east-2.compute.internal    226m         0%     1001Mi          0%  
 ```
 
 To see how much resources each pod is utilizing, execute:
@@ -48,9 +47,7 @@ kubectl top pod -A --use-protocol-buffers
 Sample output:
 
 ```console
-NAMESPACE      NAME                                            CPU(cores)   MEMORY(bytes)   
-kube-system    aws-efa-k8s-device-plugin-daemonset-q6cll       1m           6Mi             
-kube-system    aws-efa-k8s-device-plugin-daemonset-srqdk       1m           6Mi             
+NAMESPACE      NAME                                            CPU(cores)   MEMORY(bytes)          
 kube-system    aws-node-crzgq                                  6m           83Mi            
 kube-system    aws-node-qjx2h                                  4m           81Mi            
 kube-system    coredns-f47955f89-dsrjp                         3m           27Mi            
