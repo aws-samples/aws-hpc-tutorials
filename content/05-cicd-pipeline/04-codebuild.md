@@ -13,7 +13,7 @@ With CodeBuild, you don’t need to provision, manage, and scale your own build 
 
 
 
-1. In the AWS Management Console search bar, type and select **CodeBuild**. Double check that you are using CodeBuild in the same AWS Region that you have used in the previous steps.
+1. Open the [AWS CodeBuild console](https://console.aws.amazon.com/codebuild/home). Double check that you are using CodeBuild in the same AWS Region that you have used in the previous steps.
 
 2. Click on **Create build project**.
 

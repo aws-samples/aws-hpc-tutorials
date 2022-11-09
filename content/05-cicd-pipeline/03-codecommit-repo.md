@@ -20,6 +20,10 @@ git add Dockerfile spack.yaml # stage our files for commit
 git commit -m "Created Dockerfile and spack files" # create a point-in-time commit
 ```
 
+{{% notice info %}}
+You can safely ingore git warnings about **user.name** and **user.email** not being set.
+{{% /notice %}}
+
 Next, you will use the AWS Command Line Interface (CLI) to create a Git repository in [AWS CodeCommit](https://aws.amazon.com/codecommit/) where we can push our local git repository.
 
 3. Next create your CodeCommit Repo:
