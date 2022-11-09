@@ -35,7 +35,7 @@ Sample output:
 
 ```console
 NAME                                           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
-ip-192-168-68-194.us-east-2.compute.internal   201m         0%     1362Mi          0%        
+ip-192-168-86-187.ec2.internal                 201m         0%     1362Mi          0%        
 ```
 
 To see how much resources each pod is utilizing, execute:
