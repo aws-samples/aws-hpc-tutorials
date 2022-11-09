@@ -29,13 +29,9 @@ echo "AZ2_NAME=${AZ2_NAME}"
 
 export IMAGE_URI=$(aws ecr --region ${AWS_REGION} describe-repositories --repository-name sc22-container --query "repositories[0].repositoryUri" --output text)
 echo "IMAGE_URI=${IMAGE_URI}"
-if [ "${IMAGE_URI}" == "" ]; then
-  echo ""
-  echo "The container image created in Lab 3 is required."
-  echo "Please complete Lab 3, then try again."
-  echo ""
-fi
 ```
+
+Please note that ***IMAGE_URI is required***. If the value of IMAGE_URI above is blank, then please go back to Lab 3 and make sure that the container image is successfully pushed to ECR.
 
 
 #### 1. Create the EKS manifest file

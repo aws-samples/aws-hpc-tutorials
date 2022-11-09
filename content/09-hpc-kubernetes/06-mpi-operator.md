@@ -20,7 +20,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeflow/mpi-operator/v0.3.0/
 
 ####  2. Check operator deployment
 
-To check MPI operator is deployed successfully execute the following command
+To check that MPI operator is deployed successfully execute the following command:
 
 ```bash
 kubectl get pods -n mpi-operator
