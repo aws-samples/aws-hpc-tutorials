@@ -173,7 +173,7 @@ Output:
 
 ```console
 NAME                                            CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
-ip-192-168-86-187.us-east-1.compute.internal    36114m       37%    5275Mi          1%        
+ip-192-168-86-187.ec2.internal                  36114m       37%    5275Mi          1%        
 ```
 
 You should notice increased utilization of the cluster node cores. This is an indication that the MPI Job is running.
