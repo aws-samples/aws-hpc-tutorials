@@ -128,7 +128,7 @@ kubectl -n gromacs logs -f $(kubectl -n gromacs get pods | grep gromacs-mpi-laun
 
 You should see GROMACS log entries similar to the ones shown below. Job output will hang on the line `50000 steps,    100.0 ps.` while the simulation runs and will report the rest on simulation completion.
 
-```log
+```console
 ...
 50000 steps,    100.0 ps.
 
@@ -167,7 +167,7 @@ kubectl top node
 
 Output:
 
-```text
+```console
 NAME                                            CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
 ip-192-168-116-245.us-east-2.compute.internal   36114m       37%    5275Mi          1%        
 ```
@@ -239,7 +239,7 @@ df -h
 ```
 
 Output:
-```text
+```console
 Filesystem                     Size  Used Avail Use% Mounted on
 overlay                         30G  6.7G   24G  23% /
 tmpfs                           64M     0   64M   0% /dev
@@ -262,7 +262,7 @@ ls -alh /data
 
 You should see a list of files like the one below:
 
-```text
+```console
 ...
 total 9.4M
 drwxr-xr-x 3 root root  33K Sep 30 04:29 .
