@@ -18,7 +18,7 @@ Choose a random prefix, postfix, or append your name.
 
 ```bash
 BUCKET_POSTFIX=$(python3 -S -c "import uuid; print(str(uuid.uuid4().hex)[:10])")
-BUCKET_NAME_DATA="bucketname-${BUCKET_POSTFIX}"
+BUCKET_NAME_DATA="fsx-dra-${BUCKET_POSTFIX}"
 aws s3 mb s3://${BUCKET_NAME_DATA} --region ${AWS_REGION}
 ```
 {{% notice info %}}

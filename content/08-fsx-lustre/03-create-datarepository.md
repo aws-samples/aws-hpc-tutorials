@@ -21,6 +21,7 @@ aws fsx create-data-repository-association \
     --file-system-path "/hsmtest" \
     --data-repository-path s3://${BUCKET_NAME_DATA} \
     --s3 AutoImportPolicy='{Events=[NEW,CHANGED,DELETED]},AutoExportPolicy={Events=[NEW,CHANGED,DELETED]}' \
+    --batch-import-meta-data-on-create \
     --region ${AWS_REGION}
 ``` 
 
