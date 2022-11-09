@@ -36,7 +36,7 @@ Please note that ***IMAGE_URI is required***. If the value of IMAGE_URI above is
 
 #### 1. Create the EKS manifest file
 
-The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS region as well as the associated availability zones to use, the instance type and network settings. For this lab, you will mainly focus on those parameters but many more parameters can be setup in the EKS manifest. In this example, you will create a EKS cluster with a node group composed of two hpc6a.48xlarge instances using [Elastic Fabric Adapter (EFA)](https://aws.amazon.com/hpc/efa/).
+The EKS cluster manifest specifies the version of Kubernetes to deploy, the AWS region as well as the associated availability zones to use, the instance type and network settings. For this lab, you will mainly focus on those parameters but many more parameters can be specified in the EKS manifest. In this example, you will create an Amazon EKS cluster with one managed node group.
 
 Let's create the manifest file by pasting the following commands into the Cloud9 terminal:
 
