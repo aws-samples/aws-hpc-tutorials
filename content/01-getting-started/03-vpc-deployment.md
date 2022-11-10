@@ -6,7 +6,7 @@ tags = ["tutorial", "vpc", "ParallelCluster"]
 
 ![VPC](/images/01-getting-started/vpc.png)
 
-If using a new account, your VPC configuration will consist of one public subnet and a private subnet in the target region. The `p4de` instances come with 4 network cards and need to be placed into a private subnet otherwise instances will not be able to communicate over the network (see [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#public-ip-addresses)).
+If using a new account, your VPC configuration will consist of one public subnet and a private subnet in the target region. The `p4d` instances come with 4 network cards and need to be placed into a private subnet otherwise instances will not be able to communicate over the network (see [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#public-ip-addresses)).
 
 Unless you are comfortable deploying a private subnet, set the routes and security groups, we recommend that you deploy a custom VPC using the CloudFormation template called `VPC-Large-Scale`. This template is region agnostic and enables you to create a VPC with the required network architecture to run your workloads.
 

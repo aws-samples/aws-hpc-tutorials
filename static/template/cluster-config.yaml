@@ -28,7 +28,7 @@ Scheduling:
         - Name: p4de
           MinCount: 0
           MaxCount: 4
-          InstanceType: p4de.24xlarge
+          InstanceType: p4d.24xlarge
           Efa:
             Enabled: true
             GdrSupport: true

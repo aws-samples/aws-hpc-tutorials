@@ -9,7 +9,7 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 First let's fetch the assets required to build the image:
 
 ```bash
-wget https://aws-hpc-workshops.s3.amazonaws.com/packer.tar.gz
+wget https://ml.hpcworkshops.com/scripts/packer/packer.tar.gz
 tar -xzf packer.tar.gz
 ```
 
