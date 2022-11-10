@@ -20,14 +20,7 @@ sudo yum install -y ncl
 cd /shared/conus_12km
 ```
 
-4. Update the provided NCL scripts to plot the fields at 14:00 hrs 26/11/2019 since we shortened the forecast length.
-
-```bash
-sed -i 's/27_00/26_14/' ncl_scripts/surface.ncl
-sed -i 's/27_00/26_14/' ncl_scripts/vert_crossSection.ncl
-```
-
-5. Run `ncl` to generate two plots of surface fields.
+4. Run `ncl` to generate two plots of surface fields.
 
 ```bash
 ncl ncl_scripts/surface.ncl
@@ -39,7 +32,7 @@ Use the space bar to advance to the next plot.
 
 ![Surface dew point](/images/sc22/plt_Surface1.000002.png)
 
-6. Generate a vertical profile of relative humidity (%) and temperature (K).
+5. Generate a vertical profile of relative humidity (%) and temperature (K).
 
 ```bash
 ncl ncl_scripts/vert_crossSection.ncl
