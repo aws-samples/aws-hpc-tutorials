@@ -18,9 +18,13 @@ You will be deploying the below architecture as part of this lab:
 
 ![AWS CICD](/images/cicd/cicd-pipeline-arch.png)
 
+You will use this architecture to create a CI/CD pipeline to build an MPI-enabled [GROMACS](https://www.gromacs.org/) application container.  GROMACS is a molecular dynamics package mainly designed for simulations of proteins, lipids, and nucleic acids.  It simulates the Newtonian equations of motion for systems with hundreds to millions of particles and is a community-driven project.
+It can run on central processing units (CPUs) and graphics processing units (GPUs) and was originally developed in the Biophysical Chemistry department of University of Groningen.
+Univerisities and research centers worlwide are now maintaining the package.
+
 This lab includes the following steps:
 
-1. Create a container definition for an MPI-based GROMACS simulation
+1. Create a container definition for an MPI-enabled GROMACS simulation
 2. Create a repository in AWS CodeCommit
 3. Create a build environment using AWS CodeBuild
 4. Create a pipeline using AWS CodePipeline
