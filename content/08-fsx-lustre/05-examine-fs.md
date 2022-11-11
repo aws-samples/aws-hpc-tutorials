@@ -24,7 +24,7 @@ pcluster ssh -n hpc-cluster-lab --region ${AWS_REGION} -i ~/.ssh/${SSH_KEY_NAME}
 Continue connecting to the head node of the cluster by saying **yes**
 
 
-3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a Slurm job to allocate a compute node
+3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a Slurm job to allocate a compute node. Confirm that the cluster compute fleet is started before submitting the job.
 
 ```bash
 srun -N 1 --exclusive --pty /bin/bash -il
@@ -43,6 +43,8 @@ df -h /fsx
 cd /fsx/hsmtest
 ls -lrt
 ```
+
+If you do not see the files that you uploaded to the S3 bucket, the Data repository association (DRA) is not created. Re-check after successful DRA creation.
 
 6. **Lazy Loading** FSx for lustre uses the lazy load  policy where the meta data is visible when you look at the data repository path, however the data is copied to the filesystem only at the time of first access and subsequent accesses will be faster. You can see this by running the command `lfs df -h`. We know that the actual size of the file uploaded into S3 is 455MB. However the space used on the file system before access is 7.8MB of metadata.
 You can also run `lfs hsm_state /fsx/hsmtest/SEG_C3NA_Velocity.sgy`. It confirms that the file is released but is archived.
@@ -107,7 +109,7 @@ Now, use the following command to see how much data is stored on the Lustre part
 time lfs df -h
 ```
 
-Do you notice a difference compared to the previous execution of this command? Instead of **7.8 MB** of data stored, you now have **465 MB** stored on the OST, your may see slightly different results.
+Do you notice a difference compared to the previous execution of this command? Instead of **7.8 MB** of data stored, you now have **465 MB** stored on the OST, you may see slightly different results.
 
 ![lazyloadarchived](/images/fsx-for-lustre-hsm/lazyloadarchived.png)
 
