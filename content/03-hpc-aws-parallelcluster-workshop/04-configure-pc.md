@@ -42,7 +42,22 @@ echo ${SUBNET_ID}
 echo ${CUSTOM_AMI}
 ```
 
-#### 3. Build the custom config file for ParallelCluster.
+#### 3. Retrieve WRF v4 AMI.
+
+We have built an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
+You will leverage this AMI to run WRF on a test case in the next section of this lab.
+
+Your **env_vars** file already contains the AMI ID you need, you can see below - just for your convenience - how we did retrieve this AMI ID.
+
+```bash
+CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
+    --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-3.2.0-wrf-4.4.1-*" \
+    --region ${AWS_REGION} \
+    | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
+```
+
+#### 4. Build the custom config file for ParallelCluster.
 
 ```bash
 cat > my-cluster-config.yaml << EOF
