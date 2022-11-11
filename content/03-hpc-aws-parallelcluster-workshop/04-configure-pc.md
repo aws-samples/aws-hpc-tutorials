@@ -44,7 +44,7 @@ echo ${CUSTOM_AMI}
 
 #### 3. Retrieve WRF v4 AMI.
 
-We have built an Amazon Machine Image (AMI) that contains a compiled version of WRF v4.
+An Amazon Machine Image (AMI) that contains a compiled version of WRF v4 has been built for this workshop.
 You will leverage this AMI to run WRF on a test case in the next section of this lab.
 
 Your **env_vars** file already contains the AMI ID you need, you can see below - just for your convenience - how we did retrieve this AMI ID.
