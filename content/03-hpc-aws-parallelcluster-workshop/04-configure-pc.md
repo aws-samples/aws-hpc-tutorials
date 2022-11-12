@@ -79,6 +79,8 @@ HeadNode:
     Secured: true
 Scheduling:
   Scheduler: slurm
+  SlurmSettings:
+    ScaledownIdletime: 1
   SlurmQueues:
     - Name: queue0
       ComputeResources:
