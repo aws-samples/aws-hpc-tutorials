@@ -68,6 +68,14 @@ Once the cluster is updated, you will see a **UPDATE_COMPLETE** status.
 pcluster update-compute-fleet -n hpc-cluster-lab --status START_REQUESTED --region ${AWS_REGION}
 ```
 
+11. Check the status of the compute fleet.
+
+```bash
+pcluster describe-compute-fleet -n hpc-cluster-lab --query status --region ${AWS_REGION}
+```
+
+You should see a **RUNNING** status after re-starting the compute fleet.
+
 
 You have now successfully mounted the created Lustre filesystem on the cluster. In the next section, you will monitor the Filesystem and learn more about the HSM capabilities between FSx Lustre and Amazon S3.
 

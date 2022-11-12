@@ -9,7 +9,7 @@ In this lab, you are introduced to [Amazon FSx for Lustre](https://aws.amazon.co
 
 - Create a new FSx for Lustre file system.
 - Create a S3 bucket and upload test data.
-- Create a Data Repository Action with this S3 bucket on the FSx for lustre filesystem.
+- Create a Data Repository Action with this S3 bucket on the Amazon FSx for lustre filesystem.
 - Mount the newly created filesystem on the cluster created in Lab I.
 - Login to the cluster, take a look at the mounted filesystem and verify HSM properties.
 - Clean up the file system and the cluster. Verify all the data present in the created S3 bucket. 
