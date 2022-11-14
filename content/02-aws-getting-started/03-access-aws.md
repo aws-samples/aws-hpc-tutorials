@@ -25,7 +25,9 @@ Go to the website https://dashboard.eventengine.run/
 
 You will then be prompted to a screen with the terms and conditions, add the *hashcode* and click **Accept** to continue:
 
-## Hash: xxx-yyy-zz
+{{% notice info %}}
+Your hash will be provided separately.
+{{% /notice %}}
 
 ![Event Engine Login](</images/sc22/event-engine-login.png>)
 
