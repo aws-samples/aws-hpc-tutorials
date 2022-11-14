@@ -10,7 +10,7 @@ Welcome to the **Best Practices for HPC in the Cloud** tutorial at SC22 that wil
 The website will be maintained after SC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
 {{% notice tip %}}
-**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://survey.immersionday.com/IGDEbg9nR.**
+**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://bit.ly/sc22cloud.**
 {{% /notice %}}
 
 
