@@ -127,10 +127,10 @@ git push origin main
 
 9. In addition to the build the pipeline is also pushing the built container image to the container registry in Amazon ECR. 
 
-Once the build has completed you should be able to see that a container exists in the ECR repository tagged as **latest**:
-1. Open the [Amazon ECR console](https://console.aws.amazon.com/ecr/repositories), and make sure the N. Virgia region is selected.
-2. Select **sc22-container**
+You can view information on the ECR repository with by running:
 
-You should see an entry like:
+```bash
+aws ecr describe-repostitories
+```
 
-![AWS CodePipeline](/images/cicd/updatebuild-1.png?width=50pc)
+This will return a JSON formatted object describing the repository and its contents.
