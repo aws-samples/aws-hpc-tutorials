@@ -39,6 +39,4 @@ We'll be using the [p4d.24xlarge](https://aws.amazon.com/ec2/instance-types/p4/)
 
     ![Cluster Wizard](/images/03-cluster/pcmanager-4.png)
 
-7. Click **Dry Run** to confirm the setup and then click **Create**
-
-    ![Cluster Wizard](/images/03-cluster/pcmanager-5.png)
+7. Proceed to the [next page](/03-cluster/02-odcr.html) to configure your Capacity Reservation.

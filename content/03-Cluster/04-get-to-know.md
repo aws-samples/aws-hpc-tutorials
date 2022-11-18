@@ -1,6 +1,6 @@
 ---
-title: "c. Get to know your Cluster"
-weight: 23
+title: "d. Get to know your Cluster"
+weight: 24
 tags: ["tutorial", "pcluster-manager", "ParallelCluster"]
 ---
 
