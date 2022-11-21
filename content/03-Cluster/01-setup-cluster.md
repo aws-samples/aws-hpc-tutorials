@@ -1,6 +1,6 @@
 ---
 title: "a. Create a Cluster"
-weight: 21
+weight: 31
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 

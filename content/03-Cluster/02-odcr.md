@@ -1,6 +1,6 @@
 ---
 title: "b. Capacity Reservation"
-weight: 22
+weight: 32
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 

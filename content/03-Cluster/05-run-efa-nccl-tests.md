@@ -1,6 +1,6 @@
 ---
 title: "e. EFA NCCL Test"
-weight: 25
+weight: 35
 tags: ["tutorial", "ParallelCluster", "nccl", "efa"]
 ---
 
@@ -57,7 +57,7 @@ We're going to run the [nccl-tests](https://github.com/NVIDIA/nccl-tests) (this 
     cat nccl-tests_2.out
     ```
 
-This will show a bunch of stuff, including:
+At the bottom of the file, you'll see the results of the NCCL traffic tests.
 
 ```
 compute-dy-g4dn-1:15351:15351 [0] NCCL INFO Launch mode Parallel
@@ -102,3 +102,5 @@ compute-dy-g4dn-1:15357:15357 [6] NCCL INFO comm 0x7fef90000f60 rank 6 nranks 8 
 compute-dy-g4dn-1:15354:15354 [3] NCCL INFO comm 0x7f2b7c000f60 rank 3 nranks 8 cudaDev 3 busId 36000 - Destroy COMPLETE
 compute-dy-g4dn-1:15352:15352 [1] NCCL INFO comm 0x7f05e8000f60 rank 1 nranks 8 cudaDev 1 busId 19000 - Destroy COMPLETE
 ```
+
+You'll see the NCCL
