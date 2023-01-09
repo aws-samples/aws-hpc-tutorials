@@ -1,8 +1,8 @@
 ---
-title: "Parallel Cluster using CLI"
+title: "ParallelCluster using CLI (optional)"
 date: 2019-01-24T09:05:54Z
-weight: 20
-pre: "<b>II ⁃ </b>"
+weight: 30
+pre: "<b>III ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
