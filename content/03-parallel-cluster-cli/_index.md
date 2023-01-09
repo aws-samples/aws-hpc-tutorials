@@ -6,15 +6,19 @@ pre: "<b>III ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
+{{% notice info %}}This sectional is optional, you can either use the [ParallelCluster Manager UI](02-deploy-pcm.html) or the [CLI](03-parallel-cluster-cli.html).
+{{% /notice %}}
+
+![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)
+
 This workshop walks you through setting up your own AWS account to run your own HPC workloads. You learn how to navigate the AWS Management Console, access relevant services, and how to deploy a basic infrastructure.
 Specifically, you learn how to:
 
 - Sign in to the AWS Management Console and explore it.
 - Launch AWS Cloud9, a cloud based IDE, this is your portal to the AWS Command Line Interface (AWS CLI).
+- Install AWS ParallelCluster
+- Submit your first job
 
-The workshop then moves on to cover Parallel Cluster.
-
-![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)
 
 [AWS ParallelCluster](https://aws.amazon.com/hpc/parallelcluster/) is an AWS supported open source cluster management tool that helps you to deploy and manage High Performance Computing (HPC) clusters in the AWS Cloud. Built on the open source CfnCluster project, AWS ParallelCluster enables you to quickly build an HPC compute environment in AWS. It automatically sets up the required compute resources, Slurm Scheduler and shared file system. AWS ParallelCluster facilitates quick start proof of concept deployments and production deployments. You can also build higher level workflows, such as a genomics portal that automates an entire DNA sequencing workflow, on top of AWS ParallelCluster.
 
