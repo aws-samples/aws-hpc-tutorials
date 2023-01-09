@@ -7,7 +7,7 @@ tags = ["tutorial", "ParallelCluster"]
 ParallelCluster Manager is deployed as a Cloudformation Stack, it'll take about 20 minutes to deploy.
 
 1. Deploy the Pcluster Manager stack by clicking on this button: 
-{{% button href="https://us-east-2.console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-2.s3.amazonaws.com/pcluster-manager.yaml" icon="fas fa-rocket" %}}Deploy ParallelCluster Manager{{% /button %}}
+{{% button href="https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcm-release-us-east-1.s3.us-east-1.amazonaws.com/pcluster-manager.yaml" icon="fas fa-rocket" %}}Deploy ParallelCluster Manager{{% /button %}}
 
 2. The AWS Console opens on the AWS CloudFormation panel to deploy your stack. Update the field *AdminUserEmail* with **a valid email** to receive a temporary password in order to connect to the Pcluster Manager GUI. Leave the other fields with their default values and click **Next** to proceed to Step 3.
 
