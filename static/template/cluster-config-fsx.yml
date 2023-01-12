@@ -21,7 +21,8 @@ Scheduling:
         - Name: hpc6a
           MinCount: 0
           MaxCount: 64
-          InstanceType: hpc6a.48xlarge
+          Instances:
+            - InstanceType: hpc6a.48xlarge
           Efa:
             Enabled: true
       Networking:
