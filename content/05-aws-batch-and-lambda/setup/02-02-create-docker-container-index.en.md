@@ -3,13 +3,13 @@ title = "2. Provision Lambda, Batch and S3 buckets, etc.."
 weight = 22
 +++
 
-In this section, we will deploy Lambda, Batch and S3 buckets with [CloudFormation](https://aws.amazon.com/cloudformation/) templates to provision infrastructure as code, so the system can be managed and scaled to multi-region easily.
+In this section, you will deploy Lambda, Batch and S3 buckets with [CloudFormation](https://aws.amazon.com/cloudformation/) templates to provision infrastructure as code, so the system can be managed and scaled to multi-region easily.
 
-The Bash script "buildArch.sh" can be found at the top level of the "fsi-demo" directory. We can start to build the infrastructure with the following command:
+The Bash script "buildArch.sh" can be found at the top level of the "fsi-demo" directory. You can start to build the infrastructure with the following command:
 ```bash
 ./buildArch.sh
 ```
-This will take several minutes. While we are waiting, we can go through the script to see what it will do. The script starts with collecting some necessary information, such as AWS account ID, VPC ID, subnet IDs and security groups. The default VPC and security groups are choose here for simplicity of the experiments. You are recommended to create your own VPC, subnets and security groups to meet the security, scalability and compliance requirements. If it is first time to run the script, a file to save the collected information will be created in the home directory: ```~/envVars-$AWS_REGION```. We can just load the environment variables with the generated file without collecting them again when we update the infrastructure later.
+This will take several minutes. While you are waiting, you can go through the script to see what it will do. The script starts with collecting some necessary information, such as AWS account ID, VPC ID, subnet IDs and security groups. The default VPC and security groups are choose here for simplicity of the experiments. You are recommended to create your own VPC, subnets and security groups to meet the security, scalability and compliance requirements. If it is first time to run the script, a file to save the collected information will be created in the home directory: ```~/envVars-$AWS_REGION```. You can just load the environment variables with the generated file without collecting them again when you update the infrastructure later.
 
 Using collected information with the template file ```CloudFormation/fsi-demo-batch.yaml```, the script will deploy AWS Batch, including creating a compute environment, a job queue, a job definition and related IAM roles. Batch can support multiple clients and very large-scale workloads with additional Batch queues and compute environments.
 
@@ -65,5 +65,5 @@ aws cloudformation deploy --stack fsi-demo --template-file CloudFormation/fsi-de
     FSIBatchJobDefinitionArn=$project
 ```
 
-After the deployment is done we can check with AWS Management Console for [CloudFormation](https://console.aws.amazon.com/cloudformation/) if the deployment has been done successfully and find out detail errors under the "Events" tab of each stack if there was an issue.
+After the deployment is done you can check with AWS Management Console for [CloudFormation](https://console.aws.amazon.com/cloudformation/) if the deployment has been done successfully and find out detail errors under the "Events" tab of each stack if there was an issue.
 ![CloudFormation](/images/batch-lambda/CloudFormation.png)
