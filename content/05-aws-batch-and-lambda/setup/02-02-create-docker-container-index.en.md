@@ -52,7 +52,7 @@ aws cloudformation deploy --stack-name fsi-demo-batch --template-file CloudForma
 ###### step 2: Create S3 buckets for input and output files ######
 if [[ $(grep "INPUT_BUCKET=" $envFileName) ]]; then
   echo "Using existing S3 buckets"
-else # Creat new buckets
+else # Create new buckets
   echo "Input S3 bucket name: ${INPUT_BUCKET:=fsi-demo-${AWS_REGION}-${AWS_ACCOUNT}}"
   echo "Result S3 bucket name: ${RESULT_BUCKET=${INPUT_BUCKET}-result}"
 

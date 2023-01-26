@@ -4,7 +4,7 @@ weight : 20
 ---
 
 {{% notice info %}}
-This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-preparation.html)** section of the workshop
+This workshop requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Preparation](/02-preparation.html)** section of the workshop
 {{% /notice %}}
 
 To start with the experiment, you can download the zip file created for this workshop, then unzip the file in a local directory.
