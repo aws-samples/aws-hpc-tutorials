@@ -11,7 +11,7 @@ You will find here the agenda for the tutorial. An update will be made on {{< pa
 
 | Session Kind | Time                | Topic                                                                             | Speakers                     |
 | ------------ | ------------------- | ---------------------------------------------------------------------------       | ---------------------------- |
-| Test         | 08:30AM - 08:35AM   | Welcome and Introduction                                                          | Maxime Hugues                |
+| Talk         | 08:30AM - 08:35AM   | Welcome and Introduction                                                          | Maxime Hugues                |
 | Talk         | 08:35AM - 09:10AM   | Modern Cloud Architectures                                                        | Maxime Hugues                |
 | *Lab 1*      | 09:10AM - 10:00AM   | Build your HPC System in the Cloud, run WRF and remote visualization              | Kelly Werner / Timothy Brown |
 | 30 Min Break | 10:00AM - 10:30AM   | _Morning Break_                                                                   | \-\-\-\-\-\-\-\-\-\-\-\-     |
