@@ -10,11 +10,11 @@ In this section, you will create an Amazon ECR container repository to store you
 
 Create an Amazon ECR Repository
 
-In this step, you will create a repository named `sca22-container` using the Command Line Interface (CLI) in Amazon ECR.
+In this step, you will create a repository named `sca23-container` using the Command Line Interface (CLI) in Amazon ECR.
 Amazon ECR is a fully managed container registry offering high-performance hosting, so you can reliably deploy application images and artifacts anywhere.
 
 ```bash
-CONTAINER_REPOSITORY_NAME="sca22-container"
+CONTAINER_REPOSITORY_NAME="sca23-container"
 aws ecr create-repository --repository-name ${CONTAINER_REPOSITORY_NAME}
 ```
 
