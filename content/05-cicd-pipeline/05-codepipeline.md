@@ -13,7 +13,7 @@ In the first section of this lab you created a CodeCommit repo and created a sam
 
 In this section, you will create a pipeline with a source and build stage to automate the container build and push to Amazon ECR whenever there are any changes in the source CodeCommit repository.
 
-1. In the AWS Management Console search bar, type and select **CodePipeline**.
+1. Open the [AWS CodePipeline console](https://console.aws.amazon.com/codepipeline/home).
 
 2. Click on **Create pipeline**
 
