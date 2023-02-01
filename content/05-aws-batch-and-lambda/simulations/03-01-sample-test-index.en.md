@@ -38,7 +38,7 @@ if ! aws s3 ls $INPUT_BUCKET; then echo please create bucket $INPUT_BUCKET; exit
 date;aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/fast/100/
 date;aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/normal/100/
 ```
-After about 1 minute, you can check the metrics under the "Monitor" tab from [Lambda console](https://console.aws.amazon.com/lambda/home?#/functions/fsi-demo?tab=monitoring) to gain some information.
+After ~1 minute, you can check the metrics under the "Monitor" tab from [Lambda console](https://console.aws.amazon.com/lambda/home?#/functions/fsi-demo?tab=monitoring) to gain some information.
 
 The result will be under the same S3 path in the result bucket with "-result" appended at the end. With following command, you can print out the result from Lambda. The order of the result could be different with input and it can be sorted easily by "id" if needed. 
 ```bash
