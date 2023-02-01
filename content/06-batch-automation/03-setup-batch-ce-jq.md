@@ -16,7 +16,7 @@ Run the following commands on your Cloud9 terminal
 1. Copy the Cloudformation template which will be used to create the AWS Batch Compute Environment and Job Queue.
 
 ```bash
-aws s3 cp s3://isc22-hpc-labs/isc22-nextflow-batch-ce-jq.template.yaml .
+aws s3 cp s3://sca23-hpc-labs/sca23-nextflow-batch-ce-jq.template.yaml .
 ```
 
 2. Set the following environment variables to be passed as parameters to the Cloudformation stack. 
@@ -38,7 +38,7 @@ echo "export SUBNET_IDS=${SUBNET_IDS}"
 3. Deploy the Cloudformation template to create the Batch Compute Environment and Job Queue.
 
 ```bash
-aws cloudformation deploy --stack-name nextflow-batch-ce-jq --template-file isc22-nextflow-batch-ce-jq.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds="${SUBNET_IDS}"
+aws cloudformation deploy --stack-name nextflow-batch-ce-jq --template-file sca23-nextflow-batch-ce-jq.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds="${SUBNET_IDS}"
 ```
 
 4. It will take a few mins for the stack to be created. Once complete you will see a message as below: 
@@ -51,13 +51,13 @@ Successfully created/updated stack - nextflow-batch-ce-jq
 5. Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose **Batch** 
 
 6. In the left pane, choose **Compute environments** option and confirm that a Compute environment **nextflow-ce** is created. Make sure *Status* is **VALID** and *State* is **ENABLED**. Refresh to check the Status updates.
-![AWS Batch](/images/aws-batch/ISC22/ce-6c.png)
+![AWS Batch](/images/aws-batch/SCA23/ce-6c.png)
 
 7. Similarly, In the left pane choose **Job queues** section and confirm that a Job Queue **nextflow-jq** is created. Make sure *State* is **ENABLED** and *Status* is **VALID**
-![AWS Batch](/images/aws-batch/ISC22/jq-4c.png)
+![AWS Batch](/images/aws-batch/SCA23/jq-4c.png)
 
 At this point, you have done the hard part! Continue to set up the job definition.
 
 {{% notice info %}}
-Highly recommended to examine the contents of the downloaded Cloudformation template (**isc22-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
+Highly recommended to examine the contents of the downloaded Cloudformation template (**sca23-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
 {{% /notice %}}
