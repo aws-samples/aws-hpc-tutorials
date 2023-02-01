@@ -3,7 +3,14 @@ title = "1. Create application container image"
 weight = 21
 +++
 
-The following Bash script "updateImage.sh" should exist at the top level of the "fsi-demo" directory after the repository is cloned in the previous step. The script will create Amazon ECR repositories for the first time and save the container images after build. Then update the container images with the same script afterwards. The script can be run either on a Cloud9 instance, or in [AWS CodeBuild](https://aws.amazon.com/codebuild/) environment for CI/CD implementation, which is beyond the scope of this workshop.
+You will download the Bash script "updateImage.sh" to build a container image and upload it to Amazon Elastic Container (Amazon ECR). The script will build the image first, then create an Amazon ECR repository for the first time and store the container image to it. Then update the container images with the same script afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
+
+```bash
+curl -o updateImage.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/updateImage.sh
+./updateImage.sh
+```
+
+While waiting, you can take a look at script as described above.
 
 ```
 $ cat updateImage.sh 
@@ -37,17 +44,12 @@ aws lambda update-function-code --region ${AWS_REGION} --function-name $project 
     --image-uri ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/$project:latest --no-cli-pager
 ```
 
-Now you can run the script to create repositories in Amazon ECR to store container images for both AWS Lambda and Batch. AWS_REGION can be set optionally to specify where the infrastructure to be provisioned. If the AWS_REGION not set, it will deploy to the same region as Cloud9 instance automatically.
-```bash
-./updateImage.sh
-```
-
-Then you can check if the repositories are created as expected. In additional to use command to check, you can also check the result with [AWS Management Console](https://console.aws.amazon.com/ecr/repositories) by choosing the same AWS region above.
+After the script execution is done, you can check if the repositories are created as expected. In additional to use command to check, you can also check the result with [AWS Management Console](https://console.aws.amazon.com/ecr/repositories) by choosing the same AWS region above.
 ```bash
 aws ecr describe-repositories --region ${AWS_REGION} --output text --query 'repositories[*].repositoryName'
 ```
 The output should include the following ECR repositories:
 
 ```
-fsi-demo-batch  fsi-demo-lambda
+fsi-demo
 ```
