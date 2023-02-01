@@ -1,5 +1,5 @@
 +++
-title = "1. Build images and push to Amazon ECR repositories"
+title = "1. Create application container image"
 weight = 21
 +++
 
