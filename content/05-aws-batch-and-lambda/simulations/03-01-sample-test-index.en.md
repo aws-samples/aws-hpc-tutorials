@@ -3,7 +3,7 @@ title : "1. Run a small sample"
 weight : 31
 ---
 
-In this session, you will run a small test to price with both Lambda and Batch. You will find Lambda has advantages from run time and cost prospective for this case.
+In this session, you will run a small test to price with both AWS Lambda and AWS Batch. You will find AWS Lambda has advantages from run time and cost prospective for this case.
 
 Sample input/output CSV files for the option valuation can be found below:
 Input file
