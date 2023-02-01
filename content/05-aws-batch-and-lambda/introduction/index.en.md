@@ -3,7 +3,7 @@ title : "a. Introduction"
 weight : 10
 ---
 
-This workshop is created to demonstrate how large-scale Monte Carlo simulations can be done with the elastic infrastructure using AWS Batch. In the meantime, smaller workload requiring fast turnaround can also be done timely with near identical application code using AWS Lambda. The same infrastructure can be deployed to a second region optionally to meet compliance and resilience requirements.
+In this workshop, you will experiment how to run large-scale Monte Carlo simulations with the elastic infrastructure using AWS Batch. In the meantime, you will use AWS Lambda to run smaller workload requiring fast turnaround with the same container image used for AWS Batch. You can also choose to deploy the same infrastructure to a second region with the same procedure to meet compliance and resilience requirements.
 
 ![Architecture](/images/batch-lambda/Loosely-coupled.png)
 
