@@ -3,10 +3,22 @@ title = "1. Create application container image"
 weight = 21
 +++
 
-You will download the Bash script "updateImage.sh" to build a container image and upload it to Amazon Elastic Container (Amazon ECR). The script will build the image first, then create an Amazon ECR repository for the first time and store the container image to it. Then update the container images with the same script afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
+You will download the Bash script "updateImage.sh" to build a container image and upload it to Amazon Elastic Container (Amazon ECR). There are four dependent files for this step:
+1. Dockerfile : provide image build instructions
+2. bootstrap : the entrypoint for both AWS Batch and Lambda containers
+3. function.sh : workload distribution and execution to run jobs in parallel
+4. EquityOption.cpp : I/O interface for building QuantLib binary to read and write information from multiple equities
+
+The script will build the image first, then create an Amazon ECR repository for the first time and store the container image to it. Then update the container images with the same script afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
 
 ```bash
+# Download files
 curl -o updateImage.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/updateImage.sh
+curl -o Dockerfile https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/Dockerfile
+curl -o bootstrap https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/bootstrap
+curl -o function.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/function.sh
+curl -o EquityOption.cpp https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/EquityOption.cpp
+# Execute the script
 ./updateImage.sh
 ```
 
