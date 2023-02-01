@@ -56,9 +56,8 @@ for computeType in $computeTypes; do
 done
 ```
 
-Now you can run the script to create repositories in Amazon ECR to store container images for both AWS Lambda and Batch. AWS_REGION can be set optionally to specify where the infrastructure to be provisioned.
+Now you can run the script to create repositories in Amazon ECR to store container images for both AWS Lambda and Batch. AWS_REGION can be set optionally to specify where the infrastructure to be provisioned. If the AWS_REGION not set, it will deploy to the same region as Cloud9 instance automatically.
 ```bash
-export AWS_REGION=us-east-1 #optional. If not set, the same region of Cloud9 instance will be used
 ./updateImage.sh
 ```
 
