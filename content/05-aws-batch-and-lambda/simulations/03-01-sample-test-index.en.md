@@ -6,6 +6,7 @@ weight : 31
 In this session, you will run a small test to price with both AWS Lambda and AWS Batch. You will find AWS Lambda has advantages from run time and cost prospective for this case.
 
 Sample input/output CSV files for the option valuation can be found below:
+
 Input file
 
 ![input](/images/batch-lambda/input-10.png)
@@ -30,15 +31,15 @@ date # Print out the job submission time
 aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/fast/100/
 aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/normal/100/
 ```
-After ~1 minute, you can check the metrics under the "Monitor" tab from [Lambda console](https://console.aws.amazon.com/lambda/home?#/functions/fsi-demo?tab=monitoring) to gain some information.
 
-The result will be under the same S3 path in the result bucket with "-result" appended at the end. With following commands, you can find out when the result from AWS Lambda is generated and print it out on screen. The order of the result could be different with input and it can be sorted easily by the "id" column if needed. 
+After ~1 minute, the result will be under the same S3 path in the result bucket with "-result" appended at the end. With following commands, you can find out when the result from AWS Lambda is generated and print it out on screen. The order of the result could be different with input and it can be sorted easily by the "id" column if needed. 
 ```bash
 # Lambda result
 aws s3 ls s3://$RESULT_BUCKET/fast/100/EquityOption-100.csv-result
 aws s3 cp s3://$RESULT_BUCKET/fast/100/EquityOption-100.csv-result -
 ```
 
+You can check the metrics under the "Monitor" tab from [Lambda console](https://console.aws.amazon.com/lambda/home?#/functions/fsi-demo?tab=monitoring) to gain some useful information.
 ![lambda](/images/batch-lambda/lambda-metrics.png)
 
 From the screenshot above, you can find the maximal duration is about 33 seconds, which is total time from the start to the end of the simulation. In the "total concurrent executions", it shows 11 lambda instances were invoked as the result of one manager process and 10 worker processes for a workload of 100 equities and 10 is set as the number of equities to be processed on each worker.

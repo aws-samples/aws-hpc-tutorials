@@ -9,7 +9,7 @@ You will download the Bash script "updateImage.sh" to build a container image an
 3. function.sh : workload distribution and execution to run jobs in parallel
 4. EquityOption.cpp : I/O interface for building QuantLib binary to read and write information from multiple equities
 
-The script will build the image first, then create an Amazon ECR repository for the first time and store the container image to it. Then update the container images with the same script afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
+The script will build the image first, then store the container image with Amazon ECR. It creates an repository for the first time and update the container images afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
 
 ```bash
 # Download files
@@ -56,7 +56,7 @@ aws lambda update-function-code --region ${AWS_REGION} --function-name $project 
     --image-uri ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/$project:latest --no-cli-pager
 ```
 
-After the script execution is done, you can check if the repositories are created as expected. In additional to use command to check, you can also check the result with [AWS Management Console](https://console.aws.amazon.com/ecr/repositories) by choosing the same AWS region above.
+After the script execution is done, you can check if the repositories are created as expected. In addition to use command to check, you can also check the result with [AWS Management Console](https://console.aws.amazon.com/ecr/repositories) by choosing the same AWS region above.
 ```bash
 aws ecr describe-repositories --region ${AWS_REGION} --output text --query 'repositories[*].repositoryName'
 ```
