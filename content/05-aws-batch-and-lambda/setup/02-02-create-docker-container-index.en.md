@@ -7,9 +7,13 @@ In this section, you will deploy Lambda, Batch and S3 buckets with [AWS CloudFor
 
 You will start to build the infrastructure with the shell schript "buildArch.sh" after downloading the YAML files for deployment with CloudFormation:
 ```bash
-curl -o buildArch.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/buildArch.sh
+# download YAML files
+mkdir -p fsi-demo/CloudFormation
+cd fsi-demo
 curl -o CloudFormation/fsi-demo-s3.yaml https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/CloudFormation/fsi-demo-s3.yaml
 curl -o CloudFormation/fsi-demo-batch.yaml https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/CloudFormation/fsi-demo-batch.yaml
+# build infrastructures
+curl -o buildArch.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/buildArch.sh
 ./buildArch.sh
 ```
 This will take several minutes. You can go through the script to see what it will do. The script starts with collecting some necessary information, such as AWS account ID, VPC ID, subnet IDs and security groups. The default VPC and security groups are choose here for simplicity of the experiments. You are recommended to create your own VPC, subnets and security groups to meet the security, scalability and compliance requirements. A file to save the collected information will be created in the home directory: ```~/envVars-$AWS_REGION```. You can just load the environment variables with the generated file for later tests.
