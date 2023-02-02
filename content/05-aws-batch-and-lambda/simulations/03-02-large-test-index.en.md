@@ -12,6 +12,7 @@ Before you start to run large-scale jobs, you can adjust the threshold to a larg
 After clicking "Create job definition" in the last page, you can upload a new file to the input S3 bucket that will trigger a new large job to process the data contain in the file with following command:
 
 ```bash
+curl -o Data/EquityOption-100k.csv https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/Data/EquityOption-100k.csv
 aws s3 cp Data/EquityOption-100k.csv s3://$INPUT_BUCKET/normal/100k/
 ```
 
