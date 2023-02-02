@@ -33,9 +33,9 @@ AWS Batch provisions compute resources and optimizes the job distribution based 
 This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete the **[Prepartion](/02-aws-getting-started.html)** section of the workshop
 {{% /notice %}}
 
-In this workshop, you will learn how to use container orchestrators like AWS Batch and deploy an architecture for genomics pipeline execution on AWS Batch.
+In this lab, you will learn how to use container orchestrators such as AWS Batch and deploy an architecture for genomics pipeline execution on AWS Batch.
 
-In this lab you will run a basic pipeline for quantification of genomic features from short read data implemented with [Nextflow](https://www.nextflow.io/index.html)
+You will run a basic pipeline for quantification of genomic features from short read data implemented with [Nextflow](https://www.nextflow.io/index.html)
 
 You will be deploying the below architecture as part of this lab:
 
@@ -43,10 +43,13 @@ You will be deploying the below architecture as part of this lab:
 
 This includes the following steps:
 
-- Create an object store bucket in S3 to store your results.
-- Set up the infrastructure for AWS Batch.
-- Run a sample genomics pipeline on AWS Batch.
-- Monitor your jobs 
-- Cleanup
+- [Create S3 bucket](06-batch-automation/01-create-s3.html)
+- [Create IAM Role](06-batch-automation/02-create-iam-role.html)
+- [Set up Batch Resources](06-batch-automation/03-setup-batch-ce-jq.html)
+- [Set up a Job Definition](06-batch-automation/04-setup-batch-job-definition.html)
+- [Describe Your Environment](06-batch-automation/05-describe-batch-env.html)
+- [Run a Single Job](06-batch-automation/06-run-job.html)
+- [Monitor your jobs](06-batch-automation/07-monitor-job.html)
+- [Cleanup](06-batch-automation/08-cleanup.html)
 
 
