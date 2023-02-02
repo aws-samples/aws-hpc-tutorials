@@ -17,8 +17,15 @@ After all the components are deployed successfully, you can start to run some te
 
 To run a test, you can simply follow steps below to submit 100 equities and calculate their price on both Batch and Lambda respectively.
 ```
+# Load S3 bucket name variables
 AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 source ~/envVars-$AWS_REGION
+
+# Download test data file
+mkdir -p Data
+curl -o Data/EquityOption-100.csv https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/Data/EquityOption-100.csv
+
+# Submit test jobs
 date # Print out the job submission time
 aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/fast/100/
 aws s3 cp Data/EquityOption-100.csv s3://$INPUT_BUCKET/normal/100/
