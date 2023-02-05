@@ -39,7 +39,13 @@ EOF
 aws s3 cp mount-fsx.sh s3://${BUCKET_NAME_DATA}
 ```
 
-4. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies. **Note that we are updating the compute queue and not the head node**
+4. Stop the compute fleet
+
+```bash
+pcluster update-compute-fleet -n hpc-cluster-lab --status STOP_REQUESTED --region ${AWS_REGION}
+```  
+
+5. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies. **Note that we are updating the compute queue and not the head node**
 
 ```bash
 export S3PATH=s3://${BUCKET_NAME_DATA}/mount-fsx.sh
@@ -48,13 +54,13 @@ yq -i '(.Scheduling.SlurmQueues[0].CustomActions.OnNodeConfigured.Script=env(S3P
        (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[1]={"Policy": "arn:aws:iam::aws:policy/AmazonS3FullAccess"})' ~/environment/my-cluster-config.yaml
 ```
 
-5. Update the cluster
+6. Update the cluster
 
 ```bash
 pcluster update-cluster -n hpc-cluster-lab -c my-cluster-config.yaml --region ${AWS_REGION} --suppress-validators ALL
 ```
 
-9. Wait for the cluster to be updated. You can check the cluster update status as below or monitoring the CloudFormation stack in the AWS Console.
+7. Wait for the cluster to be updated. You can check the cluster update status as below or monitoring the CloudFormation stack in the AWS Console.
 
 ```bash
 pcluster describe-cluster -n hpc-cluster-lab --query clusterStatus --region ${AWS_REGION}
@@ -62,13 +68,13 @@ pcluster describe-cluster -n hpc-cluster-lab --query clusterStatus --region ${AW
 
 Once the cluster is updated, you will see a **UPDATE_COMPLETE** status.
 
-10. Re-start the compute fleet
+8. Start the compute fleet
 
 ```bash
 pcluster update-compute-fleet -n hpc-cluster-lab --status START_REQUESTED --region ${AWS_REGION}
 ```
 
-11. Check the status of the compute fleet.
+9. Check the status of the compute fleet.
 
 ```bash
 pcluster describe-compute-fleet -n hpc-cluster-lab --query status --region ${AWS_REGION}
