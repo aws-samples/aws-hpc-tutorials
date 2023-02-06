@@ -2,7 +2,7 @@
 title: ""
 weight: 10
 date: 2022-09-29T14:41:06Z
-pre: "<b>SC22 Tutorial Resources</b>"
+pre: "<b>SC Asia 23 Tutorial Resources</b>"
 ---
 
 Here is short reminder of the important links of this section:
