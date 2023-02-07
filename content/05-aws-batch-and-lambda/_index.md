@@ -21,7 +21,7 @@ AWS Lambda is a serverless, event-driven compute service that lets you run code 
 
 In addition to start running applications within seconds of an trigger event, there are several more benefits by choosing AWS Lambda. Some of them are listed below:
 1. Run code without provisioning or managing infrastructure
-2. Automatically respond to code execution requests
+2. Event driven application execution
 3. Built-in fault tolerance
 4. Package and deploy functions as container images
 5. Automatic scaling
