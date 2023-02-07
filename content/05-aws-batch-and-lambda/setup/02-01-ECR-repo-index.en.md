@@ -18,6 +18,8 @@ curl -o Dockerfile https://raw.githubusercontent.com/aws-samples/aws-hpc-tutoria
 curl -o bootstrap https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/bootstrap
 curl -o function.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/function.sh
 curl -o EquityOption.cpp https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/EquityOption.cpp
+# Set up AWS region
+export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 # Execute the script
 ./updateImage.sh
 ```
