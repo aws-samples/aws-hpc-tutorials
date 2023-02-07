@@ -3,7 +3,7 @@ title = "2. Provision Lambda, Batch and S3 buckets, etc.."
 weight = 22
 +++
 
-In this section, you will deploy Lambda, Batch and S3 buckets with [AWS CloudFormation](https://aws.amazon.com/cloudformation/) templates, which are used to provision infrastructure as code, so the system can be managed and scaled to multi-region easily.
+In this section, you will deploy AWS Lambda, AWS Batch and Amazon S3 buckets with [AWS CloudFormation](https://aws.amazon.com/cloudformation/) templates, which are used to provision infrastructure as code, so the system can be managed and scaled to multi-region easily.
 
 You will start to build the infrastructure with the shell schript "buildArch.sh" after downloading the YAML files for deployment with CloudFormation:
 ```bash
