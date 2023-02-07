@@ -24,5 +24,5 @@ In addition to start running applications within seconds of an trigger event, th
 2. Event driven application execution
 3. Built-in fault tolerance
 4. Package and deploy functions as container images
-5. Automatic scaling
+5. Scale to match demand
 
