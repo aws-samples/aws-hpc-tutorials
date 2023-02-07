@@ -1,0 +1,159 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'S3 related resources deployment for FSI demo'
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: 'FSI architecture component Config'
+        Parameters:
+        - INPUTBUCKET
+        - FSIBatchJobQueueArn
+        - FSIBatchJobDefinitionArn
+    ParameterLabels:
+      INPUTBUCKET:
+        default: 'S3 bucket name for input files' 
+      FSIBatchJobQueueArn:
+        default: 'AWS Batch job queue ARN'
+      FSIBatchJobDefinitionArn:
+        default: 'AWS Batch job definition'
+Parameters:
+  INPUTBUCKET:
+    Type: String
+    Description: 'S3 bucket for input files'
+  FSIBatchJobQueueArn:
+    Type: String
+    Description: 'Batch job queue ARN'
+  FSIBatchJobDefinitionArn: 
+    Type: String
+    Description: 'Batch job definition name'
+
+Resources:
+# IAM Roles and permissions for the lambda function 
+  FSIDemoLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRole
+            Principal:
+              Service: lambda.amazonaws.com
+      ManagedPolicyArns:
+        # Permissions for Lambda operations
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  S3InvokeLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref FSIDemoFunction
+      Principal: s3.amazonaws.com
+      SourceArn: !Sub arn:aws:s3:::${INPUTBUCKET}
+      SourceAccount: !Ref AWS::AccountId
+
+# Lambda function
+  FSIDemoFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Role: !GetAtt FSIDemoLambdaRole.Arn
+      PackageType: Image
+      MemorySize: 1280
+      Timeout: 300
+      TracingConfig:
+        Mode: Active
+      FunctionName: fsi-demo
+      Code:
+        ImageUri: !Sub
+          - ${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/${Repository}:${Version}
+          - Repository: fsi-demo
+            Version: latest
+
+# S3 buckets
+  InputBucketName:
+    DependsOn: S3InvokeLambdaPermission
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref INPUTBUCKET
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectCreated:*'
+            Function: !GetAtt FSIDemoFunction.Arn
+            Filter:
+                S3Key:
+                  Rules:
+                    - Name: prefix
+                      Value: fast/
+                    - Name: suffix
+                      Value: .csv
+        EventBridgeConfiguration:
+          EventBridgeEnabled: true
+  ResultBucketName:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Join
+        - '-'
+        - [ !Ref INPUTBUCKET, 'result' ]
+
+# Invoke a Batch job through EventBridge
+# IAM Roles and permissions for the lambda function 
+  FSIEventBridgeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRole
+            Principal:
+              Service: events.amazonaws.com
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSBatchServiceEventTargetRole
+  BatchJobEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Event Rule for AWS Batch jobs
+      EventPattern:
+        source:
+          - aws.s3
+        account: 
+          - !Ref AWS::AccountId
+        detail-type:
+          - Object Created
+        detail:
+          bucket:
+            name:
+              - !Ref INPUTBUCKET
+          object:
+            key:
+              - prefix: normal/
+            #  - suffix: .csv  It is not supported now to have both rules
+      State: ENABLED
+      Targets:
+        - Arn: !Ref FSIBatchJobQueueArn
+          RoleArn: !GetAtt FSIEventBridgeRole.Arn
+          BatchParameters:
+            JobDefinition: !Ref FSIBatchJobDefinitionArn
+            JobName: fsi-demo #!Ref S3key
+            RetryStrategy:
+              Attempts: 2
+          Id: fsi-demo
+          InputTransformer:
+            InputPathsMap:
+              S3BucketNameValue: "$.detail.bucket.name"
+              S3KeyValue: "$.detail.object.key"
+            InputTemplate: 
+              '{"Parameters" : 
+                 {"S3bucket": <S3BucketNameValue>,
+                  "S3key": <S3KeyValue>
+                 }
+              }'
+
+
+# Outputs
+Outputs:
+  InputBucketName:
+    Description: 'Input bucket name'
+    Value: !Ref INPUTBUCKET
+  ResultBucketName:
+    Description: 'Result bucket name'
+    Value: !Ref ResultBucketName

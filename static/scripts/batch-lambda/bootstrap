@@ -1,0 +1,54 @@
+#!/bin/sh
+
+set -eu
+
+# Clean up /tmp dir
+rm -rf /tmp/*
+
+baseDir=/var/runtime
+# default program location and name
+program=$baseDir/${program:=EquityOption}
+
+if [[ -z ${AWS_BATCH_JOB_ID+x} ]]; then # This is a lambda job
+
+while true
+do
+  _HANDLER=function.handler
+  # Initialization - load function handler
+  source $baseDir/"$(echo $_HANDLER | cut -d. -f1).sh"
+
+  HEADERS="$(mktemp)"
+  # Get an event. The HTTP request will block until one is received
+  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/next")
+
+  # parse the event to retrieve the source data
+	s3Bucket=$(echo "$EVENT_DATA" |jq -r '.Records[].s3.bucket.name')
+	s3Key=$(echo "$EVENT_DATA" | jq -r '.Records[].s3.object.key')
+
+  # Run the handler function from the script
+  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$program" "$s3Bucket" "$s3Key")
+
+  # Extract request ID by scraping response headers received above
+  REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+
+  # Send the response
+  curl -X POST "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/$REQUEST_ID/response"  -d "ok"
+done
+
+else #"This is a batch job"
+  _HANDLER=function.handler # To be compatible with Lambda
+  source /var/runtime/function.sh
+  # Download the input file from S3
+  s3Bucket=$1
+  s3Key=$2
+  
+  if [[ $# -gt 2 ]]; then
+     program=$3.   # Overwrite the executable with command -- optional
+  fi
+  
+  # Run the handler function from the script
+  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$program" "$s3Bucket" "$s3Key")
+  
+fi
+
+exit 0
