@@ -1,0 +1,38 @@
+HeadNode:
+  InstanceType: c5a.2xlarge
+  Ssh:
+    KeyName: your-key
+  Networking:
+    SubnetId: subnet-1234567
+  LocalStorage:
+    RootVolume:
+      Size: 40
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+  Dcv:
+    Enabled: true
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: c6i
+          MinCount: 0
+          MaxCount: 64
+          Instances:
+            - InstanceType: c6i.32xlarge
+          Efa:
+            Enabled: true
+      Networking:
+        SubnetIds:
+          - subnet-1234567
+        PlacementGroup:
+          Enabled: true
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+Region: us-east-2
+Image:
+  Os: alinux2

@@ -5,7 +5,7 @@ weight = 55
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-We have sucessfully built your cluster and ran your first MPI job.
+We have successfully built your cluster and ran your first MPI job.
 
 Let's say you want to change your instance type to a different instance type in your compute fleet for example **c6i.32xlarge** . In this lab, we will learn how to update your cluster with new instance type.
 
