@@ -3,7 +3,7 @@ title : "d. Clean up workshop resources"
 weight : 40
 ---
 
-Although the resources provisioned in this workshop barely have recurring cost when there is no job running, it is a good practice to clean them up if the system is not in use for quite a while.
+To avoid unexpected charges to your account relative to this workshop, make sure you delete the cluster and associated resources.
 
 1. First, you need to clean up the S3 buckets:
 ```bash
