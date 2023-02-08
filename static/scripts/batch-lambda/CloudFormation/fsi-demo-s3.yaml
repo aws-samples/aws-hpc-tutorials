@@ -75,6 +75,11 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: !Ref INPUTBUCKET
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
       NotificationConfiguration:
         LambdaConfigurations:
           - Event: 's3:ObjectCreated:*'
@@ -94,6 +99,11 @@ Resources:
       BucketName: !Join
         - '-'
         - [ !Ref INPUTBUCKET, 'result' ]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
 
 # Invoke a Batch job through EventBridge
 # IAM Roles and permissions for the lambda function 
