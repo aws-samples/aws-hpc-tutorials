@@ -21,8 +21,7 @@ Scheduling:
         - Name: c6i
           MinCount: 0
           MaxCount: 64
-          Instances:
-            - InstanceType: c6i.32xlarge
+          InstanceType: c6i.32xlarge
           Efa:
             Enabled: true
       Networking:
