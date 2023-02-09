@@ -14,9 +14,9 @@ curl -o CloudFormation/fsi-demo-s3.yaml https://raw.githubusercontent.com/aws-sa
 curl -o CloudFormation/fsi-demo-batch.yaml https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/CloudFormation/fsi-demo-batch.yaml
 # build infrastructures
 curl -o buildArch.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/buildArch.sh
-./buildArch.sh
+bash ./buildArch.sh
 ```
-This will take several minutes. You can go through the script to see what it will do. The script starts with collecting some necessary information, such as AWS account ID, VPC ID, subnet IDs and security groups. The default VPC and security groups are choose here for simplicity of the experiments. You are recommended to create your own VPC, subnets and security groups to meet the security, scalability and compliance requirements. A file to save the collected information will be created in the home directory: ```~/envVars-$AWS_REGION```. You can just load the environment variables with the generated file for later tests.
+This will take several minutes. You can go through the script to see what it will do. The script starts with collecting some necessary information, such as AWS account ID, VPC ID, subnet IDs and security groups. The default VPC and security groups are chosen here for simplicity of the experiments. You are recommended to create your own VPC, subnets and security groups to meet the security, scalability and compliance requirements. A file to save the collected information will be created in the home directory: ```~/envVars-$AWS_REGION```. You can just load the environment variables with the generated file for later tests.
 
 Using collected information with the template file ```CloudFormation/fsi-demo-batch.yaml```, the script will deploy AWS Batch, including creating a compute environment, a job queue, a job definition and related IAM roles. Batch can support multiple clients and very large-scale workloads with additional Batch queues and compute environments.
 
