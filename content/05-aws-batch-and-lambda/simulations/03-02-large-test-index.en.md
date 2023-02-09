@@ -9,7 +9,7 @@ Before you start to run large-scale jobs, you can adjust the threshold to a larg
 
 ![threshold](/images/batch-lambda/threshold-update.png)
 
-After clicking "Create job definition" in the last page, you can upload a new file to the input S3 bucket that will trigger a new large job to process the data contain in the file with following command:
+After clicking "Create job definition" in the last page, you can upload a new file to the input S3 bucket that will trigger a new large job to process the data contained in the file with following command:
 
 ```bash
 curl -o Data/EquityOption-100k.csv https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/Data/EquityOption-100k.csv

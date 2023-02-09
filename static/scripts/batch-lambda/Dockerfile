@@ -33,6 +33,7 @@ ENV LD_LIBRARY_PATH /var/runtime/lib/:$LD_LIBRARY_PATH
 
 # Set the entry point
 ENTRYPOINT [ "/var/runtime/bootstrap" ]
+RUN chmod 755 /var/runtime/bootstrap
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
 CMD [ "function.handler" ]

@@ -21,7 +21,7 @@ curl -o EquityOption.cpp https://raw.githubusercontent.com/aws-samples/aws-hpc-t
 # Set up AWS region
 export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 # Execute the script
-./updateImage.sh
+bash ./updateImage.sh
 ```
 
 While waiting, you can take a look at script as described above.
