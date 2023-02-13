@@ -12,6 +12,9 @@ You will download the Bash script "updateImage.sh" to build a container image an
 The script will build the image first, then store the container image with Amazon ECR. It creates an repository for the first time and update the container images afterwards. The same container image is shared by both AWS Batch and Lambda. For AWS Lambda, we need an additional step to deploy the container image for each update. 
 
 ```bash
+# Create a new working directory
+mkdir -p ~/fsi-demo
+cd ~/fsi-demo
 # Download files
 curl -o updateImage.sh https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/updateImage.sh
 curl -o Dockerfile https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/Dockerfile
