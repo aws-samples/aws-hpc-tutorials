@@ -8,8 +8,7 @@ In this section, you will deploy AWS Lambda, AWS Batch and Amazon S3 buckets wit
 You will start to build the infrastructure with the shell schript "buildArch.sh" after downloading the YAML files for deployment with CloudFormation:
 ```bash
 # download YAML files
-mkdir -p fsi-demo/CloudFormation
-cd fsi-demo
+mkdir -p CloudFormation
 curl -o CloudFormation/fsi-demo-s3.yaml https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/CloudFormation/fsi-demo-s3.yaml
 curl -o CloudFormation/fsi-demo-batch.yaml https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/batch/static/scripts/batch-lambda/CloudFormation/fsi-demo-batch.yaml
 # build infrastructures
