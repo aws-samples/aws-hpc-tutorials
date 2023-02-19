@@ -23,6 +23,7 @@ SharedStorage:
   Name: Lustre
   StorageType: FsxLustre
     FileSystemId: ${FSX_ID}
+EOF
 ```
 
 3. Update the cluster
