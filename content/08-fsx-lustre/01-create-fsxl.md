@@ -17,7 +17,7 @@ cd ~/environment
 2. Define a FSx Lustre Filesystem Name
 
 ```bash
-export FSX_NAME="sc22lab2"
+export FSX_NAME="Lustre"
 ```
 
 3. Obtain the Compute Security Group ID of of your cluster. 

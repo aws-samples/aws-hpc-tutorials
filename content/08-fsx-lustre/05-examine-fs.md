@@ -24,7 +24,7 @@ pcluster ssh -n hpc-cluster-lab --region ${AWS_REGION} -i ~/.ssh/${SSH_KEY_NAME}
 Continue connecting to the head node of the cluster by saying **yes**
 
 
-3. The Lustre Filesystem is mounted only on the Compute Nodes. Submit a Slurm job to allocate a compute node.
+3.  You will experiment with Lustre on a Compute Node. Submit an interactive Slurm job to allocate a compute node.
 
 ```bash
 srun -N 1 --exclusive --pty /bin/bash -il

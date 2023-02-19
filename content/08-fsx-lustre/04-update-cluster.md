@@ -14,47 +14,24 @@ In this section you will update the cluster created in Lab I and  mount the file
 source ~/environment/env_vars
 ```
 
-2. Create a post-install script to mount the FSx Lustre Filesystem on the cluster.
+2. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies.
 
 ```bash
-export filesystem_id=${FSX_ID}
-export filesystem_dns=$(aws fsx --region ${AWS_REGION} describe-file-systems --file-system-ids $filesystem_id --query "FileSystems[0].DNSName" --output text)
-export filesystem_mountname=$(aws fsx --region ${AWS_REGION} describe-file-systems --file-system-ids $filesystem_id --query "FileSystems[].LustreConfiguration[].MountName" --output text)
+cat <<EOF>> my-cluster-config.yaml
+SharedStorage:
+- MountDir: /fsx
+  Name: Lustre
+  StorageType: FsxLustre
+    FileSystemId: ${FSX_ID}
 ```
 
-```bash
-cat > mount-fsx.sh << EOF
-#!/bin/bash
-
-sudo mkdir -p /fsx
-
-sudo mount -t lustre -o noatime,flock ${filesystem_dns}@tcp:/${filesystem_mountname} /fsx
-
-EOF
-```
-
-3. Upload the post-install script to the previously created S3 bucket
-
-```bash
-aws s3 cp mount-fsx.sh s3://${BUCKET_NAME_DATA}
-```
-
-4. Update cluster configuration file (**my-cluster-config.yaml**) with the post-install script and update the required policies. **Note that we are updating the compute queue and not the head node**
-
-```bash
-export S3PATH=s3://${BUCKET_NAME_DATA}/mount-fsx.sh
-yq -i '(.Scheduling.SlurmQueues[0].CustomActions.OnNodeConfigured.Script=env(S3PATH)) |
-       (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[0]={"Policy": "arn:aws:iam::aws:policy/AmazonFSxFullAccess"}) |
-       (.Scheduling.SlurmQueues[0].Iam.AdditionalIamPolicies[1]={"Policy": "arn:aws:iam::aws:policy/AmazonS3FullAccess"})' ~/environment/my-cluster-config.yaml
-```
-
-5. Update the cluster
+3. Update the cluster
 
 ```bash
 pcluster update-cluster -n hpc-cluster-lab -c my-cluster-config.yaml --region ${AWS_REGION} --suppress-validators ALL
 ```
 
-9. Wait for the cluster to be updated. You can check the cluster update status as below or monitoring the CloudFormation stack in the AWS Console.
+4. Wait for the cluster to be updated. You can check the cluster update status as below or monitoring the CloudFormation stack in the AWS Console.
 
 ```bash
 pcluster describe-cluster -n hpc-cluster-lab --query clusterStatus --region ${AWS_REGION}
@@ -62,13 +39,13 @@ pcluster describe-cluster -n hpc-cluster-lab --query clusterStatus --region ${AW
 
 Once the cluster is updated, you will see a **UPDATE_COMPLETE** status.
 
-10. Re-start the compute fleet
+5. You need to re-start the compute fleet.  You will use the **update-compute-fleet** command to do this:
 
 ```bash
 pcluster update-compute-fleet -n hpc-cluster-lab --status START_REQUESTED --region ${AWS_REGION}
 ```
 
-11. Check the status of the compute fleet.
+6. Check the status of the compute fleet.
 
 ```bash
 pcluster describe-compute-fleet -n hpc-cluster-lab --query status --region ${AWS_REGION}
