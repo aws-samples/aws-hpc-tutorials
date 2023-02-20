@@ -7,7 +7,7 @@ tags = ["tutorial", "aws console", "ec2"]
 +++
 
 {{% notice warning %}}
-Skip this step if you are doing the labs during the SC22 event.
+Skip this step if you are doing the labs during the SCA23 event.
 {{% /notice %}}
 
 
