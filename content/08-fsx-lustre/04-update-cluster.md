@@ -18,11 +18,11 @@ source ~/environment/env_vars
 
 ```bash
 cat <<EOF>> my-cluster-config.yaml
-SharedStorage:
-- MountDir: /fsx
-  Name: Lustre
-  StorageType: FsxLustre
-    FileSystemId: ${FSX_ID}
+  - MountDir: /fsx
+    Name: Lustre
+    StorageType: FsxLustre
+    FsxLustreSettings:
+      FileSystemId: ${FSX_ID}
 EOF
 ```
 
