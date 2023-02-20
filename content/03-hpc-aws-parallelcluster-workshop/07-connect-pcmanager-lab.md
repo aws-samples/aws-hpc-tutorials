@@ -6,7 +6,7 @@ tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
 {{%notice note%}}
-If you are participating in this workshop as part of SC22, then *PCluster Manager* will already be deployed for you. 
+If you are participating in this workshop as part of SCA23, then *PCluster Manager* will already be deployed for you. 
 {{% /notice %}}
 
 Once your PCluster Manager CloudFormation stack has been deployed, you can follow these steps to connect to it:

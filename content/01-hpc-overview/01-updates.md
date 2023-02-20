@@ -11,7 +11,7 @@ Frequently asked questions will be addressed on this page during the tutorial. D
 
 #### Accounts access
 
-Sandbox are available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at {{% param contact %}} so we can follow-up with you.
+Sandbox are available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution.
 
 #### Check if your are on AWS Cloud9 or the head node of the HPC Cluster
 

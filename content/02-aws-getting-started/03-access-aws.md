@@ -9,12 +9,11 @@ weight: 50
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>).
 {{% /notice %}}
 
-Do not hesitate to ask questions at {{% param contact %}} if you need any help.
 
 ##### Step 1
 
 {{% notice warning %}}
-Sandboxes were available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at {{% param contact %}} so we can follow-up with you.
+Sandboxes were available on {{< param tutorialDate >}} for the duration of the tutorial. If you would like to run through the labs at a later stage on your own.
 {{% /notice %}}
 
 ##### Step 2
