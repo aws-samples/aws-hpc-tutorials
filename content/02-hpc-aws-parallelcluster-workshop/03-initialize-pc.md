@@ -21,7 +21,7 @@ If you have time and are curious, you can examine the different steps of the scr
 
 1. Retrieve the script.
 ```bash
-curl -OL htps://telaviv.hpcworkshops.com/scripts/create_parallelcluster_config.sh
+curl -OL https://telaviv.hpcworkshops.com/scripts/create_parallelcluster_config.sh
 ```
 
 2. Execute the script to retrieve network information.
