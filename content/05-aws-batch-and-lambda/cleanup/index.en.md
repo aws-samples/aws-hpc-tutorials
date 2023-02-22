@@ -15,13 +15,17 @@ aws s3 rm --recursive s3://$RESULT_BUCKET/
 
 ![cloudformation](/images/batch-lambda/delete-stacks.png)
 
-3. Now you are ready to delete the [Cloud9 environment](https://console.aws.amazon.com/cloud9/) created for this workshop:
+3. Then you can delete the repository created earlier to store the image for both AWS Batch and Lambda with [Amazon ECR console](https://console.aws.amazon.com/ecr/repositories)
+
+![cloudformation](/images/batch-lambda/delete-ECR-repo.png)
+
+4. Now you are ready to delete the [Cloud9 environment](https://console.aws.amazon.com/cloud9/) created for this workshop:
 ![cloud9](/images/batch-lambda/delete-cloud9.png)
 
-4. Find the IAM role used for this workshop from the [IAM console](https://console.aws.amazon.com/iamv2/home#/roles) and delete the IAM role created for Cloud9 
+5. Find the IAM role used for this workshop from the [IAM console](https://console.aws.amazon.com/iamv2/home#/roles) and delete the IAM role created for Cloud9 
 ![iam-role](/images/batch-lambda/delete-IAM-role.png)
 
-5. At the end, you will delete the CloudWatch log groups created for this workshop by choosing "Delete log group(s)" from [CloudWatch console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)
+6. At the end, you will delete the CloudWatch log groups created for this workshop by choosing "Delete log group(s)" from [CloudWatch console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)
 ![log-groups](/images/batch-lambda/delete-log-groups.png)
 
 
