@@ -10,6 +10,7 @@ To avoid unexpected charges to your account relative to this workshop, make sure
 source ~/envVars-$AWS_REGION
 aws s3 rm --recursive s3://$INPUT_BUCKET/
 aws s3 rm --recursive s3://$RESULT_BUCKET/
+aws s3 rm --recursive s3://$INPUT_BUCKET-logs/
 ```
 2. As you learned how to create the infrastructure with AWS command line in previous sections, you are going to delete the stacks deployed with [CloudFormation console](https://console.aws.amazon.com/cloudformation/home#/stacks) as an alternative way for operations. After identifying the "fsi" stacks and choose which one to delete, you can delete the two stacks one after the other by clicking the "Delete" button.
 
