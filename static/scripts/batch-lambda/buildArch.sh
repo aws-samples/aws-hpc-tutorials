@@ -35,4 +35,4 @@ echo "export RESULT_BUCKET=$RESULT_BUCKET" >> $envFileName
 
 aws cloudformation deploy --stack fsi-demo --template-file CloudFormation/fsi-demo-s3.yaml --capabilities "CAPABILITY_IAM" \
     --region ${AWS_REGION} --parameter-overrides INPUTBUCKET=$INPUT_BUCKET FSIBatchJobQueueArn=arn:aws:batch:${AWS_REGION}:${AWS_ACCOUNT}:job-queue/$project \
-    FSIBatchJobDefinitionArn=$project
+    FSIBatchJobDefinitionArn=$project SubnetIds="${SUBNET_IDS}" SGIds="${SecurityGroup_IDS}"
