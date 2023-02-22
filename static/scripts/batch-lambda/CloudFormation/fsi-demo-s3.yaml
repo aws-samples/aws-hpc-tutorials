@@ -10,6 +10,8 @@ Metadata:
         - INPUTBUCKET
         - FSIBatchJobQueueArn
         - FSIBatchJobDefinitionArn
+        - SubnetIds
+        - SGIds
     ParameterLabels:
       INPUTBUCKET:
         default: 'S3 bucket name for input files' 
@@ -17,6 +19,10 @@ Metadata:
         default: 'AWS Batch job queue ARN'
       FSIBatchJobDefinitionArn:
         default: 'AWS Batch job definition'
+      SubnetIds:
+        default: VPC Subnet IDs
+      SGIds:
+        default: VPC security group IDs
 Parameters:
   INPUTBUCKET:
     Type: String
@@ -27,6 +33,12 @@ Parameters:
   FSIBatchJobDefinitionArn: 
     Type: String
     Description: 'Batch job definition name'
+  SubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: 'Subnets you want your batch compute environment to launch in. We recommend private subnets. NOTE: Must be from the VPC provided.'
+  SGIds:
+    Type: List<AWS::EC2::SecurityGroup::Id>
+    Description: 'Security groups for compute environment in the same VPC. NOTE: A custom security group is recommended'
 
 Resources:
 # IAM Roles and permissions for the lambda function 
@@ -42,7 +54,7 @@ Resources:
       ManagedPolicyArns:
         # Permissions for Lambda operations
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
-        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
   S3InvokeLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
@@ -55,6 +67,11 @@ Resources:
 # Lambda function
   FSIDemoFunction:
     Type: AWS::Lambda::Function
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W58
+            reason: "The permission to CloudWatch Logs is provided with the FSIDemoLambdaRole policy"
     Properties:
       Role: !GetAtt FSIDemoLambdaRole.Arn
       PackageType: Image
@@ -68,13 +85,27 @@ Resources:
           - ${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/${Repository}:${Version}
           - Repository: fsi-demo
             Version: latest
+      ReservedConcurrentExecutions: 500
+      VpcConfig:
+        SecurityGroupIds: !Ref SGIds
+        SubnetIds: !Ref SubnetIds
 
 # S3 buckets
   InputBucketName:
     DependsOn: S3InvokeLambdaPermission
     Type: 'AWS::S3::Bucket'
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W41
+            reason: "Default server-side encryption with Amazon S3 managed keys (SSE-S3) is used"
+          - id: W51
+            reason: "Block Public Access settings are turned on for this demo"
     Properties:
       BucketName: !Ref INPUTBUCKET
+      LoggingConfiguration:
+        DestinationBucketName: !Ref S3BucketLogs
+        LogFilePrefix: "fsi-input-bucket/"
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
@@ -95,15 +126,58 @@ Resources:
           EventBridgeEnabled: true
   ResultBucketName:
     Type: 'AWS::S3::Bucket'
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W41
+            reason: "Default server-side encryption with Amazon S3 managed keys (SSE-S3) is used"
+          - id: W51
+            reason: "Block Public Access settings are turned on for this demo"
     Properties:
       BucketName: !Join
         - '-'
         - [ !Ref INPUTBUCKET, 'result' ]
+      LoggingConfiguration:
+        DestinationBucketName: !Ref S3BucketLogs
+        LogFilePrefix: "fsi-result-bucket/"
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
+  S3BucketLogs:
+    Type: AWS::S3::Bucket
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W41
+            reason: "Default server-side encryption with Amazon S3 managed keys (SSE-S3) is used"
+          - id: W35
+            reason: "This the S3 bucket to store the access logs"
+          - id: W51
+            reason: "Block Public Access settings are turned on for this demo"
+    Properties:
+      BucketName: !Join
+        - '-'
+        - [ !Ref INPUTBUCKET, 'logs' ]
+      AccessControl: LogDeliveryWrite
+      LifecycleConfiguration:
+        Rules:
+          - AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
+            Status: Enabled
+            Transitions:
+              - StorageClass: GLACIER
+                TransitionInDays: 10
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        -
+          Key: Description
+          Value: S3 Access Logs
 
 # Invoke a Batch job through EventBridge
 # IAM Roles and permissions for the lambda function 
