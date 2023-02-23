@@ -12,6 +12,8 @@ Metadata:
         - FSIBatchJobDefinitionArn
         - SubnetIds
         - SGIds
+        - RTIds
+        - VPCId
     ParameterLabels:
       INPUTBUCKET:
         default: 'S3 bucket name for input files' 
@@ -20,9 +22,13 @@ Metadata:
       FSIBatchJobDefinitionArn:
         default: 'AWS Batch job definition'
       SubnetIds:
-        default: VPC Subnet IDs
+        default: 'VPC Subnet IDs'
       SGIds:
-        default: VPC security group IDs
+        default: 'VPC security group IDs'
+      RTIds:
+        default: 'VPC route table IDs'
+      VPCId:
+        default: 'VPC ID'
 Parameters:
   INPUTBUCKET:
     Type: String
@@ -39,6 +45,12 @@ Parameters:
   SGIds:
     Type: List<AWS::EC2::SecurityGroup::Id>
     Description: 'Security groups for compute environment in the same VPC. NOTE: A custom security group is recommended'
+  RTIds:
+    Type: String
+    Description: 'The IDs of the route tables.'
+  VPCId:
+    Type: String
+    Description: 'The ID of the VPC for the endpoint.'
 
 Resources:
 # IAM Roles and permissions for the lambda function 
@@ -89,6 +101,15 @@ Resources:
       VpcConfig:
         SecurityGroupIds: !Ref SGIds
         SubnetIds: !Ref SubnetIds
+
+# S3 Gateway endpoint
+  S3GatewayEndpoint:
+    Type: 'AWS::EC2::VPCEndpoint'
+    Properties:
+      RouteTableIds: 
+        - !Ref RTIds
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
+      VpcId: !Ref VPCId
 
 # S3 buckets
   InputBucketName:
@@ -163,12 +184,14 @@ Resources:
       AccessControl: LogDeliveryWrite
       LifecycleConfiguration:
         Rules:
-          - AbortIncompleteMultipartUpload:
+          - Id: Rule for log expiration
+            AbortIncompleteMultipartUpload:
               DaysAfterInitiation: 7
             Status: Enabled
             Transitions:
               - StorageClass: GLACIER
                 TransitionInDays: 10
+            ExpirationInDays: 30
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true

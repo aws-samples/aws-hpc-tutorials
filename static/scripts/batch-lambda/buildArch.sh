@@ -22,6 +22,10 @@ SecurityGroup_IDS=`aws ec2 describe-security-groups  --query 'SecurityGroups[*].
                  --filters Name=vpc-id,Values=${VPC_ID}  Name=group-name,Values=default --region ${AWS_REGION} --output text`
 echo "export SecurityGroup_IDS=${SecurityGroup_IDS}" >> $envFileName
 
+RouteTable_IDS=`aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId' \
+                 --filters Name=vpc-id,Values=${VPC_ID} --region ${AWS_REGION} --output text | sed 's/\s\+/,/g'`
+echo "export RouteTable_IDS=${RouteTable_IDS}" >> $envFileName
+
 ##### step 1: AWS Batch provision #####
 aws cloudformation deploy --stack-name fsi-demo-batch --template-file CloudFormation/fsi-demo-batch.yaml --capabilities CAPABILITY_IAM \
 --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds="${SUBNET_IDS}" SGIds="${SecurityGroup_IDS}"
@@ -35,4 +39,4 @@ echo "export RESULT_BUCKET=$RESULT_BUCKET" >> $envFileName
 
 aws cloudformation deploy --stack fsi-demo --template-file CloudFormation/fsi-demo-s3.yaml --capabilities "CAPABILITY_IAM" \
     --region ${AWS_REGION} --parameter-overrides INPUTBUCKET=$INPUT_BUCKET FSIBatchJobQueueArn=arn:aws:batch:${AWS_REGION}:${AWS_ACCOUNT}:job-queue/$project \
-    FSIBatchJobDefinitionArn=$project SubnetIds="${SUBNET_IDS}" SGIds="${SecurityGroup_IDS}"
+    FSIBatchJobDefinitionArn=$project SubnetIds="${SUBNET_IDS}" SGIds="${SecurityGroup_IDS}" VPCId="${VPC_ID}" RTIds="${RouteTable_IDS}"
