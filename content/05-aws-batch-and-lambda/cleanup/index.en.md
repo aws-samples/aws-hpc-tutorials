@@ -12,13 +12,16 @@ aws s3 rm --recursive s3://$INPUT_BUCKET/
 aws s3 rm --recursive s3://$RESULT_BUCKET/
 aws s3 rm --recursive s3://$INPUT_BUCKET-logs/
 ```
-2. As you learned how to create the infrastructure with AWS command line in previous sections, you are going to delete the stacks deployed with [CloudFormation console](https://console.aws.amazon.com/cloudformation/home#/stacks) as an alternative way for operations. After identifying the "fsi" stacks and choose which one to delete, you can delete the two stacks one after the other by clicking the "Delete" button.
+2. Then you can delete the repository created earlier to store the image for both AWS Batch and Lambda with the following command:
+
+```bash
+aws ecr delete-repository --repository-name fsi-demo --force --region $AWS_REGION
+```
+
+3. As you learned how to create the infrastructure with AWS command line in previous sections, you are going to delete the stacks deployed with [CloudFormation console](https://console.aws.amazon.com/cloudformation/home#/stacks) as an alternative way for operations. After identifying the "fsi" stacks and choose which one to delete, you can delete the two stacks one after the other by clicking the "Delete" button.
 
 ![cloudformation](/images/batch-lambda/delete-stacks.png)
 
-3. Then you can delete the repository created earlier to store the image for both AWS Batch and Lambda with [Amazon ECR console](https://console.aws.amazon.com/ecr/repositories)
-
-![cloudformation](/images/batch-lambda/delete-ECR-repo.png)
 
 4. Now you are ready to delete the [Cloud9 environment](https://console.aws.amazon.com/cloud9/) created for this workshop:
 ![cloud9](/images/batch-lambda/delete-cloud9.png)
