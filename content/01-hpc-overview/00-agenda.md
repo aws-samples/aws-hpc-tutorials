@@ -22,5 +22,5 @@ You will find here the agenda for the tutorial. An update will be made on {{< pa
 | *Lab 3*      | 02:00PM - 03:00PM   | Container building automation				                                     | Todd Churchwad               |
 | 30 Min Break | 03:00PM - 03:30PM   | _Afternoon Break_                                                                 | \-\-\-\-\-\-\-\-\-\-\-\-     |
 | Talk         | 03:30PM - 04:00PM   | Simulations on a container orchestrator                                           | Hiroshi Kobayashi            |
-| *Lab 4*      | 04:00PM - 04:45PM   | Running HPC workloads on cloud using Kubernetes                                   | Hiroshi Kobayashi            |
+| *Lab 4*      | 04:00PM - 04:45PM   | Running simulations with AWS Batch                                                | Hiroshi Kobayashi            |
 | Closing      | 04:45PM - 05:00PM   | Summary and Q&A                                                                   | Shun Utsui & Noorbakht Khan  |
