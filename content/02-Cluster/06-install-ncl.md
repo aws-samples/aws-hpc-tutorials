@@ -1,6 +1,6 @@
 ---
 title: "f. Install NCL"
-weight: 27
+weight: 26
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "NCL"]
 ---
 
