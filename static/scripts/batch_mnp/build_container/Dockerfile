@@ -69,21 +69,21 @@ RUN echo $HOME
 ##############################################################################
 # SSH Setup
 ##############################################################################
-#ENV SSHDIR $HOME/.ssh
-#RUN mkdir -p ${SSHDIR} \
-#&& touch ${SSHDIR}/sshd_config \
-#&& ssh-keygen -t rsa -f ${SSHDIR}/ssh_host_rsa_key -N '' \
-#&& cp ${SSHDIR}/ssh_host_rsa_key.pub ${SSHDIR}/authorized_keys \
-#&& cp ${SSHDIR}/ssh_host_rsa_key ${SSHDIR}/id_rsa \
-#&& echo "       IdentityFile ${SSHDIR}/id_rsa" >> ${SSHDIR}/config \
-#&& echo "       StrictHostKeyChecking no" >> ${SSHDIR}/config \
-#&& echo "       UserKnownHostsFile /dev/null" >> ${SSHDIR}/config \
-#&& echo "       Port 2022" >> ${SSHDIR}/config \
-#&& echo 'Port 2022' >> ${SSHDIR}/sshd_config \
-#&& echo "HostKey ${SSHDIR}/ssh_host_rsa_key" >> ${SSHDIR}/sshd_config \
-#&& echo "PidFile ${SSHDIR}/sshd.pid" >> ${SSHDIR}/sshd_config \
-#&& chmod -R 600 ${SSHDIR}/*
-#RUN eval `ssh-agent -s` && ssh-add ${SSHDIR}/id_rsa
+ENV SSHDIR $HOME/.ssh
+RUN mkdir -p ${SSHDIR} \
+&& touch ${SSHDIR}/sshd_config \
+&& ssh-keygen -t rsa -f ${SSHDIR}/ssh_host_rsa_key -N '' \
+&& cp ${SSHDIR}/ssh_host_rsa_key.pub ${SSHDIR}/authorized_keys \
+&& cp ${SSHDIR}/ssh_host_rsa_key ${SSHDIR}/id_rsa \
+&& echo "       IdentityFile ${SSHDIR}/id_rsa" >> ${SSHDIR}/config \
+&& echo "       StrictHostKeyChecking no" >> ${SSHDIR}/config \
+&& echo "       UserKnownHostsFile /dev/null" >> ${SSHDIR}/config \
+&& echo "       Port 2022" >> ${SSHDIR}/config \
+&& echo 'Port 2022' >> ${SSHDIR}/sshd_config \
+&& echo "HostKey ${SSHDIR}/ssh_host_rsa_key" >> ${SSHDIR}/sshd_config \
+&& echo "PidFile ${SSHDIR}/sshd.pid" >> ${SSHDIR}/sshd_config \
+&& chmod -R 600 ${SSHDIR}/*
+RUN eval `ssh-agent -s` && ssh-add ${SSHDIR}/id_rsa
 
 ADD Container-Root/entry-point.sh /entry-point.sh
 ADD Container-Root/prepare_sshd_startup.sh /prepare_sshd_startup.sh
