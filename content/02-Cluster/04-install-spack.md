@@ -14,7 +14,7 @@ First, on the head node - which we [connected to via SSM or DCV](02-connect-clus
 
 ```bash
 export SPACK_ROOT=/shared/spack
-git clone -b v0.18.1 -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
+git clone -b v0.19.1 -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
 echo "export SPACK_ROOT=/shared/spack" >> $HOME/.bashrc
 echo "source \$SPACK_ROOT/share/spack/setup-env.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
@@ -32,7 +32,7 @@ Next we add the mirror and trust the GPG keys that have signed the packages.
 If you want to verify the GPG keys, they are on [OpenGPG](https://keys.openpgp.org/search?q=aws-hpc-weather%40amazon.com).
 
 ```bash
-spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
+spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack_v0.19.1/
 spack buildcache keys --install --trust --force
 ```
 

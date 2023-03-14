@@ -1,6 +1,6 @@
 ---
 title: "e. Install Intel Compilers & MPI"
-weight: 26
+weight: 25
 tags: ["tutorial", "pcluster-manager", "ParallelCluster", "Spack"]
 ---
 
@@ -39,11 +39,18 @@ spack compilers
 
 ![Spack Compilers](/images/pcluster/spack-compilers.png)
 
+## Libfabric {#libfabric}
+
+We are going to install [libfabric](https://ofiwg.github.io/libfabric/) with [EFA](https://aws.amazon.com/hpc/efa/) support.
+
+```bash
+spack install libfabric@1.16.1 fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm %intel
+```
 
 ## Intel MPI {#intel_mpi}
 
 We will now install the [Intel MPI library](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) underneath the Intel compilers.
-We are also going to use the AWS [EFA](https://aws.amazon.com/hpc/efa/) libfabric by setting `external-libfabric` in our Spack install. We told Spack this was already installed in the [previous step](05-external-packages.html). The AWS libfabric library is optimized for EFA and we recommend using it over the libfabric bundled with Intel MPI.
+We are also going to use the AWS [EFA](https://aws.amazon.com/hpc/efa/) libfabric by setting `external-libfabric` in our Spack install. We installed this in the [previous step](#libfabric).
 
 ```bash
 spack install --no-cache intel-oneapi-mpi+external-libfabric%intel
