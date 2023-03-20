@@ -1,5 +1,5 @@
 ---
-title : "e. Delete Distributed ML Cluster"
+title : "g. Delete Distributed ML Cluster"
 date: 2020-09-04T15:58:58Z
 weight : 40
 tags : ["cleanup", "parallelcluster", "ML"]
