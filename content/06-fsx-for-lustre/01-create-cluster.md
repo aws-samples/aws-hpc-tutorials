@@ -15,7 +15,7 @@ In this section we're going to use ParallelCluster UI to create a cluster and Fi
 
 {{% button href="/template/cluster-config-fsx.yml" icon="fas fa-save" %}}Download Template{{% /button %}}
 
-![Cluster Wizard](/images/06-fsx-for-lustre/pcmanager-1.png)
+![Cluster Wizard](/images/pcluster/pcmanager-1.png)
 
 On the next few screens, we'll modify the account specific components and leave the rest as specified by the template.
 
