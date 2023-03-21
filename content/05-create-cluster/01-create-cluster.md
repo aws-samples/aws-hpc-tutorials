@@ -6,7 +6,7 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 
 ![HPC6a Instance](/images/pcluster/hpc6a.png)
 
-In this section we're going to use PCluster Manager to create a cluster from a sample template we've provided.
+In this section we're going to use ParallelCluster UI to create a cluster from a sample template we've provided.
 
 If you're doing this workshop as part of an AWS Event, you'll use the [c6i](https://aws.amazon.com/ec2/instance-types/c6i/) instance. This is an Intel Cascade Lake based instance with 64 physical cores and 256 GB of memory.
 

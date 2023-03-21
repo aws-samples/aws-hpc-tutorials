@@ -6,7 +6,7 @@ pre: "<b>III ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
-{{% notice info %}}This sectional is optional, you can either use the [ParallelCluster Manager UI](02-deploy-pcm.html) or the [CLI](03-parallel-cluster-cli.html).
+{{% notice info %}}This sectional is optional, you can either use the [ParallelCluster UI](02-deploy-pcm.html) or the [CLI](03-parallel-cluster-cli.html).
 {{% /notice %}}
 
 ![hpc_logo](/images/hpc-aws-parallelcluster-workshop/aws-parallelclusterlogo.png)

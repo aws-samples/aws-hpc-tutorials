@@ -1,7 +1,7 @@
 ---
 title: "c. Get to know your Cluster"
 weight: 53
-tags: ["tutorial", "pcluster-manager", "ParallelCluster"]
+tags: ["tutorial", "parallelcluster-ui", "ParallelCluster"]
 ---
 
 Now that you are connected to the head node, familiarize yourself with the cluster structure by running the following set of commands.
