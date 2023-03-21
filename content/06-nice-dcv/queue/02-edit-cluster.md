@@ -8,9 +8,9 @@ tags = ["tutorial", "NICE DCV", "ParallelCluster", "Remote Desktop"]
 
 In the section we'll add a **DCV** queue to the cluster you created in [**Create an HPC Cluster**](/03-hpc-aws-parallelcluster-workshop.html). 
 
-### ParallelCluster Manager
+### ParallelCluster UI
 
-Click on the cluster in the pcluster manager console and select **Edit**
+Click on the cluster in the parallelcluster ui console and select **Edit**
 
 ![Edit Cluster](/images/pcluster/pcmanager-edit.png)
 

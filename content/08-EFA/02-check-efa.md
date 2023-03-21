@@ -29,7 +29,7 @@ salloc -N 1
 #### Check the Node status
 
 Starting up a new node will take about 2 minutes. In the meantime you can check the status of the queue using the command **squeue**. The job will be first marked as creating (*CF* state) because resources are being created.
-If you check the **Instances Tab** in pcluster manager you should see nodes booting up. When ready the nodes will be added automatically to your SLURM cluster and you will see a **R** running status as below.
+If you check the **Instances Tab** in parallelcluster ui you should see nodes booting up. When ready the nodes will be added automatically to your SLURM cluster and you will see a **R** running status as below.
 
 ```bash
 watch squeue

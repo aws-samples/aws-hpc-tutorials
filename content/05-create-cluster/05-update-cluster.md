@@ -9,9 +9,9 @@ We have successfully built your cluster and ran your first MPI job.
 
 Let's say you want to change your instance type to a different instance type in your compute fleet for example **c6i.32xlarge** . In this lab, we will learn how to update your cluster with new instance type.
 
-### ParallelCluster Manager
+### ParallelCluster UI
 
-Click on the cluster in the pcluster manager console and select **Edit**
+Click on the cluster in the parallelcluster ui console and select **Edit**
 
 ![Edit Cluster](/images/pcluster/pcmanager-edit.png)
 

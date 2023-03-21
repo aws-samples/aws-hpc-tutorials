@@ -117,7 +117,7 @@ Every 2.0s: squeue                                                              
                  2   compute      ior ec2-user  R       0:10      1 compute-dy-hpc6a-1
 ```
 
-The IOR output is written to **ior.out** file. If you want, you can use **tail -f ior.out** to view the file as it is written. However, remember that since you have `0` compute nodes present on your cluster, it may take up to 2 minutes for instances to be created then register with the cluster. You can check the status of the instances on the **Instances** tab in pcluster manager. After the instances are created and registered, the IOR job will go into state `R` running.
+The IOR output is written to **ior.out** file. If you want, you can use **tail -f ior.out** to view the file as it is written. However, remember that since you have `0` compute nodes present on your cluster, it may take up to 2 minutes for instances to be created then register with the cluster. You can check the status of the instances on the **Instances** tab in parallelcluster ui. After the instances are created and registered, the IOR job will go into state `R` running.
 
 After the job completes, run `cat ior.out` and you should see a result similar to the following. In this example, you see 1 GB/s performance, which is not too far from the [720 MB/s](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) offered by Amazon FSx for Lustre.
 

@@ -7,7 +7,7 @@ tags = ["configuration", "FSx", "ParallelCluster"]
 
 #### Create HPC Cluster
 
-In this section we're going to use PCluster Manager to create a cluster and Filesystem.
+In this section we're going to use ParallelCluster UI to create a cluster and Filesystem.
 
 1. Click **Create Cluster** Button
 
