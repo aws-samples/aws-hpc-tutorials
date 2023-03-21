@@ -8,6 +8,10 @@ tags = ["tutorial", "cloud9", "ParallelCluster"]
 
 2. You'll see a stack named **parallelcluster-ui**, click on that stack > **Outputs** Tab then click on the **ParallelClusterUIURL** to connect.
 
+{{% notice note %}}
+To customize the URL please see [h. Setup Custom Domain 🔗](https://pcluster.cloud/02-tutorials/08-custom-domain.html).
+{{% /notice %}}
+
 ![ParallelCluster UI Deployed](/images/deploy-pcm/pcluster-deployed.png)
 
 3. During deployment you received an email titled **[AWS ParallelCluster UI] Welcome to ParallelCluster UI, please verify your account.**. Copy the password from that email.
