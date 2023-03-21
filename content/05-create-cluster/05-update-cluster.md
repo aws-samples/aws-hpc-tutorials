@@ -21,15 +21,15 @@ Click on the **Queues** tab and click **Add Queue**
 * Enable **EFA**
 * Enable **placement group**
 
-![Edit Cluster](/images/pcluster/pcmanager-edit-1.jpeg)
+![Edit Cluster](/images/pcluster/pcmanager-edit-1.png)
 
-On the next screen, 
+On the next screen,
 
 * **Stop** Compute Fleet and click confirm
 * **Dryrun** to validate the config
 * **Update** to apply the update
 
-![Edit Cluster](/images/pcluster/pcmanager-edit-2.jpeg)
+![Edit Cluster](/images/pcluster/pcmanager-edit-2.png)
 
 Once the cluster goes into **UPDATE_COMPLETE** make sure to **Start** it:
 
