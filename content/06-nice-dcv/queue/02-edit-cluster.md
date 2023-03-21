@@ -28,7 +28,7 @@ On the next screen,
 * **Dryrun** to validate the config
 * **Update** to apply the update
 
-![Edit Cluster](/images/pcluster/pcmanager-edit-2.jpeg)
+![Edit Cluster](/images/pcluster/pcmanager-edit-2.png)
 
 Once the cluster goes into **UPDATE_COMPLETE** make sure to **Start** it:
 
