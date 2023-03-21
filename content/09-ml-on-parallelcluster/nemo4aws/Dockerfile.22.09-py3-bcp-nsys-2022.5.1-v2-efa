@@ -58,7 +58,3 @@ ENV RDMAV_FORK_SAFE=1             \
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 
-
-# HAHA:
-#https://github.com/koyongse/nccl/tree/dynamic-buffer-depth
-# Then, add LD_PRELOAD
