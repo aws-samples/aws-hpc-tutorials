@@ -138,7 +138,7 @@ RUN pip3 install tensorboardX boto3 h5py mpi4py sacrebleu
 RUN git clone https://github.com/huggingface/transformers.git && \
     cd transformers && \
     pip3 install . && \
-    pip3 install datasets==2.3.2 huggingface_hub==0.7.0
+    pip3 install datasets==2.10.1 huggingface_hub==0.13.2
 
 # Single and Multi node usecase with deepspeed using mistral
 # Lock in the branch since it seems to be in active development
