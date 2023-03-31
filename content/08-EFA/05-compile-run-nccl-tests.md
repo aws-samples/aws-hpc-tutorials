@@ -27,6 +27,7 @@ cd nccl
 make -j src.build CUDA_HOME=/usr/local/cuda NVCC_GENCODE='-gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80'
 
 git clone -b aws https://github.com/aws/aws-ofi-nccl.git
+cd aws-ofi-nccl
 ./autogen.sh
 ./configure --prefix=${HOME}/aws-ofi-nccl/install --with-mpi=/opt/amazon/openmpi --with-libfabric=/opt/amazon/efa --with-cuda=/usr/local/cuda
 make
