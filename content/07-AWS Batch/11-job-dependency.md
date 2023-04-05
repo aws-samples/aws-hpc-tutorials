@@ -158,7 +158,7 @@ cd ~/environment/dependency/leader
 2. Create a new file named **Dockerfile** in the **leader** directory. 
 3. Copy and paste the following into **Dockerfile** and save the file.
 ```bash
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
@@ -287,7 +287,7 @@ cd ~/environment/dependency/follower
 2. Copy and paste the following into a new file named **Dockerfile** in the **follower** directory.
 
 ```bash
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng

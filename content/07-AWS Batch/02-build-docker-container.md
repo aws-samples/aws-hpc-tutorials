@@ -19,7 +19,7 @@ You should now see a new directory named "single" appear in the file navigation 
 4. Copy and paste the following contents into **Dockerfile**:
 
 ```bash
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 RUN yum -y update
 RUN amazon-linux-extras install epel -y
 RUN yum -y install stress-ng
