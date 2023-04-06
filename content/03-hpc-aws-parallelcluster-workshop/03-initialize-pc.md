@@ -1,6 +1,6 @@
 +++
 title = "c. Set up AWS ParallelCluster foundation"
-date = 2022-04-10T10:46:30-04:00
+date = 2023-04-10T10:46:30-04:00
 weight = 30
 tags = ["tutorial", "ParallelCluster", "initialize"]
 +++
@@ -21,13 +21,13 @@ If you have time and are curious, you can examine the different steps of the scr
 
 Retrieve the script.
 ```bash
-curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/ISC22_create_parallelcluster_config.sh
+curl -O https://raw.githubusercontent.com/aws-samples/awsome-hpc/main/apps/wrf/scripts/setup/ISC23_create_parallelcluster_config.sh
 ```
 
 Execute the script to retrieve network information.
 ```bash
-chmod +x ./ISC22_create_parallelcluster_config.sh 
-. ./ISC22_create_parallelcluster_config.sh 
+chmod +x ./ISC23_create_parallelcluster_config.sh 
+. ./ISC23_create_parallelcluster_config.sh 
 ```
 
 4. Store the SSH key in AWS Secrets Manager as a failsafe in the event that the private SSH key is lost

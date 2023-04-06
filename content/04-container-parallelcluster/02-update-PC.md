@@ -43,7 +43,7 @@ Click next twice to advance to the **Queues section**, here we're going to add a
 Next add in a script that installs Docker and Singularity on the Compute Nodes.
 
 1. Dropdown **Advanced Options** on the queue you just created.
-2. Paste in the following url into **On Configured** section `https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/isc22/static/scripts/post-install/container-install.sh`.
+2. Paste in the following url into **On Configured** section `https://raw.githubusercontent.com/aws-samples/aws-hpc-tutorials/isc23/static/scripts/post-install/container-install.sh`.
 3. Expand **IAM Policies** and paste in the following policy `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess`. Click Add.
 4. Click **Next** to continue to the **Update** section.
 
@@ -128,7 +128,7 @@ Scheduling:
       CustomActions:
         OnNodeConfigured:
           Script: >-
-            https://github.com/aws-samples/aws-hpc-tutorials/blob/isc22/static/scripts/post-install/container-install.sh
+            https://github.com/aws-samples/aws-hpc-tutorials/blob/isc23/static/scripts/post-install/container-install.sh
       Iam:
         AdditionalIamPolicies:
           - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess

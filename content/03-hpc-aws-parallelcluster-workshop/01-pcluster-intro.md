@@ -1,6 +1,6 @@
 +++
 title = "a. About AWS ParallelCluster"
-date = 2022-04-10T10:46:30-04:00
+date = 2023-04-10T10:46:30-04:00
 weight = 10
 tags = ["tutorial", "ParallelCluster"]
 +++
