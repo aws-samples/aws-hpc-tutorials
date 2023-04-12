@@ -25,6 +25,7 @@ module load intelmpi
 git clone -b v2.17.1-1 https://github.com/NVIDIA/nccl.git
 cd nccl
 make -j src.build CUDA_HOME=/usr/local/cuda NVCC_GENCODE='-gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80'
+cd ..
 
 git clone -b aws https://github.com/aws/aws-ofi-nccl.git
 cd aws-ofi-nccl
@@ -32,13 +33,14 @@ cd aws-ofi-nccl
 ./configure --prefix=${HOME}/aws-ofi-nccl/install --with-mpi=/opt/amazon/openmpi --with-libfabric=/opt/amazon/efa --with-cuda=/usr/local/cuda
 make
 make install
+cd ..
 
 git clone -b v2.13.6 https://github.com/NVIDIA/nccl-tests.git
 cd nccl-tests
 make MPI=1 CUDA_HOME=/usr/local/cuda MPI_HOME=/opt/amazon/openmpi NCCL_HOME=${HOME}/nccl/build
 
 echo "Installation done, run a quick test!"
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/nccl/build/lib:${HOME}/aws-ofi-nccl/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/nccl/build/lib:${HOME}/aws-ofi-nccl/install/lib
 /opt/amazon/openmpi/bin/mpirun -np 8 ./build/all_reduce_perf -b 8 -e 128M -f 2 -g 1
 
 EOF
