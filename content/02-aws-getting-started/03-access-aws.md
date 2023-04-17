@@ -14,7 +14,7 @@ Do not hesitate to ask questions at isctutorial@amazon.com if you need any help.
 ##### Step 1
 
 {{% notice warning %}}
-Sandbox is available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
+Temporary accounts were available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
 ##### Step 2
