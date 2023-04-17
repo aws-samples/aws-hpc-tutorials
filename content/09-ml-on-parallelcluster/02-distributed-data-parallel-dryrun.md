@@ -1,12 +1,12 @@
 ---
-title : "c. Run PyTorch Data Parallel training on ParallelCluster"
+title : "c. Run PyTorch Data Parallel training on ParallelCluster with synthetic data"
 date: 2020-09-04T15:58:58Z
 weight : 30
 tags : ["training", "data parallel", "ML", "sbatch", "slurm", "multi node", "multi gpu"]
 ---
 
 In this step you will use the **PyTorch** _DistributedDataParallel API_ to start a simple training job on 2 nodes with sythetic data and simple deep learning model.
-It assumes you have python and pytorch installed on the nodes.
+It assumes you have python and pytorch installed on the nodes. Users can use this as a test before running their workloads.
 
 #### Create distributed training script and run the job
 ```bash
