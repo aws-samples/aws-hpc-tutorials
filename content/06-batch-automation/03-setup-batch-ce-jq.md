@@ -16,7 +16,7 @@ Run the following commands on your Cloud9 terminal
 1. Copy the Cloudformation template which will be used to create the AWS Batch Compute Environment and Job Queue.
 
 ```bash
-aws s3 cp s3://isc22-hpc-labs/isc22-nextflow-batch-ce-jq.template.yaml .
+aws s3 cp s3://isc-hpc-labs/isc23-nextflow-batch-ce-jq.template.yaml .
 ```
 
 2. Set the following environment variables to be passed as parameters to the Cloudformation stack. 
@@ -38,7 +38,7 @@ echo "export SUBNET_IDS=${SUBNET_IDS}"
 3. Deploy the Cloudformation template to create the Batch Compute Environment and Job Queue.
 
 ```bash
-aws cloudformation deploy --stack-name nextflow-batch-ce-jq --template-file isc22-nextflow-batch-ce-jq.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds="${SUBNET_IDS}"
+aws cloudformation deploy --stack-name nextflow-batch-ce-jq --template-file isc23-nextflow-batch-ce-jq.template.yaml --capabilities CAPABILITY_IAM --region ${AWS_REGION} --parameter-overrides VpcId=${VPC_ID} SubnetIds="${SUBNET_IDS}"
 ```
 
 4. It will take a few mins for the stack to be created. Once complete you will see a message as below: 
@@ -59,5 +59,5 @@ Successfully created/updated stack - nextflow-batch-ce-jq
 At this point, you have done the hard part! Continue to set up the job definition.
 
 {{% notice info %}}
-Highly recommended to examine the contents of the downloaded Cloudformation template (**isc22-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
+Highly recommended to examine the contents of the downloaded Cloudformation template (**isc23-nextflow-batch-ce-jq.template.yaml**) to understand the usage of infrastructure as code to create the Batch resources in this section.
 {{% /notice %}}
