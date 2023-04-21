@@ -45,7 +45,7 @@ EOF
 
 3. Copy the entrypoint file (**entrypoint.sh**) from the S3 bucket and make it an executable
 ```bash
-aws s3 cp s3://isc22-hpc-labs/entrypoint.sh .
+aws s3 cp s3://isc-hpc-labs/entrypoint.sh .
 chmod +x entrypoint.sh
 ```
 

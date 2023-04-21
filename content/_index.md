@@ -4,12 +4,12 @@ date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
 
-# ISC22 Tutorial
+# ISC23 Tutorial
 
-Welcome to the **Best Practices for HPC in the Cloud** tutorial at ISC22 that will be delivered on May 29th 2022. We are excited to virtually meet you, and look forward to answering your questions!
-The website will be maintained after ISC22, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
+Welcome to the **Best Practices for HPC in the Cloud** tutorial at ISC23 that will be delivered on May 21st 2023. We are excited to virtually meet you, and look forward to answering your questions!
+The website will be maintained after ISC23, labs will also be available on https://www.hpcworkshops.com within a few weeks after the conference.
 
-You can download the slide on [https://isc22-slides.s3.eu-west-1.amazonaws.com/ISC22_Best_Practices_HPC_in_The_Cloud.pdf](https://isc22-slides.s3.eu-west-1.amazonaws.com/ISC22_Best_Practices_HPC_in_The_Cloud.pdf)
+You can download the slide on [https://isc23-slides.s3.eu-west-1.amazonaws.com/ISC23_Best_Practices_HPC_in_The_Cloud.pdf](https://isc23-slides.s3.eu-west-1.amazonaws.com/ISC23_Best_Practices_HPC_in_The_Cloud.pdf)
 
 {{% notice tip %}}
 **We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://survey.immersionday.com/IGDEbg9nR.**
@@ -17,13 +17,13 @@ You can download the slide on [https://isc22-slides.s3.eu-west-1.amazonaws.com/I
 
 
 {{% notice warning %}}
-Sandbox were available on May 29th 2022 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isc22tutorial@amazon.com so we can follow-up with you.
+Sandbox were available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
 
 ### Need help?
 
-- **Email**: you can contact us directly before, during and after the conference through this email: isc22tutorial@amazon.com
+- **Email**: you can contact us directly before, during and after the conference through this email: isctutorial@amazon.com
 
 ### Tutorial Content & Resources
 
@@ -37,9 +37,9 @@ Before and during the tutorial you may be interested in going through the follow
 
 #### Presentations Slides
 
-The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at isc22tutorial@amazon.com.
+The last version of the tutorial slides are available in your Tutorial attendee packet. Do not hesitate to contact us at isctutorial@amazon.com.
 
-#### ISC22 Hands-on Labs
+#### ISC23 Hands-on Labs
 
 Throughout the tutorial you will be going through the following labs:
 

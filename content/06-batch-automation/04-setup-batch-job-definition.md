@@ -24,6 +24,7 @@ aws s3 cp s3://isc-hpc-labs/isc23-nextflow-batch-jd.template.yaml .
 
 ```bash
 REPOSITORY_NAME=isc-container
+
 ImageId=`aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} --output text --query 'repositories[0].[repositoryUri]' --region $AWS_REGION`
 echo "export ImageId=${ImageId}"
 
@@ -55,7 +56,7 @@ Successfully created/updated stack - nextflow-batch-jd
 5. Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose **Batch** 
 
 6. In the left pane, choose **Job definitions** and confirm that a Job Definition **nextflow-demo** is created. Make sure *Status* is **ACTIVE**.
-![AWS Batch](/images/aws-batch/ISC22/jd-7.png)
+![AWS Batch](/images/aws-batch/ISC23/jd-7.png)
 
 
 At this point, you have completed creating the Batch environment. Next, take a closer look at **compute environment**, **job queue**, and **job definition** you created.

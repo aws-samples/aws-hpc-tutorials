@@ -1,6 +1,6 @@
 +++
 title = "n. Visualize Results"
-date = 2022-04-10T10:46:30-04:00
+date = 2023-04-10T10:46:30-04:00
 weight = 120
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
@@ -33,11 +33,11 @@ cd /shared/conus_12km
 ncl ncl_scripts/surface.ncl
 ```
 
-![Surface temperature](/images/isc22/plt_Surface1.000001.png)
+![Surface temperature](/images/isc23/plt_Surface1.000001.png)
 
 Use the space bar to advance to the next plot.
 
-![Surface dew point](/images/isc22/plt_Surface1.000002.png)
+![Surface dew point](/images/isc23/plt_Surface1.000002.png)
 
 5. Generate a vertical profile of relative humidity (%) and temperature (K).
 
@@ -45,4 +45,4 @@ Use the space bar to advance to the next plot.
 ncl ncl_scripts/vert_crossSection.ncl
 ```
 
-![Surface temperature](/images/isc22/plt_CrossSection_1.png)
+![Surface temperature](/images/isc23/plt_CrossSection_1.png)

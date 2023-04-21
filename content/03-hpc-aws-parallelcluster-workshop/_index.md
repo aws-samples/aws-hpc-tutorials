@@ -1,6 +1,6 @@
 ---
 title: "Create an HPC Cluster"
-date: 2022-04-11T09:05:54Z
+date: 2023-04-11T09:05:54Z
 weight: 30
 pre: "<b>Lab I ⁃ </b>"
 tags: ["HPC", "Overview"]

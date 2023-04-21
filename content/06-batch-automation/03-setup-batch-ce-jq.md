@@ -51,10 +51,10 @@ Successfully created/updated stack - nextflow-batch-ce-jq
 5. Verify that the Batch resources are created successfully. In the AWS Management Console, in the search bar, search for and choose **Batch** 
 
 6. In the left pane, choose **Compute environments** option and confirm that a Compute environment **nextflow-ce** is created. Make sure *Status* is **VALID** and *State* is **ENABLED**. Refresh to check the Status updates.
-![AWS Batch](/images/aws-batch/ISC22/ce-6c.png)
+![AWS Batch](/images/aws-batch/ISC23/ce-6c.png)
 
 7. Similarly, In the left pane choose **Job queues** section and confirm that a Job Queue **nextflow-jq** is created. Make sure *State* is **ENABLED** and *Status* is **VALID**
-![AWS Batch](/images/aws-batch/ISC22/jq-4c.png)
+![AWS Batch](/images/aws-batch/ISC23/jq-4c.png)
 
 At this point, you have done the hard part! Continue to set up the job definition.
 
