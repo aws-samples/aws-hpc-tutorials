@@ -10,7 +10,7 @@ This workshop walks you through setting up your own Weather Forecasting environm
 Specifically, you learn how to:
 
 - Sign in to the AWS Management Console and explore it.
-- Deploy the AWS ParallelCluster API and the Pcluster Manager stacks.
+- Deploy the AWS ParallelCluster API and the ParallelCluster UI stacks.
 
 You can proceed to the next stage of the workshop once the preparation completed and the stacks deployed.
 

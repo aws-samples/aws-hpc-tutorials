@@ -1,43 +1,57 @@
 ---
-title: "a. Build Custom AMI with Packer"
+title: "a. Build Custom AMI for ParallelCluster"
 weight: 21
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 
-#### 1 - Assets Required to Build the Image
+#### 1 - Grab AMI ID
 
-First let's fetch the assets required to build the image:
+1. Find the name of the AMI that you'd like to use from the [release notes](https://docs.aws.amazon.com/dlami/latest/devguide/appendix-ami-release-notes.html) page. If you're unsure the following command will use the **multi-framework deep learning amazon linux 2 ami** which is a good ami to start with.
+2. Next run the following command with the **Name** substituted for the ami you want. i.e. `Deep Learning AMI (Amazon Linux 2) Version ??.?`:
 
-```bash
-wget https://ml.hpcworkshops.com/scripts/packer/packer.tar.gz
-tar -xzf packer.tar.gz
+    ```bash
+    aws ec2 describe-images --region us-east-1 --owners amazon --filters 'Name=name,Values=Deep Learning AMI (Amazon Linux 2) Version ??.?' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+    ```
+
+    You'll get an ami id like `ami-0528af10692058c25`.
+
+#### 2 - Create a ParallelCluster AMI
+
+Next using the ami id we fetched, we'll create a config file `dl-ami.yaml` like so:
+
+```yaml
+Build:
+  InstanceType: p4d.24xlarge
+  ParentImage: ami-0528af10692058c25
 ```
 
-This consists of:
-* `nvidia-efa-ml-al2-enroot_pyxis.json`: is your main image file, it consists of several sections to define the resources (instance, base AMI, security groups...) you will use to build your image. The base AMI is a ParallelCluster Amazon Linux 2 base AMI. The provisioners section consists of inline scripts that will be executed serially to install the desired software stack onto your image.
-* `variables.json`: contains some key variables. Packer will refer to them in the image script through user variables calls.
-* `enroot.com`: in the enroot directory contains the [Enroot](https://github.com/NVIDIA/enroot) configuration that will be copied to your AMI.
-
-#### 2 - Installing Packer
-
-You can install Packer using [Brew](https://brew.sh/) on OSX or Linux as follows:
+Then run the `pcluster build-image` command and specify that config file.
 
 ```bash
-brew install packer
+pcluster build-image --image-id pcluster-3-5-0-deep-learning-alinux2 -c dl-ami.yaml
 ```
 
-Alternatively, you can download the Packer binary through the [tool website](https://www.packer.io/). Ensure your `PATH` is set to use the binary or use its absolute path. Once Packer installed, proceed to the next stage.
+{{% notice note %}}
+Think of the flag `--image-id` as the name of the image. In the above example we call it `pcluster-3-5-0-deep-learning-alinux2` to easily see which version of parallelcluster we built the image for and the framework/os. Feel free to change this to suit your use case.
+{{% /notice %}}
 
-#### 3 - Build Your Image
+#### 3 - Grab the ParallelCluster AMI
 
-Once packer installed, from the assets directory run the command below:
+Once the image is finished building you'll see it under **Images**
 
 ```bash
-packer build -color=true -var-file variables.json nvidia-efa-ml-al2-enroot_pyxis.json | tee build_AL2.log
+$ pcluster list-images --image-status ALL
+{
+  "images": [
+    {
+      "imageId": "pcluster-3-5-0-deep-learning-alinux2",
+      "imageBuildStatus": "BUILD_COMPLETE",
+      "ec2AmiInfo": {
+        "amiId": "ami-1234abcd5678efgh"
+      },
+      "region": "us-east-1",
+      "version": "3.5.0"
+    }
+  ]
+}
 ```
-
-Packer will start by creating the instances and associated resources (EC2 Key, Security Group...), run through the installation scripts, shutdown the instance and image it then terminate the instance.
-
-The process is automated and the output will be displayed on your terminal. If Packer encounters an error during the installation, it will stop the process and terminate all the resources. You will have to go through its log to identify where the error occurred and correct it.
-
-Once the image build, feel free to use it to create new clusters. The image will be retrieval from the Amazon EC2 Console under "Images -> AMIs"

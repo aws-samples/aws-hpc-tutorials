@@ -1,5 +1,5 @@
 +++
-title = "d. Connect to Pcluster Manager"
+title = "d. Connect to ParallelCluster UI"
 weight = 15
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
@@ -8,15 +8,15 @@ tags = ["tutorial", "cloud9", "ParallelCluster"]
 
 2. You'll see a stack named **pcluster-manager**, click on that stack > **Outputs** Tab then click on the **PclusterManagerUrl** to connect.
 
-![Pcluster Manager Deployed](/images/01-getting-started/pcluster-deployed.png)
+![ParallelCluster UI Deployed](/images/01-getting-started/pcluster-deployed.png)
 
-3. During deployment you received an email titled **[PclusterManager] Welcome to Pcluster Manager, please verify your account.**. Copy the password from that email.
+3. During deployment you received an email titled **[PclusterManager] Welcome to ParallelCluster UI, please verify your account.**. Copy the password from that email.
 
-![Pcluster Manager](/images/01-getting-started/pcm-email.png)
+![ParallelCluster UI](/images/01-getting-started/pcm-email.png)
 
 4. **Enter the credentials**  using the *email* you used when deploying the stack and the *temporary password* from the email above.
 
-![Pcluster Manager CloudFormation Stack](/images/01-getting-started/pcmanager-creds.png)
+![ParallelCluster UI CloudFormation Stack](/images/01-getting-started/pcmanager-creds.png)
 
 4. You will be asked to provide a new password. Enter a new password to complete signup.
 

@@ -1,7 +1,7 @@
 ## AWS HPC Workshop
 
 
-Collection of workshops to demonstrate best practices in using Amazon Web Service High Perfomance Computing (HPC) components.
+Collection of workshops to demonstrate best practices in using Amazon Web Service High Performance Computing (HPC) components.
 
 ### https://hpcworkshops.com
 

@@ -7,7 +7,7 @@ tags: ["HPC", "Overview"]
 
 ![AWS ParallelCluster Logo](/images/03-cluster/aws-parallelclusterlogo.png)
 
-[AWS ParallelCluster](https://github.com/aws/aws-parallelcluster) is an AWS-supported, open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple (YAML) text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. We're going to use [pcluster manager](https://github.com/aws-samples/pcluster-manager), which we installed in the **Preparation** section, to  create a cluster.
+[AWS ParallelCluster](https://github.com/aws/aws-parallelcluster) is an AWS-supported, open source cluster management tool that makes it easy for you to deploy and manage High Performance Computing (HPC) clusters on AWS. ParallelCluster uses a simple (YAML) text file to model and provision all the resources needed for your HPC applications in an automated and secure manner. We're going to use [parallelcluster ui](https://github.com/aws/aws-parallelcluster-ui), which we installed in the **Preparation** section, to  create a cluster.
 
 We've broken the steps down to:
 
