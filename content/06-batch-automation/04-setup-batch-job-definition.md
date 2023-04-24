@@ -23,7 +23,8 @@ aws s3 cp s3://isc-hpc-labs/isc23-nextflow-batch-jd.template.yaml .
 	- **NFJobQueue** - The name of the AWS Batch job-queue to execute the downstream Nextflow jobs.
 
 ```bash
-REPOSITORY_NAME=isc23-container
+REPOSITORY_NAME=isc-container
+
 ImageId=`aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} --output text --query 'repositories[0].[repositoryUri]' --region $AWS_REGION`
 echo "export ImageId=${ImageId}"
 
