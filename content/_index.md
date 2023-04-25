@@ -17,7 +17,7 @@ You can download the slides at [https://isc23-slides.s3.eu-west-1.amazonaws.com/
 
 
 {{% notice warning %}}
-Sandbox accounts were available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
+Temporary accounts were available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
 
