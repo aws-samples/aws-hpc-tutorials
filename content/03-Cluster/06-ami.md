@@ -1,5 +1,5 @@
 ---
-title: "e. AMI"
+title: "e. Create a Machine Image
 date: 2020-05-12T13:27:03Z
 weight : 40
 tags : ["tutorial", "EFA", "ec2", "NCCL", "MPI", "Benchmark", "compile"]
