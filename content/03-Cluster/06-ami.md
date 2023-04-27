@@ -1,11 +1,11 @@
 ---
-title: "e. Create a Machine Image
+title: "e. Create a Machine Image"
 date: 2020-05-12T13:27:03Z
 weight : 40
 tags : ["tutorial", "EFA", "ec2", "NCCL", "MPI", "Benchmark", "compile"]
 ---
 
-Pcluster provides default AMI, but we can use custom AMI to make experience better for our use case. Lets look at 2 ways we can build custom AMI.
+Pcluster provides default [AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html), but we can use custom AMI to make experience better for our use case. Lets look at 2 ways we can build custom AMI.
 
 # DLAMI
 [DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html) contains GPU dependencies and ML frameworks (for example pytorch) which are seamlesly integrated with other AWS services like EFA.
