@@ -1,5 +1,5 @@
 ---
-title : "b. Run GPT3 on ParallelCluster"
+title : "b. Run GPT3 on AWS ParallelCluster"
 date: 2020-09-04T15:58:58Z
 weight : 30
 tags : ["training", "data parallel", "ML", "sbatch", "slurm", "multi node", "multi gpu", "GPT3"]
