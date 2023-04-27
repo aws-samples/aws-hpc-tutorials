@@ -1,8 +1,12 @@
 ---
-title: "a. Build Custom AMI for ParallelCluster"
+title: "a. Deep Learning AMI"
 weight: 21
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
+
+![DL AMI Logo](/images/01-getting-started/dlami.jpeg)
+
+This section documents how to build a ParallelCluster AMI based on the [Deep Learning AMI](https://docs.aws.amazon.com/dlami/latest/devguide/appendix-ami-release-notes.html). This means we'll take an ami that's pre-built for popular frameworks like [Tensorflow](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-tensorflow.html), [PyTorch](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-pytorch.html) or [MxNet](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-mxnet.html) and build on the parallelcluster components like Slurm, Lustre drivers ect.
 
 #### 1 - Grab AMI ID
 
@@ -17,19 +21,19 @@ tags: ["tutorial", "cloud9", "ParallelCluster"]
 
 #### 2 - Create a ParallelCluster AMI
 
-Next using the ami id we fetched, we'll create a config file `dl-ami.yaml` like so:
+1. Next using the ami id we fetched, we'll create a config file `dl-ami.yaml` like so:
 
-```yaml
-Build:
-  InstanceType: p4d.24xlarge
-  ParentImage: ami-0528af10692058c25
-```
+    ```yaml
+    Build:
+      InstanceType: p4d.24xlarge
+      ParentImage: ami-0528af10692058c25
+    ```
 
-Then run the `pcluster build-image` command and specify that config file.
+2. Then run the `pcluster build-image` command and specify that config file.
 
-```bash
-pcluster build-image --image-id pcluster-3-5-0-deep-learning-alinux2 -c dl-ami.yaml
-```
+    ```bash
+    pcluster build-image --image-id pcluster-3-5-0-deep-learning-alinux2 -c dl-ami.yaml
+    ```
 
 {{% notice note %}}
 Think of the flag `--image-id` as the name of the image. In the above example we call it `pcluster-3-5-0-deep-learning-alinux2` to easily see which version of parallelcluster we built the image for and the framework/os. Feel free to change this to suit your use case.
@@ -37,10 +41,10 @@ Think of the flag `--image-id` as the name of the image. In the above example we
 
 #### 3 - Grab the ParallelCluster AMI
 
-Once the image is finished building you'll see it under **Images**
+Once the image is finished building you'll see in `pcluster list-images`
 
 ```bash
-$ pcluster list-images --image-status ALL
+$ pcluster list-images --image-status AVAILABLE
 {
   "images": [
     {
