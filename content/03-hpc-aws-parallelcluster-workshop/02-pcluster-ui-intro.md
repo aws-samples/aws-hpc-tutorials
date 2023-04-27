@@ -1,8 +1,8 @@
 +++
 title = "b. About AWS ParallelCluster UI"
 date = 2023-04-10T10:46:30-04:00
-weight = 10
-tags = ["tutorial", "ParallelCluster"]
+weight = 15
+tags = ["tutorial", "ParallelCluster", "UI"]
 +++
 
 ![hpc_logo](/images/hpc-aws-parallelcluster-workshop/parallelcluster-ui.svg)
