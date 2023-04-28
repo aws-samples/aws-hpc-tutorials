@@ -11,7 +11,7 @@ tags = ["tutorial", "ParallelCluster"]
  
 AWS ParallelCluster is built on the popular open source CfnCluster project and is released via the Python Package Index (PyPI). ParallelCluster's source code is hosted on the Amazon Web Services repository on GitHub. AWS ParallelCluster is available at no additional charge, and you pay only for the AWS resources needed to run your applications.
 
-AWS ParallelCluster can be managed through an API, a command-line interface (CLI), or using a user interface (UI). This workshop will use both the CLI and UI methods.
+AWS ParallelCluster can be managed through an API, a [command-line interface (CLI)](https://www.hpcworkshops.com/index.html), or using a [user interface (UI)](https://github.com/aws-samples/pcluster-manager). This workshop will use both the CLI and UI methods.
 
 ### Benefits
 #### Automatic Resource Scaling
