@@ -1,7 +1,7 @@
 +++
 title = "l. CONUS 12-km Model"
 date = 2023-04-10T10:46:30-04:00
-weight = 100
+weight = 110
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
@@ -31,60 +31,22 @@ Here are the steps:
 
 ```bash
 cd /shared
-curl -O https://isc-hpc-labs.s3.amazonaws.com/wrf_simulation_CONUS12km.tar.gz
-
-tar -xzf wrf_simulation_CONUS12km.tar.gz 
+curl -O https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz
+tar -xzf wrf_simulation_CONUS12km.tar.gz
 ```
-For the purpose of ISC23, a copy of the data that can be found on UCAR website through this [link](https://www2.mmm.ucar.edu/wrf/OnLineTutorial/wrf_cloud/wrf_simulation_CONUS12km.tar.gz) has been stored in a S3 bucket.
 
 #### Prepare the data
-Copy the necessary files for running the CONUS 12km test case from the run directory of the WRF source code.
-A copy of the WRF source code is part of the AMI and located  in __/opt/wrf-omp/src__.
+Next we'll prepare the data for a run by copying in the relevant files from our WRF install:
 
 ```bash
-cd /shared/conus_12km
-
-cp /opt/wrf-omp/src/run/{\
-GENPARM.TBL,\
-HLC.TBL,\
-LANDUSE.TBL,\
-MPTABLE.TBL,\
-RRTM_DATA,\
-RRTM_DATA_DBL,\
-RRTMG_LW_DATA,\
-RRTMG_LW_DATA_DBL,\
-RRTMG_SW_DATA,\
-RRTMG_SW_DATA_DBL,\
-SOILPARM.TBL,\
-URBPARM.TBL,\
-URBPARM_UZE.TBL,\
-VEGPARM.TBL,\
-ozone.formatted,\
-ozone_lat.formatted,\
-ozone_plev.formatted} .
+cd /shared/conus_12km/
+WRF_ROOT=$(spack location -i wrf%intel)/test/em_real/
+ln -s $WRF_ROOT* .
 ```
 
-#### Run the CONUS 12Km simulation
-In this step, you create the SLURM batch script that will run the WRF CONUS 12km test case on 72 cores distributed over 2 x c5n.18xlarge EC2 instances.
-
-```bash
-cat > slurm-c5n-wrf-conus12km.sh << EOF
-#!/bin/bash
-
-#SBATCH --job-name=WRF-CONUS12km
-#SBATCH --partition=queue0
-#SBATCH --output=%x_%j.out
-#SBATCH --error=%x_%j.err
-#SBATCH --ntasks=72
-#SBATCH --constraint=c5n.18xlarge
-
-
-export I_MPI_OFI_LIBRARY_INTERNAL=0
-export I_MPI_OFI_PROVIDER=efa
-
-module purge
-module load wrf-omp/4.2.2-intel-2021.3.0
-
-mpirun wrf.exe
-EOF
-```
+{{% notice note %}}
+Please be aware there is a `namelist.input` in the current directory that you
+do not want to overwrite. The link command will return the following
+error, which is safe to ignore.
+`ln: failed to create symbolic link ‘./namelist.input’: File exists`
+{{% /notice %}}

@@ -9,6 +9,10 @@ tags = ["tutorial", "ParallelCluster", "UI"]
 
 In this section we're going to use ParallelCluster UI to perform a dry-run creation mirroring the setup created with the command line interface.
 
+{{% notice info %}}
+Note that the ParallelCluster UI can also be used to Edit a cluster.
+{{% /notice %}}
+
 The instances used have the following specifications:
 
 |  Instance Size | Cores | Memory (GiB) | Network Bandwidth (Gbps)* |
