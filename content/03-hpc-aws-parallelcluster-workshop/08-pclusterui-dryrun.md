@@ -1,7 +1,7 @@
 +++
 title = "h. Creation using ParallelCluster UI"
 date = 2023-04-10T10:46:30-04:00
-weight = 70
+weight = 80
 tags = ["tutorial", "ParallelCluster", "UI"]
 +++
 

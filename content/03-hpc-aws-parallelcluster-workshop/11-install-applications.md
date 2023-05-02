@@ -1,7 +1,7 @@
 +++
 title = "k. Install Spack & WRF"
 date = 2023-04-10T10:46:30-04:00
-weight = 100
+weight = 110
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

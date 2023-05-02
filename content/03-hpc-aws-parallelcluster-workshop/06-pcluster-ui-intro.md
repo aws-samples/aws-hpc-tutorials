@@ -1,7 +1,7 @@
 +++
-title = "b. Deploy AWS ParallelCluster UI"
+title = "f. About AWS ParallelCluster UI"
 date = 2023-04-10T10:46:30-04:00
-weight = 15
+weight = 60
 tags = ["tutorial", "ParallelCluster", "UI"]
 +++
 
@@ -44,25 +44,8 @@ AWS ParallelCluster UI is built on a fully serverless architecture, in most case
 
 ### Deployment
 
-ParallelCluster UI is deployed as a CloudFormation Stack. As it'll take about 20 minutes to deploy, we will start deployment now.
+ParallelCluster UI is deployed as a CloudFormation Stack. As it requires about 20 minutes to deploy, your workshop account already has it deployed.
 
-1. Deploy the ParallelCluster UI stack in the **eu-west-1** region by clicking on this button:
-{{% button href="https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=parallelcluster-ui&templateURL=https://parallelcluster-ui-release-artifacts-us-east-1.s3.us-east-1.amazonaws.com/parallelcluster-ui.yaml" icon="fas fa-rocket" %}}Deploy ParallelCluster UI in Ireland{{% /button %}}
-
-{{% notice warning %}}
-If you are running this outside the workshop, and want to use a different Region to that used in this text, please choose the appropriate region from the [ParallelCluster UI docs page](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html).
-{{% /notice %}}
-
-2. The AWS Console opens on the AWS CloudFormation panel to deploy your stack. Update the field *AdminUserEmail* with **a valid email** to receive a temporary password in order to connect to the ParallelCluster UI GUI. Leave the other fields with their default values and click **Next** to proceed to Step 3.
-
-![ParallelCluster UI install](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-02-pcmanager-install.png)
-
-3. Scroll down to the bottom of the Stage 3 page (*Configure stack options*) and click **Next**.
-4. Scroll down to the bottom of the Stage 4 page (*Review*) and **click** on the the two tick boxes to create new IAM resources. Once done, click on **Create stack**.
-
-![ParallelCluster UI install](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-02-pcmanager-deploy.png)
-
-The stack is deploying using AWS CloudFormation. It will take ~20 minutes to deploy the AWS ParallelCluster API and ParallelCluster UI. Please grab a ☕️ while you wait.
-
-{{% notice warning %}}Ensure that you entered a valid email when deploying the ParallelCluster UI stack. This email will be used to send you the credentials to connect to ParallelCluster UI. If the email you will have to delete and recreate it which may delay your progression.
+{{% notice info %}}
+If you wish to use these instructions outside the workshop, please choose the appropriate region you with to use from the [ParallelCluster UI docs page](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html) to deploy ParallelCluster UI, and follow the install instructions there.
 {{% /notice %}}
