@@ -5,19 +5,25 @@ weight = 70
 tags = ["tutorial", "initialize", "ParallelCluster"]
 +++
 
-Once your PCluster Manager CloudFormation stack has been deployed, you can follow these steps to connect to it:
+ParallelCluster UI was deployed as a CloudFormation Stack prior to the event. To access it you'll need to create a user.
 
-1. Go to the AWS Console, in the search box search for [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/home) and click on that service.
+### Create User
 
-2. You'll see a stack named **parallelcluster-ui**, click on that stack > **Outputs** Tab then click on the **ParallelClusterUIURL** to connect.
+1. Open the [Cognito Console](https://console.aws.amazon.com/cognito/v2/idp/user-pools)
 
-{{% notice info %}}
-If you're interested in customizing the URL (outside of workshop time) please see [Setup Custom Domain 🔗](https://pcluster.cloud/02-tutorials/08-custom-domain.html).
-{{% /notice %}}
+2. Choose parallelcluster-ui-Cognito-...
 
-![ParallelCluster UI Deployed](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-07-pcluster-deployed.png)
+3. Choose Create user:
 
-3. During deployment you received an email titled **[AWS ParallelCluster UI] Welcome to ParallelCluster UI, please verify your account.**. Copy the password from that email.
+4. Enter in the following details for the new user:
+
+- Invitation: Send an email invitation
+- Email Address: your email
+- Password: generate password
+
+Leave all else as default.
+
+5. You should now have an email titled **[AWS ParallelCluster UI] Welcome to ParallelCluster UI, please verify your account.** Copy the temporary password from that email.
 
 > From: “no-reply@verificationemail.com” no-reply@verificationemail.com Date: Monday, February 20, 2023 at 1:00 PM To: you@email.com Subject: [AWS ParallelCluster UI] Welcome to AWS ParallelCluster UI, please verify your account.
 
