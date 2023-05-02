@@ -49,3 +49,5 @@ ParallelCluster UI is deployed as a CloudFormation Stack. As it requires about 2
 {{% notice info %}}
 If you wish to use these instructions outside the workshop, please choose the appropriate region you with to use from the [ParallelCluster UI docs page](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html) to deploy ParallelCluster UI, and follow the install instructions there.
 {{% /notice %}}
+
+In the next step you will connect to your running ParallelCluster UI.
