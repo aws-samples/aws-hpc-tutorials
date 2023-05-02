@@ -59,8 +59,8 @@ The region to be used for the ISC workshop is Ireland, **eu-west-1**.
 The head node and compute nodes instance types can be placed into variables as well (done in this case to avoid copy/paste errors):
 
 ```bash
-HEAD_NODE_INSTANCE=c5.xlarge
-COMPUTE_INSTANCES=c5.18xlarge
+HEAD_NODE_INSTANCE=c5n.xlarge
+COMPUTE_INSTANCES=c5n.18xlarge
 SSH_KEY_NAME=lab-your-key
 ```
 
