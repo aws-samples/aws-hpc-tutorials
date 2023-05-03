@@ -11,13 +11,17 @@ The content of the workshops is built using [hugo](https://gohugo.io/).
 
 To build the content
 1. Clone this repository
+
 ```bash
 git clone --recurse-submodules https://github.com/aws-samples/aws-hpc-tutorials.git
 ```
-2. [Install Hugo](https://gohugo.io/getting-started/installing/). You need to use hugo version 0.92.2: https://github.com/gohugoio/hugo/releases/tag/v0.92.2 On a mac that's:
+
+2. [Install Hugo](https://gohugo.io/getting-started/installing/). On a mac that's:
+
 ```bash
 brew install hugo
 ```
+
 3. Run hugo to generate the site, and point your browser to http://localhost:1313
 ```bash
 hugo serve -D

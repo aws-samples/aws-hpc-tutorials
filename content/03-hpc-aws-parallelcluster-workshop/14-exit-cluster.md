@@ -1,6 +1,6 @@
 +++
 title = "o. Summary"
-date = 2022-04-10T10:46:30-04:00
+date = 2023-04-10T10:46:30-04:00
 weight = 130
 tags = ["tutorial", "create", "ParallelCluster"]
 +++

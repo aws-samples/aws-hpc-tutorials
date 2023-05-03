@@ -26,7 +26,7 @@ echo "export AWS_REGION=${AWS_REGION}"
 [AWS CodeCommit](https://aws.amazon.com/codecommit/) is a secure, highly scalable, managed source control service that hosts private Git repositories.
 
 ```bash
-aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=ISC22 --region $AWS_REGION
+aws codecommit create-repository --repository-name MyDemoRepo --repository-description "My demonstration repository" --tags Team=ISC23 --region $AWS_REGION
 ```
 
 6. Get repository URL to clone:
