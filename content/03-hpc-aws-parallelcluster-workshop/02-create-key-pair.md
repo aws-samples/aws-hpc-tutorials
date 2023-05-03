@@ -1,5 +1,5 @@
 +++
-title = "c. Create a key pair"
+title = "b. Create a key pair"
 date = 2023-04-10T10:46:30-04:00
 weight = 20
 tags = ["tutorial", "ssh"]
