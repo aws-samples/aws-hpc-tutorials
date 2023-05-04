@@ -15,6 +15,8 @@ In this lab, you are introduced to [AWS ParallelCluster](https://aws.amazon.com/
 - Submit a WRF forecast and check what is happening in the background.
 - Visualize the results of the WRF job.
 
+![wrf_logo](/images/hpc-aws-parallelcluster-workshop/WRF-Logo.jpg)
+
 #### About Weather Research and Forecasting (WRF)
 The [Weather Research and Forecasting (WRF) Model](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) is a next-generation mesoscale numerical weather prediction system designed for both atmospheric research and operational forecasting applications. It is developed and maintained by the [National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf).
 
