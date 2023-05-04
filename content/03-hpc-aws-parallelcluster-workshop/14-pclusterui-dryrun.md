@@ -1,5 +1,5 @@
 +++
-title = "n. (Optional) Using ParallelCluster UI"
+title = "m. (Optional) Using ParallelCluster UI"
 date = 2023-04-10T10:46:30-04:00
 weight = 140
 tags = ["tutorial", "ParallelCluster", "UI"]

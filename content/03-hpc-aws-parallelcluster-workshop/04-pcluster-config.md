@@ -7,7 +7,9 @@ tags = ["tutorial", "ParallelCluster", "config", "configuration", "yaml"]
 
 To ease configuration of AWS ParallelCluster, you could use the interactive command **[pcluster configure](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html)**. This walks you through a step-by-step process of defining your cluster configuration; to provide information such as the AWS Region, VPC, Subnet, and [Amazon EC2](https://aws.amazon.com/ec2/) Instance Type. 
 
-For this workshop, you will create a simple custom configuration file, using the available VPC and Subnet as well as the **[SSH key-pair](/03-hpc-aws-parallelcluster-workshop/03-create-key-pair.html)** created earlier.
+For this workshop, you will create a simple custom configuration file, using the default VPC and Subnet as well as the **[SSH key-pair](/03-hpc-aws-parallelcluster-workshop/02-create-key-pair.html)** created earlier.
+
+#### Overview of some of the ParallelCluster parameters
 
 Below are some explanations of the cluster configuration parameters/ settings:
 
@@ -31,6 +33,7 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 If running this outside the workshop event, you can change the instance type if you like but you may run into EC2 limits that may prevent you from creating instances or from creating too many instances. You should also be mindful of the cost of running any instances.
 {{% /notice %}}
 
+#### Setting Region and Network settings
 
 Execute the following commands in your cloud9 shell to get your AWS networking information:
 
@@ -56,6 +59,8 @@ echo "Subnet ID: ${SUBNET_ID}"
 The region to be used for the ISC workshop is Ireland, **eu-west-1**.
 {{% /notice %}}
 
+#### Setting Instance Types to use
+
 The head node and compute nodes instance types can be placed into variables as well (done in this case to avoid copy/paste errors):
 
 ```bash
@@ -63,6 +68,12 @@ HEAD_NODE_INSTANCE=c5n.xlarge
 COMPUTE_INSTANCES=c5n.18xlarge
 SSH_KEY_NAME=lab-your-key
 ```
+
+#### Using a custom Machine Image
+
+The cluster could be set up with the base Amazon Linux 2 image, but in order to speed up the set up process in later sections of this workshop a custom image will be used instead. This [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) has been prepared with the [Weather Research and Forecasting (WRF)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) software installed into an otherwise clean Amazon Linux 2 image.
+
+A quick search of a library of public AMIs yields the AMI ID:
 
 ```bash
 export CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
@@ -78,8 +89,9 @@ Running the command:
 echo ${CUSTOM_AMI}
 ```
 
-Should show the prepared AMI `ami-0f077c9ce43173631`.
+Should show the prepared AMI ID: `ami-0f077c9ce43173631`.
 
+#### Writing the cluster configuration file
 
 A cluster configuration file named `my-cluster-config.yaml` will now be written which will be used to launch the cluster. Navigate back to the environment directory:
 
