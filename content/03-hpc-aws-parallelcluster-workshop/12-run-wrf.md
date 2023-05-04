@@ -88,11 +88,22 @@ compute*     up   infinite      1  idle~ compute-dy-compute-2
 ```
 
 
-The job takes around 7 minutes to complete. Once the job has been processed, you should see similar results as follows in one of the rsl.out.* files:
+The job takes around 7 minutes to complete. Once the job has been processed, you should see similar results as follows in the rsl.out.0000 file:
 
-Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
+```bash
+[ec2-user@ip-172-31-0-4 conus_12km-2]$ tail -10 rsl.out.0000
+Timing for main: time 2019-11-26_17:51:36 on domain   1:    0.33458 elapsed seconds
+Timing for main: time 2019-11-26_17:52:48 on domain   1:    0.33379 elapsed seconds
+Timing for main: time 2019-11-26_17:54:00 on domain   1:    0.33362 elapsed seconds
+Timing for main: time 2019-11-26_17:55:12 on domain   1:    0.34980 elapsed seconds
+Timing for main: time 2019-11-26_17:56:24 on domain   1:    0.33455 elapsed seconds
+Timing for main: time 2019-11-26_17:57:36 on domain   1:    0.33491 elapsed seconds
+Timing for main: time 2019-11-26_17:58:48 on domain   1:    0.33329 elapsed seconds
+Timing for main: time 2019-11-26_18:00:00 on domain   1:    0.33406 elapsed seconds
+Timing for Writing wrfout_d01_2019-11-26_18:00:00 for domain        1:    9.79488 elapsed seconds
+wrf: SUCCESS COMPLETE WRF
+```
 
-![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
-
+Look for "SUCCESS COMPLETE WRF" at the end of the rsl file.
 
 After a few minutes, your cluster will scale down unless there are more job to process.
