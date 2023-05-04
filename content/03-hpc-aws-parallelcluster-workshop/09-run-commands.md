@@ -9,7 +9,7 @@ Now that you are connected to the head node, familiarize yourself with the clust
 
 ![Open Terminal](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-10-DCV-terminal.png)
 
-## SLURM
+### SLURM
 
 ![Slurm Logo](/images/hpc-aws-parallelcluster-workshop/slurm.png)
 
@@ -50,7 +50,7 @@ module load intelmpi
 mpirun -V
 ```
 
-## Shared Filesystems
+### Shared Filesystems
 
 - **List mounted NFS volumes**. A few volumes are shared by the head-node and will be mounted on compute instances when they boot up. Both */shared* and */home* are accessible by all nodes.
 
