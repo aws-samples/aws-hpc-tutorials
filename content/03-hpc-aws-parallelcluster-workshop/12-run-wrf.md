@@ -11,7 +11,7 @@ Create a Slurm sbatch script to run the CONUS 12-km model:
 
 ```bash
 cd /shared/conus_12km/
-cat > slurm-wrf-conus12km.sh << EOF
+cat > slurm-wrf-conus12km-2.sh << EOF
 #!/bin/bash
 #SBATCH --job-name=WRF
 #SBATCH --output=conus-%j.out
@@ -81,6 +81,13 @@ Once the job has been processed, you should see similar results as follows in on
 Look for "SUCCESS COMPLETE WRF" at the end of the rsl* file.
 
 ![squeue output](/images/hpc-aws-parallelcluster-workshop/helloworld-output.png)
+```bash
+[ec2-user@ip-172-31-0-4 conus_12km]$ sinfo
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+compute*     up   infinite      1 alloc# compute-dy-compute-1
+compute*     up   infinite      1  idle~ compute-dy-compute-2
+```
+
 
 
 Using 192 cores, the job took **4 mins 17 seconds** to complete.

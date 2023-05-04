@@ -7,13 +7,13 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 In this section, you create a cluster based on the specifications defined in the configuration file. To create a cluster, you use the command **[pcluster create-cluster](https://docs.aws.amazon.com/parallelcluster/latest/ug/pcluster.create-cluster-v3.html)**.
 
-In your AWS Cloud9 terminal, run the following to create a cluster. Make sure that the configuration file path is correct.
+In your AWS Cloud9 terminal, run the following to create a cluster. Make sure that the configuration file path is pointing to the `my-cluster-config.yaml` file created in the previous section. The Cluster name in this workshop is set within this line as `hpc-lab`.
 
 ```bash
 pcluster create-cluster --cluster-name hpc-lab --suppress-validators ALL --cluster-configuration my-cluster-config.yaml
 ```
 
-The cluster creation process will take ~10 minutes. Below is the expected output.
+The cluster creation process will take ~10 minutes. Below is typical of the expected output after enter is pushed.
 
 ```bash
 {
