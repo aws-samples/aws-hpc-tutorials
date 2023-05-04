@@ -14,9 +14,8 @@ In this step, you run the WRF [CONUS 12km test case](https://www2.mmm.ucar.edu/w
 #### Preparatory Steps
 
 {{% notice info %}}
-Make sure that you are logged into the AWS ParallelCluster head node through DCV.
+Make sure that you are logged into the AWS ParallelCluster head node through DCV. To connect to the Head node via DCV, following instructions from part **[h. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/08-connect-cluster.html#dcv-connect)**
 {{% /notice %}}
-Connect to the Head node via DCV, following instructions from part **[f. Connect to the Cluster](/03-hpc-aws-parallelcluster-workshop/09-connect-cluster.html#dcv-connect)**
 
 #### Download CONUS 12KM
 Input data used for simulating the Weather Research and Forecasting (WRF) model are 12-km CONUS input.
@@ -24,8 +23,8 @@ These are used to run the WRF executable (wrf.exe) to simulate atmospheric event
 The model domain includes the entire Continental United States (CONUS), using 12-km grid spacing, which means that each grid point is 12x12 km.
 The full domain contains 425 x 300 grid points. After running the WRF model, post-processing will allow visualization of atmospheric variables available in the output (e.g., temperature, wind speed, pressure). 
 
-On the HPC Cluster, download the CONUS 12km test case from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/) into the **/shared** directory.
-**/shared** is the mount point of NFS server hosted on the head node.
+The CONUS 12km is a test case provided by NCAR and can be retrieved from the [NCAR/MMM website](https://www2.mmm.ucar.edu/wrf/users/). For this tutorial and convenience, you will download the CONUS 12km test from an [Amazon S3](https://aws.amazon.com/s3/) bucket into the **/shared** directory of the HPC Cluster; **/shared** is the mount point of NFS server hosted on the head node.
+
 
 Here are the steps:
 
@@ -39,14 +38,26 @@ tar -xzf wrf_simulation_CONUS12km.tar.gz
 Next we'll prepare the data for a run by copying in the relevant files from our WRF install:
 
 ```bash
-cd /shared/conus_12km/
-WRF_ROOT=$(spack location -i wrf%intel)/test/em_real/
-ln -s $WRF_ROOT* .
+cd /shared/conus_12km
+
+cp /opt/wrf-omp/src/run/{\
+CAMtr_volume_mixing_ratio.*,\
+GENPARM.TBL,\
+HLC.TBL,\
+LANDUSE.TBL,\
+RRTM_DATA,\
+RRTM_DATA_DBL,\
+RRTMG_LW_DATA,\
+RRTMG_LW_DATA_DBL,\
+RRTMG_SW_DATA,\
+RRTMG_SW_DATA_DBL,\
+SOILPARM.TBL,\
+URBPARM.TBL,\
+URBPARM_UZE.TBL,\
+VEGPARM.TBL,\
+ozone.formatted,\
+ozone_lat.formatted,\
+ozone_plev.formatted} .
 ```
 
-{{% notice note %}}
-Please be aware there is a `namelist.input` in the current directory that you
-do not want to overwrite. The link command will return the following
-error, which is safe to ignore.
-`ln: failed to create symbolic link ‘./namelist.input’: File exists`
-{{% /notice %}}
+Next the job will be submitted to the cluster.

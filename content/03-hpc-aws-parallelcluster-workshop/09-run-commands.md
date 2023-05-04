@@ -72,4 +72,4 @@ You'll see a line like:
 
 This is our shared filesystem, mounted at `/shared`.
 
-In the next section we'll install Spack on this shared filesystem!
+In the next section the input files to run a job using the cluster will be copied.
