@@ -41,14 +41,14 @@ chmod 600 lab-your-key.pem
 
 Next add it to the `~/.bashrc` file, this allows us to reference it later:
 
-```
+```bash
 echo "export AWS_KEYPAIR=lab-your-key" >> ~/.bashrc
 source ~/.bashrc
 ```
 
 Optionally, use the following command to check if your key is registered:
 
-```
+```bash
 aws ec2 describe-key-pairs
 ```
 

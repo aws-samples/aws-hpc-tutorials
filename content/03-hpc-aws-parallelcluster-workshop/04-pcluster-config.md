@@ -28,7 +28,7 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 {{% /notice %}}
 
 {{% notice warning %}}
-If running this outside the workshop event, you can change the instance type if you like but you may run into EC2 limits that may prevent you from creating instances or create too many instances. You should also be mindful of the cost of running any instances.
+If running this outside the workshop event, you can change the instance type if you like but you may run into EC2 limits that may prevent you from creating instances or from creating too many instances. You should also be mindful of the cost of running any instances.
 {{% /notice %}}
 
 
@@ -72,7 +72,11 @@ A cluster configuration file named `my-cluster-config.yaml` will now be written 
 cd ~/environment/
 ```
 
-And create the configuration file in the current working directory by executing the following command:
+{{% notice info %}}
+Creating this file in the `~/environment` directory will make it easier to look at the configuration file within the IDE, but is not necessary; the configuration file can be created anywhere.
+{{% /notice %}}
+
+Create the configuration file in the current working directory by executing the following command:
 
 ```bash
 cat > my-cluster-config.yaml << EOF

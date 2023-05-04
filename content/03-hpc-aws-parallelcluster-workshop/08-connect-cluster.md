@@ -5,7 +5,7 @@ weight = 80
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 
-The cluster we created on the previous page takes about ~15 mins to create. While you're waiting grab a ☕️.
+The cluster we created in **[Section e](/03-hpc-aws-parallelcluster-workshop/05-launch-pc.html)** takes about ~15 mins to create. If you're still waiting for it, grab a ☕️.
 
 Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of two ways, either through the shell or via the DCV session:
 
@@ -33,6 +33,6 @@ You'll need to be authenticated to the AWS account that instance is running in a
 
 ![Browser Warning](/images/hpc-aws-parallelcluster-workshop/browser-warning.png)
 
-3. Next to launch a terminal (where the rest of the lab will run) we'll click **Activities** > **Terminal**:
+3. Next, to launch a terminal (where the rest of the lab will run), click **Activities** > **Terminal**:
 
 ![DCV Terminal](/images/hpc-aws-parallelcluster-workshop/dcv-terminal.png)
