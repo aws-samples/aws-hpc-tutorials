@@ -11,7 +11,7 @@ This is an optional step, if you have time remaining in the lab time. Here you c
 
 ![Creation in progress](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-07-i-cluster-creation-complete.png)
 
-In this section we're going to use ParallelCluster UI to perform a dry-run creation mirroring the setup created with the command line interface.
+In this section we're going to return to the ParallelCluster UI to perform a dry-run creation mirroring the setup created with the command line interface.
 
 {{% notice info %}}
 Note that the ParallelCluster UI can also be used to Edit a cluster.

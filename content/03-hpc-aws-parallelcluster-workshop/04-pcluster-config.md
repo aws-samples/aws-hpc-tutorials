@@ -64,6 +64,21 @@ COMPUTE_INSTANCES=c5n.18xlarge
 SSH_KEY_NAME=lab-your-key
 ```
 
+```bash
+export CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
+    --query 'Images[*].{ImageId:ImageId,CreationDate:CreationDate}' \
+    --filters "Name=name,Values=*-amzn2-parallelcluster-3.5.1-wrf-4.2.2-*" \
+    --region ${AWS_REGION} \
+    | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
+```
+
+Running the command:
+
+```bash
+echo ${CUSTOM_AMI}
+```
+
+Should show the prepared AMI `ami-0f077c9ce43173631`.
 
 
 A cluster configuration file named `my-cluster-config.yaml` will now be written which will be used to launch the cluster. Navigate back to the environment directory:
@@ -83,6 +98,7 @@ cat > my-cluster-config.yaml << EOF
 Region: ${AWS_REGION}
 Image:
   Os: alinux2
+  CustomAmi: ${CUSTOM_AMI}
 SharedStorage:
   - MountDir: /shared
     Name: default-ebs

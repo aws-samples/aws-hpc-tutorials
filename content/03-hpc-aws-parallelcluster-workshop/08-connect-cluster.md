@@ -36,3 +36,7 @@ You'll need to be authenticated to the AWS account that instance is running in a
 3. Next, to launch a terminal (where the rest of the lab will run), click **Activities** > **Terminal**:
 
 ![DCV Terminal](/images/hpc-aws-parallelcluster-workshop/dcv-terminal.png)
+
+{{% notice info %}}
+If the DCV screen (Linux desktop) goes blue at any stage with the current date and time, click inside it and push the space bar. The screen automatically locks after a period of time.
+{{% /notice %}}
