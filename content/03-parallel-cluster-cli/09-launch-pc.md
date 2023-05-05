@@ -22,7 +22,7 @@ Your cluster will take a few minutes to build. The following status message will
     "cloudformationStackStatus": "CREATE_IN_PROGRESS",
     "cloudformationStackArn": "arn:aws:cloudformation:eu-west-1:03xxxxxxx:stack/cfd/67df3d40-4797-11ec-8758-0aef8dbeecd5",
     "region": "eu-west-1",
-    "version": "3.1.2",
+    "version": "3.5.1",
     "clusterStatus": "CREATE_IN_PROGRESS"
   },
 }

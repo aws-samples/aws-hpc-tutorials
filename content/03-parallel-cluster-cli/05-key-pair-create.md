@@ -13,7 +13,7 @@ Enter the following command to generate a key pair:
 
 ```bash
 aws ec2 create-key-pair --key-name lab-your-key --query KeyMaterial --output text > lab-your-key.pem
-chmod 600 lab-your-key.pem
+chmod 400 lab-your-key.pem
 ```
 
 Next add it to the `~/.bashrc` file, this allows us to reference it later:
