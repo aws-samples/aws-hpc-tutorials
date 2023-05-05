@@ -46,16 +46,14 @@ If you are using a different terminal than the previous section, make sure that 
 
 ```bash
 # create the cluster configuration
+export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 export IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 export SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-export VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-export AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
-export REGION=${AZ::-1}
 ```
 
 ```yaml
 cat > ml-config.yaml << EOF
-Region: ${REGION}
+Region: ${AWS_REGION}
 Image:
   Os: alinux2
 SharedStorage:

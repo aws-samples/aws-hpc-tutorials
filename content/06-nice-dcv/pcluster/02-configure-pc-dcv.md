@@ -36,16 +36,14 @@ We'll reuse the [**SSH key-pair**](/02-aws-getting-started/05-key-pair-create.ht
 Then we'll create a config file (`dcv-config.yaml`). Paste the following commands in your terminal.
 
 ```bash
+AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
-REGION=${AZ::-1}
 ```
 
 ```yaml
 cat > dcv-config.yaml << EOF
-Region: ${REGION}
+Region: ${AWS_REGION}
 Image:
   Os: centos7
 SharedStorage:

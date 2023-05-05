@@ -25,15 +25,14 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 Execute the following commands in your cloud9 shell to get your AWS networking information and create a cluster configuration file:
 
 ```bash
+AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
 IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
 SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
-VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
 ```
 
 ```yaml
 cat > config.yaml << EOF
-Region: ${REGION}
+Region: ${AWS_REGION}
 Image:
   Os: alinux2
 SharedStorage:
