@@ -28,6 +28,7 @@ aws fsx create-data-repository-association \
     --file-system-id $FSX_ID \
     --file-system-path / \
     --data-repository-path s3://mybucket-${BUCKET_POSTFIX} \
+    --batch-import-meta-data-on-create \
     --s3 AutoImportPolicy=\{"Events"=["NEW","CHANGED","DELETED"]\},AutoExportPolicy=\{"Events"=["NEW","CHANGED","DELETED"]\}
 ```
 
