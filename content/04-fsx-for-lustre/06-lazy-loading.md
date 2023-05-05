@@ -74,7 +74,7 @@ The new access time is a bit too fast because the data has been cached on the in
 
 ```bash
 sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches'
-time cat /lustre/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
+time cat /shared/SEG_C3NA_Velocity.sgy > /dev/shm/fsx
 ```
 
 This access time is more realistic:
@@ -151,7 +151,7 @@ You are back to **7.5 MB** of stored data.
 Access the file again and check how much time it takes.
 
 ```bash
-time cat /lustre/SEG_C3NA_Velocity.sgy >/dev/shm/fsx
+time cat /shared/SEG_C3NA_Velocity.sgy >/dev/shm/fsx
 ```
 
 It should take around 6 seconds. Subsequent reads use the client cache. You can drop the caches, if desired.
