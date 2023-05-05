@@ -18,11 +18,11 @@ Scheduling:
   SlurmQueues:
     - Name: compute
       ComputeResources:
-        - Name: c5a
+        - Name: c5n
           MinCount: 0
           MaxCount: 64
           Instances:
-            - InstanceType: c5a.2xlarge
+            - InstanceType: c5n.18xlarge
           Efa:
             Enabled: true
       Networking:
