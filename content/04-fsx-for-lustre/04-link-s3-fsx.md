@@ -12,7 +12,7 @@ A [data repository association (DRA)](https://docs.aws.amazon.com/fsx/latest/Lus
 First, let's grab the ID of the newly created filesystem. You'll need to wait for the stack to go into **CREATE_COMPLETE** before running the following command:
 
 ```bash
-FSX_ID=$(aws cloudformation describe-stacks --stack-name hpc-cluster-fsx --query "Stacks[0].Outputs[?OutputKey=='FSXIds'].OutputValue" --output text)
+FSX_ID=$(aws cloudformation describe-stacks --stack-name hpc-cluster --query "Stacks[0].Outputs[?OutputKey=='FSXIds'].OutputValue" --output text)
 ```
 
 Confirm that worked by echoing out the response. If you don't see an ID like `fs-123456789`, check confirm the name of the cluster is `hpc-cluster-fsx` and the stack is in `CREATE_COMPLETE`.
@@ -41,16 +41,32 @@ This will give you a summary of the assocation:
 ```json
 {
     "Association": {
-        "AssociationId": "dra-02d711a4ea44d33af",
-        "ResourceARN": "arn:aws:fsx:us-east-2:123456789:association/fs-123456789/dra-02d711a4ea44d33af",
-        "FileSystemId": "fs-123456789",
+        "AssociationId": "dra-0dd720180c83b95e2",
+        "ResourceARN": "arn:aws:fsx:eu-west-1:193621186425:association/fs-046b520226a2f7ebb/dra-0dd720180c83b95e2",
+        "FileSystemId": "fs-046b520226a2f7ebb",
         "Lifecycle": "CREATING",
         "FileSystemPath": "/",
-        "DataRepositoryPath": "s3://mybucket-123456",
+        "DataRepositoryPath": "s3://mybucket-3fce7039",
         "BatchImportMetaDataOnCreate": false,
         "ImportedFileChunkSize": 1024,
+        "S3": {
+            "AutoImportPolicy": {
+                "Events": [
+                    "NEW",
+                    "CHANGED",
+                    "DELETED"
+                ]
+            },
+            "AutoExportPolicy": {
+                "Events": [
+                    "NEW",
+                    "CHANGED",
+                    "DELETED"
+                ]
+            }
+        },
         "Tags": [],
-        "CreationTime": "2022-06-15T21:37:46.657000+00:00"
+        "CreationTime": "2023-05-05T13:54:03.631000+00:00"
     }
 }
 ```

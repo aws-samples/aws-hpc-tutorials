@@ -11,7 +11,7 @@ In this section we're going to use ParallelCluster UI to create a cluster and Fi
 
 1. Click **Create Cluster** Button
 
-1. Name the cluster **hpc-cluster-fsx** and select **Template**. On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
+1. Name the cluster **hpc-cluster** and select **Template**. On the next step you'll be prompted to provide a file, download the template linked below and select that when prompted:
 
 {{% button href="/template/cluster-config-fsx.yml" icon="fas fa-save" %}}Download Template{{% /button %}}
 
@@ -23,7 +23,7 @@ On the next few screens, we'll modify the account specific components and leave 
 
 ![Cluster Wizard](/images/pcluster/pcmanager-2.png)
 
-1. Select a **Subnet**, ensuring the subnet is from the Availibility Zone ID **use2-az2**, and select a **Keypair** from your account (optional)
+1. Select a **Keypair** from your account (optional)
 
 ![Cluster Wizard](/images/pcluster/pcmanager-3.png)
 
