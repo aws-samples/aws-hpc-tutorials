@@ -68,8 +68,10 @@ RUN update-alternatives --list java
 RUN mv /opt/conda/bin/java /opt/conda/bin/oldjava
 RUN java -version
 
-RUN curl -s https://get.nextflow.io | bash \
- && mv nextflow /usr/local/bin/
+RUN wget https://github.com/nextflow-io/nextflow/releases/download/v22.10.8/nextflow
+RUN chmod +x nextflow
+RUN ./nextflow
+RUN mv nextflow /usr/local/bin/
 
 RUN pip3 install --upgrade awscli
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

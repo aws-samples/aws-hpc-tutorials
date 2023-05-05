@@ -19,8 +19,8 @@ Example showing the correct permissions in Cloud9.
 WSParticipantRole:~/environment $ aws sts get-caller-identity
 {
     "UserId": "AROA4LTLX6YAXT46ZLN4P:i-08bc17a8ba3b8c143",
-    "Account": "849555748353",
-    "Arn": "arn:aws:sts::849555748353:assumed-role/mycloud9env-WorkshopRole-12AX2RWD6TIRM/i-08bc17a8ba3b8c143"
+    "Account": "XXXXXXXXXXXX",
+    "Arn": "arn:aws:sts::XXXXXXXXXXXX:assumed-role/mycloud9env-WorkshopRole-12AX2RWD6TIRM/i-08bc17a8ba3b8c143"
 }
 ```
 
