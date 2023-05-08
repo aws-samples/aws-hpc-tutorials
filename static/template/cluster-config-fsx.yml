@@ -1,7 +1,7 @@
 HeadNode:
-  InstanceType: c5a.2xlarge
+  InstanceType: c5.2xlarge
   Ssh:
-    KeyName: your-key
+    KeyName: ws-default-keypair
   Networking:
     SubnetId: subnet-1234567
   LocalStorage:
