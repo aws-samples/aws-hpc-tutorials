@@ -5,34 +5,41 @@ weight = 50
 tags = ["tutorial", "HSM", "FSx"]
 +++
 
-After the cluster is created access the cluster by following steps in [b. Connect to the Cluster](02-connect-cluster.html). Once you've connected run `df -h` to ensure the filesystem is mounted properly:
+After the cluster is created access the cluster by following steps in [a. Create HPC Cluster](01-create-cluster.html) and [b. Create FSx Lustre](02-create-cluster-fsx.html). Connect by selecting the cluster using AWS ParallelClustre UI, wait for a few seconds, and then use the **Shell** button on the top of the page. Once you've connected run
+```bash
+sudo su - ec2-user
+```
+to get the familiar user and environment.
+
+Enter
+```bash
+df -h
+```
+to ensure the filesystem is mounted at `/shared`:
 
 ```bash
-$ df -h
 Filesystem                   Size  Used Avail Use% Mounted on
-devtmpfs                     7.8G     0  7.8G   0% /dev
-tmpfs                        7.8G     0  7.8G   0% /dev/shm
-tmpfs                        7.8G  820K  7.8G   1% /run
-tmpfs                        7.8G     0  7.8G   0% /sys/fs/cgroup
-/dev/nvme0n1p1                40G   16G   25G  40% /
-172.31.21.102@tcp:/ybajnbmv  1.1T  5.8G  1.1T   1% /shared
-tmpfs                        1.6G   16K  1.6G   1% /run/user/42
+devtmpfs                     7.6G     0  7.6G   0% /dev
+tmpfs                        7.6G     0  7.6G   0% /dev/shm
+tmpfs                        7.6G  584K  7.6G   1% /run
+tmpfs                        7.6G     0  7.6G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                40G   16G   25G  39% /
+172.31.21.145@tcp:/2hwmvbmv  1.2T  7.5M  1.2T   1% /shared
+tmpfs                        1.6G     0  1.6G   0% /run/user/1000
 tmpfs                        1.6G     0  1.6G   0% /run/user/0
 ```
 
-You'll see a line like `172.31.21.102@tcp:/ybajnbmv  1.1T  5.8G  1.1T   1% /shared` showing the size of the filesystem and the mount point.
+You'll see a line like `172.31.21.145@tcp:/2hwmvbmv  1.2T  7.5M  1.2T   1% /shared` showing the size of the filesystem and the mount point.
 
 Next, use the command `time lfs find /shared` to list all the files present. You should see something similar to:
 
 ```bash
-$ time lfs find /shared
+lfs find /shared
+```
+```bash
 /shared
 /shared/s3dkq4m2.mtx.gz
 /shared/SEG_C3NA_Velocity.sgy
-
-real    0m0.001s
-user    0m0.001s
-sys     0m0.000s
 ```
 
 
@@ -45,20 +52,18 @@ total 1.0K
 -rwxr-xr-x 1 root root 455M Jun 22 23:26 SEG_C3NA_Velocity.sgy
 ```
 
-Next, use the command `time lfs df -h` to look at how much data is stored on the Lustre partition for the Metadata Target (MDT) and Object Storage Targets (OSTs).
+Next, use the command `lfs df -h` to look at how much data is stored on the Lustre partition for the Metadata Target (MDT) and Object Storage Targets (OSTs).
 
 ```bash
-$ time lfs df -h
+$ lfs df -h
+```
+```bash
 UUID                       bytes        Used   Available Use% Mounted on
-unnznbmv-MDT0000_UUID       34.4G        9.1M       34.4G   0% /shared[MDT:0]
-unnznbmv-OST0000_UUID        1.1T        7.5M        1.1T   0% /shared[OST:0]
+2hwmvbmv-MDT0000_UUID       34.4G        9.8M       34.4G   0% /shared[MDT:0]
+2hwmvbmv-OST0000_UUID        1.1T        7.5M        1.1T   0% /shared[OST:0]
 
 filesystem_summary:         1.1T        7.5M        1.1T   0% /shared
 
-
-real    0m0.001s
-user    0m0.001s
-sys     0m0.000s
 ```
 
 Notice that there is a discrepancy between

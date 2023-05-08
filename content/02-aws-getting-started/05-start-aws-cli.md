@@ -1,5 +1,5 @@
 +++
-title = "c. Work with the AWS CLI"
+title = "c. Post Event: Work with the AWS CLI (Skip)"
 weight = 70
 tags = ["tutorial", "cloud9", "aws cli", "s3"]
 +++
