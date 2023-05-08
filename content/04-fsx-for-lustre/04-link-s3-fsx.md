@@ -21,7 +21,7 @@ Confirm that worked by echoing out the response. If you don't see an ID like `fs
 echo $FSX_ID
 ```
 
-Next we're going to create a data repository association. Note this can also be done from the FSx Console if you'd prefer a GUI approach.
+Next we're going to create a data repository association. Note this can also be done from the [FSx Console](https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#file-systems) if you'd prefer a GUI approach.
 
 ```bash
 aws fsx create-data-repository-association \
@@ -32,23 +32,18 @@ aws fsx create-data-repository-association \
     --s3 AutoImportPolicy=\{"Events"=["NEW","CHANGED","DELETED"]\},AutoExportPolicy=\{"Events"=["NEW","CHANGED","DELETED"]\}
 ```
 
-{{% notice info %}}
-If you see the error: `Invalid choice: 'create-data-repository-association', maybe you meant: * create-data-repository-task`
-Please follow the steps in [**Update the AWS CLI**](/02-aws-getting-started/05-start-aws-cli.html#update-the-aws-cli) to update the AWS CLI to version 2, then re-run the command.
-{{% /notice %}}
-
-This will give you a summary of the assocation:
+This will give you a summary of the association:
 
 ```json
 {
     "Association": {
-        "AssociationId": "dra-0dd720180c83b95e2",
-        "ResourceARN": "arn:aws:fsx:eu-west-1:193621186425:association/fs-046b520226a2f7ebb/dra-0dd720180c83b95e2",
-        "FileSystemId": "fs-046b520226a2f7ebb",
+        "AssociationId": "dra-05235cf3e4ba69a86",
+        "ResourceARN": "arn:aws:fsx:eu-west-1:155423658722:association/fs-0c11cd01247483cfc/dra-05235cf3e4ba69a86",
+        "FileSystemId": "fs-0c11cd01247483cfc",
         "Lifecycle": "CREATING",
         "FileSystemPath": "/",
-        "DataRepositoryPath": "s3://mybucket-3fce7039",
-        "BatchImportMetaDataOnCreate": false,
+        "DataRepositoryPath": "s3://mybucket-31251a58",
+        "BatchImportMetaDataOnCreate": true,
         "ImportedFileChunkSize": 1024,
         "S3": {
             "AutoImportPolicy": {
@@ -67,7 +62,9 @@ This will give you a summary of the assocation:
             }
         },
         "Tags": [],
-        "CreationTime": "2023-05-05T13:54:03.631000+00:00"
+        "CreationTime": "2023-05-08T13:57:34.495000+00:00"
     }
 }
 ```
+
+Creating the data repository association and syncing the metadata from the Amazon S3 bucket will take a few minutes. We can continue here, but might have to wait later in case the file system is not pre-populated with the objects from the Amazon S3 bucket.

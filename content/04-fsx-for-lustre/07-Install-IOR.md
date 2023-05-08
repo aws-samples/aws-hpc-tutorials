@@ -13,9 +13,10 @@ Use the following command to install IOR. For this installation, use the *io500-
 ```bash
 # get IOR
 mkdir -p /shared/ior
+cd /shared/ior
 git clone https://github.com/hpc/ior.git
 cd ior
-git checkout io500-sc19
+git checkout 4.0
 
 # load intelmpi
 module load intelmpi
