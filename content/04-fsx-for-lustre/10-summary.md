@@ -12,11 +12,11 @@ Before moving to the next workshop, make sure to delete your cluster:
 
 ![Delete Cluster](/images/pcluster/pcmanager-delete.png)
 
-By deleting the cluster the EC2 instances (head node and compute fleet) will be terminated. The FSx for Lustre file system will also be deleted as it was created by AWS ParallelCluster as part of the cluster.
-However the data from that file system is still archived in your Amazon S3 bucket.
-You can use this Amazon S3 bucket to populate another FSx for Lustre file system.
+By deleting the cluster the EC2 instances (head node and compute fleet) will be terminated. The **Amazon FSx for Lustre** file system will also be deleted as it was created by **AWS ParallelCluster** as part of the cluster.
+However the data from that file system is still archived in your **Amazon S3** bucket.
+You could use this **Amazon S3** bucket to populate another **Amazon FSx for Lustre** file system.
 If you want to delete the bucket, you first have to delete all objects in it.
-You can do this in your Cloud9 IDE terminal:
+You can do this in your **AWS Cloud9** IDE terminal:
 
 ```bash
 aws s3 rm s3://mybucket-${BUCKET_POSTFIX} --recursive
