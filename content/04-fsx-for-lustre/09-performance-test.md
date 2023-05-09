@@ -41,15 +41,21 @@ ior
 ```
 
 ```bash
+<<<<<<< HEAD
+[ec2-user@ip-172-31-25-220 ior]$ ior
+IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
+Began               : Tue May  9 12:14:07 2023
+=======
 [ec2-user@ip-172-31-24-231 ~]$ ior
 IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
 Began               : Wed Jun 22 23:56:26 2022
+>>>>>>> 5e3c9caf0acfe09f57a168811047d323cb8474bc
 Command line        : ior
-Machine             : Linux ip-172-31-24-231
+Machine             : Linux ip-172-31-25-220
 TestID              : 0
-StartTime           : Wed Jun 22 23:56:26 2022
-Path                : /home/ec2-user
-FS                  : 40.0 GiB   Used FS: 39.7%   Inodes: 20.0 Mi   Used Inodes: 1.4%
+StartTime           : Tue May  9 12:14:07 2023
+Path                : testFile
+FS                  : 1.1 TiB   Used FS: 0.0%   Inodes: 5.5 Mi   Used Inodes: 0.0%
 
 Options:
 api                 : POSIX
@@ -60,6 +66,7 @@ type                : independent
 segments            : 1
 ordering in a file  : sequential
 ordering inter file : no tasks offsets
+nodes               : 1
 tasks               : 1
 clients per node    : 1
 repetitions         : 1
@@ -69,19 +76,16 @@ aggregate filesize  : 1 MiB
 
 Results:
 
-access    bw(MiB/s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s) iter
-------    ---------  ---------- ---------  --------   --------   --------   -------- ----
-write     3475.49    1024.00    256.00     0.000030   0.000253   0.000005   0.000288   0
-read      12522      1024.00    256.00     0.000002   0.000077   0.000001   0.000080   0
-remove    -          -          -          -          -          -          0.000080   0
-Max Write: 3475.49 MiB/sec (3644.32 MB/sec)
-Max Read:  12521.52 MiB/sec (13129.77 MB/sec)
+access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
+------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
+write     584.49     4094       0.000244    1024.00    256.00     0.000515   0.000977   0.000219   0.001711   0
+read      2041.02    38836      0.000026    1024.00    256.00     0.000210   0.000103   0.000177   0.000490   0
 
 Summary of all tests:
 Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
-write        3475.49    3475.49    3475.49       0.00   13901.97   13901.97   13901.97       0.00    0.00029         NA            NA     0      1   1    1   0     0        1         0 0      1  1048576   262144       1.0 POSIX      0
-read        12521.52   12521.52   12521.52       0.00   50086.08   50086.08   50086.08       0.00    0.00008         NA            NA     0      1   1    1   0     0        1         0 0      1  1048576   262144       1.0 POSIX      0
-Finished            : Wed Jun 22 23:56:26 2022
+write         584.49     584.49     584.49       0.00    2337.96    2337.96    2337.96       0.00    0.00171         NA            NA     0      1   1    1   0     0        10    0      1  1048576   262144       1.0 POSIX      0
+read         2041.02    2041.02    2041.02       0.00    8164.10    8164.10    8164.10       0.00    0.00049         NA            NA     0      1   1    1   0     0        10    0      1  1048576   262144       1.0 POSIX      0
+Finished            : Tue May  9 12:14:07 2023
 ```
 
 #### Run a Performance Test with IOR
@@ -122,21 +126,23 @@ Every 2.0s: squeue                                                              
                  1   compute      ior ec2-user  R       3:33      4 compute-dy-c5a-[1-4]
 ```
 
+When the state (`ST`) is configuring (`CF`) wait until it becomes running (`R`).
+Send the interrupt signal to the `watch` command by pressing `Ctrl+c` to stop it.
+
 The IOR output is written to **ior.out** file. If you want, you can use **tail -f ior.out** to view the file as it is written. However, remember that since you have `0` compute nodes present on your cluster, it may take up to 2 minutes for instances to be created then register with the cluster. You can check the status of the instances on the **Instances** tab in AWS ParallelCluster UI. After the instances are created and registered, the IOR job will go into state `R` running.
 
 After the job completes, run `cat ior.out` and you should see a result similar to the following. In this example, you see 1 GB/s performance, which is not too far from the [720 MB/s](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) offered by Amazon FSx for Lustre.
 
 ```bash
-[ec2-user@ip-172-31-20-218 ior]$ cat ior.out 
-Loading intelmpi version 2021.6.0
+[ec2-user@ip-172-31-25-220 ior]$ cat ior.outLoading intelmpi version 2021.6.0
 IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
-Began               : Mon May  8 14:02:32 2023
+Began               : Tue May  9 12:14:39 2023
 Command line        : /shared/ior/bin/ior -w -r -o=/shared/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
 Machine             : Linux compute-dy-c5-1
 TestID              : 0
-StartTime           : Mon May  8 14:02:32 2023
+StartTime           : Tue May  9 12:14:39 2023
 Path                : /shared/test_dir.00000000
-FS                  : 1.1 TiB   Used FS: 0.0%   Inodes: 6.0 Mi   Used Inodes: 0.0%
+FS                  : 1.1 TiB   Used FS: 0.0%   Inodes: 5.5 Mi   Used Inodes: 0.0%
 
 Options: 
 api                 : POSIX
@@ -160,20 +166,20 @@ Results:
 
 access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
 ------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
-write     755.68     11.81      1.29        262144     65536      0.002836   5.42       0.279862   5.42       0   
-read      423.03     6.61       2.40        262144     65536      0.000715   9.68       0.680220   9.68       0   
-write     15082      236.34     0.065116    262144     65536      0.001898   0.270799   0.038727   0.271581   1   
-read      262.34     4.10       3.82        262144     65536      0.000641   15.61      0.613482   15.61      1   
-write     15224      238.41     0.062267    262144     65536      0.001985   0.268447   0.022290   0.269041   2   
-read      215.14     3.36       4.71        262144     65536      0.000866   19.04      0.528298   19.04      2   
-write     15205      238.14     0.065279    262144     65536      0.001824   0.268745   0.030591   0.269378   3   
-read      225.72     3.53       4.44        262144     65536      0.000703   18.15      0.533358   18.15      3   
-write     15310      239.86     0.062527    262144     65536      0.002259   0.266824   0.027244   0.267534   4   
-read      219.79     3.43       4.61        262144     65536      0.000885   18.64      0.642154   18.64      4   
+write     960.23     15.01      0.831487    262144     65536      0.002670   4.26       1.27       4.27       0
+read      400.40     6.26       2.46        262144     65536      0.000770   10.23      1.03       10.23      0
+write     972.67     15.20      0.899350    262144     65536      0.002018   4.21       1.61       4.21       1
+read      395.37     6.18       2.54        262144     65536      0.000655   10.36      0.714747   10.36      1
+write     963.26     15.05      0.903939    262144     65536      0.002298   4.25       1.09       4.25       2
+read      385.05     6.02       2.57        262144     65536      0.000773   10.64      0.694684   10.64      2
+write     929.10     14.52      1.09        262144     65536      0.002420   4.41       1.12       4.41       3
+read      374.12     5.85       2.67        262144     65536      0.000867   10.95      0.596961   10.95      3
+write     973.41     15.21      0.904936    262144     65536      0.002181   4.21       1.63       4.21       4
+read      340.51     5.32       3.00        262144     65536      0.000805   12.03      3.04       12.03      4
 
 Summary of all tests:
 Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
-write       15310.20     755.68   12315.56    5780.40     239.22      11.81     192.43      90.32    1.29957         NA            NA     0     16   4    5   1     1        1         0    0      1 268435456 67108864    4096.0 POSIX      0
-read          423.03     215.14     269.20      78.70       6.61       3.36       4.21       1.23   16.22356         NA            NA     0     16   4    5   1     1        1         0    0      1 268435456 67108864    4096.0 POSIX      0
-Finished            : Mon May  8 14:04:00 2023
+write         973.41     929.10     959.73      16.16      15.21      14.52      15.00       0.25    4.26909         NA            NA     0     16   4    5   1     1        10    0      1 268435456 67108864    4096.0 POSIX      0
+read          400.40     340.51     379.09      21.30       6.26       5.32       5.92       0.33   10.84087         NA            NA     0     16   4    5   1     1        10    0      1 268435456 67108864    4096.0 POSIX      0
+Finished            : Tue May  9 12:15:55 2023
 ```

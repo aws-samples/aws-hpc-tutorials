@@ -15,11 +15,13 @@ First, let's grab the ID of the newly created filesystem. You'll need to wait fo
 FSX_ID=$(aws cloudformation describe-stacks --stack-name hpc-cluster --query "Stacks[0].Outputs[?OutputKey=='FSXIds'].OutputValue" --output text)
 ```
 
-Confirm that worked by echoing out the response. If you don't see an ID like `fs-123456789`, check confirm the name of the cluster is `hpc-cluster-fsx` and the stack is in `CREATE_COMPLETE`.
+Confirm that capturing the FSx file system ID worked, by echoing out the response.
 
 ```bash
 echo $FSX_ID
 ```
+
+If the output is `None` or if you don't see an ID like `fs-123456789`, check that the name of the cluster is `hpc-cluster` and the stack is in `CREATE_COMPLETE`.
 
 Next we're going to create a data repository association. Note this can also be done from the [FSx Console](https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#file-systems) if you'd prefer a GUI approach.
 

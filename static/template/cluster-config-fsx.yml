@@ -23,8 +23,6 @@ Scheduling:
           MaxCount: 64
           Instances:
             - InstanceType: c5.xlarge
-          Efa:
-            Enabled: true
       Networking:
         SubnetIds:
           - subnet-1234567

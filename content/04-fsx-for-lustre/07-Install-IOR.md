@@ -8,7 +8,7 @@ tags = ["tutorial", "install", "FSx", "Performances"]
 You can conduct performance tests on your Lustre partition to evaluate the [throughput](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) it provides. To do so, you must first install [IOR](https://github.com/hpc/ior), an IO parallel benchmark tool used to test the performance of a parallel file system.
 
 
-Use the following command to install IOR. For this installation, use the *io500-sc19* branch of the repository on the cluster head node.
+Use the following command to install IOR. For this installation, use the *4.0* branch of the repository on the cluster head node.
 
 ```bash
 # get IOR
@@ -21,10 +21,10 @@ git checkout 4.0
 # load intelmpi
 module load intelmpi
 
-# install
+# bootstrap, configure, compile and install IOR
 ./bootstrap
 ./configure --with-mpiio --prefix=/shared/ior
-make -j 10
+make -j 8
 sudo make install
 
 # set the environment

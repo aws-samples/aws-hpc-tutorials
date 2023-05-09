@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "HSM", "FSx"]
 +++
 
-After the cluster is created access the cluster by following steps in [a. Create HPC Cluster](01-create-cluster.html) and [b. Create FSx Lustre](02-create-cluster-fsx.html). Connect by selecting the cluster using AWS ParallelClustre UI, wait for a few seconds, and then use the **Shell** button on the top of the page. Once you've connected run
+After the cluster is created access the cluster by following steps in [a. Create HPC Cluster](01-create-cluster.html) and [b. Create FSx Lustre](02-create-cluster-fsx.html). Connect by selecting the cluster using AWS ParallelCluster UI, wait for a few seconds, and then use the **Shell** button on the top of the page. Once you've connected run
 ```bash
 sudo su - ec2-user
 ```
@@ -42,7 +42,7 @@ lfs find /shared
 /shared/SEG_C3NA_Velocity.sgy
 ```
 
-
+If the file system is empty you might have to wait for the DRA and data reposition import task to reach the state **Available**.
 Now, look at the size of your files by listing the content of the */shared* directory.
 
 ```bash
@@ -68,7 +68,7 @@ filesystem_summary:         1.1T        7.5M        1.1T   0% /shared
 
 Notice that there is a discrepancy between
 
-- The size of the files **~ 468 MB**
-- The data actually stored on the Lustre partition: **~ 7.5 MB** of content and 9.1 MB of metadata.
+- The size of the files **~ 455 MiB**
+- The data actually stored on the Lustre partition: **~ 7.5 MiB** of content and 9.1 MiB of metadata.
 
 This discrepancy is due to the lazy loading functionality of Amazon FSx for Lustre when it is linked to an Amazon S3 bucket. Only the metadata of the objects is retrieved on the MDT, the actual bytes or content of the files is copied at first read.
