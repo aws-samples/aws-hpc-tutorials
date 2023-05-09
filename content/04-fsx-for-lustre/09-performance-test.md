@@ -41,9 +41,15 @@ ior
 ```
 
 ```bash
+<<<<<<< HEAD
 [ec2-user@ip-172-31-25-220 ior]$ ior
 IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
 Began               : Tue May  9 12:14:07 2023
+=======
+[ec2-user@ip-172-31-24-231 ~]$ ior
+IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
+Began               : Wed Jun 22 23:56:26 2022
+>>>>>>> 5e3c9caf0acfe09f57a168811047d323cb8474bc
 Command line        : ior
 Machine             : Linux ip-172-31-25-220
 TestID              : 0
@@ -138,9 +144,9 @@ StartTime           : Tue May  9 12:14:39 2023
 Path                : /shared/test_dir.00000000
 FS                  : 1.1 TiB   Used FS: 0.0%   Inodes: 5.5 Mi   Used Inodes: 0.0%
 
-Options:
+Options: 
 api                 : POSIX
-apiVersion          :
+apiVersion          : 
 test filename       : /shared/test_dir
 access              : file-per-process
 type                : independent
@@ -156,7 +162,7 @@ xfersize            : 64 MiB
 blocksize           : 256 MiB
 aggregate filesize  : 4 GiB
 
-Results:
+Results: 
 
 access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
 ------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
