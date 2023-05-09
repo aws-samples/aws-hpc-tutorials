@@ -21,8 +21,7 @@ Confirm that capturing the FSx file system ID worked, by echoing out the respons
 echo $FSX_ID
 ```
 
-If the output is `None` you will probably have to wait until the ParallelCluster 
-If you don't see an ID like `fs-123456789`, check confirm the name of the cluster is `hpc-cluster` and the stack is in `CREATE_COMPLETE`.
+If the output is `None` or if you don't see an ID like `fs-123456789`, check that the name of the cluster is `hpc-cluster` and the stack is in `CREATE_COMPLETE`.
 
 Next we're going to create a data repository association. Note this can also be done from the [FSx Console](https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#file-systems) if you'd prefer a GUI approach.
 
