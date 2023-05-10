@@ -5,7 +5,7 @@ weight = 60
 tags = ["tutorial", "ParallelCluster", "Manager"]
 +++
 
-Log out of the cluster and return to the Cloud9 instance. 
+{{% notice warning %}} Log out of the cluster and return to the Cloud9 instance. {{% /notice %}}
 
 To federate the two clusters we need to attach them both to the same SlurmDBD service. In this example we will attach the cloud cluster to the SlurmDBD running in on the onprem cluster. 
 
@@ -41,14 +41,14 @@ Now lets find out the CIDR range for the VPC.
 
 ```bash
 export VPCCIDR=`aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query "Vpcs[].CidrBlock" --region ${AWS_REGION} | jq -r '.[0]'`
-echo ${VPCDCIDR}
+echo ${VPCCIDR}
 172.31.0.0/16
 ```
 
 Next, lets add a new rule to the security group to permit access from the VPC. In this lab, to keep things simple, we will allow access from the whole VPC. In a production setting you might want to limit this more, maybe to the specific instance.
 
 ```bash
-aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol tcp --port 6819 --cidr ${VPCDCIDR}
+aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol tcp --port 6819 --cidr ${VPCCIDR}
 {
     "Return": true,
     "SecurityGroupRules": [
