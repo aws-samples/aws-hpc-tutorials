@@ -7,11 +7,11 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 In the next few steps we will use the FileCache service to exchange data between the two clusters. We will create the cache connected to the Cloud Cluster and cache the data from the Onprem cluster. Before we proceed we need to know which Subnet the Cloud Cluster is setup in.
 
-Please logout of the cluster and return to the Cloud9 instance.
+{{% notice warning %}} Log out of the cluster and return to the Cloud9 instance. {{% /notice %}}
 
 Before we create the File Cache we need to know which Subnet the Cloud cluster is installed in.
 
-We will do this in two steps, first lets retrieve the Instance Id of the headnode
+We will do this in two steps, first lets retrieve the Instance Id of the Cloud headnode
 
 ```bash
 export CLOUD_INST_ID=`pcluster describe-cluster -n cloud -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
@@ -23,7 +23,7 @@ Then lets see which subnet the Instance is using.
 
 ```bash
 echo Subnet = `aws ec2 describe-instances --filter "Name=instance-id,Values=${CLOUD_INST_ID}" | jq '.Reservations[0].Instances[0].SubnetId' | sed s/\"//g`
-Subnet = subnet-8f6fe2d5
+Subnet = subnet-12345678
 ```
 
 Note down this Subnet Id as you will need it in the next step.
