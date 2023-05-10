@@ -48,7 +48,7 @@ echo ${VPCCIDR}
 Next, lets add a new rule to the security group to permit access from the VPC. In this lab, to keep things simple, we will allow access from the whole VPC. In a production setting you might want to limit this more, maybe to the specific instance.
 
 ```bash
-aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol tcp --port 6819 --cidr ${VPCDCIDR}
+aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol tcp --port 6819 --cidr ${VPCCIDR}
 {
     "Return": true,
     "SecurityGroupRules": [
