@@ -34,3 +34,9 @@ sudo chown ec2-user.ec2-user -R /mnt
 ```
 
 To mount the filesystem at boot time you could add a line to the /etc/fstab file. In this lab, just don't reboot the server!
+
+Finally to make life easy, we will create a link to point /data to /mnt/cache/data, this means that data in /data on the onprem cluster will also be in /data on the cloud cluster. 
+
+```bash
+sudo ln -s /mnt/cache/data/ /data
+```
