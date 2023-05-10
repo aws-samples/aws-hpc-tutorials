@@ -31,7 +31,9 @@ Note down this Subnet Id as you will need it in the next step.
 We will also need the details of the Onprem cluster headnode. We can get that with...
 
 ```bash
-echo Data Repository Path = nfs://`aws ec2 describe-instances --filter Name=instance-id,Values=${CLOUD_INST_ID} | jq '.Reservations[0].Instances[0].PrivateDnsName' | sed s/\"//g`/
+export ONPREM_INST_ID=`pcluster describe-cluster -n onprem -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
+
+echo Data Repository Path = nfs://`aws ec2 describe-instances --filter Name=instance-id,Values=${ONPREM_INST_ID} | jq '.Reservations[0].Instances[0].PrivateDnsName' | sed s/\"//g`/
 Data Repository Path = nfs://ip-172-31-34-123.eu-west-1.compute.internal/
 ```
 
