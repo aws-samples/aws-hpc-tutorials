@@ -95,6 +95,7 @@ This page will show the status of the File Cache.
 
 https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#fc/file-caches
 
-Once the cache shows as available you can proceed.
+Click on the File Cache id, then select the Data Repositories tab. 
 
-![File Cache status](/images/federation-and-cache/filecache-ready.png)
+Once the data repository status is "Available" it is ok to proceed.
+
