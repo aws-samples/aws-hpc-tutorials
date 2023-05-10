@@ -42,7 +42,7 @@ You may see other clusters that you have created earlier today, if you haven’t
 You should also see the database that has been pre installed for you.
 
 ```bash
-[ec2-user@server ~]$ aws cloudformation --region ${AWS_REGION} describe-stacks --stack-name pcluster-slurm-db | jq '.Stacks'[0]'.Outputs' | jq 'map(select(.OutputKey == "DatabaseHost"))'
+[ec2-user@server ~]$ aws cloudformation --region ${AWS_REGION} describe-stacks --stack-name clusterdb | jq '.Stacks'[0]'.Outputs' | jq 'map(select(.OutputKey == "DatabaseHost"))'
 [
   {
     "OutputKey": "DatabaseHost",
