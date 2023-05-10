@@ -19,7 +19,8 @@ You will find here the agenda for the tutorial. An update will be made on May 21
 | *Lab 2*      | 12:30PM - 01:00PM   | Managed Lustre and long term storage integration using Object Storage                               | Ramin Torabi                               |
 | 01h00 Break  | 01:00PM - 02:00PM   | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\---                                | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
 | Talk         | 02:00PM - 03:00PM   | HPC hybrid architectures                                                                            | Brian Skjerven                             |
-| *Lab 3*      | 03:00PM - 04:00PM	 | Extending your current infrastructure to the cloud                                                  | Brian Skjerven                             |
+| *Lab 3*      | 03:00PM - 03:45PM	 | Extending your current infrastructure to the cloud                                                  | Brian Skjerven                             |
+| Talk         | 03:45PM - 04:00PM	 | Bridging Clouds and Supercomputers                                                                  | Ovidiu-Cristian Marcu                      |
 | 30 Min Break | 04:00PM - 04:30PM   | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\---                                | \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- |
 | Talk         | 04:30PM - 05:00PM	 | repeatability: integration pipelines, monitoring and troubleshooting in the cloud                   | Francesco Ruffino                          |
 | *Lab 4*      | 05:00PM - 05:30PM	 | Simulation on an container orchestrator                                                             | Francesco Ruffino                          |
