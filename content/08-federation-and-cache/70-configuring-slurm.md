@@ -68,9 +68,10 @@ sacctmgr add federation fedone clusters=onprem,cloud
   Cluster       = cloud
 Would you like to commit changes? (You have 30 seconds to decide)
 (N/y): y
+```
 
 Now lets confirm the federation is working:
-
+```bash
 sacctmgr show federation
 Federation    Cluster ID             Features     FedState
 ---------- ---------- -- -------------------- ------------
@@ -80,6 +81,6 @@ Federation    Cluster ID             Features     FedState
 
 We now have a federated Slurm cluster setup. This means that we can submit jobs to either cluster from either headnode.
 
-However aside from being linked via SLurm the 2 clusters are not combined. In the production world we would need to ensure a consistent mapping of user ids between the clusters and arrange a means of exchanging data between them.
+However aside from being linked via Slurm the 2 clusters are not combined. In the production world we would need to ensure a consistent mapping of user ids between the clusters and arrange a means of exchanging data between them.
 
 In this lab we will work with a single user to keep things simple.
