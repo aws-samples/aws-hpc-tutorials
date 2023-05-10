@@ -1,7 +1,7 @@
 ---
 title: "Container building automation"
 date: 2021-09-29
-weight: 50
+weight: 60
 pre: "<b>Lab III ⁃ </b>"
 tags: ["CI/CD", "AWS Developer Tools", "DevOps"]
 ---
