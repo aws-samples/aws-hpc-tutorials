@@ -5,7 +5,7 @@ weight = 50
 tags = ["tutorial", "HSM", "FSx"]
 +++
 
-After the cluster is created access the cluster by following steps in [a. Create HPC Cluster](01-create-cluster.html) and [b. Create FSx Lustre](02-create-cluster-fsx.html). Connect by selecting the cluster using AWS ParallelCluster UI, wait for a few seconds, and then use the **Shell** button on the top of the page. Once you've connected run
+After the cluster is created access the cluster by following steps in [a. Create HPC Cluster](01-create-cluster.html) and [b. Create FSx Lustre](02-create-cluster-fsx.html). Connect by selecting the cluster using **AWS ParallelCluster UI**, wait for a few seconds, and then use the **Shell** button on the top of the page. Once you've connected run
 ```bash
 sudo su - ec2-user
 ```
@@ -31,7 +31,7 @@ tmpfs                        1.6G     0  1.6G   0% /run/user/0
 
 You'll see a line like `172.31.21.145@tcp:/2hwmvbmv  1.2T  7.5M  1.2T   1% /shared` showing the size of the filesystem and the mount point.
 
-Next, use the command `time lfs find /shared` to list all the files present. You should see something similar to:
+Next, use the command `lfs find /shared` to list all the files present. You should see something similar to:
 
 ```bash
 lfs find /shared
