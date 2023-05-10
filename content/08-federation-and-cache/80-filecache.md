@@ -78,7 +78,7 @@ For Subdirectories enter /data
 For the DNS server IP addresses enter the value you found in the previous step.
 Finally for Cache path enter /data
 
-![File Cache mapping settings](/images/federation-and-cache/filecache-mapping.png)
+![File Cache mapping settings](/images/federation-and-cache/filecache-create2.png)
 
 Once everything is entered, press the Add button. The repository information then gets entered into the top section of the screen. 
 
@@ -97,5 +97,8 @@ https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#fc/file-cache
 
 Click on the File Cache id, then select the Data Repositories tab. 
 
+![File Cache status](/images/federation-and-cache/filecache-available.png)
+
 Once the data repository status is "Available" it is ok to proceed.
 
+![File Cache status](/images/federation-and-cache/filecache-repo-available.png)
