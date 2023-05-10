@@ -41,7 +41,7 @@ Now lets find out the CIDR range for the VPC.
 
 ```bash
 export VPCCIDR=`aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query "Vpcs[].CidrBlock" --region ${AWS_REGION} | jq -r '.[0]'`
-echo ${VPCDCIDR}
+echo ${VPCCIDR}
 172.31.0.0/16
 ```
 
