@@ -5,7 +5,7 @@ weight = 60
 tags = ["tutorial", "ParallelCluster", "Manager"]
 +++
 
-Log out of the cluster and return to the Cloud9 instance. 
+{{% notice warning %}} Log out of the cluster and return to the Cloud9 instance. {{% /notice %}}
 
 To federate the two clusters we need to attach them both to the same SlurmDBD service. In this example we will attach the cloud cluster to the SlurmDBD running in on the onprem cluster. 
 
