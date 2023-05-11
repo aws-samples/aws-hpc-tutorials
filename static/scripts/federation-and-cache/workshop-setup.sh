@@ -580,7 +580,7 @@ Scheduling:
       - Name: c6i
         InstanceType: c6i.large
         MaxCount: 10
-        MinCount: 1
+        MinCount: 0
         Efa:
           Enabled: false
     Iam:
