@@ -29,8 +29,8 @@ Then when logged into the headnode of the cluster, be sure to replace the id and
 
 ```bash
 sudo mkdir /mnt
-sudo mount -t lustre -o relatime,flock fc-xxxxxxxxxx.fsx.eu-west-1.amazonaws.com@tcp:/aaaaaaaaa /mnt
 sudo chown ec2-user.ec2-user -R /mnt
+sudo mount -t lustre -o relatime,flock fc-xxxxxxxxxx.fsx.eu-west-1.amazonaws.com@tcp:/aaaaaaaaa /mnt
 ```
 
 To mount the filesystem at boot time you could add a line to the /etc/fstab file. In this lab, just don't reboot the server!

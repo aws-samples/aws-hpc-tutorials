@@ -9,17 +9,20 @@ tags = ["tutorial", "ParallelCluster", "Manager"]
 
 To federate the two clusters we need to attach them both to the same SlurmDBD service. In this example we will attach the cloud cluster to the SlurmDBD running in on the onprem cluster. 
 
-Before we can reconfigure the cluster we need to open the security group on the onprem head so it will accept connections from the cloud headnode.
+Before we can reconfigure the cluster we need to open the security groups on the headnodes so they can talk to each other. In this example we will permit access to the headnodes from any machine in the VPC. In a production setting you might want to limit this more, maybe to the specific instance.
 
-First lets get the instance ID for the onprem headnode. Ensure you are logged into the Cloud 9 instance, not the cluster.
+First lets get the instance IDs for the headnodes. Ensure you are logged into the Cloud 9 instance, not one of the clusters.
 
 ```bash
 export ONPREM_INSTANCEID=`pcluster describe-cluster -n onprem -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
 echo $ONPREM_INSTANCEID
 i-0142d727aaced581c
+export CLOUD_INSTANCEID=`pcluster describe-cluster -n cloud -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
+echo $CLOUD_INSTANCEID
+i-0142d727aaced581c
 ```
 
-Now lets see which security groups are attached to the onprem headnode.
+Now lets see which security groups are attached to the headnodes.
 
 ```bash
 aws ec2 describe-security-groups --group-ids $(aws ec2 describe-instances --instance-id $ONPREM_INSTANCEID --query "Reservations[].Instances[].SecurityGroups[].GroupId[]" --output text)  | grep GroupName
@@ -33,9 +36,12 @@ There should be 2 groups. One is used to allow access to the Aurora database, th
 ```bash
 export ONPREM_SG=`aws ec2 describe-security-groups --group-ids $(aws ec2 describe-instances --instance-id $ONPREM_INSTANCEID --query "Reservations[].Instances[].SecurityGroups[].GroupId[]" --output text)  | grep GroupName | grep onprem | awk '{print $2}' | sed s/\"//g | sed s/,//g`
 echo ${ONPREM_SG}
+export CLOUD_SG=`aws ec2 describe-security-groups --group-ids $(aws ec2 describe-instances --instance-id $CLOUD_INSTANCEID --query "Reservations[].Instances[].SecurityGroups[].GroupId[]" --output text)  | grep GroupName | grep cloud | awk '{print $2}' | sed s/\"//g | sed s/,//g`
+echo ${CLOUD_SG}
+
 ```
 
-Now we will premit access to the onprem headnode by adding a new rule to the security group to allow other machines on the same VPC to communicate with the headnode on port 6819
+Now we will permit access between the headnodes by adding a new rule to the security group to allow other machines on the same VPC to communicate.
 
 Now lets find out the CIDR range for the VPC.
 
@@ -45,25 +51,42 @@ echo ${VPCCIDR}
 172.31.0.0/16
 ```
 
-Next, lets add a new rule to the security group to permit access from the VPC. In this lab, to keep things simple, we will allow access from the whole VPC. In a production setting you might want to limit this more, maybe to the specific instance.
+Next, lets add a new rule to the security groups to permit access from the VPC. 
 
 ```bash
-aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol tcp --port 6819 --cidr ${VPCCIDR}
+aws ec2 authorize-security-group-ingress --group-name ${ONPREM_SG} --protocol all --cidr ${VPCCIDR}
 {
     "Return": true,
     "SecurityGroupRules": [
         {
-            "SecurityGroupRuleId": "sgr-07e51b3f431c6f753",
-            "GroupId": "sg-0cd67f9f23ea13239",
-            "GroupOwnerId": "196438911214",
+            "SecurityGroupRuleId": "sgr-1234567890",
+            "GroupId": "sg-0123456789",
+            "GroupOwnerId": "111111111111",
             "IsEgress": false,
-            "IpProtocol": "tcp",
-            "FromPort": 6819,
-            "ToPort": 6819,
+            "IpProtocol": "-1",
+            "FromPort": -1,
+            "ToPort": -1,
             "CidrIpv4": "172.31.0.0/16"
         }
     ]
 }
+aws ec2 authorize-security-group-ingress --group-name ${CLOUD_SG} --protocol all --cidr ${VPCCIDR}
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-1234567890",
+            "GroupId": "sg-0123456789",
+            "GroupOwnerId": "111111111111",
+            "IsEgress": false,
+            "IpProtocol": "-1",
+            "FromPort": -1,
+            "ToPort": -1,
+            "CidrIpv4": "172.31.0.0/16"
+        }
+    ]
+}
+
 ```
 
 Now the cloud cluster will be able to communicate with the onprem clusters SlurmDBD service. 
