@@ -8,7 +8,9 @@ tags = ["tutorial", "ParallelCluster"]
 {{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *a. Sign in to the Console* through *d. Work with the AWS CLI* in the **[Getting Started in the Cloud](/02-aws-getting-started.html)** workshop.
 {{% /notice %}}
 
-Some resources have been already setup for you to save time in the lab. These include a Aurora MySQL database to hold the Slurm accounting Information and two HPC Clusters. These clusters whilst both running in AWS are going to be representing an On-Prem Cluster and a Cloud Cluster.
+The first part of this lab is to run a script to provision some base resources.
+
+These include a Aurora MySQL database to hold the Slurm accounting Information and two HPC Clusters. These clusters whilst both running in AWS are going to be representing an On-Prem Cluster and a Cloud Cluster.
 
 Please login to Cloud9 and ensure that you have set Cloud9 to run with Admin rights. Run the command below, the output you get may vary a little. The important thing is to check the Arn and make sure it includes the string "WorkshopRole". If the output includes the string ParticipantRole then you do not have admin rights. 
 
@@ -24,7 +26,4 @@ WSParticipantRole:~/environment $ aws sts get-caller-identity
 }
 ```
 
-If you haven't already install Parallel Cluster version 3.5.1
-
-See LAB xxx for instructions
-
+If this looks good, please proceed.
