@@ -41,15 +41,9 @@ ior
 ```
 
 ```bash
-<<<<<<< HEAD
 [ec2-user@ip-172-31-25-220 ior]$ ior
 IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
 Began               : Tue May  9 12:14:07 2023
-=======
-[ec2-user@ip-172-31-24-231 ~]$ ior
-IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
-Began               : Wed Jun 22 23:56:26 2022
->>>>>>> 5e3c9caf0acfe09f57a168811047d323cb8474bc
 Command line        : ior
 Machine             : Linux ip-172-31-25-220
 TestID              : 0
