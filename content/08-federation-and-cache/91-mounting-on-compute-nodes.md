@@ -19,26 +19,28 @@ aws s3 cp s3://${S3_BUCKET}/cloud-compute.sh cloud-compute.sh
 chmod 755 cloud-compute.sh
 ```
 
-Then update the script, by adding the following lines.
+Then update the script, by adding the following lines at the end of the script.
 
 ```bash
 echo mkdir /mnt >> cloud-compute.sh
-echo mount -t lustre -o relatime,flock ${CACHE_DNS_NAME}:/CACHE_MOUNT_POINT /mnt >> cloud-compute.sh
 echo chown ec2-user.ec2-user -R /mnt >> cloud-compute.sh
+echo mount -t lustre -o relatime,flock ${CACHE_DNS_NAME}:/${CACHE_MOUNT_POINT} /mnt >> cloud-compute.sh
+ln -s /mnt/cache/data/ /data
 ```
 
 Once the updates are in place, take a quick look and make sure it looks something like this:
 
 ```bash
 #!/bin/bash
-aws s3 cp s3://pcluster-2023-04-25-40ece9da/munge.key /etc/munge/munge.key
+aws s3 cp s3://pcluster-2023-04-25-aaaaaaaa/munge.key /etc/munge/munge.key
 chown munge.munge /etc/munge/munge.key
 chmod 600 /etc/munge/munge.key
 systemctl restart munge
 systemctl restart slurmd
 mkdir /mnt
-mount -t lustre -o relatime,flock fc-0fa3a945426e2e234.fsx.eu-west-1.amazonaws.com:/CACHE_MOUNT_POINT /mnt
 chown ec2-user.ec2-user -R /mnt
+mount -t lustre -o relatime,flock fc-aaaaaaaaaaa.fsx.eu-west-1.amazonaws.com:/bbbbbbbbb /mnt
+ln -s /mnt/cache/data/ /data
 ```
 
 As always, the exact paths must be different in your copy. When it looks correct, copy it back to S3.

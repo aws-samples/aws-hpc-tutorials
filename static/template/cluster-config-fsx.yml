@@ -1,7 +1,7 @@
 HeadNode:
-  InstanceType: c5a.2xlarge
+  InstanceType: c5.2xlarge
   Ssh:
-    KeyName: your-key
+    KeyName: ws-default-keypair
   Networking:
     SubnetId: subnet-1234567
   LocalStorage:
@@ -18,13 +18,11 @@ Scheduling:
   SlurmQueues:
     - Name: compute
       ComputeResources:
-        - Name: c5n
+        - Name: c5
           MinCount: 0
           MaxCount: 64
           Instances:
-            - InstanceType: c5n.18xlarge
-          Efa:
-            Enabled: true
+            - InstanceType: c5.xlarge
       Networking:
         SubnetIds:
           - subnet-1234567
