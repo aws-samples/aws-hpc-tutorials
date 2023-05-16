@@ -44,7 +44,14 @@ squeue
 module av
 ```
 
-- **Load a particular module**. In this case, this command loads *IntelMPI* in your environment and checks the path of *mpirun*.
+- **Load a particular module**. In this case, this command loads *IntelMPI* in your environment and checks the path of *mpirun*. First, check to see what version of `mpirun` is available just to see the effect of the module load:
+
+```bash
+mpirun -V
+```
+
+The Intel MPI library can then be loaded, and the command rerun to see the loaded library:
+
 ```bash
 module load intelmpi
 mpirun -V
@@ -70,6 +77,6 @@ You'll see a line like:
 /dev/nvme1n1     50G   24K   47G   1% /shared
 ```
 
-This is our shared filesystem, mounted at `/shared`.
+This is the shared [EBS filesystem](https://aws.amazon.com/ebs/), mounted at `/shared`.
 
 In the next section the input files to run a job using the cluster will be copied.
