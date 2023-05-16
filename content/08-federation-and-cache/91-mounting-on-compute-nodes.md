@@ -23,9 +23,10 @@ Then update the script, by adding the following lines at the end of the script.
 
 ```bash
 echo mkdir /mnt >> cloud-compute.sh
-echo chown ec2-user.ec2-user -R /mnt >> cloud-compute.sh
+
 echo mount -t lustre -o relatime,flock ${CACHE_DNS_NAME}:/${CACHE_MOUNT_POINT} /mnt >> cloud-compute.sh
-ln -s /mnt/cache/data/ /data
+echo chown ec2-user.ec2-user -R /mnt >> cloud-compute.sh
+echo ln -s /mnt/cache/data/ /data >> cloud-compute.sh
 ```
 
 Once the updates are in place, take a quick look and make sure it looks something like this:
@@ -38,8 +39,8 @@ chmod 600 /etc/munge/munge.key
 systemctl restart munge
 systemctl restart slurmd
 mkdir /mnt
-chown ec2-user.ec2-user -R /mnt
 mount -t lustre -o relatime,flock fc-aaaaaaaaaaa.fsx.eu-west-1.amazonaws.com:/bbbbbbbbb /mnt
+chown ec2-user.ec2-user -R /mnt
 ln -s /mnt/cache/data/ /data
 ```
 
