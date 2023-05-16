@@ -99,7 +99,7 @@ fi
 
 
 
-AZ_IDS=euw1-az1,euw1-az2,euw1-az3,euw1-az4
+AZ_IDS=euw1-az1,euw1-az2,euw1-az3
 AZ_COUNT=`echo $AZ_IDS | tr -s ',' ' ' | wc -w`
 
 
