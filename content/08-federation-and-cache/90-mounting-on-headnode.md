@@ -23,7 +23,9 @@ Once you have the commands, in a seperate browser window, please return to Cloud
 
 Login to the headnode of the cloud cluster and mount the new file system by copying the commands shown. An example is below. Do not use the values below, but use those from your environment. First login to the cluster with
 
+```bash
 pcluster ssh -n cloud -i ~/.ssh/ssh-key.pem -r ${AWS_REGION}
+```
 
 Then when logged into the headnode of the cluster, be sure to replace the id and folder of the File Cache with your details.
 
