@@ -99,6 +99,8 @@ Click on the File Cache id, then select the Data Repositories tab.
 
 ![File Cache status](/images/federation-and-cache/filecache-available.png)
 
-Once the data repository status is "Available" it is ok to proceed. If you proceed before the status says available, the data will not be synced and teh following steps will not work.
+Once the data repository status is "Available" it is ok to proceed. 
 
 ![File Cache status](/images/federation-and-cache/filecache-repo-available.png)
+
+{{% notice warning %}} If you proceed before the status says available, the data will not be synced and the following steps will not work properly. {{% /notice %}}
