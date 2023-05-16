@@ -25,18 +25,18 @@ A new tab will open with your AWS Cloud9 environment, which will be ready in a f
 
 Use the terminal at the bottom half of the Cloud9 IDE to enter any required commands.
 
-To ease finding configuration files later, navigate to the home directory (`/home/ec2-user`) by just running the command `cd` or:
+To ease finding configuration files later, navigate to the home directory (`/home/ec2-user`) by just running the command `cd`:
 
 ```bash
-cd /home/ec2-user
+cd
 ```
 
 #### Generate an SSH Key-pair
 SSH is **[commonly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)** used to connect to Amazon EC2 instances. To allow you to connect to your instances, you can generate a key-pair using the AWS CLI in your AWS Cloud9 instance. This example uses the key name **lab-your-key** but you can change the name of your key. Enter the following command to generate a key pair:
 
 ```bash
-aws ec2 create-key-pair --key-name lab-your-key --query KeyMaterial --output text > lab-your-key.pem
-chmod 600 lab-your-key.pem
+aws ec2 create-key-pair --key-name lab-your-key --query KeyMaterial --output text > ~/.ssh/lab-your-key.pem
+chmod 600 ~/.ssh/lab-your-key.pem
 ```
 
 Next add it to the `~/.bashrc` file, this allows us to reference it later:
