@@ -22,10 +22,7 @@ cat > slurm-wrf-conus12km.sh << EOF
 export I_MPI_OFI_LIBRARY_INTERNAL=0
 
 module purge
-
-module load intelmpi
 module load wrf-omp/4.2.2-intel-2022.2.0
-module load libfabric-aws
 
 wrf_exe=wrf.exe
 set -x
