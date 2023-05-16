@@ -41,15 +41,9 @@ ior
 ```
 
 ```bash
-<<<<<<< HEAD
 [ec2-user@ip-172-31-25-220 ior]$ ior
 IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
 Began               : Tue May  9 12:14:07 2023
-=======
-[ec2-user@ip-172-31-24-231 ~]$ ior
-IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
-Began               : Wed Jun 22 23:56:26 2022
->>>>>>> 5e3c9caf0acfe09f57a168811047d323cb8474bc
 Command line        : ior
 Machine             : Linux ip-172-31-25-220
 TestID              : 0
@@ -134,7 +128,8 @@ The IOR output is written to **ior.out** file. If you want, you can use **tail -
 After the job completes, run `cat ior.out` and you should see a result similar to the following. In this example, you see 1 GB/s performance, which is not too far from the [720 MB/s](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf) offered by Amazon FSx for Lustre.
 
 ```bash
-[ec2-user@ip-172-31-25-220 ior]$ cat ior.outLoading intelmpi version 2021.6.0
+[ec2-user@ip-172-31-25-220 ior]$ cat ior.out
+Loading intelmpi version 2021.6.0
 IOR-4.0.0rc2+dev: MPI Coordinated Test of Parallel I/O
 Began               : Tue May  9 12:14:39 2023
 Command line        : /shared/ior/bin/ior -w -r -o=/shared/test_dir -b=256m -a=POSIX -i=5 -F -z -t=64m -C
