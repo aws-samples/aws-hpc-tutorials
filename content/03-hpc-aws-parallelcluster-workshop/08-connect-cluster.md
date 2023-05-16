@@ -33,6 +33,10 @@ You'll need to be authenticated to the AWS account that instance is running in a
 
 ![Browser Warning](/images/hpc-aws-parallelcluster-workshop/browser-warning.png)
 
+{{% notice note %}}
+If you are asked by your browser if you would like to share the clipboard, push Allow. This permits the use of copy/paste commands between your computer and the machine you're connected to through DCV. This will make some of the following sections much easier!
+{{% /notice %}}
+
 3. Next, to launch a terminal (where the rest of the lab will run), click **Activities** > **Terminal**:
 
 ![DCV Terminal](/images/hpc-aws-parallelcluster-workshop/dcv-terminal.png)
