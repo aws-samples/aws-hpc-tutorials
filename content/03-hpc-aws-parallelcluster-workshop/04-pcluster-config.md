@@ -93,14 +93,14 @@ Should show the prepared AMI ID: `ami-0f077c9ce43173631`.
 
 #### Writing the cluster configuration file
 
-A cluster configuration file named `my-cluster-config.yaml` will now be written which will be used to launch the cluster. Navigate back to the environment directory:
+A cluster configuration file named `my-cluster-config.yaml` will now be written which will be used to launch the cluster. Navigate back to the user home directory if not already there:
 
 ```bash
-cd ~/environment/
+cd
 ```
 
 {{% notice info %}}
-Creating this file in the `~/environment` directory will make it easier to look at the configuration file within the IDE, but is not necessary; the configuration file can be created anywhere.
+The cluster configuration file can be created anywhere; it's being created in the home directory here to make it easier to find.
 {{% /notice %}}
 
 Create the configuration file in the current working directory by executing the following command:
@@ -154,14 +154,10 @@ Scheduling:
 EOF
 ```
 
+By choosing to show home directory in the IDE (click on the cog in the left panel), you can view the .yaml configuration file just created.
+![cloud9-ide-home](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-04-cloud9_IDE_show_home.png)
+
 The file can be loaded by double-clicking in the IDE:
 ![cloud9-ide](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-05-cloud9_ConfigYaml.png)
 
-Check that the values that were previously set as environment variables are correctly filled in, then link the configuration file to the home directory and navigate there.
-
-```bash
-ln ~/environment/my-cluster-config.yaml ~/.
-cd
-```
-
-You are now ready to launch a cluster! Proceed to the next section.
+Check that the values that were previously set as environment variables are correctly filled in. If so, you are now ready to launch a cluster! Proceed to the next section.
