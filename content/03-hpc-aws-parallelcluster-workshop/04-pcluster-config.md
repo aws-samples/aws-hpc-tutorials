@@ -5,13 +5,11 @@ weight = 40
 tags = ["tutorial", "ParallelCluster", "config", "configuration", "yaml"]
 +++
 
-To ease configuration of AWS ParallelCluster, you could use the interactive command **[pcluster configure](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html)**. This walks you through a step-by-step process of defining your cluster configuration; to provide information such as the AWS Region, VPC, Subnet, and [Amazon EC2](https://aws.amazon.com/ec2/) Instance Type. 
-
-For this workshop, you will create a simple custom configuration file, using the default VPC and Subnet as well as the **[SSH key-pair](/03-hpc-aws-parallelcluster-workshop/02-create-key-pair.html)** created earlier.
+Now that you installed AWS ParallelCluster and set up the foundation, you can create a configuration file to build a simple HPC Cluster. This file is generated in your home directory.
 
 #### Overview of some of the ParallelCluster parameters
 
-Below are some explanations of the cluster configuration parameters/ settings:
+Below are some explanations of the cluster configuration parameters/settings, and what will be used in this workshop:
 
 - The **[Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)** is the geographical location of the HPC to be created, using the AWS nomenclature. As with the Cloud9 instance, this cluster will be built in the Ireland region (`eu-west-1`).
 - Each instance on the cluster will use the Amazon Linux 2 OS.
@@ -20,7 +18,7 @@ Below are some explanations of the cluster configuration parameters/ settings:
 - The Head-node will use the **[c5n.xlarge](https://aws.amazon.com/ec2/instance-types/)** instance type, with compute nodes using **[c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/)** instances.
 - The cluster has 0 compute nodes when starting and maximum size set to 2 instances. AWS ParallelCluster will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - Intel Hyper-threading is disabled by setting `DisableSimultaneousMultithreading: true` in the configuration file.
-- In this lab we will only use one instance type for the compute nodes, and one queue.
+- In this lab we will only use one queue, with one instance type for the compute nodes.
 - We use a **[placement group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster)** in this lab. A placement group will launch instances close together inside one physical data center in a single Availability Zone to maximize the bandwidth and reduce the latency between instances.
 - We are launching a **[NICE DCV](https://docs.aws.amazon.com/dcv/latest/adminguide/what-is-dcv.html)** server on the head node to enable a graphical user interface to connect to.
 
@@ -33,47 +31,44 @@ For more details about the AWS ParallelCluster configuration options, see the [A
 If running this outside the workshop event, you can change the instance type if you like but you may run into EC2 limits that may prevent you from creating instances or from creating too many instances. You should also be mindful of the cost of running any instances.
 {{% /notice %}}
 
-#### Setting Region and Network settings
 
-Execute the following commands in your cloud9 shell to get your AWS networking information:
+#### Source the env_vars file.
+This makes sure all the required environment variables from the previous section are set.
 
 ```bash
-AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//')
-
-IFACE=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/)
-
-VPC_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/vpc-id)
-
-SUBNET_ID=$(curl --silent http://169.254.169.254/latest/meta-data/network/interfaces/macs/${IFACE}/subnet-id)
+source env_vars
 ```
 
-You can see what values have been obtained for these variables (the definitions of the region in use as well as your specific VPC and Subnet details) by executing the following commands:
+#### 2. You can have a look at them by running:
+
+You can see what values have been set for the ParallelCluster configuration file variables by executing the following commands:
 
 ```bash
 echo "Region: ${AWS_REGION}"
+echo "SSH key name: ${SSH_KEY_NAME}"
 echo "VPC ID: ${VPC_ID}"
 echo "Subnet ID: ${SUBNET_ID}"
+echo "Head node instance type: ${HEAD_NODE_INSTANCE}"
+echo "Compute Instance Types: ${COMPUTE_INSTANCES}"
 ```
 
 {{% notice info %}}
-The region to be used for the ISC workshop is Ireland, **eu-west-1**.
+Check the variables listed for Region and instance types match what you're expecting (described above). For example, the region to be used for the ISC workshop is Ireland, **eu-west-1**.
 {{% /notice %}}
-
-#### Setting Instance Types to use
-
-The head node and compute nodes instance types can be placed into variables as well (done in this case to avoid copy/paste errors):
-
-```bash
-HEAD_NODE_INSTANCE=c5n.xlarge
-COMPUTE_INSTANCES=c5n.18xlarge
-SSH_KEY_NAME=lab-your-key
-```
 
 #### Using a custom Machine Image
 
-The cluster could be set up with the base Amazon Linux 2 image, but in order to speed up the set up process in later sections of this workshop a custom image will be used instead. This [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) has been prepared with the [Weather Research and Forecasting (WRF)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) software installed into an otherwise clean Amazon Linux 2 image.
+A cluster could be set up with the base Amazon Linux 2 image, but in order to speed up the set up process in later sections of this workshop a pre-built custom image with a compiled version of WRF v4 will be used instead. This [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) has been prepared with the [Weather Research and Forecasting (WRF)](https://ncar.ucar.edu/what-we-offer/models/weather-research-and-forecasting-model-wrf) software installed into an otherwise clean Amazon Linux 2 image.
 
-A quick search of a library of public AMIs yields the AMI ID:
+If you run the command:
+
+```bash
+echo "Custom Machine Image: ${CUSTOM_AMI}"
+```
+
+This should show the prepared AMI ID: `ami-0f077c9ce43173631`.
+
+This was set up with the **env_vars** file used in the previous section, which already contained the line to get the AMI ID you need. You can see below - just for your convenience - the line used to retrieve this AMI ID.
 
 ```bash
 export CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
@@ -82,14 +77,6 @@ export CUSTOM_AMI=`aws ec2 describe-images --owners 280472923663 \
     --region ${AWS_REGION} \
     | jq -r 'sort_by(.CreationDate)[-1] | .ImageId'`
 ```
-
-Running the command:
-
-```bash
-echo ${CUSTOM_AMI}
-```
-
-Should show the prepared AMI ID: `ami-0f077c9ce43173631`.
 
 #### Writing the cluster configuration file
 
@@ -154,7 +141,7 @@ Scheduling:
 EOF
 ```
 
-By choosing to show home directory in the IDE (click on the cog in the left panel), you can view the .yaml configuration file just created.
+In the Cloud9 IDE, the home directory can by shown (click on the cog in the left panel). This allows you to see the .yaml configuration file just created in `/home/ec2-user`.
 ![cloud9-ide-home](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-04-cloud9_IDE_show_home.png)
 
 The file can be loaded by double-clicking in the IDE:
