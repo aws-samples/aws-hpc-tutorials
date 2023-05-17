@@ -18,10 +18,6 @@ lfs hsm_state /shared/SEG_C3NA_Velocity.sgy
 ```
 ```bash
 /shared/SEG_C3NA_Velocity.sgy: (0x0000000d) released exists archived, archive_id:1
-
-real    0m0.002s
-user    0m0.001s
-sys     0m0.000s
 ```
 
 You should see that the file is [released exists archived](https://github.com/DDNStorage/lustre_manual_markdown/blob/master/03.15-Hierarchical%20Storage%20Management%20(HSM).md#requests). 
@@ -33,10 +29,6 @@ ls -lh /shared/SEG_C3NA_Velocity.sgy
 ```
 ```bash
 -rwxr-xr-x 1 root root 455M Jun 22 23:26 /shared/SEG_C3NA_Velocity.sgy
-
-real    0m0.002s
-user    0m0.001s
-sys     0m0.000s
 ```
 
 As shown above, the file size is about 455 MB.
@@ -70,7 +62,7 @@ user    0m0.000s
 sys     0m0.168s
 ```
 
-This time it took only **.16 seconds**.
+This time it took only **.17 seconds**.
 
 The new access time is a bit too fast because the data has been cached im memory on the instance. Now, drop the caches and repeat the command again.
 
@@ -98,10 +90,6 @@ lfs hsm_state /shared/SEG_C3NA_Velocity.sgy
 ```
 ```
 /shared/SEG_C3NA_Velocity.sgy: (0x00000009) exists archived, archive_id:1
-
-real    0m0.006s
-user    0m0.001s
-sys     0m0.000s
 ```
 
 You can see that the file state changed from `released exists archived` to `exists archived`.
@@ -148,11 +136,6 @@ filesystem_summary:         1.1T        7.5M        1.1T   0% /shared
 You are back to **7.5 MB** of stored data.
 
 Access the file again and check how much time it takes.
-
-```bash
-time cat /shared/SEG_C3NA_Velocity.sgy >/dev/shm/fsx
-```
-
 It should take around 6 seconds. Subsequent reads use the client cache. You can drop the caches, if desired.
 
 ```bash
