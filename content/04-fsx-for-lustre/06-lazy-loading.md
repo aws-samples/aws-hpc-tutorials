@@ -49,7 +49,7 @@ user    0m0.000s
 sys     0m0.294s
 ```
 
-It took about **6 seconds** to retrieve the file.
+It took about **6 seconds** to retrieve the file. The data was copied from S3 to the FSx for Lustre file system and to the head node.
 
 Run the command again and see the access time:
 
@@ -64,7 +64,7 @@ sys     0m0.168s
 
 This time it took only **.17 seconds**.
 
-The new access time is a bit too fast because the data has been cached im memory on the instance. Now, drop the caches and repeat the command again.
+The new access time is a bit too fast because the data has been cached in memory on the head node instance. Now, drop the local caches on the head node and repeat the command again.
 
 ```bash
 sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches'
@@ -78,6 +78,7 @@ real    0m0.591s
 user    0m0.005s
 sys     0m0.312s
 ```
+This file was retrieved from FSx for Lustre without caching on the head node and without copying from S3.
 
 #### Review the File System Status
 
