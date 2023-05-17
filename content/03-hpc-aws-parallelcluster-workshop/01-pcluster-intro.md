@@ -16,7 +16,7 @@ AWS ParallelCluster can be managed through an [Application Programming Interface
 ### Benefits
 #### Automatic Resource Scaling
 
-With AWS ParallelCluster, you can use a simple text file to model, provision, and dynamically scale the resources needed for your applications in an automated and secure manner.
+With AWS ParallelCluster, you can use a text file to model, provision, and dynamically scale the resources needed for your applications in an automated and secure manner.
 
 #### Easy Cluster Management
 With AWS ParallelCluster you can provision resources in a safe, repeatable manner, allowing you to build and rebuild your infrastructure without the need for manual actions or custom scripts.

@@ -1,7 +1,7 @@
 ---
 title: "Hybrid HPC"
 date: 2023-04-11T09:05:54Z
-weight: 30
+weight: 50
 pre: "<b>Lab III - </b>"
 tags: ["HPC", "Hybrid"]
 ---

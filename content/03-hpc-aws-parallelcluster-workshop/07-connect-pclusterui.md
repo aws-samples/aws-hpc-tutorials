@@ -9,7 +9,7 @@ ParallelCluster UI was deployed as a CloudFormation Stack prior to the event. To
 
 #### Create User
 
-1. Open the [Cognito Console](https://console.aws.amazon.com/cognito/v2/idp/user-pools)
+1. Open the [Cognito Console](https://eu-west-1.console.aws.amazon.com/cognito/v2/idp/user-pools)
 
 2. Choose **parallelcluster-ui-Cognito-**...
 
@@ -36,7 +36,7 @@ Leave everything else set with the default values.
 
 ![New Cognito username](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-07-c-click-username.png)
 
-7. Scroll down in the user details section to **Groups > Add user to Group**:
+7. Scroll down in the user details section to **Group Memberships > Add user to Group**:
 
 ![Add user to group](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-07-d-add-user-group.png)
 
@@ -45,7 +45,7 @@ Leave everything else set with the default values.
 
 #### Connect to the cluster
 
-1. Navigate to [AWS CloudFormation Console](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks) and on the left select the stack **parallelcluster-ui**
+1. Navigate to [AWS CloudFormation Console](https://eu-west-1.console.aws.amazon.com/cloudformation/home) and on the left select the stack **parallelcluster-ui**
 
 2. Click on **Outputs** and look for the row showing the key **ParallelClusterUIUrl**
 
@@ -63,4 +63,4 @@ You will now be logged in to the AWS ParallelCluster UI, with your cluster build
 
 ![Pcluster UI Log in](/images/hpc-aws-parallelcluster-workshop/lab1-pcluster-workshop-07-h-cluster-creation-in-progress.png)
 
-Next you will do a dry run cluster creation using the ParallelCluster UI to familiarise yourself with the steps taken earlier.
+Next you will connect to the cluster and submit a job using WRF.

@@ -7,11 +7,11 @@ tags = ["tutorial", "create", "ParallelCluster"]
 
 In the next few steps we will use the FileCache service to exchange data between the two clusters. We will create the cache connected to the Cloud Cluster and cache the data from the Onprem cluster. Before we proceed we need to know which Subnet the Cloud Cluster is setup in.
 
-Please logout of the cluster and return to the Cloud9 instance.
+{{% notice warning %}} Log out of the cluster and return to the Cloud9 instance. {{% /notice %}}
 
 Before we create the File Cache we need to know which Subnet the Cloud cluster is installed in.
 
-We will do this in two steps, first lets retrieve the Instance Id of the headnode
+We will do this in two steps, first lets retrieve the Instance Id of the Cloud headnode
 
 ```bash
 export CLOUD_INST_ID=`pcluster describe-cluster -n cloud -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
@@ -23,7 +23,7 @@ Then lets see which subnet the Instance is using.
 
 ```bash
 echo Subnet = `aws ec2 describe-instances --filter "Name=instance-id,Values=${CLOUD_INST_ID}" | jq '.Reservations[0].Instances[0].SubnetId' | sed s/\"//g`
-Subnet = subnet-8f6fe2d5
+Subnet = subnet-12345678
 ```
 
 Note down this Subnet Id as you will need it in the next step.
@@ -31,7 +31,9 @@ Note down this Subnet Id as you will need it in the next step.
 We will also need the details of the Onprem cluster headnode. We can get that with...
 
 ```bash
-echo Data Repository Path = nfs://`aws ec2 describe-instances --filter Name=instance-id,Values=${CLOUD_INST_ID} | jq '.Reservations[0].Instances[0].PrivateDnsName' | sed s/\"//g`/
+export ONPREM_INST_ID=`pcluster describe-cluster -n onprem -r eu-west-1 | jq '.headNode.instanceId' | sed s/\"//g`
+
+echo Data Repository Path = nfs://`aws ec2 describe-instances --filter Name=instance-id,Values=${ONPREM_INST_ID} | jq '.Reservations[0].Instances[0].PrivateDnsName' | sed s/\"//g`/
 Data Repository Path = nfs://ip-172-31-34-123.eu-west-1.compute.internal/
 ```
 
@@ -72,11 +74,11 @@ Once everything is entered, press Next to continue to the next page.
 In this step we associate the /data nfs share on the Onprem cluster with the new File Cache.
 
 Enter the data repository path you found previously
-For Subdirectories enter /data
+For Subdirectories enter data
 For the DNS server IP addresses enter the value you found in the previous step.
-Finally for Cache path enter /data
+Finally for Cache path enter /cache
 
-![File Cache mapping settings](/images/federation-and-cache/filecache-mapping.png)
+![File Cache mapping settings](/images/federation-and-cache/filecache-create2.png)
 
 Once everything is entered, press the Add button. The repository information then gets entered into the top section of the screen. 
 
@@ -87,12 +89,18 @@ Please check all the values are correct then press the Create Cache button.
 ![File Cache summary](/images/federation-and-cache/filecache-review.png)
 
 
-The cache will take around 10 minutes to create. 
+The cache will take around 10 minutes to create. The data repository association a few minutes more.
 
 This page will show the status of the File Cache.
 
 https://eu-west-1.console.aws.amazon.com/fsx/home?region=eu-west-1#fc/file-caches
 
-Once the cache shows as available you can proceed.
+Click on the File Cache id, then select the Data Repositories tab. 
 
-![File Cache status](/images/federation-and-cache/filecache-ready.png)
+![File Cache status](/images/federation-and-cache/filecache-available.png)
+
+Once the data repository status is "Available" it is ok to proceed. 
+
+![File Cache status](/images/federation-and-cache/filecache-repo-available.png)
+
+{{% notice warning %}} If you proceed before the status says available, the data will not be synced and the following steps will not work properly. {{% /notice %}}
