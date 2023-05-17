@@ -35,7 +35,7 @@ export I_MPI_OFI_PROVIDER=efa
 export I_MPI_PIN_DOMAIN=omp
 export KMP_AFFINITY=compact
 export I_MPI_DEBUG=4
-time mpiexec.hydra -np $SLURM_NTASKS --ppn $SLURM_NTASKS_PER_NODE $wrf_exe
+time mpiexec.hydra -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$wrf_exe
 EOF
 ```
 
