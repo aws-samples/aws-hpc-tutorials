@@ -74,9 +74,9 @@ Once everything is entered, press Next to continue to the next page.
 In this step we associate the /data nfs share on the Onprem cluster with the new File Cache.
 
 Enter the data repository path you found previously
-For Subdirectories enter /data
+For Subdirectories enter data
 For the DNS server IP addresses enter the value you found in the previous step.
-Finally for Cache path enter /data
+Finally for Cache path enter /cache
 
 ![File Cache mapping settings](/images/federation-and-cache/filecache-create2.png)
 
@@ -89,7 +89,7 @@ Please check all the values are correct then press the Create Cache button.
 ![File Cache summary](/images/federation-and-cache/filecache-review.png)
 
 
-The cache will take around 10 minutes to create. 
+The cache will take around 10 minutes to create. The data repository association a few minutes more.
 
 This page will show the status of the File Cache.
 
@@ -99,6 +99,8 @@ Click on the File Cache id, then select the Data Repositories tab.
 
 ![File Cache status](/images/federation-and-cache/filecache-available.png)
 
-Once the data repository status is "Available" it is ok to proceed.
+Once the data repository status is "Available" it is ok to proceed. 
 
 ![File Cache status](/images/federation-and-cache/filecache-repo-available.png)
+
+{{% notice warning %}} If you proceed before the status says available, the data will not be synced and the following steps will not work properly. {{% /notice %}}

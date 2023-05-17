@@ -34,7 +34,7 @@ AWS ParallelCluster supports a wide variety of operating systems and batch sched
 
 ### AWS ParallelCluster UI Architecture
 
-AWS ParallelCluster UI is built on a fully serverless architecture, in most cases it’s [completely free](https://github.com/aws-samples/pcluster-manager#costs) to run, you just pay for the clusters themselves.
+AWS ParallelCluster UI is built on a fully serverless architecture, in most cases it’s completely free to run, you just pay for the clusters themselves.
 
 ![pcluster_ui_arch](/images/hpc-aws-parallelcluster-workshop/pcluster-ui-architecture.png)
 

@@ -40,7 +40,7 @@ pcluster list-clusters
 This will show whether create is still in progress or completed. **Do not wait for the cluster creation to complete**; please proceed in the workshop instructions.
 
 {{% notice note %}}
-There can be only one cluster of a given name at any time on your account.
+While it is possible to have multiple clusters within one account, each cluster has to have a unique (for that account) name. That is, two clusters in an account cannot have the same name. If a cluster is deleted, the name can be reused.
 {{% /notice %}}
 
 {{% notice info%}}

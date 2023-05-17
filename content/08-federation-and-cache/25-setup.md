@@ -18,4 +18,4 @@ chmod 755 workshop-setup.sh
 
 The script will take some time to run, when it is finished the message "Setup Complete." will be displayed.
 
-Incase of any problems, please refer to the log file or ask. The next page includes a few checks that the automatino has worked correctly.
+Incase of any problems, please refer to the log file or ask. The next page includes a few checks that the automation has worked correctly.
