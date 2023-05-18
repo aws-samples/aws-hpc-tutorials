@@ -15,7 +15,7 @@ Below are some explanations of the cluster configuration parameters/settings, an
 - Each instance on the cluster will use the Amazon Linux 2 OS.
 - A **[GP2 Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)** volume will be attached to the head-node then shared through NFS to be mounted by the compute nodes on /shared. It is generally a good location to store applications or scripts. Keep in mind that the /home directory is shared on NFS as well.
 - **[SLURM](https://slurm.schedmd.com/overview.html)** will be used as a job scheduler
-- The Head-node will use the **[c5n.xlarge](https://aws.amazon.com/ec2/instance-types/)** instance type, with compute nodes using **[c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/)** instances.
+- The Head-node will use the **[c5.xlarge](https://aws.amazon.com/ec2/instance-types/)** instance type, with compute nodes using **[c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/)** instances.
 - The cluster has 0 compute nodes when starting and maximum size set to 2 instances. AWS ParallelCluster will grow and shrink between the min and max limits based on the cluster utilization and job queue backlog.
 - Intel Hyper-threading is disabled by setting `DisableSimultaneousMultithreading: true` in the configuration file.
 - In this lab we will only use one queue, with one instance type for the compute nodes.

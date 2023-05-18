@@ -1,5 +1,5 @@
 +++
-title = "g. Monitor your jobs"
+title = "h. Monitor your jobs"
 date = 2019-09-18T10:46:30-04:00
 weight = 350
 tags = ["tutorial", "install", "AWS", "batch", "Nextflow"]

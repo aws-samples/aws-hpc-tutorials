@@ -20,7 +20,7 @@ If you have time and are curious, you can examine the different steps of the scr
 
 #### 1. Retrieve the script.
 ```bash
-wget https://isc23.hpcworkshops.com/scripts/aws-parallelcluster/ISC23_lab1_create_parallelcluster_config.sh
+wget https://isc-hpc-labs.s3.us-east-2.amazonaws.com/ISC23_lab1_create_parallelcluster_config.sh
 ```
 
 #### 2. Execute the script to retrieve network information.
