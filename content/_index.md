@@ -12,7 +12,7 @@ The website will be maintained after ISC23, labs will also be available on https
 You can download the slides at [https://isc23-slides.s3.eu-west-1.amazonaws.com/ISC23_Best_Practices_HPC_in_The_Cloud.pdf](https://isc23-slides.s3.eu-west-1.amazonaws.com/ISC23_Best_Practices_HPC_in_The_Cloud.pdf)
 
 {{% notice tip %}}
-**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: https://survey.immersionday.com/IGDEbg9nR.**
+**We are always looking at ways to make this tutorial even better. Please provide feedback and comments here: [https://bit.ly/isc23cloud](https://bit.ly/isc23cloud).**
 {{% /notice %}}
 
 
