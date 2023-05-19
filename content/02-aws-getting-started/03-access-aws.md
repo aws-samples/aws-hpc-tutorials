@@ -12,29 +12,33 @@ You can follow the instructions in [Run in your AWS account](/07-aws-getting-sta
 
 Do not hesitate to ask questions at isctutorial@amazon.com if you need any help.
 
-##### Step 1
+## Step 1
 
 {{% notice warning %}}
 Temporary accounts were available on May 21st 2023 for the duration of the tutorial. If you would like to run through the labs at a later stage on your own, with your company or institution, please contact us at isctutorial@amazon.com so we can follow-up with you.
 {{% /notice %}}
 
-##### Step 2
+## Step 2
 
-Go to the website https://dashboard.eventengine.run/
+Go to the website https://catalog.workshops.aws/join
 
-##### Step 3
+## Step 3
 
-You will then be prompted to a screen with the terms and conditions, add the *hashcode* and click **Accept** to continue:
+You will then be prompted to enter a **Event access code**, review the terms and conditions, and **Join event**:
 
-## Hash: e921-1549fc6ca4-65
+#### Event access code: xxxx
 
-![Event Engine Login](</images/isc23/event-engine-login.png>)
+![Event access Login](</images/isc23/workshop-studio-event-access.png>)
 
-##### Step 4
+#### Review terms and join event
 
-Click **AWS Console Login**, then on the following popup click on the link **Open AWS Console**.
+![Event access Login](</images/isc23/workshopstudio-terms.png>)
 
-![Event Engine AWS Console](</images/isc23/event-engine-aws-console.png>)
+## Step 4
+
+Choose **Open AWS Console**.
+
+![Open AWS Console](</images/isc23/workshopstudio-open-console.png>)
 
 {{% notice warning %}}
 Do not forget to run in the Ireland AWS Region (eu-west-1). We can connect into your account if you need help during the tutorial.
