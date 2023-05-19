@@ -21,11 +21,11 @@ On the next few screens, we'll modify the account specific components and leave 
 
 3. Select a **VPC** from your account. There should only be one VPC present if you have deleted the clusters from the previous labs.
 
-![Cluster Wizard](/images/pcluster/pcmanager-2.png)
+![Cluster Wizard](/images/pcluster/lab2-selectVPC.jpg)
 
 4. Select a **Keypair** from your account. This can be an existing `lab-your-key` in your Cloud9 instance. It can also be the `ws-default-keypair` that was automatically provided by Workshop Studio. You will not require a keypair when using ParallelCluster UI.
 5. By choosing a **Subnet** you are implicitly selecting an Availability Zone (AZ), note your Subnet or AZ to choose the same Subnet in the Compute Queue configuration.
 
-![Cluster Wizard](/images/pcluster/pcmanager-3.png)
+![Cluster Wizard](/images/pcluster/lab2-selectHeadNode.jpg)
 
 On the next page we show how to create a filesystem with AWS ParallelCluster.

@@ -35,8 +35,8 @@ Push the next button to continue to the next step:
 
 2. Select the same **Subnet** for the compute fleet as for the head node. The Amazon FSx for Lustre filesystem will also be created in this subnet.
 
-![Cluster Wizard](/images/pcluster/pcmanager-4.png)
+![Cluster Wizard](/images/pcluster/lab2-selectQueue.jpg)
 
 3. Click **Dry Run** to confirm that there are no obvious errors in the configuration. Then click **Create**
 
-![Cluster Wizard](/images/pcluster/pcmanager-5.png)
+![Cluster Wizard](/images/pcluster/lab2-Create.jpg)
