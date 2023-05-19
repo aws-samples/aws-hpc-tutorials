@@ -1,5 +1,5 @@
 +++
-title = "c. Set up Batch Resources"
+title = "d. Set up Batch Resources"
 date = 2019-09-18T10:46:30-04:00
 weight = 150
 tags = ["tutorial", "install", "AWS", "batch", "packer"]

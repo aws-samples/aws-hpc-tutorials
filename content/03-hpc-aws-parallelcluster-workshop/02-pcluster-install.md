@@ -5,10 +5,6 @@ weight = 20
 tags = ["tutorial", "ParallelCluster", "Install"]
 +++
 
-
-{{% notice info %}}This lab requires an AWS Cloud9 IDE. If you do not have an AWS Cloud9 IDE set up, complete sections *b. Open a Clou9 Environment* through *d. Temporary credentials on Cloud9* in the **[Preparation](/02-aws-getting-started.html)** workshop.
-{{% /notice %}}
-
 #### Load Cloud9 IDE
 
 If the Cloud9 IDE isn't currently loaded:

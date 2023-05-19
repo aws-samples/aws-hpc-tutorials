@@ -32,7 +32,6 @@ Temporary accounts were available on May 21st 2023 for the duration of the tutor
 Before and during the tutorial you may be interested in going through the following sections:
 
 - **[Agenda](/01-hpc-overview/00-agenda.html)** of the tutorial.
-- **[FAQ](/01-hpc-overview/01-updates.md)** answers to common questions will be communicated here during the tutorial.
 - **[Lab account](/02-aws-getting-started/03-access-aws.html)** on how to access your lab account.
 
 #### Presentations Slides

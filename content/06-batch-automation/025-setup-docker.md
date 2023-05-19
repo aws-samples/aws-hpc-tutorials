@@ -1,5 +1,5 @@
 +++
-title = "d. Create container repository"
+title = "c. Create container repository"
 date = 2019-09-18T10:46:30-04:00
 weight = 145
 tags = ["tutorial", "install", "AWS", "batch", "nextflow"]
