@@ -2,7 +2,7 @@
 title: "Run in your AWS account"
 date: 2019-01-24T09:05:54Z
 weight: 70
-pre: "<b>Optional ⁃ </b>"
+pre: "<b>Post Tutorial ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 

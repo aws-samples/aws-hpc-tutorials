@@ -1,5 +1,5 @@
 ---
-title: "a. Event: Accessing Your Lab Account"
+title: "a. Accessing Your Lab Account"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 weight: 50
@@ -7,6 +7,7 @@ weight: 50
 
 {{% notice warning %}}
 Accounts are only accessible for the duration of the event. To continue using AWS after the event, [create an AWS Account](<https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>).
+You can follow the instructions in [Run in your AWS account](/07-aws-getting-started.html)
 {{% /notice %}}
 
 Do not hesitate to ask questions at isctutorial@amazon.com if you need any help.
