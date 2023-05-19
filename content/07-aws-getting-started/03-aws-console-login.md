@@ -1,8 +1,8 @@
 +++
-title = "b. Post Event: Access AWS (Skip)"
+title = "a. Access your AWS Account"
 date = 2019-09-18T10:46:30-04:00
 draft = false
-weight = 60
+weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
@@ -23,6 +23,6 @@ After you sign in, take a few minutes to explore the navigation components of th
 
 Start this workshop by selecting an **AWS Region**:
 
-Choose the **Region** drop-down menu, then choose **US East (N. Virginia)** us-east-1.
+Choose the **Region** drop-down menu, then choose **Europe (Ireland)** eu-west-1.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/aws-console.png)

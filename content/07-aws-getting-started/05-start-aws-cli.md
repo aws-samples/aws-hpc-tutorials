@@ -35,6 +35,9 @@ To make sure you have AWS CLI version 2.x. You will first uninstall any existing
 
 ```bash
 sudo pip uninstall -y awscli
+sudo rm /usr/local/bin/aws
+sudo rm /usr/local/bin/aws_completer
+sudo rm -rf /usr/local/aws-cli
 ```
 
 2. Install AWS CLI 2.x
@@ -56,4 +59,28 @@ aws --version
 
 ```bash
 sudo yum install -y jq 
+```
+
+5. Install yq utility (you will need this utiity to work with the cluster configuration file, as it is in YAML format)
+
+```bash
+VERSION=v4.28.1
+BINARY=yq_linux_amd64
+mkdir -p $HOME/.local/bin
+wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq
+```
+
+6. Identify the AWS region with the following commands in the Cloud9 terminal:
+
+```bash
+export AWS_REGION=$(curl --silent http://169.254.169.254/latest/meta-data/placement/region)
+echo $AWS_REGION
+echo "export AWS_REGION=$AWS_REGION" > ~/.bash_profile
+```
+
+7. Configure the AWS CLI to use this AWS region:
+
+```bash
+aws configure set default.region ${AWS_REGION}
+aws configure get default.region
 ```
