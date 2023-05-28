@@ -10,7 +10,7 @@ tags: ["HPC", "Overview"]
 
 To deploy AWS ParallelCluster you have two options:
 
-1. **AWS ParallelCluster UI** This is a Web UI that makes deploying clusters simple. We reccomend this for first time users.
+1. **AWS ParallelCluster UI** This is a Web UI that makes deploying clusters simple. We recommend this for first time users.
 2. **AWS ParallelCluster CLI** This is a CLI tool for deploying clusters.
 
 In the following section we deploy the web based UI, if you'd like to use the CLI instead, skip to [AWS ParallelCluster CLI](04-pcluster-cli.html).
