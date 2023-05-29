@@ -50,7 +50,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - \$(aws ecr get-login --region \$AWS_REGION --no-include-email)
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
       - IMAGE_TAG=\$(echo \$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
       - echo IMAGE TAG \$IMAGE_TAG
 

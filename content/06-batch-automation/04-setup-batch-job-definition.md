@@ -21,6 +21,7 @@ aws s3 cp s3://sca23-hpc-labs/sca23-nextflow-batch-jd.template.yaml .
 	- **ECSRoleArn** - The name of the ECS task execution role created in Section b. of this Lab.
 	- **BucketNameResults** - The name of the Amazon S3 bucket created in Section a. of this Lab to store the results of the Nextflow pipeline run. 
 	- **NFJobQueue** - The name of the AWS Batch job-queue to execute the downstream Nextflow jobs.
+	- **NXF_VER** - The version of Nextflow to use.
 
 ```bash
 REPOSITORY_NAME=sca23-container
@@ -37,6 +38,9 @@ echo "export NFJobQueue=${NFJobQueue}"
 source s3_vars
 BucketNameResults=${BUCKET_NAME_RESULTS}
 echo "export BucketNameResults=${BucketNameResults}"
+
+NXF_VER=22.10.8
+echo "export NXF_VER=22.10.8"
 ``` 
 
 3. Deploy the Cloudformation template to create the Batch Job definition.
