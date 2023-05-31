@@ -14,6 +14,7 @@ Run the following commands on your Cloud9 terminal
 
 ```bash
 aws s3 cp s3://sca23-hpc-labs/sca23-nextflow-batch-jd.template.yaml .
+sed -i "/         Value: \!Ref NFJobQueue/a\        - Name: NXF_VER\n          Value: 22.10.8" sca23-nextflow-batch-jd.template.yaml
 ```
 
 2. Set the following environment variables to be passed as parameters to the Cloudformation stack. 
