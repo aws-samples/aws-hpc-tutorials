@@ -41,6 +41,8 @@ The script also installs [Miniconda3](https://docs.conda.io/en/latest/miniconda.
 cat > post-install.sh << EOF
 #!/bin/bash
 
+export HOME=/home/ec2-user
+
 # start configuration of NCCL and EFA only if CUDA and EFA present
 CUDA_DIRECTORY=/usr/local/cuda
 EFA_DIRECTORY=/opt/amazon/efa

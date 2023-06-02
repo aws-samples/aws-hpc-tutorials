@@ -25,7 +25,7 @@ SAVEDIR=/lustre/checkpoints
 WORLD_SIZE_JOB=\$SLURM_NTASKS
 RANK_NODE=\$SLURM_NODEID
 PROC_PER_NODE=8
-MASTER_ADDR_JOB=\$SLURM_SUBMIT_HOST
+MASTER_ADDR_JOB=(\`scontrol show hostnames \$SLURM_JOB_NODELIST | head -n 1\`)
 MASTER_PORT_JOB="12234"
 DDP_BACKEND=c10d
 
@@ -44,7 +44,7 @@ MAX_SENTENCES=8
 UPDATE_FREQ=1
 
 # calling fairseq-train
-python -m torch.distributed.launch \
+torchrun \
     --nproc_per_node=\$PROC_PER_NODE \
     --nnodes=\$WORLD_SIZE_JOB \
     --node_rank=\$RANK_NODE \
@@ -84,7 +84,7 @@ EOF
 chmod +x train.sh
 ```
 
-The script starts by setting up paths for the training data, output and checkpointing. All paths reference _/lustre_ and are visible by all compute nodes. Next, the script sets environment variables for the **PyTorch** _DistributedDataParalle API_ based on the **SLURM** environment. It also sets the required environment variables for [NCCL](https://developer.nvidia.com/nccl) to work with [AWS EFA](https://aws.amazon.com/hpc/efa/). The last section contains the command `python -m torch.distributed.launch`, which launches the training, based on the environment variables previously set. For more information on the _DistributedDataParalle API_, refer to the [documentation here](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+The script starts by setting up paths for the training data, output and checkpointing. All paths reference _/lustre_ and are visible by all compute nodes. Next, the script sets environment variables for the **PyTorch** _DistributedDataParalle API_ based on the **SLURM** environment. It also sets the required environment variables for [NCCL](https://developer.nvidia.com/nccl) to work with [AWS EFA](https://aws.amazon.com/hpc/efa/). The last section contains the command `torchrun`, which launches the training, based on the environment variables previously set. For more information on the _DistributedDataParalle API_, refer to the [documentation here](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 Create the **SLURM** batch script with the following commands:
 
