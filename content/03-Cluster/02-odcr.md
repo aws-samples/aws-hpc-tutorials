@@ -40,10 +40,13 @@ In this section we'll show you how to either:
 
     ![Include ODCR](/images/03-cluster/include_odcr.png)
 
-2. Next modify the `InstanceType` section:
+2. Next modify the `InstanceType` section to make sure it's specified as `InstanceType` instead of `InstanceType` in a list.
 
     ```yaml
-
+    Instances:
+      - InstanceType: p4d.24lxarge
+    # to
+    InstanceType: p4d.24lxarge
     ```
 
 3. Next, click **Dry Run** to confirm the setup and then click **Create**

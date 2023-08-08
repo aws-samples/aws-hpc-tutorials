@@ -9,7 +9,7 @@ The [AWS ParallelCluster API](https://docs.aws.amazon.com/parallelcluster/latest
 ParallelCluster UI is a web UI that built upon the AWS ParallelCluster CLI that you can use to manage your compute clusters. It'll take about 20 minutes to deploy both stacks. You will initiate the deployment now to have it ready by the time you need it.
 
 1. Deploy the ParallelCluster UI stack by clicking on this button:
-    {{% button href="https://us-east-2.console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-2.s3.amazonaws.com/pcluster-manager.yaml&param_Version=3.3.0"  icon="fas fa-rocket" %}}Deploy ParallelCluster Manager{{% /button %}}
+    {{% button href="https://us-east-2.console.aws.amazon.com/cloudformation/home?#/stacks/create/review?stackName=pcluster-manager&templateURL=https://pcluster-manager-us-east-2.s3.amazonaws.com/pcluster-manager.yaml&param_Version=3.3.0"  icon="fas fa-rocket" %}}Deploy ParallelCluster UI{{% /button %}}
 
 2. The AWS Console opens on the AWS CloudFormation panel to deploy your stack. Update the field *AdminUserEmail* with **a valid email** to receive a temporary password in order to connect to the ParallelCluster UI GUI. Leave the other fields with their default values and click **Next** to proceed to Step 3.
 
