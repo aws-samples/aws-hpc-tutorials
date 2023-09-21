@@ -1,0 +1,60 @@
+Imds:
+  ImdsSupport: v2.0
+HeadNode:
+  InstanceType: c5.2xlarge
+  Imds:
+    Secured: true
+  LocalStorage:
+    RootVolume:
+      VolumeType: gp3
+  Networking:
+    SubnetId: subnet-07296e4de57cc931e
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  CustomActions:
+    OnNodeConfigured:
+      Sequence:
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: p4d
+      CapacityReservationTarget:
+        CapacityReservationId: cr-0a80b8040e67eb9d6
+      AllocationStrategy: lowest-price
+      ComputeResources:
+        - Name: p4d-cr-0
+          InstanceType: p4d.24xlarge
+          MinCount: 2
+          MaxCount: 2
+          HealthChecks:
+            Gpu:
+              Enabled: true
+          Efa:
+            Enabled: true
+      ComputeSettings:
+        LocalStorage:
+          RootVolume:
+            VolumeType: gp3
+      Networking:
+        SubnetIds:
+          - subnet-006318c05636c38fa
+        PlacementGroup:
+          Enabled: true
+      CustomActions:
+        OnNodeConfigured:
+          Sequence:
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+  SlurmSettings:
+    QueueUpdateStrategy: DRAIN
+    EnableMemoryBasedScheduling: true
+Region: ap-northeast-2
+Image:
+  Os: ubuntu2004
+Monitoring:
+  DetailedMonitoring: true

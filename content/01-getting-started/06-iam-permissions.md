@@ -16,10 +16,26 @@ In order to create our cluster we need to add an additional IAM policy.
 
 3. Select the `AWSXRayDaemonWriteAccess` policy and remove it
 
-4. Select `Add permissions` > `Attach policies`
+4. Select `Add permissions` > `Create inline Policy`
 
-    ![Attach Policies](/images/01-getting-started/attach-policies.jpeg)
+    ![Attach Policies](/images/03-cluster/attach-policies.png)
 
-5. Search for `AdministratorAccess` > click `Attach policies`
+5. Click on the **JSON** tab and paste in the following policy. Make sure to change `<account-id>` to your aws account id.
 
-    ![Attach Policies](/images/01-getting-started/attach-admin.png)
+    ```
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Action": [
+                "iam:AttachRolePolicy",
+                "iam:DetachRolePolicy"
+                ],
+                "Effect": "Allow",
+                "Resource": "arn:aws:iam::<account-id>:role/parallelcluster/*"
+            }
+        ]
+    }
+    ```
+
+6. Click **Review Policy**, give it a name like `pcluster-attach-detach-policies` and click **Save**.

@@ -1,0 +1,70 @@
+HeadNode:
+  InstanceType: c5.xlarge
+  Networking:
+    SubnetId: subnet-0b00e5946b7a072a3
+  LocalStorage:
+    RootVolume:
+      VolumeType: gp3
+      Size: 200
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  CustomActions:
+    OnNodeConfigured:
+      Sequence:
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+Scheduling:
+  Scheduler: slurm
+  SlurmSettings:
+    QueueUpdateStrategy: DRAIN
+    EnableMemoryBasedScheduling: true
+  SlurmQueues:
+    - Name: p5
+      ComputeSettings:
+        LocalStorage:
+          EphemeralVolume:
+            MountDir: /local_scratch
+          RootVolume:
+            Size: 200
+      ComputeResources:
+        - Name: cr-48xlarge
+          MinCount: 0
+          MaxCount: 4
+          InstanceType: p5.48xlarge
+          Efa:
+            Enabled: true
+            GdrSupport: true
+      Networking:
+        SubnetIds:
+          - subnet-0fd9fec98b7d3b138
+        PlacementGroup:
+          Enabled: true
+      CustomActions:
+        OnNodeConfigured:
+          Sequence:
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+              Args:
+                - /local_scratch
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+          - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+          - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+Region: us-east-1
+Image:
+  Os: ubuntu2004
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /fsx
+    FsxLustreSettings:
+      StorageCapacity: 1200
+      DeploymentType: PERSISTENT_2
+      PerUnitStorageThroughput: 125
+      DataCompressionType: LZ4
+Monitoring:
+  DetailedMonitoring: true
