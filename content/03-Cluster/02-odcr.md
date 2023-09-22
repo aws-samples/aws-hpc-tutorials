@@ -4,6 +4,8 @@ weight: 32
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 
+![EC2 Instance](/images/03-cluster/ec2.png)
+
 On-Demand Capacity Reservation (ODCR) is a tool for reserving capacity without having to launch and run the instances. For capacity constrained instances like the `p4d.24xlarge`, this is typically **the only way** to launch them.
 
 In this section we'll show you how to either:
