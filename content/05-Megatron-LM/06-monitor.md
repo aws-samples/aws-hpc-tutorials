@@ -23,4 +23,4 @@ sudo apt-get -y install nvtop
 
 3. Now run `nvtop`:
 
-![nvtop](/images/04-Megatron-LM/nvtop.png)
+![nvtop](/images/04-Megatron-LM/nvtop-2.png)

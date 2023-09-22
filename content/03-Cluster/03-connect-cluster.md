@@ -4,9 +4,11 @@ weight: 33
 tags: ["tutorial", "connecting", "ParallelCluster"]
 ---
 
+![SSM](/images/03-cluster/ssm.png)
+
 The cluster we created on the previous page takes about ~15 mins to create. While you're waiting grab a ☕️.
 
-Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of two ways, either through the shell or via the DCV session:
+Once the cluster goes into **CREATE COMPLETE**, we can connect to the head node in one of two ways, either through the SSM or SSH.
 
 **SSM Session Manager** is ideal for quick terminal access to the head node, it doesn't require any ports to be open on the head node, however it does require you to authenticate with the AWS account the instance it running in.
 
@@ -22,21 +24,23 @@ You'll need to be authenticated to the AWS account that instance is running in a
 
 Now change to `ubuntu` user:
 
-    ```bash
-    echo "sudo su - ubuntu" >> ~/.bashrc && source ~/.bashrc
-    ```
+```bash
+echo "sudo su - ubuntu" >> ~/.bashrc && source ~/.bashrc
+```
 
 ![SSM Console](/images/03-cluster/ssm-console.png)
 
-To connect via a CLI client run the command, where `instance-id` is from the **Instances** tab of the ParallelCluster UI:
+To connect via a CLI run the following command, where `instance-id` is from the **Instances** tab of the ParallelCluster UI:
 
-    ```bash
-    aws ssm start-session --target <instance-id>
-    ```
+```bash
+aws ssm start-session --target <instance-id>
+```
 
 ## SSH {#ssh}
 
-1. First create a ssh key for the user you want to connect as, hit enter several times to accept the defaults:
+1. First connect via SSM
+
+2. On the Head Node, create a ssh key using `ssh-keygen`, hit enter several times to accept the defaults:
 
     ```bash
     $ ssh-keygen
@@ -78,4 +82,10 @@ To connect via a CLI client run the command, where `instance-id` is from the **I
 
     ```bash
     ssh -i ~/path/private/key ubuntu@public-ip
+    ```
+
+    **OR** Install the [pcluster cli](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-pip.html) and run:
+
+    ```bash
+    pcluster ssh -n <cluster-name>
     ```
