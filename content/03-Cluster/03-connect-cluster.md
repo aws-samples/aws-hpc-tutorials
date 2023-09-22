@@ -28,6 +28,12 @@ Now change to `ubuntu` user:
 
 ![SSM Console](/images/03-cluster/ssm-console.png)
 
+To connect via a CLI client run the command, where `instance-id` is from the **Instances** tab of the ParallelCluster UI:
+
+    ```bash
+    aws ssm start-session --target <instance-id>
+    ```
+
 ## SSH {#ssh}
 
 1. First create a ssh key for the user you want to connect as, hit enter several times to accept the defaults:
