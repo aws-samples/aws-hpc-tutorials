@@ -18,7 +18,6 @@ We recommend this approach over taking a AWS ParallelCluster AMI and customizing
 
     ```bash
     aws ec2 describe-images --region us-east-1 --owners amazon --filters 'Name=name,Values=Deep Learning Base GPU AMI (Ubuntu 20.04) ????????' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
-
     ```
 
     You'll get an ami id like `ami-0528af10692058c25`.
@@ -36,11 +35,11 @@ We recommend this approach over taking a AWS ParallelCluster AMI and customizing
 2. Then run the `pcluster build-image` command and specify that config file.
 
     ```bash
-    pcluster build-image --image-id pcluster-3-5-0-deep-learning-alinux2 -c dl-ami.yaml
+    pcluster build-image --image-id pcluster-3-7-1-deep-learning-alinux2 -c dl-ami.yaml
     ```
 
 {{% notice note %}}
-Think of the flag `--image-id` as the name of the image. In the above example we call it `pcluster-3-7-0-deep-learning-ubuntu` to easily see which version of parallelcluster we built the image for and the framework/os. Feel free to change this to suit your use case.
+Think of the flag `--image-id` as the name of the image. In the above example we call it `pcluster-3-7-1-deep-learning-ubuntu` to easily see which version of parallelcluster we built the image for and the framework/os. Feel free to change this to suit your use case.
 {{% /notice %}}
 
 #### 3 - Grab the ParallelCluster AMI
@@ -52,13 +51,13 @@ $ pcluster list-images --image-status AVAILABLE
 {
   "images": [
     {
-      "imageId": "pcluster-3-7-0-deep-learning-ubuntu",
+      "imageId": "pcluster-3-7-1-deep-learning-ubuntu",
       "imageBuildStatus": "BUILD_COMPLETE",
       "ec2AmiInfo": {
         "amiId": "ami-1234abcd5678efgh"
       },
       "region": "us-east-1",
-      "version": "3.7.0"
+      "version": "3.7.1"
     }
   ]
 }

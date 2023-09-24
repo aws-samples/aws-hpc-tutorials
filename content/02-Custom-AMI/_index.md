@@ -13,20 +13,14 @@ Here's an example of the two different images. Pick one and proceed to either [*
 
 #### 1 - Deep Learning AMI
 
-For example, in the [multi-framework Amazon Linux 2 AMI](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-amazon-linux-2/), we get the following software stack:
+For example, in the [Ubuntu 20.04 Deep Learning AMI](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-amazon-linux-2/), we get the following software stack:
 
-- Supported EC2 Instances: G3, P3, P3dn, P4d, P4de, G5, G4dn, Inf1
-- Operating System: `Amazon Linux 2`
+- Supported EC2 Instances: P5, P4de, P4d, P3, G5, G3, G4dn
+- Operating System: `Ubuntu 20.04`
 - Compute Architecture: `x86`
 - Conda environments framework and python versions:
-- python3: `Python 3.10`
-- tensorflow2_p310: `TensorFlow 2.12`, `Python 3.10`
-- pytorch_p310: `PyTorch 2.0`, `Python 3.10`
-- mxnet_p38: `Apache MXNet 1.9`, `Python 3.8`
-- aws_neuron_pytorch_p37: `Python 3.7`
-- aws_neuron_tensorflow2_p37: `Python 3.7`
-- aws_neuron_mxnet_p37: `Python 3.7`
-- NVIDIA Driver: `525.85.12`
+- python3: `Python 3.9`
+- NVIDIA Driver: `535.54.03`
 - NVIDIA CUDA11 stack:
   - CUDA, NCCL and cuDDN installation path: `/usr/local/cuda-xx.x/`
   - EFA Installer: `1.19.0`

@@ -1,0 +1,61 @@
+HeadNode:
+  InstanceType: c5.4xlarge
+  Imds:
+    Secured: false
+  LocalStorage:
+    RootVolume:
+      VolumeType: gp3
+  Networking:
+    SubnetId: subnet-03183cb54e5ea3835 #us-west-2b
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AdministratorAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  CustomActions:
+    OnNodeConfigured:
+      Sequence:
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+        - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: p4d
+      CapacityReservationTarget:
+        CapacityReservationId: cr-0aed3d7ec3ff92812  #us-west-2b
+      ComputeResources:
+        - Name: p4d-cr-0
+          InstanceType: p4de.24xlarge
+          MinCount: 0
+          MaxCount: 16
+          Efa:
+            Enabled: true
+      ComputeSettings:
+        LocalStorage:
+          RootVolume:
+            VolumeType: gp3
+      Networking:
+        SubnetIds:
+          - subnet-0a79b0b13b7a90356  #  us-west-2b
+        PlacementGroup:
+          Enabled: false
+      CustomActions:
+        OnNodeConfigured:
+          Sequence:
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh'
+            - Script: 'https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh'
+  SlurmSettings:
+    QueueUpdateStrategy: DRAIN
+    EnableMemoryBasedScheduling: true
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /fsx
+    FsxLustreSettings:
+      FileSystemId: fs-0d35a1c8def610a0a
+Region: us-west-2
+Image:
+  Os: ubuntu2004
+Monitoring:
+  DetailedMonitoring: true

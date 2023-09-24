@@ -6,11 +6,11 @@ tags = ["tutorial", "cloud9", "ParallelCluster"]
 
 1. Got to the AWS Console, in the search box search for [**AWS CloudFormation**](https://console.aws.amazon.com/cloudformation/home) and click on that service.
 
-2. You'll see a stack named **pcluster-manager**, click on that stack > **Outputs** Tab then click on the **PclusterManagerUrl** to connect.
+2. You'll see a stack named **parallelcluster-ui**, click on that stack > **Outputs** Tab then click on the **ParallelClusterUIUrl** to connect.
 
 ![ParallelCluster UI Deployed](/images/01-getting-started/pcluster-deployed.png)
 
-3. During deployment you received an email titled **[PclusterManager] Welcome to ParallelCluster UI, please verify your account.**. Copy the password from that email.
+3. During deployment you received an email titled **[ParallelClusterUI] Welcome to ParallelCluster UI, please verify your account.**. Copy the password from that email.
 
 ![ParallelCluster UI](/images/01-getting-started/pcm-email.png)
 

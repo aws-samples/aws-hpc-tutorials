@@ -51,20 +51,7 @@ Once you accept the capacity reservation, then billing will start. Hence we reco
         CapacityReservationId: cr-061fcf9b1b320a075
     ```
 
-    ![Include ODCR](/images/03-cluster/include_odcr.png)
-
-2. Next modify the `InstanceType` section to make sure it's specified as `InstanceType` instead of `InstanceType` in a list.
-
-    ```yaml
-    Instances:
-      - InstanceType: p4d.24lxarge
-    # to
-    InstanceType: p4d.24lxarge
-    ```
-
-3. Next, click **Dry Run** to confirm the setup and then click **Create**
-
-    ![Cluster Wizard](/images/03-cluster/pcmanager-5.png)
+    ![Include ODCR](/images/03-cluster/pcui-5.png)
 
 ## Capacity Reservation Group {#capacity_group}
 
