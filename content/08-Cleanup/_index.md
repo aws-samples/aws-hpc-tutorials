@@ -1,7 +1,7 @@
 ---
 title: "Cleanup"
-weight: 60
-pre: "<b>Part V ⁃ </b>"
+weight: 70
+pre: "<b>Part VI ⁃ </b>"
 tags: ["HPC", "Overview"]
 ---
 

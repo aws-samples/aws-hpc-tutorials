@@ -1,6 +1,6 @@
 ---
 title: "c. Delete ParallelCluster UI"
-weight: 63
+weight: 12
 tags: []
 ---
 
