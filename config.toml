@@ -18,8 +18,8 @@ disableSearch = false
 disableAssetsBusting = false
 disableLanguageSwitchingButton = true
 disableShortcutsTitle = false
-tutorialLocation = "Tel Aviv"
-tutorialDate = "February 20th 2022"
+tutorialLocation = "Immersion Day"
+tutorialDate = "Sept 28th 2023"
 contact = "[sc22tutorial@amazon.com](mailto:sc22tutorial@amazon.com)"
 
 

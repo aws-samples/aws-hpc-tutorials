@@ -18,6 +18,3 @@ Throughout the tutorial you will be going through the following labs:
 3. **[Lab 2: FSx for lustre and S3](/08-fsx-lustre.html)**: You will create a container of a genomic sequencing workflow on a HPC cluster in the Cloud.
 
 
-#### Accessing Your Lab Account
-Once you get your credentials during the tutorial, access your account through https://dashboard.eventengine.run.
-

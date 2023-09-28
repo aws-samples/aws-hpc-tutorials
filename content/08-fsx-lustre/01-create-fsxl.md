@@ -61,5 +61,5 @@ The status should be **CREATING**. Once created the status should be **AVAILABLE
 
 {{% notice info %}}
 Amazon FSx for Lustre file system creation will take **approximately 10 mins. In the meantime let us move to next steps**. 
-{{% notice info %}}
+{{% /notice %}}
 

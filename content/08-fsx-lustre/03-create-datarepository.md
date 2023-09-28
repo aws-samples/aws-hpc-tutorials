@@ -38,6 +38,6 @@ The status should be **CREATING**. Once created the status should be **AVAILABLE
 
 {{% notice info %}}
 Step 3 is expected to take a few  minutes. You are going to check this again and you can proceed with the next section. While creating you should be able to see the status as shown above. 
-{{% notice info %}}
+{{% /notice %}}
 
 
