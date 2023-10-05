@@ -1,0 +1,75 @@
+HeadNode:
+  InstanceType: c5.xlarge
+  Networking:
+    SubnetId: subnet-1234567890 # public subnet
+  LocalStorage:
+    RootVolume:
+      VolumeType: gp3
+      Size: 500
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  CustomActions:
+    OnNodeConfigured:
+      Sequence:
+        - Script: >-
+            https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh
+        - Script: >-
+            https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh
+  Ssh:
+    KeyName: keypair
+  Imds:
+    Secured: true
+Scheduling:
+  Scheduler: slurm
+  SlurmSettings:
+    QueueUpdateStrategy: DRAIN
+    EnableMemoryBasedScheduling: true
+  SlurmQueues:
+    - Name: p5
+      ComputeSettings:
+        LocalStorage:
+          EphemeralVolume:
+            MountDir: /local_scratch
+          RootVolume:
+            VolumeType: gp3
+      ComputeResources:
+        - Name: cr-48xlarge
+          MinCount: 2
+          MaxCount: 18
+          Efa:
+            Enabled: true
+            GdrSupport: true
+          InstanceType: p5.48xlarge
+      Networking:
+        SubnetIds:
+          - subnet-012348239842398 # private subnet
+        PlacementGroup:
+          Enabled: true
+      CustomActions:
+        OnNodeConfigured:
+          Sequence:
+            - Script: >-
+                https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/docker/postinstall.sh
+            - Script: >-
+                https://raw.githubusercontent.com/aws-samples/aws-parallelcluster-post-install-scripts/main/pyxis/postinstall.sh
+              Args:
+                - /local_scratch
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+          - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+          - Policy: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+Region: us-east-1
+Image:
+  Os: ubuntu2004
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /fsx
+    FsxLustreSettings:
+      FileSystemId: fs-050035adfac6b3fe4
+Monitoring:
+  DetailedMonitoring: true
