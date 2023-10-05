@@ -12,9 +12,9 @@ By building this as a container image we've greatly simplified the complexity of
 |---------------|---------------|-----------------------|:---------------------:|
 |  EFA          |  `1.26.1`     |                       |     `1.26.1`          |
 |  NCCL         |  `2.18.5`     |     `2.15.1`          |     `2.18.5`          |
-|  NCCL OFI     |  `v1.7.3-aws` |      `1.6.0`          |     `v1.7.3-aws`      |
-|  CUDA Driver  |  `535.54.03`  |                       |     `535.54.03`       |
-|  CUDA Version |  `12.2`       |                       |     `11.8`            |
+|  NCCL OFI     |  `v1.7.3-aws` |     `1.6.0`           |     `v1.7.3-aws`      |
+|  CUDA Driver  |  `535.54.03`  |      `450.80.02`      |     `535.54.03`       |
+|  CUDA Version |  `12.2`       |      `11.4`           |     `11.8`            |
 
 
 1. On the **HeadNode** create a file `megatron-lm.Dockerfile` with the following content:

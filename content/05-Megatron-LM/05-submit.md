@@ -4,6 +4,29 @@ weight: 14
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 
+In the following example we submit a Slurm script that runs the training workload across 24 instances, or 192 GPU's. It's ok to run on fewer instances, just adjust model size so you don't run out of memory.
+
+In addition we set the following EFA flags:
+
+| Environment Variable        | Value         | Description            |
+|-----------------------------|---------------|:-----------------------:|
+|  FI_EFA_USE_DEVICE_RDMA     |  `1`          | This enables GPU to GPU RDMA read and write (on H100).                             |
+|  FI_EFA_FORK_SAFE           |  `1`          | See https://github.com/ofiwg/libfabric/issues/6332#issuecomment-834822754          |
+|  FI_LOG_LEVEL               |  `1`          | Increase log level, useful for seeing if using EFA provider in libfabric.          |
+|  FI_PROVIDER                |  `efa`        | Use EFA interface in Libfabric.                                                    |
+|  FI_EFA_ENABLE_SHM_TRANSFER |  `1`          | Enable SHM provider to provide the communication across all intra-node processes. SHM transfer will be disabled in the case where ptrace protection is turned on. You can turn it off to enable shm transfer.               |
+|  NCCL_ASYNC_ERROR_HANDLING  |  `1`          | See https://github.com/pytorch/elastic/issues/136               |
+|  NCCL_DEBUG                 |  `INFO`       | Print out useful debugging information from NCCL.                                  |
+|  CUDA_DEVICE_MAX_CONNECTIONS | `1`          | See https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/arguments.py#L330     |
+
+Flags **not** to use. If you see these set, please remove them:
+
+| Environment Variable        | Value         | Description                |
+|-----------------------------|---------------|:--------------------------:|
+|  NCCL_ALGO                  |  `Ring`       | This is autodetected.      |
+|  NCCL_PROTO                 |  `simple`     | This is also autodetected. |
+
+
 1. Create a job submission script
 
 ```bash
