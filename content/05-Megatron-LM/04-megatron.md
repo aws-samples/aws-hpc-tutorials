@@ -8,13 +8,13 @@ In the following steps we build a Docker image and then convert it to a [rootles
 
 By building this as a container image we've greatly simplified the complexity of what needs to be installed on the underlying system, however it doesn't completely eliminate the need to have some software installed on both the AMI and the container. Most notably the device drivers, including [CUDA](https://docs.nvidia.com/deploy/cuda-compatibility/), [EFA](https://aws.amazon.com/hpc/efa/) and [NCCL](https://developer.nvidia.com/nccl) all need to be installed on both the AMI **and** on the container image with the same version. We'll use the following versions:
 
-| Library  | Version       | A100 Min Version (P4) | H100 Min Version (P5) |
-|----------|---------------|-----------------------|:---------------------:|
-|  EFA     |  `1.26.1`     |                       |     `1.25.1`          |
-|  NCCL    |  `2.16.2`     |     2.4.2             |                       |
-|  NCCL OFI|  `v1.7.2-aws` |                       |     `v1.7.2-aws`      |
-|  CUDA Driver    |  `535.54.03`  |     `535.54.03`       |     `535.54.03`       |
-|  CUDA Version    |  `12.2`       |                       |     `535.54.03`       |
+| Library       | Version       | A100 Min Version (P4) | H100 Min Version (P5) |
+|---------------|---------------|-----------------------|:---------------------:|
+|  EFA          |  `1.26.1`     |                       |     `1.26.1`          |
+|  NCCL         |  `2.18.5`     |     `2.15.1`          |     `2.18.5`          |
+|  NCCL OFI     |  `v1.7.3-aws` |      `1.6.0`          |     `v1.7.3-aws`      |
+|  CUDA Driver  |  `535.54.03`  |                       |     `535.54.03`       |
+|  CUDA Version |  `12.2`       |                       |     `11.8`            |
 
 
 1. On the **HeadNode** create a file `megatron-lm.Dockerfile` with the following content:
