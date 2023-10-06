@@ -18,17 +18,32 @@ The first step is to authenticate with NGC, this will allow us to pull down imag
 
 ```bash
 wget --content-disposition https://ngc.nvidia.com/downloads/ngccli_linux.zip && unzip ngccli_linux.zip && chmod u+x ngc-cli/ngc
-echo "export $(pwd)/ngc-cli/ngc:$PATH"
+echo "export PATH=$(pwd)/ngc-cli:\$PATH" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 3. Using the API key you generated, login to your account on the **HeadNode** like so:
 
 ```bash
-ngc login
+ngc config set
 ```
 
-4. To test that it's working we'll fetch the `pytorch:23.01-py3` from NGC:
+4. The login with docker, make sure to put the username as `$oauthtoken` and password is the API key from NGC.
+
+```
+ubuntu@ip-10-0-21-26:~$ docker login nvcr.io
+Username: $oauthtoken
+Password:
+
+WARNING! Your password will be stored unencrypted in /home/ubuntu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+5. To test that it's working we'll fetch the `nemo:23.06` from NGC:
 
 ```bash
-docker pull nvcr.io/nvidia/pytorch:23.01-py3
+docker pull nvcr.io/nvidia/nemo:23.06
 ```
