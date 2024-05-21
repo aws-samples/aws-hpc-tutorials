@@ -5,6 +5,10 @@ draft: false
 ---
 # Self-Managed Machine Learning Workshop
 
+{{% notice info %}}
+This workshop has been moved to https://catalog.workshops.aws/ml-on-aws-parallelcluster and will no longer be updated. Please go there.
+{{% /notice %}}
+
 ![Ultracluster](/images/AWS-UltraClusters-light-updated.gif)
 
 Amazon Web Services (AWS) provides the most elastic and scalable cloud infrastructure to run your [Machine Learning](https://aws.amazon.com/ml/). With virtually unlimited capacity, engineers, researchers, HPC system adminsitrators, and organizations can innovate beyond the limitations of on-premises capacity.
