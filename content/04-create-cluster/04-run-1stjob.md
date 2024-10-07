@@ -1,7 +1,7 @@
 +++
 title = "f. Submit your first HPC job"
 date = 2022-03-01T10:46:30-04:00
-weight = 54
+weight = 44
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

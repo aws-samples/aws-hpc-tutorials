@@ -1,7 +1,7 @@
 +++
 title = "c. Create S3 Bucket"
 date = 2019-09-18T10:46:30-04:00
-weight = 30
+weight = 53
 tags = ["configuration", "FSx", "ParallelCluster"]
 +++
 

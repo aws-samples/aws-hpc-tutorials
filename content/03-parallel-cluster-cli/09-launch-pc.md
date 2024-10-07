@@ -1,7 +1,7 @@
 +++
 title = "h. Build an HPC Cluster"
 date = 2019-09-18T10:46:30-04:00
-weight = 44
+weight = 39
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

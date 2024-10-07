@@ -1,7 +1,7 @@
 +++
 title = "g. Update your cluster"
 date = 2022-03-01T10:46:30-04:00
-weight = 55
+weight = 45
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

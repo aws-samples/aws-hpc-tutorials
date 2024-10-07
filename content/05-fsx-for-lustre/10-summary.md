@@ -1,7 +1,7 @@
 +++
 title = "j. Summary and Cleanup"
 date = 2019-09-18T10:46:30-04:00
-weight = 100
+weight = 60
 tags = ["tutorial", "FSx", "summary"]
 +++
 

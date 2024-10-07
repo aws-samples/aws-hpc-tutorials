@@ -1,7 +1,7 @@
 ---
 title: "f. Delete Your EFA Cluster"
 date: 2020-05-13T09:52:23Z
-weight : 50
+weight : 76
 tags : ["tutorial", "delete", "ParallelCluster"]
 ---
 

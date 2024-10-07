@@ -1,6 +1,6 @@
 ---
 title: "c. Get to know your Cluster"
-weight: 53
+weight: 43
 tags: ["tutorial", "parallelcluster-ui", "ParallelCluster"]
 ---
 

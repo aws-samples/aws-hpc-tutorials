@@ -1,7 +1,7 @@
 ---
 title: "e. Download, compile and run the OSU Benchmark"
 date: 2020-05-12T13:27:03Z
-weight : 40
+weight : 75
 tags : ["tutorial", "EFA", "ec2", "OSU", "MPI", "Benchmark", "compile"]
 ---
 

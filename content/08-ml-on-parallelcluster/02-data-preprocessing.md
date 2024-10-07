@@ -1,7 +1,7 @@
 ---
 title : "c. Run single node data preprocessing with Slurm"
 date: 2020-09-04T15:58:58Z
-weight : 20
+weight : 93
 tags : ["preprocessing", "data", "ML", "srun", "slurm"]
 ---
 

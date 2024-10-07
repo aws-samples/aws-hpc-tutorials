@@ -1,7 +1,7 @@
 +++
 title = "a. Deploy EC2 instance with NICE DCV"
 date = 2019-01-24T09:05:54Z
-weight = 140
+weight = 31
 tags = ["HPC", "NICE", "Visualization", "Remote Desktop", "Native Client"]
 +++
 

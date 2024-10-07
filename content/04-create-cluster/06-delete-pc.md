@@ -1,7 +1,7 @@
 +++
 title = "h. Terminate Your Cluster"
 date = 2019-09-18T10:46:30-04:00
-weight = 56
+weight = 46
 tags = ["tutorial", "create", "ParallelCluster"]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "h. View Metrics with CloudWatch"
 date = 2019-09-18T10:46:30-04:00
-weight = 80
+weight = 58
 tags = ["tutorial", "IOR", "FSx", "metrics"]
 +++
 

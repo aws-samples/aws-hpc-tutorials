@@ -1,7 +1,7 @@
 +++
 title = "a. Create a cluster configured with NICE DCV"
 date = 2019-09-18T10:46:30-04:00
-weight = 50
+weight = 12
 tags = ["tutorial", "initialize", "ParallelCluster", "DCV"]
 +++
 

@@ -1,7 +1,7 @@
 ---
 title: "DCV Connect in ParallelCluster"
 date: 2019-01-24T09:05:54Z
-weight: 20
+weight: 10
 tags: ["HPC", "NICE", "Visualization", "Remote Desktop"]
 ---
 

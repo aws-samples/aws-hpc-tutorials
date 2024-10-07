@@ -1,7 +1,7 @@
 ---
 title : "c. Examine an EFA enabled instance"
 date: 2020-05-12T10:00:58Z
-weight : 20
+weight : 73
 tags : ["tutorial", "EFA", "ec2", "fi_info", "mpi"]
 ---
 

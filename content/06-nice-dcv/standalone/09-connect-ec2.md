@@ -1,7 +1,7 @@
 +++
 title = "b. Connect to NICE DCV EC2 Instance"
 date = 2019-01-24T09:05:54Z
-weight = 160
+weight = 32
 tags = ["HPC", "NICE", "Visualization", "Remote Desktop", "Web Browser", "Native Client"]
 +++
 

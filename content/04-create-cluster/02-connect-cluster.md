@@ -1,6 +1,6 @@
 ---
 title: "b. Connect to the Cluster"
-weight: 52
+weight: 42
 tags: ["tutorial", "cloud9", "ParallelCluster"]
 ---
 

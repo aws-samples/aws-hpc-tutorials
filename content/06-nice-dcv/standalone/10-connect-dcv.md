@@ -1,7 +1,7 @@
 +++
 title = "c. Connect to Remote Desktop Session"
 date = 2019-01-24T09:05:54Z
-weight = 180
+weight = 33
 tags = ["HPC", "NICE", "Visualization", "Remote Desktop", "Web Browser", "Native Client"]
 +++
 

@@ -1,7 +1,7 @@
 ---
 title: "d. Work With Intel MPI"
 date: 2020-05-12T12:57:20Z
-weight : 30
+weight : 74
 tags : ["tutorial", "EFA", "ec2", "IntelMPI", "MPI", "intel", "module"]
 ---
 

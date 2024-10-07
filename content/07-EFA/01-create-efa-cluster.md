@@ -1,7 +1,7 @@
 ---
 title : "b. Create an HPC Cluster with EFA"
 date: 2020-05-12T10:00:58Z
-weight : 10
+weight : 72
 tags : ["configuration", "EFA", "ParallelCluster", "create"]
 ---
 

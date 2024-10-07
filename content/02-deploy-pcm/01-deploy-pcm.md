@@ -1,6 +1,6 @@
 +++
 title = "a. Deploy ParallelCluster UI"
-weight = 31
+weight = 21
 tags = ["tutorial", "ParallelCluster"]
 +++
 

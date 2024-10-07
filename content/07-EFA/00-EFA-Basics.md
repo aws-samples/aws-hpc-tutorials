@@ -1,7 +1,7 @@
 ---
 title: "a. EFA Basics"
 date: 2020-05-13T10:00:58Z
-weight : 5
+weight : 71
 tags : ["EFA", "ParallelCluster", "basics",]
 
 ---
