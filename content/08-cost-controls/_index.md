@@ -38,7 +38,7 @@ Separately, you will publish cost metric data to Amazon CloudWatch to provide co
 
 You will create the below architecture during this lab:
 
-![Lab4 Architecture Diagram](/static/img/04-lab-4/lab4_arch_diagram.png)
+![Lab4 Architecture Diagram](/static/img/cost-controls/lab4_arch_diagram.png)
 
 The architecture presented in this lab has the following components:
 - **Slurm Accounting** collects accounting information for each job and job step executed. [Slurm Accounting](https://slurm.schedmd.com/accounting.html#Overview) tracks resources and allows users to apply resource limits through a configuration called Group Trackable

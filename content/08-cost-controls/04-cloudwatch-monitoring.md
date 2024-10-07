@@ -57,12 +57,12 @@ the cron entry to disable mail notification pop-ups in your terminal session.
 Open the [CloudWatch service](https://eu-north-1.console.aws.amazon.com/cloudwatch/home?region=eu-north-1) in the AWS Console. Select **Metrics > All Metrics > ParallelCluster > ClusterName**. 
 Then select checkbox for the metric named `cluster_cost` to plot it. Note that it can take up to 5 minutes for metrics to be displayed in CloudWatch. Please wait until you see the `cluster_cost` metric in the CloudWatch console, then select `cluster_cost`. 
 
-![CloudWatch Metric](/static/img/04-lab-4/cloudwatch_metric.png)
+![CloudWatch Metric](/static/img/cost-controls/cloudwatch_metric.png)
 
 #### 6. Modify `cluster_cost` time period.
 Select the **Graphed metrics** tab and modify the `cluster_cost` metric to show a period of one minute, as seen in the image below:
 
-![CloudWatch Period](/static/img/04-lab-4/cloudwatch_period.png)
+![CloudWatch Period](/static/img/cost-controls/cloudwatch_period.png)
 CloudWatch allows you to customize the way in which data is aggregated.  In this lab, you have chosen a period of one minute because that is how frequently the custom metric data is published.
 
 #### 7. Add the cost graph to the dashboard.  
@@ -70,25 +70,25 @@ The ParallelCluster CloudWatch dashboard is created as part of the standard Para
 
 Select **Actions** and choose **Add to Dashboard**.
 
-![CloudWatch Add to Dashboard](/static/img/04-lab-4/cloudwatch_add_to_dashboard.png)
+![CloudWatch Add to Dashboard](/static/img/cost-controls/cloudwatch_add_to_dashboard.png)
 
 Then choose the dashboard for your cluster and select **Add to Dashboard**.
 
-![CloudWatch Add to Dashboard2](/static/img/04-lab-4/cloudwatch_add_to_dashboard_3.png)
+![CloudWatch Add to Dashboard2](/static/img/cost-controls/cloudwatch_add_to_dashboard_3.png)
 
 #### 8. View the ParallelCluster Dashboard.
 
 The cluster dashboard will now appear. Scroll to the bottom of the dashboard to view the `cluster_cost` graph.
 
-![CloudWatch Dashboard 1](/static/img/04-lab-4/cloudwatch_dashboard_1.png)
+![CloudWatch Dashboard 1](/static/img/cost-controls/cloudwatch_dashboard_1.png)
 
 Move the `cluster_cost` graph to be under the "Cluster Health Metrics" section using the drag and drop functionality.
 Hover your mouse over `cluster_cost` graph with your cursor, click, and drag the graph upwards to the "Cluster Health Metrics" section as seen in screenshot below:
 
-![CloudWatch Dashboard 2](/static/img/04-lab-4/cloudwatch_dashboard_2.png)
+![CloudWatch Dashboard 2](/static/img/cost-controls/cloudwatch_dashboard_2.png)
 
 Your dashboard will now look like the image below, where you can visualize your cluster cost data alongside other relevant cluster metrics and logs.
 
-![CloudWatch Dashboard Final](/static/img/04-lab-4/cloudwatch_dashboard_final.png)
+![CloudWatch Dashboard Final](/static/img/cost-controls/cloudwatch_dashboard_final.png)
 
 You have successfully created a CloudWatch Dashboard to visualize the cluster cost using a custom CloudWatch Metric. Please continue on to the next section.

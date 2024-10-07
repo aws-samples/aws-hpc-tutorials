@@ -71,7 +71,7 @@ In this lab, you will focus on information at the *pcdefault* account level as t
 
 Sample Output:
 
-![sshare](/static/img/04-lab-4/sshare_show_limit.png)
+![sshare](/static/img/cost-controls/sshare_show_limit.png)
 
 Here you can see that a number of CPUMins (CPU minutes) has been applied as a limit to the overall cluster account, pcdefault. All of the GrpTRESRaw datapoints, which represent resource usage, are zero because you have not run any jobs since enabling Slurm resource limits.
 

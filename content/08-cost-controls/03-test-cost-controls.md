@@ -12,7 +12,7 @@ Use the `sacct` command to observe the Slurm Accounting job execution statistics
 sacct --format=jobid,jobname,partition,account,state,elapsed,alloccpus,allocnodes,cputime --allocations --starttime now-2days
 ```
 
-![sacct](/static/img/04-lab-4/sacct.png)
+![sacct](/static/img/cost-controls/sacct.png)
 
 Note that you can see the runtime of the previously executed jobs as well as the number of nodes and CPUs that were
 allocated to that jobs execution. These values are used in Slurm Accounting to track against the CPUMins GrpTRESMins
@@ -25,7 +25,7 @@ Use the `sshare` command to observe the current GrpTRESMins CPU limit at the acc
 sshare -u " " -A pcdefault -o account,user,GrpTRESMins,GrpTRESRaw 
 ```
 
-![sshare_usage](/static/img/04-lab-4/sshare_show_usage.png)
+![sshare_usage](/static/img/cost-controls/sshare_show_usage.png)
 
 Because this limit is set at the cluster level, observe the output where `Account=pcdefault`
 and `UserName=` as this provides the account-level data. The upper limit should be the same but
@@ -54,7 +54,7 @@ Use the `squeue` command to view the status of the job that was just submitted.
 squeue
  ```
 
-![squeue_pending](/static/img/04-lab-4/squeue_pending.png)
+![squeue_pending](/static/img/cost-controls/squeue_pending.png)
 
 Note how the job is stuck in the Pending state as denoted by ST=PD. You can also see that the reason for the job
 being stuck in the pending state is `AssocGrpCPUMinutesLimit`, meaning that you have exceeded our CPUMins resource
@@ -89,11 +89,11 @@ squeue -i 5
 The job has been re-queued but it may take up to **3 minutes** for the job to start running due to a [BeginTime](https://slurm.schedmd.com/squeue.html#OPT_BeginTime) limitation.
 When a Slurm job is re-queued, the re-queued job's begin time is moved forward a couple of minutes to ensure that the previous job is cleaned up before the re-queued job starts.
 
-![squeue_begintime](/static/img/04-lab-4/squeue_begintime.png)
+![squeue_begintime](/static/img/cost-controls/squeue_begintime.png)
 
 Wait for the job to transition into the **running** state.  You will know that the job is in the **running** state when you see the following, denoted by **ST=R**:
 
-![squeue_running](/static/img/04-lab-4/squeue_running.png)
+![squeue_running](/static/img/cost-controls/squeue_running.png)
 
 #### 10. Exit the infinite loop by doing `ctrl-c`.
 
