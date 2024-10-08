@@ -21,12 +21,8 @@ pcluster ssh -n hpc --region ${AWS_REGION} -i ~/.ssh/${SSH_KEY_NAME}
 ```
 
 #### 3. Apply budget to cluster.
-Download the following python file as `create_cluster_cost_controls.py` within the */shared* directory.
+Upload the [attached Python File](/scripts/create_cluster_cost_controls.py) to a shared directory on the cluster such as the `/shared` directory.
 
-```bash
-cd /shared
-curl ':assetUrl{path="/scripts/create_cluster_cost_controls.py"}' --output /shared/create_cluster_cost_controls.py
-```
 This script takes a single integer parameter that represents the US dollar budget limit that you would like to apply to the cluster. When executed, the script converts the budget to the number of used CPU minutes by compute nodes in the cluster.
 
 Install the boto3 module that is a dependency of the python script.
@@ -47,11 +43,11 @@ python3 create_cluster_cost_controls.py 1000
 The python script has taken in the $1000 budget, calculated the cost per minute per core for the compute node EC2 instance type of hpc6id.32xlarge, and determined a total number of minutes that compute nodes can run before reaching the $1000 budget.
 The total minutes is then applied as a CPUMins resource limit in Slurm Accounting.
 
-::::expand{header="[Optional Information] Additional details about GrpTRESMins and CPUMins"}
+{{< detail-tag "**[Optional Information-Click here for more]**  Additional details about GrpTRESMins and CPUMins" >}}
 GrpTRESMins (Group Trackable Resource Minutes) represents the total number of trackable resource minutes that can possibly be used by past, present, and future Slurm jobs running from an association and its children.  If any limit is reached, all running jobs with that trackable resource in this group will be killed and no new jobs will be allowed to run.
 
 CPUMins (CPU Minutes) is a trackable resource representing the number of CPU minutes used by jobs.  As an example, a node with 64 CPUs running for 2 minutes would result in 128 CPUMins.
-::::
+{{< /detail-tag >}}
 
 #### 4. Verify that the budget is applied.
 Use `sshare` to view the resource limit setting that you applied in the previous step.  Note that the resource limit was applied at the cluster level so you must retrieve data for the overall *pcdefault* account in Slurm.
@@ -60,22 +56,22 @@ Use `sshare` to view the resource limit setting that you applied in the previous
 sshare -u " " -A pcdefault -o account,user,GrpTRESMins,GrpTRESRaw 
 ```
 
-::::expand{header="[Optional Information] Additional details about sshare and associations"}
+{{< detail-tag "**[Optional Information-Click here for more]**  Additional details about sshare and associations" >}}
 **sshare** is used with the Slurm Priority Multifactor plugin and Slurm Accounting to provide share information by association. This command is useful in that it allows you to view both the resource limits (CPU Minutes limit in this lab) and the association's usage against that limit (the *pcdefault* Slurm account is the association that you use in this lab).
 [sshare documentation](https://slurm.schedmd.com/sshare.html)
 
 Slurm maintains a hierarchy of **association** entities that are used to group information: accounts, clusters, partitions, and users.
 In this lab, you will focus on information at the *pcdefault* account level as this is the overarching account created by ParallelCluster.
 [Slurm association documentation](https://slurm.schedmd.com/sacctmgr.html#OPT_association)
-::::
+{{< /detail-tag >}}
 
 Sample Output:
 
-![sshare](/static/img/cost-controls/sshare_show_limit.png)
+![sshare](/images/cost-controls/sshare_show_limit.png)
 
 Here you can see that a number of CPUMins (CPU minutes) has been applied as a limit to the overall cluster account, pcdefault. All of the GrpTRESRaw datapoints, which represent resource usage, are zero because you have not run any jobs since enabling Slurm resource limits.
 
-::::expand{header="[Optional Information] Aside: where has this number for the limit come from?"}
+{{< detail-tag "**[Optional Information-Click here for more]**  Where has this number for the limit come from?" >}}
 The script we used to implement this limit takes as input the dollar budget, which in our case was 1000.
 We then calculate the CPU minutes that this translates to with the following steps:
 - Divide by the cost of the instance in the region ($6.0352 per hour)
@@ -84,7 +80,7 @@ We then calculate the CPU minutes that this translates to with the following ste
 - Multiply by 0.9 to add a 10% safety factor in the calculation for other costs not related to compute
 
 This gives a total budget in CPUmins of 572640.
-::::
+{{< /detail-tag >}}
 
 #### 5. Submit a new job.
 

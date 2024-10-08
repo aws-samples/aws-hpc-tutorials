@@ -13,6 +13,7 @@ The AWS HPC Workshops website has been developed by:
 - **Karthik Raman** - DCV content
 - **Fabio Nonato de Paula, Ph.D.** - Distributed ML content
 - **Sean Smith** - Labs, content and site build
+- **Max Starr, Ph.D.** - Labs & content
 
 #### Additional Authors
 
