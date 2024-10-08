@@ -1,6 +1,6 @@
 +++
 title = "b. Connect to ParallelCluster UI"
-weight = 32
+weight = 22
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 

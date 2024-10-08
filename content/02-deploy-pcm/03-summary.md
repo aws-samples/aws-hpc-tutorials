@@ -1,6 +1,6 @@
 +++
 title = "c. Summary"
-weight = 32
+weight = 23
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 

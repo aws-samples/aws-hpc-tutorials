@@ -1,7 +1,7 @@
 +++
 title = "d. Terminate Your Instance"
 date = 2019-09-18T10:46:30-04:00
-weight = 200
+weight = 34
 tags = ["HPC", "NICE", "Visualization", "Remote Desktop", "Web Browser", "Native Client"]
 +++
 

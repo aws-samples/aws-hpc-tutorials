@@ -1,7 +1,7 @@
 ---
 title: "DCV using web browser/native client"
 date: 2019-01-24T09:05:54Z
-weight: 120
+weight: 30
 tags: ["HPC", "NICE", "Visualization", "Remote Desktop", "Native Client"]
 ---
 

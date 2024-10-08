@@ -1,7 +1,7 @@
 +++
 title = "b. Modify Cluster Configuration"
 date = 2019-09-18T10:46:30-04:00
-weight = 11
+weight = 22
 tags = ["tutorial", "NICE DCV", "ParallelCluster", "Remote Desktop"]
 +++
 

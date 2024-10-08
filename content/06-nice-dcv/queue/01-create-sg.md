@@ -1,7 +1,7 @@
 +++
 title = "a. Create Security Group"
 date = 2019-09-18T10:46:30-04:00
-weight = 10
+weight = 21
 tags = ["tutorial", "NICE DCV", "ParallelCluster", "Remote Desktop"]
 +++
 

@@ -1,7 +1,7 @@
 ---
 title : "a. Upload training data to S3"
 date: 2020-09-04T15:58:58Z
-weight : 5
+weight : 91
 tags : ["configuration", "S3", "Conda", "data", "nccl", "efa"]
 ---
 

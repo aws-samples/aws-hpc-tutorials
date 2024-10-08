@@ -1,6 +1,6 @@
 +++
 title = "d. Create a Key Pair"
-weight = 28
+weight = 35
 tags = ["tutorial", "cloud9", "aws cli", "ec2", "key-pair"]
 +++
 

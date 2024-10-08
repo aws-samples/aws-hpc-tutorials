@@ -1,7 +1,7 @@
 +++
 title = "d. No-Ingress DCV Session"
 date = 2019-09-18T10:46:30-04:00
-weight = 13
+weight = 24
 tags = ["tutorial", "NICE DCV", "ParallelCluster", "Remote Desktop"]
 +++
 

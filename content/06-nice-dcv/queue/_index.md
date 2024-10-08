@@ -1,7 +1,7 @@
 ---
 title: "DCV Queue in ParallelCluster"
 date: 2019-01-24T09:05:54Z
-weight: 30
+weight: 20
 tags: ["HPC", "NICE", "Visualization", "Remote Desktop"]
 ---
 
