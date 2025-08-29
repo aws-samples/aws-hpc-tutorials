@@ -21,7 +21,7 @@ echo "Your bucket name will be mlbucket-${BUCKET_POSTFIX}"
 aws s3 mb s3://mlbucket-${BUCKET_POSTFIX}
 
 # downloading data:
-export URL="https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip"
+export URL="https://path/to/wikitext-103-v1.zip"
 export FILE="wikitext-103-v1.zip"
 wget $URL -O $FILE
 unzip $FILE
