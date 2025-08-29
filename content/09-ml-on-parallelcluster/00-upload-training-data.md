@@ -12,7 +12,7 @@ In this step, you create an environment configuration script to train a Natural 
 First, create an Amazon S3 bucket and upload the training data folder. This training folder will be accessed by the cluster worker nodes through FSx.
 
 1. Open a terminal in your AWS Cloud9 instance.
-2. Run the following commands to create a new Amazon S3 bucket. These commands also retrieve and store the [Wikitext 103 dataset](https://blog.einstein.ai/the-wikitext-long-term-dependency-language-modeling-dataset/)
+2. Run the following commands to create a new Amazon S3 bucket. These commands also retrieve and store the [Wikitext 103 dataset](amazon.com/)
 
 ```bash
 # generate a unique postfix
