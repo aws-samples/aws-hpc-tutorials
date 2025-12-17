@@ -1,7 +1,7 @@
 baseURL = "https://www.hpcworkshops.com"
 languageCode = "en-us"
 title = "AWS HPC Workshops"
-theme = "hugo-theme-learn"
+theme = "hugo-theme-relearn"
 uglyurls = true
 sectionPagesMenu = "main"
 pygmentsCodeFences = true
